@@ -104,4 +104,19 @@ venv.bak/
 .mypy_cache/
 
 # home assistant
+
+## You can whitelist files/folders with !, these will not be ignored.
+!*.yaml
+!.gitignore
+!*.md
+
+## Ignore folders.
+.storage
+.cloud
+.google.token
+
+## Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+ip_bans.yaml
+known_devices.yaml
 secrets.yaml
+
