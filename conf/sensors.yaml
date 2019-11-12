@@ -75,55 +75,6 @@
       entity_id: sensor.date
       value_template: "{{ states.input_datetime | count }}"
 
-    ha_uptime:
-      friendly_name: HA Uptime
-      value_template: >
-        {% if states('sensor.uptime') == '0.0' %}
-          Just restarted...
-        {% else %}
-          {% macro phrase(value, name) %}
-          {%- set value = value | int %}
-          {%- set end = 's' if value > 1 else '' %}
-          {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
-          {%- endmacro %}
-
-          {% set weeks = (states('sensor.uptime') | int / 7) | int %}
-          {% set days = (states('sensor.uptime') | int) - (weeks * 7) %}
-          {% set hours = (states('sensor.uptime') | float - states('sensor.uptime') | int) * 24 %}
-          {% set minutes = (hours - hours | int) * 60 %}
-
-          {{ [ phrase(weeks, 'week'), phrase(days, 'day'), phrase(hours, 'hr'), phrase(minutes, 'min') ] | select('!=','') | list | join(', ') }}
-        {% endif %}
-
-    rpi_uptime:
-      friendly_name: RPi Uptime
-      entity_id: sensor.time
-      value_template: >
-        {% set up_time = as_timestamp(now()) - as_timestamp(states('sensor.last_boot')) %}
-
-        {% set minutes = (up_time // 60) | int %}
-        {% set hours = (minutes // 60) %}
-        {% set days = (hours // 24) %}
-        {% set weeks = (days // 7) %}
-
-        {% set minutes = (minutes % 60) %}
-        {% set hours =  (hours % 24) %}
-        {% set days = (days % 7) %}
-
-        {% macro phrase(value, name) %}
-                  {%- set value = value %}
-                  {%- set end = 's' if value > 1 else '' %}
-                  {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
-        {%- endmacro %}
-
-        {% set text = [ phrase(weeks, 'week'), phrase(days, 'day'), phrase(hours, 'hr'), phrase(minutes, 'min') ] | select('!=','') | list | join(', ') %}
-        {% set last_comma = text.rfind(',') %}
-        {% if last_comma != -1 %}
-          {% set text = text[:last_comma] + ' and' + text[last_comma + 1:] %}
-        {% endif %}
-
-        {{ text }}
-
 - platform: command_line
   name: "RPi CPU Temperature"
   command: "cat /sys/class/thermal/thermal_zone0/temp"
@@ -166,6 +117,7 @@
   text_state: True
 
 - platform: uptime
+  unit_of_measurement: hours
 
 - platform: filesize
   file_paths:
