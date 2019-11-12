@@ -1,0 +1,26 @@
+---
+# Base Configuration:
+homeassistant: !include conf/homeassistant.yaml
+
+# Core Configuration
+default_config:
+person: !include conf/persons.yaml
+input_boolean: !include conf/input_booleans.yaml
+frontend: !include conf/frontend.yaml
+logger: !include conf/logger.yaml
+zone: !include conf/zones.yaml
+homekit: !include conf/homekit.yaml
+discovery: !include conf/discovery.yaml
+media_player: !include conf/media_players.yaml
+http: !include conf/http.yaml
+group: !include conf/groups.yaml
+script: !include conf/scripts.yaml
+automation: !include conf/automations.yaml
+device_tracker: !include conf/device_trackers.yaml
+switch: !include conf/switches.yaml
+sensor: !include conf/sensors.yaml
+
+# Components:
+tplink: !include conf/tplink.yaml
+yeelight: !include conf/yeelight.yaml
+speedtestdotnet: !include conf/speedtestdotnet.yaml

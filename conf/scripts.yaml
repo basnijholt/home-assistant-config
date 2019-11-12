@@ -1,0 +1,44 @@
+---
+start_the_music:
+  description: "Start a Spotify playlist on KEF speakers"
+  fields:
+    source:
+      description: 'The name of the speaker as it appears in Spotify'
+      example: 'KEF LS50 Wireless'
+    playlist:
+      description: 'The playlist URI from Spotify'
+      example: '6rPTm9dYftKcFAfwyRqmDZ'
+    playlist:
+      description: 'Volume at which to play'
+      example: '0.3'
+  sequence:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.start_the_music
+    - service: media_player.turn_on
+      entity_id: media_player.kef
+    - service: media_player.select_source
+      entity_id: media_player.kef
+      data:
+        source: Wifi
+    - wait_template: "{{ is_state('media_player.kef', 'on') }}"
+      timeout: '00:01:00'
+      continue_on_timeout: 'false'
+    - service: homeassistant.update_entity
+      entity_id: media_player.spotify
+    - wait_template: "{{ source in state_attr('media_player.spotify', 'source_list')  }}"
+      timeout: '00:01:00'
+      continue_on_timeout: 'false'
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data_template:
+        source: "{{ source }}"
+    - service: media_player.volume_set
+      entity_id: media_player.spotify
+      data_template:
+        volume_level: "{{ volume }}"
+    - service: spotify.play_playlist
+      data_template:
+        media_content_id: "spotify:playlist:{{ playlist }}"
+        random_song: true
+    - service: media_player.media_play
+      entity_id: media_player.spotify

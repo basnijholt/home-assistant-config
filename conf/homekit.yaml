@@ -1,0 +1,6 @@
+---
+exclude_domains:
+  - device_tracker
+entity_config:
+  switch.desk_lamp:
+    type: switch

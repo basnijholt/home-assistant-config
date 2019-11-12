@@ -1,0 +1,45 @@
+---
+- alias: Update power  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
+  id: update_power
+  initial_state: 'on'
+  trigger:
+    - platform: time_pattern
+      seconds: '/5' # every second
+  action:
+    - service: homeassistant.update_entity
+      entity_id: switch.desk_lamp
+
+- alias: Start the music
+  id: start_the_music
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.start_the_music
+      from: 'off'
+      to: 'on'
+  action:
+    - service: script.start_the_music
+      data:
+        source: "KEF LS50 Wireless"
+        playlist: "6rPTm9dYftKcFAfwyRqmDZ"
+        volume: "0.35"
+
+- alias: Power Problem Notification
+  id: rpi_power_issue
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.rpi_power_status
+    value_template: '{{ state.attributes.value }}'
+    above: 0
+    for:
+      minutes: 5
+  condition:
+  action:
+  - service: persistent_notification.create
+    data_template:
+      message: "RPI Power reported {{ states.sensor.rpi_power_status.state }}. The state had changed from {{ trigger.from_state.state }} "
+      title: Power Supply Issue
+  - service: notify.notify
+    data_template:
+      message: "RPI Power reported {{ states.sensor.rpi_power_status.state }}. The state had  changed from {{ trigger.from_state.state }}"
+      title: Power Supply Issue

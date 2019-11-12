@@ -1,0 +1,12 @@
+---
+latitude: !secret latitude_home
+longitude: !secret longitude_home
+elevation: 0
+unit_system: metric
+time_zone: Europe/Amsterdam
+name: Home
+whitelist_external_dirs:
+  - /config/
+customize:
+  person.bas_nijholt:
+    entity_picture: "https://www.nijho.lt/img/portrait.jpg"

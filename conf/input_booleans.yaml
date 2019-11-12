@@ -1,0 +1,5 @@
+---
+start_the_music:
+  name: Start speakers and music
+  initial: off
+  icon: mdi:music
