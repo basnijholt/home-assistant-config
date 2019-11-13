@@ -41,13 +41,13 @@ class WakeUpLight(hass.Hass):
         self.listen_state(self.start_cb, self.input_boolean, new="on")
 
     def _normalize_delays(self):
-        bridging_period = 0.1  # to be sure the previous transition is done
+        extra_wait = 0.1  # to be sure the previous transition is done
         norm = sum(d["relative_delay"] for d in self.sequence)
         delay = 0
         for settings in self.sequence:
             relative_delay = settings.pop("relative_delay")
             settings["transition"] = self.total_time * relative_delay / norm
-            delay += settings["transition"] + bridging_period
+            delay += settings["transition"] + extra_wait
             settings["seconds"] = delay
         self.log(f"normalized the delays: {self.sequence}.")
 
