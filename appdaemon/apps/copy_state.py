@@ -14,8 +14,7 @@ import appdaemon.plugins.hass.hassapi as hass
 
 class CopyState(hass.Hass):
     def initialize(self):
-        self.listen_state(self.change_state, self.args["copy_from"], new="on")
-        self.listen_state(self.change_state, self.args["copy_from"], new="off")
+        self.listen_state(self.change_state, self.args["copy_from"])
 
     def change_state(self, entity, attribute, old, new, kwargs):
         switch = self.args["copy_to"]
