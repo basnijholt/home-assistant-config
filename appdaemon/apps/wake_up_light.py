@@ -1,3 +1,5 @@
+"""Emulates a Philips Wake-up Light."""
+
 import appdaemon.plugins.hass.hassapi as hass
 
 ## Example `appdaemon.yaml` config:
