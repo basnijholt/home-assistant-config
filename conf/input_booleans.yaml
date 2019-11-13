@@ -11,3 +11,11 @@ alarm_clock:
   name: Alarm clock is on
   initial: off
   icon: mdi:alarm
+wake_up_with_spotify:
+  name: Start wake up with Spotify
+  initial: off
+  icon: mdi:music
+start_spotify:
+  name: Start on speakers
+  initial: off
+  icon: mdi:music

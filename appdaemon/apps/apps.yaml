@@ -8,7 +8,7 @@ copy_switch:
 wake_up_light:
   module: wake_up_light
   class: WakeUpLight
-  total_time: 60
+  total_time: 600
   lamp: light.ceiling
   input_boolean: input_boolean.wake_up_light
 
@@ -27,3 +27,21 @@ alarm_clock:
   to_trigger:
     - input_boolean.wake_up_light
     - input_boolean.start_the_music
+
+wake_up_with_spotify:
+  module: wake_up_with_spotify
+  class: WakeUpWithSpotify
+  volume_ramp_time: 900
+  final_volume: 0.3
+  speaker: media_player.kef
+  playlist: "6rPTm9dYftKcFAfwyRqmDZ"
+  input_boolean: input_boolean.wake_up_with_spotify
+  max_attempts: 10
+
+start_spotify:
+  module: start_spotify
+  class: StartSpotify
+  volume: 0.3
+  speaker: media_player.kef
+  playlist: "6rPTm9dYftKcFAfwyRqmDZ"
+  input_boolean: input_boolean.start_spotify
