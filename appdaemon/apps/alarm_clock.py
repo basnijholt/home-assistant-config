@@ -9,7 +9,7 @@ alarm_clock:
   input_datetime: input_datetime.alarm_clock
   to_trigger:
     - input_boolean.wake_up_light
-    - script.start_the_music
+    - input_boolean.start_the_music
 ```
 # Example `configuration.yaml`:
 ```
@@ -33,15 +33,24 @@ import appdaemon.plugins.hass.hassapi as hass
 class AlarmClock(hass.Hass):
     def initialize(self):
         self.input_datetime = self.args["input_datetime"]
-        self.run_at(self.start_cb, self.input_datetime)
+        self.alarm_toggle = self.args["alarm_toggle"]
+        self.to_trigger = self.args["to_trigger"]
+
+        self.listen_state(self.start, self.input_datetime)
+        self.listen_state(self.start, self.alarm_toggle)
+
+    def start(self, entity, attribute, old, new, kwargs):
+        self.log("State changed.")
+        time = self.parse_time(self.get_state(self.input_datetime))
+        self.run_daily(self.start_cb, time)
 
     @property
     def is_on(self):
-        return self.get_state(self.args["alarm_toggle"]) == "on"
+        return self.get_state(self.alarm_toggle) == "on"
 
     def start_cb(self, kwargs):
         if self.is_on:
-            to_trigger = self.args["to_trigger"]
-            for service in to_trigger:
+            for service in self.to_trigger:
+                self.log(f"Starting {service}")
                 self.turn_on(service)
-        self.set_state(self.input_boolean, state="off")
+        self.set_state(self.alarm_toggle, state="off")

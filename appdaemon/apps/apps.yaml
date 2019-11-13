@@ -8,9 +8,9 @@ copy_switch:
 wake_up_light:
   module: wake_up_light
   class: WakeUpLight
-  total_time: 900
-  lamp: "light.ceiling"
-  input_boolean: "input_boolean.wake_up_light"
+  total_time: 60
+  lamp: light.ceiling
+  input_boolean: input_boolean.wake_up_light
 
 lovelace_json_to_yaml:
   module: convert_json_to_yaml
@@ -26,4 +26,4 @@ alarm_clock:
   input_datetime: input_datetime.alarm_clock
   to_trigger:
     - input_boolean.wake_up_light
-    - script.start_the_music
+    - input_boolean.start_the_music

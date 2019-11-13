@@ -32,10 +32,12 @@ class WakeUpLight(hass.Hass):
         self.total_time = self.args.get("total_time", DEFAULT_TOTAL_TIME)
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.sequence = [
-            dict(xy_color=[0.67, 0.39], brightness=1, relative_delay=0),
-            dict(xy_color=[0.65, 0.41], brightness=85, relative_delay=1),
-            dict(xy_color=[0.60, 0.40], brightness=170, relative_delay=1),
-            dict(xy_color=[0.48, 0.40], brightness=255, relative_delay=1),
+            dict(rgb_color=[255,0,0], brightness=1, relative_delay=0),
+            dict(rgb_color=[255,0,0], brightness=43, relative_delay=1),
+            dict(rgb_color=[255,63,0], brightness=90, relative_delay=1),
+            dict(rgb_color=[255,120,0], brightness=180, relative_delay=1),
+            dict(rgb_color=[255,187,131], brightness=255, relative_delay=1),
+            dict(rgb_color=[255,205,166], brightness=255, relative_delay=1),
         ]
         self._normalize_delays()
         self.listen_state(self.start_cb, self.input_boolean, new="on")
