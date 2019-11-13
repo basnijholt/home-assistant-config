@@ -25,6 +25,7 @@ data:
         - entity: sensor.desk_lamp_current
         - entity: switch.kef_speakers
         - entity: input_boolean.start_the_music
+        - entity: input_boolean.start_spotify
         title: Controls
         type: entities
       - entity: weather.huis
