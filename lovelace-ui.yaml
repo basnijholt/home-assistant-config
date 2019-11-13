@@ -11,6 +11,8 @@ data:
       url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
     - type: module
       url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+    - type: module
+      url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
     title: Huis
     views:
     - badges:
