@@ -4,15 +4,26 @@ copy_switch:
   class: CopyState
   copy_from: sensor.desk_lamp_current
   copy_to: switch.light2
+
 wake_up_light:
   module: wake_up_light
   class: WakeUpLight
   total_time: 900
   lamp: "light.ceiling"
   input_boolean: "input_boolean.wake_up_light"
+
 lovelace_json_to_yaml:
   module: convert_json_to_yaml
   class: ConvertJSONToYAML
   json: /config/.storage/lovelace
   yaml: /config/lovelace-ui.yaml
   sensor: sensor.lovelace
+
+alarm_clock:
+  module: alarm_clock
+  class: AlarmClock
+  alarm_toggle: input_boolean.alarm_clock
+  input_datetime: input_datetime.alarm_clock
+  to_trigger:
+    - input_boolean.wake_up_light
+    - script.start_the_music
