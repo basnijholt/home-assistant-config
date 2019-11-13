@@ -3,3 +3,7 @@ start_the_music:
   name: Start speakers and music
   initial: off
   icon: mdi:music
+wake_up_light:
+  name: Start wake up light
+  initial: off
+  icon: mdi:weather-sunset-up
