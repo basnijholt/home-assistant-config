@@ -8,7 +8,7 @@ start_the_music:
     playlist:
       description: 'The playlist URI from Spotify'
       example: '6rPTm9dYftKcFAfwyRqmDZ'
-    playlist:
+    volume:
       description: 'Volume at which to play'
       example: '0.3'
   sequence:
