@@ -9,12 +9,16 @@ lovelace_json_to_yaml:
   yaml: /config/lovelace-ui.yaml
   sensor: sensor.lovelace
 ```
-# Add a filesize sensor in `configuration.yaml`:
+# Add a filesize sensor in `configuration.yaml` and whitelist its dir:
 ```
 sensor:
   - platform: filesize
     file_paths:
       - /config/.storage/lovelace
+
+homeassistant:
+  whitelist_external_dirs:
+    - /config/
 ```
 """
 import json
