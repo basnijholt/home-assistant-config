@@ -1,0 +1,12 @@
+---
+copy_switch:
+  module: copy_state
+  class: CopyState
+  copy_from: sensor.desk_lamp_current
+  copy_to: switch.light2
+wake_up_light:
+  module: wake_up_light
+  class: WakeUpLight
+  total_time: 900
+  lamp: "light.ceiling"
+  input_boolean: "input_boolean.wake_up_light"
