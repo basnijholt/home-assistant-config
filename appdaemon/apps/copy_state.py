@@ -1,12 +1,16 @@
-"""Copies the state from `copy_from` to `copy_to`."""
+"""Copies the state from `copy_from` to `copy_to`.
+
+# Example `apps.yaml` config:
+```
+copy_switch:
+  module: copy_state
+  class: CopyState
+  copy_from: sensor.desk_lamp_current
+  copy_to: switch.light2
+```
+"""
 import appdaemon.plugins.hass.hassapi as hass
 
-## Example `appdaemon.yaml` config:
-# copy_switch:
-#   module: copy_state
-#   class: CopyState
-#   copy_from: sensor.desk_lamp_current
-#   copy_to: switch.light2
 
 class CopyState(hass.Hass):
     def initialize(self):

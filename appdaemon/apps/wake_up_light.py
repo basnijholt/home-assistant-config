@@ -1,20 +1,24 @@
-"""Emulates a Philips Wake-up Light."""
+"""Emulates a Philips Wake-up Light.
+
+# Example `apps.yaml` config:
+```
+wake_up_light:
+  module: wake_up_light
+  class: WakeUpLight
+  total_time: 900
+  lamp: "light.ceiling"
+  input_boolean: "input_boolean.wake_up_light"
+```
+# Example `input_boolean.yaml`:
+```
+wake_up_light:
+  name: Start wake up light
+  initial: off
+  icon: mdi:weather-sunset-up
+```
+"""
 
 import appdaemon.plugins.hass.hassapi as hass
-
-## Example `appdaemon.yaml` config:
-# wake_up_light:
-#   module: wake_up_light
-#   class: WakeUpLight
-#   total_time: 900
-#   lamp: "light.ceiling"
-#   input_boolean: "input_boolean.wake_up_light"
-## Example `input_boolean.yaml`:
-# wake_up_light:
-#   name: Start wake up light
-#   initial: off
-#   icon: mdi:weather-sunset-up
-
 
 DEFAULT_LAMP = "light.ceiling"
 DEFAULT_TOTAL_TIME = 900
