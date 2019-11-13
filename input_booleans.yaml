@@ -1,0 +1,13 @@
+---
+start_the_music:
+  name: Start speakers and music
+  initial: off
+  icon: mdi:music
+speaker_power:
+  name: Start speakers
+  initial: off
+  icon: mdi:music
+sunrise:
+  name: Start sunrise simulation
+  initial: off
+  icon: mdi:sun

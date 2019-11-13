@@ -1,0 +1,257 @@
+data:
+  config:
+    resources:
+    - type: module
+      url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+    - type: module
+      url: /community_plugin/lovelace-card-mod/card-mod.js
+    - type: js
+      url: /community_plugin/bar-card/bar-card.js
+    - type: js
+      url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+    - type: module
+      url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+    title: Huis
+    views:
+    - badges:
+      - entity: person.bas_nijholt
+      - entity: sun.sun
+      cards:
+      - entities:
+        - entity: switch.desk_lamp
+        - entity: switch.light2
+        - entity: sensor.desk_lamp_current
+        - entity: switch.kef_speakers
+        - entity: input_boolean.start_the_music
+        title: Controls
+        type: entities
+      - entity: weather.huis
+        type: weather-forecast
+      - entity: light.ceiling
+        theme: default
+        type: light
+      - artwork: cover
+        entity: media_player.spotify
+        hide:
+          power: true
+          source: false
+          volume: true
+        icon: mdi:spotify
+        type: custom:mini-media-player
+      - background: /local/kef_speakers.jpeg
+        entity: media_player.kef
+        hide:
+          controls: true
+          mute: false
+          play_stop: true
+          volume: false
+        style: "ha-card {\n  --mini-media-player-base-color: white;\n  --mini-media-player-icon-color:\
+          \ white;\n  --mini-media-player-accent-color: white;\n  --mini-media-player-overlay-color-stop:\
+          \ 100%;\n}\n"
+        type: custom:mini-media-player
+      - entities:
+        - entity: input_boolean.alarm_clock
+        - entity: input_datetime.alarm_clock
+        - entity: input_boolean.wake_up_light
+        title: Alarms
+        type: entities
+      path: default_view
+      title: Home
+    - cards:
+      - cards:
+        - entities:
+          - entity: sensor.installed_version
+            icon: mdi:home-assistant
+            name: Hassio Installed Version
+          - entity: sensor.latest_available_version
+            icon: mdi:home-assistant
+            name: Hassio Current Version
+          - entity: sensor.hacs
+            icon: mdi:update
+            name: Community Store
+          - type: divider
+          - entity: sensor.last_boot
+            icon: mdi:calendar
+          - entity: sensor.uptime
+            icon: mdi:home-assistant
+          - entity: sensor.home_assistant_v2_db
+            icon: mdi:home-assistant
+          - animation: 'off'
+            entity: sensor.processor_use
+            height: 30px
+            indicator: 'off'
+            severity:
+            - color: green
+              value: 60
+            - color: orange
+              value: 85
+            - color: red
+              value: 100
+            title: Processor Usage
+            type: custom:bar-card
+          - animation: 'off'
+            entity: sensor.rpi_cpu_temperature
+            height: 30px
+            indicator: 'off'
+            severity:
+            - color: green
+              value: 60
+            - color: orange
+              value: 70
+            - color: red
+              value: 100
+            title: CPU Temp
+            type: custom:bar-card
+          - animation: 'off'
+            entity: sensor.rpi_cpu_temperature
+            height: 30px
+            indicator: 'off'
+            severity:
+            - color: green
+              value: 60
+            - color: orange
+              value: 70
+            - color: red
+              value: 100
+            title: CPU Temp
+            type: custom:bar-card
+          - animation: 'off'
+            entity: sensor.memory_use_percent
+            height: 30px
+            indicator: 'off'
+            severity:
+            - color: green
+              value: 60
+            - color: orange
+              value: 85
+            - color: red
+              value: 100
+            title: Memory Usage
+            type: custom:bar-card
+          - animation: 'off'
+            entity: sensor.disk_use_percent
+            height: 30px
+            indicator: 'off'
+            severity:
+            - color: green
+              value: 60
+            - color: orange
+              value: 85
+            - color: red
+              value: 100
+            title: Disk Usage
+            type: custom:bar-card
+          - type: divider
+          - entity: sensor.myip
+            icon: mdi:ip-network
+          show_header_toggle: false
+          title: System
+          type: entities
+        type: vertical-stack
+      - cards:
+        - columns: 4
+          entities:
+          - entity: sensor.count_automations
+            icon: mdi:autorenew
+            name: Automations
+          - entity: sensor.count_scripts
+            icon: mdi:script-text-outline
+            name: Scripts
+          - entity: sensor.count_zones
+            icon: mdi:map-marker-radius
+            name: Zones
+          - entity: sensor.count_device_trackers
+            icon: mdi:map-marker
+            name: Device Trackers
+          - entity: sensor.count_switches
+            icon: mdi:light-switch
+            name: Switches
+          - entity: sensor.count_sensors
+            icon: mdi:resistor
+            name: Sensors
+          - entity: sensor.count_binary_sensors
+            icon: mdi:unfold-more-horizontal
+            name: Binary Sensors
+          - entity: sensor.count_input_booleans
+            icon: mdi:toggle-switch
+            name: Input Booleans
+          - entity: sensor.count_input_numbers
+            icon: mdi:numeric
+            name: Input Numbers
+          - entity: sensor.count_input_texts
+            icon: mdi:alphabetical
+            name: Input Texts
+          - entity: sensor.count_input_selects
+            icon: mdi:view-list
+            name: Input Select
+          - entity: sensor.count_input_datetimes
+            icon: mdi:calendar-clock
+            name: Input Date Times
+          title: Component Count
+          type: glance
+        type: vertical-stack
+      - cards:
+        - cards:
+          - color_thresholds_transition: smooth
+            entities:
+            - entity: sensor.speedtest_ping
+              name: Ping
+            font_size: 70
+            group: false
+            hour24: true
+            line_width: 6
+            lower_bound: 0
+            points_per_hour: 1
+            show:
+              extrema: true
+              fill: fade
+              icon: true
+              labels: false
+              name: true
+              state: true
+            type: custom:mini-graph-card
+          - color_thresholds_transition: smooth
+            entities:
+            - entity: sensor.speedtest_download
+              name: Download
+            font_size: 70
+            group: false
+            hour24: true
+            line_width: 6
+            lower_bound: 0
+            points_per_hour: 1
+            show:
+              extrema: true
+              fill: fade
+              icon: true
+              labels: false
+              name: true
+              state: true
+            type: custom:mini-graph-card
+          - color_thresholds_transition: smooth
+            entities:
+            - entity: sensor.speedtest_upload
+              name: Upload
+            font_size: 70
+            group: false
+            hour24: true
+            line_width: 6
+            lower_bound: 0
+            points_per_hour: 1
+            show:
+              extrema: true
+              fill: fade
+              icon: true
+              labels: false
+              name: true
+              state: true
+            type: custom:mini-graph-card
+          name: Speedtest
+          type: horizontal-stack
+        title: Network
+        type: custom:vertical-stack-in-card
+      icon: mdi:home-assistant
+      path: system
+      title: System Information
+key: lovelace
+version: 1

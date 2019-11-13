@@ -1,0 +1,5 @@
+---
+alarm_clock:
+  name: Alarm clock
+  has_date: false
+  has_time: true

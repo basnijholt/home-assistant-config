@@ -19,6 +19,7 @@ automation: !include conf/automations.yaml
 device_tracker: !include conf/device_trackers.yaml
 switch: !include conf/switches.yaml
 sensor: !include conf/sensors.yaml
+input_datetime: !include conf/input_datetimes.yaml
 
 # Components:
 tplink: !include conf/tplink.yaml

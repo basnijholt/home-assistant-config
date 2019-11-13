@@ -7,3 +7,7 @@ wake_up_light:
   name: Start wake up light
   initial: off
   icon: mdi:weather-sunset-up
+alarm_clock:
+  name: Alarm clock is on
+  initial: off
+  icon: mdi:alarm

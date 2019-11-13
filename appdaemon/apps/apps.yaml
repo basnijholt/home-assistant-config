@@ -10,3 +10,9 @@ wake_up_light:
   total_time: 900
   lamp: "light.ceiling"
   input_boolean: "input_boolean.wake_up_light"
+lovelace_json_to_yaml:
+  module: convert_json_to_yaml
+  class: ConvertJSONToYAML
+  json: /config/.storage/lovelace
+  yaml: /config/lovelace-ui.yaml
+  sensor: sensor.lovelace
