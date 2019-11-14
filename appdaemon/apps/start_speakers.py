@@ -29,7 +29,7 @@ DEFAULT_SOURCE = "Wifi"
 DEFAULT_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.start_speakers"
 
-mapping = {
+DEFAULTS = {
     "speaker": DEFAULT_SPEAKER,
     "source": DEFAULT_SOURCE,
     "volume": DEFAULT_VOLUME,
@@ -48,7 +48,7 @@ class StartSpeakers(hass.Hass):
         self.start()
 
     def maybe_default(self, key, kwargs):
-        default_value = self.args.get(key, mapping[key])
+        default_value = self.args.get(key, DEFAULTS[key])
         if kwargs is None:
             return default_value
         return kwargs.get(key, default_value)

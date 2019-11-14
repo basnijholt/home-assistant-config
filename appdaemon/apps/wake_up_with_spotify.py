@@ -36,7 +36,7 @@ DEFAULT_FINAL_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.wake_up_with_spotify"
 
 
-mapping = {
+DEFAULTS = {
     "speaker": DEFAULT_SPEAKER,
     "speaker_name": DEFAULT_SPEAKER_NAME,
     "playlist": DEFAULT_PLAYLIST,
@@ -59,7 +59,7 @@ class WakeUpWithSpotify(hass.Hass):
         self.listen_event(self.start_spotify, "start_spotify_ramp")
 
     def maybe_default(self, key, kwargs):
-        default_value = self.args.get(key, mapping[key])
+        default_value = self.args.get(key, DEFAULTS[key])
         if kwargs is None:
             return default_value
         return kwargs.get(key, default_value)
@@ -69,7 +69,11 @@ class WakeUpWithSpotify(hass.Hass):
         self.start_spotify()
 
     def start_spotify(self, event_name=None, data=None, kwargs=None):
-        security = self.fire_event("start_spotify", volume=0, **(data or {}))
+        data = data or {}
+        data["speaker"] = self.maybe_default("speaker", data)
+        data["speaker_name"] = self.maybe_default("speaker_name", data)
+        data["playlist"] = self.maybe_default("playlist", data)
+        self.fire_event("start_spotify", volume=0, **data)
         self.listen_event(self.start_volume_ramp_cb, "start_spotify_done")
 
     def set_volume(self, speaker, volume):

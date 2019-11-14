@@ -31,7 +31,7 @@ DEFAULT_PLAYLIST = "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
 DEFAULT_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.start_spotify"
 
-mapping = {
+DEFAULTS = {
     "speaker": DEFAULT_SPEAKER,
     "speaker_name": DEFAULT_SPEAKER_NAME,
     "playlist": DEFAULT_PLAYLIST,
@@ -50,7 +50,7 @@ class StartSpotify(hass.Hass):
         self.listen_event(self.start_speakers, "start_spotify")
 
     def maybe_default(self, key, kwargs):
-        default_value = self.args.get(key, mapping[key])
+        default_value = self.args.get(key, DEFAULTS[key])
         if kwargs is None:
             return default_value
         return kwargs.get(key, default_value)
@@ -60,9 +60,10 @@ class StartSpotify(hass.Hass):
         self.start_speakers()
 
     def start_speakers(self, event_name=None, data=None, kwargs=None):
-        volume = self.maybe_default("volume", data)
-        speaker = self.maybe_default("speaker", data)
-        self.fire_event("start_speakers", **(data or {}))
+        data = data or {}
+        data["volume"] = self.maybe_default("volume", data)
+        data["speaker"] = self.maybe_default("speaker", data)
+        self.fire_event("start_speakers", **data)
         self.listen_event(self.select_source, "start_speakers_done")
 
     def source_available(self, speaker_name):
