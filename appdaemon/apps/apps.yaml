@@ -32,7 +32,7 @@ wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
   volume_ramp_time: 900
-  final_volume: 0.3
+  final_volume: 0.
   speaker: media_player.kef
   playlist: "6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
@@ -41,7 +41,7 @@ wake_up_with_spotify:
 start_spotify:
   module: start_spotify
   class: StartSpotify
-  volume: 0.3
+  volume: 0.1
   speaker: media_player.kef
   playlist: "6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.start_spotify

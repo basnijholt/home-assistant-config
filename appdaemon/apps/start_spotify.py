@@ -21,13 +21,14 @@ input_boolean:
 """
 
 import math
+from functools import partial
 
 import appdaemon.plugins.hass.hassapi as hass
 
 DEFAULT_VOLUME = 0.3
 DEFAULT_SPEAKER = "media_player.kef"
 DEFAULT_SPEAKER_NAME = "KEF LS50 Wireless"
-DEFAULT_PLAYLIST = "6rPTm9dYftKcFAfwyRqmDZ"
+DEFAULT_PLAYLIST = "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
 DEFAULT_INPUT_BOOLEAN = "input_boolean.start_spotify"
 
 
@@ -38,43 +39,41 @@ class StartSpotify(hass.Hass):
         self.speaker_name = self.args.get("speaker_name", DEFAULT_SPEAKER_NAME)
         self.playlist = self.args.get("playlist", DEFAULT_PLAYLIST)
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
-        self.set_state(self.input_boolean, state="on")
+
         self.listen_state(self.start_speaker_cb, self.input_boolean, new="on")
+        self.call_spotify = partial(self.call_service, entity_id="media_player.spotify")
+        self.call_speaker = partial(self.call_service, entity_id=self.speaker)
 
     def start_speaker_cb(self, entity, attribute, old, new, kwargs):
-        self.log(f"Calling start_speaker_cb.")
         self.set_state(self.input_boolean, state="off")
         self.turn_on(self.speaker)
-        self.call_service(
-            "media_player/select_source", entity_id=self.speaker, source="Wifi"
+        self.call_speaker(
+            "media_player/select_source", source="Wifi"
         )
-        self.log("Going to listen for speaker is on.")
-        self.listen_state(self.start_spotify_cb, self.speaker, new="on", immediate=True)
+        if self.get_state(self.speaker) == "on":
+            self.start_spotify()
+        else:
+            # In AD 4, this can use the `immediate` kwarg and leave out
+            # the if-clause.
+            self.listen_state(self.start_spotify_cb, self.speaker, new="on")
 
     def start_spotify_cb(self, entity, attribute, old, new, kwargs):
-        self.log(f"Calling start_spotify_cb.")
+        self.start_spotify()
+
+    def start_spotify(self, kwargs=None):
         source_list = self.get_state("media_player.spotify", attribute="source_list")
         if source_list is None or self.speaker_name not in source_list:
-            self.call_service(
-                "homeassistant/update_entity", entity_id="media_player.spotify"
-            )
-            self.run_in(self.start_spotify_cb, 1)
+            self.call_spotify("homeassistant/update_entity")
+            self.run_in(self.start_spotify, 1)
         else:
-            self.call_service("media_player/select_source", source=self.speaker_name)
+            self.call_spotify("media_player/select_source", source=self.speaker_name)
             self.start_playlist()
 
     def start_playlist(self):
-        self.log(f"Calling start_playlist.")
+        self.call_speaker("media_player/volume_set", volume_level=self.volume)
         self.call_service(
-            "media_player/volume_set", entity_id="media_player.spotify", volume=self.volume
-        )
-        self.call_service(
-            "media_player/play_playlist",
-            entity_id="media_player.spotify",
+            "spotify/play_playlist",
             media_content_id=self.playlist,
             random_song=True,
         )
-        self.call_service(
-            "media_player/media_play", entity_id="media_player.spotify",
-        )
-        self.run_in()
+        self.call_spotify("media_player/media_play")
