@@ -61,3 +61,4 @@ class StartSpeakers(hass.Hass):
         call_speaker("media_player/select_source", source=maybe_default("source"))
         call_speaker("media_player/volume_set", volume_level=maybe_default("volume"))
         self.fire_event("start_speakers_done", **data)
+        self.log("start_speakers_done")

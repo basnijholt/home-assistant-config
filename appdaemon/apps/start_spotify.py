@@ -44,10 +44,9 @@ class StartSpotify(hass.Hass):
     def initialize(self):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.call_spotify = partial(self.call_service, entity_id="media_player.spotify")
-        self.listen_state(
-            self.start_speakers_cb, self.input_boolean, new="on", immediate=True
-        )
+        self.listen_state(self.start_speakers_cb, self.input_boolean, new="on")
         self.listen_event(self.start_speakers, "start_spotify")
+        self._handle = None
 
     def maybe_default(self, key, kwargs):
         default_value = self.args.get(key, DEFAULTS[key])
@@ -56,34 +55,43 @@ class StartSpotify(hass.Hass):
         return kwargs.get(key, default_value)
 
     def start_speakers_cb(self, entity, attribute, old, new, kwargs):
+        self.log("Starting `start_speakers_cb`")
         self.set_state(self.input_boolean, state="off")
         self.start_speakers()
 
     def start_speakers(self, event_name=None, data=None, kwargs=None):
+        self.log("Starting `start_speakers`")
         data = data or {}
         data["volume"] = self.maybe_default("volume", data)
         data["speaker"] = self.maybe_default("speaker", data)
         self.fire_event("start_speakers", **data)
-        self.listen_event(self.select_source, "start_speakers_done")
+        self._handle = self.listen_event(self.select_source, "start_speakers_done", timeout=30)
 
     def source_available(self, speaker_name):
+        self.log("Starting `source_available`")
         source_list = self.get_state("media_player.spotify", attribute="source_list")
         not_available = source_list is None or speaker_name not in source_list
         return not not_available
 
     def select_source(self, event=None, data=None, kwargs=None):
+        self._handle = self.cancel_listen_event(self._handle)
+        self.log("Starting `select_source`")
         speaker_name = self.maybe_default("speaker_name", data)
         if not self.source_available(speaker_name):
+            self.log("Source not available")
             self.call_spotify("homeassistant/update_entity")
             self.run_in(self.try_again, 1, data=data)
         else:
+            self.log("Source is available")
             self.call_spotify("media_player/select_source", source=speaker_name)
             self.start_playlist()
 
     def try_again(self, kwargs):
+        self.log("Starting `try_again`")
         return self.select_source(data=kwargs["data"])
 
     def start_playlist(self, event=None, data=None, kwargs=None):
+        self.log("Starting `start_playlist`")
         playlist = self.maybe_default("playlist", kwargs)
         self.call_service(
             "spotify/play_playlist", media_content_id=playlist, random_song=True,
