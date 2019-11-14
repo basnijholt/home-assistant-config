@@ -7,7 +7,7 @@ start_spotify:
   class: StartSpotify
   volume: 0.3
   speaker: media_player.kef
-  playlist: "6rPTm9dYftKcFAfwyRqmDZ"
+  playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.start_spotify
 ```
 # Example `configuration.yaml`:
