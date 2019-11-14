@@ -52,7 +52,7 @@ class AlarmClock(hass.Hass):
         self.log("State changed.")
         time = self.parse_time(self.get_state(self.input_datetime))
         light_offset = self.args["light_offset"]
-        music_offset = self.args["light_offset"]
+        music_offset = self.args["music_offset"]
         light_time = to_time(time, datetime.timedelta(seconds=light_offset))
         music_time = to_time(time, datetime.timedelta(seconds=music_offset))
         self.log(f"Run at {light_time}, {light_time}")
