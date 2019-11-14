@@ -36,12 +36,9 @@ class ConvertJSONToYAML(hass.Hass):
     def initialize(self):
         self.json = self.args.get("json_in", DEFAULT_JSON)
         self.yaml = self.args.get("yaml_out", DEFAULT_YAML)
-        self.listen_state(self.change_state, self.args.get("sensor", DEFAULT_SENSOR))
+        self.listen_state(self.convert, self.args.get("sensor", DEFAULT_SENSOR))
 
-    def change_state(self, entity, attribute, old, new, kwargs):
-        self.convert()
-
-    def convert(self):
+    def convert(self, entity, attribute, old, new, kwargs):
         self.log(f"converting {self.json} to {self.yaml}.")
         with open(self.json) as f:
             info = json.load(f)
