@@ -36,41 +36,59 @@ DEFAULT_FINAL_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.wake_up_with_spotify"
 
 
+mapping = {
+    "speaker": DEFAULT_SPEAKER,
+    "speaker_name": DEFAULT_SPEAKER_NAME,
+    "playlist": DEFAULT_PLAYLIST,
+    "total_time": DEFAULT_TOTAL_TIME,
+    "final_volume": DEFAULT_FINAL_VOLUME,
+    "input_boolean": DEFAULT_INPUT_BOOLEAN,
+}
+
+
 def time_step(total_time, final_volume, step):
     return total_time / math.floor(final_volume / step)
 
 
 class WakeUpWithSpotify(hass.Hass):
     def initialize(self):
-        self.speaker = self.args.get("speaker", DEFAULT_SPEAKER)
-        self.speaker_name = self.args.get("speaker_name", DEFAULT_SPEAKER_NAME)
-        self.playlist = self.args.get("playlist", DEFAULT_PLAYLIST)
-        self.total_time = self.args.get("total_time", DEFAULT_TOTAL_TIME)
-        self.final_volume = self.args.get("final_volume", DEFAULT_FINAL_VOLUME)
-        self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
-
-        self.call_spotify = partial(self.call_service, entity_id="media_player.spotify")
-        self.call_speaker = partial(self.call_service, entity_id=self.speaker)
-
         self.volume = 0
         self.min_volume_step = 0.01
-        self.dt = time_step(self.total_time, self.final_volume, self.min_volume_step)
+        self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
+        self.listen_state(self.start_spotify_cb, self.input_boolean, new="on")
+        self.listen_event(self.start_spotify, "start_spotify_ramp")
 
-        self.listen_state(self.start_spotify_app_cb, self.input_boolean, new="on")
+    def maybe_default(self, key, kwargs):
+        default_value = self.args.get(key, mapping[key])
+        if kwargs is None:
+            return default_value
+        return kwargs.get(key, default_value)
 
-    def start_spotify_app_cb(self, entity, attribute, old, new, kwargs):
+    def start_spotify_cb(self, entity, attribute, old, new, kwargs):
         self.set_state(self.input_boolean, state="off")
-        self.start_app("start_spotify", volume=0, input_boolean=self.input_boolean)
-        self.run_in(self.volume_ramp_cb, 10)  # Only added this.
+        self.start_spotify()
 
-    def set_volume(self, volume):
-        self.call_speaker("media_player/volume_set", volume_level=volume)
+    def start_spotify(self, event_name=None, data=None, kwargs=None):
+        security = self.fire_event("start_spotify", volume=0, **(data or {}))
+        self.listen_event(self.start_volume_ramp_cb, "start_spotify_done")
 
-    def volume_ramp_cb(self, kwargs=None):
+    def set_volume(self, speaker, volume):
+        self.call_service(
+            "media_player/volume_set", entity_id=speaker, volume_level=volume
+        )
+
+    def start_volume_ramp_cb(self, event_name=None, data=None, kwargs=None):
+        self.run_in(self.volume_up, 0, data=data)
+
+    def volume_up(self, kwargs=None):
+        final_volume = self.maybe_default("final_volume", kwargs)
+        total_time = self.maybe_default("total_time", kwargs)
+        speaker = self.maybe_default("speaker", kwargs)
         self.volume += self.min_volume_step
-        if self.volume >= self.final_volume:
+        if self.volume >= final_volume:
             return
+        dt = time_step(total_time, final_volume, self.min_volume_step)
         self.log(f"Setting volume: {self.volume}")
-        self.log(f"Timestep of {self.dt}.")
-        self.set_volume(volume=self.volume)
-        self.run_in(self.volume_ramp_cb, self.dt)
+        self.log(f"Timestep of {dt}.")
+        self.set_volume(speaker, self.volume)
+        self.run_in(self.volume_up, dt)

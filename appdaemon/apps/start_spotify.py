@@ -89,3 +89,4 @@ class StartSpotify(hass.Hass):
         )
         self.call_spotify("media_player/media_play")
         self.fire_event("start_spotify_done", **(data or {}))
+        self.log("start_spotify_done")

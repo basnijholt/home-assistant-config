@@ -28,14 +28,13 @@ alarm_clock:
     - input_boolean.wake_up_light
     - input_boolean.start_the_music
 
-wake_up_with_spotify:
-  module: wake_up_with_spotify
-  class: WakeUpWithSpotify
-  total_time: 180
-  final_volume: 0.25
+start_speakers:
+  module: start_speakers
+  class: StartSpeakers
   speaker: media_player.kef
-  playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
-  input_boolean: input_boolean.wake_up_with_spotify
+  source: Wifi
+  volume: 0.13
+  input_boolean: input_boolean.start_speakers
 
 start_spotify:
   module: start_spotify
@@ -45,10 +44,11 @@ start_spotify:
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.start_spotify
 
-start_speakers:
-  module: start_speakers
-  class: StartSpeakers
+wake_up_with_spotify:
+  module: wake_up_with_spotify
+  class: WakeUpWithSpotify
+  total_time: 180
+  final_volume: 0.25
   speaker: media_player.kef
-  source: Wifi
-  volume: 0.13
-  input_boolean: input_boolean.start_speakers
+  playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
+  input_boolean: input_boolean.wake_up_with_spotify
