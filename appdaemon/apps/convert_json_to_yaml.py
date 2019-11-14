@@ -25,7 +25,7 @@ import json
 
 import yaml
 
-import appdaemon.plugins.hass.hassapi as hass
+import hassapi as hass
 
 DEFAULT_JSON = "/config/.storage/lovelace"
 DEFAULT_YAML = "/config/lovelace-ui.yaml"

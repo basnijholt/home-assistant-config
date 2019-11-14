@@ -27,7 +27,7 @@ input_boolean:
 ```
 """
 
-import appdaemon.plugins.hass.hassapi as hass
+import hassapi as hass
 
 
 class AlarmClock(hass.Hass):

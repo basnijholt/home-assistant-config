@@ -19,7 +19,7 @@ input_boolean:
 ```
 """
 
-import appdaemon.plugins.hass.hassapi as hass
+import hassapi as hass
 
 DEFAULT_LAMP = "light.ceiling"
 DEFAULT_TOTAL_TIME = 900

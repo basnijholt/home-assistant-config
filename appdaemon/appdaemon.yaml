@@ -1,0 +1,19 @@
+secrets: /config/secrets.yaml
+logs: null
+appdaemon:
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: 0
+  time_zone: Europe/Amsterdam
+  total_threads: 10
+  app_dir: /config/appdaemon/apps
+  plugins:
+    HASS:
+      type: hass
+      ha_url: http://hassio/homeassistant
+      token: !secret hass_ad_gh_token
+http:
+  url: http://0.0.0.0:5050
+hadashboard:
+  dash_url: http://127.0.0.1:5050
+  dash_dir: /config/appdaemon/dashboards

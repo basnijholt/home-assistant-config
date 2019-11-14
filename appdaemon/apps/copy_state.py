@@ -9,7 +9,7 @@ copy_switch:
   copy_to: switch.light2
 ```
 """
-import appdaemon.plugins.hass.hassapi as hass
+import hassapi as hass
 
 
 class CopyState(hass.Hass):

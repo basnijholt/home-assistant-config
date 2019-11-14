@@ -23,7 +23,7 @@ input_boolean:
 
 from functools import partial
 
-import appdaemon.plugins.hass.hassapi as hass
+import hassapi as hass
 
 DEFAULT_SPEAKER = "media_player.kef"
 DEFAULT_SPEAKER_NAME = "KEF LS50 Wireless"

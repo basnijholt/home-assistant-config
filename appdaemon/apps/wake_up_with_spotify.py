@@ -25,7 +25,7 @@ input_boolean:
 import math
 from functools import partial
 
-import appdaemon.plugins.hass.hassapi as hass
+import hassapi as hass
 
 
 DEFAULT_SPEAKER = "media_player.kef"
@@ -63,12 +63,7 @@ class WakeUpWithSpotify(hass.Hass):
         self.set_state(self.input_boolean, state="off")
         self.turn_on(self.speaker)
         self.call_speaker("media_player/select_source", source="Wifi")
-        if self.get_state(self.speaker) == "on":
-            self.start_spotify()
-        else:
-            # In AD 4, this can use the `immediate` kwarg and leave out
-            # the if-clause.
-            self.listen_state(self.start_spotify_cb, self.speaker, new="on")
+        self.listen_state(self.start_spotify_cb, self.speaker, new="on", immediate=True)
 
     def start_spotify_cb(self, entity, attribute, old, new, kwargs):
         # Copied from `start_spotify.py`, in AD 4 call `self.start_app` instead.
