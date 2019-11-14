@@ -1,8 +1,11 @@
 ---
+# Automations
 start_the_music:
   name: Start speakers and music
   initial: off
   icon: mdi:music
+
+# Apps
 wake_up_light:
   name: Start wake up light
   initial: off
@@ -11,11 +14,15 @@ alarm_clock:
   name: Alarm clock is on
   initial: off
   icon: mdi:alarm
-wake_up_with_spotify:
-  name: Start wake up with Spotify
+start_speakers:
+  name: Start speakers
   initial: off
   icon: mdi:music
 start_spotify:
-  name: Start on speakers
+  name: Play Spotify on speakers
+  initial: off
+  icon: mdi:music
+wake_up_with_spotify:
+  name: Start wake up with Spotify
   initial: off
   icon: mdi:music

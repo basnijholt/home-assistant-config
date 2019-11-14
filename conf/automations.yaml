@@ -20,7 +20,11 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.start_the_music
-    - service: script.start_the_music
+    - service: script.start_speakers
+      data:
+        source: Wifi
+        volume: "0.35"
+    - service: script.start_spotify
       data:
         source: "KEF LS50 Wireless"
         playlist: "6rPTm9dYftKcFAfwyRqmDZ"
