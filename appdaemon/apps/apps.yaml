@@ -31,12 +31,11 @@ alarm_clock:
 wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
-  volume_ramp_time: 900
-  final_volume: 0.
+  volume_ramp_time: 30
+  final_volume: 0.25
   speaker: media_player.kef
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
-  max_attempts: 10
 
 start_spotify:
   module: start_spotify
