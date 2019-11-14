@@ -68,8 +68,9 @@ class StartSpotify(hass.Hass):
         )
 
     def source_available(self, speaker_name):
-        source_list = self.get_state("media_player.spotify", attribute="source_list", default=[])
-        return speaker_name in source_list
+        return speaker_name in self.get_state(
+            "media_player.spotify", attribute="source_list", default=[]
+        )
 
     def select_source(self, event=None, data=None, kwargs=None):
         self._handle = self.cancel_listen_event(self._handle)
