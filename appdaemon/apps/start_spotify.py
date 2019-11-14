@@ -44,8 +44,8 @@ class StartSpotify(hass.Hass):
     def initialize(self):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.call_spotify = partial(self.call_service, entity_id="media_player.spotify")
-        self.listen_state(self.start_speakers_cb, self.input_boolean, new="on")
-        self.listen_event(self.start_speakers, "start_spotify")
+        self.listen_state(self.start_cb, self.input_boolean, new="on")
+        self.listen_event(self.start, "start_spotify")
         self._handle = None
 
     def maybe_default(self, key, kwargs):
@@ -54,21 +54,20 @@ class StartSpotify(hass.Hass):
             return default_value
         return kwargs.get(key, default_value)
 
-    def start_speakers_cb(self, entity, attribute, old, new, kwargs):
-        self.log("Starting `start_speakers_cb`")
+    def start_cb(self, entity, attribute, old, new, kwargs):
         self.set_state(self.input_boolean, state="off")
-        self.start_speakers()
+        self.start()
 
-    def start_speakers(self, event_name=None, data=None, kwargs=None):
-        self.log("Starting `start_speakers`")
+    def start(self, event_name=None, data=None, kwargs=None):
         data = data or {}
         data["volume"] = self.maybe_default("volume", data)
         data["speaker"] = self.maybe_default("speaker", data)
         self.fire_event("start_speakers", **data)
-        self._handle = self.listen_event(self.select_source, "start_speakers_done", timeout=30)
+        self._handle = self.listen_event(
+            self.select_source, "start_speakers_done", timeout=30
+        )
 
     def source_available(self, speaker_name):
-        self.log("Starting `source_available`")
         source_list = self.get_state("media_player.spotify", attribute="source_list")
         not_available = source_list is None or speaker_name not in source_list
         return not not_available
@@ -91,7 +90,6 @@ class StartSpotify(hass.Hass):
         return self.select_source(data=kwargs["data"])
 
     def start_playlist(self, event=None, data=None, kwargs=None):
-        self.log("Starting `start_playlist`")
         playlist = self.maybe_default("playlist", kwargs)
         self.call_service(
             "spotify/play_playlist", media_content_id=playlist, random_song=True,

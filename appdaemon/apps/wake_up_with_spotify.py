@@ -27,7 +27,6 @@ from functools import partial
 
 import hassapi as hass
 
-
 DEFAULT_SPEAKER = "media_player.kef"
 DEFAULT_SPEAKER_NAME = "KEF LS50 Wireless"
 DEFAULT_PLAYLIST = "6rPTm9dYftKcFAfwyRqmDZ"
@@ -55,8 +54,8 @@ class WakeUpWithSpotify(hass.Hass):
         self.volume = 0
         self.min_volume_step = 0.01
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
-        self.listen_state(self.start_spotify_cb, self.input_boolean, new="on")
-        self.listen_event(self.start_spotify, "start_spotify_ramp")
+        self.listen_state(self.start_cb, self.input_boolean, new="on")
+        self.listen_event(self.start, "start_spotify_ramp")
         self._handle = None
 
     def maybe_default(self, key, kwargs):
@@ -65,17 +64,19 @@ class WakeUpWithSpotify(hass.Hass):
             return default_value
         return kwargs.get(key, default_value)
 
-    def start_spotify_cb(self, entity, attribute, old, new, kwargs):
+    def start_cb(self, entity, attribute, old, new, kwargs):
         self.set_state(self.input_boolean, state="off")
-        self.start_spotify()
+        self.start()
 
-    def start_spotify(self, event_name=None, data=None, kwargs=None):
+    def start(self, event_name=None, data=None, kwargs=None):
         data = data or {}
         data["speaker"] = self.maybe_default("speaker", data)
         data["speaker_name"] = self.maybe_default("speaker_name", data)
         data["playlist"] = self.maybe_default("playlist", data)
         self.fire_event("start_spotify", volume=0, **data)
-        self._handle = self.listen_event(self.start_volume_ramp_cb, "start_spotify_done", timeout=30)
+        self._handle = self.listen_event(
+            self.start_volume_ramp_cb, "start_spotify_done", timeout=30
+        )
 
     def set_volume(self, speaker, volume):
         self.call_service(
