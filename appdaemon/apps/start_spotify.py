@@ -1,4 +1,4 @@
-"""Turns on speakers and plays Spotify while slowly ramping the volume.
+"""Turns on speakers and plays Spotify on a playlist.
 
 # Example `apps.yaml` config:
 ```
