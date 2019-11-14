@@ -27,6 +27,11 @@ DEFAULT_LAMP = "light.ceiling"
 DEFAULT_TOTAL_TIME = 900
 DEFAULT_INPUT_BOOLEAN = "input_boolean.wake_up_light"
 
+DEFAULTS = {
+    "lamp": DEFAULT_LAMP,
+    "total_time": DEFAULT_TOTAL_TIME,
+    "input_boolean": DEFAULT_INPUT_BOOLEAN,
+}
 
 SEQUENCE = [
     dict(rgb_color=[255, 0, 0], brightness=1, relative_delay=0),
@@ -38,14 +43,7 @@ SEQUENCE = [
 ]
 
 
-DEFAULTS = {
-    "lamp": DEFAULT_LAMP,
-    "total_time": DEFAULT_TOTAL_TIME,
-    "input_boolean": DEFAULT_INPUT_BOOLEAN,
-}
-
-
-def normalize_delays(total_time):
+def normalize_sequence(total_time):
     sequence = copy.deepcopy(SEQUENCE)
     extra_wait = 0.1  # to be sure the previous transition is done
     norm = sum(d["relative_delay"] for d in sequence)
@@ -63,7 +61,6 @@ class WakeUpLight(hass.Hass):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
         self.listen_event(self.start, "start_wake_up_light")
-        self.fire_event("start_wake_up_light", total_time=30)
 
     def maybe_default(self, key, kwargs):
         default_value = self.args.get(key, DEFAULTS[key])
@@ -78,15 +75,12 @@ class WakeUpLight(hass.Hass):
     def start(self, event_name=None, data=None, kwargs=None):
         total_time = self.maybe_default("total_time", data)
         lamp = self.maybe_default("lamp", data)
-        sequence = normalize_delays(total_time)
-        for settings in sequence:
+        for settings in normalize_sequence(total_time):
             settings["entity_id"] = lamp
             settings["total_time"] = total_time
-            self.log(f"Settings: {settings}")
             self.run_in(self.set_state_cb, **settings)
 
     def set_state_cb(self, kwargs):
-        self.log(f"kwargs: {kwargs}")
         self.call_service(
             "light/turn_on",
             entity_id=kwargs["entity_id"],
@@ -95,3 +89,4 @@ class WakeUpLight(hass.Hass):
             transition=kwargs["transition"],
         )
         self.fire_event("start_wake_up_light_done", **kwargs)
+        self.log("start_wake_up_light_done")
