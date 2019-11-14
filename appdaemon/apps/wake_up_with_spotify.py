@@ -56,38 +56,12 @@ class WakeUpWithSpotify(hass.Hass):
         self.min_volume_step = 0.01
         self.dt = time_step(self.total_time, self.final_volume, self.min_volume_step)
 
-        self.listen_state(self.start_speaker_cb, self.input_boolean, new="on")
+        self.listen_state(self.start_spotify_app_cb, self.input_boolean, new="on")
 
-    def start_speaker_cb(self, entity, attribute, old, new, kwargs):
-        # Copied from `start_spotify.py`, in AD 4 call `self.start_app` instead.
+    def start_spotify_app_cb(self, entity, attribute, old, new, kwargs):
         self.set_state(self.input_boolean, state="off")
-        self.turn_on(self.speaker)
-        self.call_speaker("media_player/select_source", source="Wifi")
-        self.listen_state(self.start_spotify_cb, self.speaker, new="on", immediate=True)
-
-    def start_spotify_cb(self, entity, attribute, old, new, kwargs):
-        # Copied from `start_spotify.py`, in AD 4 call `self.start_app` instead.
-        self.start_spotify()
-
-    def start_spotify(self, kwargs=None):
-        # Copied from `start_spotify.py`, in AD 4 call `self.start_app` instead.
-        source_list = self.get_state("media_player.spotify", attribute="source_list")
-        if source_list is None or self.speaker_name not in source_list:
-            self.call_spotify("homeassistant/update_entity")
-            self.run_in(self.start_spotify, 1)
-        else:
-            self.call_spotify("media_player/select_source", source=self.speaker_name)
-            self.start_playlist()
-
-    def start_playlist(self):
-        # Copied from `start_spotify.py`, in AD 4 call `self.start_app` instead.
-        self.call_speaker("media_player/volume_set", volume_level=self.volume)
-        self.call_service(
-            "spotify/play_playlist", media_content_id=self.playlist, random_song=True,
-        )
-        self.call_spotify("media_player/media_play")
-
-        self.volume_ramp_cb()  # Only added this.
+        self.start_app("start_spotify", volume=0, input_boolean=self.input_boolean)
+        self.run_in(self.volume_ramp_cb, 10)  # Only added this.
 
     def set_volume(self, volume):
         self.call_speaker("media_player/volume_set", volume_level=volume)

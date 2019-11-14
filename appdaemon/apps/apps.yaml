@@ -44,3 +44,11 @@ start_spotify:
   speaker: media_player.kef
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.start_spotify
+
+start_speakers:
+  module: start_speakers
+  class: StartSpeakers
+  speaker: media_player.kef
+  source: Wifi
+  volume: 0.13
+  input_boolean: input_boolean.start_speakers
