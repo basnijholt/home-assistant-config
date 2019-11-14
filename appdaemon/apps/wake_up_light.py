@@ -75,10 +75,14 @@ class WakeUpLight(hass.Hass):
     def start(self, event_name=None, data=None, kwargs=None):
         total_time = self.maybe_default("total_time", data)
         lamp = self.maybe_default("lamp", data)
-        for settings in normalize_sequence(total_time):
-            settings["entity_id"] = lamp
-            settings["total_time"] = total_time
-            self.run_in(self.set_state_cb, **settings)
+        for i, settings in enumerate(normalize_sequence(total_time)):
+            self.run_in(
+                self.set_state_cb,
+                i=i,
+                entity_id=lamp,
+                total_time=total_time,
+                **settings
+            )
 
     def set_state_cb(self, kwargs):
         self.call_service(
@@ -88,5 +92,6 @@ class WakeUpLight(hass.Hass):
             brightness=kwargs["brightness"],
             transition=kwargs["transition"],
         )
-        self.fire_event("start_wake_up_light_done", **kwargs)
-        self.log("start_wake_up_light_done")
+        if kwargs.pop("i") == len(SEQUENCE) - 1:
+            self.fire_event("start_wake_up_light_done", **kwargs)
+            self.log("start_wake_up_light_done")
