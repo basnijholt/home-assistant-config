@@ -18,6 +18,8 @@
       from: 'off'
       to: 'on'
   action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.start_the_music
     - service: script.start_the_music
       data:
         source: "KEF LS50 Wireless"

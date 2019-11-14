@@ -31,7 +31,7 @@ alarm_clock:
 wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
-  volume_ramp_time: 30
+  total_time: 180
   final_volume: 0.25
   speaker: media_player.kef
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"

@@ -21,7 +21,6 @@ input_boolean:
 ```
 """
 
-import math
 from functools import partial
 
 import appdaemon.plugins.hass.hassapi as hass
@@ -75,8 +74,3 @@ class StartSpotify(hass.Hass):
             "spotify/play_playlist", media_content_id=self.playlist, random_song=True,
         )
         self.call_spotify("media_player/media_play")
-        self.next()
-
-    def next(self):
-        """Subclass can implement this."""
-        self.log("Old next")
