@@ -23,7 +23,6 @@ input_boolean:
 """
 
 import math
-from functools import partial
 
 import hassapi as hass
 

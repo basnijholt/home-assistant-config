@@ -7,9 +7,9 @@ alarm_clock:
   class: AlarmClock
   alarm_toggle: input_boolean.alarm_clock
   input_datetime: input_datetime.alarm_clock
-  to_trigger:
-    - input_boolean.wake_up_light
-    - input_boolean.start_the_music
+  light_offset: -120
+  music_offset: 0
+  final_volume: 0.25
 ```
 # Example `configuration.yaml`:
 ```
@@ -27,14 +27,23 @@ input_boolean:
 ```
 """
 
+import datetime
+
 import hassapi as hass
+
+
+def to_time(time, timedelta):
+    start = datetime.datetime(
+        2000, 1, 1, hour=time.hour, minute=time.minute, second=time.second
+    )
+    end = start + timedelta
+    return end.time()
 
 
 class AlarmClock(hass.Hass):
     def initialize(self):
         self.input_datetime = self.args["input_datetime"]
         self.alarm_toggle = self.args["alarm_toggle"]
-        self.to_trigger = self.args["to_trigger"]
 
         self.listen_state(self.start, self.input_datetime)
         self.listen_state(self.start, self.alarm_toggle)
@@ -42,15 +51,29 @@ class AlarmClock(hass.Hass):
     def start(self, entity, attribute, old, new, kwargs):
         self.log("State changed.")
         time = self.parse_time(self.get_state(self.input_datetime))
-        self.run_daily(self.start_cb, time)
+        light_offset = self.args["light_offset"]
+        music_offset = self.args["light_offset"]
+        light_time = to_time(time, datetime.timedelta(seconds=light_offset))
+        music_time = to_time(time, datetime.timedelta(seconds=music_offset))
+        self.log(f"Run at {light_time}, {light_time}")
+        self.run_daily(self.start_light_cb, light_time)
+        self.run_daily(self.start_music_cb, music_time)
 
     @property
     def is_on(self):
         return self.get_state(self.alarm_toggle) == "on"
 
-    def start_cb(self, kwargs):
+    def start_light_cb(self, kwargs):
         if self.is_on:
-            for service in self.to_trigger:
-                self.log(f"Starting {service}")
-                self.turn_on(service)
-        self.set_state(self.alarm_toggle, state="off")
+            self.set_state(self.alarm_toggle, state="off")
+            self.fire_event("start_wake_up_light",)
+            self.fire_event(
+                "start_spotify_ramp", final_volume=self.args["final_volume"]
+            )
+
+    def start_music_cb(self, kwargs):
+        if self.is_on:
+            self.set_state(self.alarm_toggle, state="off")
+            self.fire_event(
+                "start_spotify_ramp", final_volume=self.args["final_volume"]
+            )

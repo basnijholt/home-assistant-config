@@ -35,7 +35,7 @@ DEFAULTS = {
 
 SEQUENCE = [
     dict(rgb_color=[255, 0, 0], brightness=1, relative_delay=0),
-    dict(rgb_color=[255, 0, 0], brightness=43, relative_delay=1),
+    dict(rgb_color=[255, 0, 0], brightness=30, relative_delay=2),
     dict(rgb_color=[255, 63, 0], brightness=90, relative_delay=1),
     dict(rgb_color=[255, 120, 0], brightness=180, relative_delay=1),
     dict(rgb_color=[255, 187, 131], brightness=255, relative_delay=1),
@@ -81,10 +81,11 @@ class WakeUpLight(hass.Hass):
                 i=i,
                 entity_id=lamp,
                 total_time=total_time,
-                **settings
+                **settings,
             )
 
     def set_state_cb(self, kwargs):
+        self.log(f"Setting light: {kwargs}")
         self.call_service(
             "light/turn_on",
             entity_id=kwargs["entity_id"],

@@ -12,21 +12,14 @@ lovelace_json_to_yaml:
   yaml: /config/lovelace-ui.yaml
   sensor: sensor.lovelace
 
-wake_up_light:
-  module: wake_up_light
-  class: WakeUpLight
-  total_time: 600
-  lamp: light.ceiling
-  input_boolean: input_boolean.wake_up_light
-
 alarm_clock:
   module: alarm_clock
   class: AlarmClock
   alarm_toggle: input_boolean.alarm_clock
   input_datetime: input_datetime.alarm_clock
-  to_trigger:
-    - input_boolean.wake_up_light
-    - input_boolean.start_the_music
+  light_offset: -60
+  music_offset: 0
+  final_volume: 0.25
 
 start_speakers:
   module: start_speakers
@@ -47,8 +40,15 @@ start_spotify:
 wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
-  total_time: 180
+  total_time: 400
   final_volume: 0.25
   speaker: media_player.kef
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
+
+wake_up_light:
+  module: wake_up_light
+  class: WakeUpLight
+  total_time: 600
+  lamp: light.ceiling
+  input_boolean: input_boolean.wake_up_light
