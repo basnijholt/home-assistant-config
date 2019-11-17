@@ -5,3 +5,65 @@ themes:
     mini-media-player-icon-color: white
     mini-media-player-accent-color: white
     mini-media-player-overlay-color-stop: 100%
+  ios:
+    background-image: 'center / cover no-repeat url("/local/img/ios-bg.png") fixed'
+    accent-color: "#FFF"
+    primary-color: "#FFF"
+    light-primary-color: '#B6B6C1'
+    primary-background-color: "#23232E"
+    secondary-background-color: rgba(25, 25, 25, 0.5)
+    divider-color: "#FFF"
+    ### Text ###
+    primary-text-color: "#FFF"
+    secondary-text-color: "#B6B6C1"
+    text-primary-color: "#FFF"
+    disabled-text-color: "#4E4E66"
+    ### Sidebar Menu ###
+    sidebar-icon-color: "#B6B6C1"
+    sidebar-text  -color: "#F1F1F1"
+    sidebar-selected-background-color: var(--primary-background-color)
+    sidebar-selected-icon-color: "#FFF"
+    sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+    ### States and Badges ###
+    state-icon-color: "#FFF"
+    state-icon-active-color: "#FFF"
+    state-icon-unavailable-color: var(--disabled-text-color)
+    ### Sliders ###
+    paper-slider-knob-color: "#FFF"
+    paper-slider-knob-start-color: var(--paper-slider-knob-color)
+    paper-slider-pin-color: var(--paper-slider-knob-color)
+    paper-slider-active-color: var(--paper-slider-knob-color)
+    paper-slider-secondary-color: var(--paper-slider-knob-color)
+    paper-slider-container-color: rgba(255,255,255,.5)
+    paper-slider-font-color: "#000"
+    ha-slider-background: none !important
+    ### Labels ###
+    label-badge-background-color: "#23232E"
+    label-badge-text-color: "#F1F1F1"
+    label-badge-red: "#FFF"
+    ### Cards ###
+    paper-listbox-background-color: var(--primary-background-color)
+    ### Toggles ###
+    paper-toggle-button-checked-button-color: "#FFF"
+    paper-toggle-button-checked-bar-color: "#FFF"
+    paper-toggle-button-unchecked-button-color: var(--paper-toggle-button-checked-button-color)
+    paper-toggle-button-unchecked-bar-color: var(--disabled-text-color)
+    ### Table row ###
+    table-row-background-color: var(--primary-background-color)
+    table-row-alternative-background-color: var(--secondary-background-color)
+    ### Other
+    ha-card-border-radius: 10px
+    ha-card-background: rgba(150, 150, 150, 0.1)
+    paper-card-background-color: var(--ha-card-background)
+    paper-dialog-background-color: rgba(55, 55, 55, 0.5)
+    more-info-header-background: rgba(25, 25, 25, 0.5)
+    ### Custom
+    mini-media-player-accent-color: var(--primary-text-color)
+    mini-media-player-overlay-color: rgba(255, 255, 255, 0.5)
+    mini-media-player-artwork-opacity: 0.35
+    mcg-title-letter-spacing: .15em
+    paper-font-body1_-_font-weight: 500
+    paper-font-display1_-_font-weight: 500
+    paper-font-display2_-_font-weight: 500
+    paper-font-display3_-_font-weight: 500
+
