@@ -65,7 +65,6 @@ class AlarmClock(hass.Hass):
 
     def start_light_cb(self, kwargs):
         if self.is_on:
-            self.set_state(self.alarm_toggle, state="off")
             self.fire_event("start_wake_up_light",)
             self.fire_event(
                 "start_spotify_ramp", final_volume=self.args["final_volume"]

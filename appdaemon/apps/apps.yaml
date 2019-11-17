@@ -17,7 +17,7 @@ alarm_clock:
   class: AlarmClock
   alarm_toggle: input_boolean.alarm_clock
   input_datetime: input_datetime.alarm_clock
-  light_offset: -60
+  light_offset: -120
   music_offset: 0
   final_volume: 0.25
 

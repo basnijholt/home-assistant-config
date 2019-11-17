@@ -91,7 +91,7 @@ class WakeUpWithSpotify(hass.Hass):
         total_time = self.maybe_default("total_time", kwargs)
         speaker = self.maybe_default("speaker", kwargs)
         self.volume += self.min_volume_step
-        if self.volume >= final_volume:
+        if self.volume > final_volume:
             return
         dt = time_step(total_time, final_volume, self.min_volume_step)
         self.log(f"Setting volume: {self.volume}")

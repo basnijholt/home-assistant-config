@@ -1,6 +1,24 @@
 ---
 exclude_domains:
   - device_tracker
+  - automation
+  - sensor
+  - person
+  - input_boolean
 entity_config:
+  media_player.kef:
+    name: KEF Speakers
+    feature_list:
+      - feature: on_off
+      - feature: toggle_mute
   switch.desk_lamp:
+    name: Desk lamp
     type: switch
+  switch.light2:
+    name: Speaker lamp
+  light.ceiling:
+    name: Ceiling lamp
+  switch.kef_speakers:
+    name: KEF Speakers power
+  input_boolean.start_the_music:
+    name: Start Spotify
