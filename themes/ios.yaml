@@ -1,7 +1,7 @@
 ios:
   background-image: 'center / cover no-repeat url("/local/img/ios-bg.png") fixed'
   accent-color: "#FFF"
-  primary-color: "#FFF"
+  primary-color: "rgba(155,155,155,.25)"
   light-primary-color: '#B6B6C1'
   primary-background-color: "#23232E"
   secondary-background-color: rgba(25, 25, 25, 0.5)
@@ -11,6 +11,7 @@ ios:
   secondary-text-color: "#B6B6C1"
   text-primary-color: "#FFF"
   disabled-text-color: "#4E4E66"
+  text-dark-color: '#FFF'
   ### Sidebar Menu ###
   sidebar-icon-color: "#B6B6C1"
   sidebar-text  -color: "#F1F1F1"
