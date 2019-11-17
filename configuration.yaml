@@ -6,7 +6,9 @@ homeassistant: !include conf/homeassistant.yaml
 default_config:
 person: !include conf/persons.yaml
 input_boolean: !include conf/input_booleans.yaml
-frontend: !include conf/frontend.yaml
+frontend:
+  themes: !include_dir_merge_named themes
+
 logger: !include conf/logger.yaml
 zone: !include conf/zones.yaml
 homekit: !include conf/homekit.yaml
