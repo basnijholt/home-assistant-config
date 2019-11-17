@@ -21,12 +21,14 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.start_the_music
     - service: script.start_speakers
-      source:
-      volume: "0.35"
+      data:
+        source: "Wifi"
+        volume: "0.35"
     - service: script.start_spotify
-      source: "KEF LS50 Wireless"
-      playlist: "6rPTm9dYftKcFAfwyRqmDZ"
-      volume: "0.35"
+      data:
+        source: "KEF LS50 Wireless"
+        playlist: "6rPTm9dYftKcFAfwyRqmDZ"
+        volume: "0.35"
 
 - alias: Power Problem Notification
   id: rpi_power_issue
