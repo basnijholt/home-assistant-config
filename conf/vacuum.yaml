@@ -1,0 +1,3 @@
+# - platform: xiaomi_miio
+#   host: 192.168.1.2
+#   token: YOUR_TOKEN
