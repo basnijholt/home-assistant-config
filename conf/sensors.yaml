@@ -123,3 +123,9 @@
   file_paths:
     - /config/home-assistant_v2.db
     - /config/.storage/lovelace
+
+- platform: github
+  access_token: !secret hass_sensor_gh_token
+  repositories:
+    - path: 'basnijholt/lovelace-ios-dark-mode-theme'
+    - path: 'python-adaptive/adaptive'

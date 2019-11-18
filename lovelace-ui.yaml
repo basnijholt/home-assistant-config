@@ -24,6 +24,8 @@ data:
       url: /community_plugin/compact-custom-header/compact-custom-header.js
     - type: js
       url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
+    - type: js
+      url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
     title: Huis
     views:
     - badges:
@@ -74,8 +76,17 @@ data:
       - buttons: true
         entity: vacuum.xiaomi_vacuum_cleaner
         image: /local/custom/folder/background.png
-        name: Xiaomi Vacuum
+        name: Vacuum
         type: custom:xiaomi-vacuum-card
+      - entities:
+        - entity: sensor.home_assistant_config
+          type: custom:github-entity-row
+        - entity: sensor.lovelace_github_entity_row
+          type: custom:github-entity-row
+        - entity: sensor.lovelace_xiaomi_vacuum_card
+          type: custom:github-entity-row
+        title: GitHub
+        type: entities
       path: default_view
       title: Home
     - cards:
