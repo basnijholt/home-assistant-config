@@ -1,5 +1,12 @@
 data:
   config:
+    background: var(--background-image)
+    cch:
+      background: rgba(155,155,155,.25)
+      clock_format: 24
+      options: clock
+      swipe_animate: fade
+      swipe_prevent_default: true
     resources:
     - type: module
       url: /community_plugin/mini-media-player/mini-media-player-bundle.js
@@ -13,6 +20,10 @@ data:
       url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
     - type: module
       url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+    - type: module
+      url: /community_plugin/compact-custom-header/compact-custom-header.js
+    - type: js
+      url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
     title: Huis
     views:
     - badges:
@@ -25,7 +36,6 @@ data:
         - entity: sensor.desk_lamp_current
         - entity: switch.kef_speakers
         - entity: input_boolean.start_the_music
-        - entity: input_boolean.start_spotify
         title: Controls
         type: entities
       - entity: weather.huis
@@ -48,16 +58,24 @@ data:
           mute: false
           play_stop: true
           volume: false
-        style: "ha-card {\n  --mini-media-player-base-color: white;\n  --mini-media-player-icon-color:\
-          \ white;\n  --mini-media-player-accent-color: white;\n  --mini-media-player-overlay-color-stop:\
-          \ 100%;\n}\n"
         type: custom:mini-media-player
       - entities:
         - entity: input_boolean.alarm_clock
         - entity: input_datetime.alarm_clock
-        - entity: input_boolean.wake_up_light
         title: Alarms
         type: entities
+      - entities:
+        - entity: input_boolean.start_spotify
+        - entity: input_boolean.wake_up_light
+        - entity: input_boolean.wake_up_with_spotify
+        - entity: input_boolean.start_speakers
+        title: Test apps
+        type: entities
+      - buttons: true
+        entity: vacuum.xiaomi_vacuum_cleaner
+        image: /local/custom/folder/background.png
+        name: Xiaomi Vacuum
+        type: custom:xiaomi-vacuum-card
       path: default_view
       title: Home
     - cards:
@@ -106,7 +124,7 @@ data:
             title: CPU Temp
             type: custom:bar-card
           - animation: 'off'
-            entity: sensor.rpi_cpu_temperature
+            entity: sensor.rpi_gpu_temperature
             height: 30px
             indicator: 'off'
             severity:
