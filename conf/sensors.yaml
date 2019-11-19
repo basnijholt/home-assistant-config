@@ -129,3 +129,4 @@
   repositories:
     - path: 'basnijholt/lovelace-ios-dark-mode-theme'
     - path: 'python-adaptive/adaptive'
+    - path: 'basnijholt/home-assistant-config'
