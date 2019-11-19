@@ -61,6 +61,7 @@ class WakeUpLight(hass.Hass):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
         self.listen_event(self.start, "start_wake_up_light")
+        self._last_setting = None
 
     def maybe_default(self, key, kwargs):
         default_value = self.args.get(key, DEFAULTS[key])
@@ -85,14 +86,19 @@ class WakeUpLight(hass.Hass):
             )
 
     def set_state_cb(self, kwargs):
-        self.log(f"Setting light: {kwargs}")
-        self.call_service(
-            "light/turn_on",
-            entity_id=kwargs["entity_id"],
-            rgb_color=kwargs["rgb_color"],
-            brightness=kwargs["brightness"],
-            transition=kwargs["transition"],
-        )
-        if kwargs.pop("i") == len(SEQUENCE) - 1:
-            self.fire_event("start_wake_up_light_done", **kwargs)
-            self.log("start_wake_up_light_done")
+        entity_id = kwargs["entity_id"]
+        if self._last_setting is None or self.get_state(entity_id, attribute="rgb_color") == self._last_setting:
+            self.log(f"Setting light: {kwargs}")
+            self._last_setting = kwargs["brightness"]
+            self.call_service(
+                "light/turn_on",
+                entity_id=entity_id,
+                rgb_color=kwargs["rgb_color"],
+                brightness=kwargs["brightness"],
+                transition=kwargs["transition"],
+            )
+            if kwargs.pop("i") == len(SEQUENCE) - 1:
+                self.fire_event("start_wake_up_light_done", **kwargs)
+                self.log("start_wake_up_light_done")
+        else:
+            self.log("Canceling because the light was manually changed.")
