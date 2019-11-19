@@ -78,8 +78,8 @@ def rgb_and_brightness(total_time, rgb_sequence):
 
     This interpolates in the HSV domain and converts it back to RGB.
 
-    Paramters
-    ---------
+    Parameters
+    ----------
     total_time : int
         Total time.
     rgb_sequence : list of (r, g, b) tuples
@@ -129,19 +129,25 @@ class WakeUpLight(hass.Hass):
         total_time = self.maybe_default("total_time", data)
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         sequence = []
-        for t in range(0, total_time+TIME_STEP, TIME_STEP):
+        for t in range(0, total_time + TIME_STEP, TIME_STEP):
             t = min(t, total_time)
-            data = {"entity_id": lamp, "rgb_color": rgb(t), "brightness": brightness(t), "transition": 4}
-            # sequence.extend([{"light.turn_on": data}, {"sleep": TIME_STEP}])  # XXX: uncomment if run_sequence works
-            self.run_in(self.set_state_cb, t, data=data, done=(t==total_time))  # XXX: remove when run_sequence works
+            data = {
+                "entity_id": lamp,
+                "rgb_color": rgb(t),
+                "brightness": brightness(t),
+                "transition": 4,
+            }
+            self.run_in(
+                self.set_state_cb, t, data=data, done=(t == total_time)
+            )  # XXX: remove when run_sequence works
+            # sequence.extend([{"light/turn_on": data}, {"sleep": TIME_STEP}])  # XXX: uncomment if run_sequence works
         # self.run_sequence(sequence)  # XXX: uncomment if run_sequence works
 
     def set_state_cb(self, kwargs):
         # XXX: remove when run_sequence works
         self.log(f"Setting light: {kwargs}")
         self.call_service(
-            "light/turn_on",
-            **kwargs["data"],
+            "light/turn_on", **kwargs["data"],
         )
         if kwargs["done"]:
             self.fire_event("start_wake_up_light_done", **kwargs)
