@@ -19,6 +19,8 @@ input_boolean:
 ```
 """
 
+import bisect
+import colorsys
 import copy
 
 import hassapi as hass
@@ -33,27 +35,58 @@ DEFAULTS = {
     "input_boolean": DEFAULT_INPUT_BOOLEAN,
 }
 
-SEQUENCE = [
-    dict(rgb_color=[255, 0, 0], brightness=1, relative_delay=0),
-    dict(rgb_color=[255, 0, 0], brightness=30, relative_delay=2),
-    dict(rgb_color=[255, 63, 0], brightness=90, relative_delay=1),
-    dict(rgb_color=[255, 120, 0], brightness=180, relative_delay=1),
-    dict(rgb_color=[255, 187, 131], brightness=255, relative_delay=1),
-    dict(rgb_color=[255, 205, 166], brightness=255, relative_delay=1),
+RGB_SEQUENCE = [
+    [255, 0, 0],
+    [255, 0, 0],
+    [255, 63, 0],
+    [255, 120, 0],
+    [255, 187, 131],
+    [255, 205, 166],
 ]
 
+TIME_STEP = 2  # time between settings
 
-def normalize_sequence(total_time):
-    sequence = copy.deepcopy(SEQUENCE)
-    extra_wait = 0.1  # to be sure the previous transition is done
-    norm = sum(d["relative_delay"] for d in sequence)
-    delay = 0
-    for settings in sequence:
-        relative_delay = settings.pop("relative_delay")
-        settings["transition"] = total_time * relative_delay / norm
-        delay += settings["transition"] + extra_wait
-        settings["delay"] = delay
-    return sequence
+
+class Interpolate:
+    def __init__(self, xs, ys):
+        if any(y - x <= 0 for x, y in zip(xs, xs[1:])):
+            raise ValueError("xs must be in strictly ascending order!")
+        assert len(xs) == len(ys)
+        self.xs = xs
+        self.ys = ys
+        intervals = zip(xs, xs[1:], ys, ys[1:])
+        self.slopes = [(y2 - y1) / (x2 - x1) for x1, x2, y1, y2 in intervals]
+
+    def __call__(self, x):
+        if not (self.xs[0] <= x <= self.xs[-1]):
+            raise ValueError("x out of bounds!")
+        if x == self.xs[-1]:
+            return self.ys[-1]
+        i = bisect.bisect_right(self.xs, x) - 1
+        return self.ys[i] + self.slopes[i] * (x - self.xs[i])
+
+
+def linspace(a, b, n=100):
+    if n < 2:
+        return b
+    diff = (float(b) - a) / (n - 1)
+    return [diff * i + a for i in range(n)]
+
+
+def get_rgb_and_brightness(total_time, rgb_sequence):
+    xs = linspace(0, total_time, len(rgb_sequence))
+    hsvs = zip(*[colorsys.rgb_to_hsv(*rgb) for rgb in rgb_sequence])
+    hue, saturation, value = [Interpolate(xs, ys) for ys in hsvs]
+    _brightness = Interpolate([0, total_time], [0, 255])
+
+    def rgb(t):
+        rgb = colorsys.hsv_to_rgb(hue(t), saturation(t), value(t))
+        return tuple(round(x) for x in rgb)
+
+    def brightness(t):
+        return round(_brightness(t))
+
+    return rgb, brightness
 
 
 class WakeUpLight(hass.Hass):
@@ -69,30 +102,20 @@ class WakeUpLight(hass.Hass):
         return kwargs.get(key, default_value)
 
     def start_cb(self, entity, attribute, old, new, kwargs):
+        self.log(f"start_cb, kwargs: {kwargs}")
         self.set_state(self.input_boolean, state="off")
         self.start()
 
     def start(self, event_name=None, data=None, kwargs=None):
-        total_time = self.maybe_default("total_time", data)
         lamp = self.maybe_default("lamp", data)
-        for i, settings in enumerate(normalize_sequence(total_time)):
-            self.run_in(
-                self.set_state_cb,
-                i=i,
-                entity_id=lamp,
-                total_time=total_time,
-                **settings,
-            )
+        total_time = 30  # self.maybe_default("total_time", data)
+        rgb, brightness = get_rgb_and_brightness(total_time, RGB_SEQUENCE)
+        sequence = []
+        for t in range(0, total_time+TIME_STEP, TIME_STEP):
+            t = min(t, total_time)
+            data = {"entity_id": lamp, "rgb_color": rgb(t), "brightness": brightness(t)}
+            sequence.append({"light.turn_on": data})
+            sequence.append({"sleep": TIME_STEP})
 
-    def set_state_cb(self, kwargs):
-        self.log(f"Setting light: {kwargs}")
-        self.call_service(
-            "light/turn_on",
-            entity_id=kwargs["entity_id"],
-            rgb_color=kwargs["rgb_color"],
-            brightness=kwargs["brightness"],
-            transition=kwargs["transition"],
-        )
-        if kwargs.pop("i") == len(SEQUENCE) - 1:
-            self.fire_event("start_wake_up_light_done", **kwargs)
-            self.log("start_wake_up_light_done")
+        self.log(sequence)
+        self.run_sequence(sequence)
