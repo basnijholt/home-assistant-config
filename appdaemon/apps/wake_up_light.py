@@ -137,18 +137,5 @@ class WakeUpLight(hass.Hass):
                 "brightness": brightness(t),
                 "transition": 4,
             }
-            self.run_in(
-                self.set_state_cb, t, data=data, done=(t == total_time)
-            )  # XXX: remove when run_sequence works
-            # sequence.extend([{"light/turn_on": data}, {"sleep": TIME_STEP}])  # XXX: uncomment if run_sequence works
-        # self.run_sequence(sequence)  # XXX: uncomment if run_sequence works
-
-    def set_state_cb(self, kwargs):
-        # XXX: remove when run_sequence works
-        self.log(f"Setting light: {kwargs}")
-        self.call_service(
-            "light/turn_on", **kwargs["data"],
-        )
-        if kwargs["done"]:
-            self.fire_event("start_wake_up_light_done", **kwargs)
-            self.log("start_wake_up_light_done")
+            sequence.extend([{"light/turn_on": data}, {"sleep": TIME_STEP}])
+        self.run_sequence(sequence)
