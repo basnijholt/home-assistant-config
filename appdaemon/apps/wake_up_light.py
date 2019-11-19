@@ -44,7 +44,7 @@ RGB_SEQUENCE = [
     [255, 205, 166],
 ]
 
-TIME_STEP = 2  # time between settings
+TIME_STEP = 4  # time between settings
 
 
 class Interpolate:
@@ -73,7 +73,25 @@ def linspace(a, b, n=100):
     return [diff * i + a for i in range(n)]
 
 
-def get_rgb_and_brightness(total_time, rgb_sequence):
+def rgb_and_brightness(total_time, rgb_sequence):
+    """Return interpolator objects for `rgb` and `brightness`.
+
+    This interpolates in the HSV domain and converts it back to RGB.
+
+    Paramters
+    ---------
+    total_time : int
+        Total time.
+    rgb_sequence : list of (r, g, b) tuples
+        List with tuples of RGB values, where the values are integers.
+
+    Returns
+    -------
+    rgb : callable
+        Interpolation object that returns RGB values as function of time.
+    brightness : callable
+        Interpolation object that returns brightness values as function of time.
+    """
     xs = linspace(0, total_time, len(rgb_sequence))
     hsvs = zip(*[colorsys.rgb_to_hsv(*rgb) for rgb in rgb_sequence])
     hue, saturation, value = [Interpolate(xs, ys) for ys in hsvs]
@@ -108,14 +126,26 @@ class WakeUpLight(hass.Hass):
 
     def start(self, event_name=None, data=None, kwargs=None):
         lamp = self.maybe_default("lamp", data)
-        total_time = 30  # self.maybe_default("total_time", data)
-        rgb, brightness = get_rgb_and_brightness(total_time, RGB_SEQUENCE)
+        total_time = self.maybe_default("total_time", data)
+        rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         sequence = []
         for t in range(0, total_time+TIME_STEP, TIME_STEP):
             t = min(t, total_time)
-            data = {"entity_id": lamp, "rgb_color": rgb(t), "brightness": brightness(t)}
-            sequence.append({"light.turn_on": data})
-            sequence.append({"sleep": TIME_STEP})
+            data = {"entity_id": lamp, "rgb_color": rgb(t), "brightness": brightness(t), "transition": 4}
+            # sequence.append({"light.turn_on": data})  # XXX: uncomment if run_sequence works
+            # sequence.append({"sleep": TIME_STEP})  # XXX: uncomment if run_sequence works
 
-        self.log(sequence)
-        self.run_sequence(sequence)
+            self.run_in(self.set_state_cb, t, data=data, done=(t==total_time))  # XXX: remove when run_sequence works
+        # self.log(sequence)  # XXX: uncomment if run_sequence works
+        # self.run_sequence(sequence)  # XXX: uncomment if run_sequence works
+
+    def set_state_cb(self, kwargs):
+        # XXX: remove when run_sequence works
+        self.log(f"Setting light: {kwargs}")
+        self.call_service(
+            "light/turn_on",
+            **kwargs["data"],
+        )
+        if kwargs["done"]:
+            self.fire_event("start_wake_up_light_done", **kwargs)
+            self.log("start_wake_up_light_done")
