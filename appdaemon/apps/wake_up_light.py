@@ -132,11 +132,8 @@ class WakeUpLight(hass.Hass):
         for t in range(0, total_time+TIME_STEP, TIME_STEP):
             t = min(t, total_time)
             data = {"entity_id": lamp, "rgb_color": rgb(t), "brightness": brightness(t), "transition": 4}
-            # sequence.append({"light.turn_on": data})  # XXX: uncomment if run_sequence works
-            # sequence.append({"sleep": TIME_STEP})  # XXX: uncomment if run_sequence works
-
+            # sequence.extend([{"light.turn_on": data}, {"sleep": TIME_STEP}])  # XXX: uncomment if run_sequence works
             self.run_in(self.set_state_cb, t, data=data, done=(t==total_time))  # XXX: remove when run_sequence works
-        # self.log(sequence)  # XXX: uncomment if run_sequence works
         # self.run_sequence(sequence)  # XXX: uncomment if run_sequence works
 
     def set_state_cb(self, kwargs):
