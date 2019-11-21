@@ -1,5 +1,7 @@
 """Emulates a Philips Wake-up Light.
 
+The sequence is canceled by turning the light on and off.
+
 # Example `apps.yaml` config:
 ```
 wake_up_light:
@@ -22,7 +24,6 @@ input_boolean:
 import bisect
 import colorsys
 import copy
-import datetime
 
 import hassapi as hass
 
@@ -74,10 +75,6 @@ def linspace(a, b, n=100):
     return [diff * i + a for i in range(n)]
 
 
-def now():
-    return datetime.datetime.now(datetime.timezone.utc)
-
-
 def rgb_and_brightness(total_time, rgb_sequence):
     """Return interpolator objects for `rgb` and `brightness`.
 
@@ -117,6 +114,8 @@ class WakeUpLight(hass.Hass):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
         self.listen_event(self.start, "start_wake_up_light")
+        self.sequence = None
+        self.cancel_handle = None
 
     def maybe_default(self, key, kwargs):
         default_value = self.args.get(key, DEFAULTS[key])
@@ -131,7 +130,7 @@ class WakeUpLight(hass.Hass):
 
     def start(self, event_name=None, data=None, kwargs=None):
         lamp = self.maybe_default("lamp", data)
-        total_time = 30 # self.maybe_default("total_time", data)
+        total_time = self.maybe_default("total_time", data)
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         sequence = []
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
@@ -142,20 +141,11 @@ class WakeUpLight(hass.Hass):
                 "brightness": brightness(t),
                 "transition": TIME_STEP,
             }
-            self.run_in(
-                self.set_state_cb, t, data=data, done=(t == total_time)
-            )
+            sequence.extend([{"light/turn_on": data}, {"sleep": TIME_STEP}])
+        sequence.append({"event/fire": {"event": "start_wake_up_light_done"}})
+        self.sequence = self.run_sequence(sequence)
         self.listen_state(self.cancel_cb, lamp, state="off")  # Cancel when turning the light off.
 
     def cancel_cb(self, entity, attribute, old, new, kwargs):
         self.log(f"Canceling sequence")
-        self.should_stop = True
-
-    def set_state_cb(self, kwargs):
-        if self.should_stop:
-            return
-        self.log(f"Setting light: {kwargs}")
-        self.call_service("light/turn_on", **kwargs["data"])
-        if kwargs["done"]:
-            self.fire_event("start_wake_up_light_done", **kwargs)
-            self.log("start_wake_up_light_done")
+        self.cancel_sequence(self.sequence)
