@@ -144,7 +144,8 @@ class WakeUpLight(hass.Hass):
             sequence.extend([{"light/turn_on": data}, {"sleep": TIME_STEP}])
         sequence.append({"event/fire": {"event": "start_wake_up_light_done"}})
         self.sequence = self.run_sequence(sequence)
-        self.listen_state(self.cancel_cb, lamp, state="off")  # Cancel when turning the light off.
+        # Cancel when turning the light off.
+        self.listen_state(self.cancel_cb, lamp, oneshot=True, state="off")
 
     def cancel_cb(self, entity, attribute, old, new, kwargs):
         self.log(f"Canceling sequence")
