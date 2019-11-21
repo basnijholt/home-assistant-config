@@ -17,7 +17,7 @@ media_player: !include conf/media_players.yaml
 http: !include conf/http.yaml
 group: !include conf/groups.yaml
 script: !include conf/scripts.yaml
-automation: !include conf/automations.yaml
+automation: !include_dir_merge_list conf/automations
 device_tracker: !include conf/device_trackers.yaml
 switch: !include conf/switches.yaml
 sensor: !include conf/sensors.yaml

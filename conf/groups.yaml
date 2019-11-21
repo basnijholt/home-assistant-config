@@ -1,0 +1,4 @@
+persons:
+  name: 'People'
+  entities:
+    - person.bas_nijholt

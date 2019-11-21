@@ -1,0 +1,103 @@
+---
+- alias: 'Vacuum: started cleaning'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    from: 'docked'
+    to: 'cleaning'
+  action:
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: 'Robot'
+        message: 'Robot started to clean!'
+
+- alias: 'Vacuum: stopped cleaning'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    from: 'returning'
+    to: 'docked'
+  action:
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: 'Robot'
+        message: 'Cleanup successful after {{ state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaning_time") }} minutes.'
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.cleaned_today
+
+- alias: 'Vacuum: cleanup if nobody is home'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '14:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - wed
+          - fri
+          - sun
+      - condition: state
+        entity_id: group.persons
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.cleaned_today
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+  action:
+    - service: script.start_vacuum_cleaning
+
+- alias: 'Vacuum: wait until everybody is gone'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: group.persons
+    from: 'home'
+    to: 'not_home'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '14:00:00'
+        before: '22:00:00'
+        weekday:
+          - mon
+          - wed
+          - fri
+          - sun
+      - condition: state
+        entity_id: input_boolean.cleaned_today
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+  action:
+    - service: script.start_vacuum_cleaning
+
+- alias: 'Vacuum: reset cleaned today'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '01:00:00'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.cleaned_today
+
+- alias: 'Vacuum: reset to balanced'
+  trigger:
+    platform: state
+    entity_id: vacuum.living_room
+    to: 'docked'
+  action:
+    service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      fan_speed: 'Balanced'

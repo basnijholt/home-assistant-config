@@ -4,6 +4,14 @@ start_the_music:
   name: Start speakers and music
   initial: off
   icon: mdi:music
+cleaned_today:
+  name: Vacuum cleaned cleaned
+  initial: off
+  icon: mdi:broom
+vacation_mode:
+  name: 'On Vacation'
+  initial: off
+  icon: mdi:airplane
 
 # Apps
 wake_up_light:
