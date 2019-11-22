@@ -1,14 +1,4 @@
 ---
-- alias: Update power  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
-  id: update_power
-  initial_state: "on"
-  trigger:
-    - platform: time_pattern
-      seconds: "/60" # every second
-  action:
-    - service: homeassistant.update_entity
-      entity_id: switch.desk_lamp
-
 - alias: Power Problem Notification
   id: rpi_power_notification
   trigger:
