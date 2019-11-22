@@ -1,0 +1,10 @@
+---
+- alias: Toggle guest mode
+  id: toggle_guest_mode
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+  action:
+    - service_template: automation.turn_{{ trigger.to_state.state }}
+      entity_id: group.guest_mode
