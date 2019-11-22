@@ -1,32 +1,31 @@
 ---
 # Base Configuration:
-homeassistant: !include conf/homeassistant.yaml
+homeassistant: !include includes/homeassistant.yaml
 
 # Core Configuration
 default_config:
-person: !include conf/persons.yaml
-input_boolean: !include conf/input_booleans.yaml
+person: !include includes/persons.yaml
+input_boolean: !include includes/input_booleans.yaml
 frontend:
   themes: !include_dir_merge_named themes
-
-logger: !include conf/logger.yaml
-zone: !include conf/zones.yaml
-homekit: !include conf/homekit.yaml
-discovery: !include conf/discovery.yaml
-media_player: !include conf/media_players.yaml
-http: !include conf/http.yaml
-group: !include conf/groups.yaml
-script: !include conf/scripts.yaml
-automation: !include_dir_merge_list conf/automations
-device_tracker: !include conf/device_trackers.yaml
-switch: !include conf/switches.yaml
-sensor: !include conf/sensors.yaml
-input_datetime: !include conf/input_datetimes.yaml
-recorder: !include conf/recorder.yaml
+logger: !include includes/logger.yaml
+zone: !include includes/zones.yaml
+homekit: !include includes/homekit.yaml
+discovery: !include includes/discovery.yaml
+media_player: !include includes/media_players.yaml
+http: !include includes/http.yaml
+group: !include includes/groups.yaml
+script: !include includes/scripts.yaml
+automation: !include_dir_merge_list includes/automations
+device_tracker: !include includes/device_trackers.yaml
+switch: !include includes/switches.yaml
+sensor: !include includes/sensors.yaml
+input_datetime: !include includes/input_datetimes.yaml
+recorder: !include includes/recorder.yaml
 
 # Components:
-tplink: !include conf/tplink.yaml
-yeelight: !include conf/yeelight.yaml
-speedtestdotnet: !include conf/speedtestdotnet.yaml
+tplink: !include includes/tplink.yaml
+yeelight: !include includes/yeelight.yaml
+speedtestdotnet: !include includes/speedtestdotnet.yaml
 circadian_lighting:
-vacuum: !include conf/vacuum.yaml
+vacuum: !include includes/vacuum.yaml
