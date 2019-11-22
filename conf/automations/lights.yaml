@@ -1,6 +1,14 @@
 ---
+- alias: Update switch state  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
+  initial_state: "on"
+  trigger:
+    - platform: time_pattern
+      seconds: "/5"
+  action:
+    - service: homeassistant.update_entity
+      entity_id: switch.desk_lamp
+
 - alias: Copy light
-  id: copy_light
   trigger:
     - platform: state
       entity_id: sensor.desk_lamp_current
@@ -9,7 +17,6 @@
       entity_id: switch.light2
 
 - alias: Turn off lights when leaving
-  id: turn_off_lights_when_leaving
   trigger:
     - platform: state
       entity_id: group.persons
