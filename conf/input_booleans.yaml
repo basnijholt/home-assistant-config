@@ -12,6 +12,11 @@ vacation_mode:
   name: 'On Vacation'
   initial: off
   icon: mdi:airplane
+guest_mode:
+  name: 'Guest mode'
+  initial: off
+  icon: mdi:home-account
+
 
 # Apps
 wake_up_light:

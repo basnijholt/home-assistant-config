@@ -29,6 +29,7 @@
         entity_id: input_boolean.cleaned_today
 
 - alias: 'Vacuum: cleanup if nobody is home'
+  id: vacuum_at_time_if_not_home
   initial_state: 'on'
   trigger:
     platform: time
@@ -56,6 +57,7 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
 
 - alias: 'Vacuum: wait until everybody is gone'
+  id: vacuum_when_people_leave
   initial_state: 'on'
   trigger:
     platform: state

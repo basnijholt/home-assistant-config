@@ -19,8 +19,8 @@
     - service: switch.turn_off
       entity_id: switch.light2
 
-- id: 'turn_off_lights_when_leaving'
-  alias: Turn off lights when leaving
+- alias: Turn off lights when leaving
+  id: 'turn_off_lights_when_leaving'
   trigger:
     - platform: state
       entity_id: group.persons
