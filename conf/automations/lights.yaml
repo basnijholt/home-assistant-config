@@ -9,7 +9,7 @@
       entity_id: switch.light2
 
 - alias: Turn off lights when leaving
-  id: 'turn_off_lights_when_leaving'
+  id: turn_off_lights_when_leaving
   trigger:
     - platform: state
       entity_id: group.persons

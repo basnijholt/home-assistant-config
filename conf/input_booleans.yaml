@@ -9,11 +9,11 @@ cleaned_today:
   initial: off
   icon: mdi:broom
 vacation_mode:
-  name: 'On Vacation'
+  name: On Vacation
   initial: off
   icon: mdi:airplane
 guest_mode:
-  name: 'Guest mode'
+  name: Guest mode
   initial: off
   icon: mdi:home-account
 

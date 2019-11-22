@@ -4,7 +4,7 @@
     desk_lamp_watts:
       value_template: >
         {{ state_attr("switch.desk_lamp", "current_power_w") | replace(" W", "") | float("Unavailable") }}
-      unit_of_measurement: 'Watt'
+      unit_of_measurement: Watt
 
     desk_lamp_current:
       friendly_name: "Lamp stroom"
@@ -79,7 +79,7 @@
   name: "RPi CPU Temperature"
   command: "cat /sys/class/thermal/thermal_zone0/temp"
   unit_of_measurement: "°C"
-  value_template: '{{ value | multiply(0.001) | round(2) }}'
+  value_template: "{{ value | multiply(0.001) | round(2) }}"
 
 - platform: command_line
   name: "RPi GPU Temperature"
@@ -127,6 +127,6 @@
 - platform: github
   access_token: !secret hass_sensor_gh_token
   repositories:
-    - path: 'basnijholt/lovelace-ios-dark-mode-theme'
-    - path: 'python-adaptive/adaptive'
-    - path: 'basnijholt/home-assistant-config'
+    - path: "basnijholt/lovelace-ios-dark-mode-theme"
+    - path: "python-adaptive/adaptive"
+    - path: "basnijholt/home-assistant-config"
