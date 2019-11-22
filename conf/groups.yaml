@@ -10,6 +10,8 @@ guest_mode:
     - automation.turn_off_speakers_when_away
     - automation.turn_off_lights_when_leaving
     - automation.vacuum_cleanup_if_nobody_is_home
+    - automation.auto_turn_off_vacation_mode
+    - automation.auto_turn_on_vacation_mode
 
 vacation_mode:
   name: Vacation mode

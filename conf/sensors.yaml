@@ -113,9 +113,6 @@
   image: raspberrypi3
   source: hassio
 
-- platform: rpi_power
-  text_state: True
-
 - platform: uptime
   unit_of_measurement: hours
 

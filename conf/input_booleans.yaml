@@ -15,7 +15,7 @@ vacation_mode:
 guest_mode:
   name: Guest mode
   initial: off
-  icon: mdi:home-account
+  icon: mdi:human-male-female
 
 # Apps
 wake_up_light:

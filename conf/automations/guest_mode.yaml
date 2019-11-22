@@ -8,13 +8,3 @@
   action:
     - service_template: automation.turn_{{ trigger.to_state.state }}
       entity_id: group.guest_mode
-
-- alias: Toggle vacation mode
-  id: toggle_vacation_mode
-  initial_state: "on"
-  trigger:
-    - platform: state
-      entity_id: input_boolean.vacation_mode
-  action:
-    - service_template: automation.turn_{{ trigger.to_state.state }}
-      entity_id: group.vacation_mode
