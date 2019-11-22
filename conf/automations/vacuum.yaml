@@ -52,7 +52,8 @@
         entity_id: input_boolean.vacation_mode
         state: 'off'
   action:
-    - service: script.start_vacuum_cleaning
+    - service: vacuum.start
+      entity_id: vacuum.xiaomi_vacuum_cleaner
 
 - alias: 'Vacuum: wait until everybody is gone'
   initial_state: 'on'
@@ -79,7 +80,8 @@
         entity_id: input_boolean.vacation_mode
         state: 'off'
   action:
-    - service: script.start_vacuum_cleaning
+    - service: vacuum.start
+      entity_id: vacuum.xiaomi_vacuum_cleaner
 
 - alias: 'Vacuum: reset cleaned today'
   initial_state: 'on'

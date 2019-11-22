@@ -24,6 +24,16 @@
         data:
           entity_id: switch.light2
 
+    vacuum_mode:
+      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'Cleaning')}}"
+      turn_on:
+        service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+      turn_off:
+        service: vacuum.return_to_base
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+
 - platform: circadian_lighting
   lights_rgb:
     - light.ceiling

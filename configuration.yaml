@@ -28,5 +28,5 @@ recorder: !include conf/recorder.yaml
 tplink: !include conf/tplink.yaml
 yeelight: !include conf/yeelight.yaml
 speedtestdotnet: !include conf/speedtestdotnet.yaml
-circadian_lighting: !include conf/circadian_lightning.yaml
+circadian_lighting:
 vacuum: !include conf/vacuum.yaml

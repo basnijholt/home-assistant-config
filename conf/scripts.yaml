@@ -48,9 +48,3 @@ start_spotify:
         random_song: true
     - service: media_player.media_play
       entity_id: media_player.spotify
-
-start_vacuum_cleaning:
-  alias: "Start the vacuum"
-  sequence:
-    - service: vacuum.start
-      entity_id: vacuum.xiaomi_vacuum_cleaner
