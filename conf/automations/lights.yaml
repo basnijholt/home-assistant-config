@@ -1,0 +1,36 @@
+---
+- alias: Copy light on
+  id: copy_light_on
+  trigger:
+    - platform: state
+      entity_id: sensor.desk_lamp_current
+      to: "on"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.light2
+
+- alias: Copy light off
+  id: copy_light_off
+  trigger:
+    - platform: state
+      entity_id: sensor.desk_lamp_current
+      to: "off"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.light2
+
+- id: 'turn_off_lights_when_leaving'
+  alias: Turn off lights when leaving
+  trigger:
+    - platform: state
+      entity_id: group.persons
+      from: "home"
+      to: "not_home"
+      for: "00:15:00"
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.ceiling
+    - service: switch.turn_off
+      data:
+        entity_id: switch.desk_lamp

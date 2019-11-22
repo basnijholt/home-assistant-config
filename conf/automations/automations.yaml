@@ -31,23 +31,3 @@
   action:
     - service: switch.turn_off
       entity_id: switch.kef_speakers
-
-- alias: Copy light on
-  id: copy_light_on
-  trigger:
-    - platform: state
-      entity_id: sensor.desk_lamp_current
-      to: "on"
-  action:
-    - service: switch.turn_on
-      entity_id: switch.light2
-
-- alias: Copy light off
-  id: copy_light_off
-  trigger:
-    - platform: state
-      entity_id: sensor.desk_lamp_current
-      to: "off"
-  action:
-    - service: switch.turn_off
-      entity_id: switch.light2
