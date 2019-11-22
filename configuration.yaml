@@ -16,7 +16,7 @@ media_player: !include includes/media_players.yaml
 http: !include includes/http.yaml
 group: !include includes/groups.yaml
 script: !include includes/scripts.yaml
-automation: !include_dir_merge_list includes/automations
+automation: !include_dir_merge_list automations
 device_tracker: !include includes/device_trackers.yaml
 switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
