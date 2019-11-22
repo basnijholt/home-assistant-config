@@ -13,19 +13,8 @@
         - service: media_player.turn_off
           entity_id: media_player.kef
 
-    copy:
-      value_template: "{{ is_state('sensor.desk_lamp_current', 'on') }}"
-      turn_on:
-        service: switch.turn_on
-        data:
-          entity_id: switch.light2
-      turn_off:
-        service: switch.turn_off
-        data:
-          entity_id: switch.light2
-
     vacuum_mode:
-      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'Cleaning')}}"
+      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning')}}"
       turn_on:
         service: vacuum.start
         entity_id: vacuum.xiaomi_vacuum_cleaner

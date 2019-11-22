@@ -1,22 +1,12 @@
 ---
-- alias: Update power  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
-  id: update_power
-  initial_state: 'on'
-  trigger:
-    - platform: time_pattern
-      seconds: '/5' # every second
-  action:
-    - service: homeassistant.update_entity
-      entity_id: switch.desk_lamp
-
 - alias: Start the music
   id: start_the_music
-  initial_state: 'on'
+  initial_state: "on"
   trigger:
     - platform: state
       entity_id: input_boolean.start_the_music
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.start_the_music
@@ -30,25 +20,34 @@
         playlist: "6rPTm9dYftKcFAfwyRqmDZ"
         volume: "0.35"
 
-- alias: Power Problem Notification
-  id: rpi_power_issue
+- alias: Turn off speakers when away
+  id: turn_off_speakers_when_away
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.rpi_power_status
-    value_template: '{{ state.attributes.value }}'
-    above: 0
-    for:
-      minutes: 5
-  condition:
+    - platform: state
+      entity_id: group.persons
+      from: "home"
+      to: "not_home"
+      for: "00:15:00"
   action:
-  - service: persistent_notification.create
-    data_template:
-      message: "RPI Power reported {{ states.sensor.rpi_power_status.state }}. The state had changed from {{ trigger.from_state.state }} "
-      title: Power Supply Issue
-  - service: notify.notify
-    data_template:
-      message: "RPI Power reported {{ states.sensor.rpi_power_status.state }}. The state had  changed from {{ trigger.from_state.state }}"
-      title: Power Supply Issue
+    - service: switch.turn_off
+      entity_id: switch.kef_speakers
 
-# - alias: Turn off speakers when away
-#   id: turn_off_speakers_when_away
+- alias: Copy light on
+  id: copy_light_on
+  trigger:
+    - platform: state
+      entity_id: sensor.desk_lamp_current
+      to: "on"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.light2
+
+- alias: Copy light off
+  id: copy_light_off
+  trigger:
+    - platform: state
+      entity_id: sensor.desk_lamp_current
+      to: "off"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.light2

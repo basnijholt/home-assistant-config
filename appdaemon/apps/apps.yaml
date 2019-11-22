@@ -1,10 +1,4 @@
 ---
-copy_switch:
-  module: copy_state
-  class: CopyState
-  copy_from: sensor.desk_lamp_current
-  copy_to: switch.light2
-
 lovelace_json_to_yaml:
   module: convert_json_to_yaml
   class: ConvertJSONToYAML

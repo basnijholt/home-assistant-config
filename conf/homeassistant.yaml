@@ -10,3 +10,7 @@ whitelist_external_dirs:
 customize:
   person.bas_nijholt:
     entity_picture: "https://www.nijho.lt/img/portrait.jpg"
+  light.ceiling:
+    friendly_name: Ceiling lamp
+  switch.vacuum_mode:
+    friendly_name: Vacuum on

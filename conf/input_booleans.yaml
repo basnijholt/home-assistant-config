@@ -5,7 +5,7 @@ start_the_music:
   initial: off
   icon: mdi:music
 cleaned_today:
-  name: Vacuum cleaned cleaned
+  name: Vacuum cleaned today
   initial: off
   icon: mdi:broom
 vacation_mode:
