@@ -17,7 +17,6 @@ guest_mode:
   initial: off
   icon: mdi:home-account
 
-
 # Apps
 wake_up_light:
   name: Start wake up light

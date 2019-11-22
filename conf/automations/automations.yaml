@@ -22,21 +22,21 @@
       entity_id: input_boolean.start_the_music
     - service: script.start_speakers
       data:
-        source: "Wifi"
-        volume: "0.35"
+        source: Wifi
+        volume: 0.35
     - service: script.start_spotify
       data:
-        source: "KEF LS50 Wireless"
-        playlist: "6rPTm9dYftKcFAfwyRqmDZ"
-        volume: "0.35"
+        source: KEF LS50 Wireless
+        playlist: 6rPTm9dYftKcFAfwyRqmDZ
+        volume: 0.35
 
 - alias: Turn off speakers when away
   id: turn_off_speakers_when_away
   trigger:
     - platform: state
       entity_id: group.persons
-      from: "home"
-      to: "not_home"
+      from: home
+      to: not_home
       for: "00:15:00"
   action:
     - service: switch.turn_off

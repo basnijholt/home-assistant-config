@@ -1,13 +1,17 @@
 ---
 persons:
-  name: 'People'
+  name: People
   entities:
     - person.bas_nijholt
 
 guest_mode:
-  name: 'Guest mode'
+  name: Guest mode
   entities:
     - automation.turn_off_speakers_when_away
     - automation.turn_off_lights_when_leaving
     - automation.vacuum_cleanup_if_nobody_is_home
-    - automation.vacuum_wait_until_nobody_is_home
+
+vacation_mode:
+  name: Vacation mode
+  entities:
+    - automation.vacuum_cleanup_if_nobody_is_home

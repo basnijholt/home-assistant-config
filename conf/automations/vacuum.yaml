@@ -5,8 +5,8 @@
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
-    from: 'docked'
-    to: 'cleaning'
+    from: docked
+    to: cleaning
   action:
     - service: notify.mobile_app_basnijholt_iphone
       data:
@@ -19,8 +19,8 @@
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
-    from: 'returning'
-    to: 'docked'
+    from: returning
+    to: docked
   action:
     - service: notify.mobile_app_basnijholt_iphone
       data:
@@ -34,38 +34,12 @@
   id: vacuum_cleanup_if_nobody_is_home
   initial_state: 'on'
   trigger:
-    platform: time
-    at: '14:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: time
-        weekday:
-          - mon
-          - wed
-          - fri
-          - sun
-      - condition: state
-        entity_id: group.persons
-        state: 'not_home'
-      - condition: state
-        entity_id: input_boolean.cleaned_today
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.vacation_mode
-        state: 'off'
-  action:
-    - service: vacuum.start
-      entity_id: vacuum.xiaomi_vacuum_cleaner
-
-- alias: 'Vacuum: wait until nobody is home'
-  id: vacuum_wait_until_nobody_is_home
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: group.persons
-    from: 'home'
-    to: 'not_home'
+    - platform: time
+      at: '14:00'
+    - platform: state
+      entity_id: group.persons
+      from: home
+      to: not_home
   condition:
     condition: and
     conditions:
@@ -78,10 +52,10 @@
           - fri
           - sun
       - condition: state
-        entity_id: input_boolean.cleaned_today
-        state: 'off'
+        entity_id: group.persons
+        state: not_home
       - condition: state
-        entity_id: input_boolean.vacation_mode
+        entity_id: input_boolean.cleaned_today
         state: 'off'
   action:
     - service: vacuum.start
@@ -103,9 +77,9 @@
   trigger:
     platform: state
     entity_id: vacuum.living_room
-    to: 'docked'
+    to: docked
   action:
     service: vacuum.set_fan_speed
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
-      fan_speed: 'Balanced'
+      fan_speed: Balanced

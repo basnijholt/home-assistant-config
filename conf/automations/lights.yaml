@@ -13,8 +13,8 @@
   trigger:
     - platform: state
       entity_id: group.persons
-      from: "home"
-      to: "not_home"
+      from: home
+      to: not_home
       for: "00:15:00"
   action:
     - service: light.turn_off
