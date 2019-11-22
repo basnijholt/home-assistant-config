@@ -1,5 +1,6 @@
 ---
 - alias: 'Vacuum: started cleaning'
+  id: 'vacuum_started_cleaning'
   initial_state: 'on'
   trigger:
     platform: state
@@ -13,6 +14,7 @@
         message: 'Robot started to clean!'
 
 - alias: 'Vacuum: stopped cleaning'
+  id: vacuum_stopped_cleaning'
   initial_state: 'on'
   trigger:
     platform: state
@@ -29,7 +31,7 @@
         entity_id: input_boolean.cleaned_today
 
 - alias: 'Vacuum: cleanup if nobody is home'
-  id: vacuum_at_time_if_not_home
+  id: vacuum_cleanup_if_nobody_is_home
   initial_state: 'on'
   trigger:
     platform: time
@@ -56,8 +58,8 @@
     - service: vacuum.start
       entity_id: vacuum.xiaomi_vacuum_cleaner
 
-- alias: 'Vacuum: wait until everybody is gone'
-  id: vacuum_when_people_leave
+- alias: 'Vacuum: wait until nobody is home'
+  id: vacuum_wait_until_nobody_is_home
   initial_state: 'on'
   trigger:
     platform: state
@@ -86,6 +88,7 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
 
 - alias: 'Vacuum: reset cleaned today'
+  id: vacuum_reset_cleaned_today
   initial_state: 'on'
   trigger:
     platform: time
@@ -96,6 +99,7 @@
         entity_id: input_boolean.cleaned_today
 
 - alias: 'Vacuum: reset to balanced'
+  id: vacuum_reset_to_balanced
   trigger:
     platform: state
     entity_id: vacuum.living_room

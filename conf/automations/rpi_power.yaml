@@ -4,13 +4,13 @@
   initial_state: "on"
   trigger:
     - platform: time_pattern
-      seconds: "/5" # every second
+      seconds: "/60" # every second
   action:
     - service: homeassistant.update_entity
       entity_id: switch.desk_lamp
 
 - alias: Power Problem Notification
-  id: rpi_power_issue
+  id: rpi_power_notification
   trigger:
     - platform: numeric_state
       entity_id: sensor.rpi_power_status
