@@ -1,0 +1,47 @@
+---
+- alias: Toggle vacation mode
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+  action:
+    - service_template: automation.turn_{{ trigger.to_state.state }}
+      entity_id: group.vacation_mode
+
+- alias: Auto turn on vacation mode
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: group.persons
+      from: home
+      to: not_home
+      for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.vacation_mode
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: "Vacation mode"
+        message: "No one at home for 24 hours, switching on vacation mode."
+
+- alias: Auto turn off vacation mode
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: group.persons
+      from: not_home
+      to: home
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "on"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.vacation_mode
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: "Vacation mode"
+        message: "Welcome back! Switching off the vacation mode."
