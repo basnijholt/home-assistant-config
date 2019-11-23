@@ -1,5 +1,5 @@
 
-# home-assistant-config
+# Bas Nijholt's Home Assistant config files
 
 ## My coolest/noteworthy automations/apps
 * [Sunrise emulator app](appdaemon/apps/wake_up_light.py) 🌅
@@ -27,13 +27,13 @@
 
 ### Lights
 * Philips Hue E27 White and Color (10x)
-* Xiaomi Yeelight E27 Color (*don't but this!*)
+* Xiaomi Yeelight E27 Color (*I do **not** recommend these!*)
 
 ### Hubs
 * ConBee II
 
 ### Server
-* Raspberry Pi 4, 4GB RAM, 16GB SD-card, running *Hass.io*
+* Raspberry Pi 4, 4GB RAM, 16GB SD-card, running [*Hass.io*](https://www.home-assistant.io/hassio/)
 
 ### Device tracker
 * iPhone X with the iOS beta app
