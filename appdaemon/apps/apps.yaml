@@ -46,3 +46,7 @@ wake_up_light:
   total_time: 600
   lamp: light.ceiling
   input_boolean: input_boolean.wake_up_light
+
+cube:
+  module: xiaomi_aqara_cube_action
+  class: CubeControl
