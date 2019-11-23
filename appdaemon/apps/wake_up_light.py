@@ -114,7 +114,7 @@ class WakeUpLight(hass.Hass):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
         self.listen_event(self.start, "start_wake_up_light")
-        self.sequence = None
+        self.todos = []
         self.cancel_handle = None
 
     def maybe_default(self, key, kwargs):
@@ -132,7 +132,6 @@ class WakeUpLight(hass.Hass):
         lamp = self.maybe_default("lamp", data)
         total_time = self.maybe_default("total_time", data)
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
-        sequence = []
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
             t = min(t, total_time)
             data = {
@@ -141,15 +140,23 @@ class WakeUpLight(hass.Hass):
                 "brightness": brightness(t),
                 "transition": TIME_STEP,
             }
-            sequence.extend([{"light/turn_on": data}, {"sleep": TIME_STEP}])
-        sequence.append({"event/fire": {"event": "start_wake_up_light_done"}})
-        self.sequence = self.run_sequence(sequence)
+            is_done = t == total_time
+            todo = self.run_in(self.set_state_cb, t, data=data, is_done=is_done)
+            self.todos.append(todo)
+
         # Cancel when turning the light off.
         self.cancel_handle = self.listen_state(
             self.cancel_cb, lamp, oneshot=True, state="off", timeout=total_time
         )
 
+    def set_state_cb(self, kwargs):
+        self.log(f"Setting light: {kwargs}")
+        self.call_service("light/turn_on", **kwargs["data"])
+        if kwargs["is_done"]:
+            self.fire_event("start_wake_up_light_done", **kwargs["data"])
+            self.log("start_wake_up_light_done")
+
     def cancel_cb(self, entity, attribute, old, new, kwargs):
         self.log(f"Canceling sequence")
-        self.cancel_listen_state(self.cancel_handle)
-        self.cancel_sequence(self.sequence)
+        while self.todos:
+            self.cancel_timer(self.todos.pop())
