@@ -1,0 +1,6 @@
+---
+playlist:
+  options:
+    - WiFi
+    - Bluetooth
+  icon: mdi:music

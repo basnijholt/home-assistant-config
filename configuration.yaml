@@ -6,6 +6,7 @@ homeassistant: !include includes/homeassistant.yaml
 default_config:
 person: !include includes/persons.yaml
 input_boolean: !include includes/input_booleans.yaml
+input_select: !include includes/input_selects.yaml
 frontend:
   themes: !include_dir_merge_named themes
 logger: !include includes/logger.yaml
