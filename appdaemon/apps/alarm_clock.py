@@ -65,7 +65,7 @@ class AlarmClock(hass.Hass):
 
     def start_light_cb(self, kwargs):
         if self.is_on:
-            self.fire_event("start_wake_up_light",)
+            self.fire_event("start_wake_up_light")
 
     def start_music_cb(self, kwargs):
         if self.is_on:
