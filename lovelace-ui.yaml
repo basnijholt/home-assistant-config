@@ -26,6 +26,8 @@ data:
       url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
     - type: js
       url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
+    - type: module
+      url: /community_plugin/lovelace-auto-entities/auto-entities.js
     title: Huis
     views:
     - badges:
@@ -35,57 +37,68 @@ data:
       - entities:
         - entity: switch.desk_lamp
         - entity: switch.light2
+        - entity: switch.circadian_lighting_circadian_lighting
         - entity: sensor.desk_lamp_current
-        - entity: switch.kef_speakers
-        - entity: input_boolean.start_the_music
-        title: Controls
+        - entity: light.ceiling
+        title: Lights
         type: entities
       - entity: weather.huis
         type: weather-forecast
-      - entity: light.ceiling
-        theme: default
-        type: light
-      - artwork: cover
-        entity: media_player.spotify
-        hide:
-          power: true
-          source: false
-          volume: true
-        icon: mdi:spotify
-        type: custom:mini-media-player
-      - background: /local/kef_speakers.jpeg
-        entity: media_player.kef
-        hide:
-          controls: true
-          mute: false
-          play_stop: true
-          volume: false
-        type: custom:mini-media-player
+      - cards:
+        - artwork: cover
+          entity: media_player.spotify
+          hide:
+            power: true
+            source: false
+            volume: true
+          icon: mdi:spotify
+          type: custom:mini-media-player
+        - background: /local/kef_speakers.jpeg
+          entity: media_player.kef
+          hide:
+            controls: true
+            mute: false
+            play_stop: true
+            volume: false
+          type: custom:mini-media-player
+        - entity: input_boolean.start_the_music
+          icon_height: 20px
+          type: entity-button
+        type: vertical-stack
       - entities:
         - entity: input_boolean.alarm_clock
         - entity: input_datetime.alarm_clock
+        show_header_toggle: false
         title: Alarms
         type: entities
       - entities:
-        - entity: input_boolean.start_spotify
-        - entity: input_boolean.wake_up_light
-        - entity: input_boolean.wake_up_with_spotify
-        - entity: input_boolean.start_speakers
-        title: Test apps
-        type: entities
-      - buttons: true
-        entity: vacuum.xiaomi_vacuum_cleaner
-        image: /local/custom/folder/background.png
-        name: Vacuum
-        type: custom:xiaomi-vacuum-card
-      - entities:
+        - entity: sensor.adaptive
+          type: custom:github-entity-row
+        - entity: sensor.lovelace_ios_dark_mode_theme
+          type: custom:github-entity-row
         - entity: sensor.home_assistant_config
           type: custom:github-entity-row
-        - entity: sensor.lovelace_github_entity_row
-          type: custom:github-entity-row
-        - entity: sensor.lovelace_xiaomi_vacuum_card
-          type: custom:github-entity-row
+        show_header_toggle: false
         title: GitHub
+        type: entities
+      - cards:
+        - buttons: true
+          entity: vacuum.xiaomi_vacuum_cleaner
+          image: /local/custom/folder/background.png
+          name: Vacuum
+          type: custom:xiaomi-vacuum-card
+        - entities:
+          - entity: switch.vacuum_mode
+          - entity: input_boolean.cleaned_today
+          show_header_toggle: false
+          theme: Backend-selected
+          type: entities
+        type: vertical-stack
+      - entities:
+        - entity: input_boolean.vacation_mode
+        - entity: input_boolean.guest_mode
+        show_header_toggle: false
+        title: Modes
         type: entities
       path: default_view
       title: Home
@@ -282,8 +295,65 @@ data:
           type: horizontal-stack
         title: Network
         type: custom:vertical-stack-in-card
+      - entities:
+        - entity: zone.home
+          icon: mdi:restart
+          name: Lovelace
+          tap_action:
+            action: call-service
+            service: frontend.reload_themes
+        - entity: zone.home
+          icon: mdi:restart
+          name: Home Assistant
+          tap_action:
+            action: call-service
+            service: homeassistant.restart
+        - entity: zone.home
+          icon: mdi:restart
+          name: Server
+          tap_action:
+            action: call-service
+            service: hassio.host_reboot
+        show_name: true
+        show_state: false
+        type: glance
+      - entities:
+        - entity: device_tracker.basnijholt_iphone
+        - entity: device_tracker.x
+        - entity: sensor.average_active_pace
+        - entity: sensor.distance
+        - entity: sensor.floors_ascended
+        - entity: sensor.floors_descended
+        - entity: sensor.geocoded_location
+        - entity: sensor.sim_1
+        - entity: sensor.battery_level
+        - entity: sensor.battery_state
+        - entity: sensor.steps
+        show_header_toggle: false
+        title: Bas' iPhone
+        type: entities
       icon: mdi:home-assistant
       path: system
       title: System Information
+    - badges: []
+      cards:
+      - entities:
+        - entity: binary_sensor.openclose_1
+        - entity: binary_sensor.openclose_2
+        - entity: binary_sensor.openclose_3
+        - entity: binary_sensor.openclose_4
+        - entity: sensor.aqara_cube
+        title: Sensors
+        type: entities
+      - entities:
+        - entity: input_boolean.start_spotify
+        - entity: input_boolean.wake_up_light
+        - entity: input_boolean.wake_up_with_spotify
+        - entity: input_boolean.start_speakers
+        title: Test apps
+        type: entities
+      icon: mdi:test-tube
+      path: tests
+      title: Tests
 key: lovelace
 version: 1
