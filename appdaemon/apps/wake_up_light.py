@@ -130,7 +130,7 @@ class WakeUpLight(hass.Hass):
 
     def start(self, event_name=None, data=None, kwargs=None):
         lamp = self.maybe_default("lamp", data)
-        total_time = 30#self.maybe_default("total_time", data)
+        total_time = self.maybe_default("total_time", data)
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         sequence = []
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
@@ -146,11 +146,7 @@ class WakeUpLight(hass.Hass):
         self.sequence = self.run_sequence(sequence)
         # Cancel when turning the light off.
         self.cancel_handle = self.listen_state(
-            self.cancel_cb,
-            lamp,
-            oneshot=True,
-            state="off",
-            timeout=total_time,
+            self.cancel_cb, lamp, oneshot=True, state="off", timeout=total_time
         )
 
     def cancel_cb(self, entity, attribute, old, new, kwargs):
