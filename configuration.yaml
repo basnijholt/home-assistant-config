@@ -23,6 +23,7 @@ switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
 input_datetime: !include includes/input_datetimes.yaml
 recorder: !include includes/recorder.yaml
+weather: !includes includes/weather.yaml
 
 # Components:
 tplink: !include includes/tplink.yaml
