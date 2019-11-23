@@ -41,3 +41,8 @@
 
 ## Notes
 * I use AppDaemon 4 beta, see the installation instructions [here](https://github.com/hassio-addons/addon-appdaemon3/issues/56).
+
+## Automation plans
+* Turn on lights upon entry after dark
+* Notify us when the window is open and it is raining
+* Implement scenes: 'movie time', 'dinner time', 'cozy time'
