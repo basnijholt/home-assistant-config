@@ -92,6 +92,10 @@ class StartSpotify(hass.Hass):
     def try_again(self, kwargs):
         self.tries += 1
         if self.tries > MAX_TRIES:
+            # XXX: usually when this happens it means that the speakers do not
+            # show up in spotify anymore. I have written KEF about this but no
+            # response yet. A solution is to turn off and on the actual power
+            # using a smart switch.
             self.tries = 0
             return
         self.log(f"Starting `try_again`, data: {kwargs['data']}, tries: {self.tries}")
