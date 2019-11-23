@@ -155,7 +155,7 @@ class WakeUpLight(hass.Hass):
 
         # Cancel when turning the light off.
         self.cancel_handle = self.listen_state(
-            self.cancel_cb, lamp, oneshot=True, state="off", timeout=total_time
+            self.cancel_cb, lamp, oneshot=True, new="off", timeout=total_time
         )
 
     def set_state_cb(self, kwargs):
@@ -166,6 +166,7 @@ class WakeUpLight(hass.Hass):
             self.log("start_wake_up_light_done")
 
     def cancel_cb(self, entity, attribute, old, new, kwargs):
+        assert new == "off"
         self.log(f"Canceling sequence")
         while self.todos:
             self.cancel_timer(self.todos.pop())

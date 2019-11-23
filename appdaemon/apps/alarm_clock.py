@@ -47,29 +47,49 @@ class AlarmClock(hass.Hass):
 
         self.listen_state(self.start, self.input_datetime)
         self.listen_state(self.start, self.alarm_toggle)
+        self.light_handle = None
+        self.music_handle = None
 
     def start(self, entity, attribute, old, new, kwargs):
         self.log("State changed.")
+        if self.light_handle:
+            self.light_handle = self.cancel_timer(self.light_handle)  # returns None
+        if self.music_handle:
+            self.music_handle = self.cancel_timer(self.music_handle)  # returns None
         time = self.parse_time(self.get_state(self.input_datetime))
         light_offset = self.args["light_offset"]
         music_offset = self.args["music_offset"]
         light_time = to_time(time, datetime.timedelta(seconds=light_offset))
         music_time = to_time(time, datetime.timedelta(seconds=music_offset))
-        self.log(f"Run at {light_time}, {light_time}")
-        self.run_daily(self.start_light_cb, light_time)
-        self.run_daily(self.start_music_cb, music_time)
+        self.log(f"Run at {light_time}, {music_time}")
+        self.light_handle = self.run_daily(self.start_light_cb, light_time)
+        self.music_handle = self.run_daily(self.start_music_cb, music_time)
+        self.log(f"before: {bool(self.light_handle)}, {bool(self.music_handle)}")
 
     @property
     def is_on(self):
         return self.get_state(self.alarm_toggle) == "on"
 
+    def maybe_toggle_off(self):
+        self.log("checking maybe_toggle_off")
+        self.log(f"in maybe_toggle_off: {bool(self.light_handle)}, {bool(self.music_handle)}")
+        if not self.light_handle and not self.music_handle:
+            # only toggle off when the last cb happens.
+            self.log("toggling off!")
+            self.set_state(self.alarm_toggle, state="off")
+
     def start_light_cb(self, kwargs):
         if self.is_on:
+            self.log("fire start_wake_up_light")
             self.fire_event("start_wake_up_light")
+        self.light_handle = self.cancel_timer(self.light_handle)  # returns None
+        self.maybe_toggle_off()
 
     def start_music_cb(self, kwargs):
         if self.is_on:
-            self.set_state(self.alarm_toggle, state="off")
+            self.log("fire start_spotify_ramp")
             self.fire_event(
                 "start_spotify_ramp", final_volume=self.args["final_volume"]
             )
+        self.music_handle = self.cancel_timer(self.music_handle)  # returns None
+        self.maybe_toggle_off()
