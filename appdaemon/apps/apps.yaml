@@ -6,7 +6,7 @@ lovelace_json_to_yaml:
   yaml: /config/lovelace-ui.yaml
   sensor: sensor.lovelace
 
-alarm_clock:
+alarm_clock:  # doesn't work sometimes...
   module: alarm_clock
   class: AlarmClock
   alarm_toggle: input_boolean.alarm_clock
@@ -40,7 +40,7 @@ wake_up_with_spotify:
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
 
-wake_up_light:
+wake_up_light:  # needs more testing since I've changed to `sequence`.
   module: wake_up_light
   class: WakeUpLight
   total_time: 600
