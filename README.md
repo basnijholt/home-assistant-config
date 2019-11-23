@@ -4,6 +4,7 @@
 ## My coolest/noteworthy automations/apps
 * [Sunrise emulator app](appdaemon/apps/wake_up_light.py)
 * [Wake up with Spotify app](appdaemon/apps/wake_up_with_spotify.py) that slowly ramps the volume
+* [Alarm clock](appdaemon/apps/alarm_clock.py) that uses the volume ramp and sunrise app
 * [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](appdaemon/apps/convert_json_to_yaml.py) for version control
 
 ## My devices
