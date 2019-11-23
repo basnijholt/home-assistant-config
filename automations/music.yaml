@@ -1,0 +1,77 @@
+---
+- alias: Start the music
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.start_the_music
+      from: "off"
+      to: "on"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.start_the_music
+    - service: script.start_speakers
+      data:
+        source: Wifi
+        volume: 0.35
+    - service: script.start_spotify
+      data:
+        source: KEF LS50 Wireless
+        playlist: 6rPTm9dYftKcFAfwyRqmDZ
+        volume: 0.35
+
+- alias: Turn off speakers when away
+  trigger:
+    - platform: state
+      entity_id: group.persons
+      from: home
+      to: not_home
+      for: "00:15:00"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.kef_speakers
+
+- alias: Change volume by rotating cube
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: mi_magic_cube
+  condition:
+    - condition: template
+      value_template: >
+        {% set x = trigger.event.data.event|string %}
+        {{ x|length != 4 or x[1:3] != '00' }}
+  action:
+    - service: media_player.volume_set
+      entity_id:  media_player.kef
+      data_template:
+        volume_level: >
+          {% if trigger.event.data.event | float > 0 %}
+            {{ states.media_player.kef.attributes.volume_level + 0.05 }}
+          {% else %}
+            {{ states.media_player.kef.attributes.volume_level - 0.05 }}
+          {% endif %}
+
+- alias: Shuffle Spotify song by shaking cube
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: switch_11
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: >
+          {% set x = trigger.event.data.event|string %}
+          {{ x == "7007" }}
+      - condition: template
+        value_template: >
+          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless")}}
+  action:
+    - service: media_player.shuffle_set
+      entity_id: media_player.spotify
+      data:
+        shuffle: true
+    - service: media_player.media_next_track
+      entity_id: media_player.spotify
