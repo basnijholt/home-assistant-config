@@ -61,21 +61,17 @@ class AlarmClock(hass.Hass):
         music_offset = self.args["music_offset"]
         light_time = to_time(time, datetime.timedelta(seconds=light_offset))
         music_time = to_time(time, datetime.timedelta(seconds=music_offset))
-        self.log(f"Run at {light_time}, {music_time}")
+        self.log(f"Start light @ {light_time} and music @ {music_time}.")
         self.light_handle = self.run_daily(self.start_light_cb, light_time)
         self.music_handle = self.run_daily(self.start_music_cb, music_time)
-        self.log(f"before: {bool(self.light_handle)}, {bool(self.music_handle)}")
 
     @property
     def is_on(self):
         return self.get_state(self.alarm_toggle) == "on"
 
     def maybe_toggle_off(self):
-        self.log("checking maybe_toggle_off")
-        self.log(f"in maybe_toggle_off: {bool(self.light_handle)}, {bool(self.music_handle)}")
         if not self.light_handle and not self.music_handle:
             # only toggle off when the last cb happens.
-            self.log("toggling off!")
             self.set_state(self.alarm_toggle, state="off")
 
     def start_light_cb(self, kwargs):

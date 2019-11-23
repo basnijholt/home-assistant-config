@@ -1,5 +1,7 @@
 """Turns on speakers and plays Spotify while slowly ramping the volume.
 
+To cancel the ramp, simply change the volume manually.
+
 # Example `apps.yaml` config:
 ```
 wake_up_with_spotify:
@@ -85,13 +87,23 @@ class WakeUpWithSpotify(hass.Hass):
     def start_volume_ramp_cb(self, event_name=None, data=None, kwargs=None):
         self._handle = self.cancel_listen_event(self._handle)
         self.run_in(self.volume_up, 0, data=data)
+        total_time = self.maybe_default("total_time", data)
+        self.log(f"Going to run for {total_time} seconds.")
+
+    def volume_was_manually_changed(self, speaker):
+        current_volume = self.get_state(speaker, attribute="volume_level")
+        return abs(current_volume - self.volume) > 0.01
 
     def volume_up(self, kwargs=None):
         final_volume = self.maybe_default("final_volume", kwargs)
         total_time = self.maybe_default("total_time", kwargs)
         speaker = self.maybe_default("speaker", kwargs)
+        if self.volume_was_manually_changed(speaker):
+            self.log("Someone changed the volume manually, canceling.")
+            return
         self.volume += self.min_volume_step
         if self.volume > final_volume:
+            self.log("WakeUpWithSpotify is done.")
             return
         dt = time_step(total_time, final_volume, self.min_volume_step)
         self.log(f"Setting volume: {self.volume}")
