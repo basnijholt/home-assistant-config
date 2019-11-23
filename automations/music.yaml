@@ -46,11 +46,8 @@
       entity_id:  media_player.kef
       data_template:
         volume_level: >
-          {% if trigger.event.data.event | float > 0 %}
-            {{ states.media_player.kef.attributes.volume_level + 0.05 }}
-          {% else %}
-            {{ states.media_player.kef.attributes.volume_level - 0.05 }}
-          {% endif %}
+          {% set x = trigger.event.data.event|float %}
+          {{ states.media_player.kef.attributes.volume_level + 0.05 * x / (x|abs) }}
 
 - alias: Shuffle Spotify song by shaking cube
   trigger:
@@ -74,4 +71,24 @@
       data:
         shuffle: true
     - service: media_player.media_next_track
+      entity_id: media_player.spotify
+
+- alias: Pause and play Spotify song by tapping cube on side 1
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: switch_11
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: >
+          {% set x = trigger.event.data.event|string %}
+          {{ x == "1001" }}
+      - condition: template
+        value_template: >
+          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless")}}
+  action:
+    - service: media_player.media_play_pause
       entity_id: media_player.spotify
