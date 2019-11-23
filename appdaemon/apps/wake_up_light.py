@@ -1,4 +1,12 @@
-"""Emulates a Philips Wake-up Light.
+"""Emulates a Philips Wake-up Light / sunrise.
+
+This cycles through a sequence of RGB tuples and then
+linearily interpolates them in HSV color space as time
+proceeds.
+
+The routine can be triggered by toggling an input_boolean
+or by firing the "start_wake_up_light" event, optionally
+including the variables that this app uses.
 
 The sequence is canceled by turning the light on and off.
 
@@ -11,6 +19,7 @@ wake_up_light:
   lamp: "light.ceiling"
   input_boolean: "input_boolean.wake_up_light"
 ```
+
 # Example `configuration.yaml`:
 ```
 input_boolean:
@@ -38,12 +47,12 @@ DEFAULTS = {
 }
 
 RGB_SEQUENCE = [
-    [255, 0, 0],
-    [255, 0, 0],
-    [255, 63, 0],
-    [255, 120, 0],
-    [255, 187, 131],
-    [255, 205, 166],
+    (255, 0, 0),
+    (255, 0, 0),
+    (255, 63, 0),
+    (255, 120, 0),
+    (255, 187, 131),
+    (255, 205, 166),
 ]
 
 TIME_STEP = 4  # time between settings
