@@ -31,6 +31,8 @@ DEFAULT_PLAYLIST = "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
 DEFAULT_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.start_spotify"
 
+MAX_TRIES = 20
+
 DEFAULTS = {
     "speaker": DEFAULT_SPEAKER,
     "speaker_name": DEFAULT_SPEAKER_NAME,
@@ -47,6 +49,7 @@ class StartSpotify(hass.Hass):
         self.listen_state(self.start_cb, self.input_boolean, new="on")
         self.listen_event(self.start, "start_spotify")
         self._handle = None
+        self.tries = 0
 
     def maybe_default(self, key, kwargs):
         default_value = self.args.get(key, DEFAULTS[key])
@@ -65,7 +68,7 @@ class StartSpotify(hass.Hass):
         self.fire_event("start_speakers", **data)
         self._handle = self.listen_event(
             self.select_source, "start_speakers_done", timeout=30
-        )
+        )  # XXX: use oneshot=True when it is available.
 
     def source_available(self, speaker_name):
         return speaker_name in self.get_state(
@@ -81,12 +84,17 @@ class StartSpotify(hass.Hass):
             self.call_spotify("homeassistant/update_entity")
             self.run_in(self.try_again, 1, data=data)
         else:
+            self.tries = 0
             self.log("Source is available")
             self.call_spotify("media_player/select_source", source=speaker_name)
             self.start_playlist()
 
     def try_again(self, kwargs):
-        self.log("Starting `try_again`")
+        self.tries += 1
+        if self.tries > MAX_TRIES:
+            self.tries = 0
+            return
+        self.log(f"Starting `try_again`, data: {kwargs['data']}, tries: {self.tries}")
         return self.select_source(data=kwargs["data"])
 
     def start_playlist(self, event=None, data=None, kwargs=None):
