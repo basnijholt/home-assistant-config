@@ -7,7 +7,7 @@ SENSOR_ID = "sensor.aqara_cube"
 EVENT_ID = "xiaomi_aqara.cube_action"
 
 
-def from_site(event):
+def from_side(event):
     return int(str(event)[-1])
 
 
@@ -80,6 +80,4 @@ class CubeControl(hass.Hass):
             elif action is None:
                 degrees = event / 100
                 event_kwargs["action_value"] = degrees
-            else:
-                raise NotImplementedError("This state is not implemented.")
             self.fire_event(EVENT_ID, **event_kwargs)
