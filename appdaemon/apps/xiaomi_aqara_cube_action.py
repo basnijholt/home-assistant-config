@@ -1,4 +1,3 @@
-from enum import Enum
 from itertools import product
 
 import appdaemon.plugins.hass.hassapi as hass
