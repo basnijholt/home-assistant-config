@@ -13,7 +13,7 @@
     - platform: state
       entity_id: sensor.desk_lamp_current
   action:
-    - service_template: switch.turn_{{ trigger.to_state.state }}
+    - service_template: switch.turn_{{ trigger.to_state.state }}  # fails on unavailable but I don't care
       entity_id: switch.light2
 
 - alias: Turn off lights when leaving
