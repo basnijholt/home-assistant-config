@@ -1,7 +1,7 @@
 
 # Bas Nijholt's Home Assistant config files
 
-## My coolest/noteworthy automations/apps
+## My cool AppDaemon apps
 * [Sunrise emulator app](appdaemon/apps/wake_up_light.py) 🌅
 * [Wake up with Spotify app](appdaemon/apps/wake_up_with_spotify.py) that slowly ramps the volume 📢
 * [Alarm clock](appdaemon/apps/alarm_clock.py) that uses the volume ramp and sunrise app ⏰
