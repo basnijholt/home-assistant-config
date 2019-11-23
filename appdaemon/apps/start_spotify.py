@@ -92,7 +92,7 @@ class StartSpotify(hass.Hass):
     def start_playlist(self, event=None, data=None, kwargs=None):
         playlist = self.maybe_default("playlist", kwargs)
         self.call_service(
-            "spotify/play_playlist", media_content_id=playlist, random_song=True,
+            "spotify/play_playlist", media_content_id=playlist, random_song=True
         )
         self.call_spotify("media_player/media_play")
         self.fire_event("start_spotify_done", **(data or {}))
