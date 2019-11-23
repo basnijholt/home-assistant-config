@@ -1,11 +1,4 @@
 ---
-lovelace_json_to_yaml:
-  module: convert_json_to_yaml
-  class: ConvertJSONToYAML
-  json: /config/.storage/lovelace
-  yaml: /config/lovelace-ui.yaml
-  sensor: sensor.lovelace
-
 alarm_clock:  # doesn't work sometimes...
   module: alarm_clock
   class: AlarmClock
