@@ -342,7 +342,6 @@ data:
         - entity: binary_sensor.openclose_2
         - entity: binary_sensor.openclose_3
         - entity: binary_sensor.openclose_4
-        - entity: sensor.aqara_cube
         title: Sensors
         type: entities
       - entities:
