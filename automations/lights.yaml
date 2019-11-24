@@ -9,11 +9,17 @@
       entity_id: switch.desk_lamp
 
 - alias: Copy light
-  trigger:
+  trigger:  # two triggers, such to not trigger on "unavailable"
     - platform: state
       entity_id: sensor.desk_lamp_current
+      from: "on"
+      to: "off"
+    - platform: state
+      entity_id: sensor.desk_lamp_current
+      from: "off"
+      to: "on"
   action:
-    - service_template: switch.turn_{{ trigger.to_state.state }}  # fails on unavailable but I don't care
+    - service_template: switch.turn_{{ trigger.to_state.state }}
       entity_id: switch.light2
 
 - alias: Turn off lights when leaving

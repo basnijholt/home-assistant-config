@@ -47,4 +47,4 @@
 ## Automation plans
 * Turn on lights upon entry after dark
 * Notify us when the window is open and it is raining
-* Implement scenes: 'movie time', 'dinner time', 'cozy time'
+* Implement scenes: 'movie time', 'dinner time', 'cozy time', 'bed time', and 'party time'

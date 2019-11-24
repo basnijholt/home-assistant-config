@@ -10,7 +10,7 @@ ios-dark-mode:
   primary-background-color: "#2e2e2e"  # dark gray
   secondary-background-color: rgba(25, 25, 25, 0.7)
   divider-color: "#98989d"  # from Apple systemGray dark mode
-  accent-color: --var(--primary-color)
+  accent-color: rgba(255, 159, 9, 1)
   # Text
   primary-text-color: "#FFF"
   secondary-text-color: "#d3d3d3"

@@ -1,2 +1,5 @@
 ---
-default: debug
+default: critical
+logs:
+  custom_components.kef: debug
+  aiokef: debug

@@ -25,6 +25,7 @@ input_datetime: !include includes/input_datetimes.yaml
 recorder: !include includes/recorder.yaml
 weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
+scene: !include scenes.yaml
 
 # Components:
 tplink: !include includes/tplink.yaml

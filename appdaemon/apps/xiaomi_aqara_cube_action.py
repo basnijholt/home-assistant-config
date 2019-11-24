@@ -44,7 +44,7 @@ class CubeControl(hass.Hass):
 
     def handle_rotate_event(self, event_name, data, kwargs):
         degrees = data["event"] / 100
-        self.fire_event(EVENT_ID, entity_id=SENSOR_ID, action_value=degrees)
+        self.fire_event(EVENT_ID, entity_id=SENSOR_ID, action_type="rotate", action_value=degrees)
         self.log(f"Degrees: {degrees}")
 
     def handle_switch_event(self, event_name, data, kwargs):

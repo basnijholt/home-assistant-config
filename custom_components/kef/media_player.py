@@ -1,9 +1,11 @@
 """Platform for the KEF Wireless Speakers."""
 
-import logging
 import datetime
+import logging
 
+from aiokef.aiokef import INPUT_SOURCES, AsyncKefSpeaker
 import voluptuous as vol
+
 from homeassistant.components.media_player import (
     PLATFORM_SCHEMA,
     SUPPORT_SELECT_SOURCE,
@@ -23,9 +25,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.helpers import config_validation as cv
-
-from aiokef import AsyncKefSpeaker
-from aiokef.aiokef import INPUT_SOURCES
 
 _CONFIGURING = {}
 _LOGGER = logging.getLogger(__name__)
@@ -76,8 +75,12 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     volume_step = config.get(CONF_VOLUME_STEP)
 
     _LOGGER.debug(
-        f"Setting up {DATA_KEF} with host: {host}, port: {port},"
-        f" name: {name}, sources: {KEF_LS50_SOURCES}"
+        "Setting up %s with host: %s, port: %s, name: %s, sources: %s",
+        DATA_KEF,
+        host,
+        port,
+        name,
+        KEF_LS50_SOURCES,
     )
 
     media_player = KefMediaPlayer(
@@ -91,7 +94,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     )
     unique_id = media_player.unique_id
     if unique_id in hass.data[DATA_KEF]:
-        _LOGGER.debug(f"{unique_id} is already configured.")
+        _LOGGER.debug("%s is already configured.", unique_id)
     else:
         hass.data[DATA_KEF][unique_id] = media_player
         async_add_entities([media_player], update_before_add=True)
@@ -105,7 +108,7 @@ class KefMediaPlayer(MediaPlayerDevice):
         self._name = name
         self._sources = sources
         self._speaker = AsyncKefSpeaker(
-            host, port, volume_step, maximum_volume, ioloop=ioloop,
+            host, port, volume_step, maximum_volume, ioloop=ioloop
         )
 
         self._state = STATE_UNKNOWN
@@ -130,8 +133,7 @@ class KefMediaPlayer(MediaPlayerDevice):
         try:
             self._is_online = await self._speaker.is_online()
             if self._is_online:
-                self._muted = await self._speaker.is_muted()
-                self._volume = await self._speaker.get_volume()
+                self._volume, self._muted = await self._speaker.get_volume_and_is_muted()
                 self._source, is_on = await self._speaker.get_source_and_state()
                 self._state = STATE_ON if is_on else STATE_OFF
             else:
@@ -139,8 +141,8 @@ class KefMediaPlayer(MediaPlayerDevice):
                 self._source = None
                 self._volume = None
                 self._state = STATE_OFF
-        except Exception as e:
-            _LOGGER.debug(f"Error in `update`: {e}")
+        except (ConnectionRefusedError, ConnectionError) as err:
+            _LOGGER.debug("Error in `update`: %s", err)
             self._state = STATE_UNKNOWN
 
     @property
@@ -196,25 +198,22 @@ class KefMediaPlayer(MediaPlayerDevice):
     async def async_turn_off(self):
         """Turn the media player off."""
         await self._speaker.turn_off()
-        self._state = STATE_OFF
 
     async def async_turn_on(self):
         """Turn the media player on."""
         await self._speaker.turn_on()
-        self._state = STATE_ON
 
     async def async_volume_up(self):
         """Volume up the media player."""
-        self._volume = await self._speaker.increase_volume()
+        await self._speaker.increase_volume()
 
     async def async_volume_down(self):
         """Volume down the media player."""
-        self._volume = await self._speaker.decrease_volume()
+        await self._speaker.decrease_volume()
 
     async def async_set_volume_level(self, volume):
         """Set volume level, range 0..1."""
         await self._speaker.set_volume(volume)
-        self._volume = volume
 
     async def async_mute_volume(self, mute):
         """Mute (True) or unmute (False) media player."""
@@ -222,12 +221,10 @@ class KefMediaPlayer(MediaPlayerDevice):
             await self._speaker.mute()
         else:
             await self._speaker.unmute()
-        self._muted = mute
 
     async def async_select_source(self, source: str):
         """Select input source."""
         if source in self.source_list:
-            self._source = source
             await self._speaker.set_source(source)
         else:
             raise ValueError(f"Unknown input source: {source}.")
