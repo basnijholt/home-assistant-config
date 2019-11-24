@@ -141,7 +141,7 @@ class KefMediaPlayer(MediaPlayerDevice):
                 self._source = None
                 self._volume = None
                 self._state = STATE_OFF
-        except (ConnectionRefusedError, ConnectionError) as err:
+        except (ConnectionRefusedError, ConnectionError, TimeoutError) as err:
             _LOGGER.debug("Error in `update`: %s", err)
             self._state = STATE_UNKNOWN
 
