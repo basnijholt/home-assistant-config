@@ -3,7 +3,7 @@
   entities:
     light.ceiling:
       brightness: 255
-      color_temp: 364
+      color_temp: 250
       hs_color:
       - 0
       - 100
@@ -21,43 +21,14 @@
       state: 'on'
     switch.light2:
       state: 'on'
-- id: '1574556806175'
-  name: Coming home
-  entities:
-    light.ceiling:
-      brightness: 255
-      color_temp: 364
-      hs_color:
-      - 28.295
-      - 64.242
-      rgb_color:
-      - 255
-      - 168
-      - 91
-      state: 'on'
-      xy_color:
-      - 0.521
-      - 0.387
-    media_player.spotify:
-      media_content_id: spotify:track:6yFsek6A532ZP6gL83J08u
-      media_content_type: music
-      source: KEF LS50 Wireless
-      state: playing
-      volume_level: 0.26
-- id: '1574622582291'
+- id: '1574628254005'
   name: Bed time
   entities:
     light.ceiling:
       state: 'off'
     media_player.kef:
       state: 'off'
-    media_player.spotify:
-      media_content_id: spotify:track:2iUyvvPhSYN68f67c7xeVo
-      media_content_type: music
-      source: KEF LS50 Wireless
-      state: idle
-      volume_level: 0.35
     switch.desk_lamp:
-      state: 'off'
+      state: 'on'
     switch.light2:
       state: 'off'
