@@ -14,3 +14,5 @@ customize:
     friendly_name: Ceiling lamp
   switch.vacuum_mode:
     friendly_name: Vacuum on
+  sensor.temperature_mean:
+    icon: mdi:temperature-celsius

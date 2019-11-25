@@ -100,6 +100,24 @@ data:
         show_header_toggle: false
         title: Modes
         type: entities
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.temperature_mean
+          name: Temperature
+        font_size: 70
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          icon: true
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
       path: default_view
       title: Home
     - cards:

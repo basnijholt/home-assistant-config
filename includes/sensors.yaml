@@ -7,7 +7,7 @@
       unit_of_measurement: Watt
 
     desk_lamp_current:
-      friendly_name: "Lamp stroom"
+      friendly_name: Lamp stroom
       icon_template: >-
         {% set P = states("sensor.desk_lamp_watts") %}
         {% if P == "Unavailable"  %}
@@ -75,14 +75,23 @@
       entity_id: sensor.date
       value_template: "{{ states.input_datetime | count }}"
 
+- platform: min_max
+  name: Temperature mean
+  type: mean
+  entity_ids:
+    - sensor.temperature_1
+    - sensor.temperature_2
+    - sensor.temperature_3
+    - sensor.temperature_4
+
 - platform: command_line
-  name: "RPi CPU Temperature"
+  name: RPi CPU Temperature
   command: "cat /sys/class/thermal/thermal_zone0/temp"
   unit_of_measurement: "°C"
   value_template: "{{ value | multiply(0.001) | round(2) }}"
 
 - platform: command_line
-  name: "RPi GPU Temperature"
+  name: RPi GPU Temperature
   command: "/opt/vc/bin/vcgencmd measure_temp"
   unit_of_measurement: "°C"
   value_template: '{{ value | replace("temp=", "") | replace("''C", "") }}'
@@ -107,11 +116,12 @@
   name: Installed Version
   source: local
 
-- platform: version
-  name: Latest Available Version
-  beta: false
-  image: raspberrypi4
-  source: hassio
+# XXX: uncomment when HA v0.103 is installed
+# - platform: version
+#   name: Latest Available Version
+#   beta: false
+#   image: raspberrypi4
+#   source: hassio
 
 - platform: uptime
   unit_of_measurement: hours
