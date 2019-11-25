@@ -9,7 +9,7 @@
       entity_id: switch.desk_lamp
 
 - alias: "Light: copy light"
-  trigger:  # two triggers, such to not trigger on "unavailable"
+  trigger:  # two triggers, to avoid triggering on "unavailable"
     - platform: state
       entity_id: sensor.desk_lamp_current
       from: "on"

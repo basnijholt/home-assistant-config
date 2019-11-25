@@ -110,7 +110,7 @@
 - platform: version
   name: Latest Available Version
   beta: false
-  image: raspberrypi3
+  image: raspberrypi4
   source: hassio
 
 - platform: uptime
