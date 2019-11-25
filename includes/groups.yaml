@@ -7,11 +7,11 @@ persons:
 guest_mode:
   name: Guest mode
   entities:
-    - automation.turn_off_speakers_when_away
-    - automation.turn_off_lights_when_leaving
+    - automation.music_turn_off_speakers_when_away
+    - automation.light_turn_off_when_leaving
     - automation.vacuum_cleanup_if_nobody_is_home
-    - automation.auto_turn_off_vacation_mode
-    - automation.auto_turn_on_vacation_mode
+    - automation.vacation_mode_auto_turn_off
+    - automation.vacation_mode_auto_turn_on
 
 vacation_mode:
   name: Vacation mode

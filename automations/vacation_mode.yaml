@@ -1,5 +1,5 @@
 ---
-- alias: Toggle vacation mode
+- alias: "Vacation mode: toggle on or off"
   initial_state: "on"
   trigger:
     - platform: state
@@ -8,7 +8,7 @@
     - service_template: automation.turn_{{ trigger.to_state.state }}
       entity_id: group.vacation_mode
 
-- alias: Auto turn on vacation mode
+- alias: "Vacation mode: auto turn on"
   initial_state: "on"
   trigger:
     - platform: state
@@ -27,7 +27,7 @@
         title: "Vacation mode"
         message: "No one at home for 24 hours, switching on vacation mode."
 
-- alias: Auto turn off vacation mode
+- alias: "Vacation mode: auto turn off"
   initial_state: "on"
   trigger:
     - platform: state

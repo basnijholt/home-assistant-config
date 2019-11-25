@@ -1,5 +1,5 @@
 ---
-- alias: convert lovelace.json to lovelace-ui.yaml
+- alias: "Lovelace: convert lovelace.json to lovelace-ui.yaml"
   initial_state: "on"
   trigger:
     - platform: state

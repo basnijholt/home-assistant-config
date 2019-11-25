@@ -1,5 +1,5 @@
 ---
-- alias: Update switch state  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
+- alias: "Light: update switch state"  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
   initial_state: "on"
   trigger:
     - platform: time_pattern
@@ -8,7 +8,7 @@
     - service: homeassistant.update_entity
       entity_id: switch.desk_lamp
 
-- alias: Copy light
+- alias: "Light: copy light"
   trigger:  # two triggers, such to not trigger on "unavailable"
     - platform: state
       entity_id: sensor.desk_lamp_current
@@ -22,7 +22,7 @@
     - service_template: switch.turn_{{ trigger.to_state.state }}
       entity_id: switch.light2
 
-- alias: Turn off lights when leaving
+- alias: "Light: turn off when leaving"
   trigger:
     - platform: state
       entity_id: group.persons

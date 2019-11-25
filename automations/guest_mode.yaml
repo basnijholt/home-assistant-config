@@ -1,5 +1,5 @@
 ---
-- alias: Toggle guest mode
+- alias: "Guest mode: toggle on or off"
   initial_state: "on"
   trigger:
     - platform: state

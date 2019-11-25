@@ -1,5 +1,5 @@
 ---
-- alias: Start the music
+- alias: "Music: start playlist"
   initial_state: "on"
   trigger:
     - platform: state
@@ -19,7 +19,7 @@
         playlist: 6rPTm9dYftKcFAfwyRqmDZ
         volume: 0.35
 
-- alias: Turn off speakers when away
+- alias: "Music: turn off speakers when away"
   trigger:
     - platform: state
       entity_id: group.persons
@@ -30,7 +30,7 @@
     - service: switch.turn_off
       entity_id: switch.kef_speakers
 
-- alias: Change volume by rotating cube
+- alias: "Music: change volume by rotating cube"
   trigger:
     - platform: event
       event_type: deconz_event
@@ -45,7 +45,7 @@
           {% set dV = [trigger.event.data.event / 100 / 900, max_change] | min %}
           {{ (states.media_player.kef.attributes.volume_level + dV)|round(2) }}
 
-- alias: Shuffle Spotify song by shaking cube
+- alias: "Music: shuffle Spotify song by shaking cube"
   trigger:
     - platform: event
       event_type: deconz_event
@@ -68,7 +68,7 @@
     - service: media_player.media_next_track
       entity_id: media_player.spotify
 
-- alias: Pause and play Spotify song by tapping cube on side 1
+- alias: "Music: pause and play Spotify song by tapping cube on side 1"
   trigger:
     - platform: event
       event_type: deconz_event
@@ -87,7 +87,7 @@
     - service: media_player.media_play_pause
       entity_id: media_player.spotify
 
-- alias: Start music by throwing the cube
+- alias: "Music: start music by throwing the cube"
   trigger:
     - platform: event
       event_type: deconz_event

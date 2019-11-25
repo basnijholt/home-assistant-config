@@ -5,5 +5,5 @@ exclude:
     - sensor.desk_lamp_current
     - sensor.desk_lamp_watts
     - sensor.date
-    - automation.update_power
+    - automation.light_update_switch_state
     - switch.desk_lamp
