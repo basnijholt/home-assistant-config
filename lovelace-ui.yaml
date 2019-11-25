@@ -108,7 +108,6 @@ data:
         group: false
         hour24: true
         line_width: 6
-        lower_bound: 0
         points_per_hour: 1
         show:
           extrema: true
