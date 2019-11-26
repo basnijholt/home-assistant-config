@@ -17,3 +17,20 @@ vacation_mode:
   name: Vacation mode
   entities:
     - automation.vacuum_cleanup_if_nobody_is_home
+
+iphone_bas:
+  - sensor.activity
+  - sensor.bssid
+  - sensor.battery_level
+  - sensor.battery_state
+  - sensor.connection_type
+  - sensor.distance
+  - sensor.floors_ascended
+  - sensor.floors_descended
+  - sensor.geocoded_location
+  - sensor.last_update_trigger
+  - sensor.sim_1
+  - sensor.ssid
+  - sensor.steps
+  - device_tracker.basnijholt_iphone_2
+  - device_tracker.basnijholt_iphone  # via router

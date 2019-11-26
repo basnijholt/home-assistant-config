@@ -334,21 +334,14 @@ data:
         show_name: true
         show_state: false
         type: glance
-      - entities:
-        - entity: device_tracker.basnijholt_iphone
-        - entity: device_tracker.x
-        - entity: sensor.average_active_pace
-        - entity: sensor.distance
-        - entity: sensor.floors_ascended
-        - entity: sensor.floors_descended
-        - entity: sensor.geocoded_location
-        - entity: sensor.sim_1
-        - entity: sensor.battery_level
-        - entity: sensor.battery_state
-        - entity: sensor.steps
-        show_header_toggle: false
-        title: Bas' iPhone
-        type: entities
+      - card:
+          show_header_toggle: false
+          title: Bas' iPhone
+          type: entities
+        filter:
+          include:
+          - group: group.iphone_bas
+        type: custom:auto-entities
       icon: mdi:home-assistant
       path: system
       title: System Information

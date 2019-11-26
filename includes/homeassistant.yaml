@@ -9,7 +9,7 @@ whitelist_external_dirs:
   - /config/
 customize:
   person.bas_nijholt:
-    entity_picture: "https://www.nijho.lt/img/portrait.jpg"
+    entity_picture: "https://www.nijho.lt/authors/admin/avatar.jpg"
   light.ceiling:
     friendly_name: Ceiling lamp
   switch.vacuum_mode:
