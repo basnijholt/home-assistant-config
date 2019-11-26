@@ -42,7 +42,7 @@
 
 
 ## Notes
-* I use AppDaemon 4 beta, see the installation instructions [here](https://github.com/hassio-addons/addon-appdaemon3/issues/56).
+* I use AppDaemon 4 beta, see the installation instructions [here](appdaemon/hassio_appdaemon4_beta_installation_instructions.md).
 
 ## Automation plans
 * Turn on lights upon entry after dark
