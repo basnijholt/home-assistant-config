@@ -48,3 +48,4 @@
 * Turn on lights upon entry after dark
 * Notify us when the window is open and it is raining
 * Implement scenes: 'movie time', 'dinner time', 'cozy time', 'bed time', and 'party time'
+* Introduce the concept of "sleep mode" which automatically triggers if we're home and there is no motion in the house *except* the bedroom. Then if you go out in the middle of the night (e.g., to the bathroom) then lights will turn a non-bright red. Manually triggering the switch will turn on the normal lights.
