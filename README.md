@@ -38,7 +38,7 @@
 * Raspberry Pi 4, 4GB RAM, 16GB SD-card, running [*Hass.io*](https://www.home-assistant.io/hassio/)
 
 ### Device tracker
-* iPhone X with the iOS beta app
+* iPhone X with the new iOS app
 
 
 ## Notes
