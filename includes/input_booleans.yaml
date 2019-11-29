@@ -6,15 +6,12 @@ start_the_music:
   icon: mdi:music
 cleaned_today:
   name: Vacuum cleaned today
-  initial: off
   icon: mdi:broom
 vacation_mode:
   name: On Vacation
-  initial: off
   icon: mdi:airplane
 guest_mode:
   name: Guest mode
-  initial: off
   icon: mdi:human-male-female
 
 # Apps
