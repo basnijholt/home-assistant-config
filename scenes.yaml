@@ -1,7 +1,7 @@
 - id: '1574555170019'
   name: Red
   entities:
-    light.ceiling:
+    light.ceiling_bedroom:
       brightness: 255
       color_temp: 250
       hs_color:
@@ -24,7 +24,7 @@
 - id: '1574628254005'
   name: Bed time
   entities:
-    light.ceiling:
+    light.ceiling_bedroom:
       state: 'off'
     media_player.kef:
       state: 'off'

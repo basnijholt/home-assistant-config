@@ -16,8 +16,8 @@ entity_config:
     type: switch
   switch.light2:
     name: Speaker lamp
-  light.ceiling:
-    name: Ceiling lamp
+  light.ceiling_bedroom:
+    name: Bedroom ceiling lamp
   switch.kef_speakers:
     name: KEF Speakers power
   input_boolean.start_the_music:

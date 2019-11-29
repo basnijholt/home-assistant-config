@@ -32,7 +32,7 @@
   action:
     - service: light.turn_off
       data:
-        entity_id: light.ceiling
+        entity_id: light.ceiling_bedroom
     - service: switch.turn_off
       data:
         entity_id: switch.desk_lamp

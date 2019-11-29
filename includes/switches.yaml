@@ -24,4 +24,4 @@
 
 - platform: circadian_lighting
   lights_rgb:
-    - light.ceiling
+    - light.ceiling_bedroom
