@@ -16,7 +16,7 @@ wake_up_light:
   module: wake_up_light
   class: WakeUpLight
   total_time: 900
-  lamp: "light.ceiling"
+  lamp: "light.ceiling_bedroom"
   input_boolean: "input_boolean.wake_up_light"
 ```
 
@@ -36,7 +36,7 @@ import copy
 
 import hassapi as hass
 
-DEFAULT_LAMP = "light.ceiling"
+DEFAULT_LAMP = "light.ceiling_bedroom"
 DEFAULT_TOTAL_TIME = 900
 DEFAULT_INPUT_BOOLEAN = "input_boolean.wake_up_light"
 

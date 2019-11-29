@@ -37,7 +37,7 @@ wake_up_light:
   module: wake_up_light
   class: WakeUpLight
   total_time: 600
-  lamp: light.ceiling
+  lamp: light.ceiling_bedroom
   input_boolean: input_boolean.wake_up_light
 
 cube:

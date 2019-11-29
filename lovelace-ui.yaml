@@ -39,7 +39,7 @@ data:
         - entity: switch.light2
         - entity: switch.circadian_lighting_circadian_lighting
         - entity: sensor.desk_lamp_current
-        - entity: light.ceiling
+        - entity: light.ceiling_bedroom
         title: Lights
         type: entities
       - entity: weather.huis
