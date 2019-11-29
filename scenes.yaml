@@ -1,34 +1,40 @@
-- id: '1574555170019'
-  name: Red
-  entities:
-    light.ceiling_bedroom:
-      brightness: 255
-      color_temp: 250
-      hs_color:
-      - 0
-      - 100
-      rgb_color:
-      - 255
-      - 0
-      - 0
-      state: 'on'
-      xy_color:
-      - 0.701
-      - 0.299
-    media_player.kef:
-      state: 'off'
-    switch.desk_lamp:
-      state: 'on'
-    switch.light2:
-      state: 'on'
 - id: '1574628254005'
   name: Bed time
   entities:
     light.ceiling_bedroom:
       state: 'off'
+    light.speaker_bedroom:
+      state: 'off'
     media_player.kef:
       state: 'off'
     switch.desk_lamp:
-      state: 'on'
-    switch.light2:
       state: 'off'
+- id: '1575060114063'
+  name: Red
+  entities:
+    light.ceiling_bedroom:
+      brightness: 254
+      hs_color:
+      - 15.827
+      - 99.608
+      rgb_color:
+      - 255
+      - 68
+      - 0
+      state: 'on'
+      xy_color:
+      - 0.673
+      - 0.322
+    light.speaker_bedroom:
+      brightness: 254
+      hs_color:
+      - 335.885
+      - 81.961
+      rgb_color:
+      - 255
+      - 45
+      - 130
+      state: 'on'
+      xy_color:
+      - 0.569
+      - 0.252
