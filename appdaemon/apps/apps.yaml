@@ -33,12 +33,26 @@ wake_up_with_spotify:
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
 
+demo_wake_up_with_spotify:
+  module: wake_up_with_spotify
+  class: WakeUpWithSpotify
+  total_time: 20
+  final_volume: 0.25
+  input_boolean: input_boolean.demo_wake_up_with_spotify
+
 wake_up_light:
   module: wake_up_light
   class: WakeUpLight
   total_time: 600
   lamp: light.ceiling_bedroom
   input_boolean: input_boolean.wake_up_light
+
+demo_wake_up_light:
+  module: wake_up_light
+  class: WakeUpLight
+  total_time: 20
+  lamp: light.ceiling_bedroom
+  input_boolean: input_boolean.demo_wake_up_light
 
 cube:
   module: xiaomi_aqara_cube_action

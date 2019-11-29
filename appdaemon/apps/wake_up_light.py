@@ -55,7 +55,7 @@ RGB_SEQUENCE = [
     (255, 205, 166),
 ]
 
-TIME_STEP = 4  # time between settings
+TIME_STEP = 2  # time between settings
 
 
 class Interpolate:

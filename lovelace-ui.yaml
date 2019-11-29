@@ -117,6 +117,22 @@ data:
           name: true
           state: true
         type: custom:mini-graph-card
+      - entities:
+        - entity: scene.red
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.red
+        - entity: scene.bed_time
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.bed_time
+        show_state: false
+        title: Scences
+        type: glance
       path: default_view
       title: Home
     - cards:
@@ -359,6 +375,8 @@ data:
         - entity: input_boolean.wake_up_light
         - entity: input_boolean.wake_up_with_spotify
         - entity: input_boolean.start_speakers
+        - entity: input_boolean.demo_wake_up_light
+        - entity: input_boolean.demo_wake_up_with_spotify
         title: Test apps
         type: entities
       icon: mdi:test-tube
