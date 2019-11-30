@@ -1,14 +1,4 @@
 ---
-alarm_clock:  # doesn't work sometimes...
-  module: alarm_clock
-  class: AlarmClock
-  constrain_input_boolean: input_boolean.alarm_clock
-  input_datetime: input_datetime.alarm_clock
-  light_offset: 0
-  music_offset: 0
-  total_time: 30
-  final_volume: 0.25
-
 start_speakers:
   module: start_speakers
   class: StartSpeakers
