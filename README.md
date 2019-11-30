@@ -29,7 +29,6 @@
 
 ### Lights
 * Philips Hue E27 White and Color (10x)
-* Xiaomi Yeelight E27 Color (*I do **not** recommend these!*)
 
 ### Hubs
 * ConBee II

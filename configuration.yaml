@@ -29,7 +29,6 @@ scene: !include scenes.yaml
 
 # Components:
 tplink: !include includes/tplink.yaml
-yeelight: !include includes/yeelight.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 circadian_lighting:
 vacuum: !include includes/vacuum.yaml
