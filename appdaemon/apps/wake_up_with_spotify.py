@@ -48,7 +48,7 @@ DEFAULTS = {
 
 
 def time_step(total_time, final_volume, step):
-    return total_time / math.floor(final_volume / step)
+    return total_time / math.floor(final_volume / MIN_VOLUME_STEP)
 
 
 class WakeUpWithSpotify(hass.Hass):
@@ -105,7 +105,7 @@ class WakeUpWithSpotify(hass.Hass):
             self.fire_event(self.done_signal, **kwargs)
             self.log(self.done_signal + f" {kwargs}")
             return
-        dt = time_step(kwargs["total_time"], kwargs["final_volume"], MIN_VOLUME_STEP)
+        dt = time_step(kwargs["total_time"], kwargs["final_volume"])
         self.log(f"Setting volume: {self.volume}, with a timestep of {dt}.")
         self.set_volume(kwargs["speaker"], self.volume)
         self.run_in(self.volume_up, dt, **kwargs)
