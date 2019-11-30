@@ -133,7 +133,10 @@ class KefMediaPlayer(MediaPlayerDevice):
         try:
             self._is_online = await self._speaker.is_online()
             if self._is_online:
-                self._volume, self._muted = await self._speaker.get_volume_and_is_muted()
+                (
+                    self._volume,
+                    self._muted,
+                ) = await self._speaker.get_volume_and_is_muted()
                 self._source, is_on = await self._speaker.get_source_and_state()
                 self._state = STATE_ON if is_on else STATE_OFF
             else:

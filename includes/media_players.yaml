@@ -3,7 +3,9 @@
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
-- platform: kef
-  host: 192.168.31.196
-  maximum_volume: 0.6
-  volume_step: 0.05
+# - platform: kef
+#   # type: LS50
+#   name: KEF Speakers
+#   host: 192.168.31.196
+#   maximum_volume: 0.6
+#   volume_step: 0.05

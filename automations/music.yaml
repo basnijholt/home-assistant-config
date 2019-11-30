@@ -27,8 +27,8 @@
       to: not_home
       for: "00:15:00"
   action:
-    - service: switch.turn_off
-      entity_id: switch.kef_speakers
+    - service: media_player.turn_off
+      entity_id: media_player.kef
 
 - alias: "Music: change volume by rotating cube"
   trigger:

@@ -38,3 +38,14 @@
       xy_color:
       - 0.569
       - 0.252
+- id: '1575131362586'
+  name: Bright lights
+  entities:
+    light.ceiling_bedroom:
+      brightness: 254
+      color_temp: 366
+      state: 'on'
+    light.speaker_bedroom:
+      brightness: 254
+      color_temp: 400
+      state: 'on'

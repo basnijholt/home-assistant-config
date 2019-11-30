@@ -1,5 +1,6 @@
 ---
 start_speakers:
+  alias: Start speakers
   description: "Start a Spotify playlist on KEF speakers"
   fields:
     volume:
@@ -24,6 +25,7 @@ start_speakers:
         volume_level: "{{ volume }}"
 
 start_spotify:
+  alias: Start Spotify
   description: "Start a Spotify playlist on KEF speakers"
   fields:
     source:

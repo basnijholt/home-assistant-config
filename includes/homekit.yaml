@@ -18,7 +18,5 @@ entity_config:
     name: Speaker lamp
   light.ceiling_bedroom:
     name: Bedroom ceiling lamp
-  switch.kef_speakers:
-    name: KEF Speakers power
   input_boolean.start_the_music:
     name: Start Spotify

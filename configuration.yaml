@@ -26,6 +26,7 @@ recorder: !include includes/recorder.yaml
 weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
 scene: !include scenes.yaml
+# cloud: !include includes/cloud.yaml
 
 # Components:
 tplink: !include includes/tplink.yaml

@@ -1,18 +1,6 @@
 ---
 - platform: template
   switches:
-    kef_speakers:
-      friendly_name: KEF Speakers
-      value_template: "{{ is_state('media_player.kef', 'on') }}"
-      availability_template: >-
-        {{ not is_state('media_player.kef', 'unavailable') }}
-      turn_on:
-        - service: media_player.turn_on
-          entity_id: media_player.kef
-      turn_off:
-        - service: media_player.turn_off
-          entity_id: media_player.kef
-
     vacuum_mode:
       value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning')}}"
       turn_on:
