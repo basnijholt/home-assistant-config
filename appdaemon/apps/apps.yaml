@@ -2,10 +2,11 @@
 alarm_clock:  # doesn't work sometimes...
   module: alarm_clock
   class: AlarmClock
-  alarm_toggle: input_boolean.alarm_clock
+  constrain_input_boolean: input_boolean.alarm_clock
   input_datetime: input_datetime.alarm_clock
-  light_offset: -60
+  light_offset: 0
   music_offset: 0
+  total_time: 30
   final_volume: 0.25
 
 start_speakers:
@@ -44,14 +45,14 @@ wake_up_light:
   module: wake_up_light
   class: WakeUpLight
   total_time: 600
-  lamp: light.ceiling_bedroom
+  lamp: light.ceiling_bedroom, light.speaker_bedroom
   input_boolean: input_boolean.wake_up_light
 
 demo_wake_up_light:
   module: wake_up_light
   class: WakeUpLight
   total_time: 20
-  lamp: light.ceiling_bedroom
+  lamp: light.ceiling_bedroom, light.speaker_bedroom
   input_boolean: input_boolean.demo_wake_up_light
 
 cube:

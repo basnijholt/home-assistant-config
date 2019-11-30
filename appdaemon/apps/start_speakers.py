@@ -41,24 +41,26 @@ class StartSpeakers(hass.Hass):
     def initialize(self):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on", immediate=True)
-        self.listen_event(self.start, "start_speakers")
 
     def start_cb(self, entity, attribute, old, new, kwargs):
         self.set_state(self.input_boolean, state="off")
         self.start()
 
-    def maybe_default(self, key, kwargs):
-        default_value = self.args.get(key, DEFAULTS[key])
-        if kwargs is None:
-            return default_value
-        return kwargs.get(key, default_value)
+    def maybe_defaults(self, kwargs):
+        for k, v in DEFAULTS.items():
+            if k not in kwargs:
+                default_value = self.args.get(k, v)
+                kwargs[k] = default_value
 
-    def start(self, event_name=None, data=None, kwargs=None):
-        data = data or {}
-        maybe_default = partial(self.maybe_default, kwargs=data)
-        call_speaker = partial(self.call_service, entity_id=maybe_default("speaker"))
-        self.turn_on(maybe_default("speaker"))
-        call_speaker("media_player/select_source", source=maybe_default("source"))
-        call_speaker("media_player/volume_set", volume_level=maybe_default("volume"))
-        self.fire_event("start_speakers_done", **data)
-        self.log("start_speakers_done")
+    @property
+    def done_signal(self):
+        return f"{self.input_boolean}.done"
+
+    def start(self, **kwargs):
+        self.maybe_defaults(kwargs)
+        call_speaker = partial(self.call_service, entity_id=kwargs["speaker"])
+        self.turn_on(kwargs["speaker"])
+        call_speaker("media_player/select_source", source=kwargs["source"])
+        call_speaker("media_player/volume_set", volume_level=kwargs["volume"])
+        self.fire_event(self.done_signal, **kwargs)
+        self.log(self.done_signal + f" {kwargs}")

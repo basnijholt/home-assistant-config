@@ -4,9 +4,7 @@ This cycles through a sequence of RGB tuples and then
 linearily interpolates them in HSV color space as time
 proceeds.
 
-The routine can be triggered by toggling an input_boolean
-or by firing the "start_wake_up_light" event, optionally
-including the variables that this app uses.
+The routine can be triggered by toggling an input_boolean.
 
 The sequence is canceled by turning the light on and off.
 
@@ -122,9 +120,13 @@ class WakeUpLight(hass.Hass):
     def initialize(self):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
-        self.listen_event(self.start, "start_wake_up_light")
         self.todos = []
         self.cancel_handle = None
+
+    def start_cb(self, entity, attribute, old, new, kwargs):
+        self.log(f"start_cb, kwargs: {kwargs}")
+        self.set_state(self.input_boolean, state="off")
+        self.start()
 
     def maybe_default(self, key, kwargs):
         default_value = self.args.get(key, DEFAULTS[key])
@@ -132,14 +134,13 @@ class WakeUpLight(hass.Hass):
             return default_value
         return kwargs.get(key, default_value)
 
-    def start_cb(self, entity, attribute, old, new, kwargs):
-        self.log(f"start_cb, kwargs: {kwargs}")
-        self.set_state(self.input_boolean, state="off")
-        self.start()
+    @property
+    def done_signal(self):
+        return f"{self.input_boolean}.done"
 
-    def start(self, event_name=None, data=None, kwargs=None):
-        lamp = self.maybe_default("lamp", data)
-        total_time = self.maybe_default("total_time", data)
+    def start(self, **kwargs):
+        lamp = kwargs["lamp"] = self.maybe_default("lamp", kwargs)
+        total_time = kwargs["total_time"] = self.maybe_default("total_time", kwargs)
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
             t = min(t, total_time)
@@ -150,7 +151,9 @@ class WakeUpLight(hass.Hass):
                 "transition": TIME_STEP,
             }
             is_done = t == total_time
-            todo = self.run_in(self.set_state_cb, t, data=data, is_done=is_done)
+            todo = self.run_in(
+                self.set_state_cb, t, data=data, is_done=is_done, **kwargs
+            )
             self.todos.append(todo)
 
         # Cancel when turning the light off.
@@ -160,10 +163,10 @@ class WakeUpLight(hass.Hass):
 
     def set_state_cb(self, kwargs):
         self.log(f"Setting light: {kwargs}")
-        self.call_service("light/turn_on", **kwargs["data"])
-        if kwargs["is_done"]:
-            self.fire_event("start_wake_up_light_done", **kwargs["data"])
-            self.log("start_wake_up_light_done")
+        self.call_service("light/turn_on", **kwargs.pop("data"))
+        if kwargs.pop("is_done"):
+            self.fire_event(self.done_signal, **kwargs)
+            self.log(self.done_signal)
 
     def cancel_cb(self, entity, attribute, old, new, kwargs):
         assert new == "off"
