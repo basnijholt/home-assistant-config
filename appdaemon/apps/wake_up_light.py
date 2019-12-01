@@ -30,7 +30,6 @@ input_boolean:
 
 import bisect
 import colorsys
-import copy
 
 import hassapi as hass
 
@@ -128,24 +127,24 @@ class WakeUpLight(hass.Hass):
         self.set_state(self.input_boolean, state="off")
         self.start()
 
-    def maybe_default(self, key, kwargs):
-        default_value = self.args.get(key, DEFAULTS[key])
-        if kwargs is None:
-            return default_value
-        return kwargs.get(key, default_value)
+    def maybe_defaults(self, kwargs):
+        for k, v in DEFAULTS.items():
+            if k not in kwargs:
+                default_value = self.args.get(k, v)
+                kwargs[k] = default_value
 
     @property
     def done_signal(self):
         return f"{self.input_boolean}.done"
 
     def start(self, **kwargs):
-        lamp = kwargs["lamp"] = self.maybe_default("lamp", kwargs)
-        total_time = kwargs["total_time"] = self.maybe_default("total_time", kwargs)
+        self.maybe_defaults(kwargs)
+        total_time = kwargs["total_time"]
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
             t = min(t, total_time)
             data = {
-                "entity_id": lamp,
+                "entity_id": kwargs["lamp"],
                 "rgb_color": rgb(t),
                 "brightness": brightness(t),
                 "transition": TIME_STEP,
@@ -158,7 +157,7 @@ class WakeUpLight(hass.Hass):
 
         # Cancel when turning the light off.
         self.cancel_handle = self.listen_state(
-            self.cancel_cb, lamp, oneshot=True, new="off", timeout=total_time
+            self.cancel_cb, kwargs["lamp"], oneshot=True, new="off", timeout=total_time
         )
 
     def set_state_cb(self, kwargs):

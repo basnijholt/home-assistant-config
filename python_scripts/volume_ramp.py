@@ -39,7 +39,6 @@ for i in range(steps):
     if i > 0 and abs(get_volume() - volume) > volume_step:
         logger.warning(f"Stopping because of manual change")
         break
-    logger.warning(str(hass.states.get(entity_id)))
     set_volume(volume)
     to_sleep = time_step - (t_start - time.time())
     time.sleep(to_sleep if to_sleep > 0 else 0)
