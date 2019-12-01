@@ -1,0 +1,17 @@
+---
+volume_ramp:
+  alias: Ramp volume of speaker
+  description: Slowly ramp up the volume of a speaker over a period of time.
+  fields:
+    entity_id:
+      description: The name of the media_player.
+      example: media_player.kef
+    total_time:
+      description: Total duration in time for the speaker to ramp.
+      example: 400
+    final_volume:
+      description: The final volume of the media_player between 0 and 1.
+      example: 0.25
+    volume_step:
+      description: Change in volume
+      example: 0.01
