@@ -32,7 +32,7 @@
   initial_state: "on"
   trigger:
     - platform: time
-      at: "14:00"
+      at: "13:00"
     - platform: state
       entity_id: group.persons
       from: home
@@ -41,7 +41,7 @@
     condition: and
     conditions:
       - condition: time
-        after: "14:00:00"
+        after: "13:00:00"
         before: "22:00:00"
         weekday:
           - mon
