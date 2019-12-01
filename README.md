@@ -7,7 +7,8 @@
 * [Alarm clock](appdaemon/apps/alarm_clock.py) that uses the volume ramp and sunrise app ⏰
 
 ## Noteworthy (useful) automations
-* [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](https://github.com/basnijholt/home-assistant-config/blob/master/automations/lovelace.yaml) for version control 🤖
+* [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](automations/lovelace.yaml) for version control 🤖
+* [Controlling music using the Xiaomi Aqara Magic Cube](automations/music.yaml) ∛
 
 ## My devices
 
