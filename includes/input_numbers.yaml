@@ -1,0 +1,7 @@
+volume_delay:
+  min: 0
+  max: 60
+
+volume_last:
+  min: 0
+  max: 1
