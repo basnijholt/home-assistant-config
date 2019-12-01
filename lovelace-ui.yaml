@@ -379,6 +379,11 @@ data:
         - entity: input_boolean.demo_wake_up_with_spotify
         title: Test apps
         type: entities
+      - entities:
+        - entity: input_number.volume_delay
+        - entity: input_number.volume_last
+        title: Inputs
+        type: entities
       icon: mdi:test-tube
       path: tests
       title: Tests

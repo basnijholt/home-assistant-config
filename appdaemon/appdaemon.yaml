@@ -1,3 +1,18 @@
+## Hass.io AppDaemon add-on config
+# {
+#   "disable_auto_token": true,
+#   "system_packages": [
+#     "python3",
+#     "build-base",
+#     "libffi-dev",
+#     "python3-dev"
+#   ],
+#   "python_packages": [
+#     "appdaemon==4.0.0b2"
+#   ],
+#   "log_level": "trace"
+# }
+
 secrets: /config/secrets.yaml
 logs: null
 appdaemon:

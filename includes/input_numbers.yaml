@@ -1,3 +1,4 @@
+---
 volume_delay:
   min: 0
   max: 60
@@ -5,3 +6,4 @@ volume_delay:
 volume_last:
   min: 0
   max: 1
+  step: 0.01
