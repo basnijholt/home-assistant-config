@@ -53,6 +53,7 @@ class WakeUpWithSpotify(hass.Hass):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
         self._handle = None
+        self.todos = []
 
     def maybe_defaults(self, kwargs):
         for key in set(DEFAULTS) | set(self.args):
@@ -76,7 +77,7 @@ class WakeUpWithSpotify(hass.Hass):
         self.maybe_defaults(kwargs)
         app = self.get_app("start_spotify")
         self._handle = self.listen_event(
-            self.start_volume_ramp_cb, app.done_signal, timeout=30
+            self.start_volume_ramp_cb, app.done_signal, timeout=30, oneshot=True
         )  # XXX: use oneshot=True when it is available.
         app.start(volume=self.volume, **kwargs)
 
@@ -89,13 +90,17 @@ class WakeUpWithSpotify(hass.Hass):
         slope = kwargs["final_volume"] / total_time
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
             t = min(t, total_time)
-            data = {
+            service_kwargs = {
                 "entity_id": kwargs["speaker"],
                 "volume_level": round(slope * t, 2),
             }
             is_done = t == total_time
             todo = self.run_in(
-                self.set_state_cb, t, data=data, is_done=is_done, **kwargs
+                self.set_state_cb,
+                t,
+                service_kwargs=service_kwargs,
+                is_done=is_done,
+                **kwargs,
             )
             self.todos.append(todo)
 
@@ -110,8 +115,9 @@ class WakeUpWithSpotify(hass.Hass):
     def set_state_cb(self, kwargs):
         self.maybe_cancel(kwargs["speaker"])
         self.log(f"Setting volume: {kwargs}")
-        self.call_service("media_player/volume_set", **kwargs.pop("data"))
-        self.volume = kwargs["data"]["volume_level"]
+        service_kwargs = kwargs.pop("service_kwargs")
+        self.call_service("media_player/volume_set", **service_kwargs)
+        self.volume = service_kwargs["volume_level"]
         if kwargs.pop("is_done"):
             self.fire_event(self.done_signal, **kwargs)
             self.log(self.done_signal)
