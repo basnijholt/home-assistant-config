@@ -120,7 +120,6 @@ class WakeUpLight(hass.Hass):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
         self.todos = []
-        self.cancel_handle = None
 
     def start_cb(self, entity, attribute, old, new, kwargs):
         self.log(f"start_cb, kwargs: {kwargs}")
@@ -139,12 +138,14 @@ class WakeUpLight(hass.Hass):
 
     def start(self, **kwargs):
         self.maybe_defaults(kwargs)
+        self.log(f"maybe_defaults, kwargs: {kwargs}")
         total_time = kwargs["total_time"]
+        lamp = kwargs["lamp"]
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
             t = min(t, total_time)
             data = {
-                "entity_id": kwargs["lamp"],
+                "entity_id": lamp,
                 "rgb_color": rgb(t),
                 "brightness": brightness(t),
                 "transition": TIME_STEP,
@@ -156,9 +157,12 @@ class WakeUpLight(hass.Hass):
             self.todos.append(todo)
 
         # Cancel when turning the light off.
-        self.cancel_handle = self.listen_state(
-            self.cancel_cb, kwargs["lamp"], oneshot=True, new="off", timeout=total_time
-        )
+        if not isinstance(lamp, list):
+            lamps = [lamp]
+        for l in lamp:
+            self.listen_state(
+                self.cancel_cb, l, oneshot=True, new="off", timeout=total_time
+            )
 
     def set_state_cb(self, kwargs):
         self.log(f"Setting light: {kwargs}")
