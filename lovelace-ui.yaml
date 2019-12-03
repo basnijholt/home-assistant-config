@@ -364,21 +364,67 @@ data:
     - badges: []
       cards:
       - entities:
-        - entity: binary_sensor.openclose_1
-        - entity: binary_sensor.openclose_2
-        - entity: binary_sensor.openclose_3
-        - entity: binary_sensor.openclose_4
-        title: Sensors
-        type: entities
-      - entities:
         - entity: input_boolean.start_spotify
         - entity: input_boolean.wake_up_light
         - entity: input_boolean.wake_up_with_spotify
         - entity: input_boolean.start_speakers
         - entity: input_boolean.demo_wake_up_light
         - entity: input_boolean.demo_wake_up_with_spotify
+        show_header_toggle: false
         title: Test apps
         type: entities
+      - columns: 4
+        entities:
+        - entity: binary_sensor.openclose_1
+        - entity: binary_sensor.openclose_2
+        - entity: binary_sensor.openclose_3
+        - entity: binary_sensor.openclose_4
+        - entity: sensor.openclose_1_battery_level
+        - entity: sensor.openclose_2_battery_level
+        - entity: sensor.openclose_3_battery_level
+        - entity: sensor.openclose_4_battery_level
+        show_icon: true
+        show_name: false
+        title: Open/close sensor
+        type: glance
+      - columns: 4
+        entities:
+        - entity: sensor.temperature_1
+        - entity: sensor.temperature_2
+        - entity: sensor.temperature_3
+        - entity: sensor.temperature_4
+        - entity: sensor.humidity_1
+        - entity: sensor.humidity_2
+        - entity: sensor.humidity_3
+        - entity: sensor.humidity_4
+        - entity: sensor.pressure_1
+        - entity: sensor.pressure_2
+        - entity: sensor.pressure_3
+        - entity: sensor.pressure_4
+        - entity: sensor.temperature_sensor_1_battery_level
+        - entity: sensor.temperature_sensor_2_battery_level
+        - entity: sensor.temperature_sensor_3_battery_level
+        - entity: sensor.temperature_sensor_4_battery_level
+        show_icon: true
+        show_name: false
+        show_state: true
+        theme: Backend-selected
+        title: Temperature sensors
+        type: glance
+      - columns: 4
+        entities:
+        - entity: binary_sensor.presence_1
+        - entity: binary_sensor.presence_2
+        - entity: binary_sensor.presence_3
+        - entity: binary_sensor.presence_4
+        - entity: sensor.motion_sensor_1_battery_level
+        - entity: sensor.motion_sensor_2_battery_level
+        - entity: sensor.motion_sensor_3_battery_level
+        - entity: sensor.motion_sensor_4_battery_level
+        show_icon: true
+        show_name: false
+        title: Motion sensor
+        type: glance
       - entities:
         - entity: input_number.volume_delay
         - entity: input_number.volume_last
