@@ -52,7 +52,6 @@ class WakeUpWithSpotify(hass.Hass):
         self.volume = None
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
-        self._handle = None
         self.todos = []
 
     def maybe_defaults(self, kwargs):
@@ -76,13 +75,12 @@ class WakeUpWithSpotify(hass.Hass):
         self.volume = 0
         self.maybe_defaults(kwargs)
         app = self.get_app("start_spotify")
-        self._handle = self.listen_event(
+        self.listen_event(
             self.start_volume_ramp_cb, app.done_signal, timeout=30, oneshot=True
-        )  # XXX: use oneshot=True when it is available.
+        )
         app.start(volume=self.volume, **kwargs)
 
     def start_volume_ramp_cb(self, event=None, data=None, kwargs=None):
-        self._handle = self.cancel_listen_event(self._handle)
         return self.start_volume_ramp(**data)
 
     def start_volume_ramp(self, **kwargs):

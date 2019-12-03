@@ -47,7 +47,6 @@ class StartSpotify(hass.Hass):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.call_spotify = partial(self.call_service, entity_id="media_player.spotify")
         self.listen_state(self.start_cb, self.input_boolean, new="on")
-        self._handle = None
         self.tries = 0
 
     def maybe_defaults(self, kwargs):
@@ -67,9 +66,7 @@ class StartSpotify(hass.Hass):
     def start(self, **kwargs):
         self.maybe_defaults(kwargs)
         app = self.get_app("start_speakers")
-        self._handle = self.listen_event(
-            self.select_source, app.done_signal, timeout=30
-        )  # XXX: use oneshot=True when it is available.
+        self.listen_event(self.select_source, app.done_signal, timeout=30, oneshot=True)
         app.start(**kwargs)
 
     def source_available(self, speaker_name):
@@ -78,7 +75,6 @@ class StartSpotify(hass.Hass):
         )
 
     def select_source(self, event=None, data=None, kwargs=None):
-        self._handle = self.cancel_listen_event(self._handle)
         self.log("Starting `select_source`")
         speaker_name = data["speaker_name"]
         if not self.source_available(speaker_name):

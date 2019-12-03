@@ -8,9 +8,9 @@
 #     "python3-dev"
 #   ],
 #   "python_packages": [
-#     "appdaemon==4.0.0b2"
-#   ],
-#   "log_level": "trace"
+#     "python-dateutil",  # because of https://github.com/home-assistant/appdaemon/issues/780
+#     "https://github.com/home-assistant/appdaemon/archive/dev.zip"
+#   ]
 # }
 
 secrets: /config/secrets.yaml
