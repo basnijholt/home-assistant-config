@@ -144,7 +144,7 @@ class WakeUpLight(hass.Hass):
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
         for t in range(0, total_time + TIME_STEP, TIME_STEP):
             t = min(t, total_time)
-            data = {
+            service_kwargs = {
                 "entity_id": lamp,
                 "rgb_color": rgb(t),
                 "brightness": brightness(t),
@@ -152,7 +152,11 @@ class WakeUpLight(hass.Hass):
             }
             is_done = t == total_time
             todo = self.run_in(
-                self.set_state_cb, t, data=data, is_done=is_done, **kwargs
+                self.set_state_cb,
+                t,
+                service_kwargs=service_kwargs,
+                is_done=is_done,
+                **kwargs,
             )
             self.todos.append(todo)
 
@@ -166,7 +170,7 @@ class WakeUpLight(hass.Hass):
 
     def set_state_cb(self, kwargs):
         self.log(f"Setting light: {kwargs}")
-        self.call_service("light/turn_on", **kwargs.pop("data"))
+        self.call_service("light/turn_on", **kwargs.pop("service_kwargs"))
         if kwargs.pop("is_done"):
             self.fire_event(self.done_signal, **kwargs)
             self.log(self.done_signal)
