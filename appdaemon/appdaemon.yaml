@@ -25,7 +25,7 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-      ha_url: http://hassio/homeassistant
+      ha_url: !secret base_url_https
       token: !secret hass_ad_token
 http:
   url: http://0.0.0.0:5050

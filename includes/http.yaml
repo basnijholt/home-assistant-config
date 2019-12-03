@@ -1,5 +1,4 @@
 ---
 base_url: !secret base_url
-server_port: !secret server_port
 ssl_certificate: /ssl/fullchain.pem
 ssl_key: /ssl/privkey.pem

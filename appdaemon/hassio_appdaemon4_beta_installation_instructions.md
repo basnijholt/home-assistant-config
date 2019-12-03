@@ -31,7 +31,7 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-      ha_url: http://hassio/homeassistant
+      ha_url: https://url_here.duckdns.org:8123  # <---- change this accordingly
       token: !secret hass_ad_gh_token
 http:
   url: http://0.0.0.0:5050
