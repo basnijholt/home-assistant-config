@@ -142,8 +142,8 @@ class WakeUpLight(hass.Hass):
         total_time = kwargs["total_time"]
         lamp = kwargs["lamp"]
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
-        for t in range(0, total_time + TIME_STEP, TIME_STEP):
-            t = min(t, total_time)
+        steps = total_time // TIME_STEP
+        for t in linspace(0, total_time, steps):
             service_kwargs = {
                 "entity_id": lamp,
                 "rgb_color": rgb(t),

@@ -34,8 +34,7 @@ DEFAULT_FINAL_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.wake_up_with_spotify"
 
 MIN_VOLUME_STEP = 0.01
-
-TIME_STEP = 4
+MIN_TIME_STEP = 4
 
 DEFAULTS = {
     "speaker": DEFAULT_SPEAKER,
@@ -45,6 +44,13 @@ DEFAULTS = {
     "final_volume": DEFAULT_FINAL_VOLUME,
     "input_boolean": DEFAULT_INPUT_BOOLEAN,
 }
+
+
+def linspace(a, b, n=100):
+    if n < 2:
+        return b
+    diff = (float(b) - a) / (n - 1)
+    return [diff * i + a for i in range(n)]
 
 
 class WakeUpWithSpotify(hass.Hass):
@@ -84,15 +90,19 @@ class WakeUpWithSpotify(hass.Hass):
         return self.start_volume_ramp(**data)
 
     def start_volume_ramp(self, **kwargs):
-        total_time = kwargs["total_time"]
-        slope = kwargs["final_volume"] / total_time
-        for t in range(0, total_time + TIME_STEP, TIME_STEP):
-            t = min(t, total_time)
+        steps = min(
+            round(kwargs["final_volume"] / MIN_VOLUME_STEP),
+            round(kwargs["total_time"] / MIN_TIME_STEP),
+        )
+        times = linspace(0, kwargs["total_time"], steps)
+        volumes = linspace(0, kwargs["final_volume"], steps)
+        self.log(f"volumes: {volumes}, times: {times}")
+        for t, vol in zip(times, volumes):
             service_kwargs = {
                 "entity_id": kwargs["speaker"],
-                "volume_level": round(slope * t, 2),
+                "volume_level": round(vol, 2),
             }
-            is_done = t == total_time
+            is_done = t == kwargs["total_time"]
             todo = self.run_in(
                 self.set_state_cb,
                 t,
@@ -106,7 +116,9 @@ class WakeUpWithSpotify(hass.Hass):
         current_volume = self.get_state(speaker, attribute="volume_level")
         manually_changed = abs(current_volume - self.volume) > MIN_VOLUME_STEP
         if manually_changed:
-            self.log(f"Canceling sequence")
+            self.log(
+                f"Canceling sequence, current_volume: {current_volume}, volume: {self.volume}"
+            )
             while self.todos:
                 self.cancel_timer(self.todos.pop())
 
