@@ -81,6 +81,12 @@ def linspace(a, b, n=100):
     return [diff * i + a for i in range(n)]
 
 
+def ensure_list(x):
+    if isinstance(x, list):
+        return x
+    return [x]
+
+
 def rgb_and_brightness(total_time, rgb_sequence):
     """Return interpolator objects for `rgb` and `brightness`.
 
@@ -127,10 +133,13 @@ class WakeUpLight(hass.Hass):
         self.start()
 
     def maybe_defaults(self, kwargs):
-        for k, v in DEFAULTS.items():
-            if k not in kwargs:
-                default_value = self.args.get(k, v)
-                kwargs[k] = default_value
+        for key in set(DEFAULTS) | set(self.args):
+            if key in kwargs:
+                continue
+            elif key in self.args:
+                kwargs[key] = self.args[key]
+            else:
+                kwargs[key] = DEFAULTS[key]
 
     @property
     def done_signal(self):
@@ -138,7 +147,6 @@ class WakeUpLight(hass.Hass):
 
     def start(self, **kwargs):
         self.maybe_defaults(kwargs)
-        self.log(f"maybe_defaults, kwargs: {kwargs}")
         total_time = kwargs["total_time"]
         lamp = kwargs["lamp"]
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
@@ -161,9 +169,7 @@ class WakeUpLight(hass.Hass):
             self.todos.append(todo)
 
         # Cancel when turning the light off.
-        if not isinstance(lamp, list):
-            lamps = [lamp]
-        for l in lamp:
+        for l in ensure_list(lamp):
             self.listen_state(
                 self.cancel_cb, l, oneshot=True, new="off", timeout=total_time
             )
