@@ -18,6 +18,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * TP-Link HS110 (2x)
 * Xiaomi Aqara Magic Cube
 * Xiaomi Aqara Single Button (4x)
+* Philips Hue Dimmer switch
 
 ### Sensors
 * Xiaomi Aqara Door Sensors (4x)
