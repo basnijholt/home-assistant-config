@@ -109,7 +109,8 @@ def rgb_and_brightness(total_time, rgb_sequence):
     xs = linspace(0, total_time, len(rgb_sequence))
     hsvs = zip(*[colorsys.rgb_to_hsv(*rgb) for rgb in rgb_sequence])
     hue, saturation, value = [Interpolate(xs, ys) for ys in hsvs]
-    _brightness = Interpolate([0, total_time], [1, 255])
+    # start at brightness=2 because it considers 1 to be off...
+    _brightness = Interpolate([0, total_time], [2, 255])
 
     def rgb(t):
         rgb = colorsys.hsv_to_rgb(hue(t), saturation(t), value(t))
@@ -156,7 +157,7 @@ class WakeUpLight(hass.Hass):
                 "entity_id": lamp,
                 "rgb_color": rgb(t),
                 "brightness": brightness(t),
-                "transition": t,
+                "transition": total_time / (steps - 1),
             }
             is_done = t == total_time
             todo = self.run_in(
@@ -175,14 +176,15 @@ class WakeUpLight(hass.Hass):
             )
 
     def set_state_cb(self, kwargs):
-        self.log(f"Setting light: {kwargs}")
-        self.call_service("light/turn_on", **kwargs.pop("service_kwargs"))
+        service_kwargs = kwargs.pop("service_kwargs")
+        self.log(f"Setting light: {service_kwargs}")
+        self.call_service("light/turn_on", **service_kwargs)
         if kwargs.pop("is_done"):
             self.fire_event(self.done_signal, **kwargs)
             self.log(self.done_signal)
 
     def cancel_cb(self, entity, attribute, old, new, kwargs):
         assert new == "off"
-        self.log(f"Canceling sequence")
+        self.log(f"Canceling sequence, old: {old}, new: {new}")
         while self.todos:
             self.cancel_timer(self.todos.pop())
