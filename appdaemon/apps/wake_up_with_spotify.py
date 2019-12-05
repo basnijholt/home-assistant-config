@@ -90,11 +90,9 @@ class WakeUpWithSpotify(hass.Hass):
         return self.start_volume_ramp(**data)
 
     def start_volume_ramp(self, **kwargs):
-        steps = min(
-            round(kwargs["final_volume"] / MIN_VOLUME_STEP),
-            round(kwargs["total_time"] / MIN_TIME_STEP),
-        )
-        steps += 1
+        steps_volume = round(kwargs["final_volume"] / MIN_VOLUME_STEP)
+        steps_time = round(kwargs["total_time"] / MIN_TIME_STEP)
+        steps = min(steps_volume, steps_time) + 1
         times = linspace(0, kwargs["total_time"], steps)
         volumes = linspace(0, kwargs["final_volume"], steps)
         self.log(f"volumes: {volumes}, times: {times}")
