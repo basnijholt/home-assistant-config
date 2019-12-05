@@ -2,7 +2,8 @@
 persons:
   name: People
   entities:
-    - person.bas_nijholt
+    - person.bas
+    - person.marcella
 
 guest_mode:
   name: Guest mode

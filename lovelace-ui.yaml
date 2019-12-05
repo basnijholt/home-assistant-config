@@ -31,7 +31,8 @@ data:
     title: Huis
     views:
     - badges:
-      - entity: person.bas_nijholt
+      - entity: person.bas
+      - entity: person.marcella
       - entity: sun.sun
       cards:
       - entities:

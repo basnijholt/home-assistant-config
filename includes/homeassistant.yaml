@@ -8,7 +8,7 @@ name: Home
 whitelist_external_dirs:
   - /config/
 customize:
-  person.bas_nijholt:
+  person.bas:
     entity_picture: "https://www.nijho.lt/authors/admin/avatar.jpg"
   light.ceiling_bedroom:
     friendly_name: Ceiling lamp
