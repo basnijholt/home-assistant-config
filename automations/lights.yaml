@@ -26,8 +26,8 @@
   trigger:
     - platform: state
       entity_id: group.persons
-      from: home
-      to: not_home
+      from: not_home
+      to: home
       for: "00:15:00"
   action:
     - service: light.turn_off
@@ -36,3 +36,22 @@
     - service: switch.turn_off
       data:
         entity_id: switch.desk_lamp
+
+- alias: "Light: turn on when coming home"
+  trigger:
+    - platform: state
+      entity_id: group.persons
+      from: not_home
+      to: home
+    - platform: state
+      entity_id: binary_sensor.openclose_1  # XXX: didn't attach this yet!
+      from: "off"
+      to: "on"
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-0:30:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.ceiling_bedroom
