@@ -1,5 +1,5 @@
 - id: '1574628254005'
-  name: Bed time
+  name: Bed Time
   entities:
     light.ceiling_bedroom:
       state: 'off'
@@ -10,36 +10,36 @@
     switch.desk_lamp:
       state: 'off'
 - id: '1575060114063'
-  name: Red
+  name: Red Lights
   entities:
     light.ceiling_bedroom:
       brightness: 254
       hs_color:
-      - 15.827
-      - 99.608
+      - 16.19
+      - 98.824
       rgb_color:
       - 255
-      - 68
-      - 0
+      - 70
+      - 2
       state: 'on'
       xy_color:
-      - 0.673
-      - 0.322
+      - 0.671
+      - 0.324
     light.speaker_bedroom:
       brightness: 254
       hs_color:
-      - 335.885
-      - 81.961
+      - 336
+      - 80.392
       rgb_color:
       - 255
-      - 45
-      - 130
+      - 50
+      - 132
       state: 'on'
       xy_color:
-      - 0.569
+      - 0.564
       - 0.252
 - id: '1575131362586'
-  name: Bright lights
+  name: Bright Lights
   entities:
     light.ceiling_bedroom:
       brightness: 254
@@ -49,3 +49,19 @@
       brightness: 254
       color_temp: 400
       state: 'on'
+- id: '1575501946792'
+  name: Night Light
+  entities:
+    light.ceiling_bedroom:
+      brightness: 1
+      hs_color:
+      - 10.672
+      - 99.216
+      rgb_color:
+      - 255
+      - 46
+      - 1
+      state: 'on'
+      xy_color:
+      - 0.687
+      - 0.31
