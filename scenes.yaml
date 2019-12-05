@@ -50,18 +50,33 @@
       color_temp: 400
       state: 'on'
 - id: '1575501946792'
-  name: Night Light
+  name: Night Lights
   entities:
     light.ceiling_bedroom:
-      brightness: 1
+      brightness: 6
       hs_color:
-      - 10.672
-      - 99.216
+      - 16.867
+      - 97.647
       rgb_color:
       - 255
-      - 46
-      - 1
+      - 75
+      - 6
       state: 'on'
       xy_color:
-      - 0.687
-      - 0.31
+      - 0.667
+      - 0.327
+    light.speaker_bedroom:
+      brightness: 6
+      hs_color:
+      - 335.821
+      - 78.824
+      rgb_color:
+      - 255
+      - 53
+      - 134
+      state: 'on'
+      xy_color:
+      - 0.56
+      - 0.252
+    switch.desk_lamp:
+      state: 'off'
