@@ -12,6 +12,7 @@ guest_mode:
     - automation.vacuum_cleanup_if_nobody_is_home
     - automation.vacation_mode_auto_turn_off
     - automation.vacation_mode_auto_turn_on
+    - automation.leaving_turn_off_everything
 
 vacation_mode:
   name: Vacation mode
