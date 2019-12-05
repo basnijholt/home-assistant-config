@@ -50,10 +50,13 @@ class StartSpotify(hass.Hass):
         self.tries = 0
 
     def maybe_defaults(self, kwargs):
-        for k, v in DEFAULTS.items():
-            if k not in kwargs:
-                default_value = self.args.get(k, v)
-                kwargs[k] = default_value
+        for key in set(DEFAULTS) | set(self.args):
+            if key in kwargs:
+                continue
+            elif key in self.args:
+                kwargs[key] = self.args[key]
+            else:
+                kwargs[key] = DEFAULTS[key]
 
     @property
     def done_signal(self):

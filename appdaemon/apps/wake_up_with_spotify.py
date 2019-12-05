@@ -93,7 +93,7 @@ class WakeUpWithSpotify(hass.Hass):
         steps = min(
             round(kwargs["final_volume"] / MIN_VOLUME_STEP),
             round(kwargs["total_time"] / MIN_TIME_STEP),
-        )
+        ) + 1
         times = linspace(0, kwargs["total_time"], steps)
         volumes = linspace(0, kwargs["final_volume"], steps)
         self.log(f"volumes: {volumes}, times: {times}")
@@ -117,13 +117,17 @@ class WakeUpWithSpotify(hass.Hass):
         manually_changed = abs(current_volume - self.volume) > MIN_VOLUME_STEP
         if manually_changed:
             self.log(
-                f"Canceling sequence, current_volume: {current_volume}, volume: {self.volume}"
+                f"Canceling sequence, "
+                "current_volume: {current_volume}, "
+                "volume: {self.volume}"
             )
             while self.todos:
                 self.cancel_timer(self.todos.pop())
+            return True
 
     def set_state_cb(self, kwargs):
-        self.maybe_cancel(kwargs["speaker"])
+        if self.maybe_cancel(kwargs["speaker"]):
+            return
         self.log(f"Setting volume: {kwargs}")
         service_kwargs = kwargs.pop("service_kwargs")
         self.call_service("media_player/volume_set", **service_kwargs)

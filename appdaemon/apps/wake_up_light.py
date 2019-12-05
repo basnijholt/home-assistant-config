@@ -52,7 +52,7 @@ RGB_SEQUENCE = [
     (255, 205, 166),
 ]
 
-TIME_STEP = 2  # time between settings
+MIN_TIME_STEP = 2  # time between settings
 
 
 class Interpolate:
@@ -150,13 +150,13 @@ class WakeUpLight(hass.Hass):
         total_time = kwargs["total_time"]
         lamp = kwargs["lamp"]
         rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
-        steps = total_time // TIME_STEP
+        steps = min(total_time // MIN_TIME_STEP, 255) + 1
         for t in linspace(0, total_time, steps):
             service_kwargs = {
                 "entity_id": lamp,
                 "rgb_color": rgb(t),
                 "brightness": brightness(t),
-                "transition": TIME_STEP,
+                "transition": t,
             }
             is_done = t == total_time
             todo = self.run_in(
