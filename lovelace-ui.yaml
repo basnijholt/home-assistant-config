@@ -123,7 +123,7 @@ data:
             action: call-service
             service: scene.turn_on
             service_data:
-              entity_id: scene.red
+              entity_id: scene.red_lights
         - entity: scene.bed_time
           tap_action:
             action: call-service
