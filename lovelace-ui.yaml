@@ -118,7 +118,7 @@ data:
           state: true
         type: custom:mini-graph-card
       - entities:
-        - entity: scene.red
+        - entity: scene.red_lights
           tap_action:
             action: call-service
             service: scene.turn_on
@@ -130,6 +130,18 @@ data:
             service: scene.turn_on
             service_data:
               entity_id: scene.bed_time
+        - entity: scene.night_lights
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.night_lights
+        - entity: scene.bright_lights
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.bright_lights
         show_state: false
         title: Scences
         type: glance
