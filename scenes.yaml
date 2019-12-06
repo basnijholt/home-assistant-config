@@ -41,6 +41,10 @@
 - id: '1575131362586'
   name: Bright Lights
   entities:
+    light.bamboo:
+      brightness: 254
+      color_temp: 366
+      state: 'on'
     light.ceiling_bedroom:
       brightness: 254
       color_temp: 366
@@ -48,6 +52,10 @@
     light.speaker_bedroom:
       brightness: 254
       color_temp: 400
+      state: 'on'
+    light.sphere:
+      brightness: 254
+      color_temp: 366
       state: 'on'
 - id: '1575501946792'
   name: Night Lights
@@ -80,3 +88,58 @@
       - 0.252
     switch.desk_lamp:
       state: 'off'
+- id: '1575663334038'
+  name: Cozy Lights
+  entities:
+    light.bamboo:
+      brightness: 254
+      hs_color:
+      - 26.725
+      - 89.804
+      rgb_color:
+      - 255
+      - 128
+      - 25
+      state: 'on'
+      xy_color:
+      - 0.606
+      - 0.372
+    light.ceiling_bedroom:
+      brightness: 254
+      hs_color:
+      - 16.56
+      - 98.039
+      rgb_color:
+      - 255
+      - 74
+      - 5
+      state: 'on'
+      xy_color:
+      - 0.668
+      - 0.326
+    light.speaker_bedroom:
+      brightness: 254
+      hs_color:
+      - 335.941
+      - 79.216
+      rgb_color:
+      - 255
+      - 52
+      - 133
+      state: 'on'
+      xy_color:
+      - 0.562
+      - 0.252
+    light.sphere:
+      brightness: 254
+      hs_color:
+      - 283.274
+      - 88.627
+      rgb_color:
+      - 191
+      - 29
+      - 255
+      state: 'on'
+      xy_color:
+      - 0.3
+      - 0.12
