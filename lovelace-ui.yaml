@@ -41,6 +41,8 @@ data:
         - entity: sensor.desk_lamp_current
         - entity: light.ceiling_bedroom
         - entity: light.speaker_bedroom
+        - entity: light.bamboo
+        - entity: light.sphere
         title: Lights
         type: entities
       - entity: weather.huis
