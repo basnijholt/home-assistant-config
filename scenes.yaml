@@ -1,9 +1,13 @@
 - id: '1574628254005'
   name: Bed Time
   entities:
+    light.bamboo:
+      state: 'off'
     light.ceiling_bedroom:
       state: 'off'
     light.speaker_bedroom:
+      state: 'off'
+    light.sphere:
       state: 'off'
     media_player.kef:
       state: 'off'
@@ -60,32 +64,58 @@
 - id: '1575501946792'
   name: Night Lights
   entities:
+    light.bamboo:
+      brightness: 8
+      hs_color:
+      - 26.667
+      - 88.235
+      rgb_color:
+      - 255
+      - 130
+      - 30
+      state: 'on'
+      xy_color:
+      - 0.602
+      - 0.373
     light.ceiling_bedroom:
       brightness: 6
       hs_color:
-      - 17.177
-      - 97.255
+      - 17.49
+      - 96.863
       rgb_color:
       - 255
-      - 77
-      - 6
+      - 80
+      - 7
       state: 'on'
       xy_color:
-      - 0.665
-      - 0.328
+      - 0.662
+      - 0.33
     light.speaker_bedroom:
       brightness: 6
       hs_color:
-      - 336
-      - 80.392
+      - 335.941
+      - 79.216
       rgb_color:
       - 255
-      - 50
-      - 132
+      - 52
+      - 133
       state: 'on'
       xy_color:
-      - 0.564
+      - 0.562
       - 0.252
+    light.sphere:
+      brightness: 15
+      hs_color:
+      - 282.5
+      - 84.706
+      rgb_color:
+      - 191
+      - 38
+      - 255
+      state: 'on'
+      xy_color:
+      - 0.299
+      - 0.122
     switch.desk_lamp:
       state: 'off'
 - id: '1575663334038'

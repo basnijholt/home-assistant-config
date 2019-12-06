@@ -145,6 +145,12 @@ data:
             service: scene.turn_on
             service_data:
               entity_id: scene.bright_lights
+        - entity: scene.cozy_lights
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.cozy_lights
         show_state: false
         title: Scences
         type: glance
