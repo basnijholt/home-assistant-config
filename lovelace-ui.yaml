@@ -413,19 +413,19 @@ data:
         - entity: sensor.temperature_1
         - entity: sensor.temperature_2
         - entity: sensor.temperature_3
-        - entity: sensor.temperature_4
+        - entity: sensor.temperature_bathroom
         - entity: sensor.humidity_1
         - entity: sensor.humidity_2
         - entity: sensor.humidity_3
-        - entity: sensor.humidity_4
+        - entity: sensor.humidity_bathroom
         - entity: sensor.pressure_1
         - entity: sensor.pressure_2
         - entity: sensor.pressure_3
-        - entity: sensor.pressure_4
+        - entity: sensor.pressure_bathroom
         - entity: sensor.temperature_sensor_1_battery_level
         - entity: sensor.temperature_sensor_2_battery_level
         - entity: sensor.temperature_sensor_3_battery_level
-        - entity: sensor.temperature_sensor_4_battery_level
+        - entity: sensor.temperature_sensor_bathroom_battery_level
         show_icon: true
         show_name: false
         show_state: true
@@ -437,11 +437,11 @@ data:
         - entity: binary_sensor.presence_1
         - entity: binary_sensor.presence_2
         - entity: binary_sensor.presence_3
-        - entity: binary_sensor.presence_4
+        - entity: binary_sensor.presence_bathroom
         - entity: sensor.motion_sensor_1_battery_level
         - entity: sensor.motion_sensor_2_battery_level
         - entity: sensor.motion_sensor_3_battery_level
-        - entity: sensor.motion_sensor_4_battery_level
+        - entity: sensor.motion_sensor_bathroom_battery_level
         show_icon: true
         show_name: false
         title: Motion sensor
