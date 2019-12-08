@@ -113,7 +113,7 @@ class WakeUpWithSpotify(hass.Hass):
 
     def maybe_cancel(self, speaker):
         current_volume = self.get_state(speaker, attribute="volume_level")
-        manually_changed = abs(current_volume - self.volume) > MIN_VOLUME_STEP
+        manually_changed = abs(current_volume - self.volume) > 2 * MIN_VOLUME_STEP
         if manually_changed:
             self.log(
                 f"Canceling sequence, "
