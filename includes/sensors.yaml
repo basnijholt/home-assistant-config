@@ -82,7 +82,7 @@
     - sensor.temperature_1
     - sensor.temperature_2
     - sensor.temperature_3
-    - sensor.temperature_4
+    - sensor.temperature_bathroom
 
 - platform: command_line
   name: RPi CPU Temperature

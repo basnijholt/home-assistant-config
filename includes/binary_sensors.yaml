@@ -1,0 +1,6 @@
+---
+- platform: template
+  sensors:
+    no_one_showering:
+      friendly_name: "No one is showering"
+      value_template: "{{ states('sensor.humidity_bathroom') | float(0) < 90 }}"
