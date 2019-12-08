@@ -97,6 +97,7 @@
     "settings": {
         "add_custom_repository": "LEGG TIL REPOSITORY",
         "category": "Kategori",
+        "compact_mode": "Kompakt modus",
         "custom_repositories": "TILPASSEDE REPOSITORIER",
         "delete": "Slett",
         "display": "Vise",
@@ -106,12 +107,16 @@
         "reload_data": "Last inn data på nytt",
         "save": "Lagre",
         "table": "Tabell",
+        "table_view": "Tabellvisning",
         "unhide": "Vis igjen",
         "upgrade_all": "Oppgradere alle"
     },
     "store": {
         "clear_new": "Tøm nye repositories",
+        "name": "Navn",
         "new_repositories": "Nye repositories",
-        "placeholder_search": "Skriv inn et søkeord ..."
+        "placeholder_search": "Skriv inn et søkeord ...",
+        "sort": "sorter",
+        "status": "Status"
     }
 }

@@ -97,6 +97,7 @@
     "settings": {
         "add_custom_repository": "ДОБАВИТЬ СВОЙ РЕПОЗИТОРИЙ",
         "category": "Категория",
+        "compact_mode": "Компактный режим",
         "custom_repositories": "СВОИ РЕПОЗИТОРИИ",
         "delete": "Удалить",
         "display": "Вид",
@@ -106,12 +107,16 @@
         "reload_data": "Перезагрузить",
         "save": "Сохранить",
         "table": "Таблица",
+        "table_view": "Таблица",
         "unhide": "Показать",
         "upgrade_all": "Обновить всё"
     },
     "store": {
         "clear_new": "Очистить все новые репозитории",
+        "name": "Название",
         "new_repositories": "Новые репозитории",
-        "placeholder_search": "Пожалуйста, введите условие для поиска..."
+        "placeholder_search": "Пожалуйста, введите условие для поиска...",
+        "sort": "Сортировка",
+        "status": "Статус"
     }
 }

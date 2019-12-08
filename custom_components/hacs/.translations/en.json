@@ -97,6 +97,7 @@
     "settings": {
         "add_custom_repository": "ADD CUSTOM REPOSITORY",
         "category": "Category",
+        "compact_mode": "Compact mode",
         "custom_repositories": "CUSTOM REPOSITORIES",
         "delete": "Delete",
         "display": "Display",
@@ -106,12 +107,16 @@
         "reload_data": "Reload data",
         "save": "Save",
         "table": "Table",
+        "table_view": "Table view",
         "unhide": "unhide",
         "upgrade_all": "Upgrade all"
     },
     "store": {
         "clear_new": "Clear all new repositories",
+        "name": "Name",
         "new_repositories": "New Repositories",
-        "placeholder_search": "Please enter a search term..."
+        "placeholder_search": "Please enter a search term...",
+        "sort": "sort",
+        "status": "Status"
     }
 }

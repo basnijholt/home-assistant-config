@@ -97,6 +97,7 @@
     "settings": {
         "add_custom_repository": "添加自定义仓库",
         "category": "类别",
+        "compact_mode": "紧凑模式",
         "custom_repositories": "自定义仓库",
         "delete": "删除",
         "display": "视图方式",
@@ -106,12 +107,16 @@
         "reload_data": "重载数据",
         "save": "保存",
         "table": "列表",
+        "table_view": "表视图",
         "unhide": "取消隐藏",
         "upgrade_all": "升级全部"
     },
     "store": {
         "clear_new": "清除所有新仓库标记",
+        "name": "名称",
         "new_repositories": "新仓库",
-        "placeholder_search": "搜索项目..."
+        "placeholder_search": "搜索项目...",
+        "sort": "排序",
+        "status": "状态"
     }
 }

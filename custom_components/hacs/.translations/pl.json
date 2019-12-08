@@ -97,6 +97,7 @@
     "settings": {
         "add_custom_repository": "DODAJ REPOZYTORIUM NIESTANDARDOWE",
         "category": "Kategoria",
+        "compact_mode": "Tryb kompaktowy",
         "custom_repositories": "REPOZYTORIA NIESTANDARDOWE",
         "delete": "Usuń",
         "display": "Sposób wyświetlania",
@@ -106,12 +107,16 @@
         "reload_data": "Wczytaj ponownie dane",
         "save": "Zapisz",
         "table": "tabela",
+        "table_view": "Widok tabeli",
         "unhide": "pokaż",
         "upgrade_all": "Uaktualnij wszystkie"
     },
     "store": {
         "clear_new": "Wyczyść wszystkie nowe repozytoria",
+        "name": "Nazwa",
         "new_repositories": "Nowe repozytoria",
-        "placeholder_search": "Wprowadź wyszukiwane hasło..."
+        "placeholder_search": "Wprowadź wyszukiwane hasło...",
+        "sort": "sortowanie",
+        "status": "Status"
     }
 }

@@ -40,7 +40,13 @@
         "title": "HACS (Home Assistant Community Store)"
     },
     "confirm": {
-        "delete": "Êtes-vous sûr de vouloir supprimer \"{item}\"?"
+        "add_to_lovelace": "Êtes-vous sûr de vouloir l'ajouter à vos ressources Lovelace ?",
+        "continue": "Es-tu sur de vouloir continuer?",
+        "delete": "Êtes-vous sûr de vouloir supprimer \"{item}\"?",
+        "exsist": "{item} existe déjà",
+        "generic": "Êtes-vous sûr?",
+        "overwrite": "En faisant cela, cela l'écrasera.",
+        "uninstall": "Êtes-vous sûr de vouloir désinstaller \"{item}\"?"
     },
     "options": {
         "step": {
@@ -53,7 +59,15 @@
             }
         }
     },
+    "repository_banner": {
+        "integration_not_loaded": "Cette intégration n'est pas chargée dans Home Assistant.",
+        "not_loaded": "Non chargé",
+        "plugin_not_loaded": "Ce plugin n'est pas ajouté à vos ressources Lovelace.",
+        "restart": "Vous devez redémarrer Home Assistant.",
+        "restart_pending": "Redémarrage en attente"
+    },
     "repository": {
+        "add_to_lovelace": "Ajouter à Lovelace",
         "authors": "Auteurs",
         "available": "Disponible",
         "back_to": "Retour",
@@ -83,17 +97,25 @@
     "settings": {
         "add_custom_repository": "AJOUTER UN DÉPÔT PERSONNALISÉ",
         "category": "Catégorie",
+        "compact_mode": "Mode compact",
         "custom_repositories": "DÉPÔTS PERSONNALISÉS",
         "delete": "Supprimer",
         "display": "Affichage",
         "grid": "Grille",
         "hacs_repo": "Dépôt HACS",
+        "hidden_repositories": "dépôts cachés",
         "reload_data": "Recharger les données",
         "save": "Enregistrer",
         "table": "Tableau",
+        "table_view": "Vue table",
         "upgrade_all": "Tout mettre à jour"
     },
     "store": {
-        "placeholder_search": "Veuillez entrer un terme de recherche..."
+        "clear_new": "Effacer tous les nouveaux dépôts",
+        "name": "Nom",
+        "new_repositories": "Nouveaux dépôts",
+        "placeholder_search": "Veuillez entrer un terme de recherche...",
+        "sort": "Trier",
+        "status": "Statut"
     }
 }
