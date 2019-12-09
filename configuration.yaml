@@ -28,7 +28,6 @@ recorder: !include includes/recorder.yaml
 weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
 input_number: !include includes/input_numbers.yaml
-timer: !include includes/timers.yaml
 python_script:
 
 # Components:
