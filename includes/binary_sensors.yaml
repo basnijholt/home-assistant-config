@@ -14,7 +14,7 @@
            or states("binary_sensor.activity_in_toilet") == "on"
            or states("binary_sensor.activity_in_bathroom") == "on" }}
 
-    motion_in_last_hour:
+    motion_detected_in_last_hour:
       friendly_name: Any motion detected in last hour
       value_template: >
         {{ states("binary_sensor.motion_detected") == "on" }}
@@ -23,7 +23,7 @@
     someone_in_the_house:
       friendly_name: Someone in the house
       value_template: >
-        {{ states("binary_sensor.motion_sensor_in_last_hour") == "on"
+        {{ states("binary_sensor.motion_detected_in_last_hour") == "on"
            or states("group.persons") == "home" }}
 
     activity_in_bathroom:
@@ -36,7 +36,7 @@
     activity_in_toilet:
       friendly_name: Activity at the toilet
       value_template: >
-        {{ states("binary_sensor.motion_sensor_kitchen") == "on" }}
+        {{ states("binary_sensor.motion_sensor_toilet") == "on" }}
       delay_off: "00:05:00"
 
     activity_in_kitchen:
@@ -48,5 +48,5 @@
     activity_in_hall:
       friendly_name: Activity in the hall
       value_template: >
-        {{ states("binary_sensor.motion_sensor_kitchen") == "on" }}
+        {{ states("binary_sensor.motion_sensor_hall") == "on" }}
       delay_off: "00:05:00"
