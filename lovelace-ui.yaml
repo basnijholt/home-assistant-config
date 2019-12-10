@@ -448,10 +448,10 @@ data:
         type: glance
       - columns: 4
         entities:
-        - entity: binary_sensor.presence_1
-        - entity: binary_sensor.presence_2
-        - entity: binary_sensor.presence_3
-        - entity: binary_sensor.presence_bathroom
+        - entity: binary_sensor.binary_sensor.motion_detector_kitchen
+        - entity: binary_sensor.motion_detector_hall
+        - entity: binary_sensor.motion_detector_kitchen
+        - entity: binary_sensor.motion_detector_bathroom
         - entity: sensor.motion_sensor_1_battery_level
         - entity: sensor.motion_sensor_2_battery_level
         - entity: sensor.motion_sensor_3_battery_level
@@ -476,12 +476,12 @@ data:
         title: Buttons
         type: glance
       - entities:
-        - entity: input_boolean.activity_in_bathroom
-        - entity: input_boolean.activity_in_hall
-        - entity: input_boolean.activity_in_kitchen
-        - entity: input_boolean.activity_in_toilet
-        - entity: binary_sensor.motion_detected
-        - entity: binary_sensor.motion_in_last_hour
+        - entity: binary_sensor.activity_in_bathroom
+        - entity: binary_sensor.activity_in_hall
+        - entity: binary_sensor.activity_in_kitchen
+        - entity: binary_sensor.activity_in_toilet
+        - entity: binary_sensor.motion_detector_detected
+        - entity: binary_sensor.motion_detector_in_last_hour
         - entity: binary_sensor.no_one_showering
         - entity: binary_sensor.someone_in_the_house
         show_header_toggle: false
@@ -492,11 +492,6 @@ data:
       title: Tests
     - badges: []
       cards:
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Activity
-        - slug: activity
       - template: automation_template
         type: custom:decluttering-card
         variables:
