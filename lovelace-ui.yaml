@@ -449,12 +449,12 @@ data:
       - columns: 4
         entities:
         - entity: binary_sensor.motion_sensor_kitchen
+        - entity: binary_sensor.motion_sensor_toilet
         - entity: binary_sensor.motion_sensor_hall
-        - entity: binary_sensor.motion_sensor_kitchen
         - entity: binary_sensor.motion_sensor_bathroom
-        - entity: sensor.motion_sensor_1_battery_level
-        - entity: sensor.motion_sensor_2_battery_level
-        - entity: sensor.motion_sensor_3_battery_level
+        - entity: sensor.motion_sensor_kitchen_battery_level
+        - entity: sensor.motion_sensor_toilet_battery_level
+        - entity: sensor.motion_sensor_hall_battery_level
         - entity: sensor.motion_sensor_bathroom_battery_level
         show_icon: true
         show_name: false
@@ -480,9 +480,9 @@ data:
         - entity: binary_sensor.activity_in_hall
         - entity: binary_sensor.activity_in_kitchen
         - entity: binary_sensor.activity_in_toilet
-        - entity: binary_sensor.motion_sensor_detected
-        - entity: binary_sensor.motion_sensor_in_last_hour
-        - entity: binary_sensor.no_one_showering
+        - entity: binary_sensor.motion_detected
+        - entity: binary_sensor.motion_in_last_hour
+        - entity: binary_sensor.someone_showering
         - entity: binary_sensor.someone_in_the_house
         show_header_toggle: false
         title: Activity in the house
