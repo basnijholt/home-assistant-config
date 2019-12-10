@@ -448,10 +448,10 @@ data:
         type: glance
       - columns: 4
         entities:
-        - entity: binary_sensor.binary_sensor.motion_detector_kitchen
-        - entity: binary_sensor.motion_detector_hall
-        - entity: binary_sensor.motion_detector_kitchen
-        - entity: binary_sensor.motion_detector_bathroom
+        - entity: binary_sensor.motion_sensor_kitchen
+        - entity: binary_sensor.motion_sensor_hall
+        - entity: binary_sensor.motion_sensor_kitchen
+        - entity: binary_sensor.motion_sensor_bathroom
         - entity: sensor.motion_sensor_1_battery_level
         - entity: sensor.motion_sensor_2_battery_level
         - entity: sensor.motion_sensor_3_battery_level
@@ -480,8 +480,8 @@ data:
         - entity: binary_sensor.activity_in_hall
         - entity: binary_sensor.activity_in_kitchen
         - entity: binary_sensor.activity_in_toilet
-        - entity: binary_sensor.motion_detector_detected
-        - entity: binary_sensor.motion_detector_in_last_hour
+        - entity: binary_sensor.motion_sensor_detected
+        - entity: binary_sensor.motion_sensor_in_last_hour
         - entity: binary_sensor.no_one_showering
         - entity: binary_sensor.someone_in_the_house
         show_header_toggle: false
