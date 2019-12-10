@@ -56,7 +56,7 @@
       data:
         entity_id: light.ceiling_bedroom
 
-- alias: "Light: turn on night lights"
+- alias: "Light: turn on night lights with button single click"
   trigger:
     platform: event
     event_type: deconz_event
@@ -70,7 +70,7 @@
     - service: scene.turn_on
       entity_id: scene.night_lights
 
-- alias: "Light: turn off everything"
+- alias: "Light: turn off everything with button double click"
   trigger:
     platform: event
     event_type: deconz_event
