@@ -2,15 +2,31 @@
 - alias: "Leaving: turn off everything"
   initial_state: "on"
   trigger:
-    platform: state
-    entity_id: group.persons
-    from: home
-    to: not_home
-    for:
-      minutes: 30
+    - platform: state
+      entity_id: binary_sensor.someone_in_the_house
+      from: "on"
+      to: "off"
+    - platform: time_pattern
+      hours: "/1"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.someone_in_the_house
+        state: "off"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: group.all_lights
+            state: "on"
+          - condition: state
+            entity_id: media_player.kef
+            state: "on"
   action:
-    - service: scene.turn_on
-      entity_id: scene.bed_time
+    - service: light.turn_off
+      entity_id: all
+    - service: media_player.turn_off
+      entity_id: media_player.kef
     - service: notify.mobile_app_basnijholt_iphone
       data:
         title: "Leaving"
