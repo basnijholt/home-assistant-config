@@ -1,130 +1,317 @@
-data:
-  config:
-    background: var(--background-image)
-    cch:
-      background: rgba(155,155,155,.25)
-      clock_format: 24
-      options: clock
-      swipe_animate: fade
-      swipe_prevent_default: true
-    decluttering_templates:
-      automation_template:
-        card:
-          card:
-            show_header_toggle: false
-            title: '[[name]] automations'
-            type: entities
-          filter:
-            include:
-            - entity_id: automation.[[slug]]*
-          sort: entity_id
-          type: custom:auto-entities
-    resources:
-    - type: module
-      url: /community_plugin/mini-media-player/mini-media-player-bundle.js
-    - type: module
-      url: /community_plugin/lovelace-card-mod/card-mod.js
-    - type: js
-      url: /community_plugin/bar-card/bar-card.js
-    - type: js
-      url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
-    - type: module
-      url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
-    - type: module
-      url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
-    - type: module
-      url: /community_plugin/compact-custom-header/compact-custom-header.js
-    - type: js
-      url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
-    - type: js
-      url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
-    - type: module
-      url: /community_plugin/lovelace-auto-entities/auto-entities.js
-    - type: module
-      url: /community_plugin/decluttering-card/decluttering-card.js
-    title: Huis
-    views:
-    - badges:
-      - entity: person.bas
-      - entity: person.marcella
-      - entity: sun.sun
-      cards:
-      - entities:
-        - entity: switch.desk_lamp
-        - entity: switch.circadian_lighting_circadian_lighting
-        - entity: sensor.desk_lamp_current
-        - entity: light.ceiling_bedroom
-        - entity: light.speaker_bedroom
-        - entity: light.bamboo
-        - entity: light.sphere
-        title: Lights
-        type: entities
-      - entity: weather.huis
-        type: weather-forecast
-      - cards:
-        - artwork: cover
-          entity: media_player.spotify
-          hide:
-            power: true
-            source: false
-            volume: true
-          icon: mdi:spotify
-          type: custom:mini-media-player
-        - background: /local/kef_speakers.jpeg
-          entity: media_player.kef
-          hide:
-            controls: true
-            mute: false
-            play_stop: true
-            volume: false
-          type: custom:mini-media-player
-        - entity: input_boolean.start_the_music
-          icon_height: 20px
-          type: entity-button
-        type: vertical-stack
-      - entities:
-        - entity: input_boolean.alarm_clock
-        - entity: input_datetime.alarm_clock
+background: var(--background-image)
+cch:
+  background: rgba(155,155,155,.25)
+  clock_format: 24
+  options: clock
+  swipe_animate: fade
+  swipe_prevent_default: true
+decluttering_templates:
+  automation_template:
+    card:
+      card:
         show_header_toggle: false
-        title: Alarms
+        title: '[[name]] automations'
         type: entities
-      - entities:
-        - entity: sensor.adaptive
-          type: custom:github-entity-row
-        - entity: sensor.lovelace_ios_dark_mode_theme
-          type: custom:github-entity-row
-        - entity: sensor.home_assistant_config
-          type: custom:github-entity-row
-        show_header_toggle: false
-        title: GitHub
-        type: entities
-      - cards:
-        - buttons: true
-          entity: vacuum.xiaomi_vacuum_cleaner
-          image: /local/custom/folder/background.png
-          name: Vacuum
-          type: custom:xiaomi-vacuum-card
-        - entities:
-          - entity: switch.vacuum_mode
-          - entity: input_boolean.cleaned_today
-          show_header_toggle: false
-          theme: Backend-selected
-          type: entities
-        type: vertical-stack
-      - entities:
-        - entity: input_boolean.vacation_mode
-        - entity: input_boolean.guest_mode
-        show_header_toggle: false
-        title: Modes
-        type: entities
+      filter:
+        include:
+        - entity_id: automation.[[slug]]*
+      sort: entity_id
+      type: custom:auto-entities
+resources:
+- type: module
+  url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+- type: module
+  url: /community_plugin/lovelace-card-mod/card-mod.js
+- type: js
+  url: /community_plugin/bar-card/bar-card.js
+- type: js
+  url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+- type: module
+  url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+- type: module
+  url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+- type: module
+  url: /community_plugin/compact-custom-header/compact-custom-header.js
+- type: js
+  url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
+- type: js
+  url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
+- type: module
+  url: /community_plugin/lovelace-auto-entities/auto-entities.js
+- type: module
+  url: /community_plugin/decluttering-card/decluttering-card.js
+title: Huis
+views:
+- badges:
+  - entity: person.bas
+  - entity: person.marcella
+  - entity: sun.sun
+  cards:
+  - entities:
+    - entity: switch.desk_lamp
+    - entity: switch.circadian_lighting_circadian_lighting
+    - entity: sensor.desk_lamp_current
+    - entity: light.ceiling_bedroom
+    - entity: light.speaker_bedroom
+    - entity: light.bamboo
+    - entity: light.sphere
+    title: Lights
+    type: entities
+  - entity: weather.huis
+    type: weather-forecast
+  - cards:
+    - artwork: cover
+      entity: media_player.spotify
+      hide:
+        power: true
+        source: false
+        volume: true
+      icon: mdi:spotify
+      type: custom:mini-media-player
+    - background: /local/kef_speakers.jpeg
+      entity: media_player.kef
+      hide:
+        controls: true
+        mute: false
+        play_stop: true
+        volume: false
+      type: custom:mini-media-player
+    - entity: input_boolean.start_the_music
+      icon_height: 20px
+      type: entity-button
+    type: vertical-stack
+  - entities:
+    - entity: input_boolean.alarm_clock
+    - entity: input_datetime.alarm_clock
+    show_header_toggle: false
+    title: Alarms
+    type: entities
+  - entities:
+    - entity: sensor.adaptive
+      type: custom:github-entity-row
+    - entity: sensor.lovelace_ios_dark_mode_theme
+      type: custom:github-entity-row
+    - entity: sensor.home_assistant_config
+      type: custom:github-entity-row
+    show_header_toggle: false
+    title: GitHub
+    type: entities
+  - cards:
+    - buttons: true
+      entity: vacuum.xiaomi_vacuum_cleaner
+      image: /local/custom/folder/background.png
+      name: Vacuum
+      type: custom:xiaomi-vacuum-card
+    - entities:
+      - entity: switch.vacuum_mode
+      - entity: input_boolean.cleaned_today
+      show_header_toggle: false
+      theme: Backend-selected
+      type: entities
+    type: vertical-stack
+  - entities:
+    - entity: input_boolean.vacation_mode
+    - entity: input_boolean.guest_mode
+    show_header_toggle: false
+    title: Modes
+    type: entities
+  - color_thresholds_transition: smooth
+    entities:
+    - entity: sensor.temperature_mean
+      name: Temperature
+    font_size: 70
+    group: false
+    hour24: true
+    line_width: 6
+    points_per_hour: 1
+    show:
+      extrema: true
+      fill: fade
+      icon: true
+      labels: false
+      name: true
+      state: true
+    type: custom:mini-graph-card
+  - entities:
+    - entity: scene.red_lights
+      tap_action:
+        action: call-service
+        service: scene.turn_on
+        service_data:
+          entity_id: scene.red_lights
+    - entity: scene.bed_time
+      tap_action:
+        action: call-service
+        service: scene.turn_on
+        service_data:
+          entity_id: scene.bed_time
+    - entity: scene.night_lights
+      tap_action:
+        action: call-service
+        service: scene.turn_on
+        service_data:
+          entity_id: scene.night_lights
+    - entity: scene.bright_lights
+      tap_action:
+        action: call-service
+        service: scene.turn_on
+        service_data:
+          entity_id: scene.bright_lights
+    - entity: scene.cozy_lights
+      tap_action:
+        action: call-service
+        service: scene.turn_on
+        service_data:
+          entity_id: scene.cozy_lights
+    show_state: false
+    title: Scences
+    type: glance
+  path: default_view
+  title: Home
+- cards:
+  - cards:
+    - entities:
+      - entity: sensor.installed_version
+        icon: mdi:home-assistant
+        name: Hassio Installed Version
+      - entity: sensor.latest_available_version
+        icon: mdi:home-assistant
+        name: Hassio Current Version
+      - entity: sensor.hacs
+        icon: mdi:update
+        name: Community Store
+      - type: divider
+      - entity: sensor.last_boot
+        icon: mdi:calendar
+      - entity: sensor.uptime
+        icon: mdi:home-assistant
+      - entity: sensor.home_assistant_v2_db
+        icon: mdi:home-assistant
+      - animation: 'off'
+        entity: sensor.processor_use
+        height: 30px
+        indicator: 'off'
+        severity:
+        - color: green
+          value: 60
+        - color: orange
+          value: 85
+        - color: red
+          value: 100
+        title: Processor Usage
+        type: custom:bar-card
+      - animation: 'off'
+        entity: sensor.rpi_cpu_temperature
+        height: 30px
+        indicator: 'off'
+        severity:
+        - color: green
+          value: 60
+        - color: orange
+          value: 70
+        - color: red
+          value: 100
+        title: CPU Temp
+        type: custom:bar-card
+      - animation: 'off'
+        entity: sensor.rpi_gpu_temperature
+        height: 30px
+        indicator: 'off'
+        severity:
+        - color: green
+          value: 60
+        - color: orange
+          value: 70
+        - color: red
+          value: 100
+        title: CPU Temp
+        type: custom:bar-card
+      - animation: 'off'
+        entity: sensor.memory_use_percent
+        height: 30px
+        indicator: 'off'
+        severity:
+        - color: green
+          value: 60
+        - color: orange
+          value: 85
+        - color: red
+          value: 100
+        title: Memory Usage
+        type: custom:bar-card
+      - animation: 'off'
+        entity: sensor.disk_use_percent
+        height: 30px
+        indicator: 'off'
+        severity:
+        - color: green
+          value: 60
+        - color: orange
+          value: 85
+        - color: red
+          value: 100
+        title: Disk Usage
+        type: custom:bar-card
+      - type: divider
+      - entity: sensor.myip
+        icon: mdi:ip-network
+      show_header_toggle: false
+      title: System
+      type: entities
+    type: vertical-stack
+  - cards:
+    - columns: 4
+      entities:
+      - entity: sensor.count_automations
+        icon: mdi:autorenew
+        name: Automations
+      - entity: sensor.count_scripts
+        icon: mdi:script-text-outline
+        name: Scripts
+      - entity: sensor.count_zones
+        icon: mdi:map-marker-radius
+        name: Zones
+      - entity: sensor.count_device_trackers
+        icon: mdi:map-marker
+        name: Device Trackers
+      - entity: sensor.count_switches
+        icon: mdi:light-switch
+        name: Switches
+      - entity: sensor.count_sensors
+        icon: mdi:resistor
+        name: Sensors
+      - entity: sensor.count_binary_sensors
+        icon: mdi:unfold-more-horizontal
+        name: Binary Sensors
+      - entity: sensor.count_input_booleans
+        icon: mdi:toggle-switch
+        name: Input Booleans
+      - entity: sensor.count_input_numbers
+        icon: mdi:numeric
+        name: Input Numbers
+      - entity: sensor.count_input_texts
+        icon: mdi:alphabetical
+        name: Input Texts
+      - entity: sensor.count_input_selects
+        icon: mdi:view-list
+        name: Input Select
+      - entity: sensor.count_input_datetimes
+        icon: mdi:calendar-clock
+        name: Input Date Times
+      title: Component Count
+      type: glance
+    type: vertical-stack
+  - cards:
+    - cards:
       - color_thresholds_transition: smooth
         entities:
-        - entity: sensor.temperature_mean
-          name: Temperature
+        - entity: sensor.speedtest_ping
+          name: Ping
         font_size: 70
         group: false
         hour24: true
         line_width: 6
+        lower_bound: 0
         points_per_hour: 1
         show:
           extrema: true
@@ -134,431 +321,245 @@ data:
           name: true
           state: true
         type: custom:mini-graph-card
-      - entities:
-        - entity: scene.red_lights
-          tap_action:
-            action: call-service
-            service: scene.turn_on
-            service_data:
-              entity_id: scene.red_lights
-        - entity: scene.bed_time
-          tap_action:
-            action: call-service
-            service: scene.turn_on
-            service_data:
-              entity_id: scene.bed_time
-        - entity: scene.night_lights
-          tap_action:
-            action: call-service
-            service: scene.turn_on
-            service_data:
-              entity_id: scene.night_lights
-        - entity: scene.bright_lights
-          tap_action:
-            action: call-service
-            service: scene.turn_on
-            service_data:
-              entity_id: scene.bright_lights
-        - entity: scene.cozy_lights
-          tap_action:
-            action: call-service
-            service: scene.turn_on
-            service_data:
-              entity_id: scene.cozy_lights
-        show_state: false
-        title: Scences
-        type: glance
-      path: default_view
-      title: Home
-    - cards:
-      - cards:
-        - entities:
-          - entity: sensor.installed_version
-            icon: mdi:home-assistant
-            name: Hassio Installed Version
-          - entity: sensor.latest_available_version
-            icon: mdi:home-assistant
-            name: Hassio Current Version
-          - entity: sensor.hacs
-            icon: mdi:update
-            name: Community Store
-          - type: divider
-          - entity: sensor.last_boot
-            icon: mdi:calendar
-          - entity: sensor.uptime
-            icon: mdi:home-assistant
-          - entity: sensor.home_assistant_v2_db
-            icon: mdi:home-assistant
-          - animation: 'off'
-            entity: sensor.processor_use
-            height: 30px
-            indicator: 'off'
-            severity:
-            - color: green
-              value: 60
-            - color: orange
-              value: 85
-            - color: red
-              value: 100
-            title: Processor Usage
-            type: custom:bar-card
-          - animation: 'off'
-            entity: sensor.rpi_cpu_temperature
-            height: 30px
-            indicator: 'off'
-            severity:
-            - color: green
-              value: 60
-            - color: orange
-              value: 70
-            - color: red
-              value: 100
-            title: CPU Temp
-            type: custom:bar-card
-          - animation: 'off'
-            entity: sensor.rpi_gpu_temperature
-            height: 30px
-            indicator: 'off'
-            severity:
-            - color: green
-              value: 60
-            - color: orange
-              value: 70
-            - color: red
-              value: 100
-            title: CPU Temp
-            type: custom:bar-card
-          - animation: 'off'
-            entity: sensor.memory_use_percent
-            height: 30px
-            indicator: 'off'
-            severity:
-            - color: green
-              value: 60
-            - color: orange
-              value: 85
-            - color: red
-              value: 100
-            title: Memory Usage
-            type: custom:bar-card
-          - animation: 'off'
-            entity: sensor.disk_use_percent
-            height: 30px
-            indicator: 'off'
-            severity:
-            - color: green
-              value: 60
-            - color: orange
-              value: 85
-            - color: red
-              value: 100
-            title: Disk Usage
-            type: custom:bar-card
-          - type: divider
-          - entity: sensor.myip
-            icon: mdi:ip-network
-          show_header_toggle: false
-          title: System
-          type: entities
-        type: vertical-stack
-      - cards:
-        - columns: 4
-          entities:
-          - entity: sensor.count_automations
-            icon: mdi:autorenew
-            name: Automations
-          - entity: sensor.count_scripts
-            icon: mdi:script-text-outline
-            name: Scripts
-          - entity: sensor.count_zones
-            icon: mdi:map-marker-radius
-            name: Zones
-          - entity: sensor.count_device_trackers
-            icon: mdi:map-marker
-            name: Device Trackers
-          - entity: sensor.count_switches
-            icon: mdi:light-switch
-            name: Switches
-          - entity: sensor.count_sensors
-            icon: mdi:resistor
-            name: Sensors
-          - entity: sensor.count_binary_sensors
-            icon: mdi:unfold-more-horizontal
-            name: Binary Sensors
-          - entity: sensor.count_input_booleans
-            icon: mdi:toggle-switch
-            name: Input Booleans
-          - entity: sensor.count_input_numbers
-            icon: mdi:numeric
-            name: Input Numbers
-          - entity: sensor.count_input_texts
-            icon: mdi:alphabetical
-            name: Input Texts
-          - entity: sensor.count_input_selects
-            icon: mdi:view-list
-            name: Input Select
-          - entity: sensor.count_input_datetimes
-            icon: mdi:calendar-clock
-            name: Input Date Times
-          title: Component Count
-          type: glance
-        type: vertical-stack
-      - cards:
-        - cards:
-          - color_thresholds_transition: smooth
-            entities:
-            - entity: sensor.speedtest_ping
-              name: Ping
-            font_size: 70
-            group: false
-            hour24: true
-            line_width: 6
-            lower_bound: 0
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: fade
-              icon: true
-              labels: false
-              name: true
-              state: true
-            type: custom:mini-graph-card
-          - color_thresholds_transition: smooth
-            entities:
-            - entity: sensor.speedtest_download
-              name: Download
-            font_size: 70
-            group: false
-            hour24: true
-            line_width: 6
-            lower_bound: 0
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: fade
-              icon: true
-              labels: false
-              name: true
-              state: true
-            type: custom:mini-graph-card
-          - color_thresholds_transition: smooth
-            entities:
-            - entity: sensor.speedtest_upload
-              name: Upload
-            font_size: 70
-            group: false
-            hour24: true
-            line_width: 6
-            lower_bound: 0
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: fade
-              icon: true
-              labels: false
-              name: true
-              state: true
-            type: custom:mini-graph-card
-          name: Speedtest
-          type: horizontal-stack
-        title: Network
-        type: custom:vertical-stack-in-card
-      - entities:
-        - entity: zone.home
-          icon: mdi:restart
-          name: Lovelace
-          tap_action:
-            action: call-service
-            service: frontend.reload_themes
-        - entity: zone.home
-          icon: mdi:restart
-          name: Home Assistant
-          tap_action:
-            action: call-service
-            service: homeassistant.restart
-        - entity: zone.home
-          icon: mdi:restart
-          name: Server
-          tap_action:
-            action: call-service
-            service: hassio.host_reboot
-        show_name: true
-        show_state: false
-        type: glance
-      - card:
-          show_header_toggle: false
-          title: Bas' iPhone
-          type: entities
-        filter:
-          include:
-          - group: group.iphone_bas
-        type: custom:auto-entities
-      icon: mdi:home-assistant
-      path: system
-      title: System Information
-    - badges: []
-      cards:
-      - entities:
-        - entity: input_boolean.start_spotify
-        - entity: input_boolean.wake_up_light
-        - entity: input_boolean.wake_up_with_spotify
-        - entity: input_boolean.start_speakers
-        - entity: input_boolean.demo_wake_up_light
-        - entity: input_boolean.demo_wake_up_with_spotify
-        show_header_toggle: false
-        title: Test apps
-        type: entities
-      - columns: 4
+      - color_thresholds_transition: smooth
         entities:
-        - entity: binary_sensor.openclose_1
-        - entity: binary_sensor.openclose_2
-        - entity: binary_sensor.openclose_3
-        - entity: binary_sensor.openclose_4
-        - entity: sensor.openclose_1_battery_level
-        - entity: sensor.openclose_2_battery_level
-        - entity: sensor.openclose_3_battery_level
-        - entity: sensor.openclose_4_battery_level
-        show_icon: true
-        show_name: false
-        title: Open/close sensor
-        type: glance
-      - columns: 4
+        - entity: sensor.speedtest_download
+          name: Download
+        font_size: 70
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          icon: true
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      - color_thresholds_transition: smooth
         entities:
-        - entity: sensor.temperature_1
-        - entity: sensor.temperature_2
-        - entity: sensor.temperature_3
-        - entity: sensor.temperature_bathroom
-        - entity: sensor.humidity_1
-        - entity: sensor.humidity_2
-        - entity: sensor.humidity_3
-        - entity: sensor.humidity_bathroom
-        - entity: sensor.pressure_1
-        - entity: sensor.pressure_2
-        - entity: sensor.pressure_3
-        - entity: sensor.pressure_bathroom
-        - entity: sensor.temperature_sensor_1_battery_level
-        - entity: sensor.temperature_sensor_2_battery_level
-        - entity: sensor.temperature_sensor_3_battery_level
-        - entity: sensor.temperature_sensor_bathroom_battery_level
-        show_icon: true
-        show_name: false
-        show_state: true
-        theme: Backend-selected
-        title: Temperature sensors
-        type: glance
-      - columns: 4
-        entities:
-        - entity: binary_sensor.motion_sensor_kitchen
-        - entity: binary_sensor.motion_sensor_toilet
-        - entity: binary_sensor.motion_sensor_hall
-        - entity: binary_sensor.motion_sensor_bathroom
-        - entity: sensor.motion_sensor_kitchen_battery_level
-        - entity: sensor.motion_sensor_toilet_battery_level
-        - entity: sensor.motion_sensor_hall_battery_level
-        - entity: sensor.motion_sensor_bathroom_battery_level
-        show_icon: true
-        show_name: false
-        title: Motion sensor
-        type: glance
-      - entities:
-        - entity: input_number.volume_delay
-        - entity: input_number.volume_last
-        title: Inputs
-        type: entities
-      - columns: 4
-        entities:
-        - entity: sensor.button_mini_1_battery_level
-        - entity: sensor.button_mini_2_battery_level
-        - entity: sensor.button_mini_3_battery_level
-        - entity: sensor.button_mini_4_battery_level
-        show_icon: true
-        show_name: false
-        title: Buttons
-        type: glance
-      - entities:
-        - entity: binary_sensor.activity_in_bathroom
-        - entity: binary_sensor.activity_in_hall
-        - entity: binary_sensor.activity_in_kitchen
-        - entity: binary_sensor.activity_in_toilet
-        - entity: binary_sensor.motion_detected
-        - entity: binary_sensor.motion_in_last_hour
-        - entity: binary_sensor.someone_showering
-        - entity: binary_sensor.someone_in_the_house
-        show_header_toggle: false
-        title: Activity in the house
-        type: entities
-      icon: mdi:test-tube
-      path: tests
-      title: Tests
-    - badges: []
-      cards:
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Alarm clock
-        - slug: alarm_clock
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Guest mode
-        - slug: guest_mode
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Leaving
-        - slug: leaving
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Light
-        - slug: light
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Lovelace
-        - slug: lovelace
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Music
-        - slug: music
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Security
-        - slug: security
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Vacation mode
-        - slug: vacation_mode
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-        - name: Vacuum
-        - slug: vacuum
-      - card:
-          show_header_toggle: false
-          title: Rest
-          type: entities
-        filter:
-          exclude:
-          - entity_id: automation.activity_*
-          - entity_id: automation.alarm_clock_*
-          - entity_id: automation.guest_mode_*
-          - entity_id: automation.leaving_*
-          - entity_id: automation.light_*
-          - entity_id: automation.lovelace_*
-          - entity_id: automation.music_*
-          - entity_id: automation.security_*
-          - entity_id: automation.vacation_mode_*
-          - entity_id: automation.vacuum_*
-          include:
-          - domain: automation
-        sort: entity_id
-        type: custom:auto-entities
-      icon: mdi:robot
-      path: automations
-      title: Automations
-key: lovelace
-version: 1
+        - entity: sensor.speedtest_upload
+          name: Upload
+        font_size: 70
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          icon: true
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      name: Speedtest
+      type: horizontal-stack
+    title: Network
+    type: custom:vertical-stack-in-card
+  - entities:
+    - entity: zone.home
+      icon: mdi:restart
+      name: Lovelace
+      tap_action:
+        action: call-service
+        service: frontend.reload_themes
+    - entity: zone.home
+      icon: mdi:restart
+      name: Home Assistant
+      tap_action:
+        action: call-service
+        service: homeassistant.restart
+    - entity: zone.home
+      icon: mdi:restart
+      name: Server
+      tap_action:
+        action: call-service
+        service: hassio.host_reboot
+    show_name: true
+    show_state: false
+    type: glance
+  - card:
+      show_header_toggle: false
+      title: Bas' iPhone
+      type: entities
+    filter:
+      include:
+      - group: group.iphone_bas
+    type: custom:auto-entities
+  icon: mdi:home-assistant
+  path: system
+  title: System Information
+- badges: []
+  cards:
+  - entities:
+    - entity: input_boolean.start_spotify
+    - entity: input_boolean.wake_up_light
+    - entity: input_boolean.wake_up_with_spotify
+    - entity: input_boolean.start_speakers
+    - entity: input_boolean.demo_wake_up_light
+    - entity: input_boolean.demo_wake_up_with_spotify
+    show_header_toggle: false
+    title: Test apps
+    type: entities
+  - columns: 4
+    entities:
+    - entity: binary_sensor.openclose_1
+    - entity: binary_sensor.openclose_2
+    - entity: binary_sensor.openclose_3
+    - entity: binary_sensor.openclose_4
+    - entity: sensor.openclose_1_battery_level
+    - entity: sensor.openclose_2_battery_level
+    - entity: sensor.openclose_3_battery_level
+    - entity: sensor.openclose_4_battery_level
+    show_icon: true
+    show_name: false
+    title: Open/close sensor
+    type: glance
+  - columns: 4
+    entities:
+    - entity: sensor.temperature_1
+    - entity: sensor.temperature_2
+    - entity: sensor.temperature_3
+    - entity: sensor.temperature_bathroom
+    - entity: sensor.humidity_1
+    - entity: sensor.humidity_2
+    - entity: sensor.humidity_3
+    - entity: sensor.humidity_bathroom
+    - entity: sensor.pressure_1
+    - entity: sensor.pressure_2
+    - entity: sensor.pressure_3
+    - entity: sensor.pressure_bathroom
+    - entity: sensor.temperature_sensor_1_battery_level
+    - entity: sensor.temperature_sensor_2_battery_level
+    - entity: sensor.temperature_sensor_3_battery_level
+    - entity: sensor.temperature_sensor_bathroom_battery_level
+    show_icon: true
+    show_name: false
+    show_state: true
+    theme: Backend-selected
+    title: Temperature sensors
+    type: glance
+  - columns: 4
+    entities:
+    - entity: binary_sensor.motion_sensor_kitchen
+    - entity: binary_sensor.motion_sensor_toilet
+    - entity: binary_sensor.motion_sensor_hall
+    - entity: binary_sensor.motion_sensor_bathroom
+    - entity: sensor.lightlevel_kitchen
+    - entity: sensor.lightlevel_toilet
+    - entity: sensor.lightlevel_hall
+    - entity: sensor.lightlevel_bathroom
+    - entity: sensor.motion_sensor_kitchen_battery_level
+    - entity: sensor.motion_sensor_toilet_battery_level
+    - entity: sensor.motion_sensor_hall_battery_level
+    - entity: sensor.motion_sensor_bathroom_battery_level
+    show_icon: true
+    show_name: false
+    title: Motion sensor
+    type: glance
+  - entities:
+    - entity: input_number.volume_delay
+    - entity: input_number.volume_last
+    title: Inputs
+    type: entities
+  - columns: 4
+    entities:
+    - entity: sensor.button_mini_1_battery_level
+    - entity: sensor.button_mini_2_battery_level
+    - entity: sensor.button_mini_3_battery_level
+    - entity: sensor.button_mini_4_battery_level
+    show_icon: true
+    show_name: false
+    title: Buttons
+    type: glance
+  - entities:
+    - entity: binary_sensor.activity_in_bathroom
+    - entity: binary_sensor.activity_in_hall
+    - entity: binary_sensor.activity_in_kitchen
+    - entity: binary_sensor.activity_in_toilet
+    - type: divider
+    - entity: binary_sensor.motion_detected
+    - entity: binary_sensor.motion_in_last_hour
+    - entity: binary_sensor.someone_showering
+    - entity: binary_sensor.someone_in_the_house
+    show_header_toggle: false
+    title: Activity in the house
+    type: entities
+  icon: mdi:test-tube
+  path: tests
+  title: Tests
+- badges: []
+  cards:
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Alarm clock
+    - slug: alarm_clock
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Guest mode
+    - slug: guest_mode
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Leaving
+    - slug: leaving
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Light
+    - slug: light
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Lovelace
+    - slug: lovelace
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Music
+    - slug: music
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Security
+    - slug: security
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Vacation mode
+    - slug: vacation_mode
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Vacuum
+    - slug: vacuum
+  - card:
+      show_header_toggle: false
+      title: Rest
+      type: entities
+    filter:
+      exclude:
+      - entity_id: automation.activity_*
+      - entity_id: automation.alarm_clock_*
+      - entity_id: automation.guest_mode_*
+      - entity_id: automation.leaving_*
+      - entity_id: automation.light_*
+      - entity_id: automation.lovelace_*
+      - entity_id: automation.music_*
+      - entity_id: automation.security_*
+      - entity_id: automation.vacation_mode_*
+      - entity_id: automation.vacuum_*
+      include:
+      - domain: automation
+    sort: entity_id
+    type: custom:auto-entities
+  icon: mdi:robot
+  path: automations
+  title: Automations
