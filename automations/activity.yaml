@@ -1,0 +1,99 @@
+# Kitchen
+- alias: "Activity: activity in kitchen"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_1
+    to: "on"
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.activity_in_kitchen
+
+- alias: "Activity: no activity in kitchen"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_1
+    to: "off"
+    for:
+      minutes: 5
+  action:
+    service: input_boolean.turn_off
+    entity_id: light.activity_in_kitchen
+
+# Hall
+- alias: "Activity: activity in hall"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_2
+    to: "on"
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.activity_in_hall
+
+- alias: "Activity: no activity in hall"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_2
+    to: "off"
+    for:
+      minutes: 5
+  action:
+    service: input_boolean.turn_off
+    entity_id: light.activity_in_hall
+
+# Toilet
+- alias: "Activity: activity in hall"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_3
+    to: "on"
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.activity_in_toilet
+
+- alias: "Activity: no activity in hall"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_3
+    to: "off"
+    for:
+      minutes: 5
+  action:
+    service: input_boolean.turn_off
+    entity_id: light.activity_in_toilet
+
+# Bathroom
+## Activity for 5 minutes when motion is detected and
+## always when someone is showering.
+- alias: "Activity: activity in bathroom"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_bathroom
+    to: "on"
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.activity_in_bathroom
+
+## This automation is turned off when someone is showering
+- alias: "Activity: no activity in bathroom"
+  initial_state: "on"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.presence_bathroom
+    to: "off"
+    for:
+      minutes: 5
+  action:
+    service: input_boolean.turn_off
+    entity_id: light.activity_in_bathroom
+
+- alias: "Activity: toggle someone is showering"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.no_one_showering
+  condition:
+    condition: state
+    entity_id: binary_sensor.presence_bathroom
+    state: "on"
+  action:
+    service_template: automation.turn_{{ trigger.to_state.state }}
+    entity_id: automation.activity_no_activity_in_bathroom

@@ -55,3 +55,31 @@
     - service: light.turn_on
       data:
         entity_id: light.ceiling_bedroom
+
+- alias: "Light: turn on night lights"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_1
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.event.data.event == 1002 }}
+  action:
+    - service: scene.turn_on
+      entity_id: scene.night_lights
+
+- alias: "Light: turn off everything"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_1
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.event.data.event == 1004 }}
+  action:
+    - service: scene.turn_on
+      entity_id: scene.bed_time

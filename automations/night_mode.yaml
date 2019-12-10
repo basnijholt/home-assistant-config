@@ -1,0 +1,8 @@
+# No activity anywhere, input_boolean.activity_in_PLACE_HERE should be off
+# for 30 minutes (except bedroom).
+# TV and lights should be off.
+# It's evening or night.
+# Both should be home.
+# Then if you go out in the middle of the night (e.g., to the bathroom)
+# then lights will turn a non-bright red.
+# Manually triggering the switch will turn on the normal lights.
