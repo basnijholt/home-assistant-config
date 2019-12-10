@@ -14,8 +14,7 @@
     platform: state
     entity_id: binary_sensor.presence_1
     to: "off"
-    for:
-      minutes: 5
+    for: "00:05:00"
   action:
     service: input_boolean.turn_off
     entity_id: light.activity_in_kitchen
@@ -35,8 +34,7 @@
     platform: state
     entity_id: binary_sensor.presence_2
     to: "off"
-    for:
-      minutes: 5
+    for: "00:05:00"
   action:
     service: input_boolean.turn_off
     entity_id: light.activity_in_hall
@@ -56,8 +54,7 @@
     platform: state
     entity_id: binary_sensor.presence_3
     to: "off"
-    for:
-      minutes: 5
+    for: "00:05:00"
   action:
     service: input_boolean.turn_off
     entity_id: light.activity_in_toilet
@@ -81,8 +78,7 @@
     platform: state
     entity_id: binary_sensor.presence_bathroom
     to: "off"
-    for:
-      minutes: 5
+    for: "00:05:00"
   action:
     service: input_boolean.turn_off
     entity_id: light.activity_in_bathroom

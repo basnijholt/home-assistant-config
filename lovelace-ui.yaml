@@ -467,10 +467,6 @@ data:
         type: entities
       - columns: 4
         entities:
-        - entity: switch.button_mini_1
-        - entity: switch.button_mini_2
-        - entity: switch.button_mini_3
-        - entity: switch.button_mini_4
         - entity: sensor.button_mini_1_battery_level
         - entity: sensor.button_mini_2_battery_level
         - entity: sensor.button_mini_3_battery_level
@@ -479,6 +475,18 @@ data:
         show_name: false
         title: Buttons
         type: glance
+      - entities:
+        - entity: input_boolean.activity_in_bathroom
+        - entity: input_boolean.activity_in_hall
+        - entity: input_boolean.activity_in_kitchen
+        - entity: input_boolean.activity_in_toilet
+        - entity: binary_sensor.motion_detected
+        - entity: binary_sensor.motion_in_last_hour
+        - entity: binary_sensor.no_one_showering
+        - entity: binary_sensor.someone_in_the_house
+        show_header_toggle: false
+        title: Activity in the house
+        type: entities
       icon: mdi:test-tube
       path: tests
       title: Tests
