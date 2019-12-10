@@ -1,3 +1,4 @@
+---
 - alias: "Leaving: turn off everything"
   initial_state: "on"
   trigger:

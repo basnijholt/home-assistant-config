@@ -2,5 +2,26 @@
 - platform: template
   sensors:
     no_one_showering:
-      friendly_name: "No one is showering"
-      value_template: "{{ states('sensor.humidity_bathroom') | float(0) < 90 }}"
+      friendly_name: No one is showering
+      value_template: >
+        {{ states("sensor.humidity_bathroom") | float(0) < 90 }}
+
+    motion_detected:
+      friendly_name: Any motion detected
+      value_template: >
+        {{ states("input_boolean.activity_in_kitchen") == "on"
+           or states("input_boolean.activity_in_hall") == "on"
+           or states("input_boolean.activity_in_toilet") == "on"
+           or states("input_boolean.activity_in_bathroom") == "on" }}
+
+    motion_in_last_hour:
+      friendly_name: Any motion detected in last hour
+      value_template: >
+        {{ states("binary_sensor.motion_detected") == "on" }}
+      delay_off: "01:00:00"
+
+    someone_in_the_house:
+      friendly_name: Someone in the house
+      value_template: >
+        {{ states("binary_sensor.motion_in_last_hour") == "on"
+           or states("group.persons") == "home" }}
