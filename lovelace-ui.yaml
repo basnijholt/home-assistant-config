@@ -451,6 +451,20 @@ data:
         - entity: input_number.volume_last
         title: Inputs
         type: entities
+      - columns: 4
+        entities:
+        - entity: switch.button_mini_1
+        - entity: switch.button_mini_2
+        - entity: switch.button_mini_3
+        - entity: switch.button_mini_4
+        - entity: sensor.button_mini_1_battery_level
+        - entity: sensor.button_mini_2_battery_level
+        - entity: sensor.button_mini_3_battery_level
+        - entity: sensor.button_mini_4_battery_level
+        show_icon: true
+        show_name: false
+        title: Buttons
+        type: glance
       icon: mdi:test-tube
       path: tests
       title: Tests
