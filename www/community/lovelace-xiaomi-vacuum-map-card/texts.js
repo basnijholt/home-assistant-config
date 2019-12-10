@@ -16,15 +16,6 @@ const texts = {
         repeats: "Times:",
         confirmation: "Command sent!"
     },
-    "pl": {
-        mode: "Tryb",
-        goToTarget: "Idź do punktu",
-        zonedCleanup: "Czyszczenie strefowe",
-        zones: "Strefy",
-        run: "Uruchom",
-        repeats: "Razy:",
-        confirmation: "Komenda wysłana!"
-    },
     "es": {
         mode: "Modos",
         goToTarget: "Ir al objetivo",
@@ -42,6 +33,33 @@ const texts = {
         run: "Starten",
         repeats: "Wiederholungen:",
         confirmation: "Kommando gesendet!"
+    },
+    "nl": {
+        mode: "Mode",
+        goToTarget: "Ga naar een punt",
+        zonedCleanup: "Zone reinigen",
+        zones: "Zones",
+        run: "Start",
+        repeats: "Herhalingen",
+        confirmation: "Commando gestuurd!"
+    },
+    "pl": {
+        mode: "Tryb",
+        goToTarget: "Idź do punktu",
+        zonedCleanup: "Czyszczenie strefowe",
+        zones: "Strefy",
+        run: "Uruchom",
+        repeats: "Razy:",
+        confirmation: "Komenda wysłana!"
+    },
+    "dk": {
+        mode: "Mode",
+        goToTarget: "Gå til punkt",
+        zonedCleanup: "Zone rengøring",
+        zones: "Zoner",
+        run: "Start",
+        repeats: "Gentagelser:",
+        confirmation: "Kommando afsendt!"
     }
 };
 
