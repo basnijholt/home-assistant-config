@@ -7,6 +7,18 @@ data:
       options: clock
       swipe_animate: fade
       swipe_prevent_default: true
+    decluttering_templates:
+      automation_template:
+        card:
+          card:
+            show_header_toggle: false
+            title: '[[name]] automations'
+            type: entities
+          filter:
+            include:
+            - entity_id: automation.[[slug]]*
+          sort: entity_id
+          type: custom:auto-entities
     resources:
     - type: module
       url: /community_plugin/mini-media-player/mini-media-player-bundle.js
@@ -28,6 +40,8 @@ data:
       url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
     - type: module
       url: /community_plugin/lovelace-auto-entities/auto-entities.js
+    - type: module
+      url: /community_plugin/decluttering-card/decluttering-card.js
     title: Huis
     views:
     - badges:
@@ -465,8 +479,72 @@ data:
         show_name: false
         title: Buttons
         type: glance
+      - card:
+          show_header_toggle: false
+          title: Bas' iPhone
+          type: entities
+        filter:
+          include:
+          - domain: automation
+        sort: entity_id
+        type: custom:auto-entities
       icon: mdi:test-tube
       path: tests
       title: Tests
+    - badges: []
+      cards:
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Activity
+        - slug: activity
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Alarm clock
+        - slug: alarm_clock
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Guest mode
+        - slug: guest_mode
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Leaving
+        - slug: leaving
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Light
+        - slug: light
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Lovelace
+        - slug: lovelace
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Music
+        - slug: music
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Security
+        - slug: security
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Vacation mode
+        - slug: vacation_mode
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+        - name: Vacuum
+        - slug: vacuum
+      icon: mdi:robot
+      path: automations
+      title: Automations
 key: lovelace
 version: 1
