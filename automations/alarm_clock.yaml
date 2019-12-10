@@ -1,5 +1,5 @@
 ---
-- alias: "Alarm clock"
+- alias: "Alarm clock: wake up with Spotify and light"
   trigger:
     platform: template
     value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_clock.state[0:5] }}"
