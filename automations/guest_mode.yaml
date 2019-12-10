@@ -2,8 +2,8 @@
 - alias: "Guest mode: toggle on or off"
   initial_state: "on"
   trigger:
-    - platform: state
-      entity_id: input_boolean.guest_mode
+    platform: state
+    entity_id: input_boolean.guest_mode
   action:
-    - service_template: automation.turn_{{ trigger.to_state.state }}
-      entity_id: group.guest_mode
+    service_template: automation.turn_{{ trigger.to_state.state }}
+    entity_id: group.guest_mode

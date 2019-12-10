@@ -1,12 +1,12 @@
 ---
 - alias: "Alarm clock"
   trigger:
-    - platform: template
-      value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_clock.state[0:5] }}"
+    platform: template
+    value_template: "{{ states.sensor.time.state == states.input_datetime.alarm_clock.state[0:5] }}"
   condition:
-    - condition: state
-      entity_id: input_boolean.alarm_clock
-      state: "on"
+    condition: state
+    entity_id: input_boolean.alarm_clock
+    state: "on"
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.alarm_clock

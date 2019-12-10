@@ -2,23 +2,20 @@
 - alias: "Vacation mode: toggle on or off"
   initial_state: "on"
   trigger:
-    - platform: state
-      entity_id: input_boolean.vacation_mode
+    platform: state
+    entity_id: input_boolean.vacation_mode
   action:
-    - service_template: automation.turn_{{ trigger.to_state.state }}
-      entity_id: group.vacation_mode
+    service_template: automation.turn_{{ trigger.to_state.state }}
+    entity_id: group.vacation_mode
 
 - alias: "Vacation mode: auto turn on"
   initial_state: "on"
   trigger:
-    - platform: state
-      entity_id: group.persons
-      from: home
-      to: not_home
-      for:
-        hours: 24
-        minutes: 0
-        seconds: 0
+    platform: state
+    entity_id: group.persons
+    from: home
+    to: not_home
+    for: "24:00:00"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.vacation_mode
@@ -30,14 +27,14 @@
 - alias: "Vacation mode: auto turn off"
   initial_state: "on"
   trigger:
-    - platform: state
-      entity_id: group.persons
-      from: not_home
-      to: home
+    platform: state
+    entity_id: group.persons
+    from: not_home
+    to: home
   condition:
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: "on"
+    condition: state
+    entity_id: input_boolean.vacation_mode
+    state: "on"
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.vacation_mode

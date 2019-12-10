@@ -2,11 +2,11 @@
 - alias: "Light: update switch state"  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
   initial_state: "on"
   trigger:
-    - platform: time_pattern
-      seconds: "/5"
+    platform: time_pattern
+    seconds: "/5"
   action:
-    - service: homeassistant.update_entity
-      entity_id: switch.desk_lamp
+    service: homeassistant.update_entity
+    entity_id: switch.desk_lamp
 
 - alias: "Light: copy light"
   trigger:  # two triggers, to avoid triggering on "unavailable"
@@ -19,16 +19,16 @@
       from: "off"
       to: "on"
   action:
-    - service_template: switch.turn_{{ trigger.to_state.state }}
-      entity_id: switch.light2
+    service_template: switch.turn_{{ trigger.to_state.state }}
+    entity_id: switch.light2
 
 - alias: "Light: turn off when leaving"
   trigger:
-    - platform: state
-      entity_id: group.persons
-      from: not_home
-      to: home
-      for: "00:15:00"
+    platform: state
+    entity_id: group.persons
+    from: not_home
+    to: home
+    for: "00:15:00"
   action:
     - service: light.turn_off
       data:
@@ -48,13 +48,12 @@
       from: "off"
       to: "on"
   condition:
-    - condition: sun
-      after: sunset
-      after_offset: "-0:30:00"
+    condition: sun
+    after: sunset
+    after_offset: "-0:30:00"
   action:
-    - service: light.turn_on
-      data:
-        entity_id: light.ceiling_bedroom
+    service: light.turn_on
+    entity_id: light.ceiling_bedroom
 
 - alias: "Light: turn on night lights with button single click"
   trigger:
@@ -67,8 +66,8 @@
     value_template: >
       {{ trigger.event.data.event == 1002 }}
   action:
-    - service: scene.turn_on
-      entity_id: scene.night_lights
+    service: scene.turn_on
+    entity_id: scene.night_lights
 
 - alias: "Light: turn off everything with button double click"
   trigger:
@@ -81,5 +80,5 @@
     value_template: >
       {{ trigger.event.data.event == 1004 }}
   action:
-    - service: scene.turn_on
-      entity_id: scene.bed_time
+    service: scene.turn_on
+    entity_id: scene.bed_time
