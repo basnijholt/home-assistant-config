@@ -5,7 +5,8 @@
     platform: state
     entity_id: input_boolean.vacation_mode
   action:
-    service_template: automation.turn_{{ trigger.to_state.state }}
+    service_template: >
+      automation.turn_{{ "off" if trigger.to_state.state == "on" else "on"}}
     entity_id: group.vacation_mode
 
 - alias: "Vacation mode: auto turn on"
