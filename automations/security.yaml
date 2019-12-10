@@ -3,7 +3,7 @@
   initial_state: "on"
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_sensor_detected
+    entity_id: binary_sensor.motion_detected
     from: "off"
     to: "on"
   condition:
