@@ -14,6 +14,7 @@ guest_mode:
     - automation.vacation_mode_auto_turn_off
     - automation.vacation_mode_auto_turn_on
     - automation.leaving_turn_off_everything
+    - automation.security_motion_detected_but_we_are_not_home
 
 vacation_mode:
   name: Vacation mode
