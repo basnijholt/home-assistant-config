@@ -29,7 +29,7 @@
     service: input_boolean.turn_on
     entity_id: input_boolean.activity_in_hall
 
-- alias: "Activity: no activity in hall"
+- alias: "Activity: no activity in the hall"
   trigger:
     platform: state
     entity_id: binary_sensor.presence_2
@@ -40,7 +40,7 @@
     entity_id: light.activity_in_hall
 
 # Toilet
-- alias: "Activity: activity in hall"
+- alias: "Activity: activity at the toilet"
   trigger:
     platform: state
     entity_id: binary_sensor.presence_3
@@ -49,7 +49,7 @@
     service: input_boolean.turn_on
     entity_id: input_boolean.activity_in_toilet
 
-- alias: "Activity: no activity in hall"
+- alias: "Activity: no activity at the toilet"
   trigger:
     platform: state
     entity_id: binary_sensor.presence_3
