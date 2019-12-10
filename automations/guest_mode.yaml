@@ -5,5 +5,6 @@
     platform: state
     entity_id: input_boolean.guest_mode
   action:
-    service_template: automation.turn_{{ trigger.to_state.state }}
+    service_template:
+      automation.turn_{{ "off" if trigger.to_state.state == "on" else "on"}}
     entity_id: group.guest_mode
