@@ -479,15 +479,6 @@ data:
         show_name: false
         title: Buttons
         type: glance
-      - card:
-          show_header_toggle: false
-          title: Bas' iPhone
-          type: entities
-        filter:
-          include:
-          - domain: automation
-        sort: entity_id
-        type: custom:auto-entities
       icon: mdi:test-tube
       path: tests
       title: Tests
@@ -543,6 +534,26 @@ data:
         variables:
         - name: Vacuum
         - slug: vacuum
+      - card:
+          show_header_toggle: false
+          title: Rest
+          type: entities
+        filter:
+          exclude:
+          - entity_id: automation.activity_*
+          - entity_id: automation.alarm_clock_*
+          - entity_id: automation.guest_mode_*
+          - entity_id: automation.leaving_*
+          - entity_id: automation.light_*
+          - entity_id: automation.lovelace_*
+          - entity_id: automation.music_*
+          - entity_id: automation.security_*
+          - entity_id: automation.vacation_mode_*
+          - entity_id: automation.vacuum_*
+          include:
+          - domain: automation
+        sort: entity_id
+        type: custom:auto-entities
       icon: mdi:robot
       path: automations
       title: Automations
