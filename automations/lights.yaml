@@ -22,21 +22,6 @@
     service_template: switch.turn_{{ trigger.to_state.state }}
     entity_id: switch.light2
 
-- alias: "Light: turn off when leaving"
-  trigger:
-    platform: state
-    entity_id: group.persons
-    from: not_home
-    to: home
-    for: "00:15:00"
-  action:
-    - service: light.turn_off
-      data:
-        entity_id: light.ceiling_bedroom
-    - service: switch.turn_off
-      data:
-        entity_id: switch.desk_lamp
-
 - alias: "Light: turn on when coming home"
   trigger:
     - platform: state
