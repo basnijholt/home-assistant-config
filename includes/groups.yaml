@@ -21,18 +21,36 @@ vacation_mode:
     - automation.vacuum_cleanup_if_nobody_is_home
 
 iphone_bas:
-  - sensor.activity
-  - sensor.bssid
-  - sensor.battery_level
-  - sensor.battery_state
-  - sensor.connection_type
-  - sensor.distance
-  - sensor.floors_ascended
-  - sensor.floors_descended
-  - sensor.geocoded_location
-  - sensor.last_update_trigger
-  - sensor.sim_1
-  - sensor.ssid
-  - sensor.steps
-  - device_tracker.basnijholt_iphone_2
+  - sensor.activity_iphone_bas
+  - sensor.average_active_pace_iphone_bas
+  - sensor.bssid_iphone_bas
+  - sensor.battery_level_iphone_bas
+  - sensor.battery_state_iphone_bas
+  - sensor.connection_type_iphone_bas
+  - sensor.distance_iphone_bas
+  - sensor.floors_ascended_iphone_bas
+  - sensor.floors_descended_iphone_bas
+  - sensor.geocoded_location_iphone_bas
+  - sensor.last_update_trigger_iphone_bas
+  - sensor.sim_iphone_bas
+  - sensor.ssid_iphone_bas
+  - sensor.steps_iphone_bas
+  - device_tracker.iphone_bas
   - device_tracker.basnijholt_iphone  # via router
+
+iphone_marcella:
+  - sensor.activity_iphone_marcella
+  - sensor.average_active_iphone_marcella
+  - sensor.bssid_iphone_marcella
+  - sensor.battery_level_iphone_marcella
+  - sensor.battery_state_iphone_marcella
+  - sensor.connection_type_iphone_marcella
+  - sensor.distance_iphone_marcella
+  - sensor.floors_ascended_iphone_marcella
+  - sensor.floors_descended_iphone_marcella
+  - sensor.geocoded_location_iphone_marcella
+  - sensor.last_update_trigger_iphone_marcella
+  - sensor.sim_iphone_marcella
+  - sensor.ssid_iphone_marcella
+  - sensor.steps_iphone_marcella
+  - device_tracker.iphone_marcella
