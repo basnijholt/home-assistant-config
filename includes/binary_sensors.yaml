@@ -18,10 +18,10 @@
       friendly_name: Any motion detected in last hour
       value_template: >
         {{ states("binary_sensor.motion_detected") == "on" }}
-      delay_off: "00:01:00"  # XXX: temporary on 1 min for testing!
+      delay_off: "01:00:00"
 
-    someone_in_the_house:
-      friendly_name: Someone in the house
+    someone_in_the_house_in_last_hour:
+      friendly_name: Someone in the house in the last hour
       value_template: >
         {{ states("binary_sensor.motion_detected_in_last_hour") == "on"
            or states("group.persons") == "home" }}

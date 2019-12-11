@@ -484,9 +484,9 @@ views:
     - entity: binary_sensor.activity_in_toilet
     - type: divider
     - entity: binary_sensor.motion_detected
-    - entity: binary_sensor.motion_in_last_hour
+    - entity: binary_sensor.motion_detected_in_last_hour
     - entity: binary_sensor.someone_showering
-    - entity: binary_sensor.someone_in_the_house
+    - entity: binary_sensor.someone_in_the_house_in_last_hour
     show_header_toggle: false
     title: Activity in the house
     type: entities
