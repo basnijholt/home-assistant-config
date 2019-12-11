@@ -7,4 +7,4 @@
 - name: Marcella
   id: marcella
   device_trackers:
-    - device_tracker.marcellas_iphone
+    - device_tracker.iphone_marcella
