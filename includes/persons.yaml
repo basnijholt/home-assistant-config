@@ -7,4 +7,4 @@
 - name: Marcella
   id: marcella
   device_trackers:
-    - device_tracker.basnijholt_macbook  # XXX: change this to Marcella's iPhone or MacBook
+    - device_tracker.marcellas_iphone
