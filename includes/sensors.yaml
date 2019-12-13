@@ -116,12 +116,11 @@
   name: Installed Version
   source: local
 
-# XXX: uncomment when HA v0.103 is installed
-# - platform: version
-#   name: Latest Available Version
-#   beta: false
-#   image: raspberrypi4
-#   source: hassio
+- platform: version
+  name: Latest Available Version
+  beta: false
+  image: raspberrypi4
+  source: hassio
 
 - platform: uptime
   unit_of_measurement: hours
