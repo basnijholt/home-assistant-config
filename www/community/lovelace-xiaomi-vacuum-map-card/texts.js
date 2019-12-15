@@ -60,6 +60,15 @@ const texts = {
         run: "Start",
         repeats: "Gentagelser:",
         confirmation: "Kommando afsendt!"
+    },
+    "se": {
+        mode: "Läge",
+        goToTarget: "Gå till vald destination",
+        zonedCleanup: "Zon städning",
+        zones: "Zoner",
+        run: "Start",
+        repeats: "Repetitioner:",
+        confirmation: "Kommando skickat!"
     }
 };
 
