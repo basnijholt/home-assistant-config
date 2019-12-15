@@ -18,7 +18,7 @@ def get_repository_name(
     return repository_name.replace("-", " ").replace("_", " ").title()
 
 
-def version_is_newer_than_version(new: str, old: str) -> bool:
+def version_left_higher_then_right(new: str, old: str) -> bool:
     """Return a bool if source is newer than target, will also be true if identical."""
     if not isinstance(new, str) or not isinstance(old, str):
         return False

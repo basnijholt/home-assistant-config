@@ -41,7 +41,6 @@
     },
     "confirm": {
         "add_to_lovelace": "Weet u zeker dat u dit wilt toevoegen aan uw Lovelace bronnen?",
-        "continue": "Weet je zeker dat je door wilt gaan?",
         "delete": "Weet u zeker dat u \"{item}\" wilt verwijderen?",
         "exsist": "{item} bestaat al",
         "generic": "Weet je het zeker?",
@@ -63,8 +62,7 @@
         "integration_not_loaded": "Deze integratie wordt niet geladen in Home Assistant.",
         "not_loaded": "Niet geladen",
         "plugin_not_loaded": "Deze plugin wordt niet toegevoegd aan je Lovelace resources.",
-        "restart": "U moet Home Assistant opnieuw starten.",
-        "restart_pending": "Herstart in afwachting"
+        "restart": "U moet Home Assistant opnieuw starten."
     },
     "repository": {
         "add_to_lovelace": "Toevoegen aan Lovelace",
@@ -79,12 +77,9 @@
         "installed": "Geinstalleerd",
         "lovelace_copy_example": "Kopier het voorbeeld naar je klembord",
         "lovelace_instruction": "Wanneer je dit gaat toevoegen aan je lovelace configuratie gebruik dit",
-        "lovelace_no_js_type": "Kon niet achterhalen welk type plugin dit is, check de repository van de plugin.",
         "newest": "nieuwste",
         "note_appdaemon": "je moet het nog steeds toevoegen aan je 'apps.yaml' bestand",
-        "note_installed": "Wanneer geinstalleerd, deze zal staan in",
         "note_integration": "je moet het nog steeds toevoegen aan je 'configuration.yaml' bestand",
-        "note_plugin": "je moet het nog steeds toevoegen aan je lovelace configuratie ('ui-lovelace.yaml') of raw UI config editor",
         "open_issue": "Meld probleem",
         "open_plugin": "Open plugin",
         "reinstall": "Herinstalleer",
