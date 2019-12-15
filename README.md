@@ -11,6 +11,10 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 ## Noteworthy (useful) automations
 * [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](automations/lovelace.yaml) for version control 🤖
 * [Controlling music using the Xiaomi Aqara Magic Cube](automations/music.yaml) ∛
+* [Guest mode that turns off automations]((automations/guest_mode.yaml))
+* [Vacation mode](automations/vacation_mode.yaml)
+* [Presence detection in different rooms based on various binary template sensors](includes/binary_sensors.yaml)
+* [Robot vacuum automations](automations/vacuum.yaml)
 
 ## My devices
 
