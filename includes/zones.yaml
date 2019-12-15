@@ -14,5 +14,5 @@
 - name: Marcella's Home
   latitude: !secret latitude_marcella_home
   longitude: !secret longitude_marcella_home
-  radius: 100
+  radius: 200
   icon: mdi:home
