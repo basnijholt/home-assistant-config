@@ -51,23 +51,25 @@ class XiaomiVacuumCard extends Polymer.Element {
           </style>
           <ha-card hass="[[_hass]]" config="[[_config]]" class="background" style="[[backgroundImage]]">
             <template is="dom-if" if="{{name}}">
-              <div class="title" style="[[contentText]]">[[name]]</div>
+              <div class="title" style="[[contentText]]" on-click="moreInfo">[[name]]</div>
             </template>
-            <div class="content grid" style="[[contentStyle]]" on-click="moreInfo">
-              <div class="grid-content grid-left">
-                <div>[[getValue('status')]]</div>
-                <div>[[getValue('battery', ' %')]]</div>
-                <div>[[getValue('mode')]]</div>
-              </div>
-              <template is="dom-if" if="{{showDetails}}">
-                <div class="grid-content grid-right" >
-                  <div>[[computeValue('main_brush')]]</div>
-                  <div>[[computeValue('side_brush')]]</div>
-                  <div>[[computeValue('filter')]]</div>
-                  <div>[[computeValue('sensor')]]</div>
+            <template is="dom-if" if="{{showLabels}}">
+              <div class="content grid" style="[[contentStyle]]" on-click="moreInfo">
+                <div class="grid-content grid-left">
+                  <div>[[getValue('status')]]</div>
+                  <div>[[getValue('battery', ' %')]]</div>
+                  <div>[[getValue('mode')]]</div>
                 </div>
-              </template>
-            </div>
+                <template is="dom-if" if="{{showDetails}}">
+                  <div class="grid-content grid-right" >
+                    <div>[[computeValue('main_brush')]]</div>
+                    <div>[[computeValue('side_brush')]]</div>
+                    <div>[[computeValue('filter')]]</div>
+                    <div>[[computeValue('sensor')]]</div>
+                  </div>
+                </template>
+              </div>
+            </template>
             <template is="dom-if" if="{{showButtons}}">
               <div class="flex" style="[[contentText]]">
                 <template is="dom-if" if="{{_config.buttons.start}}">
@@ -191,6 +193,14 @@ class XiaomiVacuumCard extends Polymer.Element {
                     sensor: 'sensor',
                 },
             },
+            robovac: {
+                image: '/local/img/vacuum.png',
+                details: false,
+                buttons: {
+                    stop: false,
+                    spot: true,
+                },
+            },
             ecovacs: {
                 image: '/local/img/vacuum_ecovacs.png',
                 details: false,
@@ -229,6 +239,7 @@ class XiaomiVacuumCard extends Polymer.Element {
 
         this.showDetails = vendor.details;
         this.showButtons = config.buttons !== false;
+        this.showLabels = config.labels !== false;
 
         config.service = Object.assign({}, services, vendor.service);
         config.buttons = Object.assign({}, buttons, vendor.buttons, config.buttons);
