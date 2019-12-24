@@ -48,13 +48,16 @@ views:
   - entity: sun.sun
   cards:
   - entities:
-    - entity: switch.desk_lamp
     - entity: switch.circadian_lighting_circadian_lighting
     - entity: sensor.desk_lamp_current
     - entity: light.ceiling_bedroom
     - entity: light.speaker_bedroom
     - entity: light.bamboo
-    - entity: light.sphere
+    - entity: light.sphere_1
+    - entity: light.sphere_2
+    - entity: light.corner_living_room
+    - entity: light.philips_go
+    - entity: light.ceiling_living_room
     title: Lights
     type: entities
   - entity: weather.huis
@@ -133,12 +136,6 @@ views:
       state: true
     type: custom:mini-graph-card
   - entities:
-    - entity: scene.red_lights
-      tap_action:
-        action: call-service
-        service: scene.turn_on
-        service_data:
-          entity_id: scene.red_lights
     - entity: scene.bed_time
       tap_action:
         action: call-service
@@ -390,6 +387,14 @@ views:
     filter:
       include:
       - group: group.iphone_bas
+    type: custom:auto-entities
+  - card:
+      show_header_toggle: false
+      title: Marcella's iPhone
+      type: entities
+    filter:
+      include:
+      - group: group.iphone_marcella
     type: custom:auto-entities
   icon: mdi:home-assistant
   path: system
