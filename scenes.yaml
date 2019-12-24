@@ -2,174 +2,421 @@
   name: Bed Time
   entities:
     light.bamboo:
-      state: 'off'
+      effect_list:
+      - colorloop
+      friendly_name: Bamboo
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
     light.ceiling_bedroom:
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.ceiling_living_room:
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling living room
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       state: 'off'
+      supported_features: 63
+    light.corner_living_room:
+      effect_list:
+      - colorloop
+      friendly_name: Corner living room
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.philips_go:
+      effect_list:
+      - colorloop
+      friendly_name: Philips Go
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
     light.speaker_bedroom:
+      effect_list:
+      - colorloop
+      friendly_name: Speaker bedroom
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.sphere_1:
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 1
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       state: 'off'
-    light.sphere:
+      supported_features: 63
+    light.sphere_2:
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 2
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       state: 'off'
+      supported_features: 63
     media_player.kef:
-      state: 'off'
-    switch.desk_lamp:
-      state: 'off'
-- id: '1575060114063'
-  name: Red Lights
-  entities:
-    light.ceiling_bedroom:
-      brightness: 254
-      hs_color:
-      - 16.19
-      - 98.824
-      rgb_color:
-      - 255
-      - 70
-      - 2
+      friendly_name: Speakers
+      icon: mdi:speaker-wireless
+      is_volume_muted: false
+      source: Bluetooth
+      source_list:
+      - Wifi
+      - Bluetooth
+      - Aux
+      - Opt
+      - Usb
       state: 'on'
-      xy_color:
-      - 0.671
-      - 0.324
-    light.speaker_bedroom:
-      brightness: 254
-      hs_color:
-      - 336
-      - 80.392
-      rgb_color:
-      - 255
-      - 50
-      - 132
-      state: 'on'
-      xy_color:
-      - 0.564
-      - 0.252
+      supported_features: 3468
+      volume_level: 0.59
 - id: '1575131362586'
   name: Bright Lights
   entities:
     light.bamboo:
-      brightness: 254
-      color_temp: 366
-      state: 'on'
+      effect_list:
+      - colorloop
+      friendly_name: Bamboo
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
     light.ceiling_bedroom:
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.ceiling_living_room:
       brightness: 254
       color_temp: 366
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling living room
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       state: 'on'
+      supported_features: 63
+    light.corner_living_room:
+      brightness: 254
+      color_temp: 366
+      effect_list:
+      - colorloop
+      friendly_name: Corner living room
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 63
+    light.philips_go:
+      brightness: 170
+      color_temp: 346
+      effect_list:
+      - colorloop
+      friendly_name: Philips Go
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 63
     light.speaker_bedroom:
-      brightness: 254
-      color_temp: 400
-      state: 'on'
-    light.sphere:
+      effect_list:
+      - colorloop
+      friendly_name: Speaker bedroom
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.sphere_1:
       brightness: 254
       color_temp: 366
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 1
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       state: 'on'
+      supported_features: 63
+    light.sphere_2:
+      brightness: 254
+      color_temp: 366
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 2
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 63
 - id: '1575501946792'
   name: Night Lights
   entities:
     light.bamboo:
-      brightness: 8
+      effect_list:
+      - colorloop
+      friendly_name: Bamboo
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.ceiling_bedroom:
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.ceiling_living_room:
+      brightness: 20
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling living room
       hs_color:
-      - 26.667
-      - 88.235
+      - 267.773
+      - 89.804
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 132
+      - 25
+      - 255
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.223
+      - 0.084
+    light.corner_living_room:
+      brightness: 20
+      effect_list:
+      - colorloop
+      friendly_name: Corner living room
+      hs_color:
+      - 26.814
+      - 88.627
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
       - 255
       - 130
-      - 30
+      - 29
       state: 'on'
+      supported_features: 63
       xy_color:
-      - 0.602
+      - 0.603
       - 0.373
-    light.ceiling_bedroom:
-      brightness: 6
+    light.philips_go:
+      brightness: 19
+      effect_list:
+      - colorloop
+      friendly_name: Philips Go
       hs_color:
-      - 17.49
-      - 96.863
+      - 315.071
+      - 82.745
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
       - 255
-      - 80
-      - 7
+      - 44
+      - 202
       state: 'on'
+      supported_features: 63
       xy_color:
-      - 0.662
-      - 0.33
+      - 0.456
+      - 0.196
     light.speaker_bedroom:
-      brightness: 6
+      effect_list:
+      - colorloop
+      friendly_name: Speaker bedroom
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.sphere_1:
+      brightness: 22
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 1
       hs_color:
-      - 335.941
-      - 79.216
+      - 335.885
+      - 81.961
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
       - 255
-      - 52
-      - 133
+      - 45
+      - 130
       state: 'on'
+      supported_features: 63
       xy_color:
-      - 0.562
+      - 0.569
       - 0.252
-    light.sphere:
-      brightness: 15
+    light.sphere_2:
+      brightness: 14
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 2
       hs_color:
-      - 282.5
-      - 84.706
+      - 299.431
+      - 82.745
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
-      - 191
-      - 38
+      - 252
+      - 44
       - 255
       state: 'on'
+      supported_features: 63
       xy_color:
-      - 0.299
-      - 0.122
-    switch.desk_lamp:
-      state: 'off'
+      - 0.38
+      - 0.159
 - id: '1575663334038'
   name: Cozy Lights
   entities:
     light.bamboo:
+      effect_list:
+      - colorloop
+      friendly_name: Bamboo
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.ceiling_bedroom:
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.ceiling_living_room:
       brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling living room
+      hs_color:
+      - 268.619
+      - 93.725
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 129
+      - 16
+      - 255
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.219
+      - 0.081
+    light.corner_living_room:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Corner living room
       hs_color:
       - 26.725
       - 89.804
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
       - 255
       - 128
       - 25
       state: 'on'
+      supported_features: 63
       xy_color:
       - 0.606
       - 0.372
-    light.ceiling_bedroom:
-      brightness: 254
+    light.philips_go:
+      brightness: 170
+      effect_list:
+      - colorloop
+      friendly_name: Philips Go
       hs_color:
-      - 16.56
-      - 98.039
+      - 315.211
+      - 83.529
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
       - 255
-      - 74
-      - 5
+      - 42
+      - 201
       state: 'on'
+      supported_features: 63
       xy_color:
-      - 0.668
-      - 0.326
+      - 0.457
+      - 0.196
     light.speaker_bedroom:
-      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Speaker bedroom
+      max_mireds: 500
+      min_mireds: 153
+      state: unavailable
+      supported_features: 63
+    light.sphere_1:
+      brightness: 170
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 1
       hs_color:
-      - 335.941
-      - 79.216
+      - 335.943
+      - 83.137
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
       - 255
-      - 52
-      - 133
+      - 43
+      - 128
       state: 'on'
+      supported_features: 63
       xy_color:
-      - 0.562
-      - 0.252
-    light.sphere:
+      - 0.573
+      - 0.253
+    light.sphere_2:
       brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 2
       hs_color:
-      - 283.274
-      - 88.627
+      - 299.72
+      - 83.922
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
       rgb_color:
-      - 191
-      - 29
+      - 254
+      - 40
       - 255
       state: 'on'
+      supported_features: 63
       xy_color:
-      - 0.3
-      - 0.12
+      - 0.382
+      - 0.159
