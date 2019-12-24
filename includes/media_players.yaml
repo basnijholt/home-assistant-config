@@ -6,6 +6,6 @@
 - platform: kef
   type: LS50
   name: KEF Speakers
-  host: 192.168.31.196
+  host: 192.168.178.206
   maximum_volume: 0.6
   volume_step: 0.05
