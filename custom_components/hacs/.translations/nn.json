@@ -43,7 +43,6 @@
         "add_to_lovelace": "Er du sikker på at du vil legge til dette i Lovelace-ressursane dine?",
         "continue": "Er du sikker på at du vil halde fram?",
         "delete": "Er du sikker på at du vil slette \"{item}\"?",
-        "exsist": "{item} eksisterar allereie",
         "generic": "Er du sikker?",
         "overwrite": "Ved å gjere dette kjem du til å overskrive. ",
         "uninstall": "Er du sikker på at du vil avinstallere \"{item}\"?"

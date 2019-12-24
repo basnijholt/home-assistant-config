@@ -41,18 +41,25 @@
     },
     "confirm": {
         "add_to_lovelace": "您确定要将此添加到Lovelace资源中吗？",
+        "bg_task": "后台任务正在运行时，操作被禁用。",
+        "cancel": "取消",
         "continue": "你确定你要继续吗？",
         "delete": "是否确实要删除\"{item}\"？",
-        "exsist": "{item}已经存在",
         "generic": "你确定吗？",
+        "no": "不",
+        "no_upgrades": "暂无升级",
+        "ok": "确定",
         "overwrite": "这样做会覆盖它。",
-        "uninstall": "您确定要卸载“ {item} ”吗？"
+        "uninstall": "您确定要卸载“ {item} ”吗？",
+        "upgrade_all": "这将升级所有这些仓库，请确保在继续之前已阅读所有仓库的发行说明。",
+        "yes": "是"
     },
     "options": {
         "step": {
             "user": {
                 "data": {
                     "country": "用国家代码过滤。",
+                    "debug": "启用调试。",
                     "experimental": "启用实验功能",
                     "release_limit": "要显示的发行数量。"
                 }
@@ -115,6 +122,7 @@
         "clear_new": "清除所有新仓库标记",
         "name": "名称",
         "new_repositories": "新仓库",
+        "pending_upgrades": "待升级",
         "placeholder_search": "搜索项目...",
         "sort": "排序",
         "status": "状态"

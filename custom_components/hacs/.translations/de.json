@@ -41,18 +41,25 @@
     },
     "confirm": {
         "add_to_lovelace": "Möchtest du dies wirklich zu deinen Lovelace-Ressourcen hinzufügen?",
+        "bg_task": "Die Aktion ist deaktiviert, während Hintergrundprozesse ausgeführt werden.",
+        "cancel": "Abbrechen",
         "continue": "Bist du dir sicher, dass du fortfahren möchtest?",
         "delete": "Möchtest du \"{item}\" wirklich löschen?",
-        "exsist": "{item} existiert bereits",
         "generic": "Bist du dir sicher?",
+        "no": "Nein",
+        "no_upgrades": "Keine Upgrades ausstehend",
+        "ok": "OK",
         "overwrite": "Dadurch wird die Datei überschrieben.",
-        "uninstall": "Möchtest du \"{item}\" wirklich löschen?"
+        "uninstall": "Möchtest du \"{item}\" wirklich löschen?",
+        "upgrade_all": "Hier durch werden all diese Repositorys aktualisiert. Stelle sicher, dass du die Versionshinweise vorher gelesen hast.",
+        "yes": "Ja"
     },
     "options": {
         "step": {
             "user": {
                 "data": {
                     "country": "Nach Ländercode filtern.",
+                    "debug": "Debug aktivieren.",
                     "experimental": "Experimentelle Funktionen aktivieren",
                     "release_limit": "Anzahl anzuzeigender Releases."
                 }
@@ -115,8 +122,10 @@
         "clear_new": "Alle neuen Repositories als gesehen markieren",
         "name": "Name",
         "new_repositories": "Neue Repositories",
+        "pending_upgrades": "Ausstehende Upgrades",
         "placeholder_search": "Suchbegriff eingeben…",
         "sort": "Sortieren",
+        "stars": "Sterne",
         "status": "Status"
     }
 }

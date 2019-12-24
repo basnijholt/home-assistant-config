@@ -41,18 +41,27 @@
     },
     "confirm": {
         "add_to_lovelace": "Er du sikker på at du vil legge dette til i dine Lovelace resources?",
+        "bg_task": "Handlingen er deaktivert mens bakgrunnsoppgaver kjører.",
+        "cancel": "Avbryt",
         "continue": "Er du sikker på at du vil fortsette?",
         "delete": "Er du sikker på at du vil fjerne \"{item}\"?",
-        "exsist": "{item} eksisterer",
+        "delete_installed": "'{item}' er installert, du må avinstallere det før du kan slette det.",
+        "exist": "{item} eksisterer allerede",
         "generic": "Er du sikker?",
+        "no": "Nei",
+        "no_upgrades": "Ingen oppgraderinger tilgjengelig",
+        "ok": "OK",
         "overwrite": "Å gjøre dette vil overskrive det.",
-        "uninstall": "Er du sikker på at du vil avinstallere \"{item}\"?"
+        "uninstall": "Er du sikker på at du vil avinstallere \"{item}\"?",
+        "upgrade_all": "Dette vil oppgradere alle disse repositorene, sørg for at du har lest utgivelses notatene for dem alle før du fortsetter.",
+        "yes": "Ja"
     },
     "options": {
         "step": {
             "user": {
                 "data": {
                     "country": "Filtrer med landskode.",
+                    "debug": "Aktiver debug",
                     "experimental": "Aktiver eksperimentelle funksjoner",
                     "release_limit": "Antall utgivelser som skal vises."
                 }
@@ -96,6 +105,9 @@
     },
     "settings": {
         "add_custom_repository": "LEGG TIL REPOSITORY",
+        "adding_new_repo": "Legger til ny repository '{repo}'",
+        "adding_new_repo_category": "Med kategori '{kategori}'.",
+        "bg_task_custom": "Custom repositories er skjult mens bakgrunnsoppgaver kjører.",
         "category": "Kategori",
         "compact_mode": "Kompakt modus",
         "custom_repositories": "TILPASSEDE REPOSITORIER",
@@ -104,6 +116,7 @@
         "grid": "Nett",
         "hacs_repo": "HACS repo",
         "hidden_repositories": "Gjemte repositories",
+        "missing_category": "Du må velge en kategori",
         "reload_data": "Last inn data på nytt",
         "save": "Lagre",
         "table": "Tabell",
@@ -115,8 +128,10 @@
         "clear_new": "Tøm nye repositories",
         "name": "Navn",
         "new_repositories": "Nye repositories",
+        "pending_upgrades": "Venter på oppgradering",
         "placeholder_search": "Skriv inn et søkeord ...",
         "sort": "sorter",
+        "stars": "Stjerner",
         "status": "Status"
     }
 }

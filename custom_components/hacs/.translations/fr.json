@@ -43,7 +43,6 @@
         "add_to_lovelace": "Êtes-vous sûr de vouloir l'ajouter à vos ressources Lovelace ?",
         "continue": "Es-tu sur de vouloir continuer?",
         "delete": "Êtes-vous sûr de vouloir supprimer \"{item}\"?",
-        "exsist": "{item} existe déjà",
         "generic": "Êtes-vous sûr?",
         "overwrite": "En faisant cela, cela l'écrasera.",
         "uninstall": "Êtes-vous sûr de vouloir désinstaller \"{item}\"?"
@@ -108,6 +107,7 @@
         "save": "Enregistrer",
         "table": "Tableau",
         "table_view": "Vue table",
+        "unhide": "Afficher",
         "upgrade_all": "Tout mettre à jour"
     },
     "store": {

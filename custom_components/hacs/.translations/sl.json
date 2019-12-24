@@ -43,7 +43,6 @@
         "add_to_lovelace": "Ali si prepričan, da želiš to dodati med svoje vire Lovelace?",
         "continue": "Ali ste prepričani, da želite nadaljevati?",
         "delete": "Ali ste prepričani, da želite izbrisati \"{item}\"?",
-        "exsist": "{item} že obstaja",
         "generic": "Ali si prepričan?",
         "overwrite": "Če to storite, bo to prepisano.",
         "uninstall": "Ali ste prepričani, da želite odstraniti \"{item}\"?"
