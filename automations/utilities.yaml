@@ -1,0 +1,34 @@
+---
+- alias: "Utilities: washing machine is done"
+  initial_state: "on"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.washing_machine
+    from: "on"
+    to: "off"
+  action:
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: "Utilities"
+        message: "Washing machine is done."
+    - service: notify.mobile_app_marcellas_iphone
+      data:
+        title: "Utilities"
+        message: "Washing machine is done."
+
+- alias: "Utilities: dishwasher is done"
+  initial_state: "on"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.dishwasher
+    from: "on"
+    to: "off"
+  action:
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: "Utilities"
+        message: "Dishwasher is done 👚👕"
+    - service: notify.mobile_app_marcellas_iphone
+      data:
+        title: "Utilities"
+        message: "Dishwasher is done 🍽🍳"
