@@ -567,57 +567,77 @@
       - colorloop
       friendly_name: Bamboo
       hs_color:
-      - 44.058
-      - 81.176
+      - 43.902
+      - 80.392
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 255
-      - 200
-      - 48
+      - 199
+      - 50
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.505
-      - 0.447
+      - 0.506
+      - 0.445
     light.ceiling_bedroom:
+      brightness: 68
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling bedroom
+      hs_color:
+      - 344.409
+      - 99.608
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 0
+      - 67
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.663
+      - 0.282
+    light.lampan:
       brightness: 254
       effect_list:
       - colorloop
-      friendly_name: ceiling_bedroom
+      friendly_name: Lampan
       hs_color:
-      - 26.725
-      - 89.804
+      - 318.028
+      - 83.529
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 255
-      - 128
-      - 25
+      - 42
+      - 191
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.606
-      - 0.372
+      - 0.473
+      - 0.204
     light.philips_go:
       brightness: 144
       effect_list:
       - colorloop
       friendly_name: Philips Go
       hs_color:
-      - 29.722
-      - 84.706
+      - 29.439
+      - 83.922
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 255
       - 145
-      - 38
+      - 40
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.581
-      - 0.387
+      - 0.58
+      - 0.386
