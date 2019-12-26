@@ -331,109 +331,65 @@
 - id: '1575663334038'
   name: Cozy Lights
   entities:
-    light.bamboo:
-      effect_list:
-      - colorloop
-      friendly_name: Bamboo
-      max_mireds: 500
-      min_mireds: 153
-      state: unavailable
-      supported_features: 63
-    light.ceiling_bedroom:
-      effect_list:
-      - colorloop
-      friendly_name: Ceiling lamp
-      max_mireds: 500
-      min_mireds: 153
-      state: unavailable
-      supported_features: 63
     light.ceiling_living_room:
       brightness: 254
       effect_list:
       - colorloop
       friendly_name: Ceiling living room
       hs_color:
-      - 268.619
-      - 93.725
+      - 267.773
+      - 89.804
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
-      - 129
-      - 16
+      - 132
+      - 25
       - 255
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.219
-      - 0.081
+      - 0.223
+      - 0.084
     light.corner_living_room:
       brightness: 254
       effect_list:
       - colorloop
       friendly_name: Corner living room
       hs_color:
-      - 26.725
-      - 89.804
+      - 26.96
+      - 89.02
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 255
-      - 128
-      - 25
+      - 129
+      - 27
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.606
+      - 0.605
       - 0.372
-    light.philips_go:
-      brightness: 170
-      effect_list:
-      - colorloop
-      friendly_name: Philips Go
-      hs_color:
-      - 315.211
-      - 83.529
-      is_deconz_group: false
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 255
-      - 42
-      - 201
-      state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.457
-      - 0.196
-    light.speaker_bedroom:
-      effect_list:
-      - colorloop
-      friendly_name: Speaker bedroom
-      max_mireds: 500
-      min_mireds: 153
-      state: unavailable
-      supported_features: 63
     light.sphere_1:
       brightness: 170
       effect_list:
       - colorloop
       friendly_name: Sphere 1
       hs_color:
-      - 335.943
-      - 83.137
+      - 336.058
+      - 81.569
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 255
-      - 43
-      - 128
+      - 46
+      - 129
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.573
+      - 0.57
       - 0.253
     light.sphere_2:
       brightness: 254
@@ -441,19 +397,19 @@
       - colorloop
       friendly_name: Sphere 2
       hs_color:
-      - 299.72
-      - 83.922
+      - 299.434
+      - 83.137
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
-      - 254
-      - 40
+      - 253
+      - 43
       - 255
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.382
+      - 0.381
       - 0.159
 - id: '1577227123082'
   name: Movie time
