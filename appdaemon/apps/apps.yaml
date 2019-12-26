@@ -37,9 +37,9 @@ wake_up_light:
   total_time: 600
   lamp:
     - light.ceiling_bedroom
-    - light.speaker_bedroom
-    - light.sphere
     - light.bamboo
+    - light.philips_go
+    - light.lampan
   input_boolean: input_boolean.wake_up_light
 
 demo_wake_up_light:
@@ -48,9 +48,9 @@ demo_wake_up_light:
   total_time: 20
   lamp:
     - light.ceiling_bedroom
-    - light.speaker_bedroom
-    - light.sphere
     - light.bamboo
+    - light.philips_go
+    - light.lampan
   input_boolean: input_boolean.demo_wake_up_light
 
 cube:
