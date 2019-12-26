@@ -3,6 +3,7 @@
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "Приложения AppDaemon",
         "background_task": "Выполняется фоновая задача, страница перезагрузится по готовности.",
+        "continue": "Продолжить",
         "installed": "установлено",
         "integration": "Интеграция",
         "integrations": "Интеграции",
@@ -31,7 +32,7 @@
                     "sidepanel_icon": "Иконка в боковом меню",
                     "sidepanel_title": "Название в боковом меню",
                     "theme": "Включить поиск и отслеживание тем",
-                    "token": "GitHub-токен персонального доступа"
+                    "token": "Персональный токен доступа GitHub"
                 },
                 "description": "Если вам нужна помощь с настройкой, посмотрите: https:\/\/hacs.xyz\/docs\/configuration\/start\/",
                 "title": "HACS (Home Assistant Community Store)"
@@ -45,11 +46,14 @@
         "cancel": "Отмена",
         "continue": "Вы уверены, что хотите продолжить?",
         "delete": "Вы уверены, что хотите удалить \"{item}\"?",
+        "delete_installed": "'{item}' установлен, вам нужно нажать 'Удалить', чтобы удалить его.",
         "exist": "{item} уже существует.",
         "generic": "Вы уверены?",
         "no": "Нет",
+        "no_upgrades": "Нет обновлений",
         "ok": "ОК",
         "overwrite": "После подтверждения файлы будут перезаписаны.",
+        "reload_data": "Выполняется перезагрузка данных всех репозиториев в HACS, это займет некоторое время.",
         "uninstall": "Вы уверены, что хотите удалить \"{item}\"?",
         "yes": "Да"
     },
@@ -78,6 +82,7 @@
         "available": "Доступно",
         "back_to": "Назад к",
         "changelog": "Изменения",
+        "downloads": "Загрузки",
         "flag_this": "Пожаловаться",
         "hide": "Скрыть",
         "hide_beta": "Скрыть бета",
@@ -102,6 +107,9 @@
     },
     "settings": {
         "add_custom_repository": "ДОБАВИТЬ СВОЙ РЕПОЗИТОРИЙ",
+        "adding_new_repo": "Добавление нового репозитория '{repo}'",
+        "adding_new_repo_category": "С категорией '{category}'.",
+        "bg_task_custom": "Свои репозитории скрыты во время выполнения фоновых задач.",
         "category": "Категория",
         "compact_mode": "Компактный режим",
         "custom_repositories": "СВОИ РЕПОЗИТОРИИ",
@@ -119,11 +127,32 @@
         "upgrade_all": "Обновить всё"
     },
     "store": {
+        "ascending": "по возрастанию",
         "clear_new": "Очистить все новые репозитории",
+        "descending": "по убыванию",
+        "last_updated": "Последнее обновление",
         "name": "Название",
         "new_repositories": "Новые репозитории",
+        "pending_upgrades": "Ожидается обновление",
         "placeholder_search": "Пожалуйста, введите условие для поиска...",
         "sort": "Сортировка",
+        "stars": "Звезды",
         "status": "Статус"
+    },
+    "time": {
+        "ago": "назад",
+        "day": "день",
+        "days": "дней",
+        "hour": "час",
+        "hours": "часов",
+        "minute": "минута",
+        "minutes": "минут",
+        "month": "месяц",
+        "months": "месяца",
+        "one": "Одна",
+        "second": "секунда",
+        "seconds": "секунд",
+        "year": "год",
+        "years": "лет"
     }
 }

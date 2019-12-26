@@ -9,6 +9,7 @@ from homeassistant.helpers.event import async_call_later, async_track_time_inter
 from aiogithubapi import AIOGitHubException, AIOGitHubRatelimit
 from integrationhelper import Logger
 
+from .task_factory import HacsTaskFactory
 
 from ..const import ELEMENT_TYPES
 from ..store import async_load_from_store, async_save_to_store
@@ -18,10 +19,19 @@ from ..helpers.get_defaults import get_default_repos_lists, get_default_repos_or
 class HacsStatus:
     """HacsStatus."""
 
-    startup = False
+    startup = True
+    new = False
     background_task = False
     reloading_data = False
     upgrading_all = False
+
+
+class HacsFrontend:
+    """HacsFrontend."""
+
+    version_running = None
+    version_available = None
+    update_pending = False
 
 
 class HacsCommon:
@@ -39,7 +49,6 @@ class System:
 
     status = HacsStatus()
     config_path = None
-    new = False
     ha_version = None
     disabled = False
     lovelace_mode = "storage"
@@ -69,6 +78,7 @@ class Hacs:
     hacsweb = f"/hacsweb/{token}"
     hacsapi = f"/hacsapi/{token}"
     repositories = []
+    frontend = HacsFrontend()
     repo = None
     data_repo = None
     developer = Developer()
@@ -78,8 +88,9 @@ class Hacs:
     github = None
     hass = None
     version = None
+    factory = HacsTaskFactory()
     system = System()
-    tasks = []
+    recuring_tasks = []
     common = HacsCommon()
 
     @staticmethod
@@ -141,7 +152,7 @@ class Hacs:
         if check:
             try:
                 await repository.registration()
-                if self.system.new:
+                if self.system.status.new:
                     repository.status.new = False
                 if repository.validate.errors:
                     self.common.skip.append(repository.information.full_name)
@@ -153,7 +164,8 @@ class Hacs:
                 self.logger.debug(self.github.ratelimits.remaining)
                 self.logger.debug(self.github.ratelimits.reset_utc)
                 self.common.skip.append(repository.information.full_name)
-                if not self.system.status.startup:
+                # if not self.system.status.startup:
+                if self.system.status.startup:
                     self.logger.error(
                         f"Validation for {full_name} failed with {exception}."
                     )
@@ -181,12 +193,12 @@ class Hacs:
         await self.load_known_repositories()
         await self.clear_out_blacklisted_repositories()
 
-        self.tasks.append(
+        self.recuring_tasks.append(
             async_track_time_interval(
                 self.hass, self.recuring_tasks_installed, timedelta(minutes=30)
             )
         )
-        self.tasks.append(
+        self.recuring_tasks.append(
             async_track_time_interval(
                 self.hass, self.recuring_tasks_all, timedelta(minutes=800)
             )
@@ -196,6 +208,7 @@ class Hacs:
         await self.recuring_tasks_installed()
 
         self.system.status.startup = False
+        self.system.status.new = False
         self.system.status.background_task = False
         self.hass.bus.async_fire("hacs/status", {})
         await self.data.async_write()
@@ -280,18 +293,13 @@ class Hacs:
         self.logger.debug(self.github.ratelimits.remaining)
         self.logger.debug(self.github.ratelimits.reset_utc)
         for repository in self.repositories:
-            if repository.status.installed:
-                try:
-                    await repository.update_repository()
-                    repository.logger.debug("Information update done.")
-                except AIOGitHubException:
-                    self.system.status.background_task = False
-                    self.hass.bus.async_fire("hacs/status", {})
-                    await self.data.async_write()
-                    self.logger.debug(
-                        "Recuring background task for installed repositories done"
-                    )
-                    return
+            if (
+                repository.status.installed
+                and repository.category in self.common.categories
+            ):
+                self.factory.tasks.append(self.factory.safe_update(repository))
+
+        await self.factory.execute()
         await self.handle_critical_repositories()
         self.system.status.background_task = False
         self.hass.bus.async_fire("hacs/status", {})
@@ -306,15 +314,10 @@ class Hacs:
         self.logger.debug(self.github.ratelimits.remaining)
         self.logger.debug(self.github.ratelimits.reset_utc)
         for repository in self.repositories:
-            try:
-                await repository.update_repository()
-                repository.logger.debug("Information update done.")
-            except AIOGitHubException:
-                self.system.status.background_task = False
-                self.hass.bus.async_fire("hacs/status", {})
-                await self.data.async_write()
-                self.logger.debug("Recuring background task for all repositories done")
-                return
+            if repository.category in self.common.categories:
+                self.factory.tasks.append(self.factory.safe_common_update(repository))
+
+        await self.factory.execute()
         await self.load_known_repositories()
         await self.clear_out_blacklisted_repositories()
         self.system.status.background_task = False
@@ -330,7 +333,7 @@ class Hacs:
             if self.is_known(repository):
                 repository = self.get_by_name(repository)
                 if repository.status.installed:
-                    self.logger.error(
+                    self.logger.warning(
                         f"You have {repository.information.full_name} installed with HACS "
                         + "this repository has been blacklisted, please consider removing it."
                     )
@@ -373,7 +376,7 @@ class Hacs:
                     continue
                 if self.is_known(repo):
                     continue
-                try:
-                    await self.register_repository(repo, category)
-                except (AIOGitHubException, AIOGitHubRatelimit):
-                    pass
+                self.factory.tasks.append(
+                    self.factory.safe_register(self, repo, category)
+                )
+        await self.factory.execute()

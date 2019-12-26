@@ -3,6 +3,7 @@
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "Applications AppDaemon",
         "background_task": "Tache de fond en cours, cette page se rechargera une fois terminée",
+        "continue": "Continuer",
         "installed": "installés",
         "integration": "Intégration",
         "integrations": "Intégrations",
@@ -41,17 +42,28 @@
     },
     "confirm": {
         "add_to_lovelace": "Êtes-vous sûr de vouloir l'ajouter à vos ressources Lovelace ?",
+        "bg_task": "L'action est désactivée pendant l'exécution de tâches en arrière-plan.",
+        "cancel": "Annuler",
         "continue": "Es-tu sur de vouloir continuer?",
         "delete": "Êtes-vous sûr de vouloir supprimer \"{item}\"?",
+        "delete_installed": "'{item}' est installé, vous devez le désinstaller avant de pouvoir le supprimer.",
+        "exist": "{item} existe déjà",
         "generic": "Êtes-vous sûr?",
+        "no": "Non",
+        "no_upgrades": "Aucune mise à niveau en attente",
+        "ok": "OK",
         "overwrite": "En faisant cela, cela l'écrasera.",
-        "uninstall": "Êtes-vous sûr de vouloir désinstaller \"{item}\"?"
+        "reload_data": "Cela recharge les données de tous les dépôts dont HACS a connaissance, cela prendra un certain temps à terminer.",
+        "uninstall": "Êtes-vous sûr de vouloir désinstaller \"{item}\"?",
+        "upgrade_all": "Cela mettra à niveau tous ces dépôts, assurez-vous d'avoir lu les notes de publication pour chacun d'entre eux avant de continuer.",
+        "yes": "Oui"
     },
     "options": {
         "step": {
             "user": {
                 "data": {
                     "country": "Filtrer par code pays.",
+                    "debug": "Activez le débogage.",
                     "experimental": "Activer les fonctionnalités expérimentales",
                     "release_limit": "Nombre de recensés à afficher."
                 }
@@ -71,11 +83,12 @@
         "available": "Disponible",
         "back_to": "Retour",
         "changelog": "Change log",
+        "downloads": "Téléchargements",
         "flag_this": "Marquer",
         "hide": "Masquer",
         "hide_beta": "Masquer les bêta",
         "install": "Installer",
-        "installed": "Installés",
+        "installed": "Installé",
         "lovelace_copy_example": "Copier cet exemple dans le presse-papier",
         "lovelace_instruction": "Quand vous l'ajoutez à votre configuration lovelace, utilisez",
         "lovelace_no_js_type": "Impossible de déterminer le type de plugin, veuillez vérifier le dépôt",
@@ -95,6 +108,9 @@
     },
     "settings": {
         "add_custom_repository": "AJOUTER UN DÉPÔT PERSONNALISÉ",
+        "adding_new_repo": "Ajout d'un nouveau dépôt '{repo}'",
+        "adding_new_repo_category": "Avec la catégorie '{category}'.",
+        "bg_task_custom": "Les dépôts personnalisés sont masqués pendant l'exécution de tâches en arrière-plan.",
         "category": "Catégorie",
         "compact_mode": "Mode compact",
         "custom_repositories": "DÉPÔTS PERSONNALISÉS",
@@ -103,6 +119,7 @@
         "grid": "Grille",
         "hacs_repo": "Dépôt HACS",
         "hidden_repositories": "dépôts cachés",
+        "missing_category": "Vous devez sélectionner une catégorie",
         "reload_data": "Recharger les données",
         "save": "Enregistrer",
         "table": "Tableau",
@@ -111,11 +128,31 @@
         "upgrade_all": "Tout mettre à jour"
     },
     "store": {
+        "ascending": "ascendant",
         "clear_new": "Effacer tous les nouveaux dépôts",
+        "descending": "descendant",
+        "last_updated": "Dernière mise à jour",
         "name": "Nom",
         "new_repositories": "Nouveaux dépôts",
+        "pending_upgrades": "Mises à niveau en attente",
         "placeholder_search": "Veuillez entrer un terme de recherche...",
         "sort": "Trier",
+        "stars": "Étoiles",
         "status": "Statut"
+    },
+    "time": {
+        "ago": "il y a",
+        "day": "jour",
+        "days": "jours",
+        "hour": "heure",
+        "hours": "heures",
+        "minute": "minute",
+        "minutes": "minutes",
+        "month": "mois",
+        "months": "mois",
+        "second": "seconde",
+        "seconds": "secondes",
+        "year": "an",
+        "years": "ans"
     }
 }

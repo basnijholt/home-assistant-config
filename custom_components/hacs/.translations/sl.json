@@ -1,11 +1,18 @@
 {
     "common": {
+        "about": "O tem",
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "AppDaemon Aplikacije",
         "background_task": "v ozadju se izvaja naloga, ko se konča, se bo stran osvežila.",
+        "check_log_file": "Za več podrobnosti preverite datoteko dnevnika.",
+        "continue": "Nadaljuj",
+        "disabled": "Onemogočeno",
+        "documentation": "Dokumentacija",
+        "hacs_is_disabled": "HACS je onemogočen",
         "installed": "Nameščeno",
         "integration": "Integracija",
         "integrations": "Integracije",
+        "manage": "upravljanje",
         "plugin": "vtičnik",
         "plugins": "Vtičniki",
         "python_script": "Python skripta",
@@ -41,17 +48,28 @@
     },
     "confirm": {
         "add_to_lovelace": "Ali si prepričan, da želiš to dodati med svoje vire Lovelace?",
+        "bg_task": "Dejanje je onemogočeno, medtem ko se izvajajo opravila v ozadju.",
+        "cancel": "Prekliči",
         "continue": "Ali ste prepričani, da želite nadaljevati?",
         "delete": "Ali ste prepričani, da želite izbrisati \"{item}\"?",
+        "delete_installed": "'{item}' je nameščen, pred odstranitvijo ga morate odstraniti.",
+        "exist": "{item} že obstaja",
         "generic": "Ali si prepričan?",
+        "no": "Ne",
+        "no_upgrades": "Ni nadgradenj",
+        "ok": "V redu",
         "overwrite": "Če to storite, bo to prepisano.",
-        "uninstall": "Ali ste prepričani, da želite odstraniti \"{item}\"?"
+        "reload_data": "Ponovno se naložijo podatki vseh shramb HA, to bo trajalo nekaj časa.",
+        "uninstall": "Ali ste prepričani, da želite odstraniti \"{item}\"?",
+        "upgrade_all": "To bo nadgradil vse te repozitorije, preden nadaljujete poskrbite, da ste prebrali vse opombe ob izdaji.",
+        "yes": "Da"
     },
     "options": {
         "step": {
             "user": {
                 "data": {
                     "country": "Filtrirajte s kodo države.",
+                    "debug": "Omogoči odpravljanje napak.",
                     "experimental": "Omogočite poskusne funkcije",
                     "release_limit": "Število izdaj, ki jih želite prikazati."
                 }
@@ -71,6 +89,7 @@
         "available": "Na voljo",
         "back_to": "Nazaj na",
         "changelog": "Dnevnik sprememb",
+        "downloads": "Prenosi",
         "flag_this": "Označite to",
         "hide": "Skrij",
         "hide_beta": "Skrij različico beta",
@@ -95,6 +114,9 @@
     },
     "settings": {
         "add_custom_repository": "DODAJTE SVOJ REPOZITORIJ",
+        "adding_new_repo": "Dodajanje novega repozitorija '{repo}'",
+        "adding_new_repo_category": "S kategorijo '{category}'.",
+        "bg_task_custom": "Med izvajanjem nalog v ozadju so repozitoriji po meri skriti.",
         "category": "Kategorija",
         "compact_mode": "Kompaktni način",
         "custom_repositories": "VAŠI REPOZITORIJI",
@@ -103,7 +125,10 @@
         "grid": "Mreža",
         "hacs_repo": "HACS repo",
         "hidden_repositories": "skriti repozitoriji",
+        "missing_category": "Izbrati moraš kategorijo",
+        "open_repository": "Odprite skladišče",
         "reload_data": "Ponovno naloži podatke",
+        "repository_configuration": "Konfiguracija skladišč",
         "save": "Shranite",
         "table": "Tabela",
         "table_view": "Pogled tabele",
@@ -111,11 +136,32 @@
         "upgrade_all": "Nadgradite vse"
     },
     "store": {
+        "ascending": "naraščajoče",
         "clear_new": "Počisti vse nove repozitorije",
+        "descending": "padajoče",
+        "last_updated": "Nazadnje posodobljeno",
         "name": "Ime",
         "new_repositories": "Novi repozitoriji",
+        "pending_upgrades": "Nadgradnje na čakanju",
         "placeholder_search": "Prosim vnesite iskalni izraz ...",
         "sort": "razvrsti",
+        "stars": "Zvezd",
         "status": "Stanje"
+    },
+    "time": {
+        "ago": "nazaj",
+        "day": "dan",
+        "days": "Dni",
+        "hour": "ura",
+        "hours": "Ur",
+        "minute": "minuta",
+        "minutes": "minut",
+        "month": "mesec",
+        "months": "mesecev",
+        "one": "Eno",
+        "second": "drugič",
+        "seconds": "sekund",
+        "year": "leto",
+        "years": "Let"
     }
 }

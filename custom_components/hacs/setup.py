@@ -34,6 +34,15 @@ async def load_hacs_repository(hacs):
     return True
 
 
+def setup_extra_stores(hacs):
+    """Set up extra stores in HACS if enabled in Home Assistant."""
+    if "python_script" in hacs.hass.config.components:
+        hacs.common.categories.append("python_script")
+
+    if hacs.hass.services.services.get("frontend", {}).get("reload_themes") is not None:
+        hacs.common.categories.append("theme")
+
+
 def add_sensor(hacs):
     """Add sensor."""
     try:
@@ -56,6 +65,7 @@ def add_sensor(hacs):
 async def setup_frontend(hacs):
     """Configure the HACS frontend elements."""
     hacs.hass.http.register_view(HacsPluginView())
+    hacs.frontend.version_running = FE_VERSION
 
     # Add to sidepanel
     hacs.hass.http.register_view(HacsFrontend())
@@ -63,7 +73,7 @@ async def setup_frontend(hacs):
         "name": "hacs-frontend",
         "embed_iframe": False,
         "trust_external": False,
-        "js_url": f"/hacs_frontend/main_{FE_VERSION}.js",
+        "js_url": f"/hacs_frontend/{hacs.frontend.version_running}.js",
     }
 
     config = {}

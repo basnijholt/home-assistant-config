@@ -41,17 +41,27 @@
     },
     "confirm": {
         "add_to_lovelace": "Är du säker på att du vill lägga till detta till dina Lovelace-resurser?",
+        "bg_task": "Åtgärden är inaktiverad medan aktiviteter i bakgrunden körs",
+        "cancel": "Avbryt",
         "continue": "Är du säker på att du vill fortsätta?",
         "delete": "Är du säker på att du vill ta bort \"{item}\"?",
+        "delete_installed": "'{item}' är installerat, du måste avinstallera det innan du kan ta bort det.",
+        "exist": "{item} existerar redan",
         "generic": "Är du säker?",
+        "no": "Nej",
+        "no_upgrades": "Inga uppgraderingar väntar",
+        "ok": "OK",
         "overwrite": "Detta kommer att skriva över den.",
-        "uninstall": "Är du säker på att du vill avinstallera \" {item} \"?"
+        "uninstall": "Är du säker på att du vill avinstallera \" {item} \"?",
+        "upgrade_all": "Detta kommer uppgradera alla dessa repositories, säkerhetsställ att du läst release anteckningarna för dem alla innan du fortsätter",
+        "yes": "Ja"
     },
     "options": {
         "step": {
             "user": {
                 "data": {
                     "country": "Filtrera på landskod.",
+                    "debug": "Aktivera felsökning",
                     "experimental": "Använd experimentella funktioner",
                     "release_limit": "Antalet releaser som visas."
                 }
@@ -95,6 +105,9 @@
     },
     "settings": {
         "add_custom_repository": "LÄGG TILL ETT REPOSITORY",
+        "adding_new_repo": "Lägger till nytt repository '{repo}'",
+        "adding_new_repo_category": "Med kategori '{kategori}'.",
+        "bg_task_custom": "Anpassade repositories är dolda under tiden aktiviteter i bakgrunden körs",
         "category": "Kategori",
         "compact_mode": "Kompakt läge",
         "custom_repositories": "REPOSITORIES",
@@ -103,6 +116,7 @@
         "grid": "Rutnät",
         "hacs_repo": "HACS repo",
         "hidden_repositories": "dolda förråd",
+        "missing_category": "Du behöver välja en kategori",
         "reload_data": "Ladda om data",
         "save": "Spara",
         "table": "Tabell",
@@ -114,8 +128,10 @@
         "clear_new": "Rensa alla nya förvar",
         "name": "Namn",
         "new_repositories": "Nya förvar",
+        "pending_upgrades": "Väntande uppgraderingar",
         "placeholder_search": "Skriv ett sökord...",
         "sort": "sortera",
+        "stars": "Stjärnor",
         "status": "Status"
     }
 }

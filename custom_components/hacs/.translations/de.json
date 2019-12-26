@@ -1,11 +1,18 @@
 {
     "common": {
+        "about": "Über",
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "AppDaemon Apps",
         "background_task": "Hintergrundprozess läuft. Diese Seite lädt neu, sobald dieser fertig ist.",
+        "check_log_file": "Überprüfe die Logdatei für weitere Informationen.",
+        "continue": "Fortfahren",
+        "disabled": "Deaktiviert",
+        "documentation": "Dokumentation",
+        "hacs_is_disabled": "HACS ist deaktiviert",
         "installed": "Installiert",
         "integration": "Integration",
         "integrations": "Integrationen",
+        "manage": "verwalten",
         "plugin": "Plugin",
         "plugins": "Plugins",
         "python_script": "Python Skript",
@@ -21,7 +28,7 @@
             "single_instance_allowed": "Es ist nur eine einzelne HACS-Instanz erlaubt."
         },
         "error": {
-            "auth": "Persönliches Zugriffstoken ist falsch."
+            "auth": "Persönlicher Zugriffstoken ist falsch."
         },
         "step": {
             "user": {
@@ -31,9 +38,9 @@
                     "sidepanel_icon": "Sidepanel Symbol",
                     "sidepanel_title": "Sidepanel Titel",
                     "theme": "Theme-Discovery & Tracking aktivieren",
-                    "token": "Persönliches GitHub Zugriffstoken"
+                    "token": "Persönlicher GitHub Zugriffstoken"
                 },
-                "description": "Wenn du Hilfe mit den Einstellungen brauchst, kannst du hier nachsehen: https:\/\/hacs.xyz\/docs\/configuration\/start\/",
+                "description": "Wenn du Hilfe mit den Einstellungen brauchst, kannst du hier nachsehen: https:\/\/hacs.xyz\/docs\/configuration\/start",
                 "title": "HACS (Home Assistant Community Store)"
             }
         },
@@ -45,13 +52,16 @@
         "cancel": "Abbrechen",
         "continue": "Bist du dir sicher, dass du fortfahren möchtest?",
         "delete": "Möchtest du \"{item}\" wirklich löschen?",
+        "delete_installed": "'{item}' ist installiert. Du musst es deinstallieren, bevor du es löschen kannst.",
+        "exist": "{item} existiert bereits",
         "generic": "Bist du dir sicher?",
         "no": "Nein",
         "no_upgrades": "Keine Upgrades ausstehend",
         "ok": "OK",
         "overwrite": "Dadurch wird die Datei überschrieben.",
-        "uninstall": "Möchtest du \"{item}\" wirklich löschen?",
-        "upgrade_all": "Hier durch werden all diese Repositorys aktualisiert. Stelle sicher, dass du die Versionshinweise vorher gelesen hast.",
+        "reload_data": "Hierdurch werden die Daten aller Repositories die HACS kennt neu geladen. Dies wird einige Zeit in Anspruch nehmen.",
+        "uninstall": "Möchtest du \"{item}\" wirklich deinstallieren?",
+        "upgrade_all": "Hierdurch werden all diese Repositories aktualisiert. Stelle sicher, dass du die Versionshinweise vorher gelesen hast.",
         "yes": "Ja"
     },
     "options": {
@@ -79,6 +89,7 @@
         "available": "Verfügbar",
         "back_to": "Zurück zu",
         "changelog": "Änderungsprotokoll",
+        "downloads": "Downloads",
         "flag_this": "Melden",
         "hide": "Verstecken",
         "hide_beta": "Beta verstecken",
@@ -102,16 +113,22 @@
         "upgrade": "Aktualisieren"
     },
     "settings": {
-        "add_custom_repository": "CUSTOM REPOSITORY HINZUFÜGEN",
+        "add_custom_repository": "BENUTZERDEFINIERTES REPOSITORY HINZUFÜGEN",
+        "adding_new_repo": "Hinzufügen eines neuen Repository '{repo}'",
+        "adding_new_repo_category": "Mit der Kategorie '{category}'.",
+        "bg_task_custom": "Custom Repositorys werden ausgeblendet, während Hintergrundaufgaben ausgeführt werden.",
         "category": "Kategorie",
         "compact_mode": "Kompakter Modus",
-        "custom_repositories": "CUSTOM REPOSITORIES",
+        "custom_repositories": "BENUTZERDEFINIERTE REPOSITORIES",
         "delete": "Löschen",
         "display": "Anzeige",
         "grid": "Gitter",
         "hacs_repo": "HACS repo",
         "hidden_repositories": "versteckte Repositories",
+        "missing_category": "Du musst eine Kategorie auswählen.",
+        "open_repository": "Repository öffnen",
         "reload_data": "Daten neu laden",
+        "repository_configuration": "Repository Konfiguration",
         "save": "Speichern",
         "table": "Tabelle",
         "table_view": "Tabellenansicht",
@@ -119,7 +136,10 @@
         "upgrade_all": "Alles aktualisieren"
     },
     "store": {
+        "ascending": "Aufsteigend",
         "clear_new": "Alle neuen Repositories als gesehen markieren",
+        "descending": "Absteigend",
+        "last_updated": "Zuletzt aktualisiert",
         "name": "Name",
         "new_repositories": "Neue Repositories",
         "pending_upgrades": "Ausstehende Upgrades",
@@ -127,5 +147,21 @@
         "sort": "Sortieren",
         "stars": "Sterne",
         "status": "Status"
+    },
+    "time": {
+        "ago": "vor",
+        "day": "Tag",
+        "days": "Tage",
+        "hour": "Stunde",
+        "hours": "Stunden",
+        "minute": "Minute",
+        "minutes": "Minuten",
+        "month": "Monat",
+        "months": "Monate",
+        "one": "Eins",
+        "second": "Sekunde",
+        "seconds": "Sekunden",
+        "year": "Jahr",
+        "years": "Jahre"
     }
 }

@@ -3,6 +3,7 @@
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "Applicazioni AppDaemon",
         "background_task": "Attività in esecuzione, questa pagina sarà ricaricata al termine.",
+        "continue": "Continua",
         "installed": "Installati",
         "integration": "Integrazione",
         "integrations": "Integrazioni",
@@ -39,18 +40,44 @@
         },
         "title": "HACS (Home Assistant Community Store)"
     },
+    "confirm": {
+        "add_to_lovelace": "Sei sicuro di voler aggiungerlo alle tue risorse Lovelace?",
+        "bg_task": "L'azione è disabilitata mentre sono in esecuzione attività in background.",
+        "cancel": "Annulla",
+        "continue": "Sei sicuro di voler continuare?",
+        "delete": "Sei sicuro di voler disinstallare '{item}'?",
+        "delete_installed": "'{item}' è installato, è necessario disinstallarlo prima di poterlo eliminare.",
+        "exist": "'{item}' esiste già",
+        "generic": "Sei sicuro?",
+        "no": "No",
+        "no_upgrades": "Nessun aggiornamento in sospeso",
+        "ok": "OK",
+        "overwrite": "In questo modo lo sovrascriverà.",
+        "uninstall": "Sei sicuro di voler disinstallare '{item}'?",
+        "upgrade_all": "Questa azione aggiornerà tutti i repository, assicurati di aver letto le note di rilascio prima di procedere.",
+        "yes": "Sì"
+    },
     "options": {
         "step": {
             "user": {
                 "data": {
                     "country": "Filtra con prefisso internazionale.",
+                    "debug": "Abilita debug.",
                     "experimental": "Abilita funzionalità sperimentali",
                     "release_limit": "Numero di versioni da mostrare."
                 }
             }
         }
     },
+    "repository_banner": {
+        "integration_not_loaded": "Questa integrazione non è caricata in Home Assistant.",
+        "not_loaded": "Non caricato",
+        "plugin_not_loaded": "Questo plugin non è stato aggiunto alle risorse di Lovelace.",
+        "restart": "È necessario riavviare Home Assistant.",
+        "restart_pending": "Riavvio in attesa"
+    },
     "repository": {
+        "add_to_lovelace": "Aggiungi a Lovelace",
         "authors": "Autori",
         "available": "Disponibile",
         "back_to": "Torna a",
@@ -79,18 +106,33 @@
     },
     "settings": {
         "add_custom_repository": "AGGIUNGI REPOSITORY PERSONALIZZATA",
+        "adding_new_repo": "Aggiunta di un nuovo repository '{repo}'",
+        "adding_new_repo_category": "Con la categoria '{category}'.",
+        "bg_task_custom": "I repository personalizzati sono nascosti mentre sono in esecuzione attività in background.",
         "category": "Categoria",
+        "compact_mode": "Modalità compatta",
         "custom_repositories": "REPOSITORY PERSONALIZZATE",
         "delete": "Cancella",
         "display": "Visualizza",
         "grid": "Griglia",
         "hacs_repo": "HACS repo",
+        "hidden_repositories": "repository nascosti",
+        "missing_category": "Devi selezionare una categoria",
         "reload_data": "Ricarica i dati",
         "save": "Salva",
         "table": "Tabella",
+        "table_view": "Vista tabella",
+        "unhide": "Mostra",
         "upgrade_all": "Aggiorna tutto"
     },
     "store": {
-        "placeholder_search": "Inserire un termine di ricerca"
+        "clear_new": "Ripulisci i nuovi repository",
+        "name": "Nome",
+        "new_repositories": "Nuovi repository",
+        "pending_upgrades": "Aggiornamenti in sospeso",
+        "placeholder_search": "Inserire un termine di ricerca",
+        "sort": "Ordinare",
+        "stars": "Stelle",
+        "status": "Stato"
     }
 }

@@ -1,8 +1,11 @@
 {
     "common": {
+        "about": "关于",
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "AppDaemon应用",
         "background_task": "后台任务正在运行，完成后将重新加载此页面。",
+        "continue": "继续",
+        "documentation": "文档",
         "installed": "已安装",
         "integration": "自定义组件",
         "integrations": "自定义组件",
@@ -45,11 +48,14 @@
         "cancel": "取消",
         "continue": "你确定你要继续吗？",
         "delete": "是否确实要删除\"{item}\"？",
+        "delete_installed": "已安装“ {item}”，需要先将其卸载，然后才能将其删除。",
+        "exist": "{item}已经存在",
         "generic": "你确定吗？",
         "no": "不",
         "no_upgrades": "暂无升级",
         "ok": "确定",
         "overwrite": "这样做会覆盖它。",
+        "reload_data": "这将重新加载HACS知道的所有仓库的数据，这需要一些时间才能完成。",
         "uninstall": "您确定要卸载“ {item} ”吗？",
         "upgrade_all": "这将升级所有这些仓库，请确保在继续之前已阅读所有仓库的发行说明。",
         "yes": "是"
@@ -79,6 +85,7 @@
         "available": "版本号",
         "back_to": "返回",
         "changelog": "更新日志",
+        "downloads": "下载",
         "flag_this": "标记",
         "hide": "隐藏",
         "hide_beta": "隐藏测试版",
@@ -103,6 +110,9 @@
     },
     "settings": {
         "add_custom_repository": "添加自定义仓库",
+        "adding_new_repo": "添加新的仓库“ {repo}”",
+        "adding_new_repo_category": "类别为“ {category}”。",
+        "bg_task_custom": "自定义仓库在后台任务运行时被隐藏。",
         "category": "类别",
         "compact_mode": "紧凑模式",
         "custom_repositories": "自定义仓库",
@@ -111,6 +121,7 @@
         "grid": "网格",
         "hacs_repo": "HACS仓库",
         "hidden_repositories": "隐藏的仓库",
+        "missing_category": "您需要选择一个类别",
         "reload_data": "重载数据",
         "save": "保存",
         "table": "列表",
@@ -119,12 +130,32 @@
         "upgrade_all": "升级全部"
     },
     "store": {
+        "ascending": "升序",
         "clear_new": "清除所有新仓库标记",
+        "descending": "降序",
+        "last_updated": "最近更新时间",
         "name": "名称",
         "new_repositories": "新仓库",
         "pending_upgrades": "待升级",
         "placeholder_search": "搜索项目...",
         "sort": "排序",
+        "stars": "星级",
         "status": "状态"
+    },
+    "time": {
+        "ago": "过去",
+        "day": "天",
+        "days": "天",
+        "hour": "小时",
+        "hours": "小时",
+        "minute": "分",
+        "minutes": "分",
+        "month": "月",
+        "months": "月",
+        "one": "一",
+        "second": "秒",
+        "seconds": "秒",
+        "year": "年",
+        "years": "年"
     }
 }

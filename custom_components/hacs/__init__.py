@@ -20,7 +20,7 @@ from .constrains import check_constans
 from .hacsbase import Hacs
 from .hacsbase.configuration import Configuration
 from .hacsbase.data import HacsData
-from .setup import add_sensor, load_hacs_repository, setup_frontend
+from .setup import add_sensor, load_hacs_repository, setup_frontend, setup_extra_stores
 
 SCHEMA = hacs_base_config_schema()
 SCHEMA[vol.Optional("options")] = hacs_config_option_schema()
@@ -123,7 +123,7 @@ async def hacs_startup(hacs):
     await setup_frontend(hacs)
 
     # Set up sensor
-    add_sensor(hacs)
+    await hacs.hass.async_add_executor_job(add_sensor, hacs)
 
     # Load HACS
     if not await load_hacs_repository(hacs):
@@ -142,13 +142,23 @@ async def hacs_startup(hacs):
         return False
 
     # Add aditional categories
+    hacs.common.categories = ELEMENT_TYPES
     if hacs.configuration.appdaemon:
-        ELEMENT_TYPES.append("appdaemon")
+        hacs.common.categories.append("appdaemon")
     if hacs.configuration.python_script:
-        ELEMENT_TYPES.append("python_script")
+        hacs.configuration.python_script = False
+        if hacs.configuration.config_type == "yaml":
+            hacs.logger.warning(
+                "Configuration option 'python_script' is deprecated, HACS will know if you use it, this option will be removed in a future release."
+            )
     if hacs.configuration.theme:
-        ELEMENT_TYPES.append("theme")
-    hacs.common.categories = sorted(ELEMENT_TYPES)
+        hacs.configuration.theme = False
+        if hacs.configuration.config_type == "yaml":
+            hacs.logger.warning(
+                "Configuration option 'theme' is deprecated, HACS will know if you use it, this option will be removed in a future release."
+            )
+
+    await hacs.hass.async_add_executor_job(setup_extra_stores, hacs)
 
     # Setup startup tasks
     if hacs.configuration.config_type == "yaml":
@@ -166,7 +176,7 @@ async def async_remove_entry(hass, config_entry):
     """Handle removal of an entry."""
     Hacs().logger.info("Disabling HACS")
     Hacs().logger.info("Removing recuring tasks")
-    for task in Hacs().tasks:
+    for task in Hacs().recuring_tasks:
         task()
     Hacs().logger.info("Removing sensor")
     try:

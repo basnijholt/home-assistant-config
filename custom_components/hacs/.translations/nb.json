@@ -1,11 +1,18 @@
 {
     "common": {
+        "about": "Om",
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "AppDaemon Apper",
         "background_task": "Bakgrunnsoppgaven kjører. Denne siden lastes inn på nytt når den er ferdig.",
+        "check_log_file": "Sjekk loggfilen din for mer informasjon.",
+        "continue": "Fortsett",
+        "disabled": "Deaktivert",
+        "documentation": "dokumentasjon",
+        "hacs_is_disabled": "HACS er deaktivert",
         "installed": "Installert",
         "integration": "Integrering",
         "integrations": "Integrasjoner",
+        "manage": "manage",
         "plugin": "Plugin",
         "plugins": "Plugins",
         "python_script": "Python-skript",
@@ -52,6 +59,7 @@
         "no_upgrades": "Ingen oppgraderinger tilgjengelig",
         "ok": "OK",
         "overwrite": "Å gjøre dette vil overskrive det.",
+        "reload_data": "Dette laster inn dataene til alle repositories HACS vet om, dette vil ta litt tid å fullføre.",
         "uninstall": "Er du sikker på at du vil avinstallere \"{item}\"?",
         "upgrade_all": "Dette vil oppgradere alle disse repositorene, sørg for at du har lest utgivelses notatene for dem alle før du fortsetter.",
         "yes": "Ja"
@@ -81,10 +89,10 @@
         "available": "Tilgjengelig",
         "back_to": "Tilbake til",
         "changelog": "Endringslogg",
+        "downloads": "Nedlastinger",
         "flag_this": "Flag dette",
         "hide": "Skjul",
         "hide_beta": "Skjul beta",
-        "install": "Installer",
         "installed": "Installert",
         "lovelace_copy_example": "Kopier eksemplet til utklippstavlen",
         "lovelace_instruction": "Når du legger til dette i lovelace-konfigurasjonen din, bruk dette",
@@ -117,7 +125,9 @@
         "hacs_repo": "HACS repo",
         "hidden_repositories": "Gjemte repositories",
         "missing_category": "Du må velge en kategori",
+        "open_repository": "Åpne repository",
         "reload_data": "Last inn data på nytt",
+        "repository_configuration": "Repository konfigurasjon",
         "save": "Lagre",
         "table": "Tabell",
         "table_view": "Tabellvisning",
@@ -125,7 +135,10 @@
         "upgrade_all": "Oppgradere alle"
     },
     "store": {
+        "ascending": "stigende",
         "clear_new": "Tøm nye repositories",
+        "descending": "synkende",
+        "last_updated": "Sist oppdatert",
         "name": "Navn",
         "new_repositories": "Nye repositories",
         "pending_upgrades": "Venter på oppgradering",
@@ -133,5 +146,21 @@
         "sort": "sorter",
         "stars": "Stjerner",
         "status": "Status"
+    },
+    "time": {
+        "ago": "siden",
+        "day": "dag",
+        "days": "dager",
+        "hour": "time",
+        "hours": "timer",
+        "minute": "minutt",
+        "minutes": "minutter",
+        "month": "måned",
+        "months": "måneder",
+        "one": "En",
+        "second": "sekund",
+        "seconds": "sekunder",
+        "year": "år",
+        "years": "år"
     }
 }
