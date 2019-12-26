@@ -50,3 +50,13 @@
       value_template: >
         {{ states("binary_sensor.motion_sensor_hall") == "on" }}
       delay_off: "00:05:00"
+
+    washing_machine:
+      friendly_name: Washing machine
+      value_template: >
+        {{ states("sensor.washing_machine_watts") | float(0) > 3 }}
+
+    dishwasher:
+      friendly_name: Dishwasher
+      value_template: >
+        {{ states("sensor.dishwasher_watts") | float(0) > 3 }}

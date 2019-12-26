@@ -40,6 +40,8 @@ resources:
   url: /community_plugin/lovelace-auto-entities/auto-entities.js
 - type: module
   url: /community_plugin/decluttering-card/decluttering-card.js
+- type: module
+  url: /community_plugin/weather-card/weather-card.js
 title: Huis
 views:
 - badges:
@@ -70,6 +72,7 @@ views:
       type: entities
     type: vertical-stack
   - entity: weather.huis
+    name: Weather
     type: weather-forecast
   - cards:
     - artwork: cover
@@ -137,23 +140,6 @@ views:
     show_header_toggle: false
     title: Modes
     type: entities
-  - color_thresholds_transition: smooth
-    entities:
-    - entity: sensor.temperature_mean
-      name: Temperature
-    font_size: 70
-    group: false
-    hour24: true
-    line_width: 6
-    points_per_hour: 1
-    show:
-      extrema: true
-      fill: fade
-      icon: true
-      labels: false
-      name: true
-      state: true
-    type: custom:mini-graph-card
   - entities:
     - entity: scene.bed_time
       tap_action:
@@ -188,6 +174,111 @@ views:
     show_state: false
     title: Scences
     type: glance
+  - entities:
+    - entity: binary_sensor.washing_machine
+    - entity: sensor.washing_machine_watts
+    - entity: binary_sensor.dishwasher
+    - entity: sensor.dishwasher_watts
+    show_header_toggle: false
+    title: Utilities
+    type: entities
+  - cards:
+    - cards:
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.temperature_living_room
+          name: Living room
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.temperature_bathroom
+          name: Bathroom
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      name: Speedtest
+      type: horizontal-stack
+    - cards:
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.temperature_bedroom
+          name: Bedroom
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.temperature_hall
+          name: Hall
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      name: Speedtest
+      type: horizontal-stack
+    - cards:
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.temperature_mean
+          name: Mean
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        lower_bound: 0
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      name: Speedtest
+      type: horizontal-stack
+    title: Temperature
+    type: custom:vertical-stack-in-card
   path: default_view
   title: Home
 - cards:

@@ -1,26 +1,18 @@
 ---
-- alias: "Light: update switch state"  # https://github.com/home-assistant/home-assistant/issues/21768#issuecomment-470959458
-  initial_state: "on"
-  trigger:
-    platform: time_pattern
-    seconds: "/5"
-  action:
-    service: homeassistant.update_entity
-    entity_id: switch.desk_lamp
-
-- alias: "Light: copy light"
-  trigger:  # two triggers, to avoid triggering on "unavailable"
-    - platform: state
-      entity_id: sensor.desk_lamp_current
-      from: "on"
-      to: "off"
-    - platform: state
-      entity_id: sensor.desk_lamp_current
-      from: "off"
-      to: "on"
-  action:
-    service_template: switch.turn_{{ trigger.to_state.state }}
-    entity_id: switch.light2
+# XXX: not installed currently
+# - alias: "Light: copy light"
+#   trigger:  # two triggers, to avoid triggering on "unavailable"
+#     - platform: state
+#       entity_id: sensor.desk_lamp_current
+#       from: "on"
+#       to: "off"
+#     - platform: state
+#       entity_id: sensor.desk_lamp_current
+#       from: "off"
+#       to: "on"
+#   action:
+#     service_template: switch.turn_{{ trigger.to_state.state }}
+#     entity_id: switch.light2
 
 # XXX: fix the switches first
 # - alias: "Light: turn on when coming home"

@@ -14,8 +14,6 @@ entity_config:
   switch.desk_lamp:
     name: Desk lamp
     type: switch
-  switch.light2:
-    name: Speaker lamp
   light.ceiling_bedroom:
     name: Bedroom ceiling lamp
   input_boolean.start_the_music:

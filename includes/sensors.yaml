@@ -1,31 +1,17 @@
 ---
 - platform: template
   sensors:
-    desk_lamp_watts:
+    washing_machine_watts:
       value_template: >
-        {{ state_attr("switch.desk_lamp", "current_power_w") | replace(" W", "") | float("Unavailable") }}
+        {{ state_attr("switch.washing_machine", "current_power_w") | replace(" W", "") | float("Unavailable") }}
       unit_of_measurement: Watt
+      friendly_name: Washing machine usage
 
-    desk_lamp_current:
-      friendly_name: Lamp stroom
-      icon_template: >-
-        {% set P = states("sensor.desk_lamp_watts") %}
-        {% if P == "Unavailable"  %}
-          mdi:cloud-question
-        {% elif P | float > 3  %}
-          mdi:power-plug
-        {% else %}
-          mdi:power-plug-off
-        {% endif %}
-      value_template: >-
-        {% set P = states("sensor.desk_lamp_watts") %}
-        {% if P == "Unavailable"  %}
-          unavailable
-        {% elif P | float > 3  %}
-          on
-        {% else %}
-          off
-        {% endif %}
+    dishwasher_watts:
+      value_template: >
+        {{ state_attr("switch.dishwasher", "current_power_w") | replace(" W", "") | float("Unavailable") }}
+      unit_of_measurement: Watt
+      friendly_name: Dishwasher usage
 
     count_automations:
       entity_id: sensor.date
