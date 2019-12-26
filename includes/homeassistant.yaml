@@ -10,8 +10,6 @@ whitelist_external_dirs:
 customize:
   person.bas:
     entity_picture: "https://www.nijho.lt/authors/admin/avatar.jpg"
-  light.ceiling_bedroom:
-    friendly_name: Ceiling lamp
   switch.vacuum_mode:
     friendly_name: Vacuum
   sensor.temperature_mean:

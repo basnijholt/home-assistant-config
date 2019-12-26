@@ -10,6 +10,6 @@
         service: vacuum.return_to_base
         entity_id: vacuum.xiaomi_vacuum_cleaner
 
-- platform: circadian_lighting
-  lights_rgb:
-    - light.ceiling_bedroom
+# - platform: circadian_lighting
+#   lights_rgb:
+#     - light.ceiling_bedroom

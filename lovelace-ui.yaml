@@ -47,22 +47,41 @@ views:
   - entity: person.marcella
   - entity: sun.sun
   cards:
-  - entities:
-    - entity: switch.circadian_lighting_circadian_lighting
-    - entity: sensor.desk_lamp_current
-    - entity: light.ceiling_bedroom
-    - entity: light.speaker_bedroom
-    - entity: light.bamboo
-    - entity: light.sphere_1
-    - entity: light.sphere_2
-    - entity: light.corner_living_room
-    - entity: light.philips_go
-    - entity: light.ceiling_living_room
-    title: Lights
-    type: entities
+  - cards:
+    - entities:
+      - entity: light.sphere_1
+      - entity: light.sphere_2
+      - entity: light.corner_living_room
+      - entity: light.ceiling_living_room
+      title: 'Lights: living room'
+      type: entities
+    - entities:
+      - entity: light.ceiling_bedroom
+      - entity: light.lampan
+      - entity: light.bamboo
+      - entity: light.philips_go
+      title: 'Lights: bedroom'
+      type: entities
+    - entities:
+      - entity: light.ceiling_kitchen
+      - entity: light.ceiling_bathroom
+      - entity: light.toilet
+      title: 'Lights: automatic'
+      type: entities
+    type: vertical-stack
   - entity: weather.huis
     type: weather-forecast
   - cards:
+    - artwork: cover
+      background: /local/tv.jpg
+      entity: media_player.tv
+      hide:
+        controls: true
+        mute: false
+        play_stop: true
+        volume: false
+      icon: mdi:television
+      type: custom:mini-media-player
     - artwork: cover
       entity: media_player.spotify
       hide:
@@ -154,6 +173,12 @@ views:
         service: scene.turn_on
         service_data:
           entity_id: scene.bright_lights
+    - entity: scene.cozy_bed
+      tap_action:
+        action: call-service
+        service: scene.turn_on
+        service_data:
+          entity_id: scene.cozy_bed
     - entity: scene.cozy_lights
       tap_action:
         action: call-service
@@ -427,21 +452,21 @@ views:
     type: glance
   - columns: 4
     entities:
-    - entity: sensor.temperature_1
-    - entity: sensor.temperature_2
-    - entity: sensor.temperature_3
+    - entity: sensor.temperature_living_room
+    - entity: sensor.temperature_bedroom
+    - entity: sensor.temperature_hall
     - entity: sensor.temperature_bathroom
-    - entity: sensor.humidity_1
-    - entity: sensor.humidity_2
-    - entity: sensor.humidity_3
+    - entity: sensor.humidity_living_room
+    - entity: sensor.humidity_bedroom
+    - entity: sensor.humidity_hall
     - entity: sensor.humidity_bathroom
-    - entity: sensor.pressure_1
-    - entity: sensor.pressure_2
-    - entity: sensor.pressure_3
+    - entity: sensor.pressure_living_room
+    - entity: sensor.pressure_bedroom
+    - entity: sensor.pressure_hall
     - entity: sensor.pressure_bathroom
-    - entity: sensor.temperature_sensor_1_battery_level
-    - entity: sensor.temperature_sensor_2_battery_level
-    - entity: sensor.temperature_sensor_3_battery_level
+    - entity: sensor.temperature_sensor_living_room_battery_level
+    - entity: sensor.temperature_sensor_bedroom_battery_level
+    - entity: sensor.temperature_sensor_hall_battery_level
     - entity: sensor.temperature_sensor_bathroom_battery_level
     show_icon: true
     show_name: false

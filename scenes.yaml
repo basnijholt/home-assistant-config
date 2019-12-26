@@ -2,20 +2,44 @@
   name: Bed Time
   entities:
     light.bamboo:
+      brightness: 254
+      color_temp: 366
       effect_list:
       - colorloop
       friendly_name: Bamboo
+      is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
-      state: unavailable
+      state: 'on'
+      supported_features: 63
+    light.ceiling_bathroom:
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling bathroom
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
       supported_features: 63
     light.ceiling_bedroom:
       effect_list:
       - colorloop
-      friendly_name: Ceiling lamp
+      friendly_name: Ceiling bedroom
+      is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
-      state: unavailable
+      state: 'off'
+      supported_features: 63
+    light.ceiling_kitchen:
+      brightness: 254
+      color_temp: 366
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling kitchen
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
       supported_features: 63
     light.ceiling_living_room:
       effect_list:
@@ -70,6 +94,17 @@
       min_mireds: 153
       state: 'off'
       supported_features: 63
+    light.toilet:
+      brightness: 254
+      color_temp: 366
+      effect_list:
+      - colorloop
+      friendly_name: Toilet
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 63
     media_player.kef:
       friendly_name: Speakers
       icon: mdi:speaker-wireless
@@ -83,7 +118,7 @@
       - Usb
       state: 'on'
       supported_features: 3468
-      volume_level: 0.59
+      volume_level: 0.3
 - id: '1575131362586'
   name: Bright Lights
   entities:
@@ -420,3 +455,169 @@
       xy_color:
       - 0.382
       - 0.159
+- id: '1577227123082'
+  name: Movie time
+  entities:
+    light.ceiling_living_room:
+      brightness: 74
+      effect_list:
+      - colorloop
+      friendly_name: Ceiling living room
+      hs_color:
+      - 267.773
+      - 89.804
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 132
+      - 25
+      - 255
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.223
+      - 0.084
+    light.corner_living_room:
+      brightness: 73
+      effect_list:
+      - colorloop
+      friendly_name: Corner living room
+      hs_color:
+      - 26.814
+      - 88.627
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 130
+      - 29
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.603
+      - 0.373
+    light.philips_go:
+      brightness: 57
+      effect_list:
+      - colorloop
+      friendly_name: Philips Go
+      hs_color:
+      - 315.071
+      - 82.745
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 44
+      - 202
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.456
+      - 0.196
+    light.sphere_1:
+      brightness: 91
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 1
+      hs_color:
+      - 335.885
+      - 81.961
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 45
+      - 130
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.569
+      - 0.252
+    light.sphere_2:
+      brightness: 103
+      effect_list:
+      - colorloop
+      friendly_name: Sphere 2
+      hs_color:
+      - 299.431
+      - 82.745
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 252
+      - 44
+      - 255
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.38
+      - 0.159
+- id: '1577281705888'
+  name: Cozy bed
+  entities:
+    light.bamboo:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Bamboo
+      hs_color:
+      - 44.058
+      - 81.176
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 200
+      - 48
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.505
+      - 0.447
+    light.ceiling_bedroom:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: ceiling_bedroom
+      hs_color:
+      - 26.725
+      - 89.804
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 128
+      - 25
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.606
+      - 0.372
+    light.philips_go:
+      brightness: 144
+      effect_list:
+      - colorloop
+      friendly_name: Philips Go
+      hs_color:
+      - 29.722
+      - 84.706
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 145
+      - 38
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.581
+      - 0.387

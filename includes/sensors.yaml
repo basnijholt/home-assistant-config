@@ -79,10 +79,10 @@
   name: Temperature mean
   type: mean
   entity_ids:
-    - sensor.temperature_1
-    - sensor.temperature_2
-    - sensor.temperature_3
+    - sensor.temperature_living_room
+    - sensor.temperature_bedroom
     - sensor.temperature_bathroom
+    - sensor.temperature_hall
 
 - platform: command_line
   name: RPi CPU Temperature

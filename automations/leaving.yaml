@@ -3,7 +3,7 @@
   initial_state: "on"
   trigger:
     - platform: state
-      entity_id: binary_sensor.someone_in_the_house
+      entity_id: binary_sensor.someone_in_the_house_in_last_hour
       from: "on"
       to: "off"
     - platform: time_pattern
@@ -12,7 +12,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: binary_sensor.someone_in_the_house
+        entity_id: binary_sensor.someone_in_the_house_in_last_hour
         state: "off"
       - condition: or
         conditions:
@@ -22,11 +22,16 @@
           - condition: state
             entity_id: media_player.kef
             state: "on"
+          - condition: state
+            entity_id: media_player.tv
+            state: "on"
   action:
     - service: light.turn_off
       entity_id: all
     - service: media_player.turn_off
       entity_id: media_player.kef
+    - service: media_player.turn_off
+      entity_id: media_player.tv
     - service: notify.mobile_app_basnijholt_iphone
       data:
         title: "Leaving"

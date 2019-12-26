@@ -22,23 +22,24 @@
     service_template: switch.turn_{{ trigger.to_state.state }}
     entity_id: switch.light2
 
-- alias: "Light: turn on when coming home"
-  trigger:
-    - platform: state
-      entity_id: group.persons
-      from: not_home
-      to: home
-    - platform: state
-      entity_id: binary_sensor.openclose_1  # XXX: didn't attach this yet!
-      from: "off"
-      to: "on"
-  condition:
-    condition: sun
-    after: sunset
-    after_offset: "-0:30:00"
-  action:
-    service: light.turn_on
-    entity_id: light.ceiling_bedroom
+# XXX: fix the switches first
+# - alias: "Light: turn on when coming home"
+#   trigger:
+#     - platform: state
+#       entity_id: group.persons
+#       from: not_home
+#       to: home
+#     - platform: state
+#       entity_id: binary_sensor.openclose_1  # XXX: didn't attach this yet!
+#       from: "off"
+#       to: "on"
+#   condition:
+#     condition: sun
+#     after: sunset
+#     after_offset: "-0:30:00"
+#   action:
+#     service: light.turn_on
+#     entity_id: light.ceiling_hall
 
 - alias: "Light: turn on night lights with button single click"
   trigger:
@@ -67,3 +68,29 @@
   action:
     service: scene.turn_on
     entity_id: scene.bed_time
+
+- alias: "Light: turn on kitchen"
+  trigger:
+    - platform: state
+      entity_id:  binary_sensor.activity_in_kitchen
+      from: "off"
+      to: "on"
+  action:
+    service_template: light.turn_{{ trigger.to_state.state }}
+    entity_id: light.ceiling_kitchen
+
+- alias: "Light: turn on bathroom"
+  trigger:
+    - platform: state
+      entity_id:  binary_sensor.activity_in_bathroom
+  action:
+    service_template: light.turn_{{ trigger.to_state.state }}
+    entity_id: light.ceiling_bathroom
+
+- alias: "Light: turn on toilet"
+  trigger:
+    - platform: state
+      entity_id:  binary_sensor.activity_in_toilet
+  action:
+    service_template: light.turn_{{ trigger.to_state.state }}
+    entity_id: light.toilet

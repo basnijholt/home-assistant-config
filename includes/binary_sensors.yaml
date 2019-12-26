@@ -4,7 +4,7 @@
     someone_showering:
       friendly_name: Someone is showering
       value_template: >
-        {{ states("sensor.humidity_bathroom") | float(0) > 90 }}
+        {{ states("sensor.humidity_bathroom") | float(0) > 70 }}
 
     motion_detected:
       friendly_name: Any motion detected
@@ -31,19 +31,19 @@
       value_template: >
         {{ states("binary_sensor.motion_sensor_bathroom") == "on"
            or states("binary_sensor.someone_showering") == "on" }}
-      delay_off: "00:05:00"
+      delay_off: "00:03:00"
 
     activity_in_toilet:
       friendly_name: Activity at the toilet
       value_template: >
         {{ states("binary_sensor.motion_sensor_toilet") == "on" }}
-      delay_off: "00:05:00"
+      delay_off: "00:03:00"
 
     activity_in_kitchen:
       friendly_name: Activity in the kitchen
       value_template: >
         {{ states("binary_sensor.motion_sensor_kitchen") == "on" }}
-      delay_off: "00:05:00"
+      delay_off: "00:03:00"
 
     activity_in_hall:
       friendly_name: Activity in the hall
