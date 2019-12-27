@@ -29,6 +29,7 @@ weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
 input_number: !include includes/input_numbers.yaml
 python_script:
+wake_on_lan:
 
 # Components:
 tplink: !include includes/tplink.yaml
