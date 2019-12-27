@@ -4,7 +4,7 @@
     someone_showering:
       friendly_name: Someone is showering
       value_template: >
-        {{ states("sensor.humidity_bathroom") | float(0) > 70 }}
+        {{ states("sensor.humidity_bathroom") | float(0) > 90 }}
 
     motion_detected:
       friendly_name: Any motion detected
@@ -55,8 +55,10 @@
       friendly_name: Washing machine
       value_template: >
         {{ states("sensor.washing_machine_watts") | float(0) > 3 }}
+      delay_off: "00:03:00"
 
     dishwasher:
       friendly_name: Dishwasher
       value_template: >
         {{ states("sensor.dishwasher_watts") | float(0) > 3 }}
+      delay_off: "00:03:00"
