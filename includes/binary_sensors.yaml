@@ -37,19 +37,19 @@
       friendly_name: Activity at the toilet
       value_template: >
         {{ states("binary_sensor.motion_sensor_toilet") == "on" }}
-      delay_off: "00:03:00"
+      delay_off: "00:01:00"
 
     activity_in_kitchen:
       friendly_name: Activity in the kitchen
       value_template: >
         {{ states("binary_sensor.motion_sensor_kitchen") == "on" }}
-      delay_off: "00:03:00"
+      delay_off: "00:01:00"
 
     activity_in_hall:
       friendly_name: Activity in the hall
       value_template: >
         {{ states("binary_sensor.motion_sensor_hall") == "on" }}
-      delay_off: "00:05:00"
+      delay_off: "00:01:00"
 
     washing_machine:
       friendly_name: Washing machine

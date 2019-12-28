@@ -64,9 +64,7 @@
 - alias: "Light: turn on kitchen"
   trigger:
     - platform: state
-      entity_id:  binary_sensor.activity_in_kitchen
-      from: "off"
-      to: "on"
+      entity_id: binary_sensor.activity_in_kitchen
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.ceiling_kitchen

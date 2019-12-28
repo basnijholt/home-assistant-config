@@ -68,6 +68,7 @@ views:
       - entity: light.ceiling_kitchen
       - entity: light.ceiling_bathroom
       - entity: light.toilet
+      - entity: switch.circadian_lighting_circadian_lighting
       title: 'Lights: automatic'
       type: entities
     type: vertical-stack

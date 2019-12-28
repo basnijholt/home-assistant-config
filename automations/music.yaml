@@ -15,7 +15,7 @@
         volume: 0.35
     - service: script.start_spotify
       data:
-        source: KEF LS50 Wireless
+        source: KEF LS50 Wireless 00C437
         playlist: 6rPTm9dYftKcFAfwyRqmDZ
         volume: 0.35
 
@@ -50,7 +50,7 @@
     platform: event
     event_type: deconz_event
     event_data:
-      id: switch_11
+      id: lumi_sensor_cube_aqgl01_11
   condition:
     condition: and
     conditions:
@@ -59,7 +59,7 @@
           {{ trigger.event.data.event == 7007 }}
       - condition: template
         value_template: >
-          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless")}}
+          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless 00C437")}}
   action:
     - service: media_player.shuffle_set
       entity_id: media_player.spotify
@@ -73,7 +73,7 @@
     platform: event
     event_type: deconz_event
     event_data:
-      id: switch_11
+      id: lumi_sensor_cube_aqgl01_11
   condition:
     condition: and
     conditions:
@@ -82,7 +82,7 @@
           {{ trigger.event.data.event == 1001 }}
       - condition: template
         value_template: >
-          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless")}}
+          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless 00C437")}}
   action:
     service: media_player.media_play_pause
     entity_id: media_player.spotify
@@ -92,7 +92,7 @@
     platform: event
     event_type: deconz_event
     event_data:
-      id: switch_11
+      id: lumi_sensor_cube_aqgl01_11
   condition:
     condition: template
     value_template: >
