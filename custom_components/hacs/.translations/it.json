@@ -3,7 +3,11 @@
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "Applicazioni AppDaemon",
         "background_task": "Attività in esecuzione, questa pagina sarà ricaricata al termine.",
+        "check_log_file": "Controlla il tuo file di registro per maggiori dettagli.",
         "continue": "Continua",
+        "disabled": "Disabilitato",
+        "documentation": "Documentazione",
+        "hacs_is_disabled": "HACS è disabilitato",
         "installed": "Installati",
         "integration": "Integrazione",
         "integrations": "Integrazioni",
@@ -53,6 +57,7 @@
         "no_upgrades": "Nessun aggiornamento in sospeso",
         "ok": "OK",
         "overwrite": "In questo modo lo sovrascriverà.",
+        "reload_data": "Questo ricarica i dati di tutte le repository di cui HACS è a conoscenza, ci vorrà del tempo per finire.",
         "uninstall": "Sei sicuro di voler disinstallare '{item}'?",
         "upgrade_all": "Questa azione aggiornerà tutti i repository, assicurati di aver letto le note di rilascio prima di procedere.",
         "yes": "Sì"
@@ -119,6 +124,7 @@
         "hidden_repositories": "repository nascosti",
         "missing_category": "Devi selezionare una categoria",
         "reload_data": "Ricarica i dati",
+        "repository_configuration": "Configurazione delle repository",
         "save": "Salva",
         "table": "Tabella",
         "table_view": "Vista tabella",
@@ -127,6 +133,7 @@
     },
     "store": {
         "clear_new": "Ripulisci i nuovi repository",
+        "last_updated": "Ultimo aggiornamento",
         "name": "Nome",
         "new_repositories": "Nuovi repository",
         "pending_upgrades": "Aggiornamenti in sospeso",
@@ -134,5 +141,19 @@
         "sort": "Ordinare",
         "stars": "Stelle",
         "status": "Stato"
+    },
+    "time": {
+        "day": "giorno",
+        "days": "giorni",
+        "hour": "ora",
+        "hours": "ore",
+        "minute": "minuto",
+        "minutes": "minuti",
+        "month": "mese",
+        "months": "mesi",
+        "second": "secondo",
+        "seconds": "secondi",
+        "year": "anno",
+        "years": "anni"
     }
 }
