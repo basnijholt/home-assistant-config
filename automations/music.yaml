@@ -15,7 +15,7 @@
         volume: 0.35
     - service: script.start_spotify
       data:
-        source: KEF LS50 Wireless 00C437
+        source: LS50 Wireless 00C437
         playlist: 6rPTm9dYftKcFAfwyRqmDZ
         volume: 0.35
 
@@ -59,7 +59,7 @@
           {{ trigger.event.data.event == 7007 }}
       - condition: template
         value_template: >
-          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless 00C437")}}
+          {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless 00C437")}}
   action:
     - service: media_player.shuffle_set
       entity_id: media_player.spotify
@@ -82,7 +82,7 @@
           {{ trigger.event.data.event == 1001 }}
       - condition: template
         value_template: >
-          {{ is_state_attr("media_player.spotify", "source", "KEF LS50 Wireless 00C437")}}
+          {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless 00C437")}}
   action:
     service: media_player.media_play_pause
     entity_id: media_player.spotify

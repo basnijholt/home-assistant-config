@@ -8,7 +8,7 @@ wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
   speaker: media_player.kef
-  speaker_name: "KEF LS50 Wireless"
+  speaker_name: "LS50 Wireless 00C437"
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   total_time: 900
   final_volume: 0.3
