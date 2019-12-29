@@ -9,6 +9,7 @@ frontend:
 scene: !include scenes.yaml
 person: !include includes/persons.yaml
 input_boolean: !include includes/input_booleans.yaml
+input_datetime: !include includes/input_datetimes.yaml
 input_select: !include includes/input_selects.yaml
 logger: !include includes/logger.yaml
 zone: !include includes/zones.yaml
@@ -23,7 +24,6 @@ device_tracker: !include includes/device_trackers.yaml
 switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
 binary_sensor: !include includes/binary_sensors.yaml
-input_datetime: !include includes/input_datetimes.yaml
 recorder: !include includes/recorder.yaml
 weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml

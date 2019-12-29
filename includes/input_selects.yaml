@@ -1,6 +1,14 @@
 ---
-playlist:
+# XXX: need to implement
+# playlist:
+#   options:
+#     - ...
+#     - ...
+#   icon: mdi:music
+
+cube_mode:
   options:
-    - WiFi
-    - Bluetooth
-  icon: mdi:music
+    - Volume
+    - Brightness
+    - Hue
+  icon: mdi:cube-outline

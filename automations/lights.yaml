@@ -85,20 +85,6 @@
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.toilet
 
-- alias: "Light: toggle cube between hue and brightness"
-  trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: smart_switch_1
-  condition:
-    condition: template
-    value_template: >
-      {{ trigger.event.data.event == 1004 }}
-  action:
-    service: scene.turn_on
-    entity_id: scene.bed_time
-
 - alias: "Light: change hue of living room lights with cube"
   trigger:
     platform: event
@@ -107,8 +93,8 @@
       id: mi_magic_cube
   condition:
     condition: state
-    entity_id: input_boolean.brightness_or_hue
-    state: "off"
+    entity_id: input_select.cube_mode
+    state: "Hue"
   action:
     service: light.turn_on
     entity_id:
@@ -134,8 +120,8 @@
       id: mi_magic_cube
   condition:
     condition: state
-    entity_id: input_boolean.brightness_or_hue
-    state: "on"
+    entity_id: input_select.cube_mode
+    state: "Brightness"
   action:
     service: light.turn_on
     entity_id:

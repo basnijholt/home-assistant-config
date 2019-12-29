@@ -1,0 +1,16 @@
+---
+- alias: "Cube: set mode to volume"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: lumi_sensor_cube_aqgl01_11
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.event.data.event in (1000, 2000, 3000) }}
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cube_mode
+    data_template:
+      option: {{ {1000: "Volume", 2000: "Hue", 3000: "Brightness"}[trigger.event.data.event] }}
