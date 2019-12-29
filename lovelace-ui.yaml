@@ -258,26 +258,6 @@ views:
         type: custom:mini-graph-card
       name: Speedtest
       type: horizontal-stack
-    - cards:
-      - color_thresholds_transition: smooth
-        entities:
-        - entity: sensor.temperature_mean
-          name: Mean
-        font_size: 100
-        group: false
-        hour24: true
-        line_width: 6
-        lower_bound: 0
-        points_per_hour: 1
-        show:
-          extrema: true
-          fill: fade
-          labels: false
-          name: true
-          state: true
-        type: custom:mini-graph-card
-      name: Speedtest
-      type: horizontal-stack
     title: Temperature
     type: custom:vertical-stack-in-card
   path: default_view
