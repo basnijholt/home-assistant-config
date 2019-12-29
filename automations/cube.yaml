@@ -13,4 +13,5 @@
     service: input_select.select_option
     entity_id: input_select.cube_mode
     data_template:
-      option: {{ {1000: "Volume", 2000: "Hue", 3000: "Brightness"}[trigger.event.data.event] }}
+      option: >
+        {{ {1000: "Volume", 2000: "Hue", 3000: "Brightness"}[trigger.event.data.event] }}

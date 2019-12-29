@@ -106,7 +106,7 @@
       hs_color:
         - >
            {% set hue, sat = state_attr('light.sphere_1', 'hs_color') %}
-           {% set delta = trigger.event.data.event / 900 %}
+           {% set delta = trigger.event.data.event / 450 %}
            {% set new_hue = [([0, (hue + delta)]|max), 360]|min %}
            {{ new_hue|round(3) }}
         - >
@@ -129,9 +129,9 @@
       - light.sphere_2
       - light.corner_living_room
       - light.ceiling_living_room
-    data_template:  # 90 deg is 10%
+    data_template:
       brightness: >
         {% set brightness = state_attr('light.sphere_1', 'brightness') %}
-        {% set delta = trigger.event.data.event / 900 %}
+        {% set delta = trigger.event.data.event / 450 %}
         {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
         {{ new_brightness|int }}

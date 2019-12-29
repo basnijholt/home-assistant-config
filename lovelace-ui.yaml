@@ -567,6 +567,7 @@ views:
   - entities:
     - entity: input_number.volume_delay
     - entity: input_number.volume_last
+    - entity: input_select.cube_mode
     title: Inputs
     type: entities
   - columns: 4
