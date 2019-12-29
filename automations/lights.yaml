@@ -84,3 +84,68 @@
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.toilet
+
+- alias: "Light: toggle cube between hue and brightness"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_1
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.event.data.event == 1004 }}
+  action:
+    service: scene.turn_on
+    entity_id: scene.bed_time
+
+- alias: "Light: change hue of living room lights with cube"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    condition: state
+    entity_id: input_boolean.brightness_or_hue
+    state: "off"
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.sphere_1
+      - light.sphere_2
+      - light.corner_living_room
+      - light.ceiling_living_room
+    data_template:  # 90 deg is 10%
+      hs_color:
+        - >
+           {% set hue, sat = state_attr('light.sphere_1', 'hs_color') %}
+           {% set delta = trigger.event.data.event / 900 %}
+           {% set new_hue = [([0, (hue + delta)]|max), 360]|min %}
+           {{ new_hue|round(3) }}
+        - >
+           {{ state_attr('light.sphere_1', 'hs_color')[1] }}
+
+- alias: "Light: change brightness of living room lights with cube"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    condition: state
+    entity_id: input_boolean.brightness_or_hue
+    state: "on"
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.sphere_1
+      - light.sphere_2
+      - light.corner_living_room
+      - light.ceiling_living_room
+    data_template:  # 90 deg is 10%
+      brightness: >
+        {% set brightness = state_attr('light.sphere_1', 'brightness') %}
+        {% set delta = trigger.event.data.event / 900 %}
+        {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
+        {{ new_brightness|int }}

@@ -13,8 +13,11 @@ vacation_mode:
 guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
+brightness_or_hue:
+  name: Brightness (on) or hue (off)
+  icon: mdi:ceiling-light
 
-## Activity automations
+# Activity automations
 activity_in_kitchen:
   name: Activity in kitchen
 activity_in_hall:
