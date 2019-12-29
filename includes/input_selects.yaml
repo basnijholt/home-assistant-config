@@ -17,11 +17,12 @@ last_scene_living_room:
   options:
     - scene.cozy_lights_living_room
     - scene.bright_lights_living_room
-    - scene.movie_lights_living_room
   icon: mdi:lightbulb-on
 
 last_scene_bedroom:
   options:
-    - scene.cozy_bedroom
+    - scene.cozy_lights_bedroom
+    - scene.bright_lights_bedroom
+    
   icon: mdi:lightbulb-on
 
