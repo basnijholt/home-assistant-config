@@ -90,12 +90,22 @@
     value_template: >
       {{ trigger.event.data.event == 1004 }}
   action:
-    - service: input_select.select_next
-      data:
-       entity_id: input_select.last_scene_living_room
-    - service: scene.turn_on
+    - service: light.turn_on
+      entity_id: group.living_room_lights
       data_template:
-        entity_id: "{{ states('input_select.last_scene_living_room') }}"
+        brightness:
+          {% set brightnesses = states |
+             selectattr('entity_id', 'in', state_attr('group.living_room_lights', 'entity_id')) |
+             map(attribute='attributes.brightness') |
+             list %}
+          {% set mean = (brightnesses|sum) / (brightnesses|length)%}
+          {% if mean < 20 %}
+            128
+          {% elif mean < 140 %}
+            255
+          {% else %}
+            10
+          {% endif %}
 
 - alias: "Light: turn on kitchen"
   trigger:
