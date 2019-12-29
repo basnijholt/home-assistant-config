@@ -12,3 +12,16 @@ cube_mode:
     - Brightness
     - Hue
   icon: mdi:cube-outline
+
+last_scene_living_room:
+  options:
+    - scene.cozy_lights_living_room
+    - scene.bright_lights_living_room
+    - scene.movie_lights_living_room
+  icon: mdi:lightbulb-on
+
+last_scene_bedroom:
+  options:
+    - scene.cozy_bedroom
+  icon: mdi:lightbulb-on
+

@@ -54,3 +54,15 @@ iphone_marcella:
   - sensor.ssid_iphone_marcella
   - sensor.steps_iphone_marcella
   - device_tracker.iphone_marcella
+
+living_room_lights:
+  - light.sphere_1
+  - light.sphere_2
+  - light.corner_living_room
+  - light.ceiling_living_room
+
+bedroom_lights:
+  - light.philips_go
+  - light.bamboo
+  - light.ceiling_bedroom
+  - light.lampan

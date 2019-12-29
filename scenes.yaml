@@ -120,7 +120,7 @@
       supported_features: 3468
       volume_level: 0.3
 - id: '1575131362586'
-  name: Bright Lights
+  name: Bright Lights Living Room
   entities:
     light.bamboo:
       effect_list:
@@ -329,7 +329,7 @@
       - 0.38
       - 0.159
 - id: '1575663334038'
-  name: Cozy Lights
+  name: Cozy Lights Living Room
   entities:
     light.ceiling_living_room:
       brightness: 254
@@ -412,7 +412,7 @@
       - 0.381
       - 0.159
 - id: '1577227123082'
-  name: Movie time
+  name: Movie Lights Living Room
   entities:
     light.ceiling_living_room:
       brightness: 74
@@ -515,7 +515,7 @@
       - 0.38
       - 0.159
 - id: '1577281705888'
-  name: Cozy bed
+  name: Cozy Bedroom
   entities:
     light.bamboo:
       brightness: 254
