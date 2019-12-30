@@ -19,6 +19,8 @@ decluttering_templates:
       type: custom:auto-entities
 resources:
 - type: module
+  url: /community_plugin/button-card/button-card.js
+- type: module
   url: /community_plugin/mini-media-player/mini-media-player-bundle.js
 - type: module
   url: /community_plugin/lovelace-card-mod/card-mod.js
@@ -141,7 +143,8 @@ views:
     show_header_toggle: false
     title: Modes
     type: entities
-  - entities:
+  - columns: 2
+    entities:
     - entity: scene.bed_time
       tap_action:
         action: call-service
@@ -154,24 +157,30 @@ views:
         service: scene.turn_on
         service_data:
           entity_id: scene.night_lights
-    - entity: scene.bright_lights
+    - entity: scene.bright_lights_bedroom
       tap_action:
         action: call-service
         service: scene.turn_on
         service_data:
-          entity_id: scene.bright_lights
-    - entity: scene.cozy_bed
+          entity_id: scene.bright_lights_bedroom
+    - entity: scene.bright_lights_living_room
       tap_action:
         action: call-service
         service: scene.turn_on
         service_data:
-          entity_id: scene.cozy_bed
-    - entity: scene.cozy_lights
+          entity_id: scene.bright_lights_living_room
+    - entity: scene.cozy_lights_bedroom
       tap_action:
         action: call-service
         service: scene.turn_on
         service_data:
-          entity_id: scene.cozy_lights
+          entity_id: scene.cozy_lights_bedroom
+    - entity: scene.cozy_lights_living_room
+      tap_action:
+        action: call-service
+        service: scene.turn_on
+        service_data:
+          entity_id: scene.cozy_lights_living_room
     show_state: false
     title: Scences
     type: glance
@@ -568,6 +577,8 @@ views:
     - entity: input_number.volume_delay
     - entity: input_number.volume_last
     - entity: input_select.cube_mode
+    - entity: input_select.last_scene_bedroom
+    - entity: input_select.last_scene_living_room
     title: Inputs
     type: entities
   - columns: 4
