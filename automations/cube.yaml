@@ -1,5 +1,5 @@
 ---
-- alias: "Cube: set mode to volume"
+- alias: "Cube: change cube mode"
   trigger:
     platform: event
     event_type: deconz_event
