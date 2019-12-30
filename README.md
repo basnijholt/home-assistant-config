@@ -11,6 +11,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 ## Noteworthy (useful) automations
 * [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](automations/lovelace.yaml) for version control 🤖
 * [Controlling music using the Xiaomi Aqara Magic Cube](automations/music.yaml) ∛
+* [Controlling the lights (hue and brightness) using the Xiaomi Aqara Magic Cube](automations/lights.yaml) ∛
 * [Guest mode that turns off automations]((automations/guest_mode.yaml))
 * [Vacation mode](automations/vacation_mode.yaml)
 * [Presence detection in different rooms based on various binary template sensors](includes/binary_sensors.yaml)
@@ -22,7 +23,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * TP-Link HS110 (2x)
 * Xiaomi Aqara Magic Cube
 * Xiaomi Aqara Single Button (4x)
-* Philips Hue Dimmer switch
+* Philips Hue Dimmer switch (2x)
 
 ### Sensors
 * Xiaomi Aqara Door Sensors (4x)
@@ -34,6 +35,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 
 ### Media player
 * KEF LS50 Wireless speakers
+* LG OLED 55 C9
 
 ### Lights
 * Philips Hue E27 White and Color (10x)
@@ -45,7 +47,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * Raspberry Pi 4, 4GB RAM, 16GB SD-card, running [*Hass.io*](https://www.home-assistant.io/hassio/)
 
 ### Device tracker
-* iPhone X with the new iOS app
+* iPhone X with the new iOS app (2x)
 
 
 ## Notes
