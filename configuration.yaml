@@ -36,3 +36,4 @@ tplink: !include includes/tplink.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 vacuum: !include includes/vacuum.yaml
 circadian_lighting:
+  min_colortemp: 1000
