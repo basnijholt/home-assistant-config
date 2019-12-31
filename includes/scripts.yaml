@@ -98,3 +98,109 @@ ramp_volume_loop:
         total_time: 30
         final_volume: 0.25
         volume_step: 0.01
+
+cozy_lights_living_room:
+  alias: Set cozy lights in the living room
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.sphere_1
+        hs_color:
+          - 336.293
+          - 80.392
+    - service: light.turn_on
+      data:
+        entity_id: light.sphere_2
+        hs_color:
+          - 299.147
+          - 82.745
+    - service: light.turn_on
+      data:
+        entity_id: light.corner_living_room
+        hs_color:
+          - 26.667
+          - 88.235
+    - service: light.turn_on
+      data:
+        entity_id: light.ceiling_living_room
+        hs_color:
+          - 268.267
+          - 88.235
+    - service: light.turn_on
+      data:
+        entity_id: light.tv_led
+        hs_color:
+          - 26.725
+          - 89.804
+
+cozy_lights_bedroom:
+  alias: Set cozy lights in the bedroom
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.bamboo
+        hs_color:
+          - 299.72
+          - 83.922
+    - service: light.turn_on
+      data:
+        entity_id: light.philips_go
+        hs_color:
+          - 26.725
+          - 89.804
+    - service: light.turn_on
+      data:
+        entity_id: light.lampan
+        hs_color:
+          - 269.86
+          - 84.314
+    - service: light.turn_on
+      data:
+        entity_id: light.ceiling_bedroom
+        hs_color:
+          - 10.118
+          - 100
+
+bright_lights_living_room:
+  alias: Set bright lights in the living room
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.sphere_1
+        color_temp: 366
+    - service: light.turn_on
+      data:
+        entity_id: light.sphere_2
+        color_temp: 366
+    - service: light.turn_on
+      data:
+        entity_id: light.corner_living_room
+        color_temp: 366
+    - service: light.turn_on
+      data:
+        entity_id: light.ceiling_living_room
+        color_temp: 366
+    - service: light.turn_on
+      data:
+        entity_id: light.tv_led
+        color_temp: 366
+
+bright_lights_bedroom:
+  alias: Set bright lights in the bedroom
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.bamboo
+        color_temp: 366
+    - service: light.turn_on
+      data:
+        entity_id: light.philips_go
+        color_temp: 366
+    - service: light.turn_on
+      data:
+        entity_id: light.lampan
+        color_temp: 366
+    - service: light.turn_on
+      data:
+        entity_id: light.ceiling_bedroom
+        color_temp: 36

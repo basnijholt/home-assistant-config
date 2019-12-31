@@ -18,4 +18,4 @@
     - service: notify.tv
       data:
         message: >
-          Cube set to {{ states("input_select.cube_mode") }}
+          Cube mode set to {{ states("input_select.cube_mode") }}

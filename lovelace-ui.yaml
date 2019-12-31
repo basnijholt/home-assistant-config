@@ -57,6 +57,7 @@ views:
       - entity: light.sphere_2
       - entity: light.corner_living_room
       - entity: light.ceiling_living_room
+      - entity: light.tv_led
       title: 'Lights: living room'
       type: entities
     - entities:

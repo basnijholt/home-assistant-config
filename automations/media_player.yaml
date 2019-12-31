@@ -3,8 +3,11 @@
   description: ''
 
   trigger:
-    platform: state
-    entity_id: media_player.tv
+    - platform: state
+      entity_id: media_player.tv
+    - platform: state
+      entity_id: media_player.spotify
+      to: paused
   condition:
     condition: template
     value_template: >

@@ -23,6 +23,5 @@ last_scene_bedroom:
   options:
     - scene.cozy_lights_bedroom
     - scene.bright_lights_bedroom
-    
   icon: mdi:lightbulb-on
 
