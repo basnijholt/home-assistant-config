@@ -6,3 +6,9 @@
 # Then if you go out in the middle of the night (e.g., to the bathroom)
 # then lights will turn a non-bright red.
 # Manually triggering the switch will turn on the normal lights.
+# - alias: "Night mode: probably sleeping"
+#   trigger:
+#     platform: state
+#     entity_id: sensor.lovelace
+#   action:
+#     service: shell_command.convert_lovelace

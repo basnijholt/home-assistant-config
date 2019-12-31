@@ -15,3 +15,8 @@
     - light.toilet
     - light.ceiling_kitchen
     - light.ceiling_bathroom
+  sleep_entity: input_boolean.sleep_mode
+  sleep_state: "on"
+  sleep_colortemp: 1000
+  sleep_brightness: 1
+  min_brightness: 70

@@ -16,6 +16,9 @@ guest_mode:
 brightness_or_hue:
   name: Brightness (on) or hue (off)
   icon: mdi:ceiling-light
+sleep_mode:
+  name: Sleep mode
+  icon: mdi:bed-king
 
 # Activity automations
 activity_in_kitchen:

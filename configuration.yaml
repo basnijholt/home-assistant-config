@@ -19,7 +19,7 @@ media_player: !include includes/media_players.yaml
 http: !include includes/http.yaml
 group: !include includes/groups.yaml
 script: !include includes/scripts.yaml
-automation: !include_dir_merge_list automations
+automation old: !include_dir_merge_list automations
 device_tracker: !include includes/device_trackers.yaml
 switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
@@ -35,5 +35,4 @@ wake_on_lan:
 tplink: !include includes/tplink.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 vacuum: !include includes/vacuum.yaml
-circadian_lighting:
-  min_colortemp: 1000
+circadian_lighting: !include includes/circadian_lighting.yaml

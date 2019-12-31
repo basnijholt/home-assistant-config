@@ -71,6 +71,7 @@ views:
       - entity: light.ceiling_bathroom
       - entity: light.toilet
       - entity: switch.circadian_lighting_circadian_lighting
+      - entity: input_boolean.sleep_mode
       title: 'Lights: automatic'
       type: entities
     type: vertical-stack
