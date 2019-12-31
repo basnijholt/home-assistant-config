@@ -1,5 +1,5 @@
 ---
 discovery: false
 switch:
-  - host: 192.168.178.59
+  - host: 192.168.178.60
   - host: 192.168.178.31

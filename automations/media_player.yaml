@@ -1,0 +1,19 @@
+---
+- alias: 'Media player: turn on Opt when TV is on and Spotify is not playing'
+  description: ''
+
+  trigger:
+    platform: state
+    entity_id: media_player.tv
+  condition:
+    condition: template
+    value_template: >
+      {{ (is_state('media_player.tv', 'playing') and not
+          is_state_attr('media_player.tv', 'source', 'GALLERY')) and not (
+        is_state_attr('media_player.spotify', 'source', 'LS50 Wireless 00C437') and
+        is_state('media_player.spotify', 'playing')) }}
+  action:
+  - service: media_player.select_source
+    entity_id: media_player.kef
+    data:
+      source: Opt
