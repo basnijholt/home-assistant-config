@@ -19,17 +19,6 @@
         playlist: 6rPTm9dYftKcFAfwyRqmDZ
         volume: 0.35
 
-- alias: "Music: turn off speakers when away"
-  trigger:
-    platform: state
-    entity_id: group.persons
-    from: home
-    to: not_home
-    for: "00:15:00"
-  action:
-    service: media_player.turn_off
-    entity_id: media_player.kef
-
 - alias: "Music: change volume by rotating cube"
   trigger:
     platform: event
