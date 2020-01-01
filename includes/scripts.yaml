@@ -214,7 +214,7 @@ increase_brightness:
   sequence:
     - service: light.turn_on
       data_template:
-        entity_id: {{ group }}
+        entity_id: "{{ group }}"
         brightness: >
           {% set group = "group.living_room_lights" %}
           {% set brightnesses = states |
