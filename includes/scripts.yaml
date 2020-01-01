@@ -216,7 +216,6 @@ increase_brightness:
       data_template:
         entity_id: "{{ group }}"
         brightness: >
-          {% set group = "group.living_room_lights" %}
           {% set brightnesses = states |
             selectattr("state", "equalto", "on") |
             selectattr("entity_id", "in", state_attr(group, "entity_id")) |
