@@ -60,6 +60,7 @@ living_room_lights:
   - light.sphere_2
   - light.corner_living_room
   - light.ceiling_living_room
+  - light.tv_led
 
 bedroom_lights:
   - light.philips_go
