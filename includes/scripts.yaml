@@ -163,3 +163,17 @@ going_to_sleep:
       entity_id: media_player.tv
     - service: input_boolean.turn_on
       entity_id: input_boolean.sleep_mode
+
+next_colors:
+  alias: Change the colors of lights
+  fields:
+    input_select:
+      description: "The input select that lists script names."
+      example: "input_select.last_script_living_room"
+  sequence:
+    - service: input_select.select_next
+      data:
+        entity_id: "{{ input_select }}"
+    - service: script.turn_on
+      data_template:
+        entity_id: "{{ states(input_select) }}"
