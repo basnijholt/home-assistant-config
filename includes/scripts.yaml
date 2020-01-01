@@ -148,3 +148,14 @@ increase_brightness:
           {% else %}
             10
           {% endif %}
+
+going_to_sleep:
+  alias: Going to sleep
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id:
+          - group.living_room_lights
+          - group.bedroom_lights
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.sleep_mode
