@@ -157,5 +157,9 @@ going_to_sleep:
         entity_id:
           - group.living_room_lights
           - group.bedroom_lights
+    - service: media_player.turn_off
+      entity_id: media_player.kef
+    - service: media_player.turn_off
+      entity_id: media_player.tv
     - service: input_boolean.turn_on
       entity_id: input_boolean.sleep_mode
