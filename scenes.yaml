@@ -7,59 +7,59 @@
       - colorloop
       friendly_name: Ceiling living room
       hs_color:
-      - 268.267
-      - 88.235
+      - 268.073
+      - 85.49
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
-      - 136
-      - 30
+      - 138
+      - 37
       - 255
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.227
-      - 0.088
+      - 0.23
+      - 0.091
     light.corner_living_room:
       brightness: 254
       effect_list:
       - colorloop
       friendly_name: Corner living room
       hs_color:
-      - 26.667
-      - 88.235
+      - 26.757
+      - 87.059
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 255
-      - 130
-      - 30
+      - 132
+      - 32
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.602
-      - 0.373
+      - 0.599
+      - 0.374
     light.sphere_1:
       brightness: 254
       effect_list:
       - colorloop
       friendly_name: Sphere 1
       hs_color:
-      - 336.293
-      - 80.392
+      - 336.716
+      - 78.824
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 255
-      - 50
-      - 130
+      - 53
+      - 132
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.567
+      - 0.563
       - 0.254
     light.sphere_2:
       brightness: 254
@@ -67,20 +67,40 @@
       - colorloop
       friendly_name: Sphere 2
       hs_color:
-      - 299.147
-      - 82.745
+      - 299.135
+      - 81.569
       is_deconz_group: false
       max_mireds: 500
       min_mireds: 153
       rgb_color:
       - 252
-      - 44
+      - 46
       - 255
       state: 'on'
       supported_features: 63
       xy_color:
-      - 0.38
-      - 0.159
+      - 0.379
+      - 0.16
+    light.tv_led:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: TV LED
+      hs_color:
+      - 354.34
+      - 83.137
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 43
+      - 62
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.658
+      - 0.294
 - id: '1577644979814'
   name: 'Bright Lights Bedroom '
   entities:
