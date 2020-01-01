@@ -147,42 +147,26 @@ views:
     type: entities
   - columns: 2
     entities:
-    - entity: scene.bed_time
+    - entity: script.going_to_sleep
       tap_action:
         action: call-service
-        service: scene.turn_on
-        service_data:
-          entity_id: scene.bed_time
-    - entity: scene.night_lights
+        service: script.going_to_sleep
+    - entity: script.bright_lights_bedroom
       tap_action:
         action: call-service
-        service: scene.turn_on
-        service_data:
-          entity_id: scene.night_lights
-    - entity: scene.bright_lights_bedroom
+        service: script.bright_lights_bedroom
+    - entity: script.bright_lights_living_room
       tap_action:
         action: call-service
-        service: scene.turn_on
-        service_data:
-          entity_id: scene.bright_lights_bedroom
-    - entity: scene.bright_lights_living_room
+        service: script.bright_lights_living_room
+    - entity: script.cozy_lights_bedroom
       tap_action:
         action: call-service
-        service: scene.turn_on
-        service_data:
-          entity_id: scene.bright_lights_living_room
-    - entity: scene.cozy_lights_bedroom
+        service: script.cozy_lights_bedroom
+    - entity: script.cozy_lights_living_room
       tap_action:
         action: call-service
-        service: scene.turn_on
-        service_data:
-          entity_id: scene.cozy_lights_bedroom
-    - entity: scene.cozy_lights_living_room
-      tap_action:
-        action: call-service
-        service: scene.turn_on
-        service_data:
-          entity_id: scene.cozy_lights_living_room
+        service: script.cozy_lights_living_room
     show_state: false
     title: Scences
     type: glance
