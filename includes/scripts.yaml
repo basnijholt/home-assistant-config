@@ -203,4 +203,34 @@ bright_lights_bedroom:
     - service: light.turn_on
       data:
         entity_id: light.ceiling_bedroom
-        color_temp: 36
+        color_temp: 366
+
+increase_brightness:
+  alias: Increase the brightness of a group of lights
+  fields:
+    group:
+      description: "The group to apply the light increase to."
+      example: "group.living_room_lights"
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: {{ group }}
+        brightness: >
+          {% set group = "group.living_room_lights" %}
+          {% set brightnesses = states |
+            selectattr('state', 'equalto', 'on') |
+            selectattr('entity_id', 'in', state_attr(group, 'entity_id')) |
+            map(attribute='attributes.brightness') |
+            list %}
+          {% set tot = brightnesses|sum %}
+          {% set len = brightnesses|length%}
+
+          {% if len == 0 %}
+            10
+          {% elif tot/len < 20 %}
+            128
+          {% elif tot/len < 140 %}
+            255
+          {% else %}
+            10
+          {% endif %}

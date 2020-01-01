@@ -109,22 +109,9 @@
     value_template: >
       {{ trigger.event.data.event == 1002 }}
   action:
-    - service: light.turn_on
-      entity_id: group.living_room_lights
-      data_template:
-        brightness: >
-          {% set brightnesses = states |
-             selectattr('entity_id', 'in', state_attr('group.living_room_lights', 'entity_id')) |
-             map(attribute='attributes.brightness') |
-             list %}
-          {% set mean = (brightnesses|sum) / (brightnesses|length)%}
-          {% if mean < 20 %}
-            128
-          {% elif mean < 140 %}
-            255
-          {% else %}
-            10
-          {% endif %}
+    - service: script.increase_brightness
+      data:
+        group: group.living_room_lights
 
 - alias: "Light: toggle max/min brightness in the bedroom"
   trigger:
@@ -137,22 +124,9 @@
     value_template: >
       {{ trigger.event.data.event == 1002 }}
   action:
-    - service: light.turn_on
-      entity_id: group.bedroom_lights
-      data_template:
-        brightness: >
-          {% set brightnesses = states |
-             selectattr('entity_id', 'in', state_attr('group.bedroom_lights', 'entity_id')) |
-             map(attribute='attributes.brightness') |
-             list %}
-          {% set mean = (brightnesses|sum) / (brightnesses|length)%}
-          {% if mean < 20 %}
-            128
-          {% elif mean < 140 %}
-            255
-          {% else %}
-            10
-          {% endif %}
+    - service: script.increase_brightness
+      data:
+        group: group.bedroom_lights
 
 - alias: "Light: turn on kitchen"
   trigger:
