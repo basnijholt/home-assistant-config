@@ -51,54 +51,6 @@ start_spotify:
     - service: media_player.media_play
       entity_id: media_player.spotify
 
-
-ramp_volume:
-  alias: Ramp volume of speaker
-  description: Slowly ramp up the volume of a speaker over a period of time.
-  fields:
-    source:
-      description: The name of the media_player.
-      example: media_player.kef
-    total_time:
-      description: Total duration in time for the speaker to ramp.
-      example: 400
-    final_volume:
-      description: The final volume of the media_player between 0 and 1.
-      example: 0.25
-    volume_step:
-      description: Change in volume
-      example: 0.01
-  sequence:
-    # - condition: template  # this doesn't work!
-    #   value_template: >
-    #     {{ state_attr(source, "volume_level") <= final_volume }}
-    - service: media_player.volume_set
-      data_template:
-        entity_id: "{{ source }}"
-        volume_level: >
-          {{ state_attr(source, "volume_level") + volume_step }}
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.volume_last
-        value: "{{ state_attr(source, 'volume_level') }}"
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.volume_delay
-        value: >
-          {{ total_time / (final_volume / volume_step)|int }}
-    - delay:
-        milliseconds: "{{ (1000 * states('input_number.volume_delay'))|int }}"
-    - service: script.ramp_volume_loop
-
-ramp_volume_loop:
-  sequence:
-    - service: script.ramp_volume
-      data:
-        source: media_player.kef
-        total_time: 30
-        final_volume: 0.25
-        volume_step: 0.01
-
 cozy_lights_living_room:
   alias: Set cozy lights in the living room
   sequence:
