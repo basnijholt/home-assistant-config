@@ -1,5 +1,5 @@
 scan_interval:
-  minutes: 30
+  minutes: 120
 monitored_conditions:
   - ping
   - download

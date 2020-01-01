@@ -11,9 +11,6 @@ entity_config:
     feature_list:
       - feature: on_off
       - feature: toggle_mute
-  switch.desk_lamp:
-    name: Desk lamp
-    type: switch
   light.ceiling_bedroom:
     name: Bedroom ceiling lamp
   input_boolean.start_the_music:

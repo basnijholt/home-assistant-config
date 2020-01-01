@@ -16,7 +16,9 @@
 #     after_offset: "-0:30:00"
 #   action:
 #     service: light.turn_on
-#     entity_id: light.ceiling_hall
+    # entity_id:
+    #   - group.hall_stairs_lights  # XXX: make this group
+    #   - group.hall_lights  # XXX: make this group
 
 - alias: "Light: next colors in the bedroom"
   trigger:
@@ -108,6 +110,19 @@
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.toilet
 
+# XXX: no not have the sensor yet!
+# - alias: "Light: turn on bedroom"
+#   trigger:
+#     - platform: state
+#       entity_id:  binary_sensor.activity_in_bedroom  # XXX: ADD THIS SENSOR
+#   condition:
+#     condition: state
+#     entity_id: input_boolean.sleep_mode
+#     state: "on"
+#   action:
+#     service_template: light.turn_{{ trigger.to_state.state }}
+#     entity_id: group.bedroom_lights
+
 - alias: "Light: change hue of living room lights with cube"
   trigger:
     platform: event
@@ -121,7 +136,7 @@
   action:
     service: light.turn_on
     entity_id: group.living_room_lights
-    data_template:  # 90 deg is 10%
+    data_template:
       hs_color:
         - >
            {% set hue, sat = state_attr('light.sphere_1', 'hs_color') %}
