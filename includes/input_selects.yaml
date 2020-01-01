@@ -13,7 +13,7 @@ cube_mode:
     - Hue
   icon: mdi:cube-outline
 
-last_scene_living_room:
+last_script_living_room:
   options:
     - script.cozy_lights_living_room
     - script.bright_lights_living_room

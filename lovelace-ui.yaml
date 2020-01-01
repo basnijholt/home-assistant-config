@@ -579,8 +579,8 @@ views:
     - entity: input_number.volume_delay
     - entity: input_number.volume_last
     - entity: input_select.cube_mode
-    - entity: input_select.last_scene_bedroom
-    - entity: input_select.last_scene_living_room
+    - entity: input_select.last_script_bedroom
+    - entity: input_select.last_script_living_room
     title: Inputs
     type: entities
   - columns: 4
