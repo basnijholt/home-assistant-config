@@ -1,19 +1,4 @@
 ---
-# XXX: not installed currently
-# - alias: "Light: copy light"
-#   trigger:  # two triggers, to avoid triggering on "unavailable"
-#     - platform: state
-#       entity_id: sensor.desk_lamp_current
-#       from: "on"
-#       to: "off"
-#     - platform: state
-#       entity_id: sensor.desk_lamp_current
-#       from: "off"
-#       to: "on"
-#   action:
-#     service_template: switch.turn_{{ trigger.to_state.state }}
-#     entity_id: switch.light2
-
 # XXX: fix the switches first
 # - alias: "Light: turn on when coming home"
 #   trigger:
@@ -32,34 +17,6 @@
 #   action:
 #     service: light.turn_on
 #     entity_id: light.ceiling_hall
-
-# - alias: "Light: turn on night lights with button single click"
-#   trigger:
-#     platform: event
-#     event_type: deconz_event
-#     event_data:
-#       id: smart_switch_1
-#   condition:
-#     condition: template
-#     value_template: >
-#       {{ trigger.event.data.event == 1002 }}
-#   action:
-#     service: scene.turn_on
-#     entity_id: scene.night_lights
-
-# - alias: "Light: turn off everything with button double click"
-#   trigger:
-#     platform: event
-#     event_type: deconz_event
-#     event_data:
-#       id: smart_switch_1
-#   condition:
-#     condition: template
-#     value_template: >
-#       {{ trigger.event.data.event == 1004 }}
-#   action:
-#     - service: scene.turn_on
-#       entity_id: scene.bed_time
 
 - alias: "Light: next colors in the bedroom"
   trigger:
@@ -97,22 +54,6 @@
       data_template:
         entity_id: "{{ states('input_select.last_script_living_room') }}"
 
-# XXX: combine the lower two into a script
-- alias: "Light: toggle max/min brightness in the living room"
-  trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: smart_switch_4
-  condition:
-    condition: template
-    value_template: >
-      {{ trigger.event.data.event == 1002 }}
-  action:
-    - service: script.increase_brightness
-      data:
-        group: group.living_room_lights
-
 - alias: "Light: toggle max/min brightness in the bedroom"
   trigger:
     platform: event
@@ -127,6 +68,21 @@
     - service: script.increase_brightness
       data:
         group: group.bedroom_lights
+
+- alias: "Light: toggle max/min brightness in the living room"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_4
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.event.data.event == 1002 }}
+  action:
+    - service: script.increase_brightness
+      data:
+        group: group.living_room_lights
 
 - alias: "Light: turn on kitchen"
   trigger:
