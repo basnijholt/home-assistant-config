@@ -15,13 +15,13 @@ cube_mode:
 
 last_scene_living_room:
   options:
-    - scene.cozy_lights_living_room
-    - scene.bright_lights_living_room
+    - script.cozy_lights_living_room
+    - script.bright_lights_living_room
   icon: mdi:lightbulb-on
 
-last_scene_bedroom:
+last_script_bedroom:
   options:
-    - scene.cozy_lights_bedroom
-    - scene.bright_lights_bedroom
+    - script.cozy_lights_bedroom
+    - script.bright_lights_bedroom
   icon: mdi:lightbulb-on
 

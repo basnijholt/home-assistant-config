@@ -61,8 +61,7 @@
 #     - service: scene.turn_on
 #       entity_id: scene.bed_time
 
-# XXX: combine the lower two into a script
-- alias: "Light: next scene in the bedroom"
+- alias: "Light: next colors in the bedroom"
   trigger:
     platform: event
     event_type: deconz_event
@@ -75,12 +74,12 @@
   action:
     - service: input_select.select_next
       data:
-       entity_id: input_select.last_scene_bedroom
-    - service: scene.turn_on
+       entity_id: input_select.last_script_bedroom
+    - service: script.turn_on
       data_template:
-        entity_id: "{{ states('input_select.last_scene_bedroom') }}"
+        entity_id: "{{ states('input_select.last_script_bedroom') }}"
 
-- alias: "Light: next scene in the living room"
+- alias: "Light: next colors in the living room"
   trigger:
     platform: event
     event_type: deconz_event
@@ -93,10 +92,10 @@
   action:
     - service: input_select.select_next
       data:
-       entity_id: input_select.last_scene_living_room
-    - service: scene.turn_on
+       entity_id: input_select.last_script_living_room
+    - service: script.turn_on
       data_template:
-        entity_id: "{{ states('input_select.last_scene_living_room') }}"
+        entity_id: "{{ states('input_select.last_script_living_room') }}"
 
 # XXX: combine the lower two into a script
 - alias: "Light: toggle max/min brightness in the living room"
