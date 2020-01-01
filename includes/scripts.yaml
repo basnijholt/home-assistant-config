@@ -218,9 +218,9 @@ increase_brightness:
         brightness: >
           {% set group = "group.living_room_lights" %}
           {% set brightnesses = states |
-            selectattr('state', 'equalto', 'on') |
-            selectattr('entity_id', 'in', state_attr(group, 'entity_id')) |
-            map(attribute='attributes.brightness') |
+            selectattr("state", "equalto", "on") |
+            selectattr("entity_id", "in", state_attr(group, "entity_id")) |
+            map(attribute="attributes.brightness") |
             list %}
           {% set tot = brightnesses|sum %}
           {% set len = brightnesses|length%}
