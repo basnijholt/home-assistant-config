@@ -55,7 +55,7 @@
       friendly_name: Washing machine
       value_template: >
         {{ states("sensor.washing_machine_watts") | float(0) > 3 }}
-      delay_off: "00:03:00"
+      delay_off: "00:04:00"
 
     dishwasher:
       friendly_name: Dishwasher
