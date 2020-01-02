@@ -67,3 +67,13 @@ bedroom_lights:
   - light.bamboo
   - light.ceiling_bedroom
   - light.lampan
+
+# XXX: first install these lights
+# stairs_lights:
+#   - light.stairs_up
+#   - light.stairs_down
+
+# hall_lights:
+#   - light.hall_1
+#   - light.hall_2
+#   - light.hall_3
