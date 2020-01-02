@@ -154,6 +154,7 @@ going_to_sleep:
   sequence:
     - service: light.turn_off
       data:
+        transition: 10
         entity_id:
           - group.living_room_lights
           - group.bedroom_lights
