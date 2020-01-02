@@ -62,13 +62,25 @@
     data:
       group: group.living_room_lights
 
-- alias: "Light: turn on kitchen"
+- alias: "Light: turn on kitchen ceiling"
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.ceiling_kitchen
+
+- alias: "Light: turn on kitchen counter if sleep mode is off"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_kitchen
+  condition:
+    condition: state
+    entity_id: input_boolean.sleep_mode
+    state: "off"
+  action:
+    service_template: switch.turn_{{ trigger.to_state.state }}
+    entity_id: switch.kitchen_counter
 
 - alias: "Light: turn on bathroom"
   trigger:
