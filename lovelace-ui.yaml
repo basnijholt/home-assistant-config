@@ -113,7 +113,6 @@ views:
   - entities:
     - entity: input_boolean.alarm_clock
     - entity: input_datetime.alarm_clock
-    - entity: input_boolean.sleep_mode
     show_header_toggle: false
     title: Alarms
     type: entities
@@ -143,6 +142,7 @@ views:
   - entities:
     - entity: input_boolean.vacation_mode
     - entity: input_boolean.guest_mode
+    - entity: input_boolean.sleep_mode
     show_header_toggle: false
     title: Modes
     type: entities
@@ -235,6 +235,9 @@ views:
     - cards:
       - icon: mdi:lightbulb-on
         name: Living room
+        styles:
+          card:
+          - font-size: 15px
         tap_action:
           action: call-service
           service: script.bright_lights_living_room
@@ -242,12 +245,18 @@ views:
       - color: rgb(255,20,147)
         icon: mdi:lightbulb-on
         name: Living room
+        styles:
+          card:
+          - font-size: 15px
         tap_action:
           action: call-service
           service: script.cozy_lights_living_room
         type: custom:button-card
       - icon: mdi:lightbulb-on
         name: Bedroom
+        styles:
+          card:
+          - font-size: 15px
         tap_action:
           action: call-service
           service: script.bright_lights_bedroom
@@ -255,13 +264,17 @@ views:
       - color: rgb(255,20,147)
         icon: mdi:lightbulb-on
         name: Bedroom
+        styles:
+          card:
+          - font-size: 15px
         tap_action:
           action: call-service
           service: script.cozy_lights_bedroom
         type: custom:button-card
       type: horizontal-stack
     - cards:
-      - icon: mdi:brightness-6
+      - aspect_ratio: 3/1
+        icon: mdi:brightness-6
         name: Living room
         tap_action:
           action: call-service
@@ -269,7 +282,8 @@ views:
           service_data:
             group: group.living_room_lights
         type: custom:button-card
-      - icon: mdi:brightness-6
+      - aspect_ratio: 3/1
+        icon: mdi:brightness-6
         name: Bedroom room
         tap_action:
           action: call-service

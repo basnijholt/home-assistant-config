@@ -9,7 +9,9 @@ whitelist_external_dirs:
   - /config/
 customize:
   person.bas:
-    entity_picture: "https://www.nijho.lt/authors/admin/avatar.jpg"
+    entity_picture: !secret profile_photo_bas
+  person.marcella:
+    entity_picture: !secret profile_photo_marcella
   switch.vacuum_mode:
     friendly_name: Vacuum
   switch.kitchen_counter:
