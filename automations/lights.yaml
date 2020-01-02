@@ -121,7 +121,7 @@
 #       from: not_home
 #       to: home
 #     - platform: state
-#       entity_id: binary_sensor.openclose_1  # XXX: didn't attach this yet!
+#       entity_id: binary_sensor.openclose_front_door
 #       from: "off"
 #       to: "on"
 #   condition:

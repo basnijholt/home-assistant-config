@@ -49,7 +49,7 @@
       friendly_name: Activity in the hall
       value_template: >
         {{ states("binary_sensor.motion_sensor_hall") == "on"
-           or states("binary_sensor.openclose_1") == "on" }}
+           or states("binary_sensor.openclose_front_door") == "on" }}
       delay_off: "00:01:00"
 
     washing_machine:
