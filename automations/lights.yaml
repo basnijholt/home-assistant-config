@@ -1,14 +1,16 @@
 ---
 - alias: "Light: next colors in the bedroom"
   trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: smart_switch_1
-  condition:
-    condition: template
-    value_template: >
-      {{ trigger.event.data.event == 1004 }}
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_1
+        event: 1004
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: dimmer_switch_bedroom
+        event: 1002
   action:
     - service: input_select.select_next
       data:
@@ -19,14 +21,16 @@
 
 - alias: "Light: next colors in the living room"
   trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: smart_switch_4
-  condition:
-    condition: template
-    value_template: >
-      {{ trigger.event.data.event == 1004 }}
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_4
+        event: 1004
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: dimmer_switch_living_room
+        event: 1002
   action:
     service: script.next_colors
     data:
@@ -34,14 +38,16 @@
 
 - alias: "Light: toggle max/min brightness in the bedroom"
   trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: smart_switch_1
-  condition:
-    condition: template
-    value_template: >
-      {{ trigger.event.data.event == 1002 }}
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_1
+        event: 1002
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: dimmer_switch_bedroom
+        event: 4002
   action:
     service: script.increase_brightness
     data:
@@ -49,14 +55,16 @@
 
 - alias: "Light: toggle max/min brightness in the living room"
   trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: smart_switch_4
-  condition:
-    condition: template
-    value_template: >
-      {{ trigger.event.data.event == 1002 }}
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_4
+        event: 1002
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: dimmer_switch_living_room
+        event: 4002
   action:
     service: script.increase_brightness
     data:
