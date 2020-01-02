@@ -1,25 +1,4 @@
 ---
-# XXX: fix the switches first
-# - alias: "Light: turn on when coming home"
-#   trigger:
-#     - platform: state
-#       entity_id: group.persons
-#       from: not_home
-#       to: home
-#     - platform: state
-#       entity_id: binary_sensor.openclose_1  # XXX: didn't attach this yet!
-#       from: "off"
-#       to: "on"
-#   condition:
-#     condition: sun
-#     after: sunset
-#     after_offset: "-0:30:00"
-#   action:
-#     service: light.turn_on
-#     entity_id:
-#       - group.stairs_lights
-#       - group.hall_lights
-
 - alias: "Light: next colors in the bedroom"
   trigger:
     platform: event
@@ -119,6 +98,29 @@
 #   action:
 #     service_template: light.turn_{{ trigger.to_state.state }}
 #     entity_id: group.bedroom_lights
+
+# XXX: no not have the sensor AND lights yet!
+# - alias: "Light: turn on hall"
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.activity_in_hall
+#     - platform: state
+#       entity_id: group.persons
+#       from: not_home
+#       to: home
+#     - platform: state
+#       entity_id: binary_sensor.openclose_1  # XXX: didn't attach this yet!
+#       from: "off"
+#       to: "on"
+#   condition:
+#     condition: sun
+#     after: sunset
+#     after_offset: "-0:30:00"
+#   action:
+#     service: light.turn_on
+#     entity_id:
+#       - group.stairs_lights  # XXX: install these lights
+#       - group.hall_lights
 
 - alias: "Light: change hue of living room lights with cube"
   trigger:
