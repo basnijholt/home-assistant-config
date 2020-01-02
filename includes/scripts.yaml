@@ -138,7 +138,6 @@ increase_brightness:
             list %}
           {% set tot = brightnesses|sum %}
           {% set len = brightnesses|length%}
-
           {% if len == 0 %}
             10
           {% elif tot/len < 20 %}
@@ -154,7 +153,7 @@ going_to_sleep:
   sequence:
     - service: light.turn_off
       data:
-        transition: 10
+        transition: 4
         entity_id:
           - group.living_room_lights
           - group.bedroom_lights

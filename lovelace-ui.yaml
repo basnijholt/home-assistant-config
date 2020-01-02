@@ -72,7 +72,6 @@ views:
       - entity: light.ceiling_bathroom
       - entity: light.toilet
       - entity: switch.circadian_lighting_circadian_lighting
-      - entity: input_boolean.sleep_mode
       title: 'Lights: automatic'
       type: entities
     type: vertical-stack
@@ -113,6 +112,7 @@ views:
   - entities:
     - entity: input_boolean.alarm_clock
     - entity: input_datetime.alarm_clock
+    - entity: input_boolean.sleep_mode
     show_header_toggle: false
     title: Alarms
     type: entities
@@ -145,31 +145,6 @@ views:
     show_header_toggle: false
     title: Modes
     type: entities
-  - columns: 2
-    entities:
-    - entity: script.going_to_sleep
-      tap_action:
-        action: call-service
-        service: script.going_to_sleep
-    - entity: script.bright_lights_bedroom
-      tap_action:
-        action: call-service
-        service: script.bright_lights_bedroom
-    - entity: script.bright_lights_living_room
-      tap_action:
-        action: call-service
-        service: script.bright_lights_living_room
-    - entity: script.cozy_lights_bedroom
-      tap_action:
-        action: call-service
-        service: script.cozy_lights_bedroom
-    - entity: script.cozy_lights_living_room
-      tap_action:
-        action: call-service
-        service: script.cozy_lights_living_room
-    show_state: false
-    title: Scences
-    type: glance
   - entities:
     - entity: binary_sensor.washing_machine
     - entity: sensor.washing_machine_watts
@@ -255,6 +230,61 @@ views:
       type: horizontal-stack
     title: Temperature
     type: custom:vertical-stack-in-card
+  - cards:
+    - cards:
+      - icon: mdi:lightbulb-on
+        name: Bedroom
+        tap_action:
+          action: call-service
+          service: script.bright_lights_bedroom
+        type: custom:button-card
+      - icon: mdi:lightbulb-on
+        name: Living room
+        tap_action:
+          action: call-service
+          service: script.bright_lights_living_room
+        type: custom:button-card
+      - color: rgb(255,20,147)
+        icon: mdi:lightbulb-on
+        name: Bedroom
+        tap_action:
+          action: call-service
+          service: script.cozy_lights_bedroom
+        type: custom:button-card
+      - color: rgb(255,20,147)
+        icon: mdi:lightbulb-on
+        name: Living room
+        tap_action:
+          action: call-service
+          service: script.cozy_lights_living_room
+        type: custom:button-card
+      type: horizontal-stack
+    - cards:
+      - icon: mdi:brightness-6
+        name: Living room
+        tap_action:
+          action: call-service
+          service: script.increase_brightness
+          service_data:
+            group: group.living_room_lights
+        type: custom:button-card
+      - icon: mdi:brightness-6
+        name: Bedroom room
+        tap_action:
+          action: call-service
+          service: script.increase_brightness
+          service_data:
+            group: group.bedroom_lights
+        type: custom:button-card
+      type: horizontal-stack
+    - aspect_ratio: 5/1
+      icon: mdi:bed-king
+      name: Go to sleep
+      tap_action:
+        action: call-service
+        service: script.going_to_sleep
+      type: custom:button-card
+    type: vertical-stack
   path: default_view
   title: Home
 - cards:
