@@ -172,6 +172,6 @@ next_colors:
       example: "input_select.last_script_living_room"
   sequence:
     - service: input_select.select_next
-      data:
+      data_template:
         entity_id: "{{ input_select }}"
     - service_template: "{{ states(input_select) }}"
