@@ -16,9 +16,9 @@
 #     after_offset: "-0:30:00"
 #   action:
 #     service: light.turn_on
-    # entity_id:
-    #   - group.hall_stairs_lights  # XXX: make this group
-    #   - group.hall_lights  # XXX: make this group
+#     entity_id:
+#       - group.stairs_lights
+#       - group.hall_lights
 
 - alias: "Light: next colors in the bedroom"
   trigger:
@@ -49,12 +49,9 @@
     value_template: >
       {{ trigger.event.data.event == 1004 }}
   action:
-    - service: input_select.select_next
-      data:
-       entity_id: input_select.last_script_living_room
-    - service: script.turn_on
-      data_template:
-        entity_id: "{{ states('input_select.last_script_living_room') }}"
+    service: script.next_colors
+    data:
+      input_select: input_select.last_script_living_room
 
 - alias: "Light: toggle max/min brightness in the bedroom"
   trigger:
@@ -67,9 +64,9 @@
     value_template: >
       {{ trigger.event.data.event == 1002 }}
   action:
-    - service: script.increase_brightness
-      data:
-        group: group.bedroom_lights
+    service: script.increase_brightness
+    data:
+      group: group.bedroom_lights
 
 - alias: "Light: toggle max/min brightness in the living room"
   trigger:
@@ -82,30 +79,30 @@
     value_template: >
       {{ trigger.event.data.event == 1002 }}
   action:
-    - service: script.increase_brightness
-      data:
-        group: group.living_room_lights
+    service: script.increase_brightness
+    data:
+      group: group.living_room_lights
 
 - alias: "Light: turn on kitchen"
   trigger:
-    - platform: state
-      entity_id: binary_sensor.activity_in_kitchen
+    platform: state
+    entity_id: binary_sensor.activity_in_kitchen
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.ceiling_kitchen
 
 - alias: "Light: turn on bathroom"
   trigger:
-    - platform: state
-      entity_id:  binary_sensor.activity_in_bathroom
+    platform: state
+    entity_id: binary_sensor.activity_in_bathroom
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.ceiling_bathroom
 
 - alias: "Light: turn on toilet"
   trigger:
-    - platform: state
-      entity_id:  binary_sensor.activity_in_toilet
+    platform: state
+    entity_id: binary_sensor.activity_in_toilet
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.toilet
@@ -114,11 +111,11 @@
 # - alias: "Light: turn on bedroom"
 #   trigger:
 #     - platform: state
-#       entity_id:  binary_sensor.activity_in_bedroom  # XXX: ADD THIS SENSOR
+#       entity_id: binary_sensor.activity_in_bedroom  # XXX: ADD THIS SENSOR
 #   condition:
 #     condition: state
 #     entity_id: input_boolean.sleep_mode
-#     state: "on"
+#     state: "off"
 #   action:
 #     service_template: light.turn_{{ trigger.to_state.state }}
 #     entity_id: group.bedroom_lights
