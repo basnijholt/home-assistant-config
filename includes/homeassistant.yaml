@@ -12,6 +12,8 @@ customize:
     entity_picture: "https://www.nijho.lt/authors/admin/avatar.jpg"
   switch.vacuum_mode:
     friendly_name: Vacuum
+  switch.kitchen_counter:
+    icon: "mdi:lightbulb"
   sensor.temperature_mean:
     icon: mdi:temperature-celsius
   media_player.kef:

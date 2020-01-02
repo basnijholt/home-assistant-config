@@ -74,12 +74,22 @@
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
+    to: "on"
   condition:
     condition: state
     entity_id: input_boolean.sleep_mode
     state: "off"
   action:
-    service_template: switch.turn_{{ trigger.to_state.state }}
+    service: switch.turn_on
+    entity_id: switch.kitchen_counter
+
+- alias: "Light: turn off kitchen counter"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_kitchen
+    to: "off"
+  action:
+    service: switch.turn_off
     entity_id: switch.kitchen_counter
 
 - alias: "Light: turn on bathroom"
