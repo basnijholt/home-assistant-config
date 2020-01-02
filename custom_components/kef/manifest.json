@@ -4,5 +4,5 @@
   "documentation": "https://github.com/basnijholt/media_player.kef",
   "dependencies": [],
   "codeowners": ["@basnijholt"],
-  "requirements": ["aiokef==0.2.0"]
+  "requirements": ["aiokef==0.2.2"]
 }
