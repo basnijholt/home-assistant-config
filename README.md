@@ -20,35 +20,46 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 ## My devices
 
 ### Switches
-* TP-Link HS110 (2x)
-* Xiaomi Aqara Magic Cube
-* Xiaomi Aqara Single Button (4x)
-* Philips Hue Dimmer switch (2x)
+* TP-Link HS110 (3x) (€70.84)
+* Xiaomi Aqara Magic Cube (€11.08)
+* Xiaomi Aqara Single Button (4x) (€37.05)
+* Philips Hue Dimmer switch (2x) (€33.22)
+* IKEA TRÅDFRI SYMFONISK Remote (€15.00)
 
 ### Sensors
-* Xiaomi Aqara Door Sensors (4x)
-* Xiaomi Aqara Temperature Sensors (4x)
-* Xiaomi Aqara Motion Sensors (4x)
+* Xiaomi Aqara Door Sensor (4x) (€32.71)
+* Xiaomi Aqara Temperature Sensor (4x) (€34.40)
+* Xiaomi Aqara Motion Sensor (4x) (€61.13)
+* Xiaomi Aqara Vibration Sensor (€11.59)
 
 ### Vacuum
-* Xiaomi Mi Roborock S5
+* Xiaomi Mi Roborock S5 (€294.31)
 
 ### Media player
 * KEF LS50 Wireless speakers
 * LG OLED 55 C9
 
 ### Lights
-* Philips Hue E27 White and Color (10x)
+* Philips Hue E27 White and Color (10x) (€236.70)
+* Philips Hue GU10 Ambient White (6x) (€102.70)
+* Philips Hue Go (€57.05)
+* Philips Hue LED strip 2m (2x) (€86.39)
+* Philips Hue LED strip 1m (€13.84)
 
 ### Hubs
-* ConBee II
+* ConBee II (€39.95)
 
 ### Server
-* Raspberry Pi 4, 4GB RAM, 16GB SD-card, running [*Hass.io*](https://www.home-assistant.io/hassio/)
+* Raspberry Pi 4, 4GB RAM, running [*Hass.io*](https://www.home-assistant.io/hassio/) (€70.90)
+* Raspberry Pi 4 FLIRC Case (€25.85)
+* SanDisk Ultra microSDHC Memory Card 32GB (€6.99)
 
 ### Device tracker
 * iPhone X with the new iOS app (2x)
 
+### Total cost
+*€1,241.61* without my TV and speakers, **yes**, this is shocking to me too 😅
+I bought many things on Aliexpress and with discount or used on Amazon.
 
 ## Notes
 * I use AppDaemon 4 beta, see the installation instructions [here](appdaemon/hassio_appdaemon4_beta_installation_instructions.md).
