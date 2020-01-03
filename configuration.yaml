@@ -18,7 +18,7 @@ discovery: !include includes/discovery.yaml
 media_player: !include includes/media_players.yaml
 http: !include includes/http.yaml
 group: !include includes/groups.yaml
-script: !include includes/scripts.yaml
+script: !include scripts.yaml
 automation: !include automations.yaml
 automation old: !include_dir_merge_list automations
 device_tracker: !include includes/device_trackers.yaml
