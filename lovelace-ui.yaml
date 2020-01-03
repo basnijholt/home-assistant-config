@@ -65,6 +65,7 @@ views:
       - entity: light.lampan
       - entity: light.bamboo
       - entity: light.philips_go
+      - entity: light.bed_led
       title: 'Lights: bedroom'
       type: entities
     - entities:
@@ -75,6 +76,75 @@ views:
       - entity: switch.circadian_lighting_circadian_lighting
       title: 'Lights: automatic'
       type: entities
+    type: vertical-stack
+  - cards:
+    - cards:
+      - icon: mdi:lightbulb-on
+        name: Living room
+        styles:
+          card:
+          - font-size: 13px
+        tap_action:
+          action: call-service
+          service: script.white_lights_living_room
+        type: custom:button-card
+      - color: rgba(255, 159, 9, 1)
+        icon: mdi:lightbulb-on
+        name: Living room
+        styles:
+          card:
+          - font-size: 13px
+        tap_action:
+          action: call-service
+          service: script.cozy_lights_living_room
+        type: custom:button-card
+      - icon: mdi:lightbulb-on
+        name: Bedroom
+        styles:
+          card:
+          - font-size: 13px
+        tap_action:
+          action: call-service
+          service: script.white_lights_bedroom
+        type: custom:button-card
+      - color: rgba(255, 159, 9, 1)
+        icon: mdi:lightbulb-on
+        name: Bedroom
+        styles:
+          card:
+          - font-size: 13px
+        tap_action:
+          action: call-service
+          service: script.cozy_lights_bedroom
+        type: custom:button-card
+      type: horizontal-stack
+    - cards:
+      - aspect_ratio: 3/1
+        icon: mdi:brightness-6
+        name: Living room
+        tap_action:
+          action: call-service
+          service: script.increase_brightness
+          service_data:
+            group: group.living_room_lights
+        type: custom:button-card
+      - aspect_ratio: 3/1
+        icon: mdi:brightness-6
+        name: Bedroom room
+        tap_action:
+          action: call-service
+          service: script.increase_brightness
+          service_data:
+            group: group.bedroom_lights
+        type: custom:button-card
+      type: horizontal-stack
+    - aspect_ratio: 5/1
+      icon: mdi:bed-king
+      name: Go to sleep
+      tap_action:
+        action: call-service
+        service: script.going_to_sleep
+      type: custom:button-card
     type: vertical-stack
   - entity: weather.huis
     name: Weather
@@ -106,9 +176,17 @@ views:
         play_stop: true
         volume: false
       type: custom:mini-media-player
-    - entity: input_boolean.start_the_music
+    - aspect_ratio: 5.5/1
+      icon: mdi:music
       icon_height: 20px
-      type: entity-button
+      name: Start the music
+      tap_action:
+        action: call-service
+        service: script.start_spotify
+        service_data:
+          playlist: 6rPTm9dYftKcFAfwyRqmDZ
+          source: LS50 Wireless 00C437
+      type: custom:button-card
     type: vertical-stack
   - entities:
     - entity: input_boolean.alarm_clock
@@ -231,75 +309,6 @@ views:
       type: horizontal-stack
     title: Temperature
     type: custom:vertical-stack-in-card
-  - cards:
-    - cards:
-      - icon: mdi:lightbulb-on
-        name: Living room
-        styles:
-          card:
-          - font-size: 15px
-        tap_action:
-          action: call-service
-          service: script.white_lights_living_room
-        type: custom:button-card
-      - color: rgb(255,20,147)
-        icon: mdi:lightbulb-on
-        name: Living room
-        styles:
-          card:
-          - font-size: 15px
-        tap_action:
-          action: call-service
-          service: script.cozy_lights_living_room
-        type: custom:button-card
-      - icon: mdi:lightbulb-on
-        name: Bedroom
-        styles:
-          card:
-          - font-size: 15px
-        tap_action:
-          action: call-service
-          service: script.white_lights_bedroom
-        type: custom:button-card
-      - color: rgb(255,20,147)
-        icon: mdi:lightbulb-on
-        name: Bedroom
-        styles:
-          card:
-          - font-size: 15px
-        tap_action:
-          action: call-service
-          service: script.cozy_lights_bedroom
-        type: custom:button-card
-      type: horizontal-stack
-    - cards:
-      - aspect_ratio: 3/1
-        icon: mdi:brightness-6
-        name: Living room
-        tap_action:
-          action: call-service
-          service: script.increase_brightness
-          service_data:
-            group: group.living_room_lights
-        type: custom:button-card
-      - aspect_ratio: 3/1
-        icon: mdi:brightness-6
-        name: Bedroom room
-        tap_action:
-          action: call-service
-          service: script.increase_brightness
-          service_data:
-            group: group.bedroom_lights
-        type: custom:button-card
-      type: horizontal-stack
-    - aspect_ratio: 5/1
-      icon: mdi:bed-king
-      name: Go to sleep
-      tap_action:
-        action: call-service
-        service: script.going_to_sleep
-      type: custom:button-card
-    type: vertical-stack
   path: default_view
   title: Home
 - cards:
@@ -627,6 +636,7 @@ views:
     - entity: binary_sensor.activity_in_hall
     - entity: binary_sensor.activity_in_kitchen
     - entity: binary_sensor.activity_in_toilet
+    - entity: binary_sensor.openclose_front_door
     - type: divider
     - entity: binary_sensor.motion_detected
     - entity: binary_sensor.motion_detected_in_last_hour

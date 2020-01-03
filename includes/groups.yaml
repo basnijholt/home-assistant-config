@@ -67,6 +67,7 @@ bedroom_lights:
   - light.bamboo
   - light.ceiling_bedroom
   - light.lampan
+  - light.bed_led
 
 # XXX: first install these lights
 # stairs_lights:
