@@ -58,7 +58,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * iPhone X with the new iOS app (2x)
 
 ### Total cost
-*€1,241.61* without my TV and speakers, **yes**, this is shocking to me too 😅
+*€1,241.61* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
 I bought many things on Aliexpress and with discount or used on Amazon.
 
 ## Notes
