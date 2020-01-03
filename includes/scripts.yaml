@@ -95,8 +95,8 @@ cozy_lights_bedroom:
         entity_id: light.ceiling_bedroom
         hs_color: [10.118, 100]
 
-bright_lights_living_room:
-  alias: Set bright lights in the living room
+white_lights_living_room:
+  alias: Set white lights in the living room
   sequence:
     - service: light.turn_on
       data:
@@ -108,8 +108,8 @@ bright_lights_living_room:
           - light.tv_led
         color_temp: 366
 
-bright_lights_bedroom:
-  alias: Set bright lights in the bedroom
+white_lights_bedroom:
+  alias: Set white lights in the bedroom
   sequence:
     - service: light.turn_on
       data:

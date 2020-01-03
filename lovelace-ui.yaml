@@ -240,7 +240,7 @@ views:
           - font-size: 15px
         tap_action:
           action: call-service
-          service: script.bright_lights_living_room
+          service: script.white_lights_living_room
         type: custom:button-card
       - color: rgb(255,20,147)
         icon: mdi:lightbulb-on
@@ -259,7 +259,7 @@ views:
           - font-size: 15px
         tap_action:
           action: call-service
-          service: script.bright_lights_bedroom
+          service: script.white_lights_bedroom
         type: custom:button-card
       - color: rgb(255,20,147)
         icon: mdi:lightbulb-on

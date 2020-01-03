@@ -16,12 +16,12 @@ cube_mode:
 last_script_living_room:
   options:
     - script.cozy_lights_living_room
-    - script.bright_lights_living_room
+    - script.white_lights_living_room
   icon: mdi:lightbulb-on
 
 last_script_bedroom:
   options:
     - script.cozy_lights_bedroom
-    - script.bright_lights_bedroom
+    - script.white_lights_bedroom
   icon: mdi:lightbulb-on
 
