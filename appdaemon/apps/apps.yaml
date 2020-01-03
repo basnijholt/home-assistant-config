@@ -12,6 +12,7 @@ start_spotify:
   class: StartSpotify
   volume: 0.3
   speaker: media_player.kef
+  spotify_source: LS50 Wireless 00C437
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.start_spotify
 

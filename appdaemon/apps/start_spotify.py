@@ -6,7 +6,7 @@ start_spotify:
   module: start_spotify
   class: StartSpotify
   speaker: media_player.kef
-  speaker_name: "LS50 Wireless 00C437"
+  spotify_source: "LS50 Wireless 00C437"
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   volume: 0.3
   input_boolean: input_boolean.start_spotify
@@ -26,7 +26,7 @@ from functools import partial
 import hassapi as hass
 
 DEFAULT_SPEAKER = "media_player.kef"
-DEFAULT_SPEAKER_NAME = "LS50 Wireless 00C437"
+DEFAULT_SPOTIFY_SOURCE = "LS50 Wireless 00C437"
 DEFAULT_PLAYLIST = "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
 DEFAULT_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.start_spotify"
@@ -35,7 +35,7 @@ MAX_TRIES = 20
 
 DEFAULTS = {
     "speaker": DEFAULT_SPEAKER,
-    "speaker_name": DEFAULT_SPEAKER_NAME,
+    "spotify_source": DEFAULT_SPOTIFY_SOURCE,
     "playlist": DEFAULT_PLAYLIST,
     "volume": DEFAULT_VOLUME,
     "input_boolean": DEFAULT_INPUT_BOOLEAN,
@@ -72,22 +72,22 @@ class StartSpotify(hass.Hass):
         self.listen_event(self.select_source, app.done_signal, timeout=30, oneshot=True)
         app.start(**kwargs)
 
-    def source_available(self, speaker_name):
-        return speaker_name in self.get_state(
+    def source_available(self, spotify_source):
+        return spotify_source in self.get_state(
             "media_player.spotify", attribute="source_list", default=[]
         )
 
     def select_source(self, event=None, data=None, kwargs=None):
         self.log("Starting `select_source`")
-        speaker_name = data["speaker_name"]
-        if not self.source_available(speaker_name):
+        spotify_source = data["spotify_source"]
+        if not self.source_available(spotify_source):
             self.log("Source not available")
             self.call_spotify("homeassistant/update_entity")
             self.run_in(self.try_again, 1, **data)
         else:
             self.tries = 0
             self.log("Source is available")
-            self.call_spotify("media_player/select_source", source=speaker_name)
+            self.call_spotify("media_player/select_source", source=spotify_source)
             self.start_playlist(**data)
 
     def try_again(self, kwargs):

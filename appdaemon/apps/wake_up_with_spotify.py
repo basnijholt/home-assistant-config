@@ -8,7 +8,7 @@ wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
   speaker: media_player.kef
-  speaker_name: "LS50 Wireless 00C437"
+  spotify_source: "LS50 Wireless 00C437"
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   total_time: 900
   final_volume: 0.3
@@ -27,7 +27,7 @@ input_boolean:
 import hassapi as hass
 
 DEFAULT_SPEAKER = "media_player.kef"
-DEFAULT_SPEAKER_NAME = "KEF LS50 Wireless"
+DEFAULT_SPOTIFY_SOURCE = "KEF LS50 Wireless"
 DEFAULT_PLAYLIST = "6rPTm9dYftKcFAfwyRqmDZ"
 DEFAULT_TOTAL_TIME = 300
 DEFAULT_FINAL_VOLUME = 0.3
@@ -38,7 +38,7 @@ MIN_TIME_STEP = 4
 
 DEFAULTS = {
     "speaker": DEFAULT_SPEAKER,
-    "speaker_name": DEFAULT_SPEAKER_NAME,
+    "spotify_source": DEFAULT_SPOTIFY_SOURCE,
     "playlist": DEFAULT_PLAYLIST,
     "total_time": DEFAULT_TOTAL_TIME,
     "final_volume": DEFAULT_FINAL_VOLUME,
