@@ -28,7 +28,6 @@
       entity_id: input_boolean.cleaned_today
 
 - alias: "Vacuum: cleanup if nobody is home"
-  initial_state: "on"
   trigger:
     - platform: time
       at: "13:00"
