@@ -11,7 +11,6 @@
       value_template: >
         {{ states("binary_sensor.activity_in_kitchen") == "on"
            or states("binary_sensor.activity_in_hall") == "on"
-           or states("binary_sensor.activity_in_bedroom") == "on"
            or states("binary_sensor.activity_in_toilet") == "on"
            or states("binary_sensor.activity_in_bathroom") == "on" }}
 
@@ -49,16 +48,8 @@
     activity_in_hall:
       friendly_name: Activity in the hall
       value_template: >
-        {{ states("binary_sensor.openclose_front_door") == "on" }}
-        # XXX: do not have the hall motion sensor yet
-        # {{ states("binary_sensor.motion_sensor_hall") == "on"
-        #    or states("binary_sensor.openclose_front_door") == "on" }}
-      delay_off: "00:01:00"
-
-    activity_in_bedroom:
-      friendly_name: Activity in the bedroom
-      value_template: >
-        {{ states("binary_sensor.motion_sensor_bedroom") == "on" }}
+        {{ states("binary_sensor.motion_sensor_hall") == "on"
+           or states("binary_sensor.openclose_front_door") == "on" }}
       delay_off: "00:01:00"
 
     washing_machine:

@@ -116,17 +116,18 @@
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.toilet
 
-- alias: "Light: turn on bedroom"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.activity_in_bedroom
-  condition:
-    condition: state
-    entity_id: input_boolean.sleep_mode
-    state: "off"
-  action:
-    service_template: light.turn_{{ trigger.to_state.state }}
-    entity_id: group.bedroom_lights
+# XXX: no not have the sensor yet!
+# - alias: "Light: turn on bedroom"
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.activity_in_bedroom  # XXX: ADD THIS SENSOR
+#   condition:
+#     condition: state
+#     entity_id: input_boolean.sleep_mode
+#     state: "off"
+#   action:
+#     service_template: light.turn_{{ trigger.to_state.state }}
+#     entity_id: group.bedroom_lights
 
 # XXX: no not have the sensor AND lights yet!
 # - alias: "Light: turn on hall"
@@ -141,6 +142,10 @@
 #       entity_id: binary_sensor.openclose_front_door
 #       from: "off"
 #       to: "on"
+#   condition:
+#     condition: sun
+#     after: sunset
+#     after_offset: "-0:30:00"
 #   action:
 #     service: light.turn_on
 #     entity_id:
