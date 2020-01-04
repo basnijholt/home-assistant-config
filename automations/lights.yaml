@@ -13,8 +13,7 @@
         event: 1002
   action:
     - service: input_select.select_next
-      data:
-       entity_id: input_select.last_script_bedroom
+      entity_id: input_select.last_script_bedroom
     - service: script.turn_on
       data_template:
         entity_id: "{{ states('input_select.last_script_bedroom') }}"
@@ -116,20 +115,68 @@
     service_template: light.turn_{{ trigger.to_state.state }}
     entity_id: light.toilet
 
-# XXX: no not have the sensor yet!
-# - alias: "Light: turn on bedroom"
+# XXX: do not have these sensors yet
+# - alias: "Light: automatically turn on the bedroom"
+#   initial_state: "on"
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.activity_in_bedroom
+#     to: "on"
+#   condition:
+#     - condition: state
+#       entity_id: group.bedroom_lights
+#       state: "off"
+#     - condition: state
+#       entity_id: input_boolean.sleep_mode
+#       state: "off"
+#   action:
+#     - service: switch.turn_on
+#       entity_id: group.bedroom_lights
+#     - service: input_boolean.turn_on
+#       entity_id: input_boolean.bedroom_lights_auto_on
+
+# - alias: "Light: automatically turn off the bedroom"
+#   initial_state: "on"
 #   trigger:
 #     - platform: state
-#       entity_id: binary_sensor.activity_in_bedroom  # XXX: ADD THIS SENSOR
+#       entity_id: binary_sensor.activity_in_bedroom
+#       to: "off"
+#   condition:
+#     - condition: state
+#       entity_id: input_boolean.bedroom_lights_auto_on
+#       state: "on"
+#     - condition: state
+#       entity_id: group.bedroom_lights
+#       state: "on"
+#   action:
+#     - service: light.turn_off
+#       entity_id: group.bedroom_lights
+#       data:
+#         transition: 10
+
+# - alias: "Light: turn off bedroom lights auto switch"
+#   initial_state: "on"
+#   trigger:
+#     - platform: state
+#       entity_id: group.bedroom_lights
+#       to: "off"
+#     - platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: dimmer_switch_bedroom
+#     - platform: event
+#       event_type: deconz_event
+#       event_data:
+#         id: smart_switch_1
 #   condition:
 #     condition: state
-#     entity_id: input_boolean.sleep_mode
-#     state: "off"
+#     entity_id: input_boolean.bedroom_lights_auto_on
+#     state: "on"
 #   action:
-#     service_template: light.turn_{{ trigger.to_state.state }}
-#     entity_id: group.bedroom_lights
+#     service: input_boolean.turn_off
+#     entity_id: input_boolean.bedroom_lights_auto_on
 
-# XXX: no not have the sensor AND lights yet!
+# XXX: do not have the lights yet!
 # - alias: "Light: turn on hall"
 #   trigger:
 #     - platform: state

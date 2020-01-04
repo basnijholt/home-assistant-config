@@ -19,6 +19,10 @@ brightness_or_hue:
 sleep_mode:
   name: Sleep mode
   icon: mdi:bed-king
+bedroom_lights_auto_on:
+  name: "Automatically turned on bedroom lights"
+  icon: mdi:ceiling-light
+  initial: off
 
 # Activity automations
 activity_in_kitchen:
