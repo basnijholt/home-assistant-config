@@ -140,12 +140,17 @@ increase_brightness:
   - service: light.turn_on
     data_template:
       entity_id: '{{ group }}'
-      brightness: "{% set brightnesses = states |\n  selectattr(\"state\", \"equalto\"\
-        , \"on\") |\n  selectattr(\"entity_id\", \"in\", state_attr(group, \"entity_id\"\
-        )) |\n  map(attribute=\"attributes.brightness\") |\n  list %}\n{% set tot\
-        \ = brightnesses|sum %} {% set len = brightnesses|length%} {% if len == 0\
-        \ %}\n  10\n{% elif tot/len < 20 %}\n  128\n{% elif tot/len < 140 %}\n  255\n\
-        {% else %}\n  10\n{% endif %}\n"
+      brightness: >
+        {% set b = state_attr(group, "brightness") %}
+        {% if b is None %}
+          10
+        {% elif b < 20 %}
+          128
+        {% elif b < 140 %}
+          255
+        {% else %}
+          10
+        {% endif %}
 going_to_sleep:
   alias: Going to sleep
   sequence:
