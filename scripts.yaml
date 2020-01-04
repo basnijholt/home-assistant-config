@@ -15,7 +15,7 @@ start_speakers:
     entity_id: media_player.kef
     data_template:
       source: '{{ source }}'
-  - wait_template: '{{ is_state(''media_player.kef'', ''on'') }}'
+  - wait_template: '{{ is_state("media_player.kef", "on") }}'
     timeout: 00:01:00
     continue_on_timeout: 'false'
   - service: media_player.volume_set
@@ -35,7 +35,7 @@ start_spotify:
   sequence:
   - service: homeassistant.update_entity
     entity_id: media_player.spotify
-  - wait_template: '{{ source in state_attr(''media_player.spotify'', ''source_list'')  }}'
+  - wait_template: '{{ source in state_attr("media_player.spotify", "source_list")  }}'
     timeout: 00:01:00
     continue_on_timeout: 'false'
   - service: media_player.select_source
@@ -140,19 +140,11 @@ increase_brightness:
   - service: light.turn_on
     data_template:
       entity_id: '{{ group }}'
-      brightness: >
-        {% set b = state_attr(group, "brightness") %}
-        {% if b == None %}
-          10
-        {% elif b < 20 %}
-          128
-        {% elif b < 140 %}
-          255
-        {% else %}
-          10
-        {% endif %}
-going_to_sleep:
-  alias: Going to sleep
+      brightness: "{% set b = state_attr(group, \"brightness\") %} {% if b == None\
+        \ %}\n  10\n{% elif b < 20 %}\n  128\n{% elif b < 140 %}\n  255\n{% else %}\n\
+        \  10\n{% endif %}\n"
+turn_off_everything:
+  alias: Turn off everything
   sequence:
   - service: light.turn_off
     data:
@@ -164,6 +156,10 @@ going_to_sleep:
     entity_id: media_player.kef
   - service: media_player.turn_off
     entity_id: media_player.tv
+going_to_sleep:
+  alias: Going to sleep
+  sequence:
+  - service: scripts.turn_off_everything
   - service: input_boolean.turn_on
     entity_id: input_boolean.sleep_mode
 next_colors:
@@ -177,3 +173,12 @@ next_colors:
     data_template:
       entity_id: '{{ input_select }}'
   - service_template: '{{ states(input_select) }}'
+start_netflix:
+  alias: Start Netflix
+  sequence:
+  - entity_id: media_player.tv
+    service: media_player.turn_on
+  - data:
+      source: Netflix
+    entity_id: media_player.tv
+    service: media_player.select_source
