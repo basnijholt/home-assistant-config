@@ -18,3 +18,9 @@ customize:
     icon: mdi:temperature-celsius
   media_player.kef:
     friendly_name: Speakers
+  light.automatic_lights:
+    icon: "mdi:robot"
+  light.living_room_lights:
+    icon: "mdi:sofa"
+  light.bedroom_lights:
+    icon: "mdi:bed-king"

@@ -48,6 +48,8 @@ resources:
   url: /community_plugin/simple-weather-card/simple-weather-card-bundle.js
 - type: module
   url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+- type: module
+  url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
 title: Huis
 views:
 - badges:
@@ -55,34 +57,44 @@ views:
   - entity: person.marcella
   - entity: sun.sun
   cards:
-  - cards:
+  - entities:
     - entities:
-      - entity: group.living_room_lights
+      - light.sphere_1
+      - light.sphere_2
+      - light.corner_living_room
+      - light.ceiling_living_room
+      - light.tv_led
+      head:
+        entity: light.living_room_lights
+        name: Living
         type: custom:slider-entity-row
-      - entity: light.sphere_1
-      - entity: light.sphere_2
-      - entity: light.corner_living_room
-      - entity: light.ceiling_living_room
-      - entity: light.tv_led
-      title: 'Lights: living room'
-      type: entities
+      type: custom:fold-entity-row
     - entities:
-      - entity: light.ceiling_bedroom
-      - entity: light.lampan
-      - entity: light.bamboo
-      - entity: light.philips_go
-      - entity: light.bed_led
-      title: 'Lights: bedroom'
-      type: entities
+      - light.ceiling_bedroom
+      - light.lampan
+      - light.bamboo
+      - light.philips_go
+      - light.bed_led
+      head:
+        entity: light.bedroom_lights
+        name: Bedroom
+        type: custom:slider-entity-row
+      name: Bed
+      type: custom:fold-entity-row
     - entities:
-      - entity: light.ceiling_kitchen
-      - entity: light.ceiling_bathroom
-      - entity: light.toilet
-      - entity: switch.kitchen_counter
-      - entity: switch.circadian_lighting_circadian_lighting
-      title: 'Lights: automatic'
-      type: entities
-    type: vertical-stack
+      - light.ceiling_kitchen
+      - light.ceiling_bathroom
+      - light.toilet
+      - light.kitchen_counter
+      - switch.circadian_lighting_circadian_lighting
+      head:
+        entity: light.automatic_lights
+        name: Auto
+        type: custom:slider-entity-row
+      type: custom:fold-entity-row
+    show_header_toggle: false
+    title: Lights
+    type: entities
   - cards:
     - cards:
       - icon: mdi:lightbulb-on
@@ -122,26 +134,6 @@ views:
         tap_action:
           action: call-service
           service: script.cozy_lights_bedroom
-        type: custom:button-card
-      type: horizontal-stack
-    - cards:
-      - aspect_ratio: 3/1
-        icon: mdi:brightness-6
-        name: Living room
-        tap_action:
-          action: call-service
-          service: script.increase_brightness
-          service_data:
-            group: light.living_room_lights
-        type: custom:button-card
-      - aspect_ratio: 3/1
-        icon: mdi:brightness-6
-        name: Bedroom room
-        tap_action:
-          action: call-service
-          service: script.increase_brightness
-          service_data:
-            group: light.bedroom_lights
         type: custom:button-card
       type: horizontal-stack
     - aspect_ratio: 5/1
@@ -210,19 +202,12 @@ views:
     show_header_toggle: false
     title: GitHub
     type: entities
-  - cards:
-    - buttons: true
-      entity: vacuum.xiaomi_vacuum_cleaner
-      image: /local/custom/folder/background.png
-      name: Vacuum
-      type: custom:xiaomi-vacuum-card
-    - entities:
-      - entity: switch.vacuum_mode
-      - entity: input_boolean.cleaned_today
-      show_header_toggle: false
-      theme: Backend-selected
-      type: entities
-    type: vertical-stack
+  - entities:
+    - entity: switch.vacuum_mode
+    - entity: input_boolean.cleaned_today
+    show_header_toggle: false
+    theme: Backend-selected
+    type: entities
   - entities:
     - entity: input_boolean.vacation_mode
     - entity: input_boolean.guest_mode
@@ -251,7 +236,7 @@ views:
         lower_bound: 0
         points_per_hour: 1
         show:
-          extrema: true
+          extrema: false
           fill: fade
           labels: false
           name: true
@@ -268,7 +253,7 @@ views:
         lower_bound: 0
         points_per_hour: 1
         show:
-          extrema: true
+          extrema: false
           fill: fade
           labels: false
           name: true
@@ -288,7 +273,7 @@ views:
         lower_bound: 0
         points_per_hour: 1
         show:
-          extrema: true
+          extrema: false
           fill: fade
           labels: false
           name: true
@@ -305,7 +290,7 @@ views:
         lower_bound: 0
         points_per_hour: 1
         show:
-          extrema: true
+          extrema: false
           fill: fade
           labels: false
           name: true
@@ -313,7 +298,6 @@ views:
         type: custom:mini-graph-card
       name: Speedtest
       type: horizontal-stack
-    title: Temperature
     type: custom:vertical-stack-in-card
   path: default_view
   title: Home
@@ -656,6 +640,11 @@ views:
     - entity: sensor.vibration_battery_level
     title: Vibration sensors
     type: glance
+  - buttons: true
+    entity: vacuum.xiaomi_vacuum_cleaner
+    image: /local/custom/folder/background.png
+    name: Vacuum
+    type: custom:xiaomi-vacuum-card
   icon: mdi:test-tube
   path: tests
   title: Tests
