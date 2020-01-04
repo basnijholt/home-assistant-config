@@ -22,6 +22,7 @@ wake_up_with_spotify:
   total_time: 400
   final_volume: 0.25
   speaker: media_player.kef
+  spotify_source: LS50 Wireless 00C437
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
 
@@ -30,6 +31,9 @@ demo_wake_up_with_spotify:
   class: WakeUpWithSpotify
   total_time: 20
   final_volume: 0.25
+  speaker: media_player.kef
+  spotify_source: LS50 Wireless 00C437
+  playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.demo_wake_up_with_spotify
 
 wake_up_light:
@@ -37,10 +41,7 @@ wake_up_light:
   class: WakeUpLight
   total_time: 600
   lamp:
-    - light.ceiling_bedroom
-    - light.bamboo
-    - light.philips_go
-    - light.lampan
+    - light.bedroom_lights
   input_boolean: input_boolean.wake_up_light
 
 demo_wake_up_light:
@@ -48,10 +49,7 @@ demo_wake_up_light:
   class: WakeUpLight
   total_time: 20
   lamp:
-    - light.ceiling_bedroom
-    - light.bamboo
-    - light.philips_go
-    - light.lampan
+    - light.bedroom_lights
   input_boolean: input_boolean.demo_wake_up_light
 
 cube:
