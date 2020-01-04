@@ -130,8 +130,12 @@
 #       entity_id: input_boolean.sleep_mode
 #       state: "off"
 #   action:
-#     - service: switch.turn_on
+#     - service: light.turn_on
 #       entity_id: group.bedroom_lights
+#       data_template:
+#         brightness: 100
+#         xy_color: >
+#           {{ state_attr("sensor.circadian_values", "xy_color")|list	}}
 #     - service: input_boolean.turn_on
 #       entity_id: input_boolean.bedroom_lights_auto_on
 
