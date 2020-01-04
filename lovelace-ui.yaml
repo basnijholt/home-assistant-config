@@ -44,6 +44,10 @@ resources:
   url: /community_plugin/decluttering-card/decluttering-card.js
 - type: module
   url: /community_plugin/weather-card/weather-card.js
+- type: module
+  url: /community_plugin/simple-weather-card/simple-weather-card-bundle.js
+- type: module
+  url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
 title: Huis
 views:
 - badges:
@@ -53,6 +57,8 @@ views:
   cards:
   - cards:
     - entities:
+      - entity: group.living_room_lights
+        type: custom:slider-entity-row
       - entity: light.sphere_1
       - entity: light.sphere_2
       - entity: light.corner_living_room
@@ -148,7 +154,7 @@ views:
     type: vertical-stack
   - entity: weather.huis
     name: Weather
-    type: weather-forecast
+    type: custom:simple-weather-card
   - cards:
     - artwork: cover
       background: /local/tv.jpg
@@ -645,6 +651,11 @@ views:
     show_header_toggle: false
     title: Activity in the house
     type: entities
+  - entities:
+    - entity: binary_sensor.vibration
+    - entity: sensor.vibration_battery_level
+    title: Vibration sensors
+    type: glance
   icon: mdi:test-tube
   path: tests
   title: Tests
