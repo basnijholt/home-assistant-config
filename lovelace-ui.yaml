@@ -132,7 +132,7 @@ views:
           action: call-service
           service: script.increase_brightness
           service_data:
-            group: group.living_room_lights
+            group: light.living_room_lights
         type: custom:button-card
       - aspect_ratio: 3/1
         icon: mdi:brightness-6
@@ -141,7 +141,7 @@ views:
           action: call-service
           service: script.increase_brightness
           service_data:
-            group: group.bedroom_lights
+            group: light.bedroom_lights
         type: custom:button-card
       type: horizontal-stack
     - aspect_ratio: 5/1

@@ -30,6 +30,7 @@ weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
 notify: !include includes/notify.yaml
 input_number: !include includes/input_numbers.yaml
+light: !include includes/lights.yaml
 python_script:
 wake_on_lan:
 

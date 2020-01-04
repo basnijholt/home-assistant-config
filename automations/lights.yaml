@@ -50,7 +50,7 @@
   action:
     service: script.increase_brightness
     data:
-      group: group.bedroom_lights
+      group: light.bedroom_lights
 
 - alias: "Light: toggle max/min brightness in the living room"
   trigger:
@@ -67,7 +67,7 @@
   action:
     service: script.increase_brightness
     data:
-      group: group.living_room_lights
+      group: light.living_room_lights
 
 - alias: "Light: turn on kitchen ceiling"
   trigger:
@@ -124,14 +124,14 @@
 #     to: "on"
 #   condition:
 #     - condition: state
-#       entity_id: group.bedroom_lights
+#       entity_id: light.bedroom_lights
 #       state: "off"
 #     - condition: state
 #       entity_id: input_boolean.sleep_mode
 #       state: "off"
 #   action:
 #     - service: light.turn_on
-#       entity_id: group.bedroom_lights
+#       entity_id: light.bedroom_lights
 #       data_template:
 #         brightness: 255
 #         xy_color: >
@@ -150,11 +150,11 @@
 #       entity_id: input_boolean.bedroom_lights_auto_on
 #       state: "on"
 #     - condition: state
-#       entity_id: group.bedroom_lights
+#       entity_id: light.bedroom_lights
 #       state: "on"
 #   action:
 #     - service: light.turn_off
-#       entity_id: group.bedroom_lights
+#       entity_id: light.bedroom_lights
 #       data:
 #         transition: 10
 
@@ -162,7 +162,7 @@
 #   initial_state: "on"
 #   trigger:
 #     - platform: state
-#       entity_id: group.bedroom_lights
+#       entity_id: light.bedroom_lights
 #       to: "off"
 #     - platform: event
 #       event_type: deconz_event
@@ -200,8 +200,8 @@
 #   action:
 #     service: light.turn_on
 #     entity_id:
-#       - group.stairs_lights  # XXX: install these lights
-#       - group.hall_lights
+#       - light.stairs_lights  # XXX: install these lights
+#       - light.hall_lights
 
 - alias: "Light: change hue of living room lights with cube"
   trigger:
@@ -215,7 +215,7 @@
     state: "Hue"
   action:
     service: light.turn_on
-    entity_id: group.living_room_lights
+    entity_id: light.living_room_lights
     data_template:
       hs_color:
         - >
@@ -238,7 +238,7 @@
     state: "Brightness"
   action:
     service: light.turn_on
-    entity_id: group.living_room_lights
+    entity_id: light.living_room_lights
     data_template:
       brightness: >
         {% set brightness = state_attr('light.sphere_1', 'brightness') %}

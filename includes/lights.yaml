@@ -1,0 +1,30 @@
+- platform: group
+  name: Living room lights
+  entities:
+    - light.sphere_1
+    - light.sphere_2
+    - light.corner_living_room
+    - light.ceiling_living_room
+    - light.tv_led
+
+- platform: group
+  name: Bedroom lights
+  entities:
+    - light.philips_go
+    - light.bamboo
+    - light.ceiling_bedroom
+    - light.lampan
+    - light.bed_led
+
+# - platform: group
+#   name: Stairs lights
+#   entities:
+#     - light.stairs_up
+#     - light.stairs_down
+
+# - platform: group
+#   name: Hall lights
+#   entities:
+#     - light.hall_1
+#     - light.hall_2
+#     - light.hall_3

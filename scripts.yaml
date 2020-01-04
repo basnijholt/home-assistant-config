@@ -120,7 +120,7 @@ white_lights_living_room:
   - service: light.turn_on
     data:
       entity_id:
-      - group.living_room_lights
+      - light.living_room_lights
       color_temp: 366
 white_lights_bedroom:
   alias: Set white lights in the bedroom
@@ -128,14 +128,14 @@ white_lights_bedroom:
   - data:
       color_temp: 366
       entity_id:
-      - group.bedroom_lights
+      - light.bedroom_lights
     service: light.turn_on
 increase_brightness:
   alias: Increase the brightness of a group of lights
   fields:
     group:
       description: The group to apply the light increase to.
-      example: group.living_room_lights
+      example: light.living_room_lights
   sequence:
   - service: light.turn_on
     data_template:
@@ -153,8 +153,8 @@ going_to_sleep:
     data:
       transition: 4
       entity_id:
-      - group.living_room_lights
-      - group.bedroom_lights
+      - light.living_room_lights
+      - light.bedroom_lights
   - service: media_player.turn_off
     entity_id: media_player.kef
   - service: media_player.turn_off
