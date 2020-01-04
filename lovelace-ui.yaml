@@ -64,6 +64,24 @@ views:
       - light.corner_living_room
       - light.ceiling_living_room
       - light.tv_led
+      - entity: script.cozy_lights_living_room
+        icon_height: 20px
+        name: Cozy lights
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: call-service
+          service: script.cozy_lights_living_room
+        type: entity-button
+      - entity: script.white_lights_living_room
+        icon_height: 20px
+        name: White lights
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: call-service
+          service: script.white_lights_living_room
+        type: entity-button
       head:
         entity: light.living_room_lights
         name: Living
@@ -75,6 +93,24 @@ views:
       - light.bamboo
       - light.philips_go
       - light.bed_led
+      - entity: script.cozy_lights_bedroom
+        icon_height: 20px
+        name: Cozy lights
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: call-service
+          service: script.cozy_lights_bedroom
+        type: entity-button
+      - entity: script.white_lights_bedroom
+        icon_height: 20px
+        name: White lights
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: call-service
+          service: script.white_lights_bedroom
+        type: entity-button
       head:
         entity: light.bedroom_lights
         name: Bedroom
@@ -95,55 +131,10 @@ views:
     show_header_toggle: false
     title: Lights
     type: entities
-  - cards:
-    - cards:
-      - icon: mdi:lightbulb-on
-        name: Living room
-        styles:
-          card:
-          - font-size: 13px
-        tap_action:
-          action: call-service
-          service: script.white_lights_living_room
-        type: custom:button-card
-      - color: rgba(255, 159, 9, 1)
-        icon: mdi:lightbulb-on
-        name: Living room
-        styles:
-          card:
-          - font-size: 13px
-        tap_action:
-          action: call-service
-          service: script.cozy_lights_living_room
-        type: custom:button-card
-      - icon: mdi:lightbulb-on
-        name: Bedroom
-        styles:
-          card:
-          - font-size: 13px
-        tap_action:
-          action: call-service
-          service: script.white_lights_bedroom
-        type: custom:button-card
-      - color: rgba(255, 159, 9, 1)
-        icon: mdi:lightbulb-on
-        name: Bedroom
-        styles:
-          card:
-          - font-size: 13px
-        tap_action:
-          action: call-service
-          service: script.cozy_lights_bedroom
-        type: custom:button-card
-      type: horizontal-stack
-    - aspect_ratio: 5/1
-      icon: mdi:bed-king
-      name: Go to sleep
-      tap_action:
-        action: call-service
-        service: script.going_to_sleep
-      type: custom:button-card
-    type: vertical-stack
+  - entities:
+    - entity: input_boolean.sleep_mode
+    - entity: script.going_to_sleep
+    type: entities
   - entity: weather.huis
     name: Weather
     type: custom:simple-weather-card
@@ -190,7 +181,6 @@ views:
     - entity: input_boolean.alarm_clock
     - entity: input_datetime.alarm_clock
     show_header_toggle: false
-    title: Alarms
     type: entities
   - entities:
     - entity: sensor.adaptive
@@ -200,7 +190,6 @@ views:
     - entity: sensor.home_assistant_config
       type: custom:github-entity-row
     show_header_toggle: false
-    title: GitHub
     type: entities
   - entities:
     - entity: switch.vacuum_mode
@@ -211,9 +200,7 @@ views:
   - entities:
     - entity: input_boolean.vacation_mode
     - entity: input_boolean.guest_mode
-    - entity: input_boolean.sleep_mode
     show_header_toggle: false
-    title: Modes
     type: entities
   - entities:
     - entity: binary_sensor.washing_machine
