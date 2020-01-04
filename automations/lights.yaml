@@ -133,7 +133,7 @@
 #     - service: light.turn_on
 #       entity_id: group.bedroom_lights
 #       data_template:
-#         brightness: 100
+#         brightness: 255
 #         xy_color: >
 #           {{ state_attr("sensor.circadian_values", "xy_color")|list	}}
 #     - service: input_boolean.turn_on
