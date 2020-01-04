@@ -16,6 +16,18 @@
     - light.lampan
     - light.bed_led
 
+- platform: group
+  name: Automatic lights
+  entities:
+    - light.ceiling_kitchen
+    - light.kitchen_counter
+    - light.toilet
+    - light.ceiling_bathroom
+
+- platform: switch
+  name: Kitchen counter
+  entity_id: switch.kitchen_counter
+
 # - platform: group
 #   name: Stairs lights
 #   entities:

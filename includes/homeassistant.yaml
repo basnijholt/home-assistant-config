@@ -14,8 +14,6 @@ customize:
     entity_picture: !secret profile_photo_marcella
   switch.vacuum_mode:
     friendly_name: Vacuum
-  switch.kitchen_counter:
-    icon: "mdi:lightbulb"
   sensor.temperature_mean:
     icon: mdi:temperature-celsius
   media_player.kef:
