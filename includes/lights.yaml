@@ -24,6 +24,12 @@
     - light.toilet
     - light.ceiling_bathroom
 
+- platform: group
+  name: Kitchen lights
+  entities:
+    - light.ceiling_kitchen
+    - light.kitchen_counter
+
 - platform: switch
   name: Kitchen counter
   entity_id: switch.kitchen_counter
