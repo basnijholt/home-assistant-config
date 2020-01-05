@@ -75,7 +75,9 @@
     entity_id: binary_sensor.activity_in_kitchen
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
-    entity_id: light.ceiling_kitchen
+    data:
+      entity_id: light.ceiling_kitchen
+      transition: 1
 
 - alias: "Light: turn on kitchen counter if sleep mode is off"
   trigger:
@@ -105,7 +107,9 @@
     entity_id: binary_sensor.activity_in_bathroom
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
-    entity_id: light.ceiling_bathroom
+    data:
+      entity_id: light.ceiling_bathroom
+      transition: 1
 
 - alias: "Light: turn on toilet"
   trigger:
@@ -113,7 +117,9 @@
     entity_id: binary_sensor.activity_in_toilet
   action:
     service_template: light.turn_{{ trigger.to_state.state }}
-    entity_id: light.toilet
+    data:
+      entity_id: light.toilet
+      transition: 1
 
 # XXX: do not have these sensors yet
 # - alias: "Light: automatically turn on the bedroom"
@@ -159,7 +165,6 @@
 #         transition: 10
 
 # - alias: "Light: turn off bedroom lights auto switch"
-#   initial_state: "on"
 #   trigger:
 #     - platform: state
 #       entity_id: light.bedroom_lights
@@ -198,10 +203,12 @@
 #     after: sunset
 #     after_offset: "-0:30:00"
 #   action:
-#     service: light.turn_on
-#     entity_id:
-#       - light.stairs_lights  # XXX: install these lights
-#       - light.hall_lights
+#    service: light.turn_on
+#    data:
+#      entity_id:
+#        - light.stairs_lights  # XXX: install these lights
+#        - light.hall_lights
+#      transition: 1
 
 - alias: "Light: change hue of living room lights with cube"
   trigger:
