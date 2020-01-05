@@ -12,12 +12,12 @@
     - service: script.start_speakers
       data:
         source: Wifi
-        volume: 0.35
+        volume: 0.25
     - service: script.start_spotify
       data:
         source: LS50 Wireless 00C437
         playlist: 6rPTm9dYftKcFAfwyRqmDZ
-        volume: 0.35
+        volume: 0.25
 
 - alias: "Music: change volume by rotating cube"
   trigger:
