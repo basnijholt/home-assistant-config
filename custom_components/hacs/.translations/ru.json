@@ -1,5 +1,6 @@
 {
     "common": {
+        "about": "О проекте",
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "Приложения AppDaemon",
         "background_task": "Выполняется фоновая задача, страница перезагрузится по готовности.",
@@ -11,6 +12,7 @@
         "installed": "установлено",
         "integration": "Интеграция",
         "integrations": "Интеграции",
+        "manage": "управлять",
         "plugin": "Плагин",
         "plugins": "Плагины",
         "python_script": "Скрипт Python",
@@ -38,7 +40,7 @@
                     "theme": "Включить поиск и отслеживание тем",
                     "token": "Персональный токен доступа GitHub"
                 },
-                "description": "Если вам нужна помощь с настройкой, посмотрите: https:\/\/hacs.xyz\/docs\/configuration\/start\/",
+                "description": "Если вам нужна помощь с настройкой, посмотрите: https:\/\/hacs.xyz\/docs\/configuration\/start",
                 "title": "HACS (Home Assistant Community Store)"
             }
         },
@@ -88,6 +90,7 @@
         "changelog": "Изменения",
         "downloads": "Загрузки",
         "flag_this": "Пожаловаться",
+        "frontend_version": "Версия",
         "hide": "Скрыть",
         "hide_beta": "Скрыть бета",
         "install": "Установить",
@@ -123,6 +126,7 @@
         "hacs_repo": "Репозиторий HACS",
         "hidden_repositories": "Скрытые репозитории",
         "missing_category": "Вы должны выбрать категорию",
+        "open_repository": "Открыть репозиторий",
         "reload_data": "Перезагрузить",
         "repository_configuration": "Конфигурация репозитория",
         "save": "Сохранить",

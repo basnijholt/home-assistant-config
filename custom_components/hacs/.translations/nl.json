@@ -39,7 +39,7 @@
                     "theme": "Zet Themes ontdekken & traceren aan",
                     "token": "GitHub Persoonlijke Toegang Token"
                 },
-                "description": "Als je hulp nodig hebt met de configuratie, kun je hier verder kijken: https:\/\/hacs.xyz\/docs\/configuration\/start\/",
+                "description": "Als je hulp nodig hebt met de configuratie, kun je hier verder kijken: https:\/\/hacs.xyz\/docs\/configuration\/start",
                 "title": "HACS (Home Assistant Community Store)"
             }
         },
@@ -51,7 +51,7 @@
         "cancel": "Annuleer",
         "continue": "Weet je zeker dat je wilt doorgaan?",
         "delete": "Weet u zeker dat u \"{item}\" wilt verwijderen?",
-        "delete_installed": "' {item} ' is geïnstalleerd, je dient het eerst te deïnstalleren voordat je het kan verwijderen.",
+        "delete_installed": "'{item}' is geïnstalleerd, je dient het eerst te deïnstalleren voordat je het kan verwijderen.",
         "exist": "{item} bestaat al.",
         "generic": "Weet je het zeker?",
         "no": "Nee",
@@ -113,8 +113,8 @@
     },
     "settings": {
         "add_custom_repository": "VOEG EIGEN REPOSITORY TOE",
-        "adding_new_repo": "Nieuwe repository ' {repo} ' toevoegen",
-        "adding_new_repo_category": "Met categorie ' {Category} '.",
+        "adding_new_repo": "Nieuwe repository '{repo}' toevoegen",
+        "adding_new_repo_category": "Met categorie '{category}'.",
         "bg_task_custom": "Aangepaste repositories zijn verborgen terwijl de achtergrondtaken actief zijn.",
         "category": "Categorie",
         "compact_mode": "Compacte modus",

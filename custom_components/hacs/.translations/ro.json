@@ -33,7 +33,7 @@
                     "theme": "Activați descoperirea și urmărirea temelor",
                     "token": "Token de acces personal GitHub"
                 },
-                "description": "Dacă aveți nevoie de ajutor pentru configurare, uitați-vă aici: https:\/\/hacs.xyz\/docs\/configuration\/start\/",
+                "description": "Dacă aveți nevoie de ajutor pentru configurare, uitați-vă aici: https:\/\/hacs.xyz\/docs\/configuration\/start",
                 "title": "HACS (Home Assistant Community Store)"
             }
         },
@@ -65,7 +65,7 @@
         "installed": "Instalat",
         "lovelace_copy_example": "Copiați exemplul în clipboard",
         "lovelace_instruction": "Când adăugați acest lucru la configurația lovelace, folosiți acest",
-        "lovelace_no_js_type": "Nu s-a putut determina tipul acestui plugin, verificați \"repository\"",
+        "lovelace_no_js_type": "Nu s-a putut determina tipul acestui plugin, verificați \"repository\".",
         "newest": "cele mai noi",
         "note_appdaemon": "mai trebuie să o adăugați in fișierul „apps.yaml”",
         "note_installed": "Când este instalat, acesta va fi localizat în",

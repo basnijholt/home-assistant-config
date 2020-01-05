@@ -3,7 +3,7 @@
         "about": "O tem",
         "appdaemon": "AppDaemon",
         "appdaemon_apps": "AppDaemon Aplikacije",
-        "background_task": "v ozadju se izvaja naloga, ko se konča, se bo stran osvežila.",
+        "background_task": "V ozadju se izvaja naloga, ko se konča, se bo stran osvežila.",
         "check_log_file": "Za več podrobnosti preverite datoteko dnevnika.",
         "continue": "Nadaljuj",
         "disabled": "Onemogočeno",
@@ -40,7 +40,7 @@
                     "theme": "Omogoči odkrivanje in sledenje tem",
                     "token": "GitHub žeton za osebni dostop"
                 },
-                "description": "Če potrebujete pomoč pri konfiguraciji, poglejte tukaj: https:\/\/hacs.xyz\/docs\/configuration\/start\/",
+                "description": "Če potrebujete pomoč pri konfiguraciji, poglejte tukaj: https:\/\/hacs.xyz\/docs\/configuration\/start",
                 "title": "HACS (Home Assistant Community Store)"
             }
         },
@@ -102,7 +102,7 @@
         "note_appdaemon": "Še vedno ga morate dodati v svojo 'apps.yaml' datoteko",
         "note_installed": "Ko bo nameščen, se bo nahajal v",
         "note_integration": "Še vedno ga morate dodati v svojo 'configuration.yaml' datoteko",
-        "note_plugin": "vendar ga še vedno morate dodati v svojo lovelace konfiguracijo ('ui-lovelace.yaml \" ali \"raw\" UI config urejevalnik)",
+        "note_plugin": "vendar ga še vedno morate dodati v svojo lovelace konfiguracijo ('ui-lovelace.yaml' ali \"raw\" UI config urejevalnik)",
         "open_issue": "Odprite težavo",
         "open_plugin": "Odprite vtičnik",
         "reinstall": "Znova namestite",

@@ -33,7 +33,7 @@
                     "theme": "Habilitar el descubrimiento y seguimiento de temas",
                     "token": "Token de acceso personal de GitHub"
                 },
-                "description": "Si necesitas ayuda con la configuración dirigete a: https:\/\/hacs.xyz\/docs\/configuration\/start\/",
+                "description": "Si necesitas ayuda con la configuración dirigete a: https:\/\/hacs.xyz\/docs\/configuration\/start",
                 "title": "HACS (Home Assistant Community Store)"
             }
         },
@@ -95,5 +95,8 @@
     },
     "store": {
         "placeholder_search": "Por favor escriba una palabra clave de búsqueda..."
+    },
+    "time": {
+        "one": "Uno"
     }
 }
