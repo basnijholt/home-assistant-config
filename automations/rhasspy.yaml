@@ -1,0 +1,102 @@
+---
+- alias: "Rhasspy: light states"
+  trigger:
+    event_type: rhasspy_ChangeLightState
+    platform: event
+  action:
+    data_template:
+      entity_id: "{{ trigger.event.data.name }}"
+    service_template: "light.turn_{{ trigger.event.data.state }}"
+
+- alias: "Rhasspy: living room light states"
+  trigger:
+    event_type: rhasspy_ChangeLivingRoomLightState
+    platform: event
+  action:
+    entity_id: light.living_room_lights
+    service_template: "light.turn_{{ trigger.event.data.state }}"
+
+- alias: "Rhasspy: light colors"
+  trigger:
+    event_type: rhasspy_ChangeLightColor
+    platform: event
+  action:
+    data_template:
+      entity_id: "{{ trigger.event.data.name }}"
+      color_name: "{{ trigger.event.data.color }}"
+    service: light.turn_on
+
+- alias: "Rhasspy: living room light colors"
+  trigger:
+    event_type: rhasspy_ChangeLivingRoomLightColor
+    platform: event
+  action:
+    data_template:
+      entity_id: light.living_room_lights
+      color_name: "{{ trigger.event.data.color }}"
+    service: light.turn_on
+
+- alias: "Rhasspy: living room light brightness"
+  trigger:
+    event_type: rhasspy_SetLivingRoomBrightness
+    platform: event
+  action:
+    data_template:
+      entity_id: light.living_room_lights
+      brightness_pct: "{{ trigger.event.data.brightness }}"
+    service: light.turn_on
+
+- alias: "Rhasspy: media player states"
+  trigger:
+    event_type: rhasspy_ChangeMediaPlayerState
+    platform: event
+  action:
+    data_template:
+      entity_id: "{{ trigger.event.data.name }}"
+    service_template: "media_player.turn_{{ trigger.event.data.state }}"
+
+- alias: "Rhasspy: play/pause media player"
+  trigger:
+    event_type: rhasspy_PlayPauseMediaPlayer
+    platform: event
+  action:
+    data_template:
+      entity_id: "{{ trigger.event.data.name }}"
+    service_template: "media_player.media_{{ trigger.event.data.state }}"
+
+- alias: "Rhasspy: increase/decrease the volume"
+  trigger:
+    event_type: rhasspy_IncreaseDecreaseVolume
+    platform: event
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.kef
+      volume_level: >
+        {{ state_attr("media_player.kef", "volume_level") + trigger.event.data.delta|float }}
+
+- alias: "Rhasspy: set the volume"
+  trigger:
+    event_type: rhasspy_SetVolume
+    platform: event
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.kef
+      volume_level: >
+        {{ (trigger.event.data.volume|float / 100)|round(2) }}
+
+- alias: "Rhasspy: cozy/white lights in the living room"
+  trigger:
+    event_type: rhasspy_SetWhiteCozyLights
+    platform: event
+  action:
+    service_template: "script.{{ trigger.event.data.state }}_lights_living_room"
+
+- alias: "Rhasspy: start the music"
+  trigger:
+    event_type: rhasspy_StartTheMusic
+    platform: event
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.start_the_music
