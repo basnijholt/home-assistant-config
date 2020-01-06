@@ -1,0 +1,15 @@
+---
+- alias: "Turn off: turn off the living room"
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_living_room
+        event: 1007
+  action:
+    - service: light.turn_off
+      entity_id: light.living_room_lights
+    - service: media_player.turn_off
+      entity_id: media_player.tv
+    - service: media_player.turn_off
+      entity_id: media_player.kef

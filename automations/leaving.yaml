@@ -44,7 +44,7 @@
     platform: event
     event_type: deconz_event
     event_data:
-      id: smart_switch_3
+      id: smart_switch_downstairs
       event: 1002
   action:
     # - service: light.turn_on  # XXX: did not install these lights yet

@@ -4,7 +4,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_1
+        id: smart_switch_bedroom
         event: 1004
     - platform: event
       event_type: deconz_event
@@ -23,7 +23,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_4
+        id: smart_switch_living_room
         event: 1004
     - platform: event
       event_type: deconz_event
@@ -40,7 +40,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_1
+        id: smart_switch_bedroom
         event: 1002
     - platform: event
       event_type: deconz_event
@@ -57,7 +57,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_4
+        id: smart_switch_living_room
         event: 1002
     - platform: event
       event_type: deconz_event
@@ -176,7 +176,7 @@
 #     - platform: event
 #       event_type: deconz_event
 #       event_data:
-#         id: smart_switch_1
+#         id: smart_switch_bedroom
 #   condition:
 #     condition: state
 #     entity_id: input_boolean.bedroom_lights_auto_on
