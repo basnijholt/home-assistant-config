@@ -13,3 +13,14 @@
       entity_id: media_player.tv
     - service: media_player.turn_off
       entity_id: media_player.kef
+
+- alias: "Turn off: turn off the bedroom"
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_bedroom
+        event: 1007
+  action:
+    - service: light.turn_off
+      entity_id: light.bedroom_lights

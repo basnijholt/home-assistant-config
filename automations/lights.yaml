@@ -35,17 +35,6 @@
     data:
       input_select: input_select.last_script_living_room
 
-- alias: "Turn off: turn off the bedroom"
-  trigger:
-    - platform: event
-      event_type: deconz_event
-      event_data:
-        id: smart_switch_bedroom
-        event: 1007
-  action:
-    - service: light.turn_off
-      entity_id: light.bedroom_lights
-
 - alias: "Light: toggle max/min brightness in the bedroom"
   trigger:
     - platform: event
