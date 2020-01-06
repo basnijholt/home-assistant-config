@@ -20,7 +20,7 @@
         message: >
           Cube mode set to {{ states("input_select.cube_mode") }}
 
-- alias: "Light: change hue of living room lights with cube"
+- alias: "Cube: change hue of living room lights with cube"
   trigger:
     platform: event
     event_type: deconz_event
@@ -43,7 +43,7 @@
         - >
            {{ state_attr('light.sphere_1', 'hs_color')[1] }}
 
-- alias: "Light: change brightness of living room lights with cube"
+- alias: "Cube: change brightness of living room lights with cube"
   trigger:
     platform: event
     event_type: deconz_event
@@ -63,7 +63,7 @@
         {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
         {{ new_brightness|int }}
 
-- alias: "Music: change volume by rotating cube"
+- alias: "Cube: change speaker volume by rotating cube"
   trigger:
     platform: event
     event_type: deconz_event
@@ -86,7 +86,7 @@
         message: >
           Volume set to {{ state_attr("media_player.kef", "volume_level") }}
 
-- alias: "Music: shuffle Spotify song by shaking cube"
+- alias: "Cube: shuffle Spotify song by shaking cube"
   trigger:
     platform: event
     event_type: deconz_event
@@ -109,7 +109,7 @@
     - service: media_player.media_next_track
       entity_id: media_player.spotify
 
-- alias: "Music: pause and play Spotify song by tapping cube on side 1"
+- alias: "Cube: pause and play Spotify song by tapping cube on side 1"
   trigger:
     platform: event
     event_type: deconz_event
@@ -128,7 +128,7 @@
     service: media_player.media_play_pause
     entity_id: media_player.spotify
 
-- alias: "Music: start music by throwing the cube"
+- alias: "Cube: start music by throwing the cube"
   trigger:
     platform: event
     event_type: deconz_event
@@ -142,7 +142,7 @@
     service: input_boolean.turn_on
     entity_id: input_boolean.start_the_music
 
-- alias: "Music: change volume by rotating cube"
+- alias: "Cube: change volume by rotating cube"
   trigger:
     platform: event
     event_type: deconz_event
@@ -165,7 +165,7 @@
         message: >
           Volume set to {{ state_attr("media_player.kef", "volume_level") }}
 
-- alias: "Music: shuffle Spotify song by shaking cube"
+- alias: "Cube: shuffle Spotify song by shaking cube"
   trigger:
     platform: event
     event_type: deconz_event
@@ -188,7 +188,7 @@
     - service: media_player.media_next_track
       entity_id: media_player.spotify
 
-- alias: "Music: pause and play Spotify song by tapping cube on side 1"
+- alias: "Cube: pause and play Spotify song by tapping cube on side 1"
   trigger:
     platform: event
     event_type: deconz_event
@@ -207,7 +207,7 @@
     service: media_player.media_play_pause
     entity_id: media_player.spotify
 
-- alias: "Music: start music by throwing the cube"
+- alias: "Cube: start music by throwing the cube"
   trigger:
     platform: event
     event_type: deconz_event
