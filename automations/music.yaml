@@ -18,3 +18,35 @@
         source: LS50 Wireless 00C437
         playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
         volume: 0.25
+
+- alias: "Music: switch music from iPhone to speakers if no one is home"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.openclose_front_door
+    from: "off"
+    to: "on"
+  condition:
+    - condition: state
+      entity_id: persons.marcella
+      state: not_home
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+    - condition: template
+      value_template: >
+        {{ state_attr("media_player.spotify", "source") == "basnijholt-iphone"
+           and states("media_player.spotify") == "playing" }}
+    - condition: numeric_state
+      entity_id: proximity.home
+      below: 2
+  action:
+    - service: media_player.turn_on
+      entity_id: media_player.kef
+    - service: media_player.select_source
+      entity_id: media_player.kef
+      data:
+        source: Wifi
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data:
+        source: LS50 Wireless 00C437
