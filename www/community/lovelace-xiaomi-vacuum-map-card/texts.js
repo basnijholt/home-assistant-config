@@ -53,13 +53,22 @@ const texts = {
         confirmation: "Comando inviato!"
     },
     "nl": {
-        mode: "Mode",
+        mode: "Modus",
         goToTarget: "Ga naar een punt",
         zonedCleanup: "Zone reinigen",
         zones: "Zones",
         run: "Start",
         repeats: "Herhalingen",
         confirmation: "Commando gestuurd!"
+    },
+    "no": {
+        mode: "Modus",
+        goToTarget: "Gå til mål",
+        zonedCleanup: "Sonerengjøring",
+        zones: "Soner",
+        run: "Start",
+        repeats: "Repetisjoner:",
+        confirmation: "Kommando sendt!"
     },
     "pl": {
         mode: "Tryb",
