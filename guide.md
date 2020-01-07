@@ -10,14 +10,14 @@
     * Shake: turn off the whole room
 * Dimmer switches on the wall living room/bedroom
     * Top button: increase the brightness between [10%, 50%, 100%]
-    * Middle two buttons: turn on and off
+    * Middle two buttons: turn on and off (or hold to dim)
     * Bottom button: change between bright lights and cozy lights
 * Cube in living room
     * Throw up: start your favourite playlist on the speakers
     * Shake: shuffle song
     * Put label up and move it a bit on the table to put it in either [Volume, Brightness, Hue] (the TV will also display in which mode it is). Rotating the cube will change the volume, brightness, or hue.
 * In Home Assistant app
-    * Going to sleep button: turns everything off in the house and sets “night mode” (all the lights will automatically turn red when triggered)
+    * *Going to sleep button*: turns everything off in the house and sets “night mode” (all the lights will automatically turn red when triggered)
 
 ## Automatic
 * Lights in hall, toilet, bathroom, and kitchen automatically turn on
