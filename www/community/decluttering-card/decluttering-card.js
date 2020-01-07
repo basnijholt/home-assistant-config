@@ -177,29 +177,21 @@ var e = {},
   }, t.prototype.stopAnimation = function () {
     this.ripple.holdDown = !1, this.style.display = "none";
   }, t;
-}(HTMLElement);customElements.get("long-press-custom-card-helpers") || customElements.define("long-press-custom-card-helpers", f);var g = function () {
-  var e = document.querySelector("home-assistant");if (e = (e = (e = (e = (e = (e = (e = (e = e && e.shadowRoot) && e.querySelector("home-assistant-main")) && e.shadowRoot) && e.querySelector("app-drawer-layout partial-panel-resolver")) && e.shadowRoot || e) && e.querySelector("ha-panel-lovelace")) && e.shadowRoot) && e.querySelector("hui-root")) {
-    var t = e.lovelace;return t.current_view = e.___curView, t;
-  }return null;
-},
-    v = (e, t) => {
-  if (!e && !t.default) return t.card;let n = [];e && (n = e.slice(0)), t.default && (n = n.concat(t.default));let o = JSON.stringify(t.card);return n.forEach(e => {
-    const t = Object.keys(e)[0],
-          n = Object.values(e)[0],
-          r = new RegExp(`\\[\\[${t}\\]\\]`, "gm");if ("number" == typeof n || "boolean" == typeof n) {
-      const e = new RegExp(`"\\[\\[${t}\\]\\]"`, "gm");o = o.replace(e, n);
-    }if ("object" == typeof n) {
-      const e = new RegExp(`"\\[\\[${t}\\]\\]"`, "gm"),
-            r = JSON.stringify(n);o = o.replace(e, r);
-    } else o = o.replace(r, n);
-  }), JSON.parse(o);
-};customElements.define("decluttering-card", class extends HTMLElement {
+}(HTMLElement);customElements.get("long-press-custom-card-helpers") || customElements.define("long-press-custom-card-helpers", f);class g extends HTMLElement {
   constructor() {
     super(), this.attachShadow({ mode: "open" });
   }set hass(e) {
     this._card && (this._card.hass = e);
   }setConfig(e) {
-    if (!e.template) throw new Error("Missing template object in your config");const t = g();if (!t.config && !t.config.decluttering_templates) throw new Error("The object decluttering_templates doesn't exist in your main lovelace config.");const n = t.config.decluttering_templates[e.template];if (!n || !n.card) throw new Error(`The template "${e.template}" doesn't exist in decluttering_templates`);const o = this.shadowRoot;for (; o && o.hasChildNodes();) o.removeChild(o.lastChild);const r = document.createElement("div");r.id = "root", o.appendChild(r);const i = (e, t) => {
+    if (!e.template) throw new Error("Missing template object in your config");const t = function () {
+      var e = document.querySelector("home-assistant");if (e = (e = (e = (e = (e = (e = (e = (e = e && e.shadowRoot) && e.querySelector("home-assistant-main")) && e.shadowRoot) && e.querySelector("app-drawer-layout partial-panel-resolver")) && e.shadowRoot || e) && e.querySelector("ha-panel-lovelace")) && e.shadowRoot) && e.querySelector("hui-root")) {
+        var t = e.lovelace;return t.current_view = e.___curView, t;
+      }return null;
+    }() || function () {
+      let e = document.querySelector("hc-main");if (e = e && e.shadowRoot, e = e && e.querySelector("hc-lovelace"), e = e && e.shadowRoot, e = e && e.querySelector("hui-view"), e) {
+        const t = e.lovelace;return t.current_view = e.___curView, t;
+      }return null;
+    }();if (!t.config && !t.config.decluttering_templates) throw new Error("The object decluttering_templates doesn't exist in your main lovelace config.");const n = t.config.decluttering_templates[e.template];if (!n || !n.card) throw new Error(`The template "${e.template}" doesn't exist in decluttering_templates`);const o = this.shadowRoot;for (; o && o.hasChildNodes();) o.removeChild(o.lastChild);const r = document.createElement("div");r.id = "root", o.appendChild(r);const i = (e, t) => {
       const n = document.createElement(e);try {
         n.setConfig(t);
       } catch (n) {
@@ -207,7 +199,18 @@ var e = {},
       }return n;
     },
           a = (e, t) => i("hui-error-card", { type: "error", error: e, config: t });let s = n.card.type;if (s = s.startsWith("divider") ? "hui-divider-row" : s.startsWith("custom:") ? s.substr("custom:".length) : `hui-${s}-card`, customElements.get(s)) {
-      const t = i(s, v(e.variables, n));r.appendChild(t), this._card = t;
+      const t = i(s, ((e, t) => {
+        if (!e && !t.default) return t.card;let n = [];e && (n = e.slice(0)), t.default && (n = n.concat(t.default));let o = JSON.stringify(t.card);return n.forEach(e => {
+          const t = Object.keys(e)[0],
+                n = Object.values(e)[0],
+                r = new RegExp(`\\[\\[${t}\\]\\]`, "gm");if ("number" == typeof n || "boolean" == typeof n) {
+            const e = new RegExp(`"\\[\\[${t}\\]\\]"`, "gm");o = o.replace(e, n);
+          }if ("object" == typeof n) {
+            const e = new RegExp(`"\\[\\[${t}\\]\\]"`, "gm"),
+                  r = JSON.stringify(n);o = o.replace(e, r);
+          } else o = o.replace(r, n);
+        }), JSON.parse(o);
+      })(e.variables, n));r.appendChild(t), this._card = t;
     } else {
       const e = a(`Custom element doesn't exist: ${s}.`, n);e.style.display = "None";const t = setTimeout(() => {
         e.style.display = "";
@@ -220,4 +223,4 @@ var e = {},
   }getCardSize() {
     return "function" == typeof this._card.getCardSize ? this._card.getCardSize() : 1;
   }
-});
+}customElements.define("decluttering-card", g);
