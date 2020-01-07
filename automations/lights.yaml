@@ -121,6 +121,61 @@
       entity_id: light.toilet
       transition: 1
 
+- alias: "Light: turn off toilet (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    condition: state
+    entity_id: binary_sensor.activity_in_toilet
+    state: "off"
+  action:
+    service_template: light.turn_off
+    entity_id: light.toilet
+
+- alias: "Light: turn off bathroom (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    condition: state
+    entity_id: binary_sensor.activity_in_bathroom
+    state: "off"
+  action:
+    service_template: light.turn_off
+    entity_id: light.ceiling_bathroom
+
+- alias: "Light: turn off kitchen (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    condition: state
+    entity_id: binary_sensor.activity_in_hall
+    state: "off"
+  action:
+    service_template: light.turn_off
+    entity_id: light.kitchen_lights
+
+# XXX: install these lights
+# - alias: "Light: turn off hall (extra check)"
+#   description: In case the other automation failed
+#   trigger:
+#     platform: time_pattern
+#     minutes: "/30"
+#   condition:
+#     condition: state
+#     entity_id: binary_sensor.activity_in_hall
+#     state: "off"
+#   action:
+#     service_template: light.turn_off
+#     entity_id:
+#       - light.hall_lights
+#       - light.stairs_lights
+
 # XXX: do not have these sensors yet
 # - alias: "Light: automatically turn on the bedroom"
 #   initial_state: "on"
@@ -209,58 +264,3 @@
 #        - light.stairs_lights  # XXX: install these lights
 #        - light.hall_lights
 #      transition: 1
-
-- alias: "Light: turn off toilet (extra check)"
-  description: In case the other automation failed
-  trigger:
-    platform: time_pattern
-    minutes: "/30"
-  condition:
-    platform: state
-    entity_id: binary_sensor.activity_in_toilet
-    state: "off"
-  action:
-    service_template: light.turn_off
-    entity_id: light.toilet
-
-- alias: "Light: turn off bathroom (extra check)"
-  description: In case the other automation failed
-  trigger:
-    platform: time_pattern
-    minutes: "/30"
-  condition:
-    platform: state
-    entity_id: binary_sensor.activity_in_bathroom
-    state: "off"
-  action:
-    service_template: light.turn_off
-    entity_id: light.ceiling_bathroom
-
-# XXX: install these lights
-# - alias: "Light: turn off hall (extra check)"
-#   description: In case the other automation failed
-#   trigger:
-#     platform: time_pattern
-#     minutes: "/30"
-#   condition:
-#     platform: state
-#     entity_id: binary_sensor.activity_in_hall
-#     state: "off"
-#   action:
-#     service_template: light.turn_off
-#     entity_id:
-#       - light.hall_lights
-#       - light.stairs_lights
-
-- alias: "Light: turn off kitchen (extra check)"
-  description: In case the other automation failed
-  trigger:
-    platform: time_pattern
-    minutes: "/30"
-  condition:
-    platform: state
-    entity_id: binary_sensor.activity_in_hall
-    state: "off"
-  action:
-    service_template: light.turn_off
-    entity_id: light.kitchen_lights
