@@ -159,9 +159,9 @@ turn_off_everything:
 going_to_sleep:
   alias: Going to sleep
   sequence:
-  - service: scripts.turn_off_everything
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.sleep_mode
+  - service: script.turn_off_everything
+  - entity_id: input_boolean.sleep_mode
+    service: input_boolean.turn_on
 next_colors:
   alias: Change the colors of lights
   fields:
