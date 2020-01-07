@@ -40,7 +40,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * LG OLED 55 C9
 
 ### Lights
-* Philips Hue E27 White and Color (10x) (€236.70)
+* Philips Hue E27 White and Color (12x) (€266.7)
 * Philips Hue GU10 Ambient White (6x) (€102.70)
 * Philips Hue Go (€57.05)
 * Philips Hue LED strip 2m (2x) (€86.39)
@@ -58,7 +58,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * iPhone X with the new iOS app (2x)
 
 ### Total cost
-*€1,241.61* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
+*€1,271.7* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
 I bought many things on Aliexpress and with discount or used on Amazon.
 
 ## Notes
