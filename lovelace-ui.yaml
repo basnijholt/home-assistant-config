@@ -591,19 +591,18 @@ views:
     title: Motion sensor
     type: glance
   - entities:
-    - entity: input_number.volume_delay
-    - entity: input_number.volume_last
     - entity: input_select.cube_mode
     - entity: input_select.last_script_bedroom
     - entity: input_select.last_script_living_room
-    title: Inputs
+    show_header_toggle: false
+    title: Inputs (automatically switched)
     type: entities
   - columns: 4
     entities:
-    - entity: sensor.button_mini_1_battery_level
+    - entity: sensor.button_mini_bedroom_battery_level
     - entity: sensor.button_mini_2_battery_level
-    - entity: sensor.button_mini_3_battery_level
-    - entity: sensor.button_mini_4_battery_level
+    - entity: sensor.button_mini_downstairs_battery_level
+    - entity: sensor.button_mini_living_room_battery_level
     show_icon: true
     show_name: false
     title: Buttons
@@ -637,6 +636,32 @@ views:
   title: Tests
 - badges: []
   cards:
+  - card:
+      show_header_toggle: false
+      title: Uncategorized automations
+      type: entities
+    filter:
+      exclude:
+      - entity_id: automation.activity_*
+      - entity_id: automation.alarm_clock_*
+      - entity_id: automation.guest_mode_*
+      - entity_id: automation.leaving_*
+      - entity_id: automation.light_*
+      - entity_id: automation.lovelace_*
+      - entity_id: automation.music_*
+      - entity_id: automation.security_*
+      - entity_id: automation.vacation_mode_*
+      - entity_id: automation.vacuum_*
+      - entity_id: automation.cube_*
+      - entity_id: automation.rhasspy_*
+      - entity_id: automation.utilities_*
+      - entity_id: automation.turn_off_*
+      - entity_id: automation.media_player_*
+      - entity_id: automation.night_mode_*
+      include:
+      - domain: automation
+    sort: entity_id
+    type: custom:auto-entities
   - template: automation_template
     type: custom:decluttering-card
     variables:
@@ -682,30 +707,6 @@ views:
     variables:
     - name: Vacuum
     - slug: vacuum
-  - card:
-      show_header_toggle: false
-      title: Rest
-      type: entities
-    filter:
-      exclude:
-      - entity_id: automation.activity_*
-      - entity_id: automation.alarm_clock_*
-      - entity_id: automation.guest_mode_*
-      - entity_id: automation.leaving_*
-      - entity_id: automation.light_*
-      - entity_id: automation.lovelace_*
-      - entity_id: automation.music_*
-      - entity_id: automation.security_*
-      - entity_id: automation.vacation_mode_*
-      - entity_id: automation.vacuum_*
-      - entity_id: automation.cube_*
-      - entity_id: automation.rhasspy_*
-      - entity_id: automation.utilities_*
-      - entity_id: automation.turn_off_*
-      include:
-      - domain: automation
-    sort: entity_id
-    type: custom:auto-entities
   - template: automation_template
     type: custom:decluttering-card
     variables:
@@ -726,6 +727,16 @@ views:
     variables:
     - name: Turn off
     - slug: turn_off_
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Night mode
+    - slug: night_mode_
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Media player
+    - slug: media_player_
   icon: mdi:robot
   path: automations
   title: Automations
