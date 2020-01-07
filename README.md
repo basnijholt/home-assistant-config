@@ -17,6 +17,8 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * [Presence detection in different rooms based on various binary template sensors](includes/binary_sensors.yaml)
 * [Robot vacuum automations](automations/vacuum.yaml)
 
+See also [my guide for others in the house](guide.md).
+
 ## My devices
 
 ### Switches
