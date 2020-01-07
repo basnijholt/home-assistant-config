@@ -14,7 +14,7 @@
         source: Wifi
         volume: 0.25
     - service: script.start_spotify
-      data:
+      data_template:
         source: LS50 Wireless 00C437
-        playlist: 6rPTm9dYftKcFAfwyRqmDZ
+        playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
         volume: 0.25

@@ -61,6 +61,14 @@
       entity_id: sensor.date
       value_template: "{{ states.input_datetime | count }}"
 
+    favorite_playlist_of_nearest_person:
+      value_template: >
+        {% if state_attr('proximity.home', 'nearest') == "basnijholt-iphone"%}
+        6rPTm9dYftKcFAfwyRqmDZ
+        {% else %}
+        2Alq4aFJY8jRA2MnBL5d9A
+        {% endif %}
+
 - platform: min_max
   name: Temperature mean
   type: mean
