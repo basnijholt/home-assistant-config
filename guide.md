@@ -7,7 +7,7 @@
 * Button living room/bedroom
     * Single: click, increase the brightness between [10%, 50%, 100%]
     * Double click: change between bright lights and cozy lights
-    * Shake: turn off the whole room
+    * Shake: turn off the whole room (in the bedroom it will active sleep mode)
 * Dimmer switches on the wall living room/bedroom
     * Top button: increase the brightness between [10%, 50%, 100%]
     * Middle two buttons: turn on and off (or hold to dim)
