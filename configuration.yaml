@@ -13,15 +13,11 @@ input_datetime: !include includes/input_datetimes.yaml
 input_select: !include includes/input_selects.yaml
 logger: !include includes/logger.yaml
 zone: !include includes/zones.yaml
-homekit: !include includes/homekit.yaml
-discovery: !include includes/discovery.yaml
-media_player: !include includes/media_players.yaml
 http: !include includes/http.yaml
 group: !include includes/groups.yaml
 script: !include scripts.yaml
 automation: !include automations.yaml
 automation old: !include_dir_merge_list automations
-device_tracker: !include includes/device_trackers.yaml
 switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
 binary_sensor: !include includes/binary_sensors.yaml
@@ -29,9 +25,7 @@ recorder: !include includes/recorder.yaml
 weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
 notify: !include includes/notify.yaml
-input_number: !include includes/input_numbers.yaml
 light: !include includes/lights.yaml
-python_script:
 wake_on_lan:
 
 # Components:
@@ -39,3 +33,7 @@ tplink: !include includes/tplink.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 vacuum: !include includes/vacuum.yaml
 circadian_lighting: !include includes/circadian_lighting.yaml
+media_player: !include includes/media_players.yaml
+homekit: !include includes/homekit.yaml
+discovery: !include includes/discovery.yaml
+device_tracker: !include includes/device_trackers.yaml
