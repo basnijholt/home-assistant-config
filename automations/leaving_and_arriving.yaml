@@ -56,3 +56,25 @@
       data:
         title: "Leaving"
         message: "Everything turned off, see you soon! ❤️"
+
+- alias: "Arriving: turn on music and cozy lights"
+  initial_state: "on"
+  trigger:
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_downstairs
+        event: 1004
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room_lights
+      data:
+        brightness: 100
+    - service: script.turn_on
+      entity_id: script.cozy_lights_living_room
+    - service: script.start_spotify
+      data:
+        source: LS50 Wireless 00C437
+        playlist: 6rPTm9dYftKcFAfwyRqmDZ
+        volume: 0.25
