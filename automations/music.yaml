@@ -31,7 +31,7 @@
       entity_id: persons.marcella
       state: not_home
     - condition: template
-      entity_id: >
+      value_template: >
         {{ state_attr("media_player.spotify", "source") == "basnijholt-iphone"
            and states("media_player.spotify") == "playing" }}
   action:
