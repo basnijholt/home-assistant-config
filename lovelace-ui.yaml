@@ -644,8 +644,8 @@ views:
       exclude:
       - entity_id: automation.activity_*
       - entity_id: automation.alarm_clock_*
-      - entity_id: automation.guest_mode_*
       - entity_id: automation.leaving_*
+      - entity_id: automation.arriving_*
       - entity_id: automation.light_*
       - entity_id: automation.lovelace_*
       - entity_id: automation.music_*
@@ -667,11 +667,6 @@ views:
     variables:
     - name: Alarm clock
     - slug: alarm_clock
-  - template: automation_template
-    type: custom:decluttering-card
-    variables:
-    - name: Guest mode
-    - slug: guest_mode
   - template: automation_template
     type: custom:decluttering-card
     variables:
@@ -737,6 +732,11 @@ views:
     variables:
     - name: Media player
     - slug: media_player_
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Arriving
+    - slug: arriving_
   icon: mdi:robot
   path: automations
   title: Automations
