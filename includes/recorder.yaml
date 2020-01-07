@@ -3,4 +3,3 @@ exclude:
   entities:
     - sun.sun  # Don't record sun data
     - sensor.date
-    - switch.desk_lamp

@@ -1,11 +1,4 @@
 ---
-# XXX: need to implement
-# playlists:
-#   options:
-#     - ...
-#     - ...
-#   icon: mdi:music
-
 cube_mode:
   options:
     - Volume

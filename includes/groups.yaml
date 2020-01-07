@@ -36,7 +36,6 @@ iphone_bas:
   - sensor.ssid_iphone_bas
   - sensor.steps_iphone_bas
   - device_tracker.iphone_bas
-  - device_tracker.basnijholt_iphone  # via router
 
 iphone_marcella:
   - sensor.activity_iphone_marcella

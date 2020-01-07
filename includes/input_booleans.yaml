@@ -13,9 +13,6 @@ vacation_mode:
 guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
-brightness_or_hue:
-  name: Brightness (on) or hue (off)
-  icon: mdi:ceiling-light
 sleep_mode:
   name: Sleep mode
   icon: mdi:bed-king
@@ -23,16 +20,6 @@ bedroom_lights_auto_on:
   name: "Automatically turned on bedroom lights"
   icon: mdi:ceiling-light
   initial: off
-
-# Activity automations
-activity_in_kitchen:
-  name: Activity in kitchen
-activity_in_hall:
-  name: Activity in hall
-activity_in_toilet:
-  name: Activity in toilet
-activity_in_bathroom:
-  name: Activity in bathroom
 
 # Apps
 wake_up_light:

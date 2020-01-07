@@ -69,7 +69,7 @@
     data:
       group: light.living_room_lights
 
-- alias: "Light: turn on kitchen ceiling"
+- alias: "Light: toggle kitchen ceiling"
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
@@ -101,7 +101,7 @@
     service: light.turn_off
     entity_id: light.kitchen_counter
 
-- alias: "Light: turn on bathroom"
+- alias: "Light: toggle bathroom"
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
@@ -111,7 +111,7 @@
       entity_id: light.ceiling_bathroom
       transition: 1
 
-- alias: "Light: turn on toilet"
+- alias: "Light: toggle toilet"
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_toilet
@@ -209,3 +209,58 @@
 #        - light.stairs_lights  # XXX: install these lights
 #        - light.hall_lights
 #      transition: 1
+
+- alias: "Light: turn off toilet (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    platform: state
+    entity_id: binary_sensor.activity_in_toilet
+    state: "off"
+  action:
+    service_template: light.turn_off
+    entity_id: light.toilet
+
+- alias: "Light: turn off bathroom (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    platform: state
+    entity_id: binary_sensor.activity_in_bathroom
+    state: "off"
+  action:
+    service_template: light.turn_off
+    entity_id: light.ceiling_bathroom
+
+# XXX: install these lights
+# - alias: "Light: turn off hall (extra check)"
+#   description: In case the other automation failed
+#   trigger:
+#     platform: time_pattern
+#     minutes: "/30"
+#   condition:
+#     platform: state
+#     entity_id: binary_sensor.activity_in_hall
+#     state: "off"
+#   action:
+#     service_template: light.turn_off
+#     entity_id:
+#       - light.hall_lights
+#       - light.stairs_lights
+
+- alias: "Light: turn off kitchen (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    platform: state
+    entity_id: binary_sensor.activity_in_hall
+    state: "off"
+  action:
+    service_template: light.turn_off
+    entity_id: light.kitchen_lights

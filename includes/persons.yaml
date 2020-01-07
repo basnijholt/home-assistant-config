@@ -2,7 +2,6 @@
 - name: Bas Nijholt
   id: 13984b139dd9426ca31369725c9e23e0
   device_trackers:
-    - device_tracker.basnijholt_iphone
     - device_tracker.iphone_bas
 - name: Marcella
   id: marcella

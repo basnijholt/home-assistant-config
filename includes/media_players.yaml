@@ -16,4 +16,4 @@
   turn_on_action:
     service: wake_on_lan.send_magic_packet
     data:
-      mac: "20:17:42:E0:6A:9E"
+      mac: !secret kef_mac_addresss
