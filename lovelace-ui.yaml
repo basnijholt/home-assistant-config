@@ -698,10 +698,34 @@ views:
       - entity_id: automation.security_*
       - entity_id: automation.vacation_mode_*
       - entity_id: automation.vacuum_*
+      - entity_id: automation.cube_*
+      - entity_id: automation.rhasspy_*
+      - entity_id: automation.utilities_*
+      - entity_id: automation.turn_off_*
       include:
       - domain: automation
     sort: entity_id
     type: custom:auto-entities
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Cube
+    - slug: cube_
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Rhasspy
+    - slug: rhasspy_
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Utilities
+    - slug: utilities_
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Turn off
+    - slug: turn_off_
   icon: mdi:robot
   path: automations
   title: Automations
