@@ -1,4 +1,6 @@
 home:
+  ignored_zones:
+    - work
   devices:
     - device_tracker.iphone_bas
     - device_tracker.iphone_marcella
