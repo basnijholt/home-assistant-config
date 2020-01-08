@@ -15,11 +15,11 @@
     - light.toilet
     - light.ceiling_kitchen
     - light.ceiling_bathroom
-    # - light.stairs_up
-    # - light.stairs_down
-    # - light.hall_1
-    # - light.hall_2
-    # - light.hall_3
+    - light.stairs_up
+    - light.stairs_down
+    - light.hall_1
+    - light.hall_2
+    - light.hall_3
   sleep_entity: input_boolean.sleep_mode
   sleep_state: "on"
   sleep_colortemp: 1000

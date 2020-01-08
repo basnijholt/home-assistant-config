@@ -23,6 +23,8 @@
     - light.kitchen_counter
     - light.toilet
     - light.ceiling_bathroom
+    - light.hall_lights
+    - light.stairs_lights
 
 - platform: group
   name: Kitchen lights

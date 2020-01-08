@@ -11,7 +11,7 @@
     value_template: >
       {{ (is_state('media_player.tv', 'playing') and not
           is_state_attr('media_player.tv', 'source', 'GALLERY')) and not (
-        is_state_attr('media_player.spotify', 'source', 'LS50 Wireless 00C437') and
+        is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') and
         is_state('media_player.spotify', 'playing')) }}
   action:
   - service: media_player.select_source

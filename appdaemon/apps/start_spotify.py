@@ -6,7 +6,7 @@ start_spotify:
   module: start_spotify
   class: StartSpotify
   speaker: media_player.kef
-  spotify_source: "LS50 Wireless 00C437"
+  spotify_source: "LS50 Wireless"
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   volume: 0.3
   input_boolean: input_boolean.start_spotify
@@ -26,7 +26,7 @@ from functools import partial
 import hassapi as hass
 
 DEFAULT_SPEAKER = "media_player.kef"
-DEFAULT_SPOTIFY_SOURCE = "LS50 Wireless 00C437"
+DEFAULT_SPOTIFY_SOURCE = "LS50 Wireless"
 DEFAULT_PLAYLIST = "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
 DEFAULT_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.start_spotify"

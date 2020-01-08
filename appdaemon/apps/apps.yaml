@@ -12,7 +12,7 @@ start_spotify:
   class: StartSpotify
   volume: 0.3
   speaker: media_player.kef
-  spotify_source: LS50 Wireless 00C437
+  spotify_source: LS50 Wireless
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.start_spotify
 
@@ -22,7 +22,7 @@ wake_up_with_spotify:
   total_time: 400
   final_volume: 0.25
   speaker: media_player.kef
-  spotify_source: LS50 Wireless 00C437
+  spotify_source: LS50 Wireless
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
 
@@ -32,7 +32,7 @@ demo_wake_up_with_spotify:
   total_time: 20
   final_volume: 0.25
   speaker: media_player.kef
-  spotify_source: LS50 Wireless 00C437
+  spotify_source: LS50 Wireless
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.demo_wake_up_with_spotify
 

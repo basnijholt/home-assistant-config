@@ -122,6 +122,8 @@ views:
       - light.ceiling_bathroom
       - light.toilet
       - light.kitchen_counter
+      - light.hall_lights
+      - light.stairs_lights
       - switch.circadian_lighting_circadian_lighting
       head:
         entity: light.automatic_lights
@@ -174,7 +176,7 @@ views:
         service: script.start_spotify
         service_data:
           playlist: 6rPTm9dYftKcFAfwyRqmDZ
-          source: LS50 Wireless 00C437
+          source: LS50 Wireless
       type: custom:button-card
     type: vertical-stack
   - entities:

@@ -100,7 +100,7 @@
           {{ trigger.event.data.event == 7007 }}
       - condition: template
         value_template: >
-          {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless 00C437")}}
+          {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless")}}
   action:
     - service: media_player.shuffle_set
       entity_id: media_player.spotify
@@ -123,7 +123,7 @@
           {{ trigger.event.data.event == 1001 }}
       - condition: template
         value_template: >
-          {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless 00C437")}}
+          {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless")}}
   action:
     service: media_player.media_play_pause
     entity_id: media_player.spotify

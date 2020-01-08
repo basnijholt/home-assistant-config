@@ -15,7 +15,7 @@
         volume: 0.25
     - service: script.start_spotify
       data_template:
-        source: LS50 Wireless 00C437
+        source: LS50 Wireless
         playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
         volume: 0.25
 
@@ -49,4 +49,4 @@
     - service: media_player.select_source
       entity_id: media_player.spotify
       data:
-        source: LS50 Wireless 00C437
+        source: LS50 Wireless
