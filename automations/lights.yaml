@@ -154,27 +154,62 @@
     minutes: "/30"
   condition:
     condition: state
-    entity_id: binary_sensor.activity_in_hall
+    entity_id: binary_sensor.activity_in_kitchen
     state: "off"
   action:
     service_template: light.turn_off
     entity_id: light.kitchen_lights
 
-# XXX: install these lights
-# - alias: "Light: turn off hall (extra check)"
-#   description: In case the other automation failed
-#   trigger:
-#     platform: time_pattern
-#     minutes: "/30"
-#   condition:
-#     condition: state
-#     entity_id: binary_sensor.activity_in_hall
-#     state: "off"
-#   action:
-#     service_template: light.turn_off
-#     entity_id:
-#       - light.hall_lights
-#       - light.stairs_lights
+- alias: "Light: turn off hall (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    condition: state
+    entity_id: binary_sensor.activity_in_hall
+    state: "off"
+  action:
+    service_template: light.turn_off
+    entity_id:
+      - light.hall_lights
+      - light.stairs_lights
+
+- alias: "Light: turn on hall"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.activity_in_hall
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: group.persons
+      from: not_home
+      to: home
+    - platform: state
+      entity_id: binary_sensor.openclose_front_door
+      from: "off"
+      to: "on"
+  action:
+   service: light.turn_on
+   data:
+     entity_id:
+       - light.stairs_lights
+       - light.hall_lights
+     transition: 1
+
+- alias: "Light: turn off hall"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.activity_in_hall
+      from: "on"
+      to: "off"
+  action:
+   service: light.turn_off
+   data:
+     entity_id:
+       - light.stairs_lights
+       - light.hall_lights
+     transition: 1
 
 # XXX: do not have these sensors yet
 # - alias: "Light: automatically turn on the bedroom"
@@ -196,7 +231,7 @@
 #       data_template:
 #         brightness: 255
 #         xy_color: >
-#           {{ state_attr("sensor.circadian_values", "xy_color")|list	}}
+#           {{ state_attr("sensor.circadian_values", "xy_color")|list }}
 #     - service: input_boolean.turn_on
 #       entity_id: input_boolean.bedroom_lights_auto_on
 
@@ -239,28 +274,3 @@
 #   action:
 #     service: input_boolean.turn_off
 #     entity_id: input_boolean.bedroom_lights_auto_on
-
-# XXX: do not have the lights yet!
-# - alias: "Light: turn on hall"
-#   trigger:
-#     - platform: state
-#       entity_id: binary_sensor.activity_in_hall
-#     - platform: state
-#       entity_id: group.persons
-#       from: not_home
-#       to: home
-#     - platform: state
-#       entity_id: binary_sensor.openclose_front_door
-#       from: "off"
-#       to: "on"
-#   condition:
-#     condition: sun
-#     after: sunset
-#     after_offset: "-0:30:00"
-#   action:
-#    service: light.turn_on
-#    data:
-#      entity_id:
-#        - light.stairs_lights  # XXX: install these lights
-#        - light.hall_lights
-#      transition: 1
