@@ -82,7 +82,6 @@
         playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
         volume: 0.25
 
-# XXX: turn off in guest mode
 - alias: "Arriving: switch music from iPhone to speakers if no one is home"
   trigger:
     platform: state
@@ -93,6 +92,9 @@
     - condition: state
       entity_id: persons.marcella
       state: not_home
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
     - condition: template
       value_template: >
         {{ state_attr("media_player.spotify", "source") == "basnijholt-iphone"
