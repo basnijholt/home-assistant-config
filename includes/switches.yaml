@@ -15,6 +15,7 @@
     - light.toilet
     - light.ceiling_kitchen
     - light.ceiling_bathroom
+  lights_ct:  # XXX: these lights can handle `color_temp = [153, 500]` but maybe it is alright?
     - light.stairs_up
     - light.stairs_down
     - light.hall_1
