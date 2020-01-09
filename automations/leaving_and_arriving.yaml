@@ -26,6 +26,9 @@
             entity_id: media_player.kef
             state: "on"
           - condition: state
+            entity_id: media_player.bedroom_speakers
+            state: "on"
+          - condition: state
             entity_id: media_player.tv
             state: "on"
   action:
@@ -33,6 +36,8 @@
       entity_id: all
     - service: media_player.turn_off
       entity_id: media_player.kef
+    - service: media_player.turn_off
+      entity_id: media_player.bedroom_speakers
     - service: media_player.turn_off
       entity_id: media_player.tv
     - service: notify.mobile_app_basnijholt_iphone

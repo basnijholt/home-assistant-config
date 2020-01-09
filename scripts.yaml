@@ -155,6 +155,8 @@ turn_off_everything:
   - service: media_player.turn_off
     entity_id: media_player.kef
   - service: media_player.turn_off
+    entity_id: media_player.bedroom_speakers
+  - service: media_player.turn_off
     entity_id: media_player.tv
 going_to_sleep:
   alias: Going to sleep
