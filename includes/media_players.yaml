@@ -14,7 +14,7 @@
   type: LSX
   name: Bedroom speakers
   host: 192.168.178.73
-  maximum_volume: 0.6
+  maximum_volume: 0.7
   volume_step: 0.05
 
 - platform: webostv

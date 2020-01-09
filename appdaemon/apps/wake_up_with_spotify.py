@@ -117,8 +117,8 @@ class WakeUpWithSpotify(hass.Hass):
         if manually_changed:
             self.log(
                 f"Canceling sequence, "
-                "current_volume: {current_volume}, "
-                "volume: {self.volume}"
+                f"current_volume: {current_volume}, "
+                f"volume: {self.volume}"
             )
             while self.todos:
                 self.cancel_timer(self.todos.pop())

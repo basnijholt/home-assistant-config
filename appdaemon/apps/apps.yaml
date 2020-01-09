@@ -21,8 +21,8 @@ wake_up_with_spotify:
   class: WakeUpWithSpotify
   total_time: 400
   final_volume: 0.25
-  speaker: media_player.kef
-  spotify_source: LS50 Wireless
+  speaker: media_player.bedroom_speakers
+  spotify_source: LSX
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
 
@@ -31,8 +31,8 @@ demo_wake_up_with_spotify:
   class: WakeUpWithSpotify
   total_time: 20
   final_volume: 0.25
-  speaker: media_player.kef
-  spotify_source: LS50 Wireless
+  speaker: media_player.bedroom_speakers
+  spotify_source: LSX
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.demo_wake_up_with_spotify
 
