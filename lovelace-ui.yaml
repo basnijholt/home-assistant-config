@@ -167,6 +167,17 @@ views:
         play_stop: true
         volume: false
       type: custom:mini-media-player
+    - background: /local/lsx_speakers.png
+      entity: media_player.bedroom_speakers
+      hide:
+        controls: true
+        mute: false
+        play_stop: true
+        volume: false
+      style: "ha-card {\n  --mini-media-player-base-color: red;\n  --mini-media-player-icon-color:\
+        \ red;\n  --mini-media-player-background-opacity: 0.1;\n  --mini-media-player-overlay-color:\
+        \ white;\n}\n"
+      type: custom:mini-media-player
     - aspect_ratio: 5.5/1
       icon: mdi:music
       icon_height: 20px
@@ -178,6 +189,9 @@ views:
           playlist: 6rPTm9dYftKcFAfwyRqmDZ
           source: LS50 Wireless
       type: custom:button-card
+    style: "ha-card {\n  --mini-media-player-base-color: red;\n  --mini-media-player-icon-color:\
+      \ red;\n  --mini-media-player-background-opacity: 0.1;\n  --mini-media-player-overlay-color:\
+      \ red;\n}\n"
     type: vertical-stack
   - entities:
     - entity: input_boolean.alarm_clock
