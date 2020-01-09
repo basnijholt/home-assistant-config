@@ -17,7 +17,7 @@
     * Shake: shuffle song
     * Put label up and move it a bit on the table to put it in either [Volume, Brightness, Hue] (the TV will also display in which mode it is). Rotating the cube will change the volume, brightness, or hue.
 * In Home Assistant app
-    * *Going to sleep button*: turns everything off in the house and sets “night mode” (all the lights will automatically turn red when triggered)
+    * *Going to sleep button*: turns everything off in the house and sets “sleep mode” (all the lights will automatically turn red when triggered)
 
 ## Automatic
 * Lights in hall, toilet, bathroom, and kitchen automatically turn on
@@ -27,5 +27,6 @@
 * The TV and speakers
     * If Spotify is not playing on the speakers, the speakers will automatically switch to the TV
     * Speakers will turn on when turning on the TV
+* Sleep mode automatically turns off if the alarm goes or if it's 06:00.
 
 Questions or suggestions? Ask Bas ❤️
