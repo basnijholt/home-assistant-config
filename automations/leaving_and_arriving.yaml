@@ -40,7 +40,7 @@
         title: "Leaving"
         message: "Everything automatically turned off!"
 
-- alias: "Leaving: manually turn off everything"
+- alias: "Leaving: single click to turn off everything"
   initial_state: "on"
   trigger:
   trigger:
@@ -60,7 +60,7 @@
         title: "Leaving"
         message: "Everything turned off, see you soon! ❤️"
 
-- alias: "Arriving: turn on music and cozy lights"
+- alias: "Arriving: double click to turn on music and cozy lights"
   initial_state: "on"
   trigger:
   trigger:
@@ -74,8 +74,7 @@
       entity_id: light.living_room_lights
       data:
         brightness: 100
-    - service: script.turn_on
-      entity_id: script.cozy_lights_living_room
+    - service: script.cozy_lights_living_room
     - service: script.start_spotify
       data_template:
         source: LS50 Wireless
