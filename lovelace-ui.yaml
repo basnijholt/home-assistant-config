@@ -133,10 +133,6 @@ views:
     show_header_toggle: false
     title: Lights
     type: entities
-  - entities:
-    - entity: input_boolean.sleep_mode
-    - entity: script.going_to_sleep
-    type: entities
   - entity: weather.huis
     name: Weather
     type: custom:simple-weather-card
@@ -196,6 +192,7 @@ views:
   - entities:
     - entity: input_boolean.alarm_clock
     - entity: input_datetime.alarm_clock
+    - entity: input_boolean.sleep_mode
     show_header_toggle: false
     type: entities
   - entities:
@@ -302,6 +299,72 @@ views:
       name: Speedtest
       type: horizontal-stack
     type: custom:vertical-stack-in-card
+  - cards:
+    - cards:
+      - color: auto
+        color_type: card
+        icon: mdi:weather-sunset-up
+        lock:
+          enabled: true
+        name: Wake up
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+        tap_action:
+          action: call-service
+          service: input_boolean.turn_off
+          service_data:
+            entity_id: input_boolean.sleep_mode
+        type: custom:button-card
+      - color: auto
+        color_type: card
+        entity: input_boolean.sleep_mode
+        icon: mdi:weather-night
+        lock:
+          enabled: true
+        name: '[[[ if (entity.state == "on") return "Sleep mode on"; else return "Good
+          Night" ]]]'
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+        tap_action:
+          action: call-service
+          service: script.going_to_sleep
+        type: custom:button-card
+      type: horizontal-stack
+    - cards:
+      - color: auto
+        color_type: card
+        icon: mdi:home-map-marker
+        lock:
+          enabled: true
+        name: Arrive Home
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+        tap_action:
+          action: call-service
+          service: script.turn_off_everything
+        type: custom:button-card
+      - color: auto
+        color_type: card
+        icon: mdi:home-export-outline
+        lock:
+          enabled: true
+        name: Leave Home
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+        tap_action:
+          action: call-service
+          service: script.turn_off_everything
+        type: custom:button-card
+      type: horizontal-stack
+    type: vertical-stack
   path: default_view
   title: Home
 - cards:
