@@ -1,4 +1,4 @@
 - platform: webostv
-  host: 192.168.178.157
+  host: 192.168.1.2
   name: tv
   filename: webostv.conf

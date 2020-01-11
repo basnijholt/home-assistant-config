@@ -6,19 +6,19 @@
 - platform: kef
   type: LS50
   name: Living room speakers
-  host: 192.168.178.206
+  host: 192.168.1.5
   maximum_volume: 0.6
   volume_step: 0.05
 
 - platform: kef
   type: LSX
   name: Bedroom speakers
-  host: 192.168.178.73
+  host: 192.168.1.6
   maximum_volume: 0.7
   volume_step: 0.05
 
 - platform: webostv
-  host: 192.168.178.157
+  host: 192.168.1.2
   name: tv
   turn_on_action:
     service: wake_on_lan.send_magic_packet

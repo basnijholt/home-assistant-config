@@ -1,6 +1,3 @@
 ---
-# - platform: upc_connect
-#   host: 192.168.178.1
-#   password: !secret connectbox_password
-#   interval_seconds: 10
-#   consider_home: 180
+- platform: netgear
+  password: !secret netgear_password
