@@ -16,15 +16,6 @@ const texts = {
         repeats: "Times:",
         confirmation: "Command sent!"
     },
-    "es": {
-        mode: "Modos",
-        goToTarget: "Ir al objetivo",
-        zonedCleanup: "Zona de limpieza",
-        zones: "Zonas",
-        run: "Empezar",
-        repeats: "Veces:",
-        confirmation: "Comando enviado!"
-    },
     "de": {
         mode: "Modus",
         goToTarget: "Gehe zum Zielpunkt",
@@ -42,6 +33,24 @@ const texts = {
         run: "Start",
         repeats: "Gentagelser:",
         confirmation: "Kommando afsendt!"
+    },
+    "es": {
+        mode: "Modos",
+        goToTarget: "Ir al objetivo",
+        zonedCleanup: "Zona de limpieza",
+        zones: "Zonas",
+        run: "Empezar",
+        repeats: "Veces:",
+        confirmation: "Comando enviado!"
+    },
+    "fr": {
+        mode: "Mode",
+        goToTarget: "Aller sur la cible",
+        zonedCleanup: "Nettoyage de zone",
+        zones: "Zones",
+        run: "Démarrage",
+        repeats: "Répéter:",
+        confirmation: "Commande envoyée!"
     },
     "it": {
         mode: "Modalità",
@@ -78,6 +87,15 @@ const texts = {
         run: "Uruchom",
         repeats: "Razy:",
         confirmation: "Komenda wysłana!"
+    },
+    "ru": {
+        mode: "Режим",
+        goToTarget: "Движение к цели",
+        zonedCleanup: "Зональная уборка",
+        zones: "Зоны",
+        run: "Старт",
+        repeats: "Повторы:",
+        confirmation: "Команда отправлена"
     },
     "se": {
         mode: "Läge",
