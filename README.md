@@ -6,9 +6,9 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 ## My cool AppDaemon apps
 * [Sunrise emulator app](appdaemon/apps/wake_up_light.py) 🌅
 * [Wake up with Spotify app](appdaemon/apps/wake_up_with_spotify.py) that slowly ramps the volume 📢
-* [Alarm clock](appdaemon/apps/alarm_clock.py) that uses the volume ramp and sunrise app ⏰
 
 ## Noteworthy (useful) automations
+* [Alarm clock](automations/alarm_clock.yaml) that uses the AppDaemon volume ramp and sunrise app ⏰
 * [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](automations/lovelace.yaml) for version control 🤖
 * [Controlling music using the Xiaomi Aqara Magic Cube](automations/music.yaml) ∛
 * [Controlling the lights (hue and brightness) using the Xiaomi Aqara Magic Cube](automations/lights.yaml) ∛
