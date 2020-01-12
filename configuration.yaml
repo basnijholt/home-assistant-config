@@ -31,6 +31,7 @@ proximity: !include includes/proximity.yaml
 
 # Components:
 tplink: !include includes/tplink.yaml
+webostv: !include includes/webostv.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 vacuum: !include includes/vacuum.yaml
 circadian_lighting: !include includes/circadian_lighting.yaml
