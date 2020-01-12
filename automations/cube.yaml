@@ -10,15 +10,11 @@
     value_template: >
       {{ trigger.event.data.event in (1000, 2000, 3000) }}
   action:
-    - service: input_select.select_option
-      entity_id: input_select.cube_mode
-      data_template:
-        option: >
-          {{ {1000: "Volume", 2000: "Hue", 3000: "Brightness"}[trigger.event.data.event] }}
-    - service: notify.tv
-      data:
-        message: >
-          Cube mode set to {{ states("input_select.cube_mode") }}
+    service: input_select.select_option
+    entity_id: input_select.cube_mode
+    data_template:
+      option: >
+        {{ {1000: "Volume", 2000: "Hue", 3000: "Brightness"}[trigger.event.data.event] }}
 
 - alias: "Cube: change hue of living room lights with cube"
   trigger:
