@@ -35,6 +35,42 @@
     data:
       input_select: input_select.last_script_living_room
 
+- alias: "Light: bright white lights the living room"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: dimmer_switch_living_room
+      event: 2000
+  condition:
+    condition: state
+    entity_id: light.living_room_lights
+    state: "on"
+  action:
+    - service: script.white_lights_living_room
+    - service: light.turn_on
+      entity_id: light.living_room_lights
+      data:
+        brightness: 255
+
+- alias: "Light: bright white lights the bedroom"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: dimmer_switch_bedroom
+      event: 2000
+  condition:
+    condition: state
+    entity_id: light.bedroom_lights
+    state: "on"
+  action:
+    - service: script.white_lights_bedroom
+    - service: light.turn_on
+      entity_id: light.bedroom_lights
+      data:
+        brightness: 255
+
 - alias: "Light: toggle max/min brightness in the bedroom"
   trigger:
     - platform: event

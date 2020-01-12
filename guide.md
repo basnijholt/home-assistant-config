@@ -12,6 +12,7 @@
     * Top button: increase the brightness between [10%, 50%, 100%]
     * Middle two buttons: turn on and off (or hold to dim)
     * Bottom button: change between bright lights and cozy lights
+    * (Extra) If the lights are already on, clicking on the "turn on" button again, will turn on white lights at 100%
 * Cube in living room
     * Throw up: start your favourite playlist on the speakers
     * Shake: shuffle song
