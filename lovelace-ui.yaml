@@ -226,6 +226,11 @@ views:
     show_header_toggle: false
     type: entities
   - cards:
+    - buttons: true
+      entity: vacuum.xiaomi_vacuum_cleaner
+      image: /local/custom/folder/background.png
+      name: Vacuum
+      type: custom:xiaomi-vacuum-card
     - entities:
       - entity: switch.vacuum_mode
       - entity: input_boolean.cleaned_today
@@ -287,50 +292,48 @@ views:
     show_header_toggle: false
     type: entities
   - entities:
-    - entity: binary_sensor.dishwasher
-      name: 'Dishwasher
+    - entities:
+      - icon: mdi:currency-eur
+        name: '{% set kwh = state_attr(''switch.dishwasher'', ''today_energy_kwh'')
+          | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
+          and cost €{{ cost_today | round(2) }}.
 
-        '
-      secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.dishwasher.last_changed)\
-        \ %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  It is on for\
-        \ {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has been off\
-        \ for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
-      state: "{% if is_state('binary_sensor.dishwasher', 'on') %}\n  {{ states(\"\
-        sensor.dishwasher_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
-      type: custom:template-entity-row
-    - condition: '{{ state_attr(''switch.dishwasher'', ''today_energy_kwh'') | float(0)
-        > 0.05 }}
+          '
+        type: custom:template-entity-row
+      head:
+        entity: binary_sensor.dishwasher
+        name: 'Dishwasher
 
-        '
-      icon: mdi:currency-eur
-      name: '{% set kwh = state_attr(''switch.dishwasher'', ''today_energy_kwh'')
-        | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
-        and cost €{{ cost_today | round(2) }}.
+          '
+        secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.dishwasher.last_changed)\
+          \ %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  It is on for\
+          \ {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has been\
+          \ off for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
+        state: "{% if is_state('binary_sensor.dishwasher', 'on') %}\n  {{ states(\"\
+          sensor.dishwasher_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
+        type: custom:template-entity-row
+      type: custom:fold-entity-row
+    - entities:
+      - icon: mdi:currency-eur
+        name: '{% set kwh = state_attr(''switch.washing_machine'', ''today_energy_kwh'')
+          | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
+          and cost €{{ cost_today | round(2) }}.
 
-        '
-      type: custom:template-entity-row
-    - entity: binary_sensor.washing_machine
-      name: 'Washing machine
+          '
+        type: custom:template-entity-row
+      head:
+        entity: binary_sensor.washing_machine
+        name: 'Washing machine
 
-        '
-      secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.washing_machine.last_changed)\
-        \ %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  It is on\
-        \ for {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has been\
-        \ off for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
-      state: "{% if is_state('binary_sensor.washing_machine', 'on') %}\n  {{ states(\"\
-        sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
-      type: custom:template-entity-row
-    - condition: '{{ state_attr(''switch.washing_machine'', ''today_energy_kwh'')
-        | float(0) > 0.05 }}
-
-        '
-      icon: mdi:currency-eur
-      name: '{% set kwh = state_attr(''switch.washing_machine'', ''today_energy_kwh'')
-        | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
-        and cost €{{ cost_today | round(2) }}.
-
-        '
-      type: custom:template-entity-row
+          '
+        secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.washing_machine.last_changed)\
+          \ %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  It is\
+          \ on for {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has\
+          \ been off for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
+        state: "{% if is_state('binary_sensor.washing_machine', 'on') %}\n  {{ states(\"\
+          sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
+        type: custom:template-entity-row
+      type: custom:fold-entity-row
     show_header_toggle: false
     title: Utilities
     type: entities
@@ -820,11 +823,6 @@ views:
     - entity: sensor.vibration_battery_level
     title: Vibration sensors
     type: glance
-  - buttons: true
-    entity: vacuum.xiaomi_vacuum_cleaner
-    image: /local/custom/folder/background.png
-    name: Vacuum
-    type: custom:xiaomi-vacuum-card
   icon: mdi:test-tube
   path: tests
   title: Tests
