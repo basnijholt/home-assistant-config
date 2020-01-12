@@ -19,6 +19,15 @@
       data:
         source: Opt
 
+- alias: "Media player: update TV state"
+  initial_state: "on"
+  trigger:
+    - platform: time_pattern
+      seconds: "/2"
+  action:
+    - service: homeassistant.update_entity
+      entity_id: media_player.tv
+
 - alias: 'Media player: sync TV volume with KEF'
   trigger:
     platform: template
