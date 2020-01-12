@@ -361,6 +361,7 @@ views:
           card:
           - font-size: 12px
           - font-weight: bold
+          - height: 70px
         tap_action:
           action: call-service
           service: input_boolean.turn_off
@@ -379,6 +380,7 @@ views:
           card:
           - font-size: 12px
           - font-weight: bold
+          - height: 70px
         tap_action:
           action: call-service
           service: script.going_to_sleep
@@ -395,6 +397,7 @@ views:
           card:
           - font-size: 12px
           - font-weight: bold
+          - height: 70px
         tap_action:
           action: call-service
           service: script.turn_off_everything
@@ -409,6 +412,7 @@ views:
           card:
           - font-size: 12px
           - font-weight: bold
+          - height: 70px
         tap_action:
           action: call-service
           service: script.turn_off_everything
