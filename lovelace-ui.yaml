@@ -50,6 +50,8 @@ resources:
   url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
 - type: module
   url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
+- type: module
+  url: /community_plugin/lovelace-template-entity-row/template-entity-row.js
 title: Huis
 views:
 - badges:
@@ -174,17 +176,36 @@ views:
         \ red;\n  --mini-media-player-background-opacity: 0.1;\n  --mini-media-player-overlay-color:\
         \ white;\n}\n"
       type: custom:mini-media-player
-    - aspect_ratio: 5.5/1
-      icon: mdi:music
-      icon_height: 20px
-      name: Start the music
-      tap_action:
-        action: call-service
-        service: script.start_spotify
-        service_data:
-          playlist: 6rPTm9dYftKcFAfwyRqmDZ
-          source: LS50 Wireless
-      type: custom:button-card
+    - cards:
+      - icon: mdi:sofa
+        name: Play music in living room
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          service: script.start_spotify
+          service_data:
+            playlist: 6rPTm9dYftKcFAfwyRqmDZ
+            source: LS50 Wireless
+        type: custom:button-card
+      - icon: mdi:bed-king
+        name: Play music in bedroom
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          service: script.start_spotify
+          service_data:
+            playlist: 6rPTm9dYftKcFAfwyRqmDZ
+            source: LSX
+        type: custom:button-card
+      type: horizontal-stack
     style: "ha-card {\n  --mini-media-player-base-color: red;\n  --mini-media-player-icon-color:\
       \ red;\n  --mini-media-player-background-opacity: 0.1;\n  --mini-media-player-overlay-color:\
       \ red;\n}\n"
@@ -266,10 +287,50 @@ views:
     show_header_toggle: false
     type: entities
   - entities:
-    - entity: binary_sensor.washing_machine
-    - entity: sensor.washing_machine_watts
     - entity: binary_sensor.dishwasher
-    - entity: sensor.dishwasher_watts
+      name: 'Dishwasher
+
+        '
+      secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.dishwasher.last_changed)\
+        \ %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  It is on for\
+        \ {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has been off\
+        \ for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
+      state: "{% if is_state('binary_sensor.dishwasher', 'on') %}\n  {{ states(\"\
+        sensor.dishwasher_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
+      type: custom:template-entity-row
+    - condition: '{{ state_attr(''switch.dishwasher'', ''today_energy_kwh'') | float(0)
+        > 0.05 }}
+
+        '
+      icon: mdi:currency-eur
+      name: '{% set kwh = state_attr(''switch.dishwasher'', ''today_energy_kwh'')
+        | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
+        and cost €{{ cost_today | round(2) }}.
+
+        '
+      type: custom:template-entity-row
+    - entity: binary_sensor.washing_machine
+      name: 'Washing machine
+
+        '
+      secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.washing_machine.last_changed)\
+        \ %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  It is on\
+        \ for {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has been\
+        \ off for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
+      state: "{% if is_state('binary_sensor.washing_machine', 'on') %}\n  {{ states(\"\
+        sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
+      type: custom:template-entity-row
+    - condition: '{{ state_attr(''switch.washing_machine'', ''today_energy_kwh'')
+        | float(0) > 0.05 }}
+
+        '
+      icon: mdi:currency-eur
+      name: '{% set kwh = state_attr(''switch.washing_machine'', ''today_energy_kwh'')
+        | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
+        and cost €{{ cost_today | round(2) }}.
+
+        '
+      type: custom:template-entity-row
     show_header_toggle: false
     title: Utilities
     type: entities
