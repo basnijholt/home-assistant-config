@@ -34,7 +34,6 @@
       volume_level: >
         {{ states("sensor.tv_volume") }}
 
-
 # XXX: not sure if this can get stuck in a loop?
 - alias: "Media player: sync KEF volume with TV"
   trigger:
