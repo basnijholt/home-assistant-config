@@ -27,6 +27,7 @@
 * The TV and speakers
     * If Spotify is not playing on the speakers, the speakers will automatically switch to the TV
     * Speakers will turn on when turning on the TV
+    * Home Assistant will make sure that the volume of the speakers is the same as on the TV
 * Sleep mode automatically turns off if the alarm goes or if it's 06:00.
 
 Questions or suggestions? Ask Bas ❤️
