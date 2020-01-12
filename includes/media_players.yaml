@@ -9,6 +9,7 @@
   host: 192.168.1.5
   maximum_volume: 0.6
   volume_step: 0.05
+  standby_time: 60
 
 - platform: kef
   type: LSX
@@ -17,3 +18,4 @@
   maximum_volume: 0.7
   volume_step: 0.05
   inverse_speaker_mode: true
+  standby_time: 60
