@@ -127,9 +127,12 @@
     platform: time_pattern
     minutes: "/30"
   condition:
-    condition: state
-    entity_id: binary_sensor.activity_in_toilet
-    state: "off"
+    - condition: state
+      entity_id: binary_sensor.activity_in_toilet
+      state: "off"
+    - condition: state
+      entity_id: light.toilet
+      state: "on"
   action:
     service_template: light.turn_off
     entity_id: light.toilet
@@ -140,9 +143,12 @@
     platform: time_pattern
     minutes: "/30"
   condition:
-    condition: state
-    entity_id: binary_sensor.activity_in_bathroom
-    state: "off"
+    - condition: state
+      entity_id: binary_sensor.activity_in_bathroom
+      state: "off"
+    - condition: state
+      entity_id: light.ceiling_bathroom
+      state: "on"
   action:
     service_template: light.turn_off
     entity_id: light.ceiling_bathroom
@@ -153,9 +159,12 @@
     platform: time_pattern
     minutes: "/30"
   condition:
-    condition: state
-    entity_id: binary_sensor.activity_in_kitchen
-    state: "off"
+    - condition: state
+      entity_id: binary_sensor.activity_in_kitchen
+      state: "off"
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: "on"
   action:
     service_template: light.turn_off
     entity_id: light.kitchen_lights
@@ -166,9 +175,17 @@
     platform: time_pattern
     minutes: "/30"
   condition:
-    condition: state
-    entity_id: binary_sensor.activity_in_hall
-    state: "off"
+    - condition: state
+      entity_id: binary_sensor.activity_in_hall
+      state: "off"
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.stairs_lights
+        state: "on"
+      - condition: state
+        entity_id: light.hall_lights
+        state: "on"
   action:
     service_template: light.turn_off
     entity_id:
@@ -181,10 +198,6 @@
       entity_id: binary_sensor.activity_in_hall
       from: "off"
       to: "on"
-    - platform: state
-      entity_id: group.persons
-      from: not_home
-      to: home
     - platform: state
       entity_id: binary_sensor.openclose_front_door
       from: "off"
