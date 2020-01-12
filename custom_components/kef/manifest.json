@@ -1,8 +1,0 @@
-{
-  "domain": "kef",
-  "name": "KEF",
-  "documentation": "https://github.com/basnijholt/media_player.kef",
-  "dependencies": [],
-  "codeowners": ["@basnijholt"],
-  "requirements": ["aiokef==0.2.2", "getmac==0.8.1"]
-}
