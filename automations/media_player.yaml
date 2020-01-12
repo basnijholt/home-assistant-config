@@ -28,13 +28,8 @@
     value_template: >
       {{ is_state_attr("media_player.kef", "source", "Opt") }}
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.kef
-      data_template:
-        volume_level: >
-          {{ states("sensor.tv_volume") }}
-    - service: notify.tv
-      data:
-        message: >
-          Speakers volume synced to {{ (100 * states("sensor.tv_volume")|float ) | int }}
-
+    service: media_player.volume_set
+    entity_id: media_player.kef
+    data_template:
+      volume_level: >
+        {{ states("sensor.tv_volume") }}
