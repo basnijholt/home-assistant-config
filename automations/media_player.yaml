@@ -20,19 +20,17 @@
         source: Opt
 
 - alias: "Media player: update TV state"
-  initial_state: "on"
   trigger:
-    - platform: time_pattern
-      seconds: "/2"
+    platform: time_pattern
+    seconds: "/5"
   action:
-    - service: homeassistant.update_entity
-      entity_id: media_player.tv
+    service: homeassistant.update_entity
+    entity_id: media_player.tv
 
 - alias: 'Media player: sync TV volume with KEF'
   trigger:
-    platform: template
-    value_template: >
-      {{ state_attr("media_player.tv", "volume_level") }}
+    platform: state
+    entity_id: sensor.tv_volume
   condition:
     condition: template
     value_template: >
@@ -42,5 +40,9 @@
       entity_id: media_player.kef
       data_template:
         volume_level: >
-          {{ state_attr("media_player.kef", "volume_level") }}
+          {{ states("sensor.tv_volume") }}
+    - service: notify.tv
+      data:
+        message: >
+          Speakers volume synced to {{ (100 * states("sensor.tv_volume")|float ) | int }}
 

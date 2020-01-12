@@ -69,6 +69,10 @@
         2Alq4aFJY8jRA2MnBL5d9A
         {% endif %}
 
+    tv_volume:
+      value_template: >
+        {{ state_attr("media_player.tv", "volume_level") }}
+
 - platform: min_max
   name: Temperature mean
   type: mean
