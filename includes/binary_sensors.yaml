@@ -65,9 +65,21 @@
       value_template: >
         {{ states("sensor.washing_machine_watts") | float(0) > 3 }}
       delay_off: "00:04:00"
+      icon_template: >
+        {% if states("binary_sensor.washing_machine") == "on" %}
+          mdi:washing-machine
+        {% else %}
+          mdi:washing-machine-off
+        {% endif %}
 
     dishwasher:
       friendly_name: Dishwasher
       value_template: >
         {{ states("sensor.dishwasher_watts") | float(0) > 3 }}
       delay_off: "00:03:00"
+      icon_template: >
+        {% if states("binary_sensor.dishwasher") == "on" %}
+          mdi:dishwasher
+        {% else %}
+          mdi:dishwasher-off
+        {% endif %}
