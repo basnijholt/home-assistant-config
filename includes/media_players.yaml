@@ -16,11 +16,4 @@
   host: 192.168.1.6
   maximum_volume: 0.7
   volume_step: 0.05
-
-- platform: webostv
-  host: 192.168.1.2
-  name: tv
-  turn_on_action:
-    service: wake_on_lan.send_magic_packet
-    data:
-      mac: !secret kef_mac_address
+  inverse_speaker_mode: true
