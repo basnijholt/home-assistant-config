@@ -204,12 +204,62 @@ views:
       type: custom:github-entity-row
     show_header_toggle: false
     type: entities
-  - entities:
-    - entity: switch.vacuum_mode
-    - entity: input_boolean.cleaned_today
-    show_header_toggle: false
-    theme: Backend-selected
-    type: entities
+  - cards:
+    - entities:
+      - entity: switch.vacuum_mode
+      - entity: input_boolean.cleaned_today
+      show_header_toggle: false
+      theme: Backend-selected
+      type: entities
+    - calibration_points:
+      - map:
+          x: 711
+          y: 474
+        vacuum:
+          x: 30192
+          y: 26684
+      - map:
+          x: 911
+          y: 269
+        vacuum:
+          x: 32449
+          y: 28983
+      - map:
+          x: 41
+          y: 63
+        vacuum:
+          x: 22797
+          y: 31279
+      entity: vacuum.xiaomi_vacuum_cleaner
+      map_image: /local/vacuum-map.png
+      type: custom:xiaomi-vacuum-map-card
+      zones:
+      - - - 29706
+          - 27237
+          - 34806
+          - 31137
+          - 1
+      - - - 22799
+          - 27340
+          - 27649
+          - 31240
+          - 1
+      - - - 22803
+          - 25150
+          - 26353
+          - 27250
+          - 1
+      - - - 26379
+          - 26239
+          - 31929
+          - 27189
+          - 1
+      - - - 31941
+          - 25364
+          - 34791
+          - 27164
+          - 1
+    type: vertical-stack
   - entities:
     - entity: input_boolean.vacation_mode
     - entity: input_boolean.guest_mode
