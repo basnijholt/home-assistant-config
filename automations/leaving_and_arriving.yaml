@@ -48,7 +48,6 @@
 - alias: "Leaving: single click to turn off everything"
   initial_state: "on"
   trigger:
-  trigger:
     platform: event
     event_type: deconz_event
     event_data:
@@ -67,7 +66,6 @@
 
 - alias: "Arriving: double click to turn on music and cozy lights"
   initial_state: "on"
-  trigger:
   trigger:
     - platform: event
       event_type: deconz_event
