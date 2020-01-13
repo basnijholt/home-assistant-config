@@ -28,6 +28,7 @@ notify: !include includes/notify.yaml
 light: !include includes/lights.yaml
 wake_on_lan:
 proximity: !include includes/proximity.yaml
+timer: !include includes/timers.yaml
 
 # Components:
 tplink: !include includes/tplink.yaml

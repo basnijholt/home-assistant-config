@@ -1,0 +1,6 @@
+---
+block_tv_volume_sync:
+  duration: '00:00:05'
+
+block_kef_volume_sync:
+  duration: '00:00:05'

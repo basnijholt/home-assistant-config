@@ -24,28 +24,37 @@
     platform: state
     entity_id: sensor.tv_volume
   condition:
-    condition: template
-    value_template: >
-      {{ is_state_attr("media_player.kef", "source", "Opt") }}
+    - condition: template
+      value_template: >
+        {{ is_state_attr("media_player.kef", "source", "Opt") }}
+    - condition: state
+      entity_id: timer.block_tv_volume_sync
+      state: "idle"
   action:
-    service: media_player.volume_set
-    entity_id: media_player.kef
-    data_template:
-      volume_level: >
-        {{ states("sensor.tv_volume") }}
+    - service: media_player.volume_set
+      entity_id: media_player.kef
+      data_template:
+        volume_level: >
+          {{ states("sensor.tv_volume") }}
+    - service: timer.start
+      entity_id: timer.block_kef_volume_sync
 
-# XXX: not sure if this can get stuck in a loop?
 - alias: "Media player: sync KEF volume with TV"
   trigger:
     platform: state
     entity_id: sensor.kef_volume
   condition:
-    condition: template
-    value_template: >
-      {{ is_state_attr("media_player.kef", "source", "Opt") }}
+    - condition: template
+      value_template: >
+        {{ is_state_attr("media_player.kef", "source", "Opt") }}
+    - condition: state
+      entity_id: timer.block_kef_volume_sync
+      state: "idle"
   action:
-    service: media_player.volume_set
-    entity_id: media_player.tv
-    data_template:
-      volume_level: >
-        {{ states("sensor.kef_volume") }}
+    - service: media_player.volume_set
+      entity_id: media_player.tv
+      data_template:
+        volume_level: >
+          {{ states("sensor.kef_volume") }}
+    - service: timer.start
+      entity_id: timer.block_tv_volume_sync
