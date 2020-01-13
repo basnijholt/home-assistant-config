@@ -31,13 +31,13 @@
       entity_id: timer.block_tv_volume_sync
       state: "idle"
   action:
+    - service: timer.start
+      entity_id: timer.block_kef_volume_sync
     - service: media_player.volume_set
       entity_id: media_player.kef
       data_template:
         volume_level: >
           {{ states("sensor.tv_volume") }}
-    - service: timer.start
-      entity_id: timer.block_kef_volume_sync
 
 - alias: "Media player: sync KEF volume with TV"
   trigger:
@@ -51,10 +51,10 @@
       entity_id: timer.block_kef_volume_sync
       state: "idle"
   action:
+    - service: timer.start
+      entity_id: timer.block_tv_volume_sync
     - service: media_player.volume_set
       entity_id: media_player.tv
       data_template:
         volume_level: >
           {{ states("sensor.kef_volume") }}
-    - service: timer.start
-      entity_id: timer.block_tv_volume_sync
