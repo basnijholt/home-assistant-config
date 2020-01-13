@@ -823,6 +823,12 @@ views:
     - entity: sensor.vibration_battery_level
     title: Vibration sensors
     type: glance
+  - entities:
+    - entity: timer.block_kef_volume_sync
+    - entity: timer.block_tv_volume_sync
+    show_header_toggle: false
+    title: Timers
+    type: entities
   icon: mdi:test-tube
   path: tests
   title: Tests

@@ -19,7 +19,7 @@
       data:
         source: Opt
 
-- alias: "Media player: sync TV volume with KEF"
+- alias: "Media player: sync volume TV → KEF"
   trigger:
     platform: state
     entity_id: sensor.tv_volume
@@ -39,7 +39,7 @@
         volume_level: >
           {{ states("sensor.tv_volume") }}
 
-- alias: "Media player: sync KEF volume with TV"
+- alias: "Media player: sync volume KEF → TV"
   trigger:
     platform: state
     entity_id: sensor.kef_volume
