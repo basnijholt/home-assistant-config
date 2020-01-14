@@ -826,8 +826,10 @@ views:
   - entities:
     - entity: timer.block_kef_volume_sync
     - entity: timer.block_tv_volume_sync
+    - entity: timer.volume_set_delay
+    - entity: sensor.kef_volume
     show_header_toggle: false
-    title: Timers
+    title: Volume sync
     type: entities
   icon: mdi:test-tube
   path: tests
