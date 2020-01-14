@@ -28,6 +28,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 * Xiaomi Aqara Single Button (4x) (€37.05)
 * Philips Hue Dimmer switch (2x) (€33.22)
 * IKEA TRÅDFRI SYMFONISK Remote (€15.00)
+* Xiaomi Mi Flora (3x) (€46.63)
 
 ### Sensors
 * Xiaomi Aqara Door Sensor (4x) (€32.71)
@@ -40,6 +41,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 
 ### Media player
 * KEF LS50 Wireless speakers
+* KEF LSX speakers
 * LG OLED 55 C9
 
 ### Lights
@@ -60,8 +62,11 @@ See also [my guide for my girlfriend ❤️](guide.md).
 ### Device tracker
 * iPhone X with the new iOS app (2x)
 
+## Other
+* PlayStation Eye Webcam and Microphone array (€14.95)
+
 ### Total cost
-*€1,271.7* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
+*€1,333.28* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
 I bought many things on Aliexpress and with discount or used on Amazon.
 
 ## Notes
