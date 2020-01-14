@@ -7,12 +7,15 @@
       entity_id: media_player.spotify
       to: paused
   condition:
-    condition: template
-    value_template: >
-      {{ (is_state("media_player.tv", "on") and not
-          is_state_attr("media_player.tv", "source", "GALLERY")) and not (
-        is_state_attr("media_player.spotify", "source", "LS50 Wireless") and
-        is_state("media_player.spotify", "playing")) }}
+    - condition: template
+      value_template: >
+        {{ (is_state("media_player.tv", "on") and not
+            is_state_attr("media_player.tv", "source", "GALLERY")) and not (
+          is_state_attr("media_player.spotify", "source", "LS50 Wireless") and
+          is_state("media_player.spotify", "playing")) }}
+    - condition: template
+      value_template: >
+        {{ not is_state_attr("media_player.kef", "source", "Opt") }}
   action:
     - service: media_player.select_source
       entity_id: media_player.kef
@@ -21,8 +24,11 @@
 
 - alias: "Media player: sync volume TV → KEF"
   trigger:
-    platform: state
-    entity_id: sensor.tv_volume
+    - platform: state
+      entity_id: sensor.tv_volume
+    - platform: state
+      entity_id: timer.volume_set_delay
+      to: "idle"
   condition:
     - condition: template
       value_template: >
@@ -30,9 +36,12 @@
     - condition: state
       entity_id: timer.block_tv_volume_sync
       state: "idle"
+    - condition: state
+      entity_id: timer.volume_set_delay
+      state: "idle"
   action:
     - service: timer.start
-      entity_id: timer.block_kef_volume_sync
+      entity_id: timer.block_kef_volume_sync, timer.volume_set_delay
     - service: media_player.volume_set
       entity_id: media_player.kef
       data_template:
@@ -41,8 +50,11 @@
 
 - alias: "Media player: sync volume KEF → TV"
   trigger:
-    platform: state
-    entity_id: sensor.kef_volume
+    - platform: state
+      entity_id: sensor.kef_volume
+    - platform: state
+      entity_id: timer.volume_set_delay
+      to: "idle"
   condition:
     - condition: template
       value_template: >
@@ -50,9 +62,12 @@
     - condition: state
       entity_id: timer.block_kef_volume_sync
       state: "idle"
+    - condition: state
+      entity_id: timer.volume_set_delay
+      state: "idle"
   action:
     - service: timer.start
-      entity_id: timer.block_tv_volume_sync
+      entity_id: timer.block_tv_volume_sync, timer.volume_set_delay
     - service: media_player.volume_set
       entity_id: media_player.tv
       data_template:
