@@ -4,3 +4,6 @@ block_tv_volume_sync:
 
 block_kef_volume_sync:
   duration: '00:00:05'
+
+volume_set_delay:
+  duration: '00:00:01'
