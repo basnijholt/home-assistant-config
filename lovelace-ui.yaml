@@ -721,16 +721,53 @@ views:
   title: System Information
 - badges: []
   cards:
+  - columns: 4
+    entities:
+    - entity: binary_sensor.motion_sensor_kitchen
+    - entity: binary_sensor.motion_sensor_toilet
+    - entity: binary_sensor.motion_sensor_hall
+    - entity: binary_sensor.motion_sensor_bathroom
+    - entity: sensor.lightlevel_kitchen
+    - entity: sensor.lightlevel_toilet
+    - entity: sensor.lightlevel_hall
+    - entity: sensor.lightlevel_bathroom
+    - entity: sensor.motion_sensor_kitchen_battery_level
+    - entity: sensor.motion_sensor_toilet_battery_level
+    - entity: sensor.motion_sensor_hall_battery_level
+    - entity: sensor.motion_sensor_bathroom_battery_level
+    show_icon: true
+    show_name: false
+    title: Motion sensor
+    type: glance
+  - columns: 4
+    entities:
+    - entity: sensor.button_mini_bedroom_battery_level
+    - entity: sensor.button_mini_2_battery_level
+    - entity: sensor.button_mini_downstairs_battery_level
+    - entity: sensor.button_mini_living_room_battery_level
+    show_icon: true
+    show_name: false
+    title: Buttons
+    type: glance
   - entities:
-    - entity: input_boolean.start_spotify
-    - entity: input_boolean.wake_up_light
-    - entity: input_boolean.wake_up_with_spotify
-    - entity: input_boolean.start_speakers
-    - entity: input_boolean.demo_wake_up_light
-    - entity: input_boolean.demo_wake_up_with_spotify
+    - entity: binary_sensor.activity_in_bathroom
+    - entity: binary_sensor.activity_in_hall
+    - entity: binary_sensor.activity_in_kitchen
+    - entity: binary_sensor.activity_in_toilet
+    - entity: binary_sensor.openclose_front_door
+    - type: divider
+    - entity: binary_sensor.motion_detected
+    - entity: binary_sensor.motion_detected_in_last_hour
+    - entity: binary_sensor.someone_showering
+    - entity: binary_sensor.someone_in_the_house_in_last_hour
     show_header_toggle: false
-    title: Test apps
+    title: Activity in the house
     type: entities
+  - entities:
+    - entity: binary_sensor.vibration
+    - entity: sensor.vibration_battery_level
+    title: Vibration sensors
+    type: glance
   - columns: 4
     entities:
     - entity: binary_sensor.openclose_front_door
@@ -769,24 +806,21 @@ views:
     theme: Backend-selected
     title: Temperature sensors
     type: glance
-  - columns: 4
-    entities:
-    - entity: binary_sensor.motion_sensor_kitchen
-    - entity: binary_sensor.motion_sensor_toilet
-    - entity: binary_sensor.motion_sensor_hall
-    - entity: binary_sensor.motion_sensor_bathroom
-    - entity: sensor.lightlevel_kitchen
-    - entity: sensor.lightlevel_toilet
-    - entity: sensor.lightlevel_hall
-    - entity: sensor.lightlevel_bathroom
-    - entity: sensor.motion_sensor_kitchen_battery_level
-    - entity: sensor.motion_sensor_toilet_battery_level
-    - entity: sensor.motion_sensor_hall_battery_level
-    - entity: sensor.motion_sensor_bathroom_battery_level
-    show_icon: true
-    show_name: false
-    title: Motion sensor
-    type: glance
+  icon: mdi:motion-sensor
+  path: sensors
+  title: Sensors
+- badges: []
+  cards:
+  - entities:
+    - entity: input_boolean.start_spotify
+    - entity: input_boolean.wake_up_light
+    - entity: input_boolean.wake_up_with_spotify
+    - entity: input_boolean.start_speakers
+    - entity: input_boolean.demo_wake_up_light
+    - entity: input_boolean.demo_wake_up_with_spotify
+    show_header_toggle: false
+    title: Test apps
+    type: entities
   - entities:
     - entity: input_select.cube_mode
     - entity: input_select.last_script_bedroom
@@ -794,40 +828,13 @@ views:
     show_header_toggle: false
     title: Inputs (automatically switched)
     type: entities
-  - columns: 4
-    entities:
-    - entity: sensor.button_mini_bedroom_battery_level
-    - entity: sensor.button_mini_2_battery_level
-    - entity: sensor.button_mini_downstairs_battery_level
-    - entity: sensor.button_mini_living_room_battery_level
-    show_icon: true
-    show_name: false
-    title: Buttons
-    type: glance
-  - entities:
-    - entity: binary_sensor.activity_in_bathroom
-    - entity: binary_sensor.activity_in_hall
-    - entity: binary_sensor.activity_in_kitchen
-    - entity: binary_sensor.activity_in_toilet
-    - entity: binary_sensor.openclose_front_door
-    - type: divider
-    - entity: binary_sensor.motion_detected
-    - entity: binary_sensor.motion_detected_in_last_hour
-    - entity: binary_sensor.someone_showering
-    - entity: binary_sensor.someone_in_the_house_in_last_hour
-    show_header_toggle: false
-    title: Activity in the house
-    type: entities
-  - entities:
-    - entity: binary_sensor.vibration
-    - entity: sensor.vibration_battery_level
-    title: Vibration sensors
-    type: glance
   - entities:
     - entity: timer.block_kef_volume_sync
     - entity: timer.block_tv_volume_sync
-    - entity: timer.volume_set_delay
     - entity: sensor.kef_volume
+    - entity: sensor.tv_volume
+    - entity: timer.tv_volume_delay
+    - entity: timer.kef_volume_delay
     show_header_toggle: false
     title: Volume sync
     type: entities
