@@ -99,8 +99,8 @@
       state: "off"
     - condition: template
       value_template: >
-        {{ state_attr("media_player.spotify", "source") == "basnijholt-iphone"
-           and states("media_player.spotify") == "playing" }}
+        {{ is_state_attr("media_player.spotify", "source", "basnijholt-iphone")
+           and is_state("media_player.spotify", "playing") }}
   action:
     - service: media_player.turn_on
       entity_id: media_player.kef
