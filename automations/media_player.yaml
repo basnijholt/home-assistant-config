@@ -19,7 +19,7 @@
                 and is_state("media_player.spotify", "playing")) }}
     - condition: template
       value_template: >
-        {{ not is_state_attr("media_player.tv", "source", "GALLERY")) }}
+        {{ not is_state_attr("media_player.tv", "source", "GALLERY") }}
   action:
     service: media_player.select_source
     entity_id: media_player.kef
