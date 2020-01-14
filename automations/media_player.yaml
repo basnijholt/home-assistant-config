@@ -7,20 +7,24 @@
       entity_id: media_player.spotify
       to: paused
   condition:
-    - condition: template
-      value_template: >
-        {{ (is_state("media_player.tv", "on") and not
-            is_state_attr("media_player.tv", "source", "GALLERY")) and not (
-          is_state_attr("media_player.spotify", "source", "LS50 Wireless") and
-          is_state("media_player.spotify", "playing")) }}
+    - condition: state
+      entity_id: media_player.tv
+      state: "on"
     - condition: template
       value_template: >
         {{ not is_state_attr("media_player.kef", "source", "Opt") }}
+    - condition: template
+      value_template: >
+        {{ not (is_state_attr("media_player.spotify", "source", "LS50 Wireless")
+                and is_state("media_player.spotify", "playing")) }}
+    - condition: template
+      value_template: >
+        {{ not is_state_attr("media_player.tv", "source", "GALLERY")) }}
   action:
-    - service: media_player.select_source
-      entity_id: media_player.kef
-      data:
-        source: Opt
+    service: media_player.select_source
+    entity_id: media_player.kef
+    data:
+      source: Opt
 
 - alias: "Media player: TV volume delay"
   trigger:
