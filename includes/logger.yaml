@@ -1,5 +1,5 @@
 ---
 default: critical
 logs:
-  custom_components.kef: debug
+  homeassistant.components.kef: debug
   aiokef: debug

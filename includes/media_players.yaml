@@ -5,7 +5,7 @@
 
 - platform: kef
   type: LS50
-  name: Living room speakers
+  name: KEF
   host: 192.168.1.5
   maximum_volume: 0.6
   volume_step: 0.05
