@@ -17,6 +17,7 @@ Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-da
 * [Presence detection in different rooms based on various binary template sensors](includes/binary_sensors.yaml)
 * [Robot vacuum automations](automations/vacuum.yaml)
 * [Arriving and leaving automations](automations/leaving_and_arriving.yaml)
+* [Notifications when the dishwasher or washing machine is done](automations/utilities.yaml)
 
 See also [my guide for my girlfriend ❤️](guide.md).
 
