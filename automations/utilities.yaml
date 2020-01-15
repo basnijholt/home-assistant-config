@@ -18,6 +18,10 @@
     from: "on"
     to: "off"
   action:
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.washing_machine_done
+      data_template:
+        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     - service: notify.mobile_app_basnijholt_iphone
       data:
         title: "Utilities"
@@ -26,10 +30,6 @@
       data:
         title: "Utilities"
         message: "Washing machine is done 👚👕"
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.washing_machine_done
-      data_template:
-        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
 - alias: "Utilities: dishwasher is done"
   trigger:
@@ -38,6 +38,10 @@
     from: "on"
     to: "off"
   action:
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.dishwasher_done
+      data_template:
+        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     - service: notify.mobile_app_basnijholt_iphone
       data:
         title: "Utilities"
@@ -46,10 +50,6 @@
       data:
         title: "Utilities"
         message: "Dishwasher is done 🍽🍳"
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.dishwasher_done
-      data_template:
-        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
 - alias: "Utilities: dishwasher has started"
   trigger:
@@ -62,4 +62,3 @@
     entity_id: input_datetime.dishwasher_started
     data_template:
       datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-
