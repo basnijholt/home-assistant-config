@@ -2,3 +2,9 @@
   host: 192.168.1.2
   name: tv
   filename: webostv.conf
+
+- platform: group
+  name: all_iphones
+  services:
+    - service: mobile_app_basnijholt_iphone
+    - service: mobile_app_marcella_iphone
