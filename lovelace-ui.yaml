@@ -296,7 +296,7 @@ views:
     - entities:
       - icon: mdi:currency-eur
         name: '{% set kwh = state_attr(''switch.dishwasher'', ''today_energy_kwh'')
-          | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
+          | float %} {% set cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh
           and cost €{{ cost_today | round(2) }}.
 
           '
@@ -308,8 +308,8 @@ views:
           '
         secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_started\"\
           )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_done\"\
-          )) %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  It is on\
-          \ for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  It has been off\
+          )) %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  Has been\
+          \ on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  Has been off\
           \ for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
         state: "{% if is_state('binary_sensor.dishwasher', 'on') %}\n  {{ states(\"\
           sensor.dishwasher_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
@@ -318,7 +318,7 @@ views:
     - entities:
       - icon: mdi:currency-eur
         name: '{% set kwh = state_attr(''switch.washing_machine'', ''today_energy_kwh'')
-          | float %} {% set cost_today = 0.1979 * kwh %} Today it used {{ kwh }} kWh
+          | float %} {% set cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh
           and cost €{{ cost_today | round(2) }}.
 
           '
@@ -330,8 +330,8 @@ views:
           '
         secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_started\"\
           )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_done\"\
-          )) %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  It is\
-          \ on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  It has been\
+          )) %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  Has\
+          \ been on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  Has been\
           \ off for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
         state: "{% if is_state('binary_sensor.washing_machine', 'on') %}\n  {{ states(\"\
           sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
