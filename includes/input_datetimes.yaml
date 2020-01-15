@@ -3,3 +3,23 @@ alarm_clock:
   name: Alarm clock
   has_date: false
   has_time: true
+
+washing_machine_started:
+  name: Washing machine last started
+  has_date: true
+  has_time: true
+
+washing_machine_done:
+  name: Washing machine last done
+  has_date: true
+  has_time: true
+
+dishwasher_started:
+  name: Washing machine last started
+  has_date: true
+  has_time: true
+
+dishwasher_done:
+  name: Washing machine last done
+  has_date: true
+  has_time: true

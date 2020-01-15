@@ -1,6 +1,17 @@
 ---
+- alias: "Utilities: washing machine has started"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.washing_machine
+    from: "off"
+    to: "on"
+  action:
+    service: input_datetime.set_datetime
+    entity_id: input_datetime.washing_machine_started
+    data_template:
+      datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
 - alias: "Utilities: washing machine is done"
-  initial_state: "on"
   trigger:
     platform: state
     entity_id: binary_sensor.washing_machine
@@ -15,9 +26,12 @@
       data:
         title: "Utilities"
         message: "Washing machine is done 👚👕"
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.washing_machine_done
+      data_template:
+        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
 - alias: "Utilities: dishwasher is done"
-  initial_state: "on"
   trigger:
     platform: state
     entity_id: binary_sensor.dishwasher
@@ -32,3 +46,20 @@
       data:
         title: "Utilities"
         message: "Dishwasher is done 🍽🍳"
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.dishwasher_done
+      data_template:
+        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
+- alias: "Utilities: dishwasher has started"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.dishwasher
+    from: "off"
+    to: "on"
+  action:
+    service: input_datetime.set_datetime
+    entity_id: input_datetime.dishwasher_started
+    data_template:
+      datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+

@@ -306,10 +306,11 @@ views:
         name: 'Dishwasher
 
           '
-        secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.dishwasher.last_changed)\
-          \ %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  It is on for\
-          \ {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has been\
-          \ off for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
+        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_started\"\
+          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_done\"\
+          )) %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  It is on\
+          \ for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  It has been off\
+          \ for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
         state: "{% if is_state('binary_sensor.dishwasher', 'on') %}\n  {{ states(\"\
           sensor.dishwasher_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
         type: custom:template-entity-row
@@ -327,10 +328,11 @@ views:
         name: 'Washing machine
 
           '
-        secondary: "{% set last_changed = as_timestamp(now()) - as_timestamp(states.binary_sensor.washing_machine.last_changed)\
-          \ %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  It is\
-          \ on for {{ (last_changed / 60)|round(0) }} minutes.\n{% else %}\n  It has\
-          \ been off for {{ (last_changed / 3600)|round(1) }} hours.\n{% endif %}\n"
+        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_started\"\
+          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_done\"\
+          )) %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  It is\
+          \ on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  It has been\
+          \ off for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
         state: "{% if is_state('binary_sensor.washing_machine', 'on') %}\n  {{ states(\"\
           sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
         type: custom:template-entity-row
