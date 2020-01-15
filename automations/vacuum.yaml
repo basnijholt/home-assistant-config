@@ -1,6 +1,5 @@
 ---
 - alias: "Vacuum: started cleaning"
-  initial_state: "on"
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -13,7 +12,6 @@
       message: "Robot started to clean!"
 
 - alias: "Vacuum: stopped cleaning"
-  initial_state: "on"
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -27,6 +25,23 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.cleaned_today
 
+- alias: "Vacuum: reminder notification"
+  trigger:
+    platform: time
+    at: "08:00"
+  condition:
+    condition: time
+    weekday:
+      - mon
+      - wed
+      - fri
+      - sun
+  action:
+    service: notify.mobile_app_basnijholt_iphone
+    data:
+      title: "Robot"
+      message: "Vacuum will go today, make sure to leave the doors open and leave nothing on the floor!"
+
 - alias: "Vacuum: cleanup if nobody is home"
   trigger:
     - platform: time
@@ -36,30 +51,28 @@
       from: home
       to: not_home
   condition:
-    condition: and
-    conditions:
-      - condition: time
-        after: "13:00:00"
-        before: "22:00:00"
-        weekday:
-          - mon
-          - wed
-          - fri
-          - sun
-      - condition: state
-        entity_id: group.persons
-        state: not_home
-      - condition: state
-        entity_id: input_boolean.cleaned_today
-        state: "off"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_boolean.guest_mode
-            state: "off"
-          - condition: state
-            entity_id: input_boolean.vacation_mode
-            state: "off"
+    - condition: time
+      after: "13:00:00"
+      before: "22:00:00"
+      weekday:
+        - mon
+        - wed
+        - fri
+        - sun
+    - condition: state
+      entity_id: group.persons
+      state: not_home
+    - condition: state
+      entity_id: input_boolean.cleaned_today
+      state: "off"
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: "off"
+        - condition: state
+          entity_id: input_boolean.vacation_mode
+          state: "off"
   action:
     service: vacuum.start
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -73,7 +86,7 @@
     service: input_boolean.turn_off
     entity_id: input_boolean.cleaned_today
 
-- alias: "Vacuum: reset to balanced"
+- alias: "Vacuum: reset to balanced mode"
   trigger:
     platform: state
     entity_id: vacuum.living_room
