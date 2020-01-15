@@ -15,11 +15,11 @@ washing_machine_done:
   has_time: true
 
 dishwasher_started:
-  name: Washing machine last started
+  name: Dishwasher last started
   has_date: true
   has_time: true
 
 dishwasher_done:
-  name: Washing machine last done
+  name: Dishwasher last done
   has_date: true
   has_time: true
