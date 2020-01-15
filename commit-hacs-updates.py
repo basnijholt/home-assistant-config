@@ -15,4 +15,4 @@ for line in p.split("\n"):
 for folder in folders_to_add:
     print(folder)
     subprocess.run(f"git add {folder}".split())
-    subprocess.run(["git", "commit", f"-m 'update {folder}'"])
+    subprocess.run(["git", "commit", "-m", f"update {folder} via HACS"])
