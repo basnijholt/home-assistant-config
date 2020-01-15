@@ -52,6 +52,10 @@
       entity_id: light.living_room_lights
       data:
         brightness: 255
+    - service: input_select.select_option
+      entity_id: input_select.last_script_living_room
+      data:
+        option: script.white_lights_living_room
 
 - alias: "Light: bright white lights the bedroom"
   trigger:
@@ -70,6 +74,11 @@
       entity_id: light.bedroom_lights
       data:
         brightness: 255
+    - service: input_select.select_option
+      entity_id: input_select.last_script_bedroom
+      data:
+        option: script.white_lights_bedroom
+
 
 - alias: "Light: toggle max/min brightness in the bedroom"
   trigger:
