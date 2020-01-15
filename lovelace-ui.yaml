@@ -1,8 +1,9 @@
 background: var(--background-image)
-cch:
-  background: rgba(155,155,155,.25)
-  clock_format: 24
-  options: clock
+custom_header:
+  background: rgba(155, 155, 155, 0.25)
+  button_text:
+    options: '{{ hours12 }}:{{ minutesLZ }}'
+  compact_mode: true
   swipe_animate: fade
   swipe_prevent_default: true
 decluttering_templates:
@@ -32,8 +33,6 @@ resources:
   url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
 - type: module
   url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
-- type: module
-  url: /community_plugin/compact-custom-header/compact-custom-header.js
 - type: js
   url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
 - type: js
@@ -52,6 +51,8 @@ resources:
   url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
 - type: module
   url: /community_plugin/lovelace-template-entity-row/template-entity-row.js
+- type: module
+  url: /community_plugin/custom-header/custom-header.js
 title: Huis
 views:
 - badges:
