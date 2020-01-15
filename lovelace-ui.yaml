@@ -2,7 +2,7 @@ background: var(--background-image)
 custom_header:
   background: rgba(155, 155, 155, 0.25)
   button_text:
-    options: '{{ hours12 }}:{{ minutesLZ }}'
+    options: '{{ hours24 }}:{{ minutesLZ }}'
   compact_mode: true
   swipe_animate: fade
   swipe_prevent_default: true
@@ -840,6 +840,14 @@ views:
     - entity: timer.kef_volume_delay
     show_header_toggle: false
     title: Volume sync
+    type: entities
+  - entities:
+    - entity: input_datetime.dishwasher_started
+    - entity: input_datetime.dishwasher_done
+    - entity: input_datetime.washing_machine_started
+    - entity: input_datetime.washing_machine_done
+    show_header_toggle: false
+    title: Datetimes
     type: entities
   icon: mdi:test-tube
   path: tests
