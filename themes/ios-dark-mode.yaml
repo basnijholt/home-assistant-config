@@ -66,5 +66,4 @@ ios-dark-mode:
   mcg-title-letter-spacing: .15em
   mini-media-player-base-color: white
   mini-media-player-icon-color: white
-  # mini-media-player-background-opacity: 0.7
   # mini-media-player-artwork-opacity: 0.7  # causing some bug
