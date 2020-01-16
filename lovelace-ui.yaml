@@ -849,6 +849,107 @@ views:
     show_header_toggle: false
     title: Datetimes
     type: entities
+  - entities:
+    - entity: sensor.time_at_work_this_week
+      max: 50
+      min: 0
+      target: 40
+      title: This week
+      type: custom:bar-card
+    - entity: sensor.time_at_work_prognosis
+      max: 50
+      min: 0
+      severity:
+      - color: red
+        value: 30
+      - color: yellow
+        value: 38
+      - color: green
+        value: 42
+      - color: red
+        value: 50
+      target: 40
+      title: This week prognosis
+      type: custom:bar-card
+    - type: divider
+    - entity: sensor.time_at_work_on_monday
+      max: 12
+      min: 0
+      severity:
+      - color: red
+        value: 6
+      - color: yellow
+        value: 8
+      - color: green
+        value: 9
+      - color: red
+        value: 10
+      target: 8
+      title: Monday
+      type: custom:bar-card
+    - entity: sensor.time_at_work_on_tuesday
+      max: 12
+      min: 0
+      severity:
+      - color: red
+        value: 6
+      - color: yellow
+        value: 8
+      - color: green
+        value: 9
+      - color: red
+        value: 10
+      target: 8
+      title: Tuesday
+      type: custom:bar-card
+    - entity: sensor.time_at_work_on_wednessday
+      max: 12
+      min: 0
+      severity:
+      - color: red
+        value: 6
+      - color: yellow
+        value: 8
+      - color: green
+        value: 9
+      - color: red
+        value: 10
+      target: 8
+      title: Wednessday
+      type: custom:bar-card
+    - entity: sensor.time_at_work_on_thursday
+      max: 12
+      min: 0
+      severity:
+      - color: red
+        value: 6
+      - color: yellow
+        value: 8
+      - color: green
+        value: 9
+      - color: red
+        value: 10
+      target: 8
+      title: Thursday
+      type: custom:bar-card
+    - entity: sensor.time_at_work_on_friday
+      max: 12
+      min: 0
+      severity:
+      - color: red
+        value: 6
+      - color: yellow
+        value: 8
+      - color: green
+        value: 9
+      - color: red
+        value: 10
+      target: 8
+      title: Friday
+      type: custom:bar-card
+    show_header_toggle: false
+    title: Work time
+    type: entities
   icon: mdi:test-tube
   path: tests
   title: Tests
