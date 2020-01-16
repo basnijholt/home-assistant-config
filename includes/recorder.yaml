@@ -1,4 +1,4 @@
-purge_keep_days: 5
+purge_keep_days: 8
 exclude:
   entities:
     - sun.sun  # Don't record sun data

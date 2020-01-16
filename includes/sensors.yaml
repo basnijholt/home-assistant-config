@@ -77,6 +77,17 @@
       value_template: >
         {{ state_attr("media_player.kef", "volume_level") }}
 
+    timestamp_start_of_today:
+      value_template: >
+        {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}
+
+    time_at_work_prognosis:
+      value_template: >
+        {% set day = [now().weekday(), 4] | min %}
+        {% set hours_per_day = states("sensor.time_at_work_this_week")|float / (day + 1) %}
+        {{ (5 * hours_per_day)|round(2) }}
+      unit_of_measurement: h
+
 - platform: min_max
   name: Temperature mean
   type: mean
@@ -138,3 +149,85 @@
     - path: "basnijholt/lovelace-ios-dark-mode-theme"
     - path: "python-adaptive/adaptive"
     - path: "basnijholt/home-assistant-config"
+
+
+# Work time tracker
+
+- platform: history_stats
+  name: Time at work this week
+  entity_id: person.bas
+  state: Work
+  type: time
+  start: >
+    {{ states("sensor.timestamp_start_of_today")|float - now().weekday() * 86400 }}
+  end: "{{ now() }}"
+
+- platform: history_stats
+  name: Time at work today
+  entity_id: person.bas
+  state: Work
+  type: time
+  start: >
+    {{ states("sensor.timestamp_start_of_today")|float - 0 * 86400 }}
+  duration:
+    hours: 24
+
+- platform: history_stats
+  name: Time at work on Monday
+  entity_id: person.bas
+  state: Work
+  type: time
+  duration:
+    hours: 24
+  start: >
+    {% set day = now().weekday() - 0 %}
+    {% if day < 0 %}{% set day = day + 7 %}{% endif %}
+    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+
+- platform: history_stats
+  name: Time at work on Tuesday
+  entity_id: person.bas
+  state: Work
+  type: time
+  duration:
+    hours: 24
+  start: >
+    {% set day = now().weekday() - 1 %}
+    {% if day < 0 %}{% set day = day + 7 %}{% endif %}
+    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+
+- platform: history_stats
+  name: Time at work on Wednessday
+  entity_id: person.bas
+  state: Work
+  type: time
+  duration:
+    hours: 24
+  start: >
+    {% set day = now().weekday() - 2 %}
+    {% if day < 0 %}{% set day = day + 7 %}{% endif %}
+    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+
+- platform: history_stats
+  name: Time at work on Thursday
+  entity_id: person.bas
+  state: Work
+  type: time
+  duration:
+    hours: 24
+  start: >
+    {% set day = now().weekday() - 3 %}
+    {% if day < 0 %}{% set day = day + 7 %}{% endif %}
+    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+
+- platform: history_stats
+  name: Time at work on Friday
+  entity_id: person.bas
+  state: Work
+  type: time
+  duration:
+    hours: 24
+  start: >
+    {% set day = now().weekday() - 4 %}
+    {% if day < 0 %}{% set day = day + 7 %}{% endif %}
+    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
