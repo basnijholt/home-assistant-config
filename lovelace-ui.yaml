@@ -500,6 +500,7 @@ views:
       - entity: sensor.hacs
         icon: mdi:update
         name: Community Store
+      - entity: binary_sensor.snapshots_stale
       - type: divider
       - entity: sensor.last_boot
         icon: mdi:calendar
