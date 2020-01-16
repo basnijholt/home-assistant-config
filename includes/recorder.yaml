@@ -9,6 +9,7 @@ exclude:
     - sensor.time_at_work_on_thursday
     - sensor.time_at_work_on_tuesday
     - sensor.time_at_work_on_wednessday
+    - sensor.timestamp_start_of_today
     - sensor.favorite_playlist_of_nearest_person
     - sensor.daylight
     - sensor.connection_type_ipad
