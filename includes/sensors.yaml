@@ -99,7 +99,20 @@
     time_at_work_prognosis:
       value_template: >
         {% set day = [now().weekday(), 4] | min %}
-        {% set hours_per_day = states("sensor.time_at_work_this_week")|float / (day + 1) %}
+        {% set t_total = states("sensor.time_at_work_this_week")|float %}
+        {% set t_today = states("sensor.time_at_work_today")|float %}
+        {% set hours_per_day_including_today = t_total / (day + 1) %}
+        {% set hours_per_day_excluding_today = (t_total - t_today ) / (day + 10**-16) %}
+        {% set seven_oclock = as_timestamp(now().replace(hour=19).replace(minute=0).replace(second=0)) %}
+
+        {% if t_today > hours_per_day_excluding_today
+              or (not is_state("person.bas", "Work") and t_today > 0)
+              or (as_timestamp(now()) > seven_oclock)
+              or day == 0 %}
+          {% set hours_per_day = hours_per_day_including_today %}
+        {% else %}
+          {% set hours_per_day = hours_per_day_excluding_today %}
+        {% endif %}
         {{ (5 * hours_per_day)|round(2) }}
       unit_of_measurement: h
 
