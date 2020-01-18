@@ -16,62 +16,50 @@
     count_automations:
       entity_id: sensor.date
       value_template: "{{ states.automation | count }}"
-      unit_of_measurement: automations
 
     count_scripts:
       entity_id: sensor.date
       value_template: "{{ states.script| count }}"
-      unit_of_measurement: scripts
 
     count_device_trackers:
       entity_id: sensor.date
       value_template: "{{ states.device_tracker | count }}"
-      unit_of_measurement: device_trackers
 
     count_binary_sensors:
       entity_id: sensor.date
       value_template: "{{ states.binary_sensor| count }}"
-      unit_of_measurement: binary_sensors
 
     count_sensors:
       entity_id: sensor.date
       value_template: "{{ states.sensor | count }}"
-      unit_of_measurement: sensors
 
     count_switches:
       entity_id: sensor.date
       value_template: "{{ states.switch | count }}"
-      unit_of_measurement: switches
 
     count_zones:
       entity_id: sensor.date
       value_template: "{{ states.zone | count }}"
-      unit_of_measurement: zones
 
     count_input_booleans:
       entity_id: sensor.date
       value_template: "{{ states.input_boolean | count }}"
-      unit_of_measurement: input_booleans
 
     count_input_numbers:
       entity_id: sensor.date
       value_template: "{{ states.input_number | count }}"
-      unit_of_measurement: input_numbers
 
     count_input_texts:
       entity_id: sensor.date
       value_template: "{{ states.input_text | count }}"
-      unit_of_measurement: input_texts
 
     count_input_selects:
       entity_id: sensor.date
       value_template: "{{ states.input_select | count }}"
-      unit_of_measurement: input_selects
 
     count_input_datetimes:
       entity_id: sensor.date
       value_template: "{{ states.input_datetime | count }}"
-      unit_of_measurement: input_datetimes
 
     favorite_playlist_of_nearest_person:
       value_template: >
