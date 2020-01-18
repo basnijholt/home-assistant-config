@@ -96,7 +96,8 @@
         {% if t_today > hours_per_day_excluding_today
               or (not is_state("person.bas", "Work") and t_today > 0)
               or (as_timestamp(now()) > seven_oclock)
-              or day == 0 %}
+              or day == 0
+              or now().weekday() > 4 %}
           {% set hours_per_day = hours_per_day_including_today %}
         {% else %}
           {% set hours_per_day = hours_per_day_excluding_today %}
