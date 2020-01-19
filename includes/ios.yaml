@@ -1,0 +1,12 @@
+---
+push:
+  categories:
+    - name: Turn off everything
+      identifier: turn_off_everything
+      actions:
+        - identifier: TURN_OFF_EVERYTHING
+          title: Turn off everything
+          activationMode: background
+          authenticationRequired: true
+          destructive: true
+          behavior: default

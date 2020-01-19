@@ -1,19 +1,25 @@
 ---
-# Base Configuration:
-homeassistant: !include includes/homeassistant.yaml
-
 # Core Configuration
+homeassistant: !include includes/homeassistant.yaml
 default_config:
 frontend:
   themes: !include_dir_merge_named themes
-scene: !include scenes.yaml
-person: !include includes/persons.yaml
+http: !include includes/http.yaml
+
+# Inputs
 input_boolean: !include includes/input_booleans.yaml
 input_datetime: !include includes/input_datetimes.yaml
 input_select: !include includes/input_selects.yaml
+
+# Logging and history
 logger: !include includes/logger.yaml
+recorder: !include includes/recorder.yaml
+device_tracker: !include includes/device_trackers.yaml
+
+# Others
+scene: !include scenes.yaml
+person: !include includes/persons.yaml
 zone: !include includes/zones.yaml
-http: !include includes/http.yaml
 group: !include includes/groups.yaml
 script: !include scripts.yaml
 automation: !include automations.yaml
@@ -21,7 +27,6 @@ automation old: !include_dir_merge_list automations
 switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
 binary_sensor: !include includes/binary_sensors.yaml
-recorder: !include includes/recorder.yaml
 weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
 notify: !include includes/notify.yaml
@@ -29,14 +34,14 @@ light: !include includes/lights.yaml
 wake_on_lan:
 proximity: !include includes/proximity.yaml
 timer: !include includes/timers.yaml
-
-# Components:
+ios: !include includes/ios.yaml
 tplink: !include includes/tplink.yaml
 webostv: !include includes/webostv.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 vacuum: !include includes/vacuum.yaml
-circadian_lighting: !include includes/circadian_lighting.yaml
 media_player: !include includes/media_players.yaml
 homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml
-device_tracker: !include includes/device_trackers.yaml
+
+# Custom components
+circadian_lighting: !include includes/circadian_lighting.yaml
