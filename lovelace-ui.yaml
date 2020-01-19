@@ -215,6 +215,7 @@ views:
     - entity: input_boolean.alarm_clock
     - entity: input_datetime.alarm_clock
     - entity: input_boolean.sleep_mode
+    - entity: input_boolean.dark_mode
     show_header_toggle: false
     type: entities
   - entities:
@@ -488,6 +489,107 @@ views:
     type: vertical-stack
   path: default_view
   title: Home
+- badges: []
+  cards:
+  - columns: 3
+    entities:
+    - entity: binary_sensor.motion_sensor_kitchen
+    - entity: sensor.lightlevel_kitchen
+    - entity: sensor.motion_sensor_kitchen_battery_level
+    - entity: binary_sensor.motion_sensor_toilet
+    - entity: sensor.lightlevel_toilet
+    - entity: sensor.motion_sensor_toilet_battery_level
+    - entity: binary_sensor.motion_sensor_hall
+    - entity: sensor.lightlevel_hall
+    - entity: sensor.motion_sensor_hall_battery_level
+    - entity: binary_sensor.motion_sensor_bathroom
+    - entity: sensor.lightlevel_bathroom
+    - entity: sensor.motion_sensor_bathroom_battery_level
+    - entity: binary_sensor.motion_sensor_bedroom_1
+    - entity: sensor.lightlevel_bedroom_1
+    - entity: sensor.motion_sensor_bedroom_1_battery_level
+    - entity: binary_sensor.motion_sensor_bedroom_2
+    - entity: sensor.lightlevel_bedroom_2
+    - entity: sensor.motion_sensor_bedroom_2_battery_level
+    show_icon: true
+    show_name: false
+    title: Motion sensor
+    type: glance
+  - columns: 4
+    entities:
+    - entity: sensor.button_mini_bedroom_battery_level
+    - entity: sensor.button_mini_2_battery_level
+    - entity: sensor.button_mini_downstairs_battery_level
+    - entity: sensor.button_mini_living_room_battery_level
+    show_icon: true
+    show_name: false
+    title: Buttons
+    type: glance
+  - entities:
+    - entity: binary_sensor.activity_in_bathroom
+    - entity: binary_sensor.activity_in_hall
+    - entity: binary_sensor.activity_in_kitchen
+    - entity: binary_sensor.activity_in_toilet
+    - entity: binary_sensor.activity_in_bedroom
+    - entity: binary_sensor.openclose_front_door
+    - type: divider
+    - entity: binary_sensor.motion_detected
+    - entity: binary_sensor.motion_detected_in_last_hour
+    - entity: binary_sensor.someone_showering
+    - entity: binary_sensor.someone_in_the_house_in_last_hour
+    show_header_toggle: false
+    title: Activity in the house
+    type: entities
+  - entities:
+    - entity: binary_sensor.vibration
+    - entity: sensor.vibration_battery_level
+    title: Vibration sensors
+    type: glance
+  - columns: 4
+    entities:
+    - entity: binary_sensor.openclose_front_door
+    - entity: binary_sensor.openclose_2
+    - entity: binary_sensor.openclose_3
+    - entity: binary_sensor.openclose_4
+    - entity: sensor.openclose_front_door_battery_level
+    - entity: sensor.openclose_2_battery_level
+    - entity: sensor.openclose_3_battery_level
+    - entity: sensor.openclose_4_battery_level
+    show_icon: true
+    show_name: false
+    title: Open/close sensor
+    type: glance
+  - columns: 4
+    entities:
+    - entity: sensor.temperature_living_room
+    - entity: sensor.temperature_bedroom
+    - entity: sensor.temperature_hall
+    - entity: sensor.temperature_bathroom
+    - entity: sensor.humidity_living_room
+    - entity: sensor.humidity_bedroom
+    - entity: sensor.humidity_hall
+    - entity: sensor.humidity_bathroom
+    - entity: sensor.pressure_living_room
+    - entity: sensor.pressure_bedroom
+    - entity: sensor.pressure_hall
+    - entity: sensor.pressure_bathroom
+    - entity: sensor.temperature_sensor_living_room_battery_level
+    - entity: sensor.temperature_sensor_bedroom_battery_level
+    - entity: sensor.temperature_sensor_hall_battery_level
+    - entity: sensor.temperature_sensor_bathroom_battery_level
+    show_icon: true
+    show_name: false
+    show_state: true
+    theme: Backend-selected
+    title: Temperature sensors
+    type: glance
+  - entities:
+    - entity: input_boolean.bedroom_lights_auto_on
+    title: Test
+    type: entities
+  icon: mdi:motion-sensor
+  path: sensors
+  title: Sensors
 - cards:
   - cards:
     - entities:
@@ -723,96 +825,6 @@ views:
   icon: mdi:home-assistant
   path: system
   title: System Information
-- badges: []
-  cards:
-  - columns: 4
-    entities:
-    - entity: binary_sensor.motion_sensor_kitchen
-    - entity: binary_sensor.motion_sensor_toilet
-    - entity: binary_sensor.motion_sensor_hall
-    - entity: binary_sensor.motion_sensor_bathroom
-    - entity: sensor.lightlevel_kitchen
-    - entity: sensor.lightlevel_toilet
-    - entity: sensor.lightlevel_hall
-    - entity: sensor.lightlevel_bathroom
-    - entity: sensor.motion_sensor_kitchen_battery_level
-    - entity: sensor.motion_sensor_toilet_battery_level
-    - entity: sensor.motion_sensor_hall_battery_level
-    - entity: sensor.motion_sensor_bathroom_battery_level
-    show_icon: true
-    show_name: false
-    title: Motion sensor
-    type: glance
-  - columns: 4
-    entities:
-    - entity: sensor.button_mini_bedroom_battery_level
-    - entity: sensor.button_mini_2_battery_level
-    - entity: sensor.button_mini_downstairs_battery_level
-    - entity: sensor.button_mini_living_room_battery_level
-    show_icon: true
-    show_name: false
-    title: Buttons
-    type: glance
-  - entities:
-    - entity: binary_sensor.activity_in_bathroom
-    - entity: binary_sensor.activity_in_hall
-    - entity: binary_sensor.activity_in_kitchen
-    - entity: binary_sensor.activity_in_toilet
-    - entity: binary_sensor.openclose_front_door
-    - type: divider
-    - entity: binary_sensor.motion_detected
-    - entity: binary_sensor.motion_detected_in_last_hour
-    - entity: binary_sensor.someone_showering
-    - entity: binary_sensor.someone_in_the_house_in_last_hour
-    show_header_toggle: false
-    title: Activity in the house
-    type: entities
-  - entities:
-    - entity: binary_sensor.vibration
-    - entity: sensor.vibration_battery_level
-    title: Vibration sensors
-    type: glance
-  - columns: 4
-    entities:
-    - entity: binary_sensor.openclose_front_door
-    - entity: binary_sensor.openclose_2
-    - entity: binary_sensor.openclose_3
-    - entity: binary_sensor.openclose_4
-    - entity: sensor.openclose_front_door_battery_level
-    - entity: sensor.openclose_2_battery_level
-    - entity: sensor.openclose_3_battery_level
-    - entity: sensor.openclose_4_battery_level
-    show_icon: true
-    show_name: false
-    title: Open/close sensor
-    type: glance
-  - columns: 4
-    entities:
-    - entity: sensor.temperature_living_room
-    - entity: sensor.temperature_bedroom
-    - entity: sensor.temperature_hall
-    - entity: sensor.temperature_bathroom
-    - entity: sensor.humidity_living_room
-    - entity: sensor.humidity_bedroom
-    - entity: sensor.humidity_hall
-    - entity: sensor.humidity_bathroom
-    - entity: sensor.pressure_living_room
-    - entity: sensor.pressure_bedroom
-    - entity: sensor.pressure_hall
-    - entity: sensor.pressure_bathroom
-    - entity: sensor.temperature_sensor_living_room_battery_level
-    - entity: sensor.temperature_sensor_bedroom_battery_level
-    - entity: sensor.temperature_sensor_hall_battery_level
-    - entity: sensor.temperature_sensor_bathroom_battery_level
-    show_icon: true
-    show_name: false
-    show_state: true
-    theme: Backend-selected
-    title: Temperature sensors
-    type: glance
-  icon: mdi:motion-sensor
-  path: sensors
-  title: Sensors
 - badges: []
   cards:
   - entities:
