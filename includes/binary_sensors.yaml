@@ -12,7 +12,8 @@
         {{ states("binary_sensor.activity_in_kitchen") == "on"
            or states("binary_sensor.activity_in_hall") == "on"
            or states("binary_sensor.activity_in_toilet") == "on"
-           or states("binary_sensor.activity_in_bathroom") == "on" }}
+           or states("binary_sensor.activity_in_bathroom") == "on"
+           or states("binary_sensor.activity_in_bedroom") == "on" }}
 
     motion_detected_in_last_hour:
       friendly_name: Any motion detected in last hour
