@@ -213,19 +213,19 @@ views:
       \ red;\n}\n"
     type: vertical-stack
   - entities:
-    - entity: input_boolean.alarm_clock
-    - entity: input_datetime.alarm_clock
-    - entity: input_boolean.sleep_mode
-    - entity: input_boolean.dark_mode
-    show_header_toggle: false
-    type: entities
-  - entities:
     - entity: sensor.adaptive
       type: custom:github-entity-row
     - entity: sensor.lovelace_ios_dark_mode_theme
       type: custom:github-entity-row
     - entity: sensor.home_assistant_config
       type: custom:github-entity-row
+    show_header_toggle: false
+    type: entities
+  - entities:
+    - entity: input_boolean.alarm_clock
+    - entity: input_datetime.alarm_clock
+    - entity: input_boolean.sleep_mode
+    - entity: input_boolean.dark_mode
     show_header_toggle: false
     type: entities
   - cards:
@@ -244,49 +244,45 @@ views:
           x: 711
           y: 474
         vacuum:
-          x: 30192
-          y: 26684
+          x: 30194
+          y: 26665
       - map:
           x: 911
           y: 269
         vacuum:
-          x: 32449
-          y: 28983
+          x: 32508
+          y: 28968
       - map:
           x: 41
           y: 63
         vacuum:
-          x: 22797
-          y: 31279
+          x: 22813
+          y: 31276
       entity: vacuum.xiaomi_vacuum_cleaner
       map_image: /local/vacuum-map.png
+      service: vacuum.send_command
       type: custom:xiaomi-vacuum-map-card
       zones:
       - - - 29706
           - 27237
           - 34806
           - 31137
-          - 1
       - - - 22799
           - 27340
           - 27649
           - 31240
-          - 1
       - - - 22803
           - 25150
           - 26353
           - 27250
-          - 1
       - - - 26379
           - 26239
           - 31929
           - 27189
-          - 1
       - - - 31941
           - 25364
           - 34791
           - 27164
-          - 1
     type: vertical-stack
   - entities:
     - entity: input_boolean.vacation_mode
@@ -859,7 +855,8 @@ views:
     title: Datetimes
     type: entities
   - entities:
-    - entity: sensor.time_at_work_this_week
+    - color: '#0279ff'
+      entity: sensor.time_at_work_this_week
       max: 50
       min: 0
       target: 40
@@ -869,13 +866,13 @@ views:
       max: 50
       min: 0
       severity:
-      - color: red
+      - color: '#ff3c31'
         value: 30
-      - color: yellow
+      - color: '#ffcc01'
         value: 38
-      - color: green
+      - color: '#34c758'
         value: 42
-      - color: red
+      - color: '#ff3c31'
         value: 50
       target: 40
       title: This week prognosis
@@ -885,13 +882,13 @@ views:
       max: 12
       min: 0
       severity:
-      - color: red
+      - color: '#ff3c31'
         value: 6
-      - color: yellow
+      - color: '#ffcc01'
         value: 8
-      - color: green
+      - color: '#34c758'
         value: 9
-      - color: red
+      - color: '#ff3c31'
         value: 10
       target: 8
       title: Monday
@@ -900,13 +897,13 @@ views:
       max: 12
       min: 0
       severity:
-      - color: red
+      - color: '#ff3c31'
         value: 6
-      - color: yellow
+      - color: '#ffcc01'
         value: 8
-      - color: green
+      - color: '#34c758'
         value: 9
-      - color: red
+      - color: '#ff3c31'
         value: 10
       target: 8
       title: Tuesday
@@ -915,13 +912,13 @@ views:
       max: 12
       min: 0
       severity:
-      - color: red
+      - color: '#ff3c31'
         value: 6
-      - color: yellow
+      - color: '#ffcc01'
         value: 8
-      - color: green
+      - color: '#34c758'
         value: 9
-      - color: red
+      - color: '#ff3c31'
         value: 10
       target: 8
       title: Wednessday
@@ -930,13 +927,13 @@ views:
       max: 12
       min: 0
       severity:
-      - color: red
+      - color: '#ff3c31'
         value: 6
-      - color: yellow
+      - color: '#ffcc01'
         value: 8
-      - color: green
+      - color: '#34c758'
         value: 9
-      - color: red
+      - color: '#ff3c31'
         value: 10
       target: 8
       title: Thursday
@@ -945,13 +942,13 @@ views:
       max: 12
       min: 0
       severity:
-      - color: red
+      - color: '#ff3c31'
         value: 6
-      - color: yellow
+      - color: '#ffcc01'
         value: 8
-      - color: green
+      - color: '#34c758'
         value: 9
-      - color: red
+      - color: '#ff3c31'
         value: 10
       target: 8
       title: Friday
