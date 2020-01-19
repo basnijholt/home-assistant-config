@@ -1,0 +1,44 @@
+---
+- alias: "Frontend: turn on dark mode"
+  trigger:
+    - platform: time
+      at: "20:00"
+    - platform: state
+      entity_id: input_boolean.dark_mode
+      from: "off"
+      to: "on"
+  action:
+    - entity_id: input_boolean.dark_mode
+      service: input_boolean.turn_on
+    - service: frontend.set_theme
+      data:
+        name: ios-dark-mode
+
+- alias: "Frontend: turn on light mode"
+  trigger:
+    - platform: time
+      at: "06:00"
+    - platform: state
+      entity_id: input_boolean.dark_mode
+      from: "on"
+      to: "off"
+  action:
+    - entity_id: input_boolean.dark_mode
+      service: input_boolean.turn_off
+    - service: frontend.set_theme
+      data:
+        name: ios-light-mode
+
+- alias: "Frontend: set theme"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: frontend.set_theme
+    data_template:
+      name: >
+        {% if is_state("input_boolean.dark_mode", "on") %}
+          ios-dark-mode
+        {% else %}
+          ios-light-mode
+        {% endif %}
