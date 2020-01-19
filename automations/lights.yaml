@@ -170,7 +170,7 @@
       entity_id: light.toilet
       state: "on"
   action:
-    service_template: light.turn_off
+    service: light.turn_off
     entity_id: light.toilet
 
 - alias: "Light: turn off bathroom (extra check)"
@@ -186,7 +186,7 @@
       entity_id: light.ceiling_bathroom
       state: "on"
   action:
-    service_template: light.turn_off
+    service: light.turn_off
     entity_id: light.ceiling_bathroom
 
 - alias: "Light: turn off kitchen (extra check)"
@@ -202,7 +202,7 @@
       entity_id: light.kitchen_lights
       state: "on"
   action:
-    service_template: light.turn_off
+    service: light.turn_off
     entity_id: light.kitchen_lights
 
 - alias: "Light: turn off hall (extra check)"
@@ -223,7 +223,7 @@
         entity_id: light.hall_lights
         state: "on"
   action:
-    service_template: light.turn_off
+    service: light.turn_off
     entity_id:
       - light.hall_lights
       - light.stairs_lights
