@@ -16,13 +16,14 @@ guest_mode:
 sleep_mode:
   name: Sleep mode
   icon: mdi:bed-king
-bedroom_lights_auto_on:
+bedroom_lights_automatically_turned_on:
   name: Automatically turned on bedroom lights
   icon: mdi:ceiling-light
   initial: off
 dark_mode:
   name: Dark mode
   icon: mdi:theme-light-dark
+
 
 # Apps
 wake_up_light:

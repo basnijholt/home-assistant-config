@@ -281,7 +281,7 @@
           - '{{ state_attr("sensor.circadian_values", "xy_color")[0] }}'
           - '{{ state_attr("sensor.circadian_values", "xy_color")[1] }}'
     - service: input_boolean.turn_on
-      entity_id: input_boolean.bedroom_lights_auto_on
+      entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
 - alias: "Light: automatically turn off the bedroom"
   initial_state: "on"
@@ -291,7 +291,7 @@
     to: "off"
   condition:
     - condition: state
-      entity_id: input_boolean.bedroom_lights_auto_on
+      entity_id: input_boolean.bedroom_lights_automatically_turned_on
       state: "on"
     - condition: state
       entity_id: light.bedroom_lights
@@ -317,8 +317,8 @@
         id: smart_switch_bedroom
   condition:
     condition: state
-    entity_id: input_boolean.bedroom_lights_auto_on
+    entity_id: input_boolean.bedroom_lights_automatically_turned_on
     state: "on"
   action:
     service: input_boolean.turn_off
-    entity_id: input_boolean.bedroom_lights_auto_on
+    entity_id: input_boolean.bedroom_lights_automatically_turned_on
