@@ -6,9 +6,12 @@
     from: "off"
     to: "on"
   condition:
-    condition: state
-    entity_id: group.persons
-    state: not_home
+    - condition: state
+      entity_id: group.persons
+      state: not_home
+    - condition: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      state: "docked"
   action:
     service: notify.mobile_app_basnijholt_iphone
     data:
@@ -23,12 +26,9 @@
     to: "on"
     for: "00:05:00"
   condition:
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: "off"
-    - condition: state
-      entity_id: vacuum.xiaomi_vacuum_cleaner
-      state: "docked"
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: "off"
   action:
     service: notify.mobile_app_basnijholt_iphone
     data:
