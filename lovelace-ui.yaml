@@ -217,6 +217,8 @@ views:
       type: custom:github-entity-row
     - entity: sensor.lovelace_ios_dark_mode_theme
       type: custom:github-entity-row
+    - entity: sensor.lovelace_ios_light_mode_theme
+      type: custom:github-entity-row
     - entity: sensor.home_assistant_config
       type: custom:github-entity-row
     show_header_toggle: false
@@ -461,7 +463,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
-          service: script.turn_off_everything_non_automatic
+          service: script.cozy_lights_living_room
         type: custom:button-card
       - color: auto
         icon: mdi:home-export-outline
@@ -529,9 +531,6 @@ views:
     - entity: binary_sensor.motion_detected_in_last_hour
     - entity: binary_sensor.someone_showering
     - entity: binary_sensor.someone_in_the_house_in_last_hour
-    - type: divider
-    - entity: binary_sensor.anything_on
-    - entity: binary_sensor.any_light_on
     show_header_toggle: false
     title: Activity in the house
     type: entities
@@ -581,6 +580,12 @@ views:
   - entities:
     - entity: input_boolean.bedroom_lights_automatically_turned_on
     title: Test
+    type: entities
+  - entities:
+    - entity: binary_sensor.anything_on
+    - entity: binary_sensor.any_light_on
+    show_header_toggle: false
+    title: Devices are on
     type: entities
   icon: mdi:motion-sensor
   path: sensors
