@@ -52,13 +52,12 @@
            or states("binary_sensor.openclose_front_door") == "on" }}
       delay_off: "00:01:00"
 
-    # XXX: don't have these sensors
-    # activity_in_bedroom:
-    #   friendly_name: Activity in the bedroom
-    #   value_template: >
-    #     {{ states("binary_sensor.motion_sensor_bedroom_1") == "on"
-    #        or states("binary_sensor.motion_sensor_bedroom_2") == "on" }}
-    #   delay_off: "00:01:00"
+    activity_in_bedroom:
+      friendly_name: Activity in the bedroom
+      value_template: >
+        {{ states("binary_sensor.motion_sensor_bedroom_1") == "on"
+           or states("binary_sensor.motion_sensor_bedroom_2") == "on" }}
+      delay_off: "00:10:00"
 
     washing_machine:
       friendly_name: Washing machine
