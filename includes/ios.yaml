@@ -7,6 +7,13 @@ push:
         - identifier: TURN_OFF_EVERYTHING
           title: Turn off everything
           activationMode: background
+          authenticationRequired: false
+          destructive: true
+    - name: Sound alarm
+      identifier: sound_alarm
+      actions:
+        - identifier: SOUND_ALARM
+          title: Sound alarm
+          activationMode: background
           authenticationRequired: true
           destructive: true
-          behavior: default

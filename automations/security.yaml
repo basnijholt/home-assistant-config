@@ -15,8 +15,23 @@
   action:
     service: notify.mobile_app_basnijholt_iphone
     data:
-      title: "Security"
-      message: "Motion is detected, but we are not home."
+      message: "Security: motion is detected, but we are not home."
+      data:
+        push:
+          category: sound_alarm
+
+- alias: "Security: sound alarm after notification"
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: SOUND_ALARM
+  action:
+    service: light.turn_on
+    entity_id: all
+    data:
+      flash: long
+      color_name: red
 
 - alias: "Security: door has been open for more than 5 minutes"
   trigger:
@@ -34,4 +49,3 @@
     data:
       title: "Security"
       message: "The door has been open for more than 5 minutes."
-

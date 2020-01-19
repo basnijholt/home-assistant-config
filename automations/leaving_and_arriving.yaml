@@ -50,14 +50,21 @@
       entity_id: binary_sensor.anything_on
       state: "on"
   action:
-    - service: notify.mobile_app_basnijholt_iphone
+    service: notify.mobile_app_basnijholt_iphone
+    data:
+      message: "No one is home, turn off everything?"
       data:
-        message: "No one is home, turn off everything?"
-        data:
-          push:
-            category: turn_off_everything
-          action_data:
-            entity_id: script.turn_off_everything
+        push:
+          category: turn_off_everything
+
+- alias: "Leaving: turn off everything after notification"
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: TURN_OFF_EVERYTHING
+  action:
+    service: script.turn_off_everything
 
 - alias: "Leaving: single click to turn off everything"
   initial_state: "on"
