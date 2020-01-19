@@ -2,13 +2,27 @@
 - platform: template
   switches:
     vacuum_mode:
-      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning')}}"
+      value_template: >
+        {{ is_state("vacuum.xiaomi_vacuum_cleaner", "cleaning")}}
       turn_on:
         service: vacuum.start
         entity_id: vacuum.xiaomi_vacuum_cleaner
       turn_off:
         service: vacuum.return_to_base
         entity_id: vacuum.xiaomi_vacuum_cleaner
+
+    bedroom_speakers:
+      friendly_name: Bedroom speakers
+      value_template: >
+        {{ is_state("media_player.bedroom_speakers", "on") }}
+      availability_template: >
+        {{ not is_state("media_player.bedroom_speakers", "unavailable") }}
+      turn_on:
+        service: media_player.turn_on
+        entity_id: media_player.bedroom_speakers
+      turn_off:
+        service: media_player.turn_off
+        entity_id: media_player.bedroom_speakers
 
 - platform: circadian_lighting
   lights_rgb:

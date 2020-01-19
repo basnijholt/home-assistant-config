@@ -964,6 +964,25 @@ views:
     show_header_toggle: false
     title: Work time
     type: entities
+  - entities:
+    - icon: mdi:information
+      name: This is to control the volume using HA-menu on my iMac
+      type: custom:template-entity-row
+    - entity: switch.bedroom_speakers
+    - type: divider
+    - entity: input_boolean.imac_volume_0
+    - entity: input_boolean.imac_volume_1
+    - entity: input_boolean.imac_volume_2
+    - entity: input_boolean.imac_volume_3
+    - entity: input_boolean.imac_volume_4
+    - entity: input_boolean.imac_volume_5
+    - entity: input_boolean.imac_volume_6
+    - entity: input_boolean.imac_volume_7
+    - entity: input_boolean.imac_volume_8
+    - entity: input_boolean.imac_volume_9
+    show_header_toggle: false
+    title: iMac volume
+    type: entities
   icon: mdi:test-tube
   path: tests
   title: Tests

@@ -38,3 +38,21 @@ iphone_marcella:
   - sensor.ssid_iphone_marcella
   - sensor.steps_iphone_marcella
   - device_tracker.iphone_marcella
+
+ha_menu:
+  control: hidden
+  view: no
+  name: HA Menu Switches
+  entities:
+    - switch.bedroom_speakers
+    - input_boolean.imac_volume_0
+    - input_boolean.imac_volume_1
+    - input_boolean.imac_volume_2
+    - input_boolean.imac_volume_3
+    - input_boolean.imac_volume_4
+    - input_boolean.imac_volume_5
+    - input_boolean.imac_volume_6
+    - input_boolean.imac_volume_7
+    - input_boolean.imac_volume_8
+    - input_boolean.imac_volume_9
+    - input_boolean.imac_volume_10

@@ -56,3 +56,27 @@ demo_wake_up_with_spotify:
   name: Demo - Start wake up with Spotify
   initial: off
   icon: mdi:music
+
+# iMac volume (used with https://github.com/andrew-codechimp/ha-menu/)
+imac_volume_0:
+  name: iMac volume 0
+imac_volume_1:
+  name: iMac volume 1
+imac_volume_2:
+  name: iMac volume 2
+imac_volume_3:
+  name: iMac volume 3
+imac_volume_4:
+  name: iMac volume 4
+imac_volume_5:
+  name: iMac volume 5
+imac_volume_6:
+  name: iMac volume 6
+imac_volume_7:
+  name: iMac volume 7
+imac_volume_8:
+  name: iMac volume 8
+imac_volume_9:
+  name: iMac volume 9
+imac_volume_10:
+  name: iMac volume 10
