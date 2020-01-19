@@ -461,7 +461,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
-          service: script.turn_off_everything
+          service: script.turn_off_everything_non_automatic
         type: custom:button-card
       - color: auto
         icon: mdi:home-export-outline
@@ -475,7 +475,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
-          service: script.turn_off_everything
+          service: script.turn_off_everything_non_automatic
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
@@ -833,6 +833,7 @@ views:
     - entity: input_select.cube_mode
     - entity: input_select.last_script_bedroom
     - entity: input_select.last_script_living_room
+    - entity: binary_sensor.anything_on
     show_header_toggle: false
     title: Inputs (automatically switched)
     type: entities

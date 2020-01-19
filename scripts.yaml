@@ -159,7 +159,7 @@ increase_brightness:
       brightness: "{% set b = state_attr(group, \"brightness\") %} {% if b == None\
         \ %}\n  10\n{% elif b < 20 %}\n  128\n{% elif b < 140 %}\n  255\n{% else %}\n\
         \  10\n{% endif %}\n"
-turn_off_everything:
+turn_off_everything_non_automatic:
   alias: Turn off everything
   sequence:
   - service: light.turn_off
@@ -179,7 +179,7 @@ going_to_sleep:
   sequence:
   - entity_id: input_boolean.sleep_mode
     service: input_boolean.turn_on
-  - service: script.turn_off_everything
+  - service: script.turn_off_everything_non_automatic
 next_colors:
   alias: Change the colors of lights
   fields:

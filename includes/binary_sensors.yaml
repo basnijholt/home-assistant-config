@@ -89,5 +89,14 @@
         {{ states("sensor.time_at_work_today") | float(0) > 8 }}
       icon_template: mdi:work
 
+    anything_on:
+      friendly_name: Something is on
+      value_template: >
+        {% set light_on = states.light | selectattr("state", "eq", "on") | list | length > 0 %}
+        {% set tv_on = is_state("media_player.tv", "on") %}
+        {% set kef_on = is_state("media_player.kef", "on") %}
+        {% set bedroom_speakers_on = is_state("media_player.bedroom_speakers", "on") %}
+        {{ light_on or tv_on or kef_on or bedroom_speakers_on }}
+
 - platform: workday
   country: NL

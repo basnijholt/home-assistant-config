@@ -9,41 +9,58 @@
     - platform: time_pattern
       hours: "/1"
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: binary_sensor.someone_in_the_house_in_last_hour
-        state: "off"
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: "off"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: group.all_lights
-            state: "on"
-          - condition: state
-            entity_id: media_player.kef
-            state: "on"
-          - condition: state
-            entity_id: media_player.bedroom_speakers
-            state: "on"
-          - condition: state
-            entity_id: media_player.tv
-            state: "on"
+    - condition: state
+      entity_id: binary_sensor.someone_in_the_house_in_last_hour
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+    - condition: state
+      entity_id: binary_sensor.anything_on
+      state: "on"
   action:
     - service: light.turn_off
       entity_id: all
-    - service: media_player.turn_off
-      entity_id: media_player.kef
-    - service: media_player.turn_off
-      entity_id: media_player.bedroom_speakers
-    - service: media_player.turn_off
-      entity_id: media_player.tv
+    - service: script.turn_off_everything_non_automatic
     - service: notify.mobile_app_basnijholt_iphone
       data:
         title: "Leaving"
         message: "Everything automatically turned off!"
+
+- alias: "Leaving: ask to turn off everything"
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: persons.bas
+      from: "home"
+      to: "not_home"
+    - platform: state
+      entity_id: persons.marcella
+      from: "home"
+      to: "not_home"
+  condition:
+    - condition: state
+      entity_id: person.bas
+      state: "not_home"
+    - condition: state
+      entity_id: person.marcella
+      state: "not_home"
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+    - condition: state
+      entity_id: binary_sensor.anything_on
+      state: "on"
+  action:
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        message: "No one is home, turn off everything?"
+        data:
+          push:
+            category: turn_off_everything
+          action_data:
+            entity_id: light.test
+            my_custom_data: foo_bar
 
 - alias: "Leaving: single click to turn off everything"
   initial_state: "on"
@@ -58,7 +75,7 @@
       data:
         flash: "short"
         entity_id: light.stairs_down
-    - service: script.turn_off_everything
+    - service: script.turn_off_everything_non_automatic
     - service: notify.mobile_app_basnijholt_iphone
       data:
         title: "Leaving"
