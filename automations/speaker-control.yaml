@@ -1,0 +1,93 @@
+---
+- alias: "LSX: change volume with input_booleans"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lsx_volume_0
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_1
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_2
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_3
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_4
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_5
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_6
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_7
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_8
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_volume_9
+      from: "off"
+      to: "on"
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: >
+          {% set x = trigger.entity_id[-1]|int %}
+          {%- for i in range(10) -%}
+            {%- if x != i -%}
+              input_boolean.lsx_volume_{{ i }}{%- if not loop.last %},{%- endif %}
+            {%- endif -%}
+          {%- endfor -%}
+    - service: media_player.volume_set
+      entity_id:  media_player.bedroom_speakers
+      data_template:
+        volume_level: >
+          {{ trigger.entity_id[-1]|float / 10 }}
+
+- alias: "LSX: set source"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lsx_opt
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_wifi
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_bluetooth
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lsx_aux
+      from: "off"
+      to: "on"
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: >
+          {% set x = trigger.entity_id.split(".")[1] %}
+          {%- for i in ["lsx_opt", "lsx_wifi", "lsx_bluetooth", "lsx_aux"] -%}
+            {%- if x != i -%}
+              input_boolean.{{ i }}{%- if not loop.last %},{%- endif %}
+            {%- endif -%}
+          {%- endfor -%}
+    - service: media_player.select_source
+      entity_id:  media_player.bedroom_speakers
+      data_template:
+        volume_level: >
+          {% set source = trigger.entity_id.split("_")[1] %}
+          {{ source.capitalize() }}
