@@ -15,7 +15,7 @@
   type: LSX
   name: KEF LSX
   host: !secret ip_kef_lsx
-  maximum_volume: 0.7
+  maximum_volume: 0.9
   volume_step: 0.05
   inverse_speaker_mode: true
   standby_time: 60
