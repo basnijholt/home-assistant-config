@@ -1,5 +1,5 @@
 ---
-host: 192.168.1.2
+host: !secret ip_tv
 name: tv
 turn_on_action:
   service: wake_on_lan.send_magic_packet

@@ -6,7 +6,7 @@
 - platform: kef
   type: LS50
   name: KEF
-  host: 192.168.1.5
+  host: !secret ip_kef_ls50
   maximum_volume: 0.6
   volume_step: 0.05
   standby_time: 60
@@ -14,7 +14,7 @@
 - platform: kef
   type: LSX
   name: Bedroom speakers
-  host: 192.168.1.6
+  host: !secret ip_kef_lsx
   maximum_volume: 0.7
   volume_step: 0.05
   inverse_speaker_mode: true

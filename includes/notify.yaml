@@ -1,6 +1,6 @@
 ---
 - platform: webostv
-  host: 192.168.1.2
+  host: !secret ip_tv
   name: tv
   filename: webostv.conf
 
