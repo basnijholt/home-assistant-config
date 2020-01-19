@@ -19,8 +19,10 @@ customize:
   media_player.kef:
     friendly_name: Speakers
   light.automatic_lights:
-    icon: "mdi:robot"
+    icon: mdi:robot
   light.living_room_lights:
-    icon: "mdi:sofa"
+    icon: mdi:sofa
   light.bedroom_lights:
-    icon: "mdi:bed-king"
+    icon: mdi:bed-king
+  light.toilet:
+    icon: mdi:emoticon-poop

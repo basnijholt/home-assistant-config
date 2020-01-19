@@ -41,14 +41,6 @@ exclude:
     - weather
     - zone
 include:
-  domains:
-    - light
-    - media_player
-    - person
-    - proximity
-    - sensor
-    - switch
-    - vacuum
   entities:
     - binary_sensor.activity_in_bathroom
     - binary_sensor.activity_in_hall

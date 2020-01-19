@@ -3,7 +3,7 @@
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
-- platform: kef
+- platform: kef_custom
   type: LS50
   name: KEF
   host: !secret ip_kef_ls50
@@ -11,7 +11,7 @@
   volume_step: 0.05
   standby_time: 60
 
-- platform: kef
+- platform: kef_custom
   type: LSX
   name: Bedroom speakers
   host: !secret ip_kef_lsx
