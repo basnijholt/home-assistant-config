@@ -12,10 +12,10 @@
 #     entity_id: sensor.lovelace
 #   action:
 #     service: shell_command.convert_lovelace
-- alias: 'Night mode: automatically turn off'
+- alias: "Night mode: automatically turn off"
   trigger:
-    - at: 06:00
-      platform: time
+    platform: time
+    at: "06:00"
   action:
-    - entity_id: input_boolean.sleep_mode
-      service: input_boolean.turn_off
+    entity_id: input_boolean.sleep_mode
+    service: input_boolean.turn_off
