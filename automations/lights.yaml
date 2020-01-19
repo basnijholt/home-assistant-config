@@ -272,6 +272,9 @@
     - condition: state
       entity_id: input_boolean.sleep_mode
       state: "off"
+    - condition: state
+      entity_id: input_boolean.automatic_bedroom_lights
+      state: "on"
   action:
     - service: light.turn_on
       entity_id: light.bedroom_lights
@@ -296,11 +299,14 @@
     - condition: state
       entity_id: light.bedroom_lights
       state: "on"
+    - condition: state
+      entity_id: input_boolean.automatic_bedroom_lights
+      state: "on"
   action:
-    - service: light.turn_off
-      entity_id: light.bedroom_lights
-      data:
-        transition: 10
+    service: light.turn_off
+    entity_id: light.bedroom_lights
+    data:
+      transition: 10
 
 - alias: "Light: turn off bedroom lights auto switch"
   trigger:
@@ -322,3 +328,11 @@
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
+
+- alias: "Light: turn on automatic_bedroom_lights switch"
+  trigger:
+    platform: time
+    at: "12:00"
+  action:
+    entity_id: input_boolean.automatic_bedroom_lights
+    service: input_boolean.turn_on

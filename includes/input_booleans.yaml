@@ -23,7 +23,9 @@ bedroom_lights_automatically_turned_on:
 dark_mode:
   name: Dark mode
   icon: mdi:theme-light-dark
-
+automatic_bedroom_lights:
+  name: Automatic bedroom lights
+  icon: mdi:lamp
 
 # Apps
 wake_up_light:

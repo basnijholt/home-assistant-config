@@ -96,6 +96,7 @@ views:
       - light.bamboo
       - light.philips_go
       - light.bed_led
+      - input_boolean.automatic_bedroom_lights
       - entity: script.cozy_lights_bedroom
         icon_height: 20px
         name: Cozy lights
@@ -237,7 +238,6 @@ views:
       - entity: switch.vacuum_mode
       - entity: input_boolean.cleaned_today
       show_header_toggle: false
-      theme: Backend-selected
       type: entities
     - calibration_points:
       - map:
@@ -420,7 +420,6 @@ views:
   - cards:
     - cards:
       - color: auto
-        color_type: card
         icon: mdi:weather-sunset-up
         lock:
           enabled: true
@@ -437,7 +436,6 @@ views:
             entity_id: input_boolean.sleep_mode
         type: custom:button-card
       - color: auto
-        color_type: card
         entity: input_boolean.sleep_mode
         icon: mdi:weather-night
         lock:
@@ -456,7 +454,6 @@ views:
       type: horizontal-stack
     - cards:
       - color: auto
-        color_type: card
         icon: mdi:home-map-marker
         lock:
           enabled: true
@@ -471,7 +468,6 @@ views:
           service: script.turn_off_everything
         type: custom:button-card
       - color: auto
-        color_type: card
         icon: mdi:home-export-outline
         lock:
           enabled: true
@@ -584,7 +580,7 @@ views:
     title: Temperature sensors
     type: glance
   - entities:
-    - entity: input_boolean.bedroom_lights_auto_on
+    - entity: input_boolean.bedroom_lights_automatically_turned_on
     title: Test
     type: entities
   icon: mdi:motion-sensor
