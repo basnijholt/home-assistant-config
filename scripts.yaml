@@ -10,16 +10,16 @@ start_speakers:
       example: Wifi
   sequence:
   - service: media_player.turn_on
-    entity_id: media_player.kef
+    entity_id: media_player.kef_ls50
   - service: media_player.select_source
-    entity_id: media_player.kef
+    entity_id: media_player.kef_ls50
     data_template:
       source: '{{ source }}'
-  - wait_template: '{{ is_state("media_player.kef", "on") }}'
+  - wait_template: '{{ is_state("media_player.kef_ls50", "on") }}'
     timeout: 00:01:00
     continue_on_timeout: 'false'
   - service: media_player.volume_set
-    entity_id: media_player.kef
+    entity_id: media_player.kef_ls50
     data_template:
       volume_level: '{{ volume }}'
 start_spotify:
@@ -169,9 +169,9 @@ turn_off_everything_non_automatic:
       - light.living_room_lights
       - light.bedroom_lights
   - service: media_player.turn_off
-    entity_id: media_player.kef
+    entity_id: media_player.kef_ls50
   - service: media_player.turn_off
-    entity_id: media_player.bedroom_speakers
+    entity_id: media_player.kef_lsx
   - service: media_player.turn_off
     entity_id: media_player.tv
 turn_off_everything:

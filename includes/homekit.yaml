@@ -6,7 +6,7 @@ exclude_domains:
   - person
   - input_boolean
 entity_config:
-  media_player.kef:
+  media_player.kef_ls50:
     name: KEF Speakers
     feature_list:
       - feature: on_off

@@ -5,7 +5,7 @@
 start_speakers:
   module: start_speakers
   class: StartSpeakers
-  speaker: media_player.kef
+  speaker: media_player.kef_ls50
   source: Wifi
   volume: 0.3
   input_boolean: input_boolean.start_speakers
@@ -24,7 +24,7 @@ from functools import partial
 
 import hassapi as hass
 
-DEFAULT_SPEAKER = "media_player.kef"
+DEFAULT_SPEAKER = "media_player.kef_ls50"
 DEFAULT_SOURCE = "Wifi"
 DEFAULT_VOLUME = 0.3
 DEFAULT_INPUT_BOOLEAN = "input_boolean.start_speakers"

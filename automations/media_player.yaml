@@ -12,7 +12,7 @@
       state: "on"
     - condition: template
       value_template: >
-        {{ not is_state_attr("media_player.kef", "source", "Opt") }}
+        {{ not is_state_attr("media_player.kef_ls50", "source", "Opt") }}
     - condition: template
       value_template: >
         {{ not (is_state_attr("media_player.spotify", "source", "LS50 Wireless")
@@ -22,7 +22,7 @@
         {{ not is_state_attr("media_player.tv", "source", "GALLERY") }}
   action:
     service: media_player.select_source
-    entity_id: media_player.kef
+    entity_id: media_player.kef_ls50
     data:
       source: Opt
 
@@ -37,10 +37,10 @@
 - alias: "Media player: KEF volume delay"
   trigger:
     platform: state
-    entity_id: sensor.kef_volume
+    entity_id: sensor.kef_ls50_volume
   action:
     service: timer.start
-    entity_id: timer.kef_volume_delay
+    entity_id: timer.kef_ls50_volume_delay
 
 - alias: "Media player: sync volume TV → KEF"
   trigger:
@@ -52,15 +52,15 @@
   condition:
     - condition: template
       value_template: >
-        {{ is_state_attr("media_player.kef", "source", "Opt") }}
+        {{ is_state_attr("media_player.kef_ls50", "source", "Opt") }}
     - condition: state
       entity_id: timer.block_tv_volume_sync
       state: "idle"
   action:
     - service: timer.start
-      entity_id: timer.block_kef_volume_sync
+      entity_id: timer.block_kef_ls50_volume_sync
     - service: media_player.volume_set
-      entity_id: media_player.kef
+      entity_id: media_player.kef_ls50
       data_template:
         volume_level: >
           {{ states("sensor.tv_volume") }}
@@ -68,16 +68,16 @@
 - alias: "Media player: sync volume KEF → TV"
   trigger:
     - platform: state
-      entity_id: timer.kef_volume_delay
+      entity_id: timer.kef_ls50_volume_delay
       to: "idle"
     - platform: state
-      entity_id: sensor.kef_volume
+      entity_id: sensor.kef_ls50_volume
   condition:
     - condition: template
       value_template: >
-        {{ is_state_attr("media_player.kef", "source", "Opt") }}
+        {{ is_state_attr("media_player.kef_ls50", "source", "Opt") }}
     - condition: state
-      entity_id: timer.block_kef_volume_sync
+      entity_id: timer.block_kef_ls50_volume_sync
       state: "idle"
   action:
     - service: timer.start
@@ -86,4 +86,4 @@
       entity_id: media_player.tv
       data_template:
         volume_level: >
-          {{ states("sensor.kef_volume") }}
+          {{ states("sensor.kef_ls50_volume") }}

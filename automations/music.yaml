@@ -41,9 +41,9 @@
       below: 2
   action:
     - service: media_player.turn_on
-      entity_id: media_player.kef
+      entity_id: media_player.kef_ls50
     - service: media_player.select_source
-      entity_id: media_player.kef
+      entity_id: media_player.kef_ls50
       data:
         source: Wifi
     - service: media_player.select_source

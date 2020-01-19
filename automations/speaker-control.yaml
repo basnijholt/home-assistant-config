@@ -52,7 +52,7 @@
             {%- endif -%}
           {%- endfor -%}
     - service: media_player.volume_set
-      entity_id:  media_player.bedroom_speakers
+      entity_id:  media_player.kef_lsx
       data_template:
         volume_level: >
           {{ trigger.entity_id[-1]|float / 10 }}
@@ -86,7 +86,7 @@
             {%- endif -%}
           {%- endfor -%}
     - service: media_player.select_source
-      entity_id:  media_player.bedroom_speakers
+      entity_id:  media_player.kef_lsx
       data_template:
         volume_level: >
           {% set source = trigger.entity_id.split("_")[1] %}

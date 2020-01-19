@@ -2,7 +2,7 @@
 start_speakers:
   module: start_speakers
   class: StartSpeakers
-  speaker: media_player.kef
+  speaker: media_player.kef_ls50
   source: Wifi
   volume: 0.3
   input_boolean: input_boolean.start_speakers
@@ -11,7 +11,7 @@ start_spotify:
   module: start_spotify
   class: StartSpotify
   volume: 0.3
-  speaker: media_player.kef
+  speaker: media_player.kef_ls50
   spotify_source: LS50 Wireless
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.start_spotify
@@ -21,7 +21,7 @@ wake_up_with_spotify:
   class: WakeUpWithSpotify
   total_time: 400
   final_volume: 0.45
-  speaker: media_player.bedroom_speakers
+  speaker: media_player.kef_lsx
   spotify_source: LSX
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.wake_up_with_spotify
@@ -31,7 +31,7 @@ demo_wake_up_with_spotify:
   class: WakeUpWithSpotify
   total_time: 20
   final_volume: 0.45
-  speaker: media_player.bedroom_speakers
+  speaker: media_player.kef_lsx
   spotify_source: LSX
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   input_boolean: input_boolean.demo_wake_up_with_spotify

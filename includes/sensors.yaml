@@ -74,9 +74,9 @@
         {{ state_attr("media_player.tv", "volume_level") }}
       unit_of_measurement: "%"
 
-    kef_volume:
+    kef_ls50_volume:
       value_template: >
-        {{ state_attr("media_player.kef", "volume_level") }}
+        {{ state_attr("media_player.kef_ls50", "volume_level") }}
       unit_of_measurement: "%"
 
     timestamp_start_of_today:

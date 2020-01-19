@@ -2,11 +2,11 @@
 block_tv_volume_sync:
   duration: '00:00:05'
 
-block_kef_volume_sync:
+block_kef_ls50_volume_sync:
   duration: '00:00:05'
 
 tv_volume_delay:
   duration: '00:00:01'
 
-kef_volume_delay:
+kef_ls50_volume_delay:
   duration: '00:00:01'

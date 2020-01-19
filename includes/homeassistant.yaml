@@ -16,7 +16,7 @@ customize:
     friendly_name: Vacuum
   sensor.temperature_mean:
     icon: mdi:temperature-celsius
-  media_player.kef:
+  media_player.kef_ls50:
     friendly_name: Speakers
   light.automatic_lights:
     icon: mdi:robot

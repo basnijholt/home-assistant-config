@@ -7,7 +7,7 @@ To cancel the ramp, simply change the volume manually.
 wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
-  speaker: media_player.kef
+  speaker: media_player.kef_ls50
   spotify_source: "LS50 Wireless"
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
   total_time: 900
@@ -26,7 +26,7 @@ input_boolean:
 
 import hassapi as hass
 
-DEFAULT_SPEAKER = "media_player.kef"
+DEFAULT_SPEAKER = "media_player.kef_ls50"
 DEFAULT_SPOTIFY_SOURCE = "KEF LS50 Wireless"
 DEFAULT_PLAYLIST = "6rPTm9dYftKcFAfwyRqmDZ"
 DEFAULT_TOTAL_TIME = 300

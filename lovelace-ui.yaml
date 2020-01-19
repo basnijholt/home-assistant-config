@@ -160,7 +160,7 @@ views:
       icon: mdi:spotify
       type: custom:mini-media-player
     - background: /local/kef_speakers.jpeg
-      entity: media_player.kef
+      entity: media_player.kef_ls50
       hide:
         controls: true
         mute: false
@@ -168,7 +168,7 @@ views:
         volume: false
       type: custom:mini-media-player
     - background: /local/lsx_speakers.png
-      entity: media_player.bedroom_speakers
+      entity: media_player.kef_lsx
       hide:
         controls: true
         mute: false
@@ -845,12 +845,12 @@ views:
     title: Inputs (automatically switched)
     type: entities
   - entities:
-    - entity: timer.block_kef_volume_sync
+    - entity: timer.block_kef_ls50_volume_sync
     - entity: timer.block_tv_volume_sync
-    - entity: sensor.kef_volume
+    - entity: sensor.kef_ls50_volume
     - entity: sensor.tv_volume
     - entity: timer.tv_volume_delay
-    - entity: timer.kef_volume_delay
+    - entity: timer.kef_ls50_volume_delay
     show_header_toggle: false
     title: Volume sync
     type: entities
@@ -968,18 +968,18 @@ views:
     - icon: mdi:information
       name: This is to control the volume using HA-menu on my iMac
       type: custom:template-entity-row
-    - entity: switch.bedroom_speakers
+    - entity: switch.kef_lsx
     - type: divider
-    - entity: input_boolean.imac_volume_0
-    - entity: input_boolean.imac_volume_1
-    - entity: input_boolean.imac_volume_2
-    - entity: input_boolean.imac_volume_3
-    - entity: input_boolean.imac_volume_4
-    - entity: input_boolean.imac_volume_5
-    - entity: input_boolean.imac_volume_6
-    - entity: input_boolean.imac_volume_7
-    - entity: input_boolean.imac_volume_8
-    - entity: input_boolean.imac_volume_9
+    - entity: input_boolean.lsx_volume_0
+    - entity: input_boolean.lsx_volume_1
+    - entity: input_boolean.lsx_volume_2
+    - entity: input_boolean.lsx_volume_3
+    - entity: input_boolean.lsx_volume_4
+    - entity: input_boolean.lsx_volume_5
+    - entity: input_boolean.lsx_volume_6
+    - entity: input_boolean.lsx_volume_7
+    - entity: input_boolean.lsx_volume_8
+    - entity: input_boolean.lsx_volume_9
     show_header_toggle: false
     title: iMac volume
     type: entities

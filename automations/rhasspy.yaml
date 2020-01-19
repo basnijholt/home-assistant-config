@@ -71,9 +71,9 @@
   action:
     service: media_player.volume_set
     data_template:
-      entity_id: media_player.kef
+      entity_id: media_player.kef_ls50
       volume_level: >
-        {{ state_attr("media_player.kef", "volume_level") + trigger.event.data.delta|float }}
+        {{ state_attr("media_player.kef_ls50", "volume_level") + trigger.event.data.delta|float }}
 
 - alias: "Rhasspy: set the volume"
   trigger:
@@ -82,7 +82,7 @@
   action:
     service: media_player.volume_set
     data_template:
-      entity_id: media_player.kef
+      entity_id: media_player.kef_ls50
       volume_level: >
         {{ (trigger.event.data.volume|float / 100)|round(2) }}
 

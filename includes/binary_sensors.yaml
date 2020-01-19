@@ -103,9 +103,9 @@
       value_template: >
         {% set light_on = is_state("binary_sensor.any_light_on", "on") %}
         {% set tv_on = is_state("media_player.tv", "on") %}
-        {% set kef_on = is_state("media_player.kef", "on") %}
-        {% set bedroom_speakers_on = is_state("media_player.bedroom_speakers", "on") %}
-        {{ light_on or tv_on or kef_on or bedroom_speakers_on }}
+        {% set kef_on = is_state("media_player.kef_ls50", "on") %}
+        {% set kef_lsx_on = is_state("media_player.kef_lsx", "on") %}
+        {{ light_on or tv_on or kef_on or kef_lsx_on }}
 
 - platform: workday
   country: NL

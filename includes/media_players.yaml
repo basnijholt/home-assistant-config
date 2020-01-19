@@ -5,7 +5,7 @@
 
 - platform: kef_custom
   type: LS50
-  name: KEF
+  name: KEF LS50
   host: !secret ip_kef_ls50
   maximum_volume: 0.6
   volume_step: 0.05
@@ -13,7 +13,7 @@
 
 - platform: kef_custom
   type: LSX
-  name: Bedroom speakers
+  name: KEF LSX
   host: !secret ip_kef_lsx
   maximum_volume: 0.7
   volume_step: 0.05
