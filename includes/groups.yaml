@@ -64,3 +64,10 @@ ha_menu_lsx_source:
     - input_boolean.lsx_wifi
     - input_boolean.lsx_bluetooth
     - input_boolean.lsx_aux
+
+ha_menu_lsx_power:
+  control: hidden
+  view: no
+  name: HA Menu - LSX power
+  entities:
+    - switch.kef_lsx
