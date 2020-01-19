@@ -37,12 +37,10 @@
       from: "home"
       to: "not_home"
   condition:
-    - condition: state
-      entity_id: person.bas
-      state: "not_home"
-    - condition: state
-      entity_id: person.marcella
-      state: "not_home"
+    - condition: template
+      value_template: >
+        {{ not is_state("person.bas", "home")
+           and not is_state("person.marcella", "home") }}
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
