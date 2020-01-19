@@ -174,6 +174,12 @@ turn_off_everything_non_automatic:
     entity_id: media_player.bedroom_speakers
   - service: media_player.turn_off
     entity_id: media_player.tv
+turn_off_everything:
+  alias: Turn off everything
+  sequence:
+  - service: script.turn_off_everything_non_automatic
+  - service: light.turn_off
+    entity_id: all
 going_to_sleep:
   alias: Going to sleep
   sequence:

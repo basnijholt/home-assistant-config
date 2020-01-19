@@ -89,10 +89,18 @@
         {{ states("sensor.time_at_work_today") | float(0) > 8 }}
       icon_template: mdi:work
 
-    anything_on:
-      friendly_name: Something is on
+    any_light_on:
+      friendly_name: Any light is on
       value_template: >
-        {% set light_on = states.light | selectattr("state", "eq", "on") | list | length > 0 %}
+        {% set automatic_lights_on = is_state("light.automatic_lights", "on") %}
+        {% set bedroom_lights_on = is_state("light.bedroom_lights", "on") %}
+        {% set living_room_lights_on = is_state("light.living_room_lights", "on") %}
+        {{ automatic_lights_on or bedroom_lights_on or living_room_lights_on }}
+
+    anything_on:
+      friendly_name: Anything is on
+      value_template: >
+        {% set light_on = is_state("binary_sensor.any_light_on", "on") %}
         {% set tv_on = is_state("media_player.tv", "on") %}
         {% set kef_on = is_state("media_player.kef", "on") %}
         {% set bedroom_speakers_on = is_state("media_player.bedroom_speakers", "on") %}

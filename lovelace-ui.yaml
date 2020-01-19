@@ -529,6 +529,9 @@ views:
     - entity: binary_sensor.motion_detected_in_last_hour
     - entity: binary_sensor.someone_showering
     - entity: binary_sensor.someone_in_the_house_in_last_hour
+    - type: divider
+    - entity: binary_sensor.anything_on
+    - entity: binary_sensor.any_light_on
     show_header_toggle: false
     title: Activity in the house
     type: entities
@@ -833,7 +836,6 @@ views:
     - entity: input_select.cube_mode
     - entity: input_select.last_script_bedroom
     - entity: input_select.last_script_living_room
-    - entity: binary_sensor.anything_on
     show_header_toggle: false
     title: Inputs (automatically switched)
     type: entities

@@ -19,9 +19,7 @@
       entity_id: binary_sensor.anything_on
       state: "on"
   action:
-    - service: light.turn_off
-      entity_id: all
-    - service: script.turn_off_everything_non_automatic
+    - service: script.turn_off_everything
     - service: notify.mobile_app_basnijholt_iphone
       data:
         title: "Leaving"
@@ -59,8 +57,7 @@
           push:
             category: turn_off_everything
           action_data:
-            entity_id: light.test
-            my_custom_data: foo_bar
+            entity_id: script.turn_off_everything
 
 - alias: "Leaving: single click to turn off everything"
   initial_state: "on"
