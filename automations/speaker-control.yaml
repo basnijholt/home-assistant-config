@@ -79,15 +79,30 @@
     - service: input_boolean.turn_off
       data_template:
         entity_id: >
-          {% set x = trigger.entity_id.split(".")[1] %}
-          {%- for i in ["lsx_opt", "lsx_wifi", "lsx_bluetooth", "lsx_aux"] -%}
+          {% set x = trigger.entity_id.split("_")[-1] %}
+          {%- for i in ["opt", "wifi", "bluetooth", "aux"] -%}
             {%- if x != i -%}
-              input_boolean.{{ i }}{%- if not loop.last %},{%- endif %}
+              input_boolean.lsx_{{ i }}{%- if not loop.last %},{%- endif %}
             {%- endif -%}
           {%- endfor -%}
     - service: media_player.select_source
-      entity_id:  media_player.kef_lsx
+      entity_id: media_player.kef_lsx
       data_template:
-        volume_level: >
-          {% set source = trigger.entity_id.split("_")[1] %}
+        source: >
+          {% set source = trigger.entity_id.split("_")[-1] %}
           {{ source.capitalize() }}
+
+- alias: "LSX: sync source"
+  trigger:
+    - platform: state
+      entity_id: media_player.kef_lsx
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.from_state.attributes["source"] != trigger.to_state.attributes["source"]
+         and trigger.to_state.state != "off" }}
+  action:
+    service: input_boolean.turn_on
+    data_template:
+      entity_id: >
+        input_boolean.lsx_{{ trigger.to_state.attributes["source"].lower() }}
