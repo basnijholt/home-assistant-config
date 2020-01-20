@@ -19,3 +19,13 @@
   action:
     entity_id: input_boolean.sleep_mode
     service: input_boolean.turn_off
+
+- alias: "Night mode: turn off automatic bedroom lights"
+  trigger:
+    platform: state
+    entity_id: input_boolean.sleep_mode
+    from: "off"
+    to: "on"
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.automatic_bedroom_lights
