@@ -31,11 +31,9 @@
     - platform: state
       entity_id: persons.bas
       from: "home"
-      to: "not_home"
     - platform: state
       entity_id: persons.marcella
       from: "home"
-      to: "not_home"
   condition:
     - condition: template
       value_template: >
