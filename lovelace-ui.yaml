@@ -851,6 +851,8 @@ views:
     - entity: sensor.tv_volume
     - entity: timer.tv_volume_delay
     - entity: timer.kef_ls50_volume_delay
+    - type: divider
+    - entity: sensor.kef_lsx_volume
     show_header_toggle: false
     title: Volume sync
     type: entities

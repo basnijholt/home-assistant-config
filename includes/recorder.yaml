@@ -3,6 +3,7 @@ exclude:
   entities:
     - sensor.tv_volume
     - sensor.kef_ls50_volume
+    - sensor.kef_lsx_volume
     - sensor.time
     - sensor.time_at_work_on_friday
     - sensor.time_at_work_on_monday

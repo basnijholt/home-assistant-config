@@ -51,11 +51,34 @@
               input_boolean.lsx_volume_{{ i }}{%- if not loop.last %},{%- endif %}
             {%- endif -%}
           {%- endfor -%}
-    - service: media_player.volume_set
+    - service: timer.start
+      entity_id: timer.block_kef_lsx_volume_sync
+    - condition: state
+      entity_id: timer.block_ha_menu_volume_sync
+      state: idle
+    - service_template: media_player.volume_set
       entity_id:  media_player.kef_lsx
       data_template:
         volume_level: >
           {{ trigger.entity_id[-1]|float / 10 }}
+
+- alias: "LSX: sync volume"
+  trigger:
+    platform: state
+    entity_id: sensor.kef_lsx_volume
+  condition:
+    condition: state
+    entity_id: timer.block_kef_lsx_volume_sync
+    state: "idle"
+  action:
+    - service: timer.start
+      entity_id: timer.block_ha_menu_volume_sync
+    - service: input_boolean.turn_on
+      data_template:
+        entity_id: >
+          {% set volume = (10 * states("sensor.kef_lsx_volume")|float) | round(0) %}
+          {% if volume == 10 %}{% set volume = 9 %}{% endif %}
+          input_boolean.lsx_volume_{{ volume }}
 
 - alias: "LSX: set source"
   trigger:
@@ -94,8 +117,8 @@
 
 - alias: "LSX: sync source"
   trigger:
-    - platform: state
-      entity_id: media_player.kef_lsx
+    platform: state
+    entity_id: media_player.kef_lsx
   condition:
     condition: template
     value_template: >
