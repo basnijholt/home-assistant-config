@@ -477,7 +477,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
-          service: script.turn_off_everything_non_automatic
+          service: script.turn_off_everything
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
@@ -970,6 +970,11 @@ views:
       type: custom:template-entity-row
     - entity: switch.kef_lsx
     - type: divider
+    - entity: input_boolean.lsx_opt
+    - entity: input_boolean.lsx_aux
+    - entity: input_boolean.lsx_bluetooth
+    - entity: input_boolean.lsx_wifi
+    - type: divider
     - entity: input_boolean.lsx_volume_0
     - entity: input_boolean.lsx_volume_1
     - entity: input_boolean.lsx_volume_2
@@ -981,7 +986,7 @@ views:
     - entity: input_boolean.lsx_volume_8
     - entity: input_boolean.lsx_volume_9
     show_header_toggle: false
-    title: LSX volume
+    title: LSX control (for HA-Menu)
     type: entities
   icon: mdi:test-tube
   path: tests
