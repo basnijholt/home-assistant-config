@@ -981,7 +981,7 @@ views:
     - entity: input_boolean.lsx_volume_8
     - entity: input_boolean.lsx_volume_9
     show_header_toggle: false
-    title: iMac volume
+    title: LSX volume
     type: entities
   icon: mdi:test-tube
   path: tests
