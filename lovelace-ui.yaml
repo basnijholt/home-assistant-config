@@ -828,11 +828,16 @@ views:
 - badges: []
   cards:
   - entities:
-    - entity: input_boolean.start_spotify
+    - entity: input_boolean.start_kef_ls50
+    - entity: input_boolean.start_kef_lsx
+    - type: divider
+    - entity: input_boolean.start_spotify_on_kef_ls50
+    - entity: input_boolean.start_spotify_on_kef_lsx
+    - type: divider
     - entity: input_boolean.wake_up_light
-    - entity: input_boolean.wake_up_with_spotify
-    - entity: input_boolean.start_speakers
     - entity: input_boolean.demo_wake_up_light
+    - type: divider
+    - entity: input_boolean.wake_up_with_spotify
     - entity: input_boolean.demo_wake_up_with_spotify
     show_header_toggle: false
     title: Test apps

@@ -40,12 +40,20 @@ alarm_clock:
   name: Alarm clock is on
   initial: off
   icon: mdi:alarm
-start_speakers:
-  name: Start speakers
+start_kef_ls50:
+  name: Start KEF LS50
   initial: off
   icon: mdi:music
-start_spotify:
-  name: Play Spotify on speakers
+start_kef_lsx:
+  name: Start KEF LSX
+  initial: off
+  icon: mdi:music
+start_spotify_on_kef_ls50:
+  name: Play Spotify on KEF LS50
+  initial: off
+  icon: mdi:music
+start_spotify_on_kef_lsx:
+  name: Play Spotify on KEF LSX
   initial: off
   icon: mdi:music
 wake_up_with_spotify:

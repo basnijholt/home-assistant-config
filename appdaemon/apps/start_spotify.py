@@ -108,6 +108,6 @@ class StartSpotify(hass.Hass):
             media_content_id=kwargs["playlist"],
             random_song=True,
         )
-        self.call_spotify("media_player/media_play")
+        # self.call_spotify("media_player/media_play")
         self.fire_event(self.done_signal, **kwargs)
         self.log(self.done_signal + f" {kwargs}")
