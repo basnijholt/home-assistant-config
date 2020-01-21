@@ -44,6 +44,7 @@ exclude:
 include:
   entities:
     - binary_sensor.activity_in_bathroom
+    - binary_sensor.activity_in_bedroom
     - binary_sensor.activity_in_hall
     - binary_sensor.activity_in_kitchen
     - binary_sensor.activity_in_toilet
