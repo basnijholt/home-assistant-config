@@ -42,6 +42,7 @@ vacuum: !include includes/vacuum.yaml
 media_player: !include includes/media_players.yaml
 homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml
+mqtt: !include includes/mqtt.yaml
 
 # Custom components
 circadian_lighting: !include includes/circadian_lighting.yaml
