@@ -349,7 +349,6 @@ views:
         group: false
         hour24: true
         line_width: 6
-        lower_bound: 0
         points_per_hour: 1
         show:
           extrema: false
@@ -366,7 +365,6 @@ views:
         group: false
         hour24: true
         line_width: 6
-        lower_bound: 0
         points_per_hour: 1
         show:
           extrema: false
@@ -386,7 +384,6 @@ views:
         group: false
         hour24: true
         line_width: 6
-        lower_bound: 0
         points_per_hour: 1
         show:
           extrema: false
@@ -403,7 +400,6 @@ views:
         group: false
         hour24: true
         line_width: 6
-        lower_bound: 0
         points_per_hour: 1
         show:
           extrema: false
@@ -481,6 +477,41 @@ views:
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
+  - cards:
+    - color_thresholds_transition: smooth
+      entities:
+      - entity: sensor.power_consumption
+        name: Power consumption
+      font_size: 100
+      group: false
+      hour24: true
+      line_width: 6
+      points_per_hour: 1
+      show:
+        extrema: false
+        fill: fade
+        labels: false
+        name: true
+        state: true
+      type: custom:mini-graph-card
+    - color_thresholds_transition: smooth
+      entities:
+      - entity: sensor.gas_consumption
+        name: Gas consumption
+      font_size: 100
+      group: false
+      hour24: true
+      line_width: 6
+      points_per_hour: 1
+      show:
+        extrema: false
+        fill: fade
+        labels: false
+        name: true
+        state: true
+      type: custom:mini-graph-card
+    name: Speedtest
+    type: horizontal-stack
   path: default_view
   title: Home
 - badges: []
