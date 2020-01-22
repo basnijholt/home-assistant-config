@@ -102,11 +102,13 @@
               or (not is_state("person.bas", "Work") and t_today > 0)
               or (as_timestamp(now()) > seven_oclock)
               or day == 0
-              or now().weekday() > 4 %}
+              or now().weekday() > 4
+              or 5 * hours_per_day_including_today > 40 %}
           {% set hours_per_day = hours_per_day_including_today %}
         {% else %}
           {% set hours_per_day = hours_per_day_excluding_today %}
         {% endif %}
+
         {{ (5 * hours_per_day)|round(2) }}
       unit_of_measurement: h
 
@@ -254,3 +256,141 @@
     {% set day = now().weekday() - 4 %}
     {% if day < 0 %}{% set day = day + 7 %}{% endif %}
     {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+
+# From the "Meterkast" Home Assistant
+- platform: mqtt
+  state_topic: homeassistant/sensor/gas_consumption/state
+  unit_of_measurement: m3
+  name: Gas Consumption
+  icon: mdi:fire
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/hourly_gas_consumption/state
+  unit_of_measurement: m3/h
+  name: Hourly Gas Consumption
+  icon: mdi:fire
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/long_power_failure_count/state
+  name: Long Power Failure Count
+  icon: mdi:flash-off
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_consumption/state
+  unit_of_measurement: kW
+  name: Power Consumption
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_consumption_low/state
+  unit_of_measurement: kWh
+  name: Power Consumption (low)
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_consumption_normal/state
+  unit_of_measurement: kWh
+  name: Power Consumption (normal)
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_consumption_phase_l1/state
+  unit_of_measurement: kW
+  name: Power Consumption Phase L1
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_consumption_phase_l2/state
+  name: Power Consumption Phase L2
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_consumption_phase_l3/state
+  name: Power Consumption Phase L3
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_consumption_total/state
+  name: Power Consumption (total)
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_production/state
+  unit_of_measurement: kW
+  name: Power Production
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_production_low/state
+  unit_of_measurement: kWh
+  name: Power Production (low)
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_production_normal/state
+  unit_of_measurement: kWh
+  name: Power Production (normal)
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_production_phase_l1/state
+  unit_of_measurement: kW
+  name: Power Production Phase L1
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_production_phase_l2/state
+  name: Power Production Phase L2
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_production_phase_l3/state
+  name: Power Production Phase L3
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/power_tariff/state
+  name: Power Tariff
+  icon: mdi:flash
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_phase_l1/state
+  name: Voltage Phase L1
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_phase_l2/state
+  name: Voltage Phase L2
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_phase_l3/state
+  name: Voltage Phase L3
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_sags_phase_l1/state
+  name: Voltage Sags Phase L1
+  icon: mdi:pulse
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_sags_phase_l2/state
+  name: Voltage Sags Phase L2
+  icon: mdi:pulse
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_sags_phase_l3/state
+  name: Voltage Sags Phase L3
+  icon: mdi:pulse
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_swells_phase_l1/state
+  name: Voltage Swells Phase L1
+  icon: mdi:pulse
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_swells_phase_l2/state
+  name: Voltage Swells Phase L2
+  icon: mdi:pulse
+
+- platform: mqtt
+  state_topic: homeassistant/sensor/voltage_swells_phase_l3/state
+  name: Voltage Swells Phase L3
+  icon: mdi:pulse
