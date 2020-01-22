@@ -112,17 +112,17 @@
         {{ (5 * hours_per_day)|round(2) }}
       unit_of_measurement: h
 
-      daily_power:
-        friendly_name: Daily Power
-        unit_of_measurement: kWh
-        value_template: >
-          {{ states("sensor.daily_power_offpeak")|float + states("sensor.daily_power_peak")|float }}
+    daily_power:
+      friendly_name: Daily Power
+      unit_of_measurement: kWh
+      value_template: >
+        {{ states("sensor.daily_power_offpeak")|float + states("sensor.daily_power_peak")|float }}
 
-      monthly_power:
-        friendly_name: Monthly Power
-        unit_of_measurement: kWh
-        value_template:
-          {{ states("sensor.monthly_power_offpeak")|float + states("sensor.monthly_power_peak")|float }}
+    monthly_power:
+      friendly_name: Monthly Power
+      unit_of_measurement: kWh
+      value_template: >
+        {{ states("sensor.monthly_power_offpeak")|float + states("sensor.monthly_power_peak")|float }}
 
 
 - platform: min_max
