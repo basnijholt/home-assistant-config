@@ -39,31 +39,13 @@ iphone_marcella:
   - sensor.steps_iphone_marcella
   - device_tracker.iphone_marcella
 
-ha_menu_lsx_volume:
+ha_menu_lsx_control:
   control: hidden
   view: no
   name: HA Menu - LSX volume
   entities:
-    - input_boolean.lsx_volume_0
-    - input_boolean.lsx_volume_1
-    - input_boolean.lsx_volume_2
-    - input_boolean.lsx_volume_3
-    - input_boolean.lsx_volume_4
-    - input_boolean.lsx_volume_5
-    - input_boolean.lsx_volume_6
-    - input_boolean.lsx_volume_7
-    - input_boolean.lsx_volume_8
-    - input_boolean.lsx_volume_9
-
-ha_menu_lsx_source:
-  control: hidden
-  view: no
-  name: HA Menu - LSX source
-  entities:
-    - input_boolean.lsx_opt
-    - input_boolean.lsx_wifi
-    - input_boolean.lsx_bluetooth
-    - input_boolean.lsx_aux
+    - input_select.lsx_volume
+    - input_select.lsx_source
 
 ha_menu_lsx_power:
   control: hidden

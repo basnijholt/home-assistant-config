@@ -18,3 +18,36 @@ last_script_bedroom:
     - script.white_lights_bedroom
   icon: mdi:lightbulb-on
 
+
+# Bedroom speakers control (used with https://github.com/andrew-codechimp/ha-menu/)
+lsx_volume:
+  name: LSX volume
+  options:
+    - 00
+    - 05
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    - 35
+    - 40
+    - 45
+    - 50
+    - 55
+    - 60
+    - 65
+    - 70
+    - 75
+    - 80
+    - 85
+    - 90
+    - 95
+
+lsx_source:
+  name: LSX source
+  options:
+    - Opt
+    - Wifi
+    - Bluetooth
+    - Aux
