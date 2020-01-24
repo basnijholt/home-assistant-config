@@ -1,6 +1,6 @@
 
 # Bas Nijholt's Home Assistant config files
-![Lovelace UI](https://user-images.githubusercontent.com/6897215/70158623-d82ee680-16b7-11ea-9287-0d4f1ebe64e8.png)
+![Lovelace UI](http://files.nijho.lt/ha-ui.gif)
 Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-dark-mode-theme).
 
 ## My cool AppDaemon apps
