@@ -1,4 +1,4 @@
-"""Turns on speakers on a source and volume.
+"""Notifies when a battery_level has gone below a threshold value.
 
 # Example `apps.yaml` config:
 ```
