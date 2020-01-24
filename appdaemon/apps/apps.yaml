@@ -72,3 +72,9 @@ demo_wake_up_light:
 cube:
   module: xiaomi_aqara_cube_action
   class: CubeControl
+
+battery_monitor:
+  module: battery_monitor
+  class: BatteryMonitor
+  service: mobile_app_basnijholt_iphone
+  low_level: 20
