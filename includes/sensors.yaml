@@ -171,6 +171,12 @@
     - sensor.temperature_bathroom
     - sensor.temperature_hall
 
+# XXX: wait until 0.105
+# - platform: derivative
+#   source: sensor.gas_consumption
+#   name: Gas per hour
+#   unit: m³/s
+
 - platform: command_line
   name: RPi CPU Temperature
   command: "cat /sys/class/thermal/thermal_zone0/temp"
