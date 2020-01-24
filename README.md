@@ -66,7 +66,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 ### Device tracker
 * iPhone X with the new iOS app (2x)
 
-## Other
+### Other
 * PlayStation Eye Webcam and Microphone array (€14.95)
 * DSMR - Slimme Meter kabel (€19.95)
 * Nodo-Shop – OpenTherm Gateway (OTGW) (€48.81)
