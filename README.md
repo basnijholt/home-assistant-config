@@ -1,7 +1,8 @@
 
 # Bas Nijholt's Home Assistant config files
 ![Lovelace UI](http://files.nijho.lt/ha-ui.gif)
-Using my own [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-dark-mode-theme).
+
+Using my [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-dark-mode-theme) and [iOS Light Mode Theme](https://github.com/basnijholt/lovelace-ios-light-mode-theme).
 
 ## My cool AppDaemon apps
 * [Sunrise emulator app](appdaemon/apps/wake_up_light.py) 🌅
