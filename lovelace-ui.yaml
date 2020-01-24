@@ -745,7 +745,7 @@ views:
           value: 70
         - color: red
           value: 100
-        title: CPU Temp
+        title: GPU Temp
         type: custom:bar-card
       - animation: 'off'
         entity: sensor.memory_use_percent
