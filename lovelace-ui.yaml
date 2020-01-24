@@ -338,20 +338,27 @@ views:
       type: custom:fold-entity-row
     - entities:
       - icon: mdi:currency-eur
-        name: 'In {{ as_timestamp(now()) | timestamp_custom("%B") }} we used {{ states("sensor.monthly_power")|round(2)
-          }} kWh and {{ states("sensor.monthly_gas")|round(2) }} m³ gas.
+        name: '{{ as_timestamp(now()) | timestamp_custom("%B") }}''s usage statistics
 
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: 'Where the power cost €{{ states("sensor.monthly_power_cost")|float|round(2)
-          }} and gas cost €{{ states("sensor.monthly_gas_cost")|float|round(2) }}.
+        name: '{{ states("sensor.monthly_power")|round(2) }} kWh power → €{{ states("sensor.monthly_power_cost")|float|round(2)
+          }}.
 
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: 'The fixed cost sofar are €{{ states("sensor.monthly_energy_fixed_cost")|float|round(2)
-          }}, for a total of €{{ (states("sensor.monthly_gas_cost")|float + states("sensor.monthly_power_cost")|float
+        name: '{{ states("sensor.monthly_gas")|round(2) }} m³ gas → €{{ states("sensor.monthly_gas_cost")|float|round(2)
+          }}.
+
+          '
+        type: custom:template-entity-row
+      - type: divider
+      - icon: mdi:currency-eur
+        name: '€{{ states("sensor.monthly_energy_fixed_cost")|float|round(2) }} (fixed)
+          + €{{ (states("sensor.monthly_gas_cost")|float + states("sensor.monthly_power_cost")|float)|round(2)
+          }} = €{{ (states("sensor.monthly_gas_cost")|float + states("sensor.monthly_power_cost")|float
           + states("sensor.monthly_energy_fixed_cost")|float)|round(2) }}.
 
           '
@@ -361,8 +368,8 @@ views:
         name: 'Energy usage
 
           '
-        secondary: 'Today used {{ states("sensor.daily_power")|round(2) }} kWh and
-          {{ states("sensor.daily_gas")|round(2) }} m³ gas.
+        secondary: 'Today {{ states("sensor.daily_power")|round(2) }} kWh and {{ states("sensor.daily_gas")|round(2)
+          }} m³ gas.
 
           '
         state: '€{{ (states("sensor.daily_gas_cost")|float + states("sensor.daily_power_cost")|float
@@ -1086,19 +1093,6 @@ views:
     - type: divider
     - entity: input_select.lsx_volume
     - entity: input_select.lsx_source
-    - entity: input_boolean.lsx_bluetooth
-    - entity: input_boolean.lsx_wifi
-    - type: divider
-    - entity: input_boolean.lsx_volume_0
-    - entity: input_boolean.lsx_volume_1
-    - entity: input_boolean.lsx_volume_2
-    - entity: input_boolean.lsx_volume_3
-    - entity: input_boolean.lsx_volume_4
-    - entity: input_boolean.lsx_volume_5
-    - entity: input_boolean.lsx_volume_6
-    - entity: input_boolean.lsx_volume_7
-    - entity: input_boolean.lsx_volume_8
-    - entity: input_boolean.lsx_volume_9
     show_header_toggle: false
     title: LSX control (for HA-Menu)
     type: entities
