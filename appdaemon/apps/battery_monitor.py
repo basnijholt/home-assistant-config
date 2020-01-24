@@ -17,18 +17,18 @@ from functools import partial
 
 import hassapi as hass
 
-LOW_LEVEL = 15
-SERVICE = "mobile_app_basnijholt_iphone"
-HOUR = 14
-MINUTE = 0
+DEFAULT_LOW_LEVEL = 15
+DEFAULT_SERVICE = "mobile_app_basnijholt_iphone"
+DEFAULT_HOUR = 14
+DEFAULT_MINUTE = 0
 
 
 class BatteryMonitor(hass.Hass):
     def initialize(self):
-        self.low_level = self.args.get("low_level", LOW_LEVEL)
-        self.service = self.args.get("mobile_app_basnijholt_iphone", SERVICE)
-        h = self.args.get("hour", HOUR)
-        m = self.args.get("minute", MINUTE)
+        self.low_level = self.args.get("low_level", DEFAULT_LOW_LEVEL)
+        self.service = self.args.get("mobile_app_basnijholt_iphone", DEFAULT_SERVICE)
+        h = self.args.get("hour", DEFAULT_HOUR)
+        m = self.args.get("minute", DEFAULT_MINUTE)
         self.run_daily(self.start_cb, datetime.time(h, m, 30))
 
     def start_cb(self, kwargs):
