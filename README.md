@@ -35,7 +35,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 ### Sensors
 * Xiaomi Aqara Door Sensor (4x) (€32.71)
 * Xiaomi Aqara Temperature Sensor (4x) (€34.40)
-* Xiaomi Aqara Motion Sensor (4x) (€61.13)
+* Xiaomi Aqara Motion Sensor (6x) (€61.13)
 * Xiaomi Aqara Vibration Sensor (€11.59)
 
 ### Vacuum
@@ -60,23 +60,20 @@ See also [my guide for my girlfriend ❤️](guide.md).
 * Raspberry Pi 4, 4GB RAM, running [*Hass.io*](https://www.home-assistant.io/hassio/) (€70.90)
 * Raspberry Pi 4 FLIRC Case (€25.85)
 * SanDisk Ultra microSDHC Memory Card 32GB (€6.99)
+* Raspberry Pi 3 Model B (connected to power/gas meter and connected over MQTT to main HA instance) (€40.40)
 
 ### Device tracker
 * iPhone X with the new iOS app (2x)
 
 ## Other
 * PlayStation Eye Webcam and Microphone array (€14.95)
+* DSMR - Slimme Meter kabel (€19.95)
+* Nodo-Shop – OpenTherm Gateway (OTGW) (€48.81)
 
 ### Total cost
-*€1,333.28* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
+*€1442.44* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
 I bought many things on Aliexpress and with discount or used on Amazon.
-
-## Notes
-* I use AppDaemon 4 beta, see the installation instructions [here](appdaemon/hassio_appdaemon4_beta_installation_instructions.md).
 
 ## Automation plans
 * Notify us when the window is open and it is raining.
 * Add budget keeper using the Bunq API
-* Implement scenes: 'movie time', 'dinner time', 'cozy time', 'bed time', and 'party time'.
-* Introduce the concept of "sleep mode" which automatically triggers if we're home and there is no motion in the house *except* the bedroom. Then if you go out in the middle of the night (e.g., to the bathroom) then lights will turn a non-bright red. Manually triggering the switch will turn on the normal lights.
-* Use [this cheap Wifi enabled dimmer](https://nl.aliexpress.com/item/33010332202.html) and flash it with Tasmota to make some dumb lights, smart. [[1](https://gathering.tweakers.net/forum/list_message/60373132#60373132)]
