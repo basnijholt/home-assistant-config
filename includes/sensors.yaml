@@ -124,6 +124,43 @@
       value_template: >
         {{ states("sensor.monthly_power_offpeak")|float + states("sensor.monthly_power_peak")|float }}
 
+    daily_gas_cost:
+      friendly_name: Daily Power
+      unit_of_measurement: €
+      value_template: >
+        {{ states("sensor.daily_gas")|float * 0.7884 + (0.1480 + 0.3554) }}
+
+    monthly_gas_cost:
+      friendly_name: Monthly Power
+      unit_of_measurement: €
+      value_template: >
+        {{ states("sensor.monthly_gas")|float * 0.7884 }}
+
+    daily_power_cost:
+      friendly_name: Daily Power
+      unit_of_measurement: €
+      value_template: >
+        {{ states("sensor.daily_power_offpeak")|float * 0.2307
+           + states("sensor.daily_power_peak")|float * 0.2479 }}
+
+    monthly_power_cost:
+      friendly_name: Monthly Power
+      unit_of_measurement: €
+      value_template: >
+        {{ states("sensor.monthly_power_offpeak")|float * 0.2307
+           + states("sensor.monthly_power_peak")|float * 0.2479 }}
+
+    daily_energy_fixed_cost:
+      friendly_name: Fixed daily energy cost (gas and power)
+      unit_of_measurement: €
+      value_template: >
+        {{ (0.1480 + 0.3554) + (0.1480 + 0.6293) }}
+
+    monthly_energy_fixed_cost:
+      friendly_name: Fixed daily energy cost (gas and power)
+      unit_of_measurement: €
+      value_template: >
+        {{ states("sensor.daily_energy_fixed_cost")|float * now().day }}
 
 - platform: min_max
   name: Temperature mean
