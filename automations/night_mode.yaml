@@ -14,8 +14,12 @@
 #     service: shell_command.convert_lovelace
 - alias: "Night mode: automatically turn off if alarm is off"
   trigger:
-    platform: time
-    at: "06:00"
+    - platform: time
+      at: "06:00"
+    - platform: state
+      entity_id: input_boolean.alarm_clock
+      from: "on"
+      to: "off"
   condition:
     condition: state
     entity_id: input_boolean.alarm_clock
