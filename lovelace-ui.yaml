@@ -336,6 +336,41 @@ views:
           sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
         type: custom:template-entity-row
       type: custom:fold-entity-row
+    - entities:
+      - icon: mdi:currency-eur
+        name: 'In {{ as_timestamp(now()) | timestamp_custom("%B") }} we used {{ states("sensor.monthly_power")|round(2)
+          }} kWh and {{ states("sensor.monthly_gas")|round(2) }} m³ gas.
+
+          '
+        type: custom:template-entity-row
+      - icon: mdi:currency-eur
+        name: 'Where the power cost €{{ states("sensor.monthly_power_cost")|float|round(2)
+          }} and gas cost €{{ states("sensor.monthly_gas_cost")|float|round(2) }}.
+
+          '
+        type: custom:template-entity-row
+      - icon: mdi:currency-eur
+        name: 'The fixed cost sofar are €{{ states("sensor.monthly_energy_fixed_cost")|float|round(2)
+          }}, for a total of €{{ (states("sensor.monthly_gas_cost")|float + states("sensor.monthly_power_cost")|float
+          + states("sensor.monthly_energy_fixed_cost")|float)|round(2) }}.
+
+          '
+        type: custom:template-entity-row
+      head:
+        entity: sensor.daily_gas
+        name: 'Energy usage
+
+          '
+        secondary: 'Today used {{ states("sensor.daily_power")|round(2) }} kWh and
+          {{ states("sensor.daily_gas")|round(2) }} m³ gas.
+
+          '
+        state: '€{{ (states("sensor.daily_gas_cost")|float + states("sensor.daily_power_cost")|float
+          + states("sensor.daily_energy_fixed_cost")|float)|round(2) }}
+
+          '
+        type: custom:template-entity-row
+      type: custom:fold-entity-row
     show_header_toggle: false
     title: Utilities
     type: entities
@@ -396,6 +431,82 @@ views:
         entities:
         - entity: sensor.temperature_hall
           name: Hall
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      name: Speedtest
+      type: horizontal-stack
+    type: custom:vertical-stack-in-card
+  - cards:
+    - cards:
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.power_consumption
+          name: Power consumption
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.gas_consumption
+          name: Gas consumption
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      name: Speedtest
+      type: horizontal-stack
+    - cards:
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.daily_power_cost
+          name: Daily power cost
+        - entity: sensor.daily_gas_cost
+          name: Daily gas cost
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.monthly_power_cost
+          name: Monthly power cost
+        - entity: sensor.monthly_gas_cost
+          name: Monthly gas cost
         font_size: 100
         group: false
         hour24: true
@@ -477,41 +588,6 @@ views:
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
-  - cards:
-    - color_thresholds_transition: smooth
-      entities:
-      - entity: sensor.power_consumption
-        name: Power consumption
-      font_size: 100
-      group: false
-      hour24: true
-      line_width: 6
-      points_per_hour: 1
-      show:
-        extrema: false
-        fill: fade
-        labels: false
-        name: true
-        state: true
-      type: custom:mini-graph-card
-    - color_thresholds_transition: smooth
-      entities:
-      - entity: sensor.gas_consumption
-        name: Gas consumption
-      font_size: 100
-      group: false
-      hour24: true
-      line_width: 6
-      points_per_hour: 1
-      show:
-        extrema: false
-        fill: fade
-        labels: false
-        name: true
-        state: true
-      type: custom:mini-graph-card
-    name: Speedtest
-    type: horizontal-stack
   path: default_view
   title: Home
 - badges: []
@@ -1008,8 +1084,8 @@ views:
       type: custom:template-entity-row
     - entity: switch.kef_lsx
     - type: divider
-    - entity: input_boolean.lsx_opt
-    - entity: input_boolean.lsx_aux
+    - entity: input_select.lsx_volume
+    - entity: input_select.lsx_source
     - entity: input_boolean.lsx_bluetooth
     - entity: input_boolean.lsx_wifi
     - type: divider
