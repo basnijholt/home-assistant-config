@@ -9,6 +9,10 @@
     - platform: time_pattern
       hours: "/1"
   condition:
+    - condition: template
+      value_template: >
+        {{ not is_state("person.bas", "home")
+           and not is_state("person.marcella", "home") }}
     - condition: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       state: "off"
