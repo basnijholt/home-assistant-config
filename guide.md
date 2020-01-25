@@ -4,6 +4,8 @@
 * Button downstairs next to the door
     * Single click: turn off everything in the house because you are leaving
     * Double click: turn on cozy lights in the living room and your favourite playlist will start playing
+* Botton outside on the door (doorbell)
+    * Single click: flash all lights in the house and display a notification on the TV and iPhones
 * Button living room/bedroom
     * Single: click, increase the brightness between [10%, 50%, 100%]
     * Double click: change between bright lights and cozy lights
