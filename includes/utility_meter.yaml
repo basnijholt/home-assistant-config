@@ -1,5 +1,4 @@
 ---
-# XXX: check https://www.home-assistant.io/integrations/utility_meter/
 daily_power_offpeak:
   source: sensor.power_consumption_low
   cycle: daily
