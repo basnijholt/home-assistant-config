@@ -845,7 +845,7 @@ views:
   - columns: 4
     entities:
     - entity: sensor.button_mini_bedroom_battery_level
-    - entity: sensor.button_mini_2_battery_level
+    - entity: sensor.button_mini_doorbell_battery_level
     - entity: sensor.button_mini_downstairs_battery_level
     - entity: sensor.button_mini_living_room_battery_level
     show_icon: true
