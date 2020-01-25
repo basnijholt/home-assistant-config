@@ -6,6 +6,7 @@ custom_header:
   compact_mode: true
   swipe_animate: fade
   swipe_prevent_default: true
+  voice_hide: true
 decluttering_templates:
   automation_template:
     card:
@@ -579,6 +580,7 @@ views:
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
+  icon: mdi:home
   path: default_view
   title: Home
 - cards:
@@ -677,40 +679,28 @@ views:
     - columns: 4
       entities:
       - entity: sensor.count_automations
-        icon: mdi:autorenew
         name: Automations
       - entity: sensor.count_scripts
-        icon: mdi:script-text-outline
         name: Scripts
       - entity: sensor.count_zones
-        icon: mdi:map-marker-radius
         name: Zones
       - entity: sensor.count_device_trackers
-        icon: mdi:map-marker
         name: Device Trackers
       - entity: sensor.count_switches
-        icon: mdi:light-switch
         name: Switches
       - entity: sensor.count_sensors
-        icon: mdi:resistor
         name: Sensors
       - entity: sensor.count_binary_sensors
-        icon: mdi:unfold-more-horizontal
         name: Binary Sensors
       - entity: sensor.count_input_booleans
-        icon: mdi:toggle-switch
         name: Input Booleans
       - entity: sensor.count_input_numbers
-        icon: mdi:numeric
         name: Input Numbers
       - entity: sensor.count_input_texts
-        icon: mdi:alphabetical
         name: Input Texts
       - entity: sensor.count_input_selects
-        icon: mdi:view-list
         name: Input Select
       - entity: sensor.count_input_datetimes
-        icon: mdi:calendar-clock
         name: Input Date Times
       title: Component Count
       type: glance

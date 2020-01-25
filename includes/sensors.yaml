@@ -15,50 +15,62 @@
 
     count_automations:
       entity_id: sensor.date
+      icon_template: mdi:autorenew
       value_template: "{{ states.automation | count }}"
 
     count_scripts:
       entity_id: sensor.date
+      icon_template: mdi:script-text-outline
       value_template: "{{ states.script| count }}"
 
     count_device_trackers:
       entity_id: sensor.date
+      icon_template: mdi:map-marker
       value_template: "{{ states.device_tracker | count }}"
 
     count_binary_sensors:
       entity_id: sensor.date
+      icon_template: mdi:unfold-more-horizontal
       value_template: "{{ states.binary_sensor| count }}"
 
     count_sensors:
       entity_id: sensor.date
+      icon_template: mdi:resistor
       value_template: "{{ states.sensor | count }}"
 
     count_switches:
       entity_id: sensor.date
+      icon_template: mdi:light-switch
       value_template: "{{ states.switch | count }}"
 
     count_zones:
       entity_id: sensor.date
+      icon_template: mdi:map-marker-radius
       value_template: "{{ states.zone | count }}"
 
     count_input_booleans:
       entity_id: sensor.date
+      icon_template: mdi:toggle-switch
       value_template: "{{ states.input_boolean | count }}"
 
     count_input_numbers:
       entity_id: sensor.date
+      icon_template: mdi:numeric
       value_template: "{{ states.input_number | count }}"
 
     count_input_texts:
       entity_id: sensor.date
+      icon_template: mdi:alphabetical
       value_template: "{{ states.input_text | count }}"
 
     count_input_selects:
       entity_id: sensor.date
+      icon_template: mdi:view-list
       value_template: "{{ states.input_select | count }}"
 
     count_input_datetimes:
       entity_id: sensor.date
+      icon_template: mdi:calendar-clock
       value_template: "{{ states.input_datetime | count }}"
 
     favorite_playlist_of_nearest_person:
