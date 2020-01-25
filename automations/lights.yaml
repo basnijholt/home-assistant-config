@@ -10,7 +10,7 @@
       event_type: deconz_event
       event_data:
         id: dimmer_switch_bedroom
-        event: 1002  # Top button
+        event: 4002  # Lowest button
   action:
     - service: input_select.select_next
       entity_id: input_select.last_script_bedroom
@@ -29,7 +29,7 @@
       event_type: deconz_event
       event_data:
         id: dimmer_switch_living_room
-        event: 1002  # Top button
+        event: 4002  # Lowest button
   action:
     service: script.next_colors
     data:
@@ -82,7 +82,7 @@
       event_type: deconz_event
       event_data:
         id: dimmer_switch_bedroom
-        event: 4002  # Lowest button
+        event: 1002  # Top button
   action:
     service: script.increase_brightness
     data:
@@ -99,7 +99,7 @@
       event_type: deconz_event
       event_data:
         id: dimmer_switch_living_room
-        event: 4002  # Lowest button
+        event: 1002  # Top button
   action:
     service: script.increase_brightness
     data:
