@@ -88,6 +88,7 @@
       value_template: >
         {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}
       unit_of_measurement: "s"
+      entity_id: sensor.date
 
     time_at_work_prognosis:
       value_template: >
@@ -153,15 +154,18 @@
     daily_energy_fixed_cost:
       friendly_name: Fixed daily energy cost (gas and power)
       unit_of_measurement: €
+      entity_id: sensor.date  # To get rid of the warning
       value_template: >
         {{ (0.1480 + 0.3554) + (0.1480 + 0.6293) }}
 
     monthly_energy_fixed_cost:
       friendly_name: Fixed daily energy cost (gas and power)
       unit_of_measurement: €
+      entity_id: sensor.date
       value_template: >
         {{ states("sensor.daily_energy_fixed_cost")|float * now().day }}
 
+# XXX: not used
 - platform: min_max
   name: Temperature mean
   type: mean
@@ -170,6 +174,10 @@
     - sensor.temperature_bedroom
     - sensor.temperature_bathroom
     - sensor.temperature_hall
+
+- platform: time_date
+  display_options:
+     - date
 
 # XXX: wait until 0.105
 # - platform: derivative
@@ -202,8 +210,6 @@
     - type: last_boot
 
 - platform: dnsip
-
-- platform: time_date
 
 - platform: version
   name: Installed Version

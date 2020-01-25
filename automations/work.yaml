@@ -14,11 +14,3 @@
     data:
       title: "Work"
       message: "You have worked 8 hours today, very good! Go home 🎉"
-
-- alias: "Work: update sensor.timestamp_start_of_today"
-  trigger:
-    platform: time
-    at: "00:01"
-  action:
-    service: homeassistant.update_entity
-    entity_id: sensor.timestamp_start_of_today
