@@ -292,6 +292,7 @@
     platform: state
     entity_id: binary_sensor.activity_in_bedroom
     to: "off"
+    for: "00:08:00"
   condition:
     - condition: state
       entity_id: input_boolean.bedroom_lights_automatically_turned_on

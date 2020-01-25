@@ -58,7 +58,7 @@
       value_template: >
         {{ states("binary_sensor.motion_sensor_bedroom_1") == "on"
            or states("binary_sensor.motion_sensor_bedroom_2") == "on" }}
-      delay_off: "00:10:00"
+      delay_off: "00:01:00"
 
     washing_machine:
       friendly_name: Washing machine
