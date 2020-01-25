@@ -26,7 +26,7 @@ DEFAULT_MINUTE = 0
 class BatteryMonitor(hass.Hass):
     def initialize(self):
         self.low_level = self.args.get("low_level", DEFAULT_LOW_LEVEL)
-        self.service = self.args.get("mobile_app_basnijholt_iphone", DEFAULT_SERVICE)
+        self.service = self.args.get("service", DEFAULT_SERVICE)
         h = self.args.get("hour", DEFAULT_HOUR)
         m = self.args.get("minute", DEFAULT_MINUTE)
         self.run_daily(self.start_cb, datetime.time(h, m, 30))
