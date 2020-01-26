@@ -18,6 +18,13 @@ last_script_bedroom:
     - script.white_lights_bedroom
   icon: mdi:lightbulb-on
 
+theme:
+  options:
+    - blue
+    - green
+    - blue-red
+    - dark-orange
+  icon: mdi:format-color-fill
 
 # Bedroom speakers control (used with https://github.com/andrew-codechimp/ha-menu/)
 lsx_volume:

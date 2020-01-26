@@ -4,8 +4,6 @@ custom_header:
   button_text:
     options: '{{ hours24 }}:{{ minutesLZ }}'
   compact_mode: true
-  swipe_animate: fade
-  swipe_prevent_default: true
   voice_hide: true
 decluttering_templates:
   automation_template:
@@ -228,7 +226,12 @@ views:
     - entity: input_boolean.alarm_clock
     - entity: input_datetime.alarm_clock
     - entity: input_boolean.sleep_mode
-    - entity: input_boolean.dark_mode
+    - entities:
+      - input_select.theme
+      head:
+        entity: input_boolean.dark_mode
+        name: Dark mode
+      type: custom:fold-entity-row
     show_header_toggle: false
     type: entities
   - cards:
@@ -865,11 +868,11 @@ views:
   - columns: 4
     entities:
     - entity: binary_sensor.openclose_front_door
-    - entity: binary_sensor.openclose_2
+    - entity: binary_sensor.openclose_guest_room
     - entity: binary_sensor.openclose_3
     - entity: binary_sensor.openclose_4
     - entity: sensor.openclose_front_door_battery_level
-    - entity: sensor.openclose_2_battery_level
+    - entity: sensor.openclose_guest_room_battery_level
     - entity: sensor.openclose_3_battery_level
     - entity: sensor.openclose_4_battery_level
     show_icon: true
