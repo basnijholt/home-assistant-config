@@ -107,5 +107,10 @@
         {% set kef_lsx_on = is_state("media_player.kef_lsx", "on") %}
         {{ light_on or tv_on or kef_on or kef_lsx_on }}
 
+    vacuum_day:
+      friendly_name: Vacuum vacuum_day
+      value_template: >
+        {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Wed", "Fri", "Sun") }}
+
 - platform: workday
   country: NL
