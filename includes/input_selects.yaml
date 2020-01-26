@@ -20,10 +20,13 @@ last_script_bedroom:
 
 theme:
   options:
-    - blue
-    - green
     - blue-red
-    - dark-orange
+    - dark-blue
+    - dark-green
+    - light-blue
+    - light-green
+    - orange
+    - red
   icon: mdi:format-color-fill
 
 # Bedroom speakers control (used with https://github.com/andrew-codechimp/ha-menu/)
