@@ -28,13 +28,14 @@ def add_text(text, content):
     content.insert(i + 3, end)  # end
     return content
 
+folders = ["automations", "includes"]
+for folder in folders:
+    for fname in Path(folder).glob("*.yaml"):
+        with fname.open() as f:
+            content = f.readlines()
 
-for fname in Path("includes").glob("*.yaml"):
-    with fname.open() as f:
-        content = f.readlines()
+        content = remove_text(content)
+        content = add_text(fname.stem, content)
 
-    content = remove_text(content)
-    content = add_text(fname.stem, content)
-
-    with fname.open("w") as f:
-        f.write("".join(content))
+        with fname.open("w") as f:
+            f.write("".join(content))

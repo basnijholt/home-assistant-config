@@ -1,4 +1,13 @@
 ---
+#-
+#             _
+#   ___ _   _| |__   ___
+#  / __| | | | '_ \ / _ \
+# | (__| |_| | |_) |  __/
+#  \___|\__,_|_.__/ \___|
+#
+#
+#- from github.com/basnijholt/home-assistant-config
 - alias: "Cube: change cube mode"
   trigger:
     platform: event

@@ -1,4 +1,13 @@
 ---
+#-
+#                           _ _
+#  ___  ___  ___ _   _ _ __(_) |_ _   _
+# / __|/ _ \/ __| | | | '__| | __| | | |
+# \__ \  __/ (__| |_| | |  | | |_| |_| |
+# |___/\___|\___|\__,_|_|  |_|\__|\__, |
+#                                 |___/
+#
+#- from github.com/basnijholt/home-assistant-config
 - alias: "Security: motion detected but we are not home"
   trigger:
     platform: state

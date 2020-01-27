@@ -1,4 +1,13 @@
 ---
+#-
+#  _                              __  __
+# | |_ _   _ _ __ _ __      ___  / _|/ _|
+# | __| | | | '__| '_ \    / _ \| |_| |_
+# | |_| |_| | |  | | | |  | (_) |  _|  _|
+#  \__|\__,_|_|  |_| |_|___\___/|_| |_|
+#                     |_____|
+#
+#- from github.com/basnijholt/home-assistant-config
 - alias: "Turn off: turn off the living room"
   trigger:
     - platform: event

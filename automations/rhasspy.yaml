@@ -1,4 +1,13 @@
 ---
+#-
+#       _
+#  _ __| |__   __ _ ___ ___ _ __  _   _
+# | '__| '_ \ / _` / __/ __| '_ \| | | |
+# | |  | | | | (_| \__ \__ \ |_) | |_| |
+# |_|  |_| |_|\__,_|___/___/ .__/ \__, |
+#                          |_|    |___/
+#
+#- from github.com/basnijholt/home-assistant-config
 - alias: "Rhasspy: light states"
   trigger:
     event_type: rhasspy_ChangeLightState

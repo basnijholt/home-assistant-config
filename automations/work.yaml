@@ -1,4 +1,13 @@
 ---
+#-
+#                     _
+# __      _____  _ __| | __
+# \ \ /\ / / _ \| '__| |/ /
+#  \ V  V / (_) | |  |   <
+#   \_/\_/ \___/|_|  |_|\_\
+#
+#
+#- from github.com/basnijholt/home-assistant-config
 - alias: "Work: go home notification"
   trigger:
     platform: state

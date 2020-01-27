@@ -1,4 +1,13 @@
 ---
+#-
+#        _                              _            _
+#   __ _| | __ _ _ __ _ __ ___      ___| | ___   ___| | __
+#  / _` | |/ _` | '__| '_ ` _ \    / __| |/ _ \ / __| |/ /
+# | (_| | | (_| | |  | | | | | |  | (__| | (_) | (__|   <
+#  \__,_|_|\__,_|_|  |_| |_| |_|___\___|_|\___/ \___|_|\_\
+#                             |_____|
+#
+#- from github.com/basnijholt/home-assistant-config
 - alias: "Alarm clock: wake up with Spotify and light"
   trigger:
     platform: template
