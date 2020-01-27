@@ -19,7 +19,7 @@ Using my [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-dark-m
 * [Presence detection in different rooms based on various binary template sensors](includes/binary_sensors.yaml)
 * [Robot vacuum automations](automations/vacuum.yaml)
 * [Arriving and leaving automations](automations/leaving_and_arriving.yaml)
-* [Notifications when the dishwasher or washing machine is done](automations/utilities.yaml)
+* [Notifications when the dishwasher  or washing machine is done](automations/utilities.yaml)
 * [Time at work 📈 tracking and notifications to go home](includes/sensors.yaml)
 * Using [HA-Menu](https://github.com/codechimp-org/ha-menu) to control [my speakers on my iMac](automations/lsx-control.yaml)
 * [Automatically switch Lovelace's theme between backgrounds and light/dark mode](automations/frontend.yaml)

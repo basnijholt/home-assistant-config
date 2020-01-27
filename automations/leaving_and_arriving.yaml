@@ -82,7 +82,7 @@
     event_type: deconz_event
     event_data:
       id: smart_switch_downstairs
-      event: 1002
+      event: 1002  # Single click
   action:
     - service: light.turn_on
       data:
@@ -101,7 +101,7 @@
       event_type: deconz_event
       event_data:
         id: smart_switch_downstairs
-        event: 1004
+        event: 1004  # Double click
   action:
     - service: light.turn_on
       entity_id: light.living_room_lights
