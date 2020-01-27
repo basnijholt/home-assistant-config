@@ -36,13 +36,13 @@ See also [my guide for my girlfriend ❤️](guide.md).
 * Xiaomi Aqara Single Button (4x) (€37.05)
 * Philips Hue Dimmer switch (2x) (€33.22)
 * IKEA TRÅDFRI SYMFONISK Remote (€15.00)
-* Xiaomi Mi Flora (3x) (€46.63)
 
 ### Sensors
 * Xiaomi Aqara Door Sensor (4x) (€32.71)
 * Xiaomi Aqara Temperature Sensor (4x) (€34.40)
 * Xiaomi Aqara Motion Sensor (6x) (€61.13)
 * Xiaomi Aqara Vibration Sensor (€11.59)
+* Xiaomi Mi Flora (3x) (€46.63)
 
 ### Vacuum
 * Xiaomi Mi Roborock S5 (€294.31)
