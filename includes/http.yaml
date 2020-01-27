@@ -1,4 +1,13 @@
 ---
+#-
+#  _     _   _
+# | |__ | |_| |_ _ __
+# | '_ \| __| __| '_ \
+# | | | | |_| |_| |_) |
+# |_| |_|\__|\__| .__/
+#               |_|
+#
+#- from github.com/basnijholt/home-assistant-config
 base_url: !secret base_url
 ssl_certificate: /ssl/fullchain.pem
 ssl_key: /ssl/privkey.pem

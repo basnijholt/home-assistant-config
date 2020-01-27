@@ -1,4 +1,13 @@
 ---
+#-
+#
+#  _ __   ___ _ __ ___  ___  _ __  ___
+# | '_ \ / _ \ '__/ __|/ _ \| '_ \/ __|
+# | |_) |  __/ |  \__ \ (_) | | | \__ \
+# | .__/ \___|_|  |___/\___/|_| |_|___/
+# |_|
+#
+#- from github.com/basnijholt/home-assistant-config
 - name: Bas Nijholt
   id: 13984b139dd9426ca31369725c9e23e0
   device_trackers:

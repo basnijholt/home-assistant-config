@@ -1,4 +1,13 @@
 ---
+#-
+#              _   _  __
+#  _ __   ___ | |_(_)/ _|_   _
+# | '_ \ / _ \| __| | |_| | | |
+# | | | | (_) | |_| |  _| |_| |
+# |_| |_|\___/ \__|_|_|  \__, |
+#                        |___/
+#
+#- from github.com/basnijholt/home-assistant-config
 - platform: webostv
   host: !secret ip_tv
   name: tv

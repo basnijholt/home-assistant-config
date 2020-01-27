@@ -1,4 +1,13 @@
 ---
+#-
+#
+#  _______  _ __   ___  ___
+# |_  / _ \| '_ \ / _ \/ __|
+#  / / (_) | | | |  __/\__ \
+# /___\___/|_| |_|\___||___/
+#
+#
+#- from github.com/basnijholt/home-assistant-config
 - name: Home
   latitude: !secret latitude_home
   longitude: !secret longitude_home

@@ -1,4 +1,13 @@
 ---
+#-
+#  _
+# (_) ___  ___
+# | |/ _ \/ __|
+# | | (_) \__ \
+# |_|\___/|___/
+#
+#
+#- from github.com/basnijholt/home-assistant-config
 push:
   categories:
     - name: Turn off everything
