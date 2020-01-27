@@ -1,1 +1,2 @@
+---
 convert_lovelace: 'python /config/json2yaml.py /config/.storage/lovelace /config/lovelace-ui.yaml'

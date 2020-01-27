@@ -1,3 +1,4 @@
+---
 purge_keep_days: 8
 exclude:
   entities:

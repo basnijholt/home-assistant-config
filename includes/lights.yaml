@@ -1,3 +1,4 @@
+---
 - platform: group
   name: Living room lights
   entities:

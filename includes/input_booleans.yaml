@@ -17,7 +17,7 @@ sleep_mode:
   name: Sleep mode
   icon: mdi:bed-king
 bedroom_lights_automatically_turned_on:
-  name: Automatically turned on bedroom lights
+  name: Will automatically turn off
   icon: mdi:ceiling-light
   initial: off
 dark_mode:
@@ -25,6 +25,9 @@ dark_mode:
   icon: mdi:theme-light-dark
 automatic_bedroom_lights:
   name: Automatic bedroom lights
+  icon: mdi:lamp
+work_hour_notification_sent:
+  name: You've worked enough notification sent
   icon: mdi:lamp
 
 # Apps

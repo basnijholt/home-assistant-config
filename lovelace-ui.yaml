@@ -41,8 +41,6 @@ resources:
 - type: module
   url: /community_plugin/decluttering-card/decluttering-card.js
 - type: module
-  url: /community_plugin/weather-card/weather-card.js
-- type: module
   url: /community_plugin/simple-weather-card/simple-weather-card-bundle.js
 - type: module
   url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
@@ -52,6 +50,8 @@ resources:
   url: /community_plugin/lovelace-template-entity-row/template-entity-row.js
 - type: module
   url: /community_plugin/custom-header/custom-header.js
+- type: module
+  url: /community_plugin/swipe-card/swipe-card.js
 title: Huis
 views:
 - badges:
@@ -96,6 +96,7 @@ views:
       - light.philips_go
       - light.bed_led
       - input_boolean.automatic_bedroom_lights
+      - input_boolean.bedroom_lights_automatically_turned_on
       - entity: script.cozy_lights_bedroom
         icon_height: 20px
         name: Cozy lights
@@ -583,6 +584,145 @@ views:
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
+  - entities:
+    - entities:
+      - color: '#0279ff'
+        entity: sensor.time_at_work_this_week
+        max: 50
+        min: 0
+        target: 40
+        title: This week
+        type: custom:bar-card
+      - entity: sensor.time_at_work_prognosis
+        max: 50
+        min: 0
+        severity:
+        - color: '#ff3c31'
+          value: 30
+        - color: '#ffcc01'
+          value: 38
+        - color: '#34c758'
+          value: 42
+        - color: '#ff3c31'
+          value: 50
+        target: 40
+        title: This week prognosis
+        type: custom:bar-card
+      - type: divider
+      - entity: sensor.time_at_work_on_monday
+        max: 12
+        min: 0
+        severity:
+        - color: '#ff3c31'
+          value: 6
+        - color: '#ffcc01'
+          value: 8
+        - color: '#34c758'
+          value: 9
+        - color: '#ff3c31'
+          value: 10
+        target: 8
+        title: Monday
+        type: custom:bar-card
+      - entity: sensor.time_at_work_on_tuesday
+        max: 12
+        min: 0
+        severity:
+        - color: '#ff3c31'
+          value: 6
+        - color: '#ffcc01'
+          value: 8
+        - color: '#34c758'
+          value: 9
+        - color: '#ff3c31'
+          value: 10
+        target: 8
+        title: Tuesday
+        type: custom:bar-card
+      - entity: sensor.time_at_work_on_wednessday
+        max: 12
+        min: 0
+        severity:
+        - color: '#ff3c31'
+          value: 6
+        - color: '#ffcc01'
+          value: 8
+        - color: '#34c758'
+          value: 9
+        - color: '#ff3c31'
+          value: 10
+        target: 8
+        title: Wednessday
+        type: custom:bar-card
+      - entity: sensor.time_at_work_on_thursday
+        max: 12
+        min: 0
+        severity:
+        - color: '#ff3c31'
+          value: 6
+        - color: '#ffcc01'
+          value: 8
+        - color: '#34c758'
+          value: 9
+        - color: '#ff3c31'
+          value: 10
+        target: 8
+        title: Thursday
+        type: custom:bar-card
+      - entity: sensor.time_at_work_on_friday
+        max: 12
+        min: 0
+        severity:
+        - color: '#ff3c31'
+          value: 6
+        - color: '#ffcc01'
+          value: 8
+        - color: '#34c758'
+          value: 9
+        - color: '#ff3c31'
+          value: 10
+        target: 8
+        title: Friday
+        type: custom:bar-card
+      - card:
+          show_header_toggle: false
+          title: Bas
+          type: entities
+        filter:
+          include:
+          - group: group.iphone_bas
+        type: custom:auto-entities
+      head:
+        entity: person.bas
+        name: 'Bas
+
+          '
+        state: '{{ states("person.bas") }}
+
+          '
+        type: custom:template-entity-row
+      type: custom:fold-entity-row
+    - entities:
+      - card:
+          show_header_toggle: false
+          title: Bas
+          type: entities
+        filter:
+          include:
+          - group: group.iphone_bas
+        type: custom:auto-entities
+      head:
+        entity: person.marcella
+        name: 'Marcella
+
+          '
+        state: '{{ states("person.marcella").replace("_", " ").capitalize() }}
+
+          '
+        type: custom:template-entity-row
+      type: custom:fold-entity-row
+    show_header_toggle: false
+    type: entities
   icon: mdi:home
   path: default_view
   title: Home
@@ -790,22 +930,6 @@ views:
     show_name: true
     show_state: false
     type: glance
-  - card:
-      show_header_toggle: false
-      title: Bas' iPhone
-      type: entities
-    filter:
-      include:
-      - group: group.iphone_bas
-    type: custom:auto-entities
-  - card:
-      show_header_toggle: false
-      title: Marcella's iPhone
-      type: entities
-    filter:
-      include:
-      - group: group.iphone_marcella
-    type: custom:auto-entities
   icon: mdi:home-assistant
   path: system
   title: System Information
@@ -904,14 +1028,31 @@ views:
     title: Temperature sensors
     type: glance
   - entities:
-    - entity: input_boolean.bedroom_lights_automatically_turned_on
-    title: Test
-    type: entities
-  - entities:
     - entity: binary_sensor.anything_on
     - entity: binary_sensor.any_light_on
     show_header_toggle: false
     title: Devices are on
+    type: entities
+  - entities:
+    - entity: sensor.mi_flora_moisture
+    - entity: sensor.mi_flora_temperature
+    - entity: sensor.mi_flora_battery
+    - entity: sensor.mi_flora_conductivity
+    - entity: sensor.mi_flora_light_intensity
+    - type: divider
+    - entity: sensor.mi_flora_moisture_2
+    - entity: sensor.mi_flora_temperature_2
+    - entity: sensor.mi_flora_battery_2
+    - entity: sensor.mi_flora_conductivity_2
+    - entity: sensor.mi_flora_light_intensity_2
+    - type: divider
+    - entity: sensor.mi_flora_moisture_3
+    - entity: sensor.mi_flora_temperature_3
+    - entity: sensor.mi_flora_battery_3
+    - entity: sensor.mi_flora_conductivity_3
+    - entity: sensor.mi_flora_light_intensity_3
+    show_header_toggle: false
+    title: Plant sensors
     type: entities
   icon: mdi:motion-sensor
   path: sensors

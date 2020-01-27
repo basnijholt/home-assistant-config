@@ -1,3 +1,5 @@
 ---
 - platform: netgear
   password: !secret netgear_password
+
+- platform: bluetooth_le_tracker
