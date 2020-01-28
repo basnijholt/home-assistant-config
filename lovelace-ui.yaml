@@ -686,13 +686,10 @@ views:
     type: vertical-stack
   - cards:
     - entity: plant.ficus_microcarpa_ginseng
-      name: Ficus microcarpa Ginseng
       type: plant-status
     - entity: plant.kentia_palm
-      name: Kentia Palm
       type: plant-status
     - entity: plant.basil
-      name: Basil
       type: plant-status
     parameters:
       autoplay:

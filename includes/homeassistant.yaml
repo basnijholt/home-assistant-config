@@ -33,3 +33,9 @@ customize:
     icon: mdi:bed-king
   light.toilet:
     icon: mdi:emoticon-poop
+  plant.ficus_microcarpa_ginseng:
+    friendly_name: Ficus microcarpa Ginseng
+  plant.kentia_palm:
+    friendly_name: Kentia Palm
+  plant.basil:
+    friendly_name: Basil
