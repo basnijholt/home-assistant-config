@@ -214,6 +214,7 @@
 - platform: time_date
   display_options:
      - date
+     - time
 
 # XXX: wait until 0.105
 # - platform: derivative

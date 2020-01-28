@@ -8,6 +8,7 @@
 #                           |___/_____|
 #
 #- from github.com/basnijholt/home-assistant-config
+
 - platform: template
   sensors:
     someone_showering:
