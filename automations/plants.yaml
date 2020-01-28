@@ -1,0 +1,54 @@
+---
+- alias: "Plants: problem with Ficus microcarpa Ginseng"
+  trigger:
+    - platform: state
+      entity_id: plant.ficus_microcarpa_ginseng
+      to: "problem"
+    - platform: time
+      at: "20:00"
+  condition:
+    condition: state
+    entity_id: plant.ficus_microcarpa_ginseng
+    state: "problem"
+  action:
+    service: notify.all_iphones
+    data_template:
+      title: "Plant in trouble! ⚠️☢️"
+      message: >
+        You need to give the Ficus microcarpa Ginseng 🌳 attention, right now!
+
+- alias: "Plants: problem with Kentia Palm"
+  trigger:
+    - platform: state
+      entity_id: plant.kentia_palm
+      to: "problem"
+    - platform: time
+      at: "20:00"
+  condition:
+    condition: state
+    entity_id: plant.kentia_palm
+    state: "problem"
+  action:
+    service: notify.all_iphones
+    data_template:
+      title: "Plant in trouble! ⚠️☢️"
+      message: >
+        You need to give the Kentia Palm 🌴 attention, right now!
+
+- alias: "Plants: problem with Basil"
+  trigger:
+    - platform: state
+      entity_id: plant.basil
+      to: "problem"
+    - platform: time
+      at: "20:00"
+  condition:
+    condition: state
+    entity_id: plant.basil
+    state: "problem"
+  action:
+    service: notify.all_iphones
+    data_template:
+      title: "Plant in trouble! ⚠️☢️"
+      message: >
+        You need to give the Basil 🌿 attention, right now!

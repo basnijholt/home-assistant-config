@@ -550,29 +550,29 @@
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_battery/state
   unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Battery"
+  name: "Mi Flora: Kentia Palm Battery"
   icon: mdi:battery-charging
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_conductivity/state
   unit_of_measurement: µS/cm
-  name: "Mi Flora: Kentia Conductivity"
+  name: "Mi Flora: Kentia Palm Conductivity"
   icon: mdi:flash-circle
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_light_intensity/state
   unit_of_measurement: lx
-  name: "Mi Flora: Kentia Light intensity"
+  name: "Mi Flora: Kentia Palm Light intensity"
   icon: mdi:white-balance-sunny
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_moisture/state
   unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Moisture"
+  name: "Mi Flora: Kentia Palm Moisture"
   icon: mdi:water-percent
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_temperature/state
   unit_of_measurement: °C
-  name: "Mi Flora: Kentia Temperature"
+  name: "Mi Flora: Kentia Palm Temperature"
   icon: mdi:thermometer
