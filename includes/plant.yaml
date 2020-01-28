@@ -1,4 +1,13 @@
 ---
+#-
+#        _             _
+#  _ __ | | __ _ _ __ | |_
+# | '_ \| |/ _` | '_ \| __|
+# | |_) | | (_| | | | | |_
+# | .__/|_|\__,_|_| |_|\__|
+# |_|
+#
+#- from github.com/basnijholt/home-assistant-config
 ficus_microcarpa_ginseng:
   sensors:
     moisture: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
