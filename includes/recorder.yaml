@@ -114,21 +114,21 @@ include:
     - sensor.lightlevel_kitchen
     - sensor.lightlevel_toilet
     - sensor.memory_use_percent
-    - sensor.mi_flora_battery
-    - sensor.mi_flora_conductivity
+    - sensor.mi_flora_basil_battery
+    - sensor.mi_flora_basil_conductivity
+    - sensor.mi_flora_basil_light_intensity
+    - sensor.mi_flora_basil_moisture
+    - sensor.mi_flora_basil_temperature
     - sensor.mi_flora_ficus_microcarpa_ginseng_battery
     - sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
     - sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
     - sensor.mi_flora_ficus_microcarpa_ginseng_moisture
     - sensor.mi_flora_ficus_microcarpa_ginseng_temperature
-    - sensor.mi_flora_flora_kentia_battery
-    - sensor.mi_flora_flora_kentia_conductivity
-    - sensor.mi_flora_flora_kentia_light_intensity
-    - sensor.mi_flora_flora_kentia_moisture
-    - sensor.mi_flora_flora_kentia_temperature
-    - sensor.mi_flora_light_intensity
-    - sensor.mi_flora_moisture
-    - sensor.mi_flora_temperature
+    - sensor.mi_flora_kentia_palm_battery
+    - sensor.mi_flora_kentia_palm_conductivity
+    - sensor.mi_flora_kentia_palm_light_intensity
+    - sensor.mi_flora_kentia_palm_moisture
+    - sensor.mi_flora_kentia_palm_temperature
     - sensor.mi_magic_cube_battery_level
     - sensor.monthly_energy_fixed_cost
     - sensor.monthly_gas
