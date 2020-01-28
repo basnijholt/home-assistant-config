@@ -8,6 +8,31 @@
 # |_|
 #
 #- from github.com/basnijholt/home-assistant-config
+
+
+# Get information with the following Python code
+
+# import pandas as pd
+
+# pd.set_option("display.max_colwidth", -1)
+# pd.set_option("display.max_columns", 100)
+
+# # https://github.com/khronimo/MiFloraDB/blob/master/PlantDB_5335_U0.csv
+# df = pd.read_csv("PlantDB_5335_U0.txt")
+# row = df[df.pid.str.contains("basil")].iloc[0]
+# d = {
+#     "min_moisture": "min_soil_moist",
+#     "max_moisture": "max_soil_moist",
+#     "min_conductivity": "min_soil_ec",
+#     "max_conductivity": "max_soil_ec",
+#     "min_brightness": "min_light_lux",
+#     "max_brightness": "max_light_lux",
+#     "min_temperature": "min_temp",
+#     "max_temperature": "max_temp",
+# }
+# for k, v in d.items():
+#     print(f"  {k}: {row[v]}")
+
 ficus_microcarpa_ginseng:
   sensors:
     moisture: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
@@ -17,6 +42,12 @@ ficus_microcarpa_ginseng:
     brightness: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
   min_moisture: 20
   max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 2500
+  max_brightness: 35000
+  min_temperature: 8
+  max_temperature: 32
 
 kentia_palm:
   sensors:
@@ -25,8 +56,14 @@ kentia_palm:
     temperature: sensor.mi_flora_kentia_palm_temperature
     conductivity: sensor.mi_flora_kentia_palm_conductivity
     brightness: sensor.mi_flora_kentia_palm_light_intensity
-  min_moisture: 20
+  min_moisture: 15
   max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 1500
+  max_brightness: 25000
+  min_temperature: 8
+  max_temperature: 32
 
 basil:
   sensors:
@@ -35,5 +72,12 @@ basil:
     temperature: sensor.mi_flora_basil_temperature
     conductivity: sensor.mi_flora_basil_conductivity
     brightness: sensor.mi_flora_basil_light_intensity
-  min_moisture: 20
+  min_moisture: 15
   max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 2500
+  max_brightness: 60000
+  min_temperature: 8
+  max_temperature: 32
+
