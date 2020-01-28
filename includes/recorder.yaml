@@ -10,33 +10,6 @@
 #- from github.com/basnijholt/home-assistant-config
 purge_keep_days: 8
 exclude:
-  entities:
-    - sensor.tv_volume
-    - sensor.kef_ls50_volume
-    - sensor.kef_lsx_volume
-    - sensor.time
-    - sensor.time_at_work_on_friday
-    - sensor.time_at_work_on_monday
-    - sensor.time_at_work_on_thursday
-    - sensor.time_at_work_on_tuesday
-    - sensor.time_at_work_on_wednessday
-    - sensor.timestamp_start_of_today
-    - sensor.favorite_playlist_of_nearest_person
-    - sensor.daylight
-    - sensor.connection_type_ipad
-    - sensor.count_automations
-    - sensor.count_binary_sensors
-    - sensor.count_device_trackers
-    - sensor.count_input_booleans
-    - sensor.count_input_datetimes
-    - sensor.count_input_numbers
-    - sensor.count_input_selects
-    - sensor.count_input_texts
-    - sensor.count_scripts
-    - sensor.count_sensors
-    - sensor.count_switches
-    - sensor.count_zones
-    - sensor.circadian_values
   domains:
     - automation
     - binary_sensor
@@ -45,10 +18,16 @@ exclude:
     - input_boolean
     - input_datetime
     - input_select
+    - media_player
+    - proximity
     - scene
     - script
+    - sensor
     - sun
+    - switch
     - timer
+    - updater
+    - vacuum
     - weather
     - zone
 include:
@@ -84,4 +63,115 @@ include:
     - input_boolean.guest_mode
     - input_boolean.sleep_mode
     - input_boolean.vacation_mode
+    - light.bamboo
+    - light.bed_led
+    - light.ceiling_bathroom
+    - light.ceiling_bedroom
+    - light.ceiling_kitchen
+    - light.ceiling_living_room
+    - light.corner_living_room
+    - light.hall_1
+    - light.hall_2
+    - light.hall_3
+    - light.kitchen_counter
+    - light.lampan
+    - light.philips_go
+    - light.sphere_1
+    - light.sphere_2
+    - light.stairs_down
+    - light.stairs_up
+    - light.toilet
+    - light.tv_led
+    - sensor.button_mini_bedroom_battery_level
+    - sensor.button_mini_doorbell_battery_level
+    - sensor.button_mini_downstairs_battery_level
+    - sensor.button_mini_living_room_battery_level
+    - sensor.daily_energy_fixed_cost
+    - sensor.daily_gas
+    - sensor.daily_gas_cost
+    - sensor.daily_power
+    - sensor.daily_power_cost
+    - sensor.daily_power_offpeak
+    - sensor.daily_power_peak
+    - sensor.dimmer_switch_bedroom_battery_level
+    - sensor.dimmer_switch_living_room_battery_level
+    - sensor.disk_use_percent
+    - sensor.gas_consumption
+    - sensor.home_assistant_v2_db
+    - sensor.hourly_gas_consumption
+    - sensor.humidity_bathroom
+    - sensor.humidity_bedroom
+    - sensor.humidity_hall
+    - sensor.humidity_living_room
+    - sensor.last_boot
+    - sensor.lightlevel_bathroom
+    - sensor.lightlevel_bedroom_1
+    - sensor.lightlevel_bedroom_2
+    - sensor.lightlevel_hall
+    - sensor.lightlevel_kitchen
+    - sensor.lightlevel_toilet
+    - sensor.memory_use_percent
+    - sensor.mi_flora_battery
+    - sensor.mi_flora_conductivity
+    - sensor.mi_flora_ficus_microcarpa_ginseng_battery
+    - sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
+    - sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
+    - sensor.mi_flora_ficus_microcarpa_ginseng_moisture
+    - sensor.mi_flora_ficus_microcarpa_ginseng_temperature
+    - sensor.mi_flora_flora_kentia_battery
+    - sensor.mi_flora_flora_kentia_conductivity
+    - sensor.mi_flora_flora_kentia_light_intensity
+    - sensor.mi_flora_flora_kentia_moisture
+    - sensor.mi_flora_flora_kentia_temperature
+    - sensor.mi_flora_light_intensity
+    - sensor.mi_flora_moisture
+    - sensor.mi_flora_temperature
+    - sensor.mi_magic_cube_battery_level
+    - sensor.monthly_energy_fixed_cost
+    - sensor.monthly_gas
+    - sensor.monthly_gas_cost
+    - sensor.monthly_power
+    - sensor.monthly_power_cost
+    - sensor.monthly_power_offpeak
+    - sensor.monthly_power_peak
+    - sensor.motion_sensor_bathroom_battery_level
+    - sensor.motion_sensor_bedroom_1_battery_level
+    - sensor.motion_sensor_bedroom_2_battery_level
+    - sensor.motion_sensor_hall_battery_level
+    - sensor.motion_sensor_kitchen_battery_level
+    - sensor.motion_sensor_toilet_battery_level
+    - sensor.network_in_eth0
+    - sensor.network_out_eth0
+    - sensor.openclose_3_battery_level
+    - sensor.openclose_4_battery_level
+    - sensor.openclose_front_door_battery_level
+    - sensor.openclose_guest_room_battery_level
+    - sensor.power_consumption
+    - sensor.power_consumption_low
+    - sensor.power_consumption_normal
+    - sensor.power_tariff
+    - sensor.pressure_bathroom
+    - sensor.pressure_bedroom
+    - sensor.pressure_hall
+    - sensor.pressure_living_room
+    - sensor.processor_use
+    - sensor.rpi_cpu_temperature
+    - sensor.rpi_gpu_temperature
+    - sensor.speedtest_download
+    - sensor.speedtest_ping
+    - sensor.speedtest_upload
+    - sensor.steps_iphone_bas
+    - sensor.steps_iphone_marcella
+    - sensor.symfonisk_sound_controller_battery_level
+    - sensor.temperature_bathroom
+    - sensor.temperature_bedroom
+    - sensor.temperature_hall
+    - sensor.temperature_living_room
+    - sensor.temperature_mean
+    - sensor.temperature_sensor_bathroom_battery_level
+    - sensor.temperature_sensor_bedroom_battery_level
+    - sensor.temperature_sensor_hall_battery_level
+    - sensor.temperature_sensor_living_room_battery_level
+    - sensor.uptime
+    - sensor.vibration_battery_level
     - vacuum.xiaomi_vacuum_cleaner
