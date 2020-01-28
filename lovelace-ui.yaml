@@ -50,6 +50,8 @@ resources:
   url: /community_plugin/custom-header/custom-header.js
 - type: module
   url: /community_plugin/swipe-card/swipe-card.js
+- type: module
+  url: /community_plugin/lovelace-multiple-entity-row/multiple-entity-row.js
 title: Huis
 views:
 - badges:
@@ -236,8 +238,18 @@ views:
   - cards:
     - entities:
       - entity: vacuum.xiaomi_vacuum_cleaner
-      - entity: binary_sensor.vacuum_day
-      - entity: switch.vacuum_mode
+        name: Vacuum cleaner
+        primary:
+          entity: switch.vacuum_mode
+          name: Vacuum day
+        secondary:
+          entity: switch.vacuum_mode
+          toggle: true
+        tertiary:
+          attribute: battery_level
+          name: Battery
+          unit: '%'
+        type: custom:multiple-entity-row
       - entity: input_boolean.cleaned_today
       show_header_toggle: false
       type: entities

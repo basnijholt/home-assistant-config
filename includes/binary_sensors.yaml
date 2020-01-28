@@ -118,7 +118,7 @@
         {{ light_on or tv_on or kef_on or kef_lsx_on }}
 
     vacuum_day:
-      friendly_name: Vacuum vacuum_day
+      friendly_name: Vacuum day today
       value_template: >
         {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Wed", "Fri", "Sun") }}
 
