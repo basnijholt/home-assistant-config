@@ -399,3 +399,24 @@
     entity_id:
       - light.hall_lights
       - light.stairs_lights
+
+- alias: "Light: turn off bedroom (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/30"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.activity_in_bedroom
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.automatic_bedroom_lights
+      state: "on"
+    - condition: state
+      entity_id: input_boolean.bedroom_lights_automatically_turned_on
+      state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.bedroom_lights
+    - service: light.turn_off
+      entity_id: input_boolean.bedroom_lights_automatically_turned_on
