@@ -617,10 +617,6 @@ views:
           type: custom:mini-graph-card
         type: horizontal-stack
       type: custom:vertical-stack-in-card
-    parameters:
-      autoplay:
-        delay: 5000
-      speed: 2000
     type: custom:swipe-card
   - cards:
     - cards:
@@ -688,6 +684,21 @@ views:
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
+  - cards:
+    - entity: plant.ficus_microcarpa_ginseng
+      name: Ficus microcarpa Ginseng
+      type: plant-status
+    - entity: plant.kentia_palm
+      name: Kentia Palm
+      type: plant-status
+    - entity: plant.basil
+      name: Basil
+      type: plant-status
+    parameters:
+      autoplay:
+        delay: 5000
+      speed: 2000
+    type: custom:swipe-card
   - cards:
     - cards:
       - color_thresholds_transition: smooth
@@ -1214,11 +1225,11 @@ views:
     title: Devices are on
     type: entities
   - entities:
-    - entity: sensor.mi_flora_moisture
-    - entity: sensor.mi_flora_temperature
-    - entity: sensor.mi_flora_battery
-    - entity: sensor.mi_flora_conductivity
-    - entity: sensor.mi_flora_light_intensity
+    - entity: sensor.mi_flora_basil_moisture
+    - entity: sensor.mi_flora_basil_temperature
+    - entity: sensor.mi_flora_basil_battery
+    - entity: sensor.mi_flora_basil_conductivity
+    - entity: sensor.mi_flora_basil_light_intensity
     - type: divider
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_temperature
@@ -1226,11 +1237,11 @@ views:
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
     - type: divider
-    - entity: sensor.mi_flora_flora_kentia_moisture
-    - entity: sensor.mi_flora_flora_kentia_temperature
-    - entity: sensor.mi_flora_flora_kentia_battery
-    - entity: sensor.mi_flora_flora_kentia_conductivity
-    - entity: sensor.mi_flora_flora_kentia_light_intensity
+    - entity: sensor.mi_flora_kentia_moisture
+    - entity: sensor.mi_flora_kentia_temperature
+    - entity: sensor.mi_flora_kentia_battery
+    - entity: sensor.mi_flora_kentia_conductivity
+    - entity: sensor.mi_flora_kentia_light_intensity
     show_header_toggle: false
     title: Plant sensors
     type: entities

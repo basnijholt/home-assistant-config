@@ -1,0 +1,30 @@
+---
+ficus_microcarpa_ginseng:
+  sensors:
+    moisture: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
+    battery: sensor.mi_flora_ficus_microcarpa_ginseng_battery
+    temperature: sensor.mi_flora_ficus_microcarpa_ginseng_temperature
+    conductivity: sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
+    brightness: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
+  min_moisture: 20
+  max_moisture: 60
+
+kentia_palm:
+  sensors:
+    moisture: sensor.mi_flora_kentia_palm_moisture
+    battery: sensor.mi_flora_kentia_palm_battery
+    temperature: sensor.mi_flora_kentia_palm_temperature
+    conductivity: sensor.mi_flora_kentia_palm_conductivity
+    brightness: sensor.mi_flora_kentia_palm_light_intensity
+  min_moisture: 20
+  max_moisture: 60
+
+basil:
+  sensors:
+    moisture: sensor.mi_flora_basil_moisture
+    battery: sensor.mi_flora_basil_battery
+    temperature: sensor.mi_flora_basil_temperature
+    conductivity: sensor.mi_flora_basil_conductivity
+    brightness: sensor.mi_flora_basil_light_intensity
+  min_moisture: 20
+  max_moisture: 60
