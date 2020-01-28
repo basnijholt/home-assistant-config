@@ -33,8 +33,6 @@ resources:
 - type: module
   url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
 - type: js
-  url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
-- type: js
   url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
 - type: module
   url: /community_plugin/lovelace-auto-entities/auto-entities.js
@@ -236,16 +234,11 @@ views:
     show_header_toggle: false
     type: entities
   - cards:
-    - buttons: true
-      entity: vacuum.xiaomi_vacuum_cleaner
-      image: /local/custom/folder/background.png
-      name: Vacuum
-      type: custom:xiaomi-vacuum-card
     - entities:
-      - entity: switch.vacuum_mode
-      - entity: input_boolean.cleaned_today
       - entity: vacuum.xiaomi_vacuum_cleaner
       - entity: binary_sensor.vacuum_day
+      - entity: switch.vacuum_mode
+      - entity: input_boolean.cleaned_today
       show_header_toggle: false
       type: entities
     - calibration_points:
@@ -631,6 +624,72 @@ views:
     type: custom:swipe-card
   - cards:
     - cards:
+      - color: auto
+        icon: mdi:weather-sunset-up
+        lock:
+          enabled: true
+        name: Wake up
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          service: input_boolean.turn_off
+          service_data:
+            entity_id: input_boolean.sleep_mode
+        type: custom:button-card
+      - color: auto
+        entity: input_boolean.sleep_mode
+        icon: mdi:weather-night
+        lock:
+          enabled: true
+        name: '[[[ if (entity.state == "on") return "Sleep mode on"; else return "Good
+          Night" ]]]'
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          service: script.going_to_sleep
+        type: custom:button-card
+      type: horizontal-stack
+    - cards:
+      - color: auto
+        icon: mdi:home-map-marker
+        lock:
+          enabled: true
+        name: Arrive Home
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          service: script.cozy_lights_living_room
+        type: custom:button-card
+      - color: auto
+        icon: mdi:home-export-outline
+        lock:
+          enabled: true
+        name: Leave Home
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          service: script.turn_off_everything
+        type: custom:button-card
+      type: horizontal-stack
+    type: vertical-stack
+  - cards:
+    - cards:
       - color_thresholds_transition: smooth
         entities:
         - entity: sensor.power_consumption
@@ -705,72 +764,6 @@ views:
         delay: 5000
       speed: 2000
     type: custom:swipe-card
-  - cards:
-    - cards:
-      - color: auto
-        icon: mdi:weather-sunset-up
-        lock:
-          enabled: true
-        name: Wake up
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          service: input_boolean.turn_off
-          service_data:
-            entity_id: input_boolean.sleep_mode
-        type: custom:button-card
-      - color: auto
-        entity: input_boolean.sleep_mode
-        icon: mdi:weather-night
-        lock:
-          enabled: true
-        name: '[[[ if (entity.state == "on") return "Sleep mode on"; else return "Good
-          Night" ]]]'
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          service: script.going_to_sleep
-        type: custom:button-card
-      type: horizontal-stack
-    - cards:
-      - color: auto
-        icon: mdi:home-map-marker
-        lock:
-          enabled: true
-        name: Arrive Home
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          service: script.cozy_lights_living_room
-        type: custom:button-card
-      - color: auto
-        icon: mdi:home-export-outline
-        lock:
-          enabled: true
-        name: Leave Home
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          service: script.turn_off_everything
-        type: custom:button-card
-      type: horizontal-stack
-    type: vertical-stack
   - entities:
     - entities:
       - color: '#0279ff'
@@ -884,7 +877,7 @@ views:
         name: 'Bas
 
           '
-        state: '{{ states("person.bas") }}
+        state: '{{ states("person.bas").replace("_", " ").capitalize() }}
 
           '
         type: custom:template-entity-row
