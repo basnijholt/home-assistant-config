@@ -82,6 +82,9 @@ include:
     - light.stairs_up
     - light.toilet
     - light.tv_led
+    - media_player.kef_ls50
+    - media_player.kef_lsx
+    - media_player.tv
     - sensor.button_mini_bedroom_battery_level
     - sensor.button_mini_doorbell_battery_level
     - sensor.button_mini_downstairs_battery_level
