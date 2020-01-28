@@ -22,7 +22,7 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
       state: "docked"
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.all_iphones
     data:
       message: "Security: motion is detected, but we are not home."
       data:
@@ -54,7 +54,7 @@
     entity_id: input_boolean.guest_mode
     state: "off"
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.all_iphones
     data:
       title: "Security"
       message: "The door has been open for more than 5 minutes."

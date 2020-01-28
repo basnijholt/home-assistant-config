@@ -8,6 +8,7 @@
 #
 #
 #- from github.com/basnijholt/home-assistant-config
+
 - alias: "Utilities: washing machine has started"
   trigger:
     platform: state
@@ -31,7 +32,8 @@
       entity_id: input_datetime.washing_machine_done
       data_template:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    - service: notify.mobile_app_basnijholt_iphone
+    - service_template: >
+        {{ states("sensos.nearest_iphone_notify") }}
       data:
         title: "Utilities"
         message: "Washing machine is done 👚👕"
@@ -47,7 +49,8 @@
       entity_id: input_datetime.dishwasher_done
       data_template:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    - service: notify.mobile_app_basnijholt_iphone
+    - service_template: >
+        {{ states("sensos.nearest_iphone_notify") }}
       data:
         title: "Utilities"
         message: "Dishwasher is done 🍽🍳"

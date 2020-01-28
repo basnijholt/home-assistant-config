@@ -15,7 +15,7 @@
     from: docked
     to: cleaning
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.all_iphones
     data:
       title: "Robot"
       message: "Robot started to clean!"
@@ -27,7 +27,7 @@
     from: returning
     to: docked
   action:
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.all_iphones
       data_template:
         title: "Robot"
         message: "Cleanup successful after {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes."
@@ -43,7 +43,7 @@
     entity_id: binary_sensor.vacuum_day
     state: "on"
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.all_iphones
     data:
       title: "Robot"
       message: "Vacuum will go today, make sure to leave the doors open and leave nothing on the floor!"

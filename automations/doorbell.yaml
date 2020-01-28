@@ -21,7 +21,7 @@
       data:
         flash: "short"
         entity_id: all
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.all_iphones
       data:
         title: "Doorbell"
         message: "Someone in front of the door!"

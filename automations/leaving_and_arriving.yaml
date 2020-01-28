@@ -33,7 +33,7 @@
       state: "on"
   action:
     - service: script.turn_off_everything
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.all_iphones
       data:
         title: "Leaving"
         message: "Everything automatically turned off!"
@@ -59,7 +59,7 @@
       entity_id: binary_sensor.anything_on
       state: "on"
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.all_iphones
     data:
       message: "No one is home, turn off everything?"
       data:
@@ -89,7 +89,8 @@
         flash: "short"
         entity_id: light.stairs_down
     - service: script.turn_off_everything_non_automatic
-    - service: notify.mobile_app_basnijholt_iphone
+    - service_template: >
+        {{ states("sensos.nearest_iphone_notify") }}
       data:
         title: "Leaving"
         message: "Everything turned off, see you soon! ❤️"

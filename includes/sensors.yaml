@@ -194,6 +194,17 @@
       value_template: >
         {{ states("sensor.daily_energy_fixed_cost")|float * now().day }}
 
+    nearest_iphone_notify:
+      friendly_name: Nearest iPhone's notify service
+      value_template: >
+        {% if is_state("person.bas", "home") and is_state("person.marcella", "home") %}
+          notify.all_iphones
+        {% elif is_state_attr("proximity.home", "nearest", "basnijholt-iphone") %}
+          notify.mobile_app_basnijholt_iphone
+        {% else %}
+          notify.mobile_app_marcella_iphone
+        {% endif %}
+
 #   ___  _   _
 #  / _ \| |_| |__   ___ _ __ ___
 # | | | | __| '_ \ / _ \ '__/ __|
