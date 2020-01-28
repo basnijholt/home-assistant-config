@@ -244,6 +244,8 @@ views:
     - entities:
       - entity: switch.vacuum_mode
       - entity: input_boolean.cleaned_today
+      - entity: vacuum.xiaomi_vacuum_cleaner
+      - entity: binary_sensor.vacuum_day
       show_header_toggle: false
       type: entities
     - calibration_points:
@@ -413,10 +415,226 @@ views:
     type: entities
   - cards:
     - cards:
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.temperature_living_room
+            name: Living room
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.temperature_bathroom
+            name: Bathroom
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.temperature_bedroom
+            name: Bedroom
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.temperature_hall
+            name: Hall
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      type: custom:vertical-stack-in-card
+    - cards:
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.humidity_living_room
+            name: Living room
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.humidity_bathroom
+            name: Bathroom
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.humidity_bedroom
+            name: Bedroom
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.humidity_hall
+            name: Hall
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      type: custom:vertical-stack-in-card
+    - cards:
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.pressure_living_room
+            name: Living room
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.pressure_bathroom
+            name: Bathroom
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.pressure_bedroom
+            name: Bedroom
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.pressure_hall
+            name: Hall
+          font_size: 100
+          group: false
+          hour24: true
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      type: custom:vertical-stack-in-card
+    parameters:
+      autoplay:
+        delay: 5000
+      speed: 2000
+    type: custom:swipe-card
+  - cards:
+    - cards:
       - color_thresholds_transition: smooth
         entities:
-        - entity: sensor.temperature_living_room
-          name: Living room
+        - entity: sensor.power_consumption
+          name: Power consumption
         font_size: 100
         group: false
         hour24: true
@@ -431,8 +649,8 @@ views:
         type: custom:mini-graph-card
       - color_thresholds_transition: smooth
         entities:
-        - entity: sensor.temperature_bathroom
-          name: Bathroom
+        - entity: sensor.gas_consumption
+          name: Gas consumption
         font_size: 100
         group: false
         hour24: true
@@ -450,8 +668,8 @@ views:
     - cards:
       - color_thresholds_transition: smooth
         entities:
-        - entity: sensor.temperature_bedroom
-          name: Bedroom
+        - entity: sensor.daily_power_cost
+          name: Power cost
         font_size: 100
         group: false
         hour24: true
@@ -466,8 +684,8 @@ views:
         type: custom:mini-graph-card
       - color_thresholds_transition: smooth
         entities:
-        - entity: sensor.temperature_hall
-          name: Hall
+        - entity: sensor.daily_gas_cost
+          name: Gas cost
         font_size: 100
         group: false
         hour24: true
@@ -482,42 +700,11 @@ views:
         type: custom:mini-graph-card
       name: Speedtest
       type: horizontal-stack
-    type: custom:vertical-stack-in-card
-  - cards:
-    - color_thresholds_transition: smooth
-      entities:
-      - entity: sensor.power_consumption
-        name: Power consumption
-      font_size: 100
-      group: false
-      hour24: true
-      line_width: 6
-      points_per_hour: 1
-      show:
-        extrema: false
-        fill: fade
-        labels: false
-        name: true
-        state: true
-      type: custom:mini-graph-card
-    - color_thresholds_transition: smooth
-      entities:
-      - entity: sensor.gas_consumption
-        name: Gas consumption
-      font_size: 100
-      group: false
-      hour24: true
-      line_width: 6
-      points_per_hour: 1
-      show:
-        extrema: false
-        fill: fade
-        labels: false
-        name: true
-        state: true
-      type: custom:mini-graph-card
-    name: Speedtest
-    type: horizontal-stack
+    parameters:
+      autoplay:
+        delay: 5000
+      speed: 2000
+    type: custom:swipe-card
   - cards:
     - cards:
       - color: auto
