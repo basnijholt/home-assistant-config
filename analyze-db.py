@@ -14,4 +14,11 @@ while row := cur.fetchone():
     if "entity_id" in info:
         cnt[info["entity_id"]] += 1
 
-print(Counter(cnt).most_common())
+N = 50
+cnt = Counter(cnt)
+most_common = cnt.most_common(N)
+total = sum(cnt.values())
+
+print(f"The {N} most common entries are:\n")
+for k, v in most_common:
+    print(f"{k}: {v/total * 100}%, ({v})")
