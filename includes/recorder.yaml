@@ -41,6 +41,8 @@ include:
     - binary_sensor.motion_detected
     - binary_sensor.motion_detected_in_last_hour
     - binary_sensor.motion_sensor_bathroom
+    - binary_sensor.motion_sensor_bedroom_1
+    - binary_sensor.motion_sensor_bedroom_2
     - binary_sensor.motion_sensor_hall
     - binary_sensor.motion_sensor_kitchen
     - binary_sensor.motion_sensor_toilet
