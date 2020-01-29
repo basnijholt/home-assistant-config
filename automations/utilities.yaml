@@ -33,7 +33,7 @@
       data_template:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     - service_template: >
-        {{ states("sensos.nearest_iphone_notify") }}
+        {{ states("sensor.nearest_iphone_notify") }}
       data:
         title: "Utilities"
         message: "Washing machine is done 👚👕"
@@ -50,7 +50,7 @@
       data_template:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     - service_template: >
-        {{ states("sensos.nearest_iphone_notify") }}
+        {{ states("sensor.nearest_iphone_notify") }}
       data:
         title: "Utilities"
         message: "Dishwasher is done 🍽🍳"

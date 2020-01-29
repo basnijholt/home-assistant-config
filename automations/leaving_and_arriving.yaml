@@ -90,7 +90,7 @@
         entity_id: light.stairs_down
     - service: script.turn_off_everything_non_automatic
     - service_template: >
-        {{ states("sensos.nearest_iphone_notify") }}
+        {{ states("sensor.nearest_iphone_notify") }}
       data:
         title: "Leaving"
         message: "Everything turned off, see you soon! ❤️"
