@@ -333,7 +333,7 @@
   description: In case the other automation failed
   trigger:
     platform: time_pattern
-    minutes: "/30"
+    minutes: "/10"
   condition:
     - condition: state
       entity_id: binary_sensor.activity_in_toilet
@@ -349,7 +349,7 @@
   description: In case the other automation failed
   trigger:
     platform: time_pattern
-    minutes: "/30"
+    minutes: "/10"
   condition:
     - condition: state
       entity_id: binary_sensor.activity_in_bathroom
@@ -365,7 +365,7 @@
   description: In case the other automation failed
   trigger:
     platform: time_pattern
-    minutes: "/30"
+    minutes: "/10"
   condition:
     - condition: state
       entity_id: binary_sensor.activity_in_kitchen
@@ -381,7 +381,7 @@
   description: In case the other automation failed
   trigger:
     platform: time_pattern
-    minutes: "/30"
+    minutes: "/10"
   condition:
     - condition: state
       entity_id: binary_sensor.activity_in_hall
