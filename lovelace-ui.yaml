@@ -905,11 +905,11 @@ views:
     - entities:
       - card:
           show_header_toggle: false
-          title: Bas
+          title: Marcella
           type: entities
         filter:
           include:
-          - group: group.iphone_bas
+          - group: group.iphone_marcella
         type: custom:auto-entities
       head:
         entity: person.marcella
