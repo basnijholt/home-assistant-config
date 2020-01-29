@@ -240,15 +240,11 @@ views:
       - entity: vacuum.xiaomi_vacuum_cleaner
         name: Vacuum cleaner
         primary:
-          entity: switch.vacuum_mode
+          entity: binary_sensor.vacuum_day
           name: Vacuum day
         secondary:
           entity: switch.vacuum_mode
           toggle: true
-        tertiary:
-          attribute: battery_level
-          name: Battery
-          unit: '%'
         type: custom:multiple-entity-row
       - entity: input_boolean.cleaned_today
       show_header_toggle: false
