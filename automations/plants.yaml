@@ -1,4 +1,13 @@
 ---
+#-
+#        _             _
+#  _ __ | | __ _ _ __ | |_ ___
+# | '_ \| |/ _` | '_ \| __/ __|
+# | |_) | | (_| | | | | |_\__ \
+# | .__/|_|\__,_|_| |_|\__|___/
+# |_|
+#
+#- from github.com/basnijholt/home-assistant-config
 - alias: "Plants: problem with Ficus microcarpa Ginseng"
   trigger:
     - platform: state
