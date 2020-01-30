@@ -2,7 +2,7 @@
 
 ## Manual control
 * Button downstairs next to the door
-    * Single click: turn off everything in the house because you are leaving
+    * Single click: turn off everything in the house because you are leaving and sets a low temperature
     * Double click: turn on cozy lights in the living room and your favourite playlist will start playing
 * Botton outside on the door (doorbell)
     * Single click: flash all lights in the house and display a notification on the TV and iPhones
@@ -26,11 +26,12 @@
 * Lights in hall, toilet, bathroom, and kitchen automatically turn on
     * Its colours change depending on the time of the day
     * If in sleep mode (after clicking the button in the app) these lights will be 10% brightness and red
-* An hour after we leave the house, everything turns off
+* An hour after we leave the house, everything turns off and temperature is set to low
 * The TV and speakers
     * If Spotify is not playing on the speakers, the speakers will automatically switch to the TV
     * Speakers will turn on when turning on the TV
 * Sleep mode automatically turns off if the alarm goes or if there is no alarm it's at 06:00
+* When sleep mode turns on, the temperature will be set to low
 * We will get a notification on our phones when either the dishwasher or washing machine is done
 
 Questions or suggestions? Ask Bas ❤️
