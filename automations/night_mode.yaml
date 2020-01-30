@@ -8,6 +8,7 @@
 #          |___/         |_____|
 #
 #- from github.com/basnijholt/home-assistant-config
+
 - alias: "Night mode: automatically turn off if alarm is off"
   trigger:
     - platform: time
@@ -33,3 +34,12 @@
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.automatic_bedroom_lights
+
+- alias: "Night mode: set low temperature when sleep mode turns on"
+  trigger:
+    platform: state
+    entity_id: input_boolean.sleep_mode
+    from: "off"
+    to: "on"
+  action:
+    service: script.set_low_temperature
