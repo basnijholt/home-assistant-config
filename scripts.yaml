@@ -206,3 +206,19 @@ start_netflix:
       source: Netflix
     entity_id: media_player.tv
     service: media_player.select_source
+set_low_temperature:
+  alias: Set low temperature
+  sequence:
+    - service: climate.set_temperature
+      entity_id: climate.thermostat
+      data_template:
+        temperature: >
+          {{ states("input_number.temperature_low") }}
+set_high_temperature:
+  alias: Set high temperature
+  sequence:
+    - service: climate.set_temperature
+      entity_id: climate.thermostat
+      data_template:
+        temperature: >
+          {{ states("input_number.temperature_high") }}
