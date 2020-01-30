@@ -120,7 +120,13 @@
     vacuum_day:
       friendly_name: Vacuum day today
       value_template: >
-        {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Wed", "Fri", "Sun") }}
+        {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Wed", "Sun") }}
+
+    no_one_home:
+      friendly_name: No one is home
+      value_template: >
+        {{ not is_state("person.bas", "home")
+           and not is_state("person.marcella", "home") }}
 
 - platform: workday
   country: NL

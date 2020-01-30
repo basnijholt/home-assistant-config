@@ -19,10 +19,9 @@
     - platform: time_pattern
       hours: "/1"
   condition:
-    - condition: template
-      value_template: >
-        {{ not is_state("person.bas", "home")
-           and not is_state("person.marcella", "home") }}
+    - condition: state
+      entity_id: binary_sensor.no_one_home
+      state: "on"
     - condition: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       state: "off"
@@ -45,15 +44,12 @@
   trigger:
     - platform: state
       entity_id: persons.bas
-      from: "home"
     - platform: state
       entity_id: persons.marcella
-      from: "home"
   condition:
-    - condition: template
-      value_template: >
-        {{ not is_state("person.bas", "home")
-           and not is_state("person.marcella", "home") }}
+    - condition: state
+      entity_id: binary_sensor.no_one_home
+      state: "on"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
