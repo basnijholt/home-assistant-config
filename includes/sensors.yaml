@@ -205,6 +205,14 @@
           notify.mobile_app_marcella_iphone
         {% endif %}
 
+    half_hour_before_alarm:
+      friendly_name: Half an hour before alarm
+      value_template: >
+        {% set t_alarm = state_attr("input_datetime.alarm_clock", "timestamp") | int %}
+        {% set t_start = states("sensor.timestamp_start_of_today") | int %}
+        {% set half_hour_before_alarm = t_alarm + t_start - 60 * 30 %}
+        {{ half_hour_before_alarm | timestamp_custom("%H:%M", True) }}
+
 #   ___  _   _
 #  / _ \| |_| |__   ___ _ __ ___
 # | | | | __| '_ \ / _ \ '__/ __|

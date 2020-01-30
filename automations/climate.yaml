@@ -1,0 +1,21 @@
+---
+#-
+#       _ _                 _
+#   ___| (_)_ __ ___   __ _| |_ ___
+#  / __| | | '_ ` _ \ / _` | __/ _ \
+# | (__| | | | | | | | (_| | ||  __/
+#  \___|_|_|_| |_| |_|\__,_|\__\___|
+#
+#
+#- from github.com/basnijholt/home-assistant-config
+
+- alias: "Climate: turn on the heating 30 min before waking up"
+  trigger:
+    platform: template
+    value_template: "{{ states.sensor.time.state == states.sensor.half_hour_before_alarm.state[0:5] }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.alarm_clock
+    state: "on"
+  action:
+    service: script.set_high_temperature
