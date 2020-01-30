@@ -10,6 +10,7 @@ http: !include includes/http.yaml
 input_boolean: !include includes/input_booleans.yaml
 input_datetime: !include includes/input_datetimes.yaml
 input_select: !include includes/input_selects.yaml
+input_number: !include includes/input_numbers.yaml
 
 # Logging and history
 logger: !include includes/logger.yaml
