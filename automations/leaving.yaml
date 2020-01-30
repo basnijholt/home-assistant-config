@@ -1,13 +1,14 @@
 ---
 #-
-#  _                  _                                _                    _       _
-# | | ___  __ ___   _(_)_ __   __ _     __ _ _ __   __| |    __ _ _ __ _ __(_)_   _(_)_ __   __ _
-# | |/ _ \/ _` \ \ / / | '_ \ / _` |   / _` | '_ \ / _` |   / _` | '__| '__| \ \ / / | '_ \ / _` |
-# | |  __/ (_| |\ V /| | | | | (_| |  | (_| | | | | (_| |  | (_| | |  | |  | |\ V /| | | | | (_| |
-# |_|\___|\__,_| \_/ |_|_| |_|\__, |___\__,_|_| |_|\__,_|___\__,_|_|  |_|  |_| \_/ |_|_| |_|\__, |
-#                             |___/_____|              |_____|                              |___/
+#  _                  _
+# | | ___  __ ___   _(_)_ __   __ _
+# | |/ _ \/ _` \ \ / / | '_ \ / _` |
+# | |  __/ (_| |\ V /| | | | | (_| |
+# |_|\___|\__,_| \_/ |_|_| |_|\__, |
+#                             |___/
 #
 #- from github.com/basnijholt/home-assistant-config
+
 - alias: "Leaving: automatically turn off everything"
   initial_state: "on"
   trigger:
@@ -33,6 +34,7 @@
       state: "on"
   action:
     - service: script.turn_off_everything
+    - service: script.set_low_temperature
     - service: notify.all_iphones
       data:
         title: "Leaving"
@@ -73,7 +75,8 @@
     event_data:
       actionName: TURN_OFF_EVERYTHING
   action:
-    service: script.turn_off_everything
+    - service: script.turn_off_everything
+    - service: script.set_low_temperature
 
 - alias: "Leaving: single click to turn off everything"
   initial_state: "on"
@@ -89,57 +92,9 @@
         flash: "short"
         entity_id: light.stairs_down
     - service: script.turn_off_everything_non_automatic
+    - service: script.set_low_temperature
     - service_template: >
         {{ states("sensor.nearest_iphone_notify") }}
       data:
         title: "Leaving"
         message: "Everything turned off, see you soon! ❤️"
-
-- alias: "Arriving: double click to turn on music and cozy lights"
-  initial_state: "on"
-  trigger:
-    - platform: event
-      event_type: deconz_event
-      event_data:
-        id: smart_switch_downstairs
-        event: 1004  # Double click
-  action:
-    - service: light.turn_on
-      entity_id: light.living_room_lights
-      data:
-        brightness: 100
-    - service: script.cozy_lights_living_room
-    - service: script.start_spotify
-      data_template:
-        source: LS50 Wireless
-        playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
-        volume: 0.25
-
-- alias: "Arriving: switch music from iPhone to speakers if no one is home"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.openclose_front_door
-    from: "off"
-    to: "on"
-  condition:
-    - condition: state
-      entity_id: persons.marcella
-      state: not_home
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: "off"
-    - condition: template
-      value_template: >
-        {{ is_state_attr("media_player.spotify", "source", "basnijholt-iphone")
-           and is_state("media_player.spotify", "playing") }}
-  action:
-    - service: media_player.turn_on
-      entity_id: media_player.kef_ls50
-    - service: media_player.select_source
-      entity_id: media_player.kef_ls50
-      data:
-        source: Wifi
-    - service: media_player.select_source
-      entity_id: media_player.spotify
-      data:
-        source: LS50 Wireless
