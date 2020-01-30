@@ -19,3 +19,29 @@
     state: "on"
   action:
     service: script.set_high_temperature
+
+- alias: "Climate: turn on the heating when going home"
+  trigger:
+    platform: numeric_state
+    entity_id: proximity.home
+    below: 6
+    above: 1
+  condition:
+    - condition: time
+      after: "16:00:00"
+      before: "22:00:00"
+    - condition: template
+      value_template: >
+        {{ states.proximity.home.attributes.dir_of_travel == "towards" }}
+    - condition: template
+      value_template: >
+        {{ not is_state_attr("climate.thermostat", "temperature", states("input_number.temperature_high")) }}
+    - condition: state
+      entity_id: binary_sensor.no_one_home
+      state: "on"
+  action:
+    - service: script.set_high_temperature
+    - service: notify.all_iphones
+      data:
+        title: "Climate"
+        message: "Automatically turned on the heating 🥵℃"
