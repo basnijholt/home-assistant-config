@@ -8,3 +8,17 @@
 #         |_|            |_____|
 #
 #- from github.com/basnijholt/home-assistant-config
+
+temperature_low:
+  name: Temperature low
+  min: 10
+  max: 20
+  initial: 14
+  step: 0.5
+
+temperature_high:
+  name: Temperature high
+  min: 10
+  max: 20
+  initial: 20
+  step: 0.5
