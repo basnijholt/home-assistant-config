@@ -231,6 +231,7 @@ views:
     - entity: input_boolean.sleep_mode
     - entities:
       - input_select.theme
+      - input_boolean.theme_alternative
       head:
         entity: input_boolean.dark_mode
         name: Dark mode

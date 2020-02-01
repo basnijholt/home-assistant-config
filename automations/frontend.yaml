@@ -30,14 +30,15 @@
       entity_id: input_select.theme
     - platform: state
       entity_id: input_boolean.dark_mode
+    - platform: state
+      entity_id: input_boolean.theme_alternative
     - platform: homeassistant
       event: start
   action:
     service: frontend.set_theme
     data_template:
       name: >
-        {% if is_state("input_boolean.dark_mode", "on") %}
-          ios-dark-mode-{{ states("input_select.theme") }}
-        {% else %}
-          ios-light-mode-{{ states("input_select.theme") }}
-        {% endif %}
+        {% set which = "dark" if is_state("input_boolean.dark_mode", "on") else "light" -%}
+        {% set name = states("input_select.theme") -%}
+        {% set suffix = "-alternative" if is_state("input_boolean.theme_alternative", "on") else "" -%}
+        ios-{{ which }}-mode-{{ name }}{{ suffix }}
