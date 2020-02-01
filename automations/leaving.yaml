@@ -32,8 +32,7 @@
       entity_id: binary_sensor.anything_on
       state: "on"
   action:
-    - service: script.turn_off_everything
-    - service: script.set_low_temperature
+    - service: script.leaving
     - service: notify.all_iphones
       data:
         title: "Leaving"
@@ -71,8 +70,7 @@
     event_data:
       actionName: TURN_OFF_EVERYTHING
   action:
-    - service: script.turn_off_everything
-    - service: script.set_low_temperature
+    - service: script.leaving
 
 - alias: "Leaving: single click to turn off everything"
   initial_state: "on"

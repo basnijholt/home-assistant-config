@@ -52,6 +52,8 @@ resources:
   url: /community_plugin/swipe-card/swipe-card.js
 - type: module
   url: /community_plugin/lovelace-multiple-entity-row/multiple-entity-row.js
+- type: module
+  url: /community_plugin/simple-thermostat/simple-thermostat.js
 title: Huis
 views:
 - badges:
@@ -232,6 +234,7 @@ views:
       head:
         entity: input_boolean.dark_mode
         name: Dark mode
+        type: toggle
       type: custom:fold-entity-row
     show_header_toggle: false
     type: entities
@@ -243,10 +246,13 @@ views:
           entity: binary_sensor.vacuum_day
           name: Vacuum day
         secondary:
-          entity: switch.vacuum_mode
-          toggle: true
+          attribute: battery_level
+          name: Battery
+          unit: '%'
         type: custom:multiple-entity-row
+      - entity: switch.vacuum_mode
       - entity: input_boolean.cleaned_today
+      - entity: binary_sensor.vacuum_day
       show_header_toggle: false
       type: entities
     - calibration_points:
@@ -313,13 +319,8 @@ views:
         name: 'Dishwasher
 
           '
-        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_started\"\
-          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_done\"\
-          )) %} {% if states('binary_sensor.dishwasher') == \"on\" %}\n  Has been\
-          \ on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  Has been off\
-          \ for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
-        state: "{% if is_state('binary_sensor.dishwasher', 'on') %}\n  {{ states(\"\
-          sensor.dishwasher_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
+        secondary: Has been off for 71.9 hours.
+        state: 'Off'
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -335,13 +336,8 @@ views:
         name: 'Washing machine
 
           '
-        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_started\"\
-          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_done\"\
-          )) %} {% if states('binary_sensor.washing_machine') == \"on\" %}\n  Has\
-          \ been on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  Has been\
-          \ off for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
-        state: "{% if is_state('binary_sensor.washing_machine', 'on') %}\n  {{ states(\"\
-          sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n{% endif %}\n"
+        secondary: Has been off for 124.3 hours.
+        state: 'Off'
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -401,14 +397,8 @@ views:
         name: 'Energy usage
 
           '
-        secondary: 'Today {{ states("sensor.daily_power")|round(2) }} kWh and {{ states("sensor.daily_gas")|round(2)
-          }} m³ gas.
-
-          '
-        state: '€{{ (states("sensor.daily_gas_cost")|float + states("sensor.daily_power_cost")|float
-          + states("sensor.daily_energy_fixed_cost")|float)|round(2) }}
-
-          '
+        secondary: Today 2.54 kWh and 1.19 m³ gas.
+        state: €3.34
         type: custom:template-entity-row
       type: custom:fold-entity-row
     show_header_toggle: false
@@ -688,14 +678,12 @@ views:
           - height: 70px
         tap_action:
           action: call-service
-          service: script.turn_off_everything
+          service: script.leaving
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
   - cards:
     - entity: plant.ficus_microcarpa_ginseng
-      type: plant-status
-    - entity: plant.kentia_palm
       type: plant-status
     - entity: plant.basil
       type: plant-status
@@ -893,9 +881,7 @@ views:
         name: 'Bas
 
           '
-        state: '{{ states("person.bas").replace("_", " ").capitalize() }}
-
-          '
+        state: Home
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -912,13 +898,29 @@ views:
         name: 'Marcella
 
           '
-        state: '{{ states("person.marcella").replace("_", " ").capitalize() }}
-
-          '
+        state: Not home
         type: custom:template-entity-row
       type: custom:fold-entity-row
     show_header_toggle: false
     type: entities
+  - control:
+      hvac:
+        another_mode: false
+        'off':
+          icon: false
+          name: Make it cold
+        'on':
+          icon: mdi:whitewalker
+          name: false
+        some_mode: false
+    entity: climate.thermostat
+    sensors:
+    - entity: sensor.daily_gas_cost
+      name: Cost today
+    - attribute: min_temp
+      name: Min temp
+    step_size: 1
+    type: custom:simple-thermostat
   icon: mdi:home
   path: default_view
   title: Home

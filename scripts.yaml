@@ -222,3 +222,8 @@ set_high_temperature:
       data_template:
         temperature: >
           {{ states("input_number.temperature_high") }}
+leaving:
+  alias: Leaving the house
+  sequence:
+    - service: script.set_low_temperature
+    - service: script.turn_off_everything
