@@ -97,7 +97,7 @@
     service: input_boolean.turn_off
     entity_id: input_boolean.cleaned_today
 
-- alias: "Vacuum: reset to balanced mode"
+- alias: "Vacuum: reset to standard mode"
   trigger:
     platform: state
     entity_id: vacuum.living_room
@@ -106,4 +106,4 @@
     service: vacuum.set_fan_speed
     entity_id: vacuum.xiaomi_vacuum_cleaner
     data:
-      fan_speed: Balanced
+      fan_speed: Standard
