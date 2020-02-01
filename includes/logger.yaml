@@ -12,3 +12,5 @@ default: critical
 logs:
   homeassistant.components.kef: debug
   aiokef: debug
+  homeassistant.component.opentherm_gw: debug
+  pyotgw: debug
