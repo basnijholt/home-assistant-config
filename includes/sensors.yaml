@@ -238,7 +238,8 @@
 - platform: derivative
   source: sensor.gas_consumption
   name: Gas per hour
-  unit: m³/s
+  unit: m³/h
+  unit_time: h
 
 - platform: command_line
   name: RPi CPU Temperature
