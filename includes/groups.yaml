@@ -49,16 +49,12 @@ iphone_marcella:
   - device_tracker.iphone_marcella
 
 ha_menu_lsx_control:
-  control: hidden
-  view: no
   name: HA Menu - LSX volume
   entities:
     - input_select.lsx_volume
     - input_select.lsx_source
 
 ha_menu_lsx_power:
-  control: hidden
-  view: no
   name: HA Menu - LSX power
   entities:
     - switch.kef_lsx
