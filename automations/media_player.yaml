@@ -109,5 +109,5 @@
       entity_id: media_player.tv
       state: "on"
   action:
-    service: homeassisant.update
+    service: homeassistant.update_entity
     entity_id: media_player.spotify
