@@ -48,6 +48,7 @@ discovery: !include includes/discovery.yaml
 mqtt: !include includes/mqtt.yaml
 utility_meter: !include includes/utility_meter.yaml
 plant: !include includes/plant.yaml
+spotify: !include includes/spotify.yaml
 
 # Custom components
 circadian_lighting: !include includes/circadian_lighting.yaml

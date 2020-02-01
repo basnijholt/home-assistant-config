@@ -8,9 +8,6 @@
 #                             |_____|_|            |___/
 #
 #- from github.com/basnijholt/home-assistant-config
-- platform: spotify
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
 
 - platform: kef_custom
   type: LS50
