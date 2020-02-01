@@ -227,3 +227,8 @@ leaving:
   sequence:
     - service: script.set_low_temperature
     - service: script.turn_off_everything
+arriving:
+  alias: Arriving home
+  sequence:
+    - service: script.set_high_temperature
+    - service: script.cozy_lights_living_room
