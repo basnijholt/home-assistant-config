@@ -8,7 +8,7 @@
 # |_|
 #
 #- from github.com/basnijholt/home-assistant-config
-- alias: "Plants: problem with Ficus microcarpa Ginseng"
+- alias: "Plant: problem with Ficus microcarpa Ginseng"
   trigger:
     - platform: state
       entity_id: plant.ficus_microcarpa_ginseng
@@ -26,7 +26,7 @@
       message: >
         You need to give the Ficus microcarpa Ginseng 🌳 attention and love!
 
-- alias: "Plants: problem with Kentia Palm"
+- alias: "Plant: problem with Kentia Palm"
   trigger:
     - platform: state
       entity_id: plant.kentia_palm
@@ -44,7 +44,7 @@
       message: >
         You need to give the Kentia Palm 🌴 attention and love!
 
-- alias: "Plants: problem with Basil"
+- alias: "Plant: problem with Basil"
   trigger:
     - platform: state
       entity_id: plant.basil
