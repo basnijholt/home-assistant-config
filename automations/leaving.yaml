@@ -32,11 +32,7 @@
       entity_id: binary_sensor.anything_on
       state: "on"
   action:
-    - service: script.leaving
-    - service: notify.all_iphones
-      data:
-        title: "Leaving"
-        message: "Everything automatically turned off!"
+    service: script.leaving
 
 - alias: "Leaving: ask to turn off everything"
   initial_state: "on"
