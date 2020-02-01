@@ -37,6 +37,9 @@ theme_alternative:
 automatic_bedroom_lights:
   name: Automatic bedroom lights
   icon: mdi:lamp
+automatic_temperature:
+  name: Automatic temperature
+  icon: mdi:thermometer
 work_hour_notification_sent:
   name: You've worked enough notification sent
   icon: mdi:lamp

@@ -14,9 +14,12 @@
     platform: template
     value_template: "{{ states.sensor.time.state == states.sensor.half_hour_before_alarm.state[0:5] }}"
   condition:
-    condition: state
-    entity_id: input_boolean.alarm_clock
-    state: "on"
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: "on"
+    - condition: state
+      entity_id: input_boolean.automatic_temperature
+      state: "on"
   action:
     service: script.set_high_temperature
 
@@ -27,6 +30,9 @@
     below: 6
     above: 1
   condition:
+    - condition: state
+      entity_id: input_boolean.automatic_temperature
+      state: "on"
     - condition: time
       after: "16:00:00"
       before: "22:00:00"
@@ -45,3 +51,18 @@
       data:
         title: "Climate"
         message: "Automatically turned on the heating 🥵℃"
+
+# XXX: set warm when home
+# - alias: "Climate: toggle temperature"
+#   trigger:
+#     platform: state
+#     from: "{{ states.sensor.time.state == states.sensor.half_hour_before_alarm.state[0:5] }}"
+#   condition:
+#     - condition: state
+#       entity_id: binary_sensor.no_one_home
+#       state: "off"
+#     - condition: state
+#       entity_id: input_boolean.automatic_temperature
+#       state: "on"
+#   action:
+#     service: script.set_high_temperature
