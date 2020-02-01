@@ -8,6 +8,10 @@
 #                          |_|    |___/
 #
 #- from github.com/basnijholt/home-assistant-config
+
+# export DOCKER=`sudo docker container ls | grep rhasspy | awk '{print $1}'`
+# sudo docker exec $DOCKER arecord -d 5 -r 16000 /tmp/test.wav
+
 - alias: "Rhasspy: light states"
   trigger:
     event_type: rhasspy_ChangeLightState
