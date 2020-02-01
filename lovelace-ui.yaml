@@ -665,7 +665,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
-          service: script.cozy_lights_living_room
+          service: script.arriving
         type: custom:button-card
       - color: auto
         icon: mdi:home-export-outline
