@@ -235,11 +235,10 @@
      - date
      - time
 
-# XXX: wait until 0.105
-# - platform: derivative
-#   source: sensor.gas_consumption
-#   name: Gas per hour
-#   unit: m³/s
+- platform: derivative
+  source: sensor.gas_consumption
+  name: Gas per hour
+  unit: m³/s
 
 - platform: command_line
   name: RPi CPU Temperature
@@ -536,35 +535,9 @@
   name: "Mi Flora: Basil"
 
 # https://www.growabonsaitree.com/species/ficus-bonsai/
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_ficus_microcarpa_ginseng_battery/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Ficus microcarpa Ginseng Battery"
-  icon: mdi:battery-charging
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_ficus_microcarpa_ginseng_conductivity/state
-  unit_of_measurement: µS/cm
-  name: "Mi Flora: Ficus microcarpa Ginseng Conductivity"
-  icon: mdi:flash-circle
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_ficus_microcarpa_ginseng_light_intensity/state
-  unit_of_measurement: lx
-  name: "Mi Flora: Ficus microcarpa Ginseng Light intensity"
-  icon: mdi:white-balance-sunny
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_ficus_microcarpa_ginseng_moisture/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Ficus microcarpa Ginseng Moisture"
-  icon: mdi:water-percent
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_ficus_microcarpa_ginseng_temperature/state
-  unit_of_measurement: °C
-  name: "Mi Flora: Ficus microcarpa Ginseng Temperature"
-  icon: mdi:thermometer
+- platform: miflora
+  mac: '80:EA:CA:89:20:24'
+  name: "Mi Flora: Ficus microcarpa Ginseng"
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_battery/state
