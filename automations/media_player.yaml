@@ -96,3 +96,18 @@
       data_template:
         volume_level: >
           {{ states("sensor.kef_ls50_volume") }}
+
+- alias: "Media player: update Spotify entity when TV is on every 5 seconds"
+  trigger:
+    platform: time_pattern
+    seconds: 5
+  condition:
+    - condition: state
+      entity_id: media_player.spotify
+      state: playing
+    - condition: state
+      entity_id: media_player.tv
+      state: "on"
+  action:
+    service: homeassisant.update
+    entity_id: media_player.spotify
