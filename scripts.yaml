@@ -37,7 +37,7 @@ start_spotify:
     entity_id: media_player.spotify
   - wait_template: '{{ source in state_attr("media_player.spotify", "source_list")  }}'
     timeout: 00:01:00
-    continue_on_timeout: 'false'
+    continue_on_timeout: false
   - service: media_player.select_source
     entity_id: media_player.spotify
     data_template:
