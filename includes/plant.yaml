@@ -65,19 +65,18 @@ kentia_palm:
   min_temperature: 8
   max_temperature: 32
 
-basil:
+yucca_elephantipes:
   sensors:
-    moisture: sensor.mi_flora_basil_moisture
-    battery: sensor.mi_flora_basil_battery
-    temperature: sensor.mi_flora_basil_temperature
-    conductivity: sensor.mi_flora_basil_conductivity
-    brightness: sensor.mi_flora_basil_light_intensity
+    moisture: sensor.mi_flora_yucca_elephantipes_moisture
+    battery: sensor.mi_flora_yucca_elephantipes_battery
+    temperature: sensor.mi_flora_yucca_elephantipes_temperature
+    conductivity: sensor.mi_flora_yucca_elephantipes_conductivity
+    brightness: sensor.mi_flora_yucca_elephantipes_light_intensity
   min_moisture: 15
   max_moisture: 60
   min_conductivity: 350
   max_conductivity: 2000
-  min_brightness: 250
-  max_brightness: 6000
+  min_brightness: 150
+  max_brightness: 2000
   min_temperature: 8
   max_temperature: 32
-

@@ -235,10 +235,18 @@
      - date
      - time
 
-- platform: derivative
+
+# XXX: derivative sensors aren't working currently...
+- platform: derivative_custom
   source: sensor.gas_consumption
   name: Gas per hour
   unit: m³/h
+  unit_time: h
+
+- platform: derivative_custom
+  source: sensor.power_consumption
+  name: kWh per hour
+  unit: kWh/h
   unit_time: h
 
 - platform: command_line
@@ -594,8 +602,8 @@
 #
 
 - platform: miflora
-  mac: '80:EA:CA:89:1A:4E'  # Balsamico nr. 3
-  name: "Mi Flora: Basil"
+  mac: '80:EA:CA:89:1A:4E'
+  name: "Mi Flora: Yucca Elephantipes"
 
 # https://www.growabonsaitree.com/species/ficus-bonsai/
 - platform: miflora
