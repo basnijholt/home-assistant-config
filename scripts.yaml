@@ -42,10 +42,11 @@ start_spotify:
     entity_id: media_player.spotify
     data_template:
       source: '{{ source }}'
-  - service: spotify.play_playlist
+  - service: media_player.play_media
     data_template:
+      entity_id: media_player.spotify
+      media_content_type: "playlist"
       media_content_id: spotify:playlist:{{ playlist }}
-      random_song: true
   - service: media_player.media_play
     entity_id: media_player.spotify
 cozy_lights_living_room:
