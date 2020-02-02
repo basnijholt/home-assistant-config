@@ -109,6 +109,6 @@ class StartSpotify(hass.Hass):
             media_content_id=kwargs["playlist"],
             media_content_type="playlist",
         )
-        # self.call_spotify("media_player/media_play")
+        self.call_service("media_player/media_play", entity_id="media_player.spotify")
         self.fire_event(self.done_signal, **kwargs)
         self.log(self.done_signal + f" {kwargs}")
