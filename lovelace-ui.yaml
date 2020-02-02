@@ -686,7 +686,7 @@ views:
   - cards:
     - entity: plant.ficus_microcarpa_ginseng
       type: plant-status
-    - entity: plant.basil
+    - entity: plant.yucca_elephantipes
       type: plant-status
     parameters:
       autoplay:
@@ -882,7 +882,6 @@ views:
         name: 'Bas
 
           '
-        state: Home
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -899,7 +898,6 @@ views:
         name: 'Marcella
 
           '
-        state: Not home
         type: custom:template-entity-row
       type: custom:fold-entity-row
     show_header_toggle: false
@@ -1396,11 +1394,11 @@ views:
     title: Devices are on
     type: entities
   - entities:
-    - entity: sensor.mi_flora_basil_moisture
-    - entity: sensor.mi_flora_basil_temperature
-    - entity: sensor.mi_flora_basil_battery
-    - entity: sensor.mi_flora_basil_conductivity
-    - entity: sensor.mi_flora_basil_light_intensity
+    - entity: sensor.mi_flora_yucca_elephantipes_moisture
+    - entity: sensor.mi_flora_yucca_elephantipes_temperature
+    - entity: sensor.mi_flora_yucca_elephantipes_battery
+    - entity: sensor.mi_flora_yucca_elephantipes_conductivity
+    - entity: sensor.mi_flora_yucca_elephantipes_light_intensity
     - type: divider
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_temperature
