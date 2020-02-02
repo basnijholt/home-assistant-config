@@ -42,6 +42,10 @@ start_spotify:
     entity_id: media_player.spotify
     data_template:
       source: '{{ source }}'
+  - service: media_player.shuffle_set
+    entity_id: media_player.spotify
+    data:
+      shuffle: true
   - service: media_player.play_media
     data_template:
       entity_id: media_player.spotify
