@@ -19,10 +19,14 @@
         event: 1004  # Double click
   action:
     - service: light.turn_on
+      data:
+        flash: "short"
+        entity_id: light.stairs_up
+    - service: light.turn_on
       entity_id: light.living_room_lights
       data:
         brightness: 100
-    - service: script.cozy_lights_living_room
+    - service: script.arriving
     - service: script.start_spotify
       data_template:
         source: LS50 Wireless
