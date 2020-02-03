@@ -19,55 +19,56 @@
     motion_detected:
       friendly_name: Any motion detected
       value_template: >
-        {{ states("binary_sensor.activity_in_kitchen") == "on"
-           or states("binary_sensor.activity_in_hall") == "on"
-           or states("binary_sensor.activity_in_toilet") == "on"
-           or states("binary_sensor.activity_in_bathroom") == "on"
-           or states("binary_sensor.activity_in_bedroom") == "on" }}
+        {{ is_state("binary_sensor.activity_in_kitchen", "on")
+           or is_state("binary_sensor.activity_in_hall", "on")
+           or is_state("binary_sensor.activity_in_toilet", "on")
+           or is_state("binary_sensor.activity_in_bathroom", "on")
+           or is_state("binary_sensor.activity_in_bedroom", "on") }}
 
     motion_detected_in_last_hour:
       friendly_name: Any motion detected in last hour
       value_template: >
-        {{ states("binary_sensor.motion_detected") == "on" }}
+        {{ is_state("binary_sensor.motion_detected", "on") }}
       delay_off: "01:00:00"
 
     someone_in_the_house_in_last_hour:
       friendly_name: Someone in the house in the last hour
       value_template: >
-        {{ states("binary_sensor.motion_detected_in_last_hour") == "on"
-           or states("group.persons") == "home" }}
+        {{ is_state("binary_sensor.motion_detected_in_last_hour", "on")
+           or is_state("group.persons", "home") }}
 
     activity_in_bathroom:
       friendly_name: Activity in the bathroom
       value_template: >
-        {{ states("binary_sensor.motion_sensor_bathroom") == "on"
-           or states("binary_sensor.someone_showering") == "on" }}
+        {{ is_state("binary_sensor.motion_sensor_bathroom", "on")
+           or is_state("binary_sensor.someone_showering", "on") }}
       delay_off: "00:03:00"
 
     activity_in_toilet:
       friendly_name: Activity at the toilet
       value_template: >
-        {{ states("binary_sensor.motion_sensor_toilet") == "on" }}
+        {{ is_state("binary_sensor.motion_sensor_toilet", "on") }}
       delay_off: "00:01:00"
 
     activity_in_kitchen:
       friendly_name: Activity in the kitchen
       value_template: >
-        {{ states("binary_sensor.motion_sensor_kitchen") == "on" }}
+        {{ is_state("binary_sensor.motion_sensor_kitchen", "on") }}
       delay_off: "00:01:00"
 
     activity_in_hall:
       friendly_name: Activity in the hall
       value_template: >
-        {{ states("binary_sensor.motion_sensor_hall") == "on"
-           or states("binary_sensor.openclose_front_door") == "on" }}
+        {{ is_state("binary_sensor.motion_sensor_hall", "on")
+           or is_state("binary_sensor.openclose_front_door", "on") }}
       delay_off: "00:01:00"
 
     activity_in_bedroom:
       friendly_name: Activity in the bedroom
       value_template: >
-        {{ states("binary_sensor.motion_sensor_bedroom_1") == "on"
-           or states("binary_sensor.motion_sensor_bedroom_2") == "on" }}
+        {{ is_state("binary_sensor.motion_sensor_bedroom_1", "on")
+           or is_state("binary_sensor.motion_sensor_bedroom_2", "on")
+           or is_state("binary_sensor.vibration", "on") }}
       delay_off: "00:01:00"
 
     washing_machine:
@@ -76,7 +77,7 @@
         {{ states("sensor.washing_machine_watts") | float(0) > 3 }}
       delay_off: "00:04:00"
       icon_template: >
-        {% if states("binary_sensor.washing_machine") == "on" %}
+        {% if is_state("binary_sensor.washing_machine", "on") %}
           mdi:washing-machine
         {% else %}
           mdi:washing-machine-off
@@ -88,7 +89,7 @@
         {{ states("sensor.dishwasher_watts") | float(0) > 3 }}
       delay_off: "00:03:00"
       icon_template: >
-        {% if states("binary_sensor.dishwasher") == "on" %}
+        {% if is_state("binary_sensor.dishwasher", "on") %}
           mdi:dishwasher
         {% else %}
           mdi:dishwasher-off
