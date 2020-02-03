@@ -11,9 +11,10 @@
 - name: Bas Nijholt
   id: 13984b139dd9426ca31369725c9e23e0
   device_trackers:
-    - device_tracker.iphone_bas
+    - device_tracker.iphone_bas  # from iOS app
     - device_tracker.basnijholt_iphone
 - name: Marcella
   id: marcella
   device_trackers:
-    - device_tracker.iphone_marcella
+    - device_tracker.iphone_marcella  # from iOS app
+    # XXX: add router entity_id
