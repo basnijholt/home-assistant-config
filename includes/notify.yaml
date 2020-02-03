@@ -17,4 +17,4 @@
   name: all_iphones
   services:
     - service: mobile_app_basnijholt_iphone
-    # - service: mobile_app_marcella_iphone
+    - service: mobile_app_marcella_iphone
