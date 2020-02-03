@@ -92,7 +92,7 @@
 
     favorite_playlist_of_nearest_person:
       value_template: >
-        {% if state_attr('proximity.home', 'nearest') == "basnijholt-iphone"%}
+        {% if is_state_attr("proximity.home", "nearest", "basnijholt-iphone") %}
         6rPTm9dYftKcFAfwyRqmDZ
         {% else %}
         2Alq4aFJY8jRA2MnBL5d9A
@@ -235,19 +235,20 @@
      - date
      - time
 
-
-# XXX: derivative sensors aren't working currently...
 - platform: derivative_custom
   source: sensor.gas_consumption
   name: Gas per hour
   unit: m³/h
   unit_time: h
+  unit_prefix: m
+  time_window: "00:45:00"
 
 - platform: derivative_custom
-  source: sensor.power_consumption
+  source: sensor.power_consumption_normal
   name: kWh per hour
   unit: kWh/h
   unit_time: h
+  time_window: "00:05:00"
 
 - platform: command_line
   name: RPi CPU Temperature
@@ -602,12 +603,12 @@
 #
 
 - platform: miflora
-  mac: '80:EA:CA:89:1A:4E'
+  mac: "80:EA:CA:89:1A:4E"
   name: "Mi Flora: Yucca Elephantipes"
 
 # https://www.growabonsaitree.com/species/ficus-bonsai/
 - platform: miflora
-  mac: '80:EA:CA:89:20:24'
+  mac: "80:EA:CA:89:20:24"
   name: "Mi Flora: Ficus microcarpa Ginseng"
 
 - platform: mqtt
