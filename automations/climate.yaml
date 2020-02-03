@@ -38,7 +38,7 @@
       before: "22:00:00"
     - condition: template
       value_template: >
-        {{ states.proximity.home.attributes.dir_of_travel == "towards" }}
+        {{ is_state_attr("proximity.home", "dir_of_travel" "towards") }}
     - condition: template
       value_template: >
         {{ not is_state_attr("climate.thermostat", "temperature", states("input_number.temperature_high")) }}
