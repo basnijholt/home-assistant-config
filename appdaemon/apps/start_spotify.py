@@ -103,12 +103,15 @@ class StartSpotify(hass.Hass):
         return self.select_source(data=kwargs)
 
     def start_playlist(self, **kwargs):
-        self.call_service(
+        self.call_spotify(
+            "media_player/shuffle_set",
+            shuffle=True,
+        )
+        self.call_spotify(
             "media_player/play_media",
-            entity_id="media_player.spotify",
             media_content_id=kwargs["playlist"],
             media_content_type="playlist",
         )
-        self.call_service("media_player/media_play", entity_id="media_player.spotify")
+        self.call_spotify("media_player/media_play")
         self.fire_event(self.done_signal, **kwargs)
         self.log(self.done_signal + f" {kwargs}")
