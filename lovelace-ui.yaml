@@ -621,8 +621,6 @@ views:
     - cards:
       - color: auto
         icon: mdi:weather-sunset-up
-        lock:
-          enabled: true
         name: Wake up
         styles:
           card:
@@ -631,6 +629,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
+          haptic: success
           service: input_boolean.turn_off
           service_data:
             entity_id: input_boolean.sleep_mode
@@ -638,8 +637,6 @@ views:
       - color: auto
         entity: input_boolean.sleep_mode
         icon: mdi:weather-night
-        lock:
-          enabled: true
         name: '[[[ if (entity.state == "on") return "Sleep mode on"; else return "Good
           Night" ]]]'
         styles:
@@ -649,14 +646,13 @@ views:
           - height: 70px
         tap_action:
           action: call-service
+          haptic: success
           service: script.going_to_sleep
         type: custom:button-card
       type: horizontal-stack
     - cards:
       - color: auto
         icon: mdi:home-map-marker
-        lock:
-          enabled: true
         name: Arrive Home
         styles:
           card:
@@ -665,12 +661,11 @@ views:
           - height: 70px
         tap_action:
           action: call-service
+          haptic: success
           service: script.arriving
         type: custom:button-card
       - color: auto
         icon: mdi:home-export-outline
-        lock:
-          enabled: true
         name: Leave Home
         styles:
           card:
@@ -679,6 +674,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
+          haptic: success
           service: script.leaving
         type: custom:button-card
       type: horizontal-stack
