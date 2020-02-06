@@ -28,7 +28,7 @@
         playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
         volume: 0.25
 
-- alias: "Music: switch music from iPhone to speakers if no one is home"
+- alias: "Music: switch music from iPhone to speakers if coming home"
   trigger:
     platform: state
     entity_id: binary_sensor.openclose_front_door
