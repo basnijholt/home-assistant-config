@@ -242,20 +242,27 @@
      - date
      - time
 
-- platform: derivative_custom
+- platform: filter
+  name: "filtered gas_consumption"
+  entity_id: sensor.gas_consumption
+  filters:
+    - filter: time_simple_moving_average
+      window_size: 00:30:00
+      precision: 2
+
+- platform: derivative
   source: sensor.gas_consumption
   name: Gas per hour
   unit: m³/h
   unit_time: h
-  unit_prefix: m
-  time_window: "00:45:00"
+  time_window: "00:30:00"
 
-- platform: derivative_custom
-  source: sensor.power_consumption_normal
-  name: kWh per hour
-  unit: kWh/h
+- platform: derivative
+  source: sensor.filtered_gas_consumption
+  name: Gas per hour (filtered)
+  unit: m³/h
   unit_time: h
-  time_window: "00:05:00"
+  time_window: "00:30:00"
 
 - platform: command_line
   name: RPi CPU Temperature
