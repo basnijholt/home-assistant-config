@@ -102,6 +102,7 @@ include:
     - sensor.dimmer_switch_living_room_battery_level
     - sensor.disk_use_percent
     - sensor.gas_consumption
+    - sensor.gas_consumption_filtered
     - sensor.gas_per_hour
     - sensor.gas_per_hour_filtered
     - sensor.home_assistant_v2_db
