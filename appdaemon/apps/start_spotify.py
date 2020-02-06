@@ -72,7 +72,7 @@ class StartSpotify(hass.Hass):
         self.listen_event(self.select_source, app.done_signal, timeout=30, oneshot=True)
         app.start(**kwargs)
 
-    def source_available(self, spotify_source):
+    def source_available(self, spotify_source: str):
         return spotify_source in self.get_state(
             "media_player.spotify", attribute="source_list", default=[]
         )
@@ -104,14 +104,18 @@ class StartSpotify(hass.Hass):
 
     def start_playlist(self, **kwargs):
         self.call_spotify(
-            "media_player/shuffle_set",
-            shuffle=True,
+            "media_player/shuffle_set", shuffle=True,
         )
         self.call_spotify(
             "media_player/play_media",
             media_content_id=kwargs["playlist"],
             media_content_type="playlist",
         )
-        self.call_spotify("media_player/media_play")
+        for _ in range(10):
+            # I added this loop because sometimes it didn't start playing
+            self.call_spotify("media_player/media_play")
+            self.call_spotify("homeassistant/update_entity")
+            if self.get_state("media_player.spotify") == "playing":
+                break
         self.fire_event(self.done_signal, **kwargs)
         self.log(self.done_signal + f" {kwargs}")
