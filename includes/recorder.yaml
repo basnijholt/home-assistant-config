@@ -102,6 +102,8 @@ include:
     - sensor.dimmer_switch_living_room_battery_level
     - sensor.disk_use_percent
     - sensor.gas_consumption
+    - sensor.gas_per_hour
+    - sensor.gas_per_hour_filtered
     - sensor.home_assistant_v2_db
     - sensor.hourly_gas_consumption
     - sensor.humidity_bathroom
@@ -116,11 +118,11 @@ include:
     - sensor.lightlevel_kitchen
     - sensor.lightlevel_toilet
     - sensor.memory_use_percent
-    - sensor.mi_flora_basil_battery
-    - sensor.mi_flora_basil_conductivity
-    - sensor.mi_flora_basil_light_intensity
-    - sensor.mi_flora_basil_moisture
-    - sensor.mi_flora_basil_temperature
+    - sensor.mi_flora_yucca_elephantipes_battery
+    - sensor.mi_flora_yucca_elephantipes_conductivity
+    - sensor.mi_flora_yucca_elephantipes_light_intensity
+    - sensor.mi_flora_yucca_elephantipes_moisture
+    - sensor.mi_flora_yucca_elephantipes_temperature
     - sensor.mi_flora_ficus_microcarpa_ginseng_battery
     - sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
     - sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
