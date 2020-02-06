@@ -12,7 +12,8 @@
 - alias: "Climate: turn on the heating 30 min before waking up"
   trigger:
     platform: template
-    value_template: "{{ states.sensor.time.state == states.sensor.half_hour_before_alarm.state[0:5] }}"
+    value_template: >
+      {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock
@@ -51,18 +52,3 @@
       data:
         title: "Climate"
         message: "Automatically turned on the heating 🥵℃"
-
-# XXX: set warm when home
-# - alias: "Climate: toggle temperature"
-#   trigger:
-#     platform: state
-#     from: "{{ states.sensor.time.state == states.sensor.half_hour_before_alarm.state[0:5] }}"
-#   condition:
-#     - condition: state
-#       entity_id: binary_sensor.no_one_home
-#       state: "off"
-#     - condition: state
-#       entity_id: input_boolean.automatic_temperature
-#       state: "on"
-#   action:
-#     service: script.set_high_temperature
