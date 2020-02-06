@@ -8,6 +8,7 @@
 #                             |_____|_|            |___/
 #
 #- from github.com/basnijholt/home-assistant-config
+
 - alias: "Media player: turn on Opt when TV is on and Spotify is not playing"
   trigger:
     - platform: state
