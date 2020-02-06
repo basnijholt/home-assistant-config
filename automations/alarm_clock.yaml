@@ -11,7 +11,8 @@
 - alias: "Alarm clock: wake up with Spotify and light"
   trigger:
     platform: template
-    value_template: "{{ is_state("sensor.time", states("input_datetime.ten_minutes_before_alarm")) }}"
+    value_template: >
+      {{ states("sensor.time")[0:5] == states("sensor.ten_minutes_before_alarm") }}
   condition:
     condition: state
     entity_id: input_boolean.alarm_clock
