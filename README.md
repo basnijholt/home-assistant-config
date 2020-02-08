@@ -74,7 +74,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 ### Other
 * PlayStation Eye Webcam and Microphone array (€14.95)
 * DSMR - Slimme Meter kabel (€19.95)
-* Nodo-Shop – OpenTherm Gateway (OTGW) (€48.81)
+* Nodo-Shop – OpenTherm Gateway (OTGW) with NodeMCU (€48.81)
 
 ### Total cost
 *€1442.44* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
