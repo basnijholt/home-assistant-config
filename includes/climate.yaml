@@ -3,12 +3,9 @@
   name: Thermostat
   current_temperature_topic: events/central_heating/otmonitor/roomtemperature
   temperature_command_topic: actions/otmonitor/setpoint
-  modes:
-    - off
-    - heat
-    - auto
-  min_temp: 14
-  max_temp: 23
+  temperature_state_topic: events/central_heating/otmonitor/setpoint
+  min_temp: 5
+  max_temp: 35
   initial: 17
   temp_step: 0.5
   precision: 0.5
