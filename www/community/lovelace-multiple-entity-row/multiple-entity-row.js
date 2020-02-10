@@ -74,7 +74,8 @@
             return html`
             <state-badge
                 .stateObj="${this.state.stateObj}"
-                .overrideIcon="${this.icon}"
+                .overrideIcon="${this._config.icon}"
+                .stateColor="${this._config.state_color}"
                 @click="${this.onClick}">
             </state-badge>
             <div class="flex">
@@ -118,10 +119,9 @@
             this.checkEntity(config, 'tertiary');
             this.checkEntity(config, 'info');
 
-            this.icon = config.icon;
             this.lastChanged = config.secondary_info === 'last-changed' && !config.info;
-            this.stateHeader = config.name_state !== undefined ? config.name_state : null,
-                this.onClick = () => this.fireEvent(config.entity);
+            this.stateHeader = config.name_state !== undefined ? config.name_state : null;
+            this.onClick = () => this.fireEvent(config.entity);
 
             this._config = config;
         }
