@@ -70,10 +70,14 @@
         "step": {
             "user": {
                 "data": {
+                    "appdaemon": "AppDaemon App-Discovery & Tracking aktivieren",
                     "country": "Nach Ländercode filtern.",
                     "debug": "Debug aktivieren.",
                     "experimental": "Experimentelle Funktionen aktivieren",
-                    "release_limit": "Anzahl anzuzeigender Releases."
+                    "not_in_use": "Nicht in Verwendung mit YAML",
+                    "release_limit": "Anzahl anzuzeigender Releases.",
+                    "sidepanel_icon": "Sidepanel Symbol",
+                    "sidepanel_title": "Sidepanel Titel"
                 }
             }
         }

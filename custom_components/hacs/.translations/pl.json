@@ -70,10 +70,14 @@
         "step": {
             "user": {
                 "data": {
+                    "appdaemon": "Włącz wykrywanie i śledzenie aplikacji AppDaemon",
                     "country": "Filtruj według kodu kraju",
                     "debug": "Włącz debugowanie.",
                     "experimental": "Włącz funkcje eksperymentalne",
-                    "release_limit": "Liczba wydań do wyświetlenia"
+                    "not_in_use": "Nieużywany z YAML",
+                    "release_limit": "Liczba wydań do wyświetlenia",
+                    "sidepanel_icon": "Ikona w panelu bocznym",
+                    "sidepanel_title": "Tytuł w panelu bocznym"
                 }
             }
         }
