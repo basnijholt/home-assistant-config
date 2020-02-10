@@ -1803,6 +1803,10 @@ views:
     - entity: sensor.hours_tv_has_been_on_last_7_days
     title: Stats
     type: entities
+  - entities:
+    - entity: sensor.gas_per_hour
+    - entity: sensor.kwh_per_hour
+    type: entities
   icon: mdi:test-tube
   path: tests
   title: Tests
