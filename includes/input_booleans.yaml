@@ -43,6 +43,9 @@ automatic_temperature:
 work_hour_notification_sent:
   name: You've worked enough notification sent
   icon: mdi:lamp
+alarm_clock:
+  name: Alarm clock is on
+  icon: mdi:alarm
 
 # Apps
 wake_up_light:
@@ -53,10 +56,6 @@ demo_wake_up_light:
   name: Demo - Start wake up light
   initial: off
   icon: mdi:weather-sunset-up
-alarm_clock:
-  name: Alarm clock is on
-  initial: off
-  icon: mdi:alarm
 start_kef_ls50:
   name: Start KEF LS50
   initial: off
