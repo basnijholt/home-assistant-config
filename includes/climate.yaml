@@ -7,6 +7,8 @@
   min_temp: 5
   max_temp: 35
   initial: 17
+  modes:
+    - auto
   temp_step: 0.5
   precision: 0.5
 
