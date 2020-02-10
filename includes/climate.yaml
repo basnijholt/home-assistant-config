@@ -1,0 +1,17 @@
+---
+- platform: mqtt
+  name: Thermostat
+  current_temperature_topic: events/central_heating/otmonitor/roomtemperature
+  temperature_command_topic: actions/otmonitor/setpoint
+  modes:
+    - off
+    - heat
+    - auto
+  min_temp: 14
+  max_temp: 23
+  initial: 17
+  temp_step: 0.5
+  precision: 0.5
+
+# XXX: There's also the following topic to set the outside temp:
+# actions/otmonitor/outside
