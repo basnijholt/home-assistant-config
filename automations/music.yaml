@@ -36,7 +36,7 @@
     to: "on"
   condition:
     - condition: state
-      entity_id: persons.marcella
+      entity_id: person.marcella
       state: not_home
     - condition: state
       entity_id: input_boolean.guest_mode
