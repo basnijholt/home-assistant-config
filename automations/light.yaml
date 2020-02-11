@@ -175,14 +175,31 @@
 # |____/ \__,_|\__|_| |_|_|  \___/ \___/|_| |_| |_|
 #
 
-- alias: "Light: toggle bathroom"
+- alias: "Light: turn on bathroom"
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
+    to: "on"
   action:
-    service_template: light.turn_{{ trigger.to_state.state }}
+    service: light.turn_on
+    entity_id: light.ceiling_bathroom
+    data_template:
+      transition: 1
+      brightness_pct: >
+        {{ states("sensor.circadian_values") }}
+      xy_color:
+        - '{{ state_attr("sensor.circadian_values", "xy_color")[0] }}'
+        - '{{ state_attr("sensor.circadian_values", "xy_color")[1] }}'
+
+- alias: "Light: turn off bathroom"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_bathroom
+    to: "off"
+  action:
+    service: light.turn_off
+    entity_id: light.ceiling_bathroom
     data:
-      entity_id: light.ceiling_bathroom
       transition: 1
 
 #  _____     _ _      _
