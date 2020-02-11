@@ -53,6 +53,25 @@ start_spotify:
       media_content_id: spotify:playlist:{{ playlist }}
   - service: media_player.media_play
     entity_id: media_player.spotify
+start_spotify_playlist_of_nearest_person:
+  alias: Start Spotify
+  description: Start a Spotify playlist on KEF speakers
+  fields:
+    source:
+      description: The name of the speaker as it appears in Spotify
+      example: Sonos One
+  sequence:
+  - service: script.start_speakers
+    data:
+      source: Wifi
+      volume: 0.25
+  - service: script.start_spotify
+    data_template:
+      source: {{ source }}
+      playlist: >
+        {{ states("sensor.favorite_playlist_of_nearest_person") }}
+      volume: 0.25
+
 cozy_lights_living_room:
   alias: Set cozy lights in the living room
   sequence:

@@ -18,15 +18,9 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.start_the_music
-    - service: script.start_speakers
+    - service: script.start_spotify_playlist_of_nearest_person
       data:
-        source: Wifi
-        volume: 0.25
-    - service: script.start_spotify
-      data_template:
         source: LS50 Wireless
-        playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
-        volume: 0.25
 
 - alias: "Music: switch music from iPhone to speakers if coming home"
   trigger:
