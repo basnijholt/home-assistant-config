@@ -71,7 +71,6 @@ start_spotify_playlist_of_nearest_person:
       playlist: >
         {{ states("sensor.favorite_playlist_of_nearest_person") }}
       volume: 0.25
-
 cozy_lights_living_room:
   alias: Set cozy lights in the living room
   sequence:
