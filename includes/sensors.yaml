@@ -170,15 +170,15 @@
       friendly_name: Daily Power
       unit_of_measurement: €
       value_template: >
-        {{ states("sensor.daily_power_offpeak")|float * 0.2307
-           + states("sensor.daily_power_peak")|float * 0.2479 }}
+        {{ (states("sensor.daily_power_offpeak")|float * 0.2307
+            + states("sensor.daily_power_peak")|float * 0.2479) | round(2) }}
 
     monthly_power_cost:
       friendly_name: Monthly Power
       unit_of_measurement: €
       value_template: >
-        {{ states("sensor.monthly_power_offpeak")|float * 0.2307
-           + states("sensor.monthly_power_peak")|float * 0.2479 }}
+        {{ (states("sensor.monthly_power_offpeak")|float * 0.2307
+            + states("sensor.monthly_power_peak")|float * 0.2479) | round(2) }}
 
     daily_energy_fixed_cost:
       friendly_name: Fixed daily energy cost (gas and power)
