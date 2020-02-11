@@ -19,11 +19,19 @@
     value_template: >
       {{ trigger.event.data.event in (1000, 2000, 3000) }}
   action:
-    service: input_select.select_option
-    entity_id: input_select.cube_mode
-    data_template:
-      option: >
-        {{ {1000: "Volume", 2000: "Hue", 3000: "Brightness"}[trigger.event.data.event] }}
+    - service: input_select.select_option
+      entity_id: input_select.cube_mode
+      data_template:
+        option: >
+          {{ {1000: "Volume", 2000: "Hue", 3000: "Brightness"}[trigger.event.data.event] }}
+    - condition: state
+      entity_id: media_player.tv
+      state: "on"
+    - service: notify.tv
+      data_template:
+        message: >
+          Cube set to {{ states("input_select.cube_mode") }}
+
 
 - alias: "Cube: change hue of living room lights with cube"
   trigger:
@@ -86,6 +94,9 @@
           {% set max_change = 0.15 %}
           {% set dV = [trigger.event.data.event / 100 / 900, max_change] | min %}
           {{ (states.media_player.kef_ls50.attributes.volume_level + dV)|round(2) }}
+    - condition: state
+      entity_id: media_player.tv
+      state: "on"
     - service: notify.tv
       data:
         message: >
