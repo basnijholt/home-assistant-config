@@ -67,7 +67,7 @@ start_spotify_playlist_of_nearest_person:
       volume: 0.25
   - service: script.start_spotify
     data_template:
-      source: {{ source }}
+      source: "{{ source }}"
       playlist: >
         {{ states("sensor.favorite_playlist_of_nearest_person") }}
       volume: 0.25
