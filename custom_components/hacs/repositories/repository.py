@@ -103,6 +103,7 @@ class HacsRepository(Hacs):
     def __init__(self):
         """Set up HacsRepository."""
 
+        self.data = {}
         self.content = RepositoryContent()
         self.content.path = RepositoryPath()
         self.information = RepositoryInformation()
@@ -116,6 +117,8 @@ class HacsRepository(Hacs):
         self.versions = RepositoryVersions()
         self.pending_restart = False
         self.logger = None
+        self.tree = []
+        self.treefiles = []
         self.ref = None
 
     @property
@@ -259,7 +262,6 @@ class HacsRepository(Hacs):
         self.logger = Logger(
             f"hacs.repository.{self.information.category}.{self.information.full_name}"
         )
-
         if self.ref is None:
             self.ref = version_to_install(self)
 
@@ -269,11 +271,18 @@ class HacsRepository(Hacs):
             self.repository_object = await self.github.get_repo(
                 self.information.full_name
             )
+            self.data = self.repository_object.attributes
         except Exception as exception:  # Gotta Catch 'Em All
             if not self.system.status.startup:
                 self.logger.error(exception)
             self.validate.errors.append("Repository does not exist.")
             return
+
+        if not self.tree:
+            self.tree = await self.repository_object.get_tree(self.ref)
+            self.treefiles = []
+            for treefile in self.tree:
+                self.treefiles.append(treefile.full_path)
 
         # Step 2: Make sure the repository is not archived.
         if self.repository_object.archived:
@@ -336,8 +345,18 @@ class HacsRepository(Hacs):
 
         self.logger.debug("Getting repository information")
 
+        # Set ref
+        if self.ref is None:
+            self.ref = version_to_install(self)
+
         # Attach repository
         self.repository_object = await self.github.get_repo(self.information.full_name)
+
+        # Update tree
+        self.tree = await self.repository_object.get_tree(self.ref)
+        self.treefiles = []
+        for treefile in self.tree:
+            self.treefiles.append(treefile.full_path)
 
         # Update description
         if self.repository_object.description:

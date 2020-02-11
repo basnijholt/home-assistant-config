@@ -84,6 +84,7 @@
     },
     "repository_banner": {
         "config_flow": "Diese Integration unterstützt config_flow. Das bedeutet, dass du jetzt in den Integrationsbereich deiner Benutzeroberfläche wechseln kannst, um es zu konfigurieren.",
+        "config_flow_title": "UI-Konfiguration unterstützt",
         "integration_not_loaded": "Diese Integration ist in Home Assistant nicht geladen.",
         "no_restart_required": "Kein Neustart erforderlich",
         "not_loaded": "Nicht geladen",

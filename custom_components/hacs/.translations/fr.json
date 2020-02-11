@@ -84,6 +84,7 @@
     },
     "repository_banner": {
         "config_flow": "Cette intégration prend en charge config_flow, ce qui signifie que vous pouvez maintenant accéder à la section d'intégration de votre interface utilisateur pour le configurer.",
+        "config_flow_title": "Configuration de l'interface utilisateur prise en charge",
         "integration_not_loaded": "Cette intégration n'est pas chargée dans Home Assistant.",
         "no_restart_required": "Aucun redémarrage requis",
         "not_loaded": "Non chargé",

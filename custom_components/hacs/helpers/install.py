@@ -8,6 +8,7 @@ from custom_components.hacs.hacsbase.backup import Backup
 async def install_repository(repository):
     """Common installation steps of the repository."""
     persistent_directory = None
+    await repository.update_repository()
 
     if not repository.can_install:
         raise HacsException(
@@ -35,7 +36,10 @@ async def install_repository(repository):
         backup = Backup(repository.content.path.local)
         backup.create()
 
-    if repository.repository_manifest.zip_release:
+    if (
+        repository.repository_manifest.zip_release
+        and version != repository.information.default_branch
+    ):
         validate = await repository.download_zip(repository.validate)
     else:
         validate = await repository.download_content(
@@ -115,4 +119,6 @@ def version_to_install(repository):
             return repository.information.default_branch
         if repository.status.selected_tag in repository.releases.published_tags:
             return repository.status.selected_tag
+    if repository.information.default_branch is None:
+        return "master"
     return repository.information.default_branch
