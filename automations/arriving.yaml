@@ -41,7 +41,7 @@
     to: "on"
   condition:
     - condition: state
-      entity_id: persons.marcella
+      entity_id: person.marcella
       state: not_home
     - condition: state
       entity_id: input_boolean.guest_mode
@@ -51,6 +51,10 @@
         {{ is_state_attr("media_player.spotify", "source", "basnijholt-iphone")
            and is_state("media_player.spotify", "playing") }}
   action:
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: "Arriving"
+        message: "Switched music from phone to speakers"
     - service: media_player.turn_on
       entity_id: media_player.kef_ls50
     - service: media_player.select_source
@@ -61,3 +65,4 @@
       entity_id: media_player.spotify
       data:
         source: LS50 Wireless
+
