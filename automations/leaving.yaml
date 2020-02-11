@@ -42,9 +42,9 @@
   initial_state: "on"
   trigger:
     - platform: state
-      entity_id: persons.bas
+      entity_id: person.bas
     - platform: state
-      entity_id: persons.marcella
+      entity_id: person.marcella
   condition:
     - condition: state
       entity_id: binary_sensor.no_one_home
