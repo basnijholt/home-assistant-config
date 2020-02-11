@@ -25,6 +25,7 @@
     - light.ceiling_bedroom
     - light.lampan
     - light.bed_led
+    - light.bed_reading
 
 - platform: group
   name: Automatic lights
