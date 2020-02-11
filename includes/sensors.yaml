@@ -312,6 +312,7 @@
   repositories:
     - path: "basnijholt/lovelace-ios-dark-mode-theme"
     - path: "basnijholt/lovelace-ios-light-mode-theme"
+    - path: "basnijholt/lovelace-ios-themes"
     - path: "python-adaptive/adaptive"
     - path: "basnijholt/home-assistant-config"
 
