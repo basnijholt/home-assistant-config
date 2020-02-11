@@ -186,7 +186,7 @@
     data_template:
       transition: 1
       brightness_pct: >
-        {{ states("sensor.circadian_values") }}
+        {{ (state_attr("switch.circadian_lighting_circadian_lighting", "brightness") or 100) | round(0) }}
       xy_color:
         - '{{ state_attr("sensor.circadian_values", "xy_color")[0] }}'
         - '{{ state_attr("sensor.circadian_values", "xy_color")[1] }}'
