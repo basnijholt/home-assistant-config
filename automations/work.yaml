@@ -40,3 +40,19 @@
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.work_hour_notification_sent
+
+- alias: "Work: Bas left work notification for Marcella"
+  trigger:
+    platform: zone
+    entity_id: device_tracker.basnijholt_iphone
+    zone: zone.work
+    event: leave
+  condition:
+    condition: time
+    after: "15:00:00"
+    before: "22:00:00"
+  action:
+    service: notify.mobile_app_marcella_iphone
+    data:
+      title: "Work"
+      message: "Bas has left work! ♥️🎉"
