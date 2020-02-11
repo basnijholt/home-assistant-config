@@ -203,7 +203,7 @@ views:
           - height: 70px
         tap_action:
           action: call-service
-          service: start_spotify_playlist_of_nearest_person
+          service: script.start_spotify_playlist_of_nearest_person
           service_data:
             source: LSX
         type: custom:button-card
