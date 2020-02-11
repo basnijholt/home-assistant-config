@@ -158,13 +158,13 @@
       friendly_name: Daily Power
       unit_of_measurement: €
       value_template: >
-        {{ states("sensor.daily_gas")|float * 0.7884 + (0.1480 + 0.3554) }}
+        {{ (states("sensor.daily_gas")|float * 0.7884) | round(2) }}
 
     monthly_gas_cost:
       friendly_name: Monthly Power
       unit_of_measurement: €
       value_template: >
-        {{ states("sensor.monthly_gas")|float * 0.7884 }}
+        {{ (states("sensor.monthly_gas")|float * 0.7884) | round(2) }}
 
     daily_power_cost:
       friendly_name: Daily Power
