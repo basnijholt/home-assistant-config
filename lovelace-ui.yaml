@@ -97,6 +97,7 @@ views:
       - light.bamboo
       - light.philips_go
       - light.bed_led
+      - light.bed_reading
       - input_boolean.automatic_bedroom_lights
       - input_boolean.bedroom_lights_automatically_turned_on
       - entity: script.cozy_lights_bedroom
