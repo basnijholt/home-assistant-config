@@ -220,6 +220,8 @@ views:
       type: custom:github-entity-row
     - entity: sensor.lovelace_ios_light_mode_theme
       type: custom:github-entity-row
+    - entity: sensor.lovelace_ios_themes
+      type: custom:github-entity-row
     - entity: sensor.home_assistant_config
       type: custom:github-entity-row
     show_header_toggle: false
@@ -316,10 +318,9 @@ views:
         type: custom:template-entity-row
       head:
         entity: binary_sensor.dishwasher
-        name: 'Dishwasher
-
-          '
-        secondary: Has been on for 31 minutes.
+        name: Dishwasher
+        secondary: Has been off for 34.8 hours.
+        state: 'Off'
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -332,10 +333,9 @@ views:
         type: custom:template-entity-row
       head:
         entity: binary_sensor.washing_machine
-        name: 'Washing machine
-
-          '
-        secondary: Has been off for 30.1 hours.
+        name: Washing machine
+        secondary: Has been off for 17.9 hours.
+        state: 'Off'
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -345,57 +345,56 @@ views:
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: '{{ states("sensor.daily_power")|round(2) }} kWh power → €{{ states("sensor.daily_power_cost")|float|round(2)
+        name: '{{ states(''sensor.daily_power'')|round(2) }} kWh power → €{{ states(''sensor.daily_power_cost'')|float|round(2)
           }}.
 
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: '{{ states("sensor.daily_gas")|round(2) }} m³ gas → €{{ states("sensor.daily_gas_cost")|float|round(2)
+        name: '{{ states(''sensor.daily_gas'')|round(2) }} m³ gas → €{{ states(''sensor.daily_gas_cost'')|float|round(2)
           }}.
 
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: '€{{ states("sensor.daily_energy_fixed_cost")|float|round(2) }} (fixed)
-          + €{{ (states("sensor.daily_gas_cost")|float + states("sensor.daily_power_cost")|float)|round(2)
-          }} = €{{ (states("sensor.daily_gas_cost")|float + states("sensor.daily_power_cost")|float
-          + states("sensor.daily_energy_fixed_cost")|float)|round(2) }}.
+        name: '€{{ states(''sensor.daily_energy_fixed_cost'')|float|round(2) }} (fixed)
+          + €{{ (states(''sensor.daily_gas_cost'')|float + states(''sensor.daily_power_cost'')|float)|round(2)}}
+          = €{{ (states(''sensor.daily_gas_cost'')|float + states(''sensor.daily_power_cost'')|float
+          + states(''sensor.daily_energy_fixed_cost'')|float)|round(2) }}.
 
           '
         type: custom:template-entity-row
       - type: divider
       - icon: mdi:currency-eur
-        name: '{{ as_timestamp(now()) | timestamp_custom("%B") }}''s usage statistics
+        name: '{{ as_timestamp(now()) | timestamp_custom(''%B'') }}''s usage statistics
 
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: '{{ states("sensor.monthly_power")|round(2) }} kWh power → €{{ states("sensor.monthly_power_cost")|float|round(2)
+        name: '{{ states(''sensor.monthly_power'')|round(2) }} kWh power → €{{ states(''sensor.monthly_power_cost'')|float|round(2)
           }}.
 
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: '{{ states("sensor.monthly_gas")|round(2) }} m³ gas → €{{ states("sensor.monthly_gas_cost")|float|round(2)
+        name: '{{ states(''sensor.monthly_gas'')|round(2) }} m³ gas → €{{ states(''sensor.monthly_gas_cost'')|float|round(2)
           }}.
 
           '
         type: custom:template-entity-row
       - icon: mdi:currency-eur
-        name: '€{{ states("sensor.monthly_energy_fixed_cost")|float|round(2) }} (fixed)
-          + €{{ (states("sensor.monthly_gas_cost")|float + states("sensor.monthly_power_cost")|float)|round(2)
-          }} = €{{ (states("sensor.monthly_gas_cost")|float + states("sensor.monthly_power_cost")|float
-          + states("sensor.monthly_energy_fixed_cost")|float)|round(2) }}.
+        name: '€{{ states(''sensor.monthly_energy_fixed_cost'')|float|round(2) }}
+          (fixed) + €{{ (states(''sensor.monthly_gas_cost'')|float + states(''sensor.monthly_power_cost'')|float)|round(2)}}
+          = €{{ (states(''sensor.monthly_gas_cost'')|float + states(''sensor.monthly_power_cost'')|float
+          + states(''sensor.monthly_energy_fixed_cost'')|float)|round(2) }}.
 
           '
         type: custom:template-entity-row
       head:
         entity: sensor.daily_gas
-        name: 'Energy usage
-
-          '
-        secondary: Today 2.85 kWh and 1.31 m³ gas.
+        name: Energy usage
+        secondary: Today 1.78 kWh and 1.25 m³ gas.
+        state: €2.69
         type: custom:template-entity-row
       type: custom:fold-entity-row
     show_header_toggle: false
@@ -1801,7 +1800,10 @@ views:
     type: entities
   - entities:
     - entity: sensor.gas_per_hour
-    - entity: sensor.kwh_per_hour
+    - entity: sensor.gas_per_hour_filtered
+    type: entities
+  - entities:
+    - entity: input_boolean.automatic_temperature
     type: entities
   icon: mdi:test-tube
   path: tests
