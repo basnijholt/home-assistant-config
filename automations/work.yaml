@@ -43,10 +43,9 @@
 
 - alias: "Work: Bas left work notification for Marcella"
   trigger:
-    platform: zone
-    entity_id: device_tracker.basnijholt_iphone
-    zone: zone.work
-    event: leave
+    platform: state
+    entity_id: person.bas
+    from: "work"
   condition:
     condition: time
     after: "15:00:00"
