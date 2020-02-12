@@ -1,0 +1,25 @@
+{
+  "name": "template-entity-row",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch --mode=development",
+    "update-card-tools": "npm uninstall card-tools && npm install thomasloven/lovelace-card-tools"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com:thomasloven/lovelace-template-entity-row"
+  },
+  "keywords": [],
+  "author": "Thomas Lovén",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "card-tools": "github:thomasloven/lovelace-card-tools"
+  }
+}
