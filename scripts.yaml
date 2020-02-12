@@ -120,6 +120,12 @@ cozy_lights_bedroom:
   - data:
       entity_id: light.philips_go
       hs_color:
+      - 0
+      - 100
+    service: light.turn_on
+  - data:
+      entity_id: light.bed_reading
+      hs_color:
       - 26.725
       - 89.804
     service: light.turn_on
@@ -132,7 +138,7 @@ cozy_lights_bedroom:
   - data:
       entity_id: light.ceiling_bedroom
       hs_color:
-      - 10.118
+      - 22
       - 100
     service: light.turn_on
   - data:
