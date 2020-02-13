@@ -37,7 +37,7 @@ wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
   total_time: 400
-  final_volume: 0.45
+  final_volume: 0.35
   speaker: media_player.kef_lsx
   spotify_source: LSX
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
@@ -47,7 +47,7 @@ demo_wake_up_with_spotify:
   module: wake_up_with_spotify
   class: WakeUpWithSpotify
   total_time: 20
-  final_volume: 0.45
+  final_volume: 0.35
   speaker: media_player.kef_lsx
   spotify_source: LSX
   playlist: "spotify:playlist:6rPTm9dYftKcFAfwyRqmDZ"
