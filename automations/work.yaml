@@ -51,7 +51,8 @@
     after: "15:00:00"
     before: "22:00:00"
   action:
-    service: notify.mobile_app_marcella_iphone
+    # service: notify.mobile_app_marcella_iphone
+    service: notify.all_iphones
     data:
       title: "Work"
       message: "Bas has left work! ♥️🎉"
