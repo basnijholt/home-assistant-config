@@ -43,8 +43,10 @@
   trigger:
     - platform: state
       entity_id: person.bas
+      from: "home"
     - platform: state
       entity_id: person.marcella
+      from: "home"
   condition:
     - condition: state
       entity_id: binary_sensor.no_one_home
@@ -56,12 +58,16 @@
       entity_id: binary_sensor.anything_on
       state: "on"
   action:
-    service: notify.all_iphones
-    data:
-      message: "No one is home, turn off everything?"
+    - delay: "00:05:00"  # something still needs to be on in 5 min
+    - condition: state
+      entity_id: binary_sensor.no_one_home
+      state: "on"
+    - service: notify.all_iphones
       data:
-        push:
-          category: turn_off_everything
+        message: "No one is home, turn off everything?"
+        data:
+          push:
+            category: turn_off_everything
 
 - alias: "Leaving: turn off everything after notification"
   trigger:
