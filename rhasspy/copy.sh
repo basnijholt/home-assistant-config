@@ -7,3 +7,5 @@ cp /share/rhasspy/profiles/en/custom_words.txt /config/rhasspy/custom_words.txt
 
 rm -fr /config/rhasspy/slots
 cp -r /share/rhasspy/profiles/en/slots /config/rhasspy/slots
+
+cp /share/rhasspy/profiles/en/profile.json /config/rhasspy/profile.json
