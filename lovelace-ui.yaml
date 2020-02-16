@@ -873,6 +873,9 @@ views:
         name: 'Bas
 
           '
+        state: '{{ states(''person.bas'').replace(''_'', '' '').capitalize() }}
+
+          '
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -889,27 +892,51 @@ views:
         name: 'Marcella
 
           '
+        state: '{{ states(''person.marcella'').replace(''_'', '' '').capitalize()
+          }}
+
+          '
         type: custom:template-entity-row
       type: custom:fold-entity-row
     show_header_toggle: false
     type: entities
-  - control:
-      hvac:
-        another_mode: false
-        'off':
-          icon: false
-          name: Make it cold
-        'on':
-          icon: mdi:whitewalker
-          name: false
-        some_mode: false
+  - entities:
+    - entities:
+      - sensor.temperature_living_room
+      - entity: script.set_low_temperature
+        icon_height: 20px
+        name: 14 °C
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: call-service
+          service: script.set_low_temperature
+        type: entity-button
+      - entity: script.set_high_temperature
+        icon_height: 20px
+        name: 20 °C
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: call-service
+          service: script.set_high_temperature
+        type: entity-button
+      head:
+        entity: climate.thermostat
+        max: 22
+        min: 14
+        name: Target
+        type: custom:slider-entity-row
+      type: custom:fold-entity-row
+    show_header_toggle: false
+    title: Thermostat
+    type: entities
+  - control: false
     entity: climate.thermostat
-    sensors:
-    - entity: sensor.daily_gas_cost
-      name: Cost today
-    - attribute: min_temp
-      name: Min temp
-    step_size: 1
+    icon: false
+    name: false
+    step_layout: row
+    step_size: 0.5
     type: custom:simple-thermostat
   icon: mdi:home
   path: default_view
@@ -934,31 +961,10 @@ views:
         icon: mdi:home-assistant
       - entity: sensor.home_assistant_v2_db
         icon: mdi:home-assistant
-      - align: center
-        animation: 'off'
-        attribute: false
-        background_style: false
-        card_style: false
-        charge_entity: false
-        color: var(--custom-bar-card-color, var(--primary-color))
-        decimal: false
-        delay: 5000
-        direction: right
-        entities:
-        - entity: sensor.processor_use
+      - animation: 'off'
         entity: sensor.processor_use
         height: 30px
-        icon: false
-        icon_position: 'off'
-        icon_style: false
         indicator: 'off'
-        limit_value: false
-        max: 100
-        min: 0
-        minmax_style: false
-        padding: 4px
-        rounding: 3px
-        saturation: 50%
         severity:
         - color: green
           value: 60
@@ -966,44 +972,12 @@ views:
           value: 85
         - color: red
           value: 100
-        show_minmax: false
-        show_value: true
-        speed: 1000
-        tap_action: info
-        target: false
         title: Processor Usage
-        title_position: left
-        title_style: false
         type: custom:bar-card
-        unit_of_measurement: false
-        value_style: false
-        visibility: false
-        width: 70%
-      - align: center
-        animation: 'off'
-        attribute: false
-        background_style: false
-        card_style: false
-        charge_entity: false
-        color: var(--custom-bar-card-color, var(--primary-color))
-        decimal: false
-        delay: 5000
-        direction: right
-        entities:
-        - entity: sensor.rpi_cpu_temperature
+      - animation: 'off'
         entity: sensor.rpi_cpu_temperature
         height: 30px
-        icon: false
-        icon_position: 'off'
-        icon_style: false
         indicator: 'off'
-        limit_value: false
-        max: 100
-        min: 0
-        minmax_style: false
-        padding: 4px
-        rounding: 3px
-        saturation: 50%
         severity:
         - color: green
           value: 60
@@ -1011,44 +985,12 @@ views:
           value: 70
         - color: red
           value: 100
-        show_minmax: false
-        show_value: true
-        speed: 1000
-        tap_action: info
-        target: false
         title: CPU Temp
-        title_position: left
-        title_style: false
         type: custom:bar-card
-        unit_of_measurement: false
-        value_style: false
-        visibility: false
-        width: 70%
-      - align: center
-        animation: 'off'
-        attribute: false
-        background_style: false
-        card_style: false
-        charge_entity: false
-        color: var(--custom-bar-card-color, var(--primary-color))
-        decimal: false
-        delay: 5000
-        direction: right
-        entities:
-        - entity: sensor.rpi_gpu_temperature
+      - animation: 'off'
         entity: sensor.rpi_gpu_temperature
         height: 30px
-        icon: false
-        icon_position: 'off'
-        icon_style: false
         indicator: 'off'
-        limit_value: false
-        max: 100
-        min: 0
-        minmax_style: false
-        padding: 4px
-        rounding: 3px
-        saturation: 50%
         severity:
         - color: green
           value: 60
@@ -1056,44 +998,12 @@ views:
           value: 70
         - color: red
           value: 100
-        show_minmax: false
-        show_value: true
-        speed: 1000
-        tap_action: info
-        target: false
         title: GPU Temp
-        title_position: left
-        title_style: false
         type: custom:bar-card
-        unit_of_measurement: false
-        value_style: false
-        visibility: false
-        width: 70%
-      - align: center
-        animation: 'off'
-        attribute: false
-        background_style: false
-        card_style: false
-        charge_entity: false
-        color: var(--custom-bar-card-color, var(--primary-color))
-        decimal: false
-        delay: 5000
-        direction: right
-        entities:
-        - entity: sensor.memory_use_percent
+      - animation: 'off'
         entity: sensor.memory_use_percent
         height: 30px
-        icon: false
-        icon_position: 'off'
-        icon_style: false
         indicator: 'off'
-        limit_value: false
-        max: 100
-        min: 0
-        minmax_style: false
-        padding: 4px
-        rounding: 3px
-        saturation: 50%
         severity:
         - color: green
           value: 60
@@ -1101,44 +1011,12 @@ views:
           value: 85
         - color: red
           value: 100
-        show_minmax: false
-        show_value: true
-        speed: 1000
-        tap_action: info
-        target: false
         title: Memory Usage
-        title_position: left
-        title_style: false
         type: custom:bar-card
-        unit_of_measurement: false
-        value_style: false
-        visibility: false
-        width: 70%
-      - align: center
-        animation: 'off'
-        attribute: false
-        background_style: false
-        card_style: false
-        charge_entity: false
-        color: var(--custom-bar-card-color, var(--primary-color))
-        decimal: false
-        delay: 5000
-        direction: right
-        entities:
-        - entity: sensor.disk_use_percent
+      - animation: 'off'
         entity: sensor.disk_use_percent
         height: 30px
-        icon: false
-        icon_position: 'off'
-        icon_style: false
         indicator: 'off'
-        limit_value: false
-        max: 100
-        min: 0
-        minmax_style: false
-        padding: 4px
-        rounding: 3px
-        saturation: 50%
         severity:
         - color: green
           value: 60
@@ -1146,19 +1024,8 @@ views:
           value: 85
         - color: red
           value: 100
-        show_minmax: false
-        show_value: true
-        speed: 1000
-        tap_action: info
-        target: false
         title: Disk Usage
-        title_position: left
-        title_style: false
         type: custom:bar-card
-        unit_of_measurement: false
-        value_style: false
-        visibility: false
-        width: 70%
       - type: divider
       - entity: sensor.myip
         icon: mdi:ip-network
