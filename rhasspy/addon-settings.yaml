@@ -1,0 +1,40 @@
+user_dir: /share/rhasspy/profiles
+profile: en
+ssl: false
+certfile: fullchain.pem
+keyfile: privkey.pem
+asoundrc: |
+
+  pcm.jack {
+    type hw
+    card ALSA
+  }
+  pcm.array {
+    type hw
+    card CameraB409241
+  }
+  pcm.softvol {
+    type softvol
+    slave.pcm "jack"
+    control {
+      name Master
+      card 0
+    }
+  }
+  pcm.cap {
+    type plug
+    slave.pcm "array"
+    slave.channels 4
+    ttable {
+      0.0 15.0
+      1.1 15.0
+    }
+  }
+  pcm.!default {
+      type asym
+      playback.pcm "plug:softvol"
+      capture.pcm {
+        type plug
+        slave.pcm "cap"
+      }
+  }

@@ -1,0 +1,20 @@
+{
+    "handle": {
+        "system": "hass"
+    },
+    "microphone": {
+        "pyaudio": {
+            "device": "2"
+        },
+        "system": "arecord"
+    },
+    "speech_to_text": {
+        "pocketsphinx": {
+            "min_confidence": 0.01
+        },
+        "system": "kaldi"
+    },
+    "wake": {
+        "system": "porcupine"
+    }
+}
