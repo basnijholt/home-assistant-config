@@ -35,7 +35,6 @@ See also [my guide for my girlfriend ❤️](guide.md).
 * Xiaomi Aqara Magic Cube (€11.08)
 * Xiaomi Aqara Single Button (4x) (€37.05)
 * Philips Hue Dimmer switch (2x) (€33.22)
-* IKEA TRÅDFRI SYMFONISK Remote (€15.00)
 
 ### Sensors
 * Xiaomi Aqara Door Sensor (4x) (€32.71)
@@ -54,7 +53,8 @@ See also [my guide for my girlfriend ❤️](guide.md).
 
 ### Lights
 * Philips Hue E27 White and Color (12x) (€266.7)
-* Philips Hue GU10 Ambient White (6x) (€102.70)
+* Philips Hue E14 White and Color (2x) (€69.77)
+* Philips Hue GU10 Ambient White (5x) (92.70)
 * Philips Hue Go (€57.05)
 * Philips Hue LED strip 2m (2x) (€86.39)
 * Philips Hue LED strip 1m (€13.84)
@@ -77,7 +77,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 * Nodo-Shop – OpenTherm Gateway (OTGW) with NodeMCU (€48.81)
 
 ### Total cost
-*€1442.44* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
+*€1487.21* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
 I bought many things on Aliexpress and with discount or used on Amazon.
 
 ## Automation plans
