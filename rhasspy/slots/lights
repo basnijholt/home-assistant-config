@@ -1,6 +1,6 @@
-(bedroom):light.bedroom_lights
-(kitchen):light.kitchen_lights
 (living room):light.living_room_lights
 (stairs):light.stairs_lights
+(bedroom):light.bedroom_lights
 (toilet):light.toilet_lights
 (hall):light.hall_lights
+(kitchen):light.kitchen_lights

@@ -3,6 +3,9 @@
         "system": "hass"
     },
     "microphone": {
+        "arecord": {
+            "device": "sysdefault:CARD=CameraB409241"
+        },
         "pyaudio": {
             "device": "2"
         },
@@ -11,10 +14,16 @@
     "speech_to_text": {
         "pocketsphinx": {
             "min_confidence": 0.01
-        },
-        "system": "kaldi"
+        }
     },
     "wake": {
-        "system": "porcupine"
+        "porcupine": {
+            "keyword_path": "porcupine/terminator_raspberrypi.ppn",
+            "sensitivity": "0.2"
+        },
+        "snowboy": {
+            "sensitivity": "0.2"
+        },
+        "system": "snowboy"
     }
 }
