@@ -39,4 +39,12 @@
       entity_id: light.living_room_lights
       data:
         transition: 10
-    - service: script.going_to_sleep
+    - service_template: >
+        {% set h, m = states("sensor.ten_minutes_before_alarm").split(":") %}
+        {% set t_diff = as_timestamp(now()) - as_timestamp(now().replace(hour=h|int, minute=m|int)) %}
+        {% if 0 < t_diff < 600 %}
+          script.turn_off_everything_non_automatic
+        {% else %}
+          script.going_to_sleep
+        {% endif %}
+
