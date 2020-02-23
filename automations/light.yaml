@@ -191,6 +191,25 @@
         - '{{ state_attr("sensor.circadian_values", "xy_color")[0] }}'
         - '{{ state_attr("sensor.circadian_values", "xy_color")[1] }}'
 
+- alias: "Light: turn bathroom to sleep mode"
+  trigger:
+    platform: state
+    entity_id: input_boolean.sleep_mode
+  condition:
+    condition: state
+    entity_id: light.ceiling_bathroom
+    state:  "on"
+  action:
+    service: light.turn_on
+    entity_id: light.ceiling_bathroom
+    data_template:
+      brightness_pct: >
+        {% if trigger.to_state.state == "on" %}
+          5
+        {% else %}
+          100
+        {% endif %}
+
 - alias: "Light: turn off bathroom"
   trigger:
     platform: state
