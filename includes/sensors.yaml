@@ -239,8 +239,8 @@
 
 - platform: time_date
   display_options:
-     - date
-     - time
+    - date
+    - time
 
 - platform: filter
   name: "Gas consumption filtered"
@@ -265,15 +265,9 @@
 
 - platform: command_line
   name: RPi CPU Temperature
-  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  command: "cat /sys/class/thermal/thermal_zone4/temp"
   unit_of_measurement: "°C"
   value_template: "{{ value | multiply(0.001) | round(2) }}"
-
-- platform: command_line
-  name: RPi GPU Temperature
-  command: "/opt/vc/bin/vcgencmd measure_temp"
-  unit_of_measurement: "°C"
-  value_template: '{{ value | replace("temp=", "") | replace("''C", "") }}'
 
 - platform: systemmonitor
   resources:
@@ -304,8 +298,19 @@
 
 - platform: filesize
   file_paths:
-    - /config/home-assistant_v2.db
     - /config/.storage/lovelace
+
+- platform: sql
+  db_url: !secret maria_db_url
+  queries:
+    - name: MariaDB size
+      query: >
+        SELECT table_schema AS "database",
+        ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "value"
+        FROM information_schema.tables WHERE table_schema="homeassistant"
+        GROUP BY table_schema;
+      column: value
+      unit_of_measurement: MB
 
 - platform: github
   access_token: !secret hass_sensor_gh_token
