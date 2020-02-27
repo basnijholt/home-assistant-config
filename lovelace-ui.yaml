@@ -76,7 +76,6 @@ views:
         tap_action:
           action: call-service
           service: script.cozy_lights_living_room
-        type: entity-button
       - entity: script.white_lights_living_room
         icon_height: 20px
         name: White lights
@@ -85,7 +84,6 @@ views:
         tap_action:
           action: call-service
           service: script.white_lights_living_room
-        type: entity-button
       head:
         entity: light.living_room_lights
         name: Living
@@ -108,7 +106,6 @@ views:
         tap_action:
           action: call-service
           service: script.cozy_lights_bedroom
-        type: entity-button
       - entity: script.white_lights_bedroom
         icon_height: 20px
         name: White lights
@@ -117,7 +114,6 @@ views:
         tap_action:
           action: call-service
           service: script.white_lights_bedroom
-        type: entity-button
       head:
         entity: light.bedroom_lights
         name: Bedroom
@@ -236,7 +232,6 @@ views:
       head:
         entity: input_boolean.dark_mode
         name: Dark mode
-        type: toggle
       type: custom:fold-entity-row
     show_header_toggle: false
     type: entities
@@ -900,37 +895,6 @@ views:
       type: custom:fold-entity-row
     show_header_toggle: false
     type: entities
-  - entities:
-    - entities:
-      - sensor.temperature_living_room
-      - entity: script.set_low_temperature
-        icon_height: 20px
-        name: 14 °C
-        show_icon: false
-        show_name: true
-        tap_action:
-          action: call-service
-          service: script.set_low_temperature
-        type: entity-button
-      - entity: script.set_high_temperature
-        icon_height: 20px
-        name: 20 °C
-        show_icon: false
-        show_name: true
-        tap_action:
-          action: call-service
-          service: script.set_high_temperature
-        type: entity-button
-      head:
-        entity: climate.thermostat
-        max: 22
-        min: 14
-        name: Target
-        type: custom:slider-entity-row
-      type: custom:fold-entity-row
-    show_header_toggle: false
-    title: Thermostat
-    type: entities
   - control: false
     entity: climate.thermostat
     icon: false
@@ -959,7 +923,7 @@ views:
         icon: mdi:calendar
       - entity: sensor.uptime
         icon: mdi:home-assistant
-      - entity: sensor.home_assistant_v2_db
+      - entity: sensor.mariadb_size
         icon: mdi:home-assistant
       - animation: 'off'
         entity: sensor.processor_use
@@ -986,19 +950,6 @@ views:
         - color: red
           value: 100
         title: CPU Temp
-        type: custom:bar-card
-      - animation: 'off'
-        entity: sensor.rpi_gpu_temperature
-        height: 30px
-        indicator: 'off'
-        severity:
-        - color: green
-          value: 60
-        - color: orange
-          value: 70
-        - color: red
-          value: 100
-        title: GPU Temp
         type: custom:bar-card
       - animation: 'off'
         entity: sensor.memory_use_percent
