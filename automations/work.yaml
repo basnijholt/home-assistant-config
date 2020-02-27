@@ -45,7 +45,7 @@
   trigger:
     platform: state
     entity_id: person.bas
-    from: "work"
+    from: "Work"
   condition:
     condition: time
     after: "15:00:00"
