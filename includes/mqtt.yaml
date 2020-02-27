@@ -8,6 +8,6 @@
 #               |_|
 #
 #- from github.com/basnijholt/home-assistant-config
-broker: 192.168.1.3
+broker: !secret ip_mqtt
 username: mqtt
 password: !secret mqtt_user_pw
