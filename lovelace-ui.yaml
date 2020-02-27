@@ -1239,11 +1239,11 @@ views:
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
     - entity: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
     - type: divider
-    - entity: sensor.mi_flora_kentia_moisture
-    - entity: sensor.mi_flora_kentia_temperature
-    - entity: sensor.mi_flora_kentia_battery
-    - entity: sensor.mi_flora_kentia_conductivity
-    - entity: sensor.mi_flora_kentia_light_intensity
+    - entity: sensor.mi_flora_kentia_palm_moisture
+    - entity: sensor.mi_flora_kentia_palm_temperature
+    - entity: sensor.mi_flora_kentia_palm_battery
+    - entity: sensor.mi_flora_kentia_palm_conductivity
+    - entity: sensor.mi_flora_kentia_palm_light_intensity
     show_header_toggle: false
     title: Plant sensors
     type: entities
