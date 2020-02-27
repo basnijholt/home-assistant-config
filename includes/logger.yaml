@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 default: critical
 logs:
-  homeassistant.components.kef: debug
+  homeassistant.components.kef_custom: debug
   aiokef: debug
   homeassistant.component.opentherm_gw: debug
   pyotgw: debug
