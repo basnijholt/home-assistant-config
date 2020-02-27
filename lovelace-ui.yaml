@@ -314,8 +314,17 @@ views:
       head:
         entity: binary_sensor.dishwasher
         name: Dishwasher
-        secondary: Has been off for 34.8 hours.
-        state: 'Off'
+        secondary: '{% set on_for = as_timestamp(now()) - as_timestamp(states(''input_datetime.dishwasher_started''))
+          %} {% set off_for = as_timestamp(now()) - as_timestamp(states(''input_datetime.dishwasher_done''))
+          %} {% if states(''binary_sensor.dishwasher'') == ''on'' %} Has been on for
+          {{ (on_for / 60)|round(0) }} minutes. {% else %} Has been off for {{ (off_for
+          / 3600)|round(1) }} hours. {% endif %}
+
+          '
+        state: '{% if is_state(''binary_sensor.dishwasher'', ''on'') %} {{ states(''sensor.dishwasher_watts'')
+          }} Watt {% else %} Off {% endif %}
+
+          '
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -329,8 +338,17 @@ views:
       head:
         entity: binary_sensor.washing_machine
         name: Washing machine
-        secondary: Has been off for 17.9 hours.
-        state: 'Off'
+        secondary: '{% set on_for = as_timestamp(now()) - as_timestamp(states(''input_datetime.washing_machine_started''))
+          %} {% set off_for = as_timestamp(now()) - as_timestamp(states(''input_datetime.washing_machine_done''))
+          %} {% if states(''binary_sensor.washing_machine'') == ''on'' %} Has been
+          on for {{ (on_for / 60)|round(0) }} minutes. {% else %} Has been off for
+          {{ (off_for / 3600)|round(1) }} hours. {% endif %}
+
+          '
+        state: '{% if is_state(''binary_sensor.washing_machine'', ''on'') %} {{ states(''sensor.washing_machine_watts'')
+          }} Watt {% else %} Off {% endif %}
+
+          '
         type: custom:template-entity-row
       type: custom:fold-entity-row
     - entities:
@@ -388,8 +406,14 @@ views:
       head:
         entity: sensor.daily_gas
         name: Energy usage
-        secondary: Today 1.78 kWh and 1.25 m³ gas.
-        state: €2.69
+        secondary: 'Today {{ states("sensor.daily_power")|round(2) }} kWh and {{ states("sensor.daily_gas")|round(2)}}
+          m³ gas.
+
+          '
+        state: '€{{ (states("sensor.daily_gas_cost")|float + states("sensor.daily_power_cost")|float
+          + states("sensor.daily_energy_fixed_cost")|float)|round(2) }}
+
+          '
         type: custom:template-entity-row
       type: custom:fold-entity-row
     show_header_toggle: false
