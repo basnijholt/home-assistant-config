@@ -43,13 +43,14 @@ webostv: !include includes/webostv.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 vacuum: !include includes/vacuum.yaml
 media_player: !include includes/media_players.yaml
-homekit: !include includes/homekit.yaml
+#homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml
 mqtt: !include includes/mqtt.yaml
 utility_meter: !include includes/utility_meter.yaml
 plant: !include includes/plant.yaml
 spotify: !include includes/spotify.yaml
 climate: !include  includes/climate.yaml
+influxdb: !include includes/influxdb.yaml
 
 # Custom components
 circadian_lighting: !include includes/circadian_lighting.yaml
