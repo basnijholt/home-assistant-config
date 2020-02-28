@@ -9,19 +9,19 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 daily_power_offpeak:
-  source: sensor.power_consumption_low
+  source: sensor.energy_consumption_tarif_1
   cycle: daily
 daily_power_peak:
-  source: sensor.power_consumption_normal
+  source: sensor.energy_consumption_tarif_2
   cycle: daily
 daily_gas:
   source: sensor.gas_consumption
   cycle: daily
 monthly_power_offpeak:
-  source: sensor.power_consumption_low
+  source: sensor.energy_consumption_tarif_1
   cycle: monthly
 monthly_power_peak:
-  source: sensor.power_consumption_normal
+  source: sensor.energy_consumption_tarif_2
   cycle: monthly
 monthly_gas:
   source: sensor.gas_consumption
