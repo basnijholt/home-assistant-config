@@ -239,29 +239,8 @@
 
 - platform: time_date
   display_options:
-    - date
-    - time
-
-- platform: filter
-  name: "Gas consumption filtered"
-  entity_id: sensor.gas_consumption
-  filters:
-    - filter: time_simple_moving_average
-      window_size: 00:30:00
-      precision: 2
-
-- platform: derivative
-  source: sensor.gas_consumption
-  name: Gas per hour
-  unit: m³/h
-  unit_time: h
-  time_window: "00:30:00"
-
-- platform: derivative
-  source: sensor.gas_consumption_filtered
-  name: Gas per hour (filtered)
-  unit: m³/h
-  unit_time: h
+     - date
+     - time
 
 - platform: command_line
   name: RPi CPU Temperature
@@ -490,81 +469,21 @@
   icon: mdi:fire
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/long_power_failure_count/state
-  name: Long Power Failure Count
-  icon: mdi:flash-off
-
-- platform: mqtt
   state_topic: homeassistant/sensor/power_consumption/state
   unit_of_measurement: kW
   name: Power Consumption
   icon: mdi:flash
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/power_consumption_low/state
+  state_topic: homeassistant/sensor/energy_consumption_tarif_1/state
   unit_of_measurement: kWh
-  name: Power Consumption (low)
+  name: Energy Consumption (tarif 1)
   icon: mdi:flash
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/power_consumption_normal/state
+  state_topic: homeassistant/sensor/energy_consumption_tarif_2/state
   unit_of_measurement: kWh
-  name: Power Consumption (normal)
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_consumption_phase_l1/state
-  unit_of_measurement: kW
-  name: Power Consumption Phase L1
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_consumption_phase_l2/state
-  name: Power Consumption Phase L2
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_consumption_phase_l3/state
-  name: Power Consumption Phase L3
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_consumption_total/state
-  name: Power Consumption (total)
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_production/state
-  unit_of_measurement: kW
-  name: Power Production
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_production_low/state
-  unit_of_measurement: kWh
-  name: Power Production (low)
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_production_normal/state
-  unit_of_measurement: kWh
-  name: Power Production (normal)
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_production_phase_l1/state
-  unit_of_measurement: kW
-  name: Power Production Phase L1
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_production_phase_l2/state
-  name: Power Production Phase L2
-  icon: mdi:flash
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_production_phase_l3/state
-  name: Power Production Phase L3
+  name: Energy Consumption (tarif 2)
   icon: mdi:flash
 
 - platform: mqtt
@@ -572,47 +491,26 @@
   name: Power Tariff
   icon: mdi:flash
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_phase_l1/state
-  name: Voltage Phase L1
+- platform: filter
+  name: "Gas consumption filtered"
+  entity_id: sensor.gas_consumption
+  filters:
+    - filter: time_simple_moving_average
+      window_size: 00:30:00
+      precision: 2
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_phase_l2/state
-  name: Voltage Phase L2
+- platform: derivative
+  source: sensor.gas_consumption
+  name: Gas per hour
+  unit: m³/h
+  unit_time: h
+  time_window: "00:30:00"
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_phase_l3/state
-  name: Voltage Phase L3
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_sags_phase_l1/state
-  name: Voltage Sags Phase L1
-  icon: mdi:pulse
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_sags_phase_l2/state
-  name: Voltage Sags Phase L2
-  icon: mdi:pulse
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_sags_phase_l3/state
-  name: Voltage Sags Phase L3
-  icon: mdi:pulse
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_swells_phase_l1/state
-  name: Voltage Swells Phase L1
-  icon: mdi:pulse
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_swells_phase_l2/state
-  name: Voltage Swells Phase L2
-  icon: mdi:pulse
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/voltage_swells_phase_l3/state
-  name: Voltage Swells Phase L3
-  icon: mdi:pulse
+- platform: derivative
+  source: sensor.gas_consumption_filtered
+  name: Gas per hour (filtered)
+  unit: m³/h
+  unit_time: h
 
 #  ____  _             _
 # |  _ \| | __ _ _ __ | |_ ___
