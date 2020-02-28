@@ -307,7 +307,7 @@ views:
       - icon: mdi:currency-eur
         name: '{% set kwh = state_attr("switch.dishwasher", "today_energy_kwh") |
           float %} {% set cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh and
-          cost €{{ cost_today | round(2) }}."
+          cost €{{ cost_today | round(2) }}.
 
           '
         type: custom:template-entity-row
@@ -346,7 +346,7 @@ views:
       type: custom:fold-entity-row
     - entities:
       - icon: mdi:currency-eur
-        name: 'Today"s usage statistics
+        name: 'Today''s usage statistics
 
           '
         type: custom:template-entity-row
@@ -372,7 +372,7 @@ views:
         type: custom:template-entity-row
       - type: divider
       - icon: mdi:currency-eur
-        name: '{{ as_timestamp(now()) | timestamp_custom("%B") }}"s usage statistics
+        name: '{{ as_timestamp(now()) | timestamp_custom("%B") }}''s usage statistics
 
           '
         type: custom:template-entity-row
