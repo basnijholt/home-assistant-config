@@ -1,0 +1,8 @@
+{
+    "domain": "dutch_public_transport_api",
+    "name": "Sensor 9292 OV API",
+    "documentation": "https://github.com/Juvawa/Home-Assisant-Sensor-9292",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": []
+  }

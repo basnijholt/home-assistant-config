@@ -95,7 +95,7 @@
         {% if is_state_attr("proximity.home", "nearest", "basnijholt-iphone") %}
         6rPTm9dYftKcFAfwyRqmDZ
         {% else %}
-        2Alq4aFJY8jRA2MnBL5d9A
+        6rPTm9dYftKcFAfwyRqmDZ
         {% endif %}
 
     tv_volume:
@@ -300,6 +300,23 @@
     - path: "python-adaptive/adaptive"
     - path: "basnijholt/home-assistant-config"
 
+- platform: dutch_public_transport_api
+  name: Bus from Rotterdam to Delft
+  station: !secret bus_stop_to_delft
+  destination: Station Delft
+  show_future_departures: 1
+
+- platform: dutch_public_transport_api
+  name: Bus from Delft to Rotterdam
+  station: delft/bushalte-tu-mekelpark
+  destination: Rotterdam Centraal
+  show_future_departures: 1
+
+- platform: dutch_public_transport_api
+  name: Bus home to Rotterdam Centraal
+  station: !secret bus_stop_in_front
+  destination: Rotterdam Centraal
+  show_future_departures: 1
 
 #  _____ _                  _                  _
 # |_   _(_)_ __ ___   ___  | |_ _ __ __ _  ___| | _____ _ __ ___
