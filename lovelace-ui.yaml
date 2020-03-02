@@ -910,6 +910,10 @@ views:
           '
         type: custom:template-entity-row
       type: custom:fold-entity-row
+    - entity: sensor.bus_home_to_rotterdam_centraal
+      secondary: Next bus {{ states('sensor.bus_home_to_rotterdam_centraal_future_1')
+        }}
+      type: custom:template-entity-row
     show_header_toggle: false
     type: entities
   - control: false
@@ -1671,6 +1675,8 @@ views:
       - entity_id: automation.frontend_*
       - entity_id: automation.lsx_*
       - entity_id: automation.doorbell_*
+      - entity_id: automation.plant_*
+      - entity_id: automation.climate_*
       include:
       - domain: automation
     sort: entity_id
@@ -1770,6 +1776,16 @@ views:
     variables:
     - name: Doorbell
     - slug: doorbell_
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Climate
+    - slug: climate
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Plant
+    - slug: plant
   icon: mdi:robot
   path: automations
   title: Automations
