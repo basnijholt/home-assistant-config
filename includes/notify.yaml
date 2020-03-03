@@ -8,11 +8,6 @@
 #                        |___/
 #
 #- from github.com/basnijholt/home-assistant-config
-- platform: webostv
-  host: !secret ip_tv
-  name: tv
-  filename: webostv.conf
-
 - platform: group
   name: all_iphones
   services:
