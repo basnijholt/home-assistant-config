@@ -49,12 +49,15 @@
     data_template:
       hs_color:
         - >
-           {% set hue, sat = state_attr('light.sphere_1', 'hs_color') %}
-           {% set delta = trigger.event.data.event / 450 %}
-           {% set new_hue = [([0, (hue + delta)]|max), 360]|min %}
-           {{ new_hue|round(3) }}
+          {% set hue_sat = state_attr('light.sphere_1', 'hs_color') %}
+          {% if hue_sat == None %} {% set hue_sat = [30, 56] %} {% endif %}
+          {% set delta = trigger.event.data.event / 350 %}
+          {% set new_hue = [([0, (hue_sat[0] + delta)]|max), 360]|min %}
+          {{ new_hue|round(3) }}
         - >
-           {{ state_attr('light.sphere_1', 'hs_color')[1] }}
+          {% set hue_sat = state_attr('light.sphere_1', 'hs_color') %}
+          {% if hue_sat == None %} {% set hue_sat = [30, 56] %} {% endif %}
+          {{ hue_sat[1] }}
 
 - alias: "Cube: change brightness of living room lights with cube"
   trigger:
