@@ -51,7 +51,7 @@
         - >
           {% set hue_sat = state_attr('light.sphere_1', 'hs_color') %}
           {% if hue_sat == None %} {% set hue_sat = [30, 56] %} {% endif %}
-          {% set delta = trigger.event.data.event / 350 %}
+          {% set delta = trigger.event.data.event / 200 %}
           {% set new_hue = [([0, (hue_sat[0] + delta)]|max), 360]|min %}
           {{ new_hue|round(3) }}
         - >
