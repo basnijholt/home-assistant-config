@@ -626,78 +626,6 @@ views:
     type: custom:swipe-card
   - cards:
     - cards:
-      - color: auto
-        icon: mdi:weather-sunset-up
-        name: Wake up
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          haptic: success
-          service: input_boolean.turn_off
-          service_data:
-            entity_id: input_boolean.sleep_mode
-        type: custom:button-card
-      - color: auto
-        entity: input_boolean.sleep_mode
-        icon: mdi:weather-night
-        name: '[[[ if (entity.state == "on") return "Sleep mode on"; else return "Good
-          Night" ]]]'
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          haptic: success
-          service: script.going_to_sleep
-        type: custom:button-card
-      type: horizontal-stack
-    - cards:
-      - color: auto
-        icon: mdi:home-map-marker
-        name: Arrive Home
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          haptic: success
-          service: script.arriving
-        type: custom:button-card
-      - color: auto
-        icon: mdi:home-export-outline
-        name: Leave Home
-        styles:
-          card:
-          - font-size: 12px
-          - font-weight: bold
-          - height: 70px
-        tap_action:
-          action: call-service
-          haptic: success
-          service: script.leaving
-        type: custom:button-card
-      type: horizontal-stack
-    type: vertical-stack
-  - cards:
-    - entity: plant.ficus_microcarpa_ginseng
-      type: plant-status
-    - entity: plant.yucca_elephantipes
-      type: plant-status
-    parameters:
-      autoplay:
-        delay: 5000
-      speed: 2000
-    type: custom:swipe-card
-  - cards:
-    - cards:
       - color_thresholds_transition: smooth
         entities:
         - entity: sensor.power_consumption
@@ -772,6 +700,85 @@ views:
         delay: 5000
       speed: 2000
     type: custom:swipe-card
+  - cards:
+    - cards:
+      - color: auto
+        icon: mdi:weather-sunset-up
+        name: Wake up
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          haptic: success
+          service: input_boolean.turn_off
+          service_data:
+            entity_id: input_boolean.sleep_mode
+        type: custom:button-card
+      - color: auto
+        entity: input_boolean.sleep_mode
+        icon: mdi:weather-night
+        name: '[[[ if (entity.state == "on") return "Sleep mode on"; else return "Good
+          Night" ]]]'
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          haptic: success
+          service: script.going_to_sleep
+        type: custom:button-card
+      type: horizontal-stack
+    - cards:
+      - color: auto
+        icon: mdi:home-map-marker
+        name: Arrive Home
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          haptic: success
+          service: script.arriving
+        type: custom:button-card
+      - color: auto
+        icon: mdi:home-export-outline
+        name: Leave Home
+        styles:
+          card:
+          - font-size: 12px
+          - font-weight: bold
+          - height: 70px
+        tap_action:
+          action: call-service
+          haptic: success
+          service: script.leaving
+        type: custom:button-card
+      type: horizontal-stack
+    type: vertical-stack
+  - cards:
+    - entity: plant.ficus_microcarpa_ginseng
+      type: plant-status
+    - entity: plant.yucca_elephantipes
+      type: plant-status
+    parameters:
+      autoplay:
+        delay: 5000
+      speed: 2000
+    type: custom:swipe-card
+  - control: false
+    entity: climate.thermostat
+    icon: false
+    name: false
+    step_layout: row
+    step_size: 0.5
+    type: custom:simple-thermostat
   - entities:
     - entities:
       - color: '#0279ff'
@@ -910,19 +917,22 @@ views:
           '
         type: custom:template-entity-row
       type: custom:fold-entity-row
+    show_header_toggle: false
+    type: entities
+  - entities:
     - entity: sensor.bus_home_to_rotterdam_centraal
       secondary: Next bus {{ states('sensor.bus_home_to_rotterdam_centraal_future_1')
         }}
       type: custom:template-entity-row
-    show_header_toggle: false
+    - entity: sensor.bus_from_rotterdam_to_delft
+      secondary: Next bus {{ states('sensor.bus_from_rotterdam_to_delft_future_1')
+        }}
+      type: custom:template-entity-row
+    - entity: sensor.bus_from_delft_to_rotterdam
+      secondary: Next bus {{ states('sensor.bus_from_delft_to_rotterdam_future_1')
+        }}
+      type: custom:template-entity-row
     type: entities
-  - control: false
-    entity: climate.thermostat
-    icon: false
-    name: false
-    step_layout: row
-    step_size: 0.5
-    type: custom:simple-thermostat
   icon: mdi:home
   path: default_view
   title: Home
@@ -1644,6 +1654,196 @@ views:
   - entities:
     - entity: input_boolean.automatic_temperature
     type: entities
+  - cards:
+    - cards:
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.netherlands_confirmed
+            name: NL Confirmed
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.netherlands_current
+            name: NL Current
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.netherlands_recovered
+            name: NL Recovered
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.netherlands_deaths
+            name: NL Deaths
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      type: custom:vertical-stack-in-card
+    - cards:
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.worldwide_confirmed
+            name: WW Confirmed
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.worldwide_current
+            name: WW Current
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      - cards:
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.worldwide_recovered
+            name: WW Recovered
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        - color_thresholds_transition: smooth
+          entities:
+          - entity: sensor.worldwide_deaths
+            name: WW Deaths
+          font_size: 100
+          group: false
+          hour24: true
+          hours_to_show: 60
+          line_width: 6
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: fade
+            labels: false
+            name: true
+            state: true
+          type: custom:mini-graph-card
+        type: horizontal-stack
+      type: custom:vertical-stack-in-card
+    type: custom:swipe-card
+  - cards:
+    - columns: 4
+      entities:
+      - entity: sensor.worldwide_confirmed
+        icon: mdi:emoticon-neutral-outline
+        name: Confirmed
+      - entity: sensor.worldwide_current
+        icon: mdi:emoticon-frown-outline
+        name: Current
+      - entity: sensor.worldwide_recovered
+        icon: mdi:emoticon-happy-outline
+        name: Recovered
+      - entity: sensor.worldwide_deaths
+        icon: mdi:emoticon-dead-outline
+        name: Deaths
+      show_icon: true
+      show_name: true
+      show_state: true
+      title: Worldwide
+      type: glance
+    - columns: 4
+      entities:
+      - entity: sensor.netherlands_confirmed
+        icon: mdi:emoticon-neutral-outline
+        name: Confirmed
+      - entity: sensor.netherlands_current
+        icon: mdi:emoticon-frown-outline
+        name: Current
+      - entity: sensor.netherlands_recovered
+        icon: mdi:emoticon-happy-outline
+        name: Recovered
+      - entity: sensor.netherlands_deaths
+        icon: mdi:emoticon-dead-outline
+        name: Deaths
+      show_icon: true
+      show_name: true
+      show_state: true
+      title: Netherlands
+      type: glance
+    type: vertical-stack
   icon: mdi:test-tube
   path: tests
   title: Tests
