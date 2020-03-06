@@ -49,6 +49,7 @@ mqtt: !include includes/mqtt.yaml
 utility_meter: !include includes/utility_meter.yaml
 plant: !include includes/plant.yaml
 spotify: !include includes/spotify.yaml
+climate: !include  includes/climate.yaml
 influxdb: !include includes/influxdb.yaml
 
 # Custom components
