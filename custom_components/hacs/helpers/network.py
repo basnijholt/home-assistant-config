@@ -1,17 +1,8 @@
 """Verify network."""
-import requests
+from socket import gaierror
+from integrationhelper import Logger
 
 
-def internet_connectivity_check():
+def internet_connectivity_check(host="api.github.com"):
     """Verify network connectivity."""
-    hosts = [{"host": "https://github.com", "connection": False}]
-
-    for host in hosts:
-        try:
-            requests.get(host["host"])
-
-            host["connection"] = True
-        except Exception:  # pylint: disable=broad-except
-            host["connection"] = False
-
-    return False not in [x["connection"] for x in hosts]
+    return True
