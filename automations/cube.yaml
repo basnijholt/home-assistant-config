@@ -91,7 +91,7 @@
     state: "Volume"
   action:
     - service: media_player.volume_set
-      entity_id:  media_player.kef_ls50
+      entity_id: media_player.kef_ls50
       data_template:  # 90 deg is 10%
         volume_level: >
           {% set max_change = 0.15 %}

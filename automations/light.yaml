@@ -198,7 +198,7 @@
   condition:
     condition: state
     entity_id: light.ceiling_bathroom
-    state:  "on"
+    state: "on"
   action:
     service: light.turn_on
     entity_id: light.ceiling_bathroom
@@ -254,12 +254,12 @@
       from: "off"
       to: "on"
   action:
-   service: light.turn_on
-   data:
-     entity_id:
-       - light.stairs_lights
-       - light.hall_lights
-     transition: 1
+    service: light.turn_on
+    data:
+      entity_id:
+        - light.stairs_lights
+        - light.hall_lights
+      transition: 1
 
 - alias: "Light: turn off hall"
   trigger:
@@ -268,12 +268,12 @@
       from: "on"
       to: "off"
   action:
-   service: light.turn_off
-   data:
-     entity_id:
-       - light.stairs_lights
-       - light.hall_lights
-     transition: 1
+    service: light.turn_off
+    data:
+      entity_id:
+        - light.stairs_lights
+        - light.hall_lights
+      transition: 1
 
  #  ____           _
  # | __ )  ___  __| |_ __ ___   ___  _ __ ___
@@ -424,12 +424,12 @@
       state: "off"
     - condition: or
       conditions:
-      - condition: state
-        entity_id: light.stairs_lights
-        state: "on"
-      - condition: state
-        entity_id: light.hall_lights
-        state: "on"
+        - condition: state
+          entity_id: light.stairs_lights
+          state: "on"
+        - condition: state
+          entity_id: light.hall_lights
+          state: "on"
   action:
     service: light.turn_off
     entity_id:

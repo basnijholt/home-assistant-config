@@ -11,7 +11,7 @@
 # Automations
 start_the_music:
   name: Start speakers and music
-  initial: off
+  initial: "off"
   icon: mdi:music
 cleaned_today:
   name: Vacuum cleaned today
@@ -28,7 +28,7 @@ sleep_mode:
 bedroom_lights_automatically_turned_on:
   name: Will automatically turn off
   icon: mdi:ceiling-light
-  initial: off
+  initial: "off"
 dark_mode:
   name: Dark mode
   icon: mdi:theme-light-dark
@@ -50,33 +50,33 @@ alarm_clock:
 # Apps
 wake_up_light:
   name: Start wake up light
-  initial: off
+  initial: "off"
   icon: mdi:weather-sunset-up
 demo_wake_up_light:
   name: Demo - Start wake up light
-  initial: off
+  initial: "off"
   icon: mdi:weather-sunset-up
 start_kef_ls50:
   name: Start KEF LS50
-  initial: off
+  initial: "off"
   icon: mdi:music
 start_kef_lsx:
   name: Start KEF LSX
-  initial: off
+  initial: "off"
   icon: mdi:music
 start_spotify_on_kef_ls50:
   name: Play Spotify on KEF LS50
-  initial: off
+  initial: "off"
   icon: mdi:music
 start_spotify_on_kef_lsx:
   name: Play Spotify on KEF LSX
-  initial: off
+  initial: "off"
   icon: mdi:music
 wake_up_with_spotify:
   name: Start wake up with Spotify
-  initial: off
+  initial: "off"
   icon: mdi:music
 demo_wake_up_with_spotify:
   name: Demo - Start wake up with Spotify
-  initial: off
+  initial: "off"
   icon: mdi:music

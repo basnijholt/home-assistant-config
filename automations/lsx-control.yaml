@@ -19,7 +19,7 @@
       entity_id: timer.block_ha_menu_volume_sync
       state: idle
     - service_template: media_player.volume_set
-      entity_id:  media_player.kef_lsx
+      entity_id: media_player.kef_lsx
       data_template:
         volume_level: >
           {{ trigger.to_state.state|float / 100 }}
