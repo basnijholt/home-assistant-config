@@ -1,5 +1,8 @@
 
 # Bas Nijholt's Home Assistant config files
+
+[![Action Status](https://github.com/basnijholt/home-assistant-config/workflows/yamllint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions)
+
 ![Lovelace UI](http://files.nijho.lt/ha-ui.gif)
 
 Using my [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-dark-mode-theme) and [iOS Light Mode Theme](https://github.com/basnijholt/lovelace-ios-light-mode-theme).
