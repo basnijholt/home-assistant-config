@@ -1664,7 +1664,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
@@ -1681,7 +1681,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
@@ -1700,7 +1700,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
@@ -1717,7 +1717,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
@@ -1738,7 +1738,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
@@ -1755,7 +1755,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
@@ -1774,7 +1774,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
@@ -1791,7 +1791,7 @@ views:
           font_size: 100
           group: false
           hour24: true
-          hours_to_show: 60
+          hours_to_show: 240
           line_width: 6
           points_per_hour: 1
           show:
