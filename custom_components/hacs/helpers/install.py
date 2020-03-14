@@ -3,7 +3,7 @@ import os
 import tempfile
 from custom_components.hacs.globals import get_hacs
 from custom_components.hacs.hacsbase.exceptions import HacsException
-from custom_components.hacs.hacsbase.backup import Backup
+from custom_components.hacs.hacsbase.backup import Backup, BackupNetDaemon
 from custom_components.hacs.helpers.download import download_content
 
 
@@ -11,6 +11,7 @@ async def install_repository(repository):
     """Common installation steps of the repository."""
     persistent_directory = None
     await repository.update_repository()
+    repository.validate.errors = []
 
     if not repository.can_install:
         raise HacsException(
@@ -23,7 +24,11 @@ async def install_repository(repository):
     else:
         repository.ref = f"tags/{version}"
 
-    if repository.data.persistent_directory:
+    if repository.status.installed and repository.data.category == "netdaemon":
+        persistent_directory = BackupNetDaemon(repository)
+        persistent_directory.create()
+
+    elif repository.data.persistent_directory:
         if os.path.exists(
             f"{repository.content.path.local}/{repository.data.persistent_directory}"
         ):
@@ -83,6 +88,13 @@ async def reload_after_install(repository):
         try:
             await repository.hacs.hass.services.async_call(
                 "frontend", "reload_themes", {}
+            )
+        except Exception:  # pylint: disable=broad-except
+            pass
+    elif repository.data.category == "netdaemon":
+        try:
+            await repository.hacs.hass.services.async_call(
+                "hassio", "addon_restart", {"addon": "e466aeb3_netdaemon"}
             )
         except Exception:  # pylint: disable=broad-except
             pass
