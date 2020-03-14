@@ -84,31 +84,57 @@
             <div class="flex">
                 <div class="info" @click="${this.onRowClick}">
                     ${this.state.name}
-                    <div class="secondary">
-                        ${this.lastChanged
-                ? html`<ha-relative-time datetime="${this.state.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>`
-                : (this.state.info && `${this.state.info.name ? `${this.state.info.name} ` : ''}${this.state.info.value}`)}
-                    </div>
+                    <div class="secondary">${this.renderSecondaryInfo()}</div>
                 </div>
                 ${this.state.entities.map(entity => this.renderEntity(entity))}
                 ${this.state.value ? html`
                 <div class="state entity" @click="${this.onStateClick}">
                     ${this.stateHeader && html`<span>${this.stateHeader}</span>`}
-                    ${this.state.toggle
-                ? html`<div class="toggle"><ha-entity-toggle .stateObj="${this.state.stateObj}" .hass="${this._hass}"></ha-entity-toggle></div>`
-                : html`<div>${this.state.value}</div>`}
+                    ${this.renderMainState()}
                 </div>` : null}
             </div>`;
+        }
+
+        renderMainState() {
+            if (this.state.toggle) return html`<div class="toggle">${this.renderToggle(this.state.stateObj)}</div>`;
+            else if (this._config.format) return this.renderTimestamp(this.state.value, this._config.format);
+            else return html`<div>${this.state.value}</div>`;
+        }
+
+        renderSecondaryInfo() {
+            return this.lastChanged
+                ? html`<ha-relative-time datetime="${this.state.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>`
+                : this.state.info && this.state.info.format
+                    ? this.renderTimestamp(this.state.info.value, this.state.info.format)
+                    : (this.state.info && `${this.state.info.name ? `${this.state.info.name} ` : ''}${this.state.info.value}`)
+        }
+
+        renderToggle(stateObj) {
+            return html`<ha-entity-toggle .stateObj="${stateObj}" .hass="${this._hass}"></ha-entity-toggle>`;
+        }
+
+        renderTimestamp(value, format) {
+            return !['unknown', 'unavailable'].includes(value.toLowerCase())
+                ? html`<hui-timestamp-display .ts=${new Date(value)} .format=${format} .hass=${this._hass}></hui-timestamp-display>`
+                : html`${value}`;
+        }
+
+        renderIcon(entity) {
+            return html`<state-badge class="icon-small" .stateObj="${entity.stateObj}" .overrideIcon="${entity.icon}" .stateColor="${entity.state_color}"></state-badge>`;
+        }
+
+        renderEntityValue(entity) {
+            if (entity.toggle) return this.renderToggle(entity.stateObj);
+            else if (entity.icon) return this.renderIcon(entity);
+            else if (entity.format) return this.renderTimestamp(entity.value, entity.format);
+            else return html`${entity.value}`;
         }
 
         renderEntity(entity) {
             return entity ? html`
             <div class="entity" @click="${entity.onClick}">
-            ${entity.toggle
-                ? html`<span>${entity.name}</span><div><ha-entity-toggle .stateObj="${entity.stateObj}" .hass="${this._hass}"></ha-entity-toggle></div>`
-                : entity.icon
-                    ? html`<state-badge class="icon-small" .stateObj="${entity.stateObj}" .overrideIcon="${entity.icon}" .stateColor="${this._config.state_color}"></state-badge>`
-                    : html`<span>${entity.name}</span><div>${entity.value}</div>`}
+                <span>${entity.name}</span>
+                <div>${this.renderEntityValue(entity)}</div>
             </div>` : null;
         }
 
@@ -121,7 +147,9 @@
 
             this.lastChanged = config.secondary_info === 'last-changed';
             this.stateHeader = config.state_header !== undefined ? config.state_header : null;
-            this.onRowClick = () => this.fireEvent('hass-more-info', config.entity);
+            this.onRowClick = (!config.tap_action || config.tap_action.action !== 'none')
+                ? this.moreInfoAction(config.tap_action, config.entity)
+                : null;
             this.onStateClick = this.getAction(config.tap_action, config.entity);
 
             this._config = config;
@@ -133,7 +161,7 @@
             if (hass && this._config) {
                 const mainStateObj = hass.states[this._config.entity];
 
-                if (!mainStateObj) throw new Error(`Entity not available: ${this._config.entity}`);
+                if (!mainStateObj) throw new Error(`Entity '${this._config.entity}' does not exist.`);
 
                 this.state = {
                     ...this.state,
@@ -144,7 +172,10 @@
                     toggle: this.checkToggle(this._config, mainStateObj),
 
                     entities: this._config.entities ? this._config.entities.map(entity => this.initEntity(entity, mainStateObj)) : [],
-                    info: this.lastChanged ? null : this.initEntity(this._config.secondary_info, mainStateObj),
+                    info: this.lastChanged ? null :
+                        typeof this._config.secondary_info === 'string'
+                            ? {value: this._config.secondary_info}
+                            : this.initEntity(this._config.secondary_info, mainStateObj),
                 }
             }
         }
@@ -173,12 +204,14 @@
 
             return {
                 stateObj: stateObj,
-                name: this.entityName(config.name, stateObj),
+                name: entity ? this.entityName(config.name, stateObj) : (config.name || null),
                 value: config.attribute !== undefined
                     ? this.entityAttribute(stateObj, config.attribute, config.unit)
                     : this.entityStateValue(stateObj, config.unit),
                 toggle: this.checkToggle(config, stateObj),
                 icon: config.icon === true ? stateObj.attributes.icon : config.icon,
+                format: config.format || false,
+                state_color: config.state_color || false,
                 onClick: this.getAction(config.tap_action, stateObj.entity_id),
             };
         }
@@ -226,15 +259,41 @@
 
         getAction(config, entityId) {
             if (config && config.action) {
+                if (config.action === 'none') {
+                    return null;
+                }
+                const confirmation = config.confirmation === true ? 'Are you sure?' : config.confirmation;
                 if (config.action === 'call-service') {
-                    const serviceDetails = config.service.split(".");
-                    return () => this._hass.callService(serviceDetails[0], serviceDetails[1], config.service_data);
+                    const [domain, service] = config.service.split(".");
+                    return () => {
+                        if (!confirmation || confirm(confirmation)) {
+                            this._hass.callService(domain, service, config.service_data);
+                            this.forwardHaptic('light');
+                        }
+                    }
                 }
                 if (config.action === 'toggle') {
-                    return () => this._hass.callService('homeassistant', 'toggle', {entity_id: entityId});
+                    return () => {
+                        if (!confirmation || confirm(confirmation)) {
+                            this._hass.callService('homeassistant', 'toggle', {entity_id: entityId});
+                            this.forwardHaptic('light');
+                        }
+                    }
+                }
+                if (config.action === 'url') {
+                    return () => {
+                        if (!confirmation || confirm(confirmation)) {
+                            const win = window.open(config.url_path, '_blank');
+                            if (win) win.focus();
+                        }
+                    }
                 }
             }
-            return () => this.fireEvent('hass-more-info', entityId);
+            return this.moreInfoAction(config, entityId);
+        }
+
+        moreInfoAction(config, entityId) {
+            return () => this.fireEvent('hass-more-info', (config && config.entity) || entityId);
         }
 
         fireEvent(type, entity, options = {}) {
@@ -244,6 +303,12 @@
                 composed: options.composed || true,
             });
             event.detail = {entityId: entity};
+            this.dispatchEvent(event);
+        }
+
+        forwardHaptic(type) {
+            const event = new Event("haptic", {bubbles: true, cancelable: false, composed: true});
+            event.detail = type;
             this.dispatchEvent(event);
         }
     }
