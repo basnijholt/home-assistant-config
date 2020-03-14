@@ -26,3 +26,11 @@ push:
           activationMode: background
           authenticationRequired: true
           destructive: true
+    - name: Turn on heating
+      identifier: turn_on_heating
+      actions:
+        - identifier: TURN_ON_HEATING
+          title: Turn on heating
+          activationMode: background
+          authenticationRequired: true
+          destructive: true
