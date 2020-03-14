@@ -1,0 +1,9 @@
+---
+extends: default
+
+rules:
+  line-length: disable
+  comments: disable
+
+ignore: |
+  lovelace-ui.yaml
