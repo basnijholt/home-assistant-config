@@ -1,7 +1,7 @@
 
 # Bas Nijholt's Home Assistant config files
 
-[![Action Status](https://github.com/basnijholt/home-assistant-config/workflows/yamllint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions)
+![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)
 
 ![Lovelace UI](http://files.nijho.lt/ha-ui.gif)
 
