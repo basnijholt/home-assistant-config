@@ -78,3 +78,11 @@ battery_monitor:
   class: BatteryMonitor
   service: mobile_app_basnijholt_iphone
   low_level: 20
+
+average_bed_time:
+  module: average_time
+  class: AverageTime
+  to_watch: input_boolean.sleep_mode
+  result_senor: sensor.average_sleep_time
+  from_time: "21:30"
+  to_time: "02:00"
