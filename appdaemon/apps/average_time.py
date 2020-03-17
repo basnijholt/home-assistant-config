@@ -17,7 +17,6 @@ average_bed_time:
 import cmath
 import datetime
 import math
-from functools import partial
 
 from dateutil import tz
 from dateutil.parser import isoparse, parse
@@ -88,16 +87,26 @@ class AverageTime(hass.Hass):
     def start_cb(self, entity, attribute, old, new, kwargs):
         self.start()
 
-    def start(self, **kwargs):
-        self.maybe_defaults(kwargs)
-
-        hist = self.get_history(self.to_watch)
+    def _times_on_day(self, days_ago):
+        start_of_today = datetime.datetime.now().replace(hour=0, minute=0, second=0)
+        start = start_of_today - datetime.timedelta(days=days_ago)
+        hist = self.get_history(entity_id=self.to_watch, start_time=start)
         hist_filtered = [entry for entry in hist[0] if entry["state"] == "on"]
         times = [
             isoparse(entry["last_changed"]).astimezone(self.tz).time()
             for entry in hist_filtered
         ]
-        average_time = mean_time(
-            [t for t in times if in_between(t, self.from_time, self.to_time)]
-        )
+        times_between = [
+            t for t in times if in_between(t, self.from_time, self.to_time)
+        ]
+        return times_between
+
+    def start(self, **kwargs):
+        self.maybe_defaults(kwargs)
+        times = []
+        for days_ago in range(14):
+            times.extend(self._times_on_day(days_ago))
+        if not times:
+            return
+        average_time = mean_time(times)
         self.set_state(self.result_sensor, state=average_time)
