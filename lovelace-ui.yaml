@@ -17,43 +17,6 @@ decluttering_templates:
         - entity_id: automation.[[slug]]*
       sort: entity_id
       type: custom:auto-entities
-resources:
-- type: module
-  url: /community_plugin/button-card/button-card.js
-- type: module
-  url: /community_plugin/mini-media-player/mini-media-player-bundle.js
-- type: module
-  url: /community_plugin/lovelace-card-mod/card-mod.js
-- type: js
-  url: /community_plugin/bar-card/bar-card.js
-- type: js
-  url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
-- type: module
-  url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
-- type: module
-  url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
-- type: js
-  url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
-- type: module
-  url: /community_plugin/lovelace-auto-entities/auto-entities.js
-- type: module
-  url: /community_plugin/decluttering-card/decluttering-card.js
-- type: module
-  url: /community_plugin/simple-weather-card/simple-weather-card-bundle.js
-- type: module
-  url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
-- type: module
-  url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
-- type: module
-  url: /community_plugin/lovelace-template-entity-row/template-entity-row.js
-- type: module
-  url: /community_plugin/custom-header/custom-header.js
-- type: module
-  url: /community_plugin/swipe-card/swipe-card.js
-- type: module
-  url: /community_plugin/lovelace-multiple-entity-row/multiple-entity-row.js
-- type: module
-  url: /community_plugin/simple-thermostat/simple-thermostat.js
 title: Huis
 views:
 - badges:
@@ -1844,6 +1807,10 @@ views:
       title: Netherlands
       type: glance
     type: vertical-stack
+  - entities:
+    - entity: input_boolean.test
+    - entity: sensor.average_sleep_time
+    type: entities
   icon: mdi:test-tube
   path: tests
   title: Tests
