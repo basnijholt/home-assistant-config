@@ -80,3 +80,5 @@ demo_wake_up_with_spotify:
   name: Demo - Start wake up with Spotify
   initial: "off"
   icon: mdi:music
+test:
+  name: "Test"
