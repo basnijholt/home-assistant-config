@@ -14,7 +14,7 @@
     someone_showering:
       friendly_name: Someone is showering
       value_template: >
-        {{ states("sensor.humidity_bathroom") | float(0) > 90 }}
+        {{ states("sensor.humidity_bathroom") | float(0) > 85 }}
 
     motion_detected:
       friendly_name: Any motion detected
