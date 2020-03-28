@@ -445,7 +445,7 @@ views:
             state: true
           type: custom:mini-graph-card
         type: horizontal-stack
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
     - cards:
       - cards:
         - color_thresholds_transition: smooth
@@ -515,7 +515,7 @@ views:
             state: true
           type: custom:mini-graph-card
         type: horizontal-stack
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
     - cards:
       - cards:
         - color_thresholds_transition: smooth
@@ -585,7 +585,7 @@ views:
             state: true
           type: custom:mini-graph-card
         type: horizontal-stack
-      type: custom:vertical-stack-in-card
+      type: vertical-stack
     type: custom:swipe-card
   - cards:
     - cards:
@@ -726,9 +726,9 @@ views:
       type: horizontal-stack
     type: vertical-stack
   - cards:
-    - entity: plant.ficus_microcarpa_ginseng
-      type: plant-status
     - entity: plant.yucca_elephantipes
+      type: plant-status
+    - entity: plant.ficus_microcarpa_ginseng
       type: plant-status
     parameters:
       autoplay:
@@ -896,6 +896,37 @@ views:
         }}
       type: custom:template-entity-row
     type: entities
+  - cards:
+    - content: '# Quarantine-o-meter
+
+        The gauge meters display the amount of time spend at home in the last 14 days.
+        Where Bas left the house (on average) {{ (states("sensor.quarantine_meter_bas_times_left")|int
+        / 14) | round(1) }} times per day and Marcella {{ (states("sensor.quarantine_meter_marcella_times_left")|int
+        / 14) | round(1) }} times per day.'
+      type: markdown
+    - cards:
+      - entity: sensor.quarantine_meter_marcella
+        max: 100
+        min: 0
+        name: Marcella
+        severity:
+          green: 95
+          red: 0
+          yellow: 80
+        theme: Backend-selected
+        type: gauge
+      - entity: sensor.quarantine_meter_bas
+        max: 100
+        min: 0
+        name: Bas
+        severity:
+          green: 95
+          red: 0
+          yellow: 80
+        theme: default
+        type: gauge
+      type: horizontal-stack
+    type: vertical-stack
   icon: mdi:home
   path: default_view
   title: Home
@@ -1810,6 +1841,35 @@ views:
   - entities:
     - entity: input_boolean.test
     - entity: sensor.average_sleep_time
+    type: entities
+  - entities:
+    - animation: 'off'
+      entity: sensor.quarantine_meter_bas
+      height: 30px
+      indicator: 'off'
+      severity:
+      - color: red
+        value: 60
+      - color: orange
+        value: 95
+      - color: green
+        value: 100
+      title: Bas at home
+      type: custom:bar-card
+    - animation: 'off'
+      entity: sensor.quarantine_meter_marcella
+      height: 30px
+      indicator: 'off'
+      severity:
+      - color: red
+        value: 60
+      - color: orange
+        value: 95
+      - color: green
+        value: 100
+      title: Marcella at home
+      type: custom:bar-card
+    title: Quarantine metrics
     type: entities
   icon: mdi:test-tube
   path: tests
