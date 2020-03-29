@@ -899,10 +899,33 @@ views:
   - cards:
     - content: '# Quarantine-o-meter
 
+        {% set d, h, m = state_attr("sensor.quarantine_meter_bas", "value").split()
+        -%}
+
+        {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int -%}
+
+        {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 -%}
+
+        {% set hours_outside_per_day_bas = (hours_outside / 14) | round(1) -%}
+
+        {% set d, h, m = state_attr("sensor.quarantine_meter_marcella", "value").split()
+        -%}
+
+        {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int -%}
+
+        {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 -%}
+
+        {% set hours_outside_per_day_marcella = (hours_outside / 14) | round(1) -%}
+
+
         The gauge meters display the amount of time spend at home in the last 14 days.
         Where Bas left the house (on average) {{ (states("sensor.quarantine_meter_bas_times_left")|int
-        / 14) | round(1) }} times per day and Marcella {{ (states("sensor.quarantine_meter_marcella_times_left")|int
-        / 14) | round(1) }} times per day.'
+        / 14) | round(1) }} times per day and is outside {{ hours_outside_per_day_bas
+        }} h/d and Marcella {{ (states("sensor.quarantine_meter_marcella_times_left")|int
+        / 14) | round(1) }} times per day and is outside for {{ hours_outside_per_day_marcella
+        }} h/d.
+
+        '
       type: markdown
     - cards:
       - entity: sensor.quarantine_meter_marcella
