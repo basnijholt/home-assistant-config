@@ -182,7 +182,7 @@ class y {
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */const w = e => null === e || !("object" == typeof e || "function" == typeof e),
-      b = e => Array.isArray(e) || !(!e || !e[Symbol.iterator]);class P {
+      b = e => Array.isArray(e) || !(!e || !e[Symbol.iterator]);class x {
   constructor(e, t, n) {
     this.dirty = !0, this.element = e, this.name = t, this.strings = n, this.parts = [];for (let e = 0; e < n.length - 1; e++) this.parts[e] = this._createPart();
   }_createPart() {
@@ -207,7 +207,7 @@ class y {
       const e = this.value;this.value = g, e(this);
     }this.value !== g && this.committer.commit();
   }
-}class x {
+}class P {
   constructor(e) {
     this.value = void 0, this.__pendingValue = void 0, this.options = e;
   }appendInto(e) {
@@ -238,7 +238,7 @@ class y {
     }
   }__commitIterable(e) {
     Array.isArray(this.value) || (this.value = [], this.clear());const t = this.value;let n,
-        r = 0;for (const s of e) n = t[r], void 0 === n && (n = new x(this.options), t.push(n), 0 === r ? n.appendIntoPart(this) : n.insertAfterPart(t[r - 1])), n.setValue(s), n.commit(), r++;r < t.length && (t.length = r, this.clear(n && n.endNode));
+        r = 0;for (const s of e) n = t[r], void 0 === n && (n = new P(this.options), t.push(n), 0 === r ? n.appendIntoPart(this) : n.insertAfterPart(t[r - 1])), n.setValue(s), n.commit(), r++;r < t.length && (t.length = r, this.clear(n && n.endNode));
   }clear(e = this.startNode) {
     n(this.startNode.parentNode, e.nextSibling, this.endNode);
   }
@@ -252,17 +252,17 @@ class y {
       const e = this.__pendingValue;this.__pendingValue = g, e(this);
     }if (this.__pendingValue === g) return;const e = !!this.__pendingValue;this.value !== e && (e ? this.element.setAttribute(this.name, "") : this.element.removeAttribute(this.name), this.value = e), this.__pendingValue = g;
   }
-}class M extends P {
+}class E extends x {
   constructor(e, t, n) {
     super(e, t, n), this.single = 2 === n.length && "" === n[0] && "" === n[1];
   }_createPart() {
-    return new E(this);
+    return new M(this);
   }_getValue() {
     return this.single ? this.parts[0].value : super._getValue();
   }commit() {
     this.dirty && (this.dirty = !1, this.element[this.name] = this._getValue());
   }
-}class E extends N {}let T = !1;(() => {
+}class M extends N {}let T = !1;(() => {
   try {
     const e = { get capture() {
         return T = !0, !1;
@@ -329,10 +329,10 @@ class y {
 class {
   handleAttributeExpressions(e, t, n, r) {
     const s = t[0];if ("." === s) {
-      return new M(e, t.slice(1), n).parts;
-    }return "@" === s ? [new A(e, t.slice(1), r.eventContext)] : "?" === s ? [new C(e, t.slice(1), n)] : new P(e, t, n).parts;
+      return new E(e, t.slice(1), n).parts;
+    }return "@" === s ? [new A(e, t.slice(1), r.eventContext)] : "?" === s ? [new C(e, t.slice(1), n)] : new x(e, t, n).parts;
   }handleTextExpression(e) {
-    return new x(e);
+    return new P(e);
   }
 }();
 /**
@@ -366,15 +366,15 @@ class {
     const n = t.getTemplateElement();H && window.ShadyCSS.prepareTemplateDom(n, e), i = new o(t, n), s.keyString.set(a, i);
   }return s.stringsArray.set(t.strings, i), i;
 },
-      q = ["html", "svg"],
-      $ = new Set(),
+      $ = ["html", "svg"],
+      q = new Set(),
       z = (e, t, n) => {
-  $.add(e);const r = n ? n.element : document.createElement("template"),
+  q.add(e);const r = n ? n.element : document.createElement("template"),
         s = t.querySelectorAll("style"),
         { length: i } = s;if (0 === i) return void window.ShadyCSS.prepareTemplateStyles(r, e);const o = document.createElement("style");for (let e = 0; e < i; e++) {
     const t = s[e];t.parentNode.removeChild(t), o.textContent += t.textContent;
   }(e => {
-    q.forEach(t => {
+    $.forEach(t => {
       const n = V.get(U(t, e));void 0 !== n && n.keyString.forEach(e => {
         const { element: { content: t } } = e,
               n = new Set();Array.from(t.querySelectorAll("style")).forEach(e => {
@@ -536,7 +536,20 @@ http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
 found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
 part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
-*/const Z = "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype;
+*/const Z = "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype,
+      G = Symbol();class K {
+  constructor(e, t) {
+    if (t !== G) throw new Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText = e;
+  }get styleSheet() {
+    return void 0 === this._styleSheet && (Z ? (this._styleSheet = new CSSStyleSheet(), this._styleSheet.replaceSync(this.cssText)) : this._styleSheet = null), this._styleSheet;
+  }toString() {
+    return this.cssText;
+  }
+}const Q = (e, ...t) => {
+  const n = t.reduce((t, n, r) => t + (e => {
+    if (e instanceof K) return e.cssText;if ("number" == typeof e) return e;throw new Error(`Value passed to 'css' function must be a 'css' function result: ${e}. Use 'unsafeCSS' to pass non-literal values, but\n            take care to ensure page security.`);
+  })(n) + e[r + 1], e[0]);return new K(n, G);
+};
 /**
  * @license
  * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
@@ -549,7 +562,8 @@ found at http://polymer.github.io/PATENTS.txt
  * Code distributed by Google as part of the polymer project is also
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
- */(window.litElementVersions || (window.litElementVersions = [])).push("2.3.0");const G = {};class K extends J {
+ */
+(window.litElementVersions || (window.litElementVersions = [])).push("2.3.0");const X = {};class ee extends J {
   static getStyles() {
     return this.styles;
   }static _getUniqueStyles() {
@@ -567,56 +581,56 @@ found at http://polymer.github.io/PATENTS.txt
   }connectedCallback() {
     super.connectedCallback(), this.hasUpdated && void 0 !== window.ShadyCSS && window.ShadyCSS.styleElement(this);
   }update(e) {
-    const t = this.render();super.update(e), t !== G && this.constructor.render(t, this.renderRoot, { scopeName: this.localName, eventContext: this }), this._needsShimAdoptedStyleSheets && (this._needsShimAdoptedStyleSheets = !1, this.constructor._styles.forEach(e => {
+    const t = this.render();super.update(e), t !== X && this.constructor.render(t, this.renderRoot, { scopeName: this.localName, eventContext: this }), this._needsShimAdoptedStyleSheets && (this._needsShimAdoptedStyleSheets = !1, this.constructor._styles.forEach(e => {
       const t = document.createElement("style");t.textContent = e.cssText, this.renderRoot.appendChild(t);
     }));
   }render() {
-    return G;
+    return X;
   }
-}K.finalized = !0, K.render = (e, t, r) => {
+}ee.finalized = !0, ee.render = (e, t, r) => {
   if (!r || "object" != typeof r || !r.scopeName) throw new Error("The `scopeName` option is required.");const s = r.scopeName,
         i = k.has(t),
         o = H && 11 === t.nodeType && !!t.host,
-        a = o && !$.has(s),
+        a = o && !q.has(s),
         l = a ? document.createDocumentFragment() : t;if (((e, t, r) => {
-    let s = k.get(t);void 0 === s && (n(t, t.firstChild), k.set(t, s = new x(Object.assign({ templateFactory: O }, r))), s.appendInto(t)), s.setValue(e), s.commit();
+    let s = k.get(t);void 0 === s && (n(t, t.firstChild), k.set(t, s = new P(Object.assign({ templateFactory: O }, r))), s.appendInto(t)), s.setValue(e), s.commit();
   })(e, l, Object.assign({ templateFactory: j(s) }, r)), a) {
     const e = k.get(l);k.delete(l);const r = e.value instanceof y ? e.value.template : void 0;z(s, l, r), n(t, t.firstChild), t.appendChild(l), k.set(t, e);
   }!i && o && window.ShadyCSS.styleElement(t.host);
-};var Q = /d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|Z|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g,
-    X = "[^\\s]+",
-    ee = /\[([^]*?)\]/gm;function te(e, t) {
+};var te = /d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|Z|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g,
+    ne = "[^\\s]+",
+    re = /\[([^]*?)\]/gm;function se(e, t) {
   for (var n = [], r = 0, s = e.length; r < s; r++) n.push(e[r].substr(0, t));return n;
-}var ne = function (e) {
+}var ie = function (e) {
   return function (t, n) {
     var r = n[e].map(function (e) {
       return e.toLowerCase();
     }).indexOf(t.toLowerCase());return r > -1 ? r : null;
   };
-};function re(e) {
+};function oe(e) {
   for (var t = [], n = 1; n < arguments.length; n++) t[n - 1] = arguments[n];for (var r = 0, s = t; r < s.length; r++) {
     var i = s[r];for (var o in i) e[o] = i[o];
   }return e;
-}var se = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    ie = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    oe = te(ie, 3),
-    ae = { dayNamesShort: te(se, 3), dayNames: se, monthNamesShort: oe, monthNames: ie, amPm: ["am", "pm"], DoFn: function (e) {
+}var ae = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    le = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    ce = se(le, 3),
+    de = { dayNamesShort: se(ae, 3), dayNames: ae, monthNamesShort: ce, monthNames: le, amPm: ["am", "pm"], DoFn: function (e) {
     return e + ["th", "st", "nd", "rd"][e % 10 > 3 ? 0 : (e - e % 10 != 10 ? 1 : 0) * e % 10];
   } },
-    le = re({}, ae),
-    ce = function (e, t) {
+    ue = oe({}, de),
+    he = function (e, t) {
   for (void 0 === t && (t = 2), e = String(e); e.length < t;) e = "0" + e;return e;
 },
-    de = { D: function (e) {
+    pe = { D: function (e) {
     return String(e.getDate());
   }, DD: function (e) {
-    return ce(e.getDate());
+    return he(e.getDate());
   }, Do: function (e, t) {
     return t.DoFn(e.getDate());
   }, d: function (e) {
     return String(e.getDay());
   }, dd: function (e) {
-    return ce(e.getDay());
+    return he(e.getDay());
   }, ddd: function (e, t) {
     return t.dayNamesShort[e.getDay()];
   }, dddd: function (e, t) {
@@ -624,69 +638,69 @@ found at http://polymer.github.io/PATENTS.txt
   }, M: function (e) {
     return String(e.getMonth() + 1);
   }, MM: function (e) {
-    return ce(e.getMonth() + 1);
+    return he(e.getMonth() + 1);
   }, MMM: function (e, t) {
     return t.monthNamesShort[e.getMonth()];
   }, MMMM: function (e, t) {
     return t.monthNames[e.getMonth()];
   }, YY: function (e) {
-    return ce(String(e.getFullYear()), 4).substr(2);
+    return he(String(e.getFullYear()), 4).substr(2);
   }, YYYY: function (e) {
-    return ce(e.getFullYear(), 4);
+    return he(e.getFullYear(), 4);
   }, h: function (e) {
     return String(e.getHours() % 12 || 12);
   }, hh: function (e) {
-    return ce(e.getHours() % 12 || 12);
+    return he(e.getHours() % 12 || 12);
   }, H: function (e) {
     return String(e.getHours());
   }, HH: function (e) {
-    return ce(e.getHours());
+    return he(e.getHours());
   }, m: function (e) {
     return String(e.getMinutes());
   }, mm: function (e) {
-    return ce(e.getMinutes());
+    return he(e.getMinutes());
   }, s: function (e) {
     return String(e.getSeconds());
   }, ss: function (e) {
-    return ce(e.getSeconds());
+    return he(e.getSeconds());
   }, S: function (e) {
     return String(Math.round(e.getMilliseconds() / 100));
   }, SS: function (e) {
-    return ce(Math.round(e.getMilliseconds() / 10), 2);
+    return he(Math.round(e.getMilliseconds() / 10), 2);
   }, SSS: function (e) {
-    return ce(e.getMilliseconds(), 3);
+    return he(e.getMilliseconds(), 3);
   }, a: function (e, t) {
     return e.getHours() < 12 ? t.amPm[0] : t.amPm[1];
   }, A: function (e, t) {
     return e.getHours() < 12 ? t.amPm[0].toUpperCase() : t.amPm[1].toUpperCase();
   }, ZZ: function (e) {
-    var t = e.getTimezoneOffset();return (t > 0 ? "-" : "+") + ce(100 * Math.floor(Math.abs(t) / 60) + Math.abs(t) % 60, 4);
+    var t = e.getTimezoneOffset();return (t > 0 ? "-" : "+") + he(100 * Math.floor(Math.abs(t) / 60) + Math.abs(t) % 60, 4);
   }, Z: function (e) {
-    var t = e.getTimezoneOffset();return (t > 0 ? "-" : "+") + ce(Math.floor(Math.abs(t) / 60), 2) + ":" + ce(Math.abs(t) % 60, 2);
+    var t = e.getTimezoneOffset();return (t > 0 ? "-" : "+") + he(Math.floor(Math.abs(t) / 60), 2) + ":" + he(Math.abs(t) % 60, 2);
   } },
-    ue = function (e) {
+    me = function (e) {
   return +e - 1;
 },
-    he = [null, "[1-9]\\d?"],
-    pe = [null, X],
-    me = ["isPm", X, function (e, t) {
+    fe = [null, "[1-9]\\d?"],
+    ge = [null, ne],
+    _e = ["isPm", ne, function (e, t) {
   var n = e.toLowerCase();return n === t.amPm[0] ? 0 : n === t.amPm[1] ? 1 : null;
 }],
-    fe = ["timezoneOffset", "[^\\s]*?[\\+\\-]\\d\\d:?\\d\\d|[^\\s]*?Z?", function (e) {
+    ye = ["timezoneOffset", "[^\\s]*?[\\+\\-]\\d\\d:?\\d\\d|[^\\s]*?Z?", function (e) {
   var t = (e + "").match(/([+-]|\d\d)/gi);if (t) {
     var n = 60 * +t[1] + parseInt(t[2], 10);return "+" === t[0] ? n : -n;
   }return 0;
 }],
-    ge = (ne("monthNamesShort"), ne("monthNames"), { default: "ddd MMM DD YYYY HH:mm:ss", shortDate: "M/D/YY", mediumDate: "MMM D, YYYY", longDate: "MMMM D, YYYY", fullDate: "dddd, MMMM D, YYYY", isoDate: "YYYY-MM-DD", isoDateTime: "YYYY-MM-DDTHH:mm:ssZ", shortTime: "HH:mm", mediumTime: "HH:mm:ss", longTime: "HH:mm:ss.SSS" });var _e = function (e, t, n) {
-  if (void 0 === t && (t = ge.default), void 0 === n && (n = {}), "number" == typeof e && (e = new Date(e)), "[object Date]" !== Object.prototype.toString.call(e) || isNaN(e.getTime())) throw new Error("Invalid Date pass to format");var r = [];t = (t = ge[t] || t).replace(ee, function (e, t) {
+    ve = (ie("monthNamesShort"), ie("monthNames"), { default: "ddd MMM DD YYYY HH:mm:ss", shortDate: "M/D/YY", mediumDate: "MMM D, YYYY", longDate: "MMMM D, YYYY", fullDate: "dddd, MMMM D, YYYY", isoDate: "YYYY-MM-DD", isoDateTime: "YYYY-MM-DDTHH:mm:ssZ", shortTime: "HH:mm", mediumTime: "HH:mm:ss", longTime: "HH:mm:ss.SSS" });var Se = function (e, t, n) {
+  if (void 0 === t && (t = ve.default), void 0 === n && (n = {}), "number" == typeof e && (e = new Date(e)), "[object Date]" !== Object.prototype.toString.call(e) || isNaN(e.getTime())) throw new Error("Invalid Date pass to format");var r = [];t = (t = ve[t] || t).replace(re, function (e, t) {
     return r.push(t), "@@@";
-  });var s = re(re({}, le), n);return (t = t.replace(Q, function (t) {
-    return de[t](e, s);
+  });var s = oe(oe({}, ue), n);return (t = t.replace(te, function (t) {
+    return pe[t](e, s);
   })).replace(/@@@/g, function () {
     return r.shift();
   });
 },
-    ye = (function () {
+    we = (function () {
   try {
     new Date().toLocaleDateString("i");
   } catch (e) {
@@ -705,8 +719,8 @@ found at http://polymer.github.io/PATENTS.txt
     return "RangeError" === e.name;
   }
 }(), new Set(["call-service", "divider", "section", "weblink", "cast", "select"])),
-    ve = { alert: "toggle", automation: "toggle", climate: "climate", cover: "cover", fan: "toggle", group: "group", input_boolean: "toggle", input_number: "input-number", input_select: "input-select", input_text: "input-text", light: "toggle", lock: "lock", media_player: "media-player", remote: "toggle", scene: "scene", script: "script", sensor: "sensor", timer: "timer", switch: "toggle", vacuum: "toggle", water_heater: "climate", input_datetime: "input-datetime" },
-    Se = function (e, t) {
+    be = { alert: "toggle", automation: "toggle", climate: "climate", cover: "cover", fan: "toggle", group: "group", input_boolean: "toggle", input_number: "input-number", input_select: "input-select", input_text: "input-text", light: "toggle", lock: "lock", media_player: "media-player", remote: "toggle", scene: "scene", script: "script", sensor: "sensor", timer: "timer", switch: "toggle", vacuum: "toggle", water_heater: "climate", input_datetime: "input-datetime" },
+    xe = function (e, t) {
   void 0 === t && (t = !1);var n = function (e, t) {
     return r("hui-error-card", { type: "error", error: e, config: t });
   },
@@ -717,8 +731,8 @@ found at http://polymer.github.io/PATENTS.txt
       return console.error(e, r), n(r.message, t);
     }return r;
   };if (!e || "object" != typeof e || !t && !e.type) return n("No type defined", e);var s = e.type;if (s && s.startsWith("custom:")) s = s.substr("custom:".length);else if (t) {
-    if (ye.has(s)) s = "hui-" + s + "-row";else {
-      if (!e.entity) return n("Invalid config given.", e);var i = e.entity.split(".", 1)[0];s = "hui-" + (ve[i] || "text") + "-entity-row";
+    if (we.has(s)) s = "hui-" + s + "-row";else {
+      if (!e.entity) return n("Invalid config given.", e);var i = e.entity.split(".", 1)[0];s = "hui-" + (be[i] || "text") + "-entity-row";
     }
   } else s = "hui-" + s + "-card";if (customElements.get(s)) return r(s, e);var o = n("Custom element doesn't exist: " + e.type + ".", e);o.style.display = "None";var a = setTimeout(function () {
     o.style.display = "";
@@ -727,9 +741,19 @@ found at http://polymer.github.io/PATENTS.txt
       r = r || {}, n = null == n ? {} : n;var s = new Event(t, { bubbles: void 0 === r.bubbles || r.bubbles, cancelable: Boolean(r.cancelable), composed: void 0 === r.composed || r.composed });s.detail = n, e.dispatchEvent(s);
     }(o, "ll-rebuild", {}, o);
   }), o;
-};const we = window.loadCardHelpers ? window.loadCardHelpers() : void 0;console.info("%c DECLUTTERING-CARD \n%c   Version 0.5.0   ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");let be = class extends K {
+};const Ne = window.loadCardHelpers ? window.loadCardHelpers() : void 0;console.info("%c DECLUTTERING-CARD \n%c   Version 0.6.1   ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");let Pe = class extends ee {
   set hass(e) {
     this._hass = e, this._card && (this._card.hass = e);
+  }static get styles() {
+    return Q`
+      :host(.child-card-hidden) {
+        display: none;
+      }
+    `;
+  }updated() {
+    this.updateComplete.then(() => {
+      var e;"none" === (null === (e = this._card) || void 0 === e ? void 0 : e.style.display) ? this.className = "child-card-hidden" : "child-card-hidden" === this.className && (this.className = "");
+    });
   }setConfig(e) {
     if (!e.template) throw new Error("Missing template object in your config");const t = function () {
       var e = document.querySelector("home-assistant");if (e = (e = (e = (e = (e = (e = (e = (e = e && e.shadowRoot) && e.querySelector("home-assistant-main")) && e.shadowRoot) && e.querySelector("app-drawer-layout partial-panel-resolver")) && e.shadowRoot || e) && e.querySelector("ha-panel-lovelace")) && e.shadowRoot) && e.querySelector("hui-root")) {
@@ -757,18 +781,18 @@ found at http://polymer.github.io/PATENTS.txt
       <div id="root">${this._card}</div>
     ` : Y``;
   }async _createCard(e, t) {
-    let n;return we ? "card" === t ? n = "divider" === e.type ? (await we).createRowElement(e) : (await we).createCardElement(e) : (n = (await we).createHuiElement(e), e.style && Object.keys(e.style).forEach(t => {
+    let n;return Ne ? "card" === t ? n = "divider" === e.type ? (await Ne).createRowElement(e) : (await Ne).createCardElement(e) : (n = (await Ne).createHuiElement(e), e.style && Object.keys(e.style).forEach(t => {
       this.style.setProperty(t, e.style[t]);
-    })) : n = Se(e), this._hass && (n.hass = this._hass), n.addEventListener("ll-rebuild", r => {
+    })) : n = xe(e), this._hass && (n.hass = this._hass), n.addEventListener("ll-rebuild", r => {
       r.stopPropagation(), this._rebuildCard(n, e, t);
-    }, { once: !0 }), n;
+    }, { once: !0 }), n.id = "declutter-child", n;
   }async _rebuildCard(e, t, n) {
-    const r = await this._createCard(t, n);e.replaceWith(r);
+    const r = await this._createCard(t, n);e.replaceWith(r), this._card = r;
   }getCardSize() {
     return this._card && "function" == typeof this._card.getCardSize ? this._card.getCardSize() : 1;
   }
-};var Pe;e([B()], be.prototype, "_card", void 0), e([B()], be.prototype, "_hass", void 0), e([B()], be.prototype, "_config", void 0), be = e([(Pe = "decluttering-card", e => "function" == typeof e ? ((e, t) => (window.customElements.define(e, t), t))(Pe, e) : ((e, t) => {
+};var Ce;e([B()], Pe.prototype, "_card", void 0), e([B()], Pe.prototype, "_hass", void 0), e([B()], Pe.prototype, "_config", void 0), Pe = e([(Ce = "decluttering-card", e => "function" == typeof e ? ((e, t) => (window.customElements.define(e, t), t))(Ce, e) : ((e, t) => {
   const { kind: n, elements: r } = t;return { kind: n, elements: r, finisher(t) {
       window.customElements.define(e, t);
     } };
-})(Pe, e))], be);
+})(Ce, e))], Pe);
