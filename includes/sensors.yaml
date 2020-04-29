@@ -260,7 +260,7 @@
     - time
 
 - platform: command_line
-  name: RPi CPU Temperature
+  name: CPU Temperature
   command: "cat /sys/class/thermal/thermal_zone4/temp"
   unit_of_measurement: "°C"
   value_template: "{{ value | multiply(0.001) | round(2) }}"
