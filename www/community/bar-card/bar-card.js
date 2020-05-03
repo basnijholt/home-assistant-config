@@ -3070,9 +3070,9 @@ let BarCardEditor = class BarCardEditor extends LitElement {
         this._configArray = [];
         this._entityOptionsArray = [];
     }
-    // protected shouldUpdate(changedProps: PropertyValues): boolean {
-    //   return hasConfigOrEntitiesChanged(this, changedProps, false);
-    // }
+    shouldUpdate(changedProps) {
+        return hasConfigOrEntitiesChanged(this, changedProps, true);
+    }
     setConfig(config) {
         this._config = Object.assign({}, config);
         if (!config.entity && !config.entities) {
@@ -3243,7 +3243,7 @@ let BarCardEditor = class BarCardEditor extends LitElement {
             ></ha-icon>
           </div>
           <div class="value" style="flex-grow: 1;">
-            <paper-dropdown-menu
+            <!-- <paper-dropdown-menu
               label="Entity"
               @value-changed=${this._valueChanged}
               .configAttribute=${'entity'}
@@ -3258,11 +3258,19 @@ let BarCardEditor = class BarCardEditor extends LitElement {
               >
                 ${entities.map(entity => {
                 return html `
-                    <paper-item>${entity}</paper-item>
-                  `;
+                <paper-item>${entity}</paper-item>
+              `;
             })}
               </paper-listbox>
-            </paper-dropdown-menu>
+            </paper-dropdown-menu> -->
+            <paper-input
+              label="Entity"
+              @value-changed=${this._valueChanged}
+              .configAttribute=${'entity'}
+              .configObject=${this._configArray[index]}
+              .value=${config.entity}
+            >
+            </paper-input>
           </div>
           ${index !== 0
                 ? html `
@@ -4361,9 +4369,6 @@ __decorate([
 __decorate([
     property()
 ], BarCardEditor.prototype, "_toggle", void 0);
-__decorate([
-    property()
-], BarCardEditor.prototype, "_configArray", void 0);
 BarCardEditor = __decorate([
     customElement('bar-card-editor')
 ], BarCardEditor);
@@ -4528,7 +4533,7 @@ const actionHandler = directive((options = {}) => (part) => {
     actionHandlerBind(part.committer.element, options);
 });
 
-const CARD_VERSION = '3.1.2';
+const CARD_VERSION = '3.1.6';
 
 var common = {
 	version: "Version",
@@ -4825,6 +4830,7 @@ let BarCard = class BarCard extends LitElement {
         this._configArray = [];
         this._stateArray = [];
         this._animationState = [];
+        this._rowAmount = 1;
     }
     static async getConfigElement() {
         return document.createElement('bar-card-editor');
@@ -4857,9 +4863,10 @@ let BarCard = class BarCard extends LitElement {
                 value: 'inside',
             },
         }, config);
-        if (this._config.stack)
+        if (this._config.stack == 'horizontal')
             this._config.columns = this._config.entities.length;
         this._configArray = createConfigArray(this._config);
+        this._rowAmount = this._configArray.length / this._config.columns;
     }
     render() {
         if (!this._config || !this.hass) {
@@ -4868,9 +4875,15 @@ let BarCard = class BarCard extends LitElement {
         return html `
       <ha-card
         .header=${this._config.title ? this._config.title : null}
-        style="${this._config.entity_row ? 'background: #0000;' : ''}"
+        style="${this._config.entity_row ? 'background: #0000; box-shadow: none;' : ''}"
       >
-        <div id="states" class="card-content" style="${this._config.entity_row ? 'padding: 0px;' : ''}">
+        <div
+          id="states"
+          class="card-content"
+          style="${this._config.entity_row ? 'padding: 0px;' : ''} ${this._config.direction == 'up'
+            ? ''
+            : 'flex-grow: 0;'}"
+        >
           ${this._createBarArray()}
         </div>
       </ha-card>
@@ -5129,8 +5142,7 @@ let BarCard = class BarCard extends LitElement {
                 // Set bar width if configured.
                 let barWidth = '';
                 if (config.width) {
-                    if (config.direction == 'up')
-                        alignItems = 'center';
+                    alignItems = 'center';
                     barWidth = `width: ${config.width}`;
                 }
                 // Set animation state inside array.
@@ -5146,10 +5158,7 @@ let BarCard = class BarCard extends LitElement {
                 // Add current bar to row array.
                 currentRowArray.push(html `
           <bar-card-card
-            style="flex-direction: ${flexDirection}; align-items: ${alignItems}; height: ${barHeight}${typeof barHeight ==
-                    'number'
-                    ? 'px'
-                    : ''};"
+            style="flex-direction: ${flexDirection}; align-items: ${alignItems};"
             @action=${this._handleAction}
             .config=${config}
             .actionHandler=${actionHandler({
@@ -5159,7 +5168,11 @@ let BarCard = class BarCard extends LitElement {
                 })}
           >
             ${iconOutside} ${indicatorOutside} ${nameOutside}
-            <bar-card-background style="margin: ${backgroundMargin}; ${barWidth}">
+            <bar-card-background
+              style="margin: ${backgroundMargin}; height: ${barHeight}${typeof barHeight == 'number'
+                    ? 'px'
+                    : ''}; ${barWidth}"
+            >
               <bar-card-backgroundbar style="--bar-color: ${barColor};"></bar-card-backgroundbar>
               ${config.animation.state == 'on'
                     ? html `
@@ -5313,6 +5326,16 @@ let BarCard = class BarCard extends LitElement {
     _handleAction(ev) {
         if (this.hass && ev.target.config && ev.detail.action) {
             W(this, this.hass, ev.target.config, ev.detail.action);
+        }
+    }
+    getCardSize() {
+        if (this._config.height) {
+            const heightString = this._config.height.toString();
+            const cardSize = Math.trunc((Number(heightString.replace('px', '')) / 50) * this._rowAmount);
+            return cardSize + 1;
+        }
+        else {
+            return this._rowAmount + 1;
         }
     }
 };
