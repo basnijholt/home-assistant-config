@@ -741,106 +741,172 @@ views:
     name: false
     step_layout: row
     step_size: 0.5
+    style: "ha-card {\n  --st-font-size-xl: 30px;\n}\n"
     type: custom:simple-thermostat
   - entities:
     - entities:
-      - color: '#0279ff'
+      - align: center
+        color: '#0279ff'
         entity: sensor.time_at_work_this_week
-        max: 50
-        min: 0
-        target: 40
-        title: This week
-        type: custom:bar-card
-      - entity: sensor.time_at_work_prognosis
+        entity_row: true
+        height: 30px
         max: 50
         min: 0
         severity:
         - color: '#ff3c31'
-          value: 30
+          from: 0
+          to: 30
         - color: '#ffcc01'
-          value: 38
+          from: 30
+          to: 38
         - color: '#34c758'
-          value: 42
+          from: 38
+          to: 42
         - color: '#ff3c31'
-          value: 50
+          from: 42
+          to: 50
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         target: 40
-        title: This week prognosis
+        type: custom:bar-card
+      - align: center
+        entity: sensor.time_at_work_prognosis
+        entity_row: true
+        height: 30px
+        max: 50
+        min: 0
+        severity:
+        - color: '#ff3c31'
+          from: 0
+          to: 30
+        - color: '#ffcc01'
+          from: 30
+          to: 38
+        - color: '#34c758'
+          from: 38
+          to: 42
+        - color: '#ff3c31'
+          from: 42
+          to: 50
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
+        target: 40
         type: custom:bar-card
       - type: divider
-      - entity: sensor.time_at_work_on_monday
+      - align: center
+        entity: sensor.time_at_work_on_monday
+        entity_row: true
+        height: 30px
         max: 12
         min: 0
         severity:
         - color: '#ff3c31'
-          value: 6
+          from: 0
+          to: 6
         - color: '#ffcc01'
-          value: 8
+          from: 6
+          to: 8
         - color: '#34c758'
-          value: 9
+          from: 8
+          to: 9
         - color: '#ff3c31'
-          value: 10
+          from: 9
+          to: 10
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         target: 8
-        title: Monday
         type: custom:bar-card
-      - entity: sensor.time_at_work_on_tuesday
+      - align: center
+        entity: sensor.time_at_work_on_tuesday
+        entity_row: true
+        height: 30px
         max: 12
         min: 0
         severity:
         - color: '#ff3c31'
-          value: 6
+          from: 0
+          to: 6
         - color: '#ffcc01'
-          value: 8
+          from: 6
+          to: 8
         - color: '#34c758'
-          value: 9
+          from: 8
+          to: 9
         - color: '#ff3c31'
-          value: 10
+          from: 9
+          to: 10
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         target: 8
-        title: Tuesday
         type: custom:bar-card
-      - entity: sensor.time_at_work_on_wednessday
+      - align: center
+        entity: sensor.time_at_work_on_wednessday
+        entity_row: true
+        height: 30px
         max: 12
         min: 0
         severity:
         - color: '#ff3c31'
-          value: 6
+          from: 0
+          to: 6
         - color: '#ffcc01'
-          value: 8
+          from: 6
+          to: 8
         - color: '#34c758'
-          value: 9
+          from: 8
+          to: 9
         - color: '#ff3c31'
-          value: 10
+          from: 9
+          to: 10
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         target: 8
-        title: Wednessday
         type: custom:bar-card
-      - entity: sensor.time_at_work_on_thursday
+      - align: center
+        entity: sensor.time_at_work_on_thursday
+        entity_row: true
+        height: 30px
         max: 12
         min: 0
         severity:
         - color: '#ff3c31'
-          value: 6
+          from: 0
+          to: 6
         - color: '#ffcc01'
-          value: 8
+          from: 6
+          to: 8
         - color: '#34c758'
-          value: 9
+          from: 8
+          to: 9
         - color: '#ff3c31'
-          value: 10
+          from: 9
+          to: 10
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         target: 8
-        title: Thursday
         type: custom:bar-card
-      - entity: sensor.time_at_work_on_friday
+      - align: center
+        entity: sensor.time_at_work_on_friday
+        entity_row: true
+        height: 30px
         max: 12
         min: 0
         severity:
         - color: '#ff3c31'
-          value: 6
+          from: 0
+          to: 6
         - color: '#ffcc01'
-          value: 8
+          from: 6
+          to: 8
         - color: '#34c758'
-          value: 9
+          from: 8
+          to: 9
         - color: '#ff3c31'
-          value: 10
+          from: 9
+          to: 10
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         target: 8
-        title: Friday
         type: custom:bar-card
       - card:
           show_header_toggle: false
@@ -957,55 +1023,75 @@ views:
         icon: mdi:home-assistant
       - animation: 'off'
         entity: sensor.processor_use
+        entity_row: true
         height: 30px
         indicator: 'off'
         severity:
         - color: green
-          value: 60
+          from: 0
+          to: 60
         - color: orange
-          value: 85
+          from: 60
+          to: 85
         - color: red
-          value: 100
-        title: Processor Usage
+          from: 85
+          to: 100
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         type: custom:bar-card
       - animation: 'off'
-        entity: sensor.rpi_cpu_temperature
+        entity: sensor.cpu_temperature
+        entity_row: true
         height: 30px
         indicator: 'off'
         severity:
         - color: green
-          value: 60
+          from: 0
+          to: 60
         - color: orange
-          value: 70
+          from: 60
+          to: 70
         - color: red
-          value: 100
-        title: CPU Temp
+          from: 70
+          to: 100
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         type: custom:bar-card
       - animation: 'off'
         entity: sensor.memory_use_percent
+        entity_row: true
         height: 30px
         indicator: 'off'
         severity:
         - color: green
-          value: 60
+          from: 0
+          to: 60
         - color: orange
-          value: 85
+          from: 60
+          to: 85
         - color: red
-          value: 100
-        title: Memory Usage
+          from: 85
+          to: 100
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         type: custom:bar-card
       - animation: 'off'
         entity: sensor.disk_use_percent
+        entity_row: true
         height: 30px
         indicator: 'off'
         severity:
         - color: green
-          value: 60
+          from: 0
+          to: 60
         - color: orange
-          value: 85
+          from: 60
+          to: 85
         - color: red
-          value: 100
-        title: Disk Usage
+          from: 85
+          to: 100
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         type: custom:bar-card
       - type: divider
       - entity: sensor.myip
@@ -1064,6 +1150,8 @@ views:
           labels: false
           name: true
           state: true
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         type: custom:mini-graph-card
       - color_thresholds_transition: smooth
         entities:
@@ -1083,6 +1171,8 @@ views:
           labels: false
           name: true
           state: true
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         type: custom:mini-graph-card
       - color_thresholds_transition: smooth
         entities:
@@ -1102,9 +1192,16 @@ views:
           labels: false
           name: true
           state: true
+        style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+          \ 0, 0)';\n}\n"
         type: custom:mini-graph-card
+      horizontal: true
       name: Speedtest
-      type: horizontal-stack
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
+      type: custom:vertical-stack-in-card
+    style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: var(--ha-card-background);\n\
+      }\n"
     title: Network
     type: custom:vertical-stack-in-card
   - entities:
@@ -1302,327 +1399,168 @@ views:
     type: entities
   - entities:
     - align: center
-      animation: auto
-      attribute: false
-      background_style: false
-      card_style: false
-      charge_entity: false
       color: '#0279ff'
-      decimal: false
-      delay: 5000
-      direction: right
-      entities:
-      - entity: sensor.time_at_work_this_week
       entity: sensor.time_at_work_this_week
-      height: 40px
-      icon: false
-      icon_position: 'off'
-      icon_style: false
-      indicator: auto
-      limit_value: false
+      entity_row: true
+      height: 30px
       max: 50
       min: 0
-      minmax_style: false
-      padding: 4px
-      rounding: 3px
-      saturation: 50%
-      severity: false
-      show_minmax: false
-      show_value: true
-      speed: 1000
-      tap_action: info
-      target: 40
-      title: This week
-      title_position: left
-      title_style: false
-      type: custom:bar-card
-      unit_of_measurement: false
-      value_style: false
-      visibility: false
-      width: 70%
-    - align: center
-      animation: auto
-      attribute: false
-      background_style: false
-      card_style: false
-      charge_entity: false
-      color: var(--custom-bar-card-color, var(--primary-color))
-      decimal: false
-      delay: 5000
-      direction: right
-      entities:
-      - entity: sensor.time_at_work_prognosis
-      entity: sensor.time_at_work_prognosis
-      height: 40px
-      icon: false
-      icon_position: 'off'
-      icon_style: false
-      indicator: auto
-      limit_value: false
-      max: 50
-      min: 0
-      minmax_style: false
-      padding: 4px
-      rounding: 3px
-      saturation: 50%
       severity:
       - color: '#ff3c31'
-        value: 30
+        from: 0
+        to: 30
       - color: '#ffcc01'
-        value: 38
+        from: 30
+        to: 38
       - color: '#34c758'
-        value: 42
+        from: 38
+        to: 42
       - color: '#ff3c31'
-        value: 50
-      show_minmax: false
-      show_value: true
-      speed: 1000
-      tap_action: info
+        from: 42
+        to: 50
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       target: 40
-      title: This week prognosis
-      title_position: left
-      title_style: false
       type: custom:bar-card
-      unit_of_measurement: false
-      value_style: false
-      visibility: false
-      width: 70%
+    - align: center
+      entity: sensor.time_at_work_prognosis
+      entity_row: true
+      height: 30px
+      max: 50
+      min: 0
+      severity:
+      - color: '#ff3c31'
+        from: 0
+        to: 30
+      - color: '#ffcc01'
+        from: 30
+        to: 38
+      - color: '#34c758'
+        from: 38
+        to: 42
+      - color: '#ff3c31'
+        from: 42
+        to: 50
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
+      target: 40
+      type: custom:bar-card
     - type: divider
     - align: center
-      animation: auto
-      attribute: false
-      background_style: false
-      card_style: false
-      charge_entity: false
-      color: var(--custom-bar-card-color, var(--primary-color))
-      decimal: false
-      delay: 5000
-      direction: right
-      entities:
-      - entity: sensor.time_at_work_on_monday
       entity: sensor.time_at_work_on_monday
-      height: 40px
-      icon: false
-      icon_position: 'off'
-      icon_style: false
-      indicator: auto
-      limit_value: false
+      entity_row: true
+      height: 30px
       max: 12
       min: 0
-      minmax_style: false
-      padding: 4px
-      rounding: 3px
-      saturation: 50%
       severity:
       - color: '#ff3c31'
-        value: 6
+        from: 0
+        to: 6
       - color: '#ffcc01'
-        value: 8
+        from: 6
+        to: 8
       - color: '#34c758'
-        value: 9
+        from: 8
+        to: 9
       - color: '#ff3c31'
-        value: 10
-      show_minmax: false
-      show_value: true
-      speed: 1000
-      tap_action: info
+        from: 9
+        to: 10
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       target: 8
-      title: Monday
-      title_position: left
-      title_style: false
       type: custom:bar-card
-      unit_of_measurement: false
-      value_style: false
-      visibility: false
-      width: 70%
     - align: center
-      animation: auto
-      attribute: false
-      background_style: false
-      card_style: false
-      charge_entity: false
-      color: var(--custom-bar-card-color, var(--primary-color))
-      decimal: false
-      delay: 5000
-      direction: right
-      entities:
-      - entity: sensor.time_at_work_on_tuesday
       entity: sensor.time_at_work_on_tuesday
-      height: 40px
-      icon: false
-      icon_position: 'off'
-      icon_style: false
-      indicator: auto
-      limit_value: false
+      entity_row: true
+      height: 30px
       max: 12
       min: 0
-      minmax_style: false
-      padding: 4px
-      rounding: 3px
-      saturation: 50%
       severity:
       - color: '#ff3c31'
-        value: 6
+        from: 0
+        to: 6
       - color: '#ffcc01'
-        value: 8
+        from: 6
+        to: 8
       - color: '#34c758'
-        value: 9
+        from: 8
+        to: 9
       - color: '#ff3c31'
-        value: 10
-      show_minmax: false
-      show_value: true
-      speed: 1000
-      tap_action: info
+        from: 9
+        to: 10
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       target: 8
-      title: Tuesday
-      title_position: left
-      title_style: false
       type: custom:bar-card
-      unit_of_measurement: false
-      value_style: false
-      visibility: false
-      width: 70%
     - align: center
-      animation: auto
-      attribute: false
-      background_style: false
-      card_style: false
-      charge_entity: false
-      color: var(--custom-bar-card-color, var(--primary-color))
-      decimal: false
-      delay: 5000
-      direction: right
-      entities:
-      - entity: sensor.time_at_work_on_wednessday
       entity: sensor.time_at_work_on_wednessday
-      height: 40px
-      icon: false
-      icon_position: 'off'
-      icon_style: false
-      indicator: auto
-      limit_value: false
+      entity_row: true
+      height: 30px
       max: 12
       min: 0
-      minmax_style: false
-      padding: 4px
-      rounding: 3px
-      saturation: 50%
       severity:
       - color: '#ff3c31'
-        value: 6
+        from: 0
+        to: 6
       - color: '#ffcc01'
-        value: 8
+        from: 6
+        to: 8
       - color: '#34c758'
-        value: 9
+        from: 8
+        to: 9
       - color: '#ff3c31'
-        value: 10
-      show_minmax: false
-      show_value: true
-      speed: 1000
-      tap_action: info
+        from: 9
+        to: 10
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       target: 8
-      title: Wednessday
-      title_position: left
-      title_style: false
       type: custom:bar-card
-      unit_of_measurement: false
-      value_style: false
-      visibility: false
-      width: 70%
     - align: center
-      animation: auto
-      attribute: false
-      background_style: false
-      card_style: false
-      charge_entity: false
-      color: var(--custom-bar-card-color, var(--primary-color))
-      decimal: false
-      delay: 5000
-      direction: right
-      entities:
-      - entity: sensor.time_at_work_on_thursday
       entity: sensor.time_at_work_on_thursday
-      height: 40px
-      icon: false
-      icon_position: 'off'
-      icon_style: false
-      indicator: auto
-      limit_value: false
+      entity_row: true
+      height: 30px
       max: 12
       min: 0
-      minmax_style: false
-      padding: 4px
-      rounding: 3px
-      saturation: 50%
       severity:
       - color: '#ff3c31'
-        value: 6
+        from: 0
+        to: 6
       - color: '#ffcc01'
-        value: 8
+        from: 6
+        to: 8
       - color: '#34c758'
-        value: 9
+        from: 8
+        to: 9
       - color: '#ff3c31'
-        value: 10
-      show_minmax: false
-      show_value: true
-      speed: 1000
-      tap_action: info
+        from: 9
+        to: 10
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       target: 8
-      title: Thursday
-      title_position: left
-      title_style: false
       type: custom:bar-card
-      unit_of_measurement: false
-      value_style: false
-      visibility: false
-      width: 70%
     - align: center
-      animation: auto
-      attribute: false
-      background_style: false
-      card_style: false
-      charge_entity: false
-      color: var(--custom-bar-card-color, var(--primary-color))
-      decimal: false
-      delay: 5000
-      direction: right
-      entities:
-      - entity: sensor.time_at_work_on_friday
       entity: sensor.time_at_work_on_friday
-      height: 40px
-      icon: false
-      icon_position: 'off'
-      icon_style: false
-      indicator: auto
-      limit_value: false
+      entity_row: true
+      height: 30px
       max: 12
       min: 0
-      minmax_style: false
-      padding: 4px
-      rounding: 3px
-      saturation: 50%
       severity:
       - color: '#ff3c31'
-        value: 6
+        from: 0
+        to: 6
       - color: '#ffcc01'
-        value: 8
+        from: 6
+        to: 8
       - color: '#34c758'
-        value: 9
+        from: 8
+        to: 9
       - color: '#ff3c31'
-        value: 10
-      show_minmax: false
-      show_value: true
-      speed: 1000
-      tap_action: info
+        from: 9
+        to: 10
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       target: 8
-      title: Friday
-      title_position: left
-      title_style: false
       type: custom:bar-card
-      unit_of_measurement: false
-      value_style: false
-      visibility: false
-      width: 70%
     show_header_toggle: false
     title: Work time
     type: entities
@@ -1672,6 +1610,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         - color_thresholds_transition: smooth
           entities:
@@ -1689,6 +1629,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         type: horizontal-stack
       - cards:
@@ -1708,6 +1650,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         - color_thresholds_transition: smooth
           entities:
@@ -1725,6 +1669,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         type: horizontal-stack
       type: custom:vertical-stack-in-card
@@ -1746,6 +1692,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         - color_thresholds_transition: smooth
           entities:
@@ -1763,6 +1711,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         type: horizontal-stack
       - cards:
@@ -1782,6 +1732,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         - color_thresholds_transition: smooth
           entities:
@@ -1799,6 +1751,8 @@ views:
             labels: false
             name: true
             state: true
+          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
+            \ 0, 0, 0)';\n}\n"
           type: custom:mini-graph-card
         type: horizontal-stack
       type: custom:vertical-stack-in-card
@@ -1850,29 +1804,39 @@ views:
   - entities:
     - animation: 'off'
       entity: sensor.quarantine_meter_bas
+      entity_row: true
       height: 30px
       indicator: 'off'
       severity:
       - color: red
-        value: 60
+        from: 0
+        to: 60
       - color: orange
-        value: 95
+        from: 60
+        to: 95
       - color: green
-        value: 100
-      title: Bas at home
+        from: 95
+        to: 100
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       type: custom:bar-card
     - animation: 'off'
       entity: sensor.quarantine_meter_marcella
+      entity_row: true
       height: 30px
       indicator: 'off'
       severity:
       - color: red
-        value: 60
+        from: 0
+        to: 60
       - color: orange
-        value: 95
+        from: 60
+        to: 95
       - color: green
-        value: 100
-      title: Marcella at home
+        from: 95
+        to: 100
+      style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0, 0,\
+        \ 0, 0)';\n}\n"
       type: custom:bar-card
     title: Quarantine metrics
     type: entities
