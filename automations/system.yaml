@@ -1,0 +1,35 @@
+---
+#-
+#                _
+#  ___ _   _ ___| |_ ___ _ __ ___
+# / __| | | / __| __/ _ \ '_ ` _ \
+# \__ \ |_| \__ \ ||  __/ | | | | |
+# |___/\__, |___/\__\___|_| |_| |_|
+#      |___/
+#
+#- from github.com/basnijholt/home-assistant-config
+- alias: "System: warning about high CPU usage"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.processor_use
+    above: 70
+    for:
+      hours: 4
+  action:
+    service: notify.mobile_app_basnijholt_iphone
+    data:
+      title: "System"
+      message: "CPU usage has been above 70% for 4 hours! ⚠️🖥"
+
+- alias: "System: warning about high CPU temperature"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.processor_use
+    above: 70
+    for:
+      hours: 4
+  action:
+    service: notify.mobile_app_basnijholt_iphone
+    data:
+      title: "System"
+      message: "CPU temperature has been above 70 °C for 4 hours! ⚠️"
