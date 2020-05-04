@@ -64,6 +64,9 @@
     - condition: state
       entity_id: binary_sensor.no_one_home
       state: "off"
+    - condition: template
+      value_template: >
+        {{ not is_state_attr("climate.thermostat", "temperature", states("input_number.temperature_low")|float) }}
   action:
     - service: script.set_low_temperature
     - service: notify.all_iphones
