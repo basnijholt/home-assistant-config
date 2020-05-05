@@ -15,3 +15,9 @@ exclude:
   domains:
     - sun
     - weather
+  entities:
+    - sensor.n_days_last_month
+    - sensor.monthly_power_last_period
+    - sensor.monthly_power_cost_last_period
+    - sensor.monthly_gas_cost_last_period
+    - sensor.monthly_energy_fixed_cost_last_period
