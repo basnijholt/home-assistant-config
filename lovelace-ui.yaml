@@ -359,6 +359,34 @@ views:
 
           '
         type: custom:template-entity-row
+      - type: divider
+      - icon: mdi:currency-eur
+        name: 'Last month''s usage statistics
+
+          '
+        type: custom:template-entity-row
+      - icon: mdi:currency-eur
+        name: '{{ states("sensor.monthly_power_last_period")|round(2) }} kWh power
+          → €{{ states("sensor.monthly_power_cost_last_period")|float|round(2) }}.
+
+          '
+        type: custom:template-entity-row
+      - icon: mdi:currency-eur
+        name: '{{ state_attr("sensor.monthly_gas", "last_period")|round(2) }} m³ gas
+          → €{{ states("sensor.monthly_gas_cost_last_period")|float|round(2) }}.
+
+          '
+        type: custom:template-entity-row
+      - icon: mdi:currency-eur
+        name: '€{{ states("sensor.monthly_energy_fixed_cost_last_period")|float|round(2)
+          }} (fixed) + €{{ (states("sensor.monthly_gas_cost_last_period")|float +
+          states("sensor.monthly_power_cost_last_period")|float)|round(2)}} = €{{
+          (states("sensor.monthly_gas_cost_last_period")|float + states("sensor.monthly_power_cost_last_period")|float
+          + states("sensor.monthly_energy_fixed_cost_last_period")|float)|round(2)
+          }}.
+
+          '
+        type: custom:template-entity-row
       head:
         entity: sensor.daily_gas
         name: Energy usage
