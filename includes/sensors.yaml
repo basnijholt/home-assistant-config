@@ -142,6 +142,12 @@
         {{ (5 * hours_per_day)|round(2) }}
       unit_of_measurement: h
 
+    n_days_last_month:
+      value_template: >
+        {% set start_of_month = now().replace(day=1) %}
+        {% set start_of_last_month = start_of_month.replace(month=now().month-1) %}
+        {{ ((start_of_month - start_of_last_month).total_seconds() / 86400) | round }}
+
     daily_power:
       friendly_name: Daily Power
       unit_of_measurement: kWh
@@ -154,6 +160,19 @@
       value_template: >
         {{ states("sensor.monthly_power_offpeak")|float + states("sensor.monthly_power_peak")|float }}
 
+    monthly_power_last_period:
+      friendly_name: Monthly Power (Last period)
+      unit_of_measurement: kWh
+      value_template: >
+        {{ state_attr("sensor.monthly_power_offpeak", "last_period")|float + state_attr("sensor.monthly_power_peak", "last_period")|float }}
+
+    monthly_power_cost_last_period:
+      friendly_name: Monthly Power (Last period)
+      unit_of_measurement: €
+      value_template: >
+        {{ (state_attr("sensor.monthly_power_offpeak", "last_period")|float * 0.2307
+            + state_attr("sensor.monthly_power_peak", "last_period")|float * 0.2479) | round(2) }}
+
     daily_gas_cost:
       friendly_name: Daily Power
       unit_of_measurement: €
@@ -165,6 +184,12 @@
       unit_of_measurement: €
       value_template: >
         {{ (states("sensor.monthly_gas")|float * 0.7884) | round(2) }}
+
+    monthly_gas_cost_last_period:
+      friendly_name: Monthly Power (Last period)
+      unit_of_measurement: €
+      value_template: >
+        {{ (state_attr("sensor.monthly_gas", "last_period")|float * 0.7884) | round(2) }}
 
     daily_power_cost:
       friendly_name: Daily Power
@@ -193,6 +218,13 @@
       entity_id: sensor.date
       value_template: >
         {{ states("sensor.daily_energy_fixed_cost")|float * now().day }}
+
+    monthly_energy_fixed_cost_last_period:
+      friendly_name: Fixed energy cost (gas and power) (Last period)
+      unit_of_measurement: €
+      entity_id: sensor.date
+      value_template: >
+        {{ states("sensor.daily_energy_fixed_cost")|float * states("sensor.n_days_last_month")|int }}
 
     nearest_iphone_notify:
       friendly_name: Nearest iPhone's notify service
