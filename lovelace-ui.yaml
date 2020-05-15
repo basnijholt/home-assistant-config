@@ -58,7 +58,6 @@ views:
       - light.bamboo
       - light.philips_go
       - light.bed_led
-      - light.bed_reading
       - input_boolean.automatic_bedroom_lights
       - input_boolean.bedroom_lights_automatically_turned_on
       - entity: script.cozy_lights_bedroom
@@ -85,6 +84,7 @@ views:
       type: custom:fold-entity-row
     - entities:
       - light.ceiling_kitchen
+      - light.bed_reading
       - light.ceiling_bathroom
       - light.toilet
       - light.kitchen_counter
@@ -129,6 +129,31 @@ views:
         play_stop: true
         volume: false
       type: custom:mini-media-player
+    - entities:
+      - entities:
+        - entity: input_number.kef_ls50_desk_db
+        - entity: input_number.kef_ls50_wall_db
+        - entity: input_number.kef_ls50_treble_db
+        - entity: input_number.kef_ls50_high_hz
+        - entity: input_number.kef_ls50_low_hz
+        - entity: input_number.kef_ls50_sub_db
+        - type: divider
+        - entity: input_select.kef_ls50_bass_extension
+        - entity: input_select.kef_ls50_sub_polarity
+        - type: divider
+        - entity: input_boolean.kef_ls50_desk_mode
+        - entity: input_boolean.kef_ls50_wall_mode
+        - entity: input_boolean.kef_ls50_phase_correction
+        - entity: input_boolean.kef_ls50_high_pass
+        head:
+          icon: mdi:equalizer
+          name: 'KEF LS50 Equalizer
+
+            '
+          type: custom:template-entity-row
+        type: custom:fold-entity-row
+      show_header_toggle: false
+      type: entities
     - background: /local/lsx_speakers.png
       entity: media_player.kef_lsx
       hide:
@@ -1395,6 +1420,8 @@ views:
     - type: divider
     - entity: input_boolean.wake_up_with_spotify
     - entity: input_boolean.demo_wake_up_with_spotify
+    - entity: input_number.sub_db
+    - entity: sensor.kef_ls50_sub_db
     show_header_toggle: false
     title: Test apps
     type: entities
@@ -1874,6 +1901,48 @@ views:
     - entity: person.marcella
     hours_to_show: 240
     type: map
+  - entities:
+    - entity: input_number.kef_ls50_desk_db
+    - entity: input_number.kef_ls50_wall_db
+    - entity: input_number.kef_ls50_treble_db
+    - entity: input_number.kef_ls50_high_hz
+    - entity: input_number.kef_ls50_low_hz
+    - entity: input_number.kef_ls50_sub_db
+    - type: divider
+    - entity: input_select.kef_ls50_bass_extension
+    - entity: input_select.kef_ls50_sub_polarity
+    - type: divider
+    - entity: input_boolean.kef_ls50_desk_mode
+    - entity: input_boolean.kef_ls50_wall_mode
+    - entity: input_boolean.kef_ls50_phase_correction
+    - entity: input_boolean.kef_ls50_high_pass
+    title: KEF DSP
+    type: entities
+  - entities:
+    - entities:
+      - entity: input_number.kef_ls50_desk_db
+      - entity: input_number.kef_ls50_wall_db
+      - entity: input_number.kef_ls50_treble_db
+      - entity: input_number.kef_ls50_high_hz
+      - entity: input_number.kef_ls50_low_hz
+      - entity: input_number.kef_ls50_sub_db
+      - type: divider
+      - entity: input_select.kef_ls50_bass_extension
+      - entity: input_select.kef_ls50_sub_polarity
+      - type: divider
+      - entity: input_boolean.kef_ls50_desk_mode
+      - entity: input_boolean.kef_ls50_wall_mode
+      - entity: input_boolean.kef_ls50_phase_correction
+      - entity: input_boolean.kef_ls50_high_pass
+      head:
+        icon: mdi:equalizer
+        name: 'KEF LS50 Equalizer
+
+          '
+        type: custom:template-entity-row
+      type: custom:fold-entity-row
+    show_header_toggle: false
+    type: entities
   icon: mdi:test-tube
   path: tests
   title: Tests
