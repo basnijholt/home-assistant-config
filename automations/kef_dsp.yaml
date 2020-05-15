@@ -1,0 +1,463 @@
+---
+
+# input_number
+
+- alias: "KEF DSP: change desk_db"
+  trigger:
+    platform: state
+    entity_id: input_number.kef_ls50_desk_db
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_desk_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "desk_db") }}
+  action:
+    service: kef_custom.set_desk_db
+    entity_id: media_player.kef_ls50
+    data_template:
+      db_value: "{{ trigger.to_state.state | float }}"
+
+- alias: "KEF DSP: sync desk_db"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_desk_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.desk_db != states("input_number.kef_ls50_desk_db") }}
+  action:
+    service: input_number.set_value
+    entity_id: input_number.kef_ls50_desk_db
+    data_template:
+      value: "{{ trigger.to_state.attributes.desk_db | float }}"
+
+- alias: "KEF DSP: change wall_db"
+  trigger:
+    platform: state
+    entity_id: input_number.kef_ls50_wall_db
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_wall_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "wall_db") }}
+  action:
+    service: kef_custom.set_wall_db
+    entity_id: media_player.kef_ls50
+    data_template:
+      db_value: "{{ trigger.to_state.state | float }}"
+
+- alias: "KEF DSP: sync wall_db"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_wall_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.wall_db != states("input_number.kef_ls50_wall_db") }}
+  action:
+    service: input_number.set_value
+    entity_id: input_number.kef_ls50_wall_db
+    data_template:
+      value: "{{ trigger.to_state.attributes.wall_db | float }}"
+
+- alias: "KEF DSP: change treble_db"
+  trigger:
+    platform: state
+    entity_id: input_number.kef_ls50_treble_db
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_treble_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "treble_db") }}
+  action:
+    service: kef_custom.set_treble_db
+    entity_id: media_player.kef_ls50
+    data_template:
+      db_value: "{{ trigger.to_state.state | float }}"
+
+- alias: "KEF DSP: sync treble_db"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_treble_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.treble_db != states("input_number.kef_ls50_treble_db") }}
+  action:
+    service: input_number.set_value
+    entity_id: input_number.kef_ls50_treble_db
+    data_template:
+      value: "{{ trigger.to_state.attributes.treble_db | float }}"
+
+- alias: "KEF DSP: change high_hz"
+  trigger:
+    platform: state
+    entity_id: input_number.kef_ls50_high_hz
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_high_hz.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "high_hz") }}
+  action:
+    service: kef_custom.set_high_hz
+    entity_id: media_player.kef_ls50
+    data_template:
+      hz_value: "{{ trigger.to_state.state | int }}"
+
+- alias: "KEF DSP: sync high_hz"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_high_hz.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.high_hz != states("input_number.kef_ls50_high_hz") }}
+  action:
+    service: input_number.set_value
+    entity_id: input_number.kef_ls50_high_hz
+    data_template:
+      value: "{{ trigger.to_state.attributes.high_hz | int }}"
+
+- alias: "KEF DSP: change low_hz"
+  trigger:
+    platform: state
+    entity_id: input_number.kef_ls50_low_hz
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_low_hz.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "low_hz") }}
+  action:
+    service: kef_custom.set_low_hz
+    entity_id: media_player.kef_ls50
+    data_template:
+      hz_value: "{{ trigger.to_state.state | int }}"
+
+- alias: "KEF DSP: sync low_hz"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_low_hz.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.low_hz != states("input_number.kef_ls50_low_hz") }}
+  action:
+    service: input_number.set_value
+    entity_id: input_number.kef_ls50_low_hz
+    data_template:
+      value: "{{ trigger.to_state.attributes.low_hz | int }}"
+
+- alias: "KEF DSP: change sub_db"
+  trigger:
+    platform: state
+    entity_id: input_number.kef_ls50_sub_db
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_sub_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "sub_db") }}
+  action:
+    service: kef_custom.set_sub_db
+    entity_id: media_player.kef_ls50
+    data_template:
+      db_value: "{{ trigger.to_state.state | int }}"
+
+- alias: "KEF DSP: sync sub_db"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_sub_db.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.sub_db != states("input_number.kef_ls50_sub_db") }}
+  action:
+    service: input_number.set_value
+    entity_id: input_number.kef_ls50_sub_db
+    data_template:
+      value: "{{ trigger.to_state.attributes.sub_db | int }}"
+
+# input_selects
+
+- alias: "KEF DSP: change sub_polarity"
+  trigger:
+    platform: state
+    entity_id: input_select.kef_ls50_sub_polarity
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_sub_polarity.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "sub_polarity") }}
+  action:
+    service: kef_custom.set_mode
+    entity_id: media_player.kef_ls50
+    data_template:
+      sub_polarity: "{{ trigger.to_state.state }}"
+
+- alias: "KEF DSP: sync sub_polarity"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_sub_polarity.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.sub_polarity != states("input_select.kef_ls50_sub_polarity") }}
+  action:
+    service: input_select.select_option
+    entity_id: input_select.kef_ls50_sub_polarity
+    data_template:
+      option: "{{ trigger.to_state.attributes.sub_polarity }}"
+
+- alias: "KEF DSP: change bass_extension"
+  trigger:
+    platform: state
+    entity_id: input_select.kef_ls50_bass_extension
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_bass_extension.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "bass_extension") }}
+  action:
+    service: kef_custom.set_mode
+    entity_id: media_player.kef_ls50
+    data_template:
+      bass_extension: "{{ trigger.to_state.state }}"
+
+- alias: "KEF DSP: sync bass_extension"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_bass_extension.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.bass_extension != states("input_select.kef_ls50_bass_extension") }}
+  action:
+    service: input_select.select_option
+    entity_id: input_select.kef_ls50_bass_extension
+    data_template:
+      option: "{{ trigger.to_state.attributes.bass_extension }}"
+
+# input_booleans
+
+- alias: "KEF DSP: change desk_mode"
+  trigger:
+    platform: state
+    entity_id: input_boolean.kef_ls50_desk_mode
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_desk_mode.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "desk_mode") }}
+  action:
+    service: kef_custom.set_mode
+    entity_id: media_player.kef_ls50
+    data_template:
+      desk_mode: "{{ trigger.to_state.state }}"
+
+- alias: "KEF DSP: sync desk_mode"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_desk_mode.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.desk_mode != is_state("input_boolean.kef_ls50_desk_mode", "on") }}
+  action:
+    service_template: >
+      {% if trigger.to_state.attributes.desk_mode %}
+        input_boolean.turn_on
+      {% else %}
+        input_boolean.turn_off
+      {% endif %}
+    entity_id: input_boolean.kef_ls50_desk_mode
+
+- alias: "KEF DSP: change wall_mode"
+  trigger:
+    platform: state
+    entity_id: input_boolean.kef_ls50_wall_mode
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_wall_mode.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "wall_mode") }}
+  action:
+    service: kef_custom.set_mode
+    entity_id: media_player.kef_ls50
+    data_template:
+      wall_mode: "{{ trigger.to_state.state }}"
+
+- alias: "KEF DSP: sync wall_mode"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_wall_mode.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.wall_mode != is_state("input_boolean.kef_ls50_wall_mode", "on") }}
+  action:
+    service_template: >
+      {% if trigger.to_state.attributes.wall_mode %}
+        input_boolean.turn_on
+      {% else %}
+        input_boolean.turn_off
+      {% endif %}
+    entity_id: input_boolean.kef_ls50_wall_mode
+
+- alias: "KEF DSP: change phase_correction"
+  trigger:
+    platform: state
+    entity_id: input_boolean.kef_ls50_phase_correction
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_phase_correction.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "phase_correction") }}
+  action:
+    service: kef_custom.set_mode
+    entity_id: media_player.kef_ls50
+    data_template:
+      phase_correction: "{{ trigger.to_state.state }}"
+
+- alias: "KEF DSP: sync phase_correction"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_phase_correction.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.phase_correction != is_state("input_boolean.kef_ls50_phase_correction", "on") }}
+  action:
+    service_template: >
+      {% if trigger.to_state.attributes.phase_correction %}
+        input_boolean.turn_on
+      {% else %}
+        input_boolean.turn_off
+      {% endif %}
+    entity_id: input_boolean.kef_ls50_phase_correction
+
+- alias: "KEF DSP: change high_pass"
+  trigger:
+    platform: state
+    entity_id: input_boolean.kef_ls50_high_pass
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_sync_high_pass.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.state != state_attr("media_player.kef_ls50", "high_pass") }}
+  action:
+    service: kef_custom.set_mode
+    entity_id: media_player.kef_ls50
+    data_template:
+      high_pass: "{{ trigger.to_state.state }}"
+
+- alias: "KEF DSP: sync high_pass"
+  trigger:
+    platform: state
+    entity_id: media_player.kef_ls50
+  condition:
+    - condition: template
+      value_template: >
+        {{ (now() - states.automation.kef_dsp_change_high_pass.attributes.last_triggered).total_seconds() > 2 }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.attributes.high_pass != is_state("input_boolean.kef_ls50_high_pass", "on") }}
+  action:
+    service_template: >
+      {% if trigger.to_state.attributes.high_pass %}
+        input_boolean.turn_on
+      {% else %}
+        input_boolean.turn_off
+      {% endif %}
+    entity_id: input_boolean.kef_ls50_high_pass
