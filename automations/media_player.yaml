@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Media player: turn on Opt when TV is on and Spotify is not playing"
+- alias: "Media player: turn on Opt when TV is on and Spotify is not playing and not Usb"
   trigger:
     - platform: state
       entity_id: media_player.tv
@@ -23,6 +23,9 @@
     - condition: template
       value_template: >
         {{ not is_state_attr("media_player.kef_ls50", "source", "Opt") }}
+    - condition: template
+      value_template: >
+        {{ not is_state_attr("media_player.kef_ls50", "source", "Usb") }}
     - condition: template
       value_template: >
         {{ not (is_state_attr("media_player.spotify", "source", "LS50 Wireless")
@@ -62,7 +65,8 @@
   condition:
     - condition: template
       value_template: >
-        {{ is_state_attr("media_player.kef_ls50", "source", "Opt") }}
+        {{ is_state_attr("media_player.kef_ls50", "source", "Opt")
+           or is_state_attr("media_player.kef_ls50", "source", "Usb") }}
     - condition: state
       entity_id: timer.block_tv_volume_sync
       state: "idle"
@@ -85,7 +89,8 @@
   condition:
     - condition: template
       value_template: >
-        {{ is_state_attr("media_player.kef_ls50", "source", "Opt") }}
+        {{ is_state_attr("media_player.kef_ls50", "source", "Opt")
+           or is_state_attr("media_player.kef_ls50", "source", "Usb") }}
     - condition: state
       entity_id: timer.block_kef_ls50_volume_sync
       state: "idle"
