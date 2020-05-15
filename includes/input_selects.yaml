@@ -70,3 +70,18 @@ lsx_source:
     - Wifi
     - Bluetooth
     - Aux
+
+kef_ls50_sub_polarity:
+  name: Sub polarity
+  icon: mdi:equalizer
+  options:
+    - "+"
+    - "-"
+
+kef_ls50_bass_extension:
+  name: Bass extension
+  icon: mdi:equalizer
+  options:
+    - Standard
+    - Less
+    - Extra

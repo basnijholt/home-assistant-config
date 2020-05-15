@@ -46,6 +46,18 @@ work_hour_notification_sent:
 alarm_clock:
   name: Alarm clock is on
   icon: mdi:alarm
+kef_ls50_desk_mode:
+  name: Desk mode
+  icon: mdi:equalizer
+kef_ls50_wall_mode:
+  name: Wall mode
+  icon: mdi:equalizer
+kef_ls50_phase_correction:
+  name: Phase correction
+  icon: mdi:equalizer
+kef_ls50_high_pass:
+  name: High pass
+  icon: mdi:equalizer
 
 # Apps
 wake_up_light:

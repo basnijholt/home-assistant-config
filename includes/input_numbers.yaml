@@ -15,6 +15,7 @@ temperature_low:
   max: 20
   initial: 14
   step: 0.5
+  icon: mdi:temperature-celsius
 
 temperature_high:
   name: Temperature high
@@ -22,3 +23,46 @@ temperature_high:
   max: 20
   initial: 20
   step: 0.5
+  icon: mdi:temperature-celsius
+
+kef_ls50_desk_db:
+  name: Desk dB
+  min: -6
+  max: 0
+  step: 0.5
+  icon: mdi:equalizer
+
+kef_ls50_wall_db:
+  name: Wall dB
+  min: -6
+  max: 0
+  step: 0.5
+  icon: mdi:equalizer
+
+kef_ls50_treble_db:
+  name: Treble dB
+  min: -2
+  max: 2
+  step: 0.5
+  icon: mdi:equalizer
+
+kef_ls50_high_hz:
+  name: High Hz
+  min: 50
+  max: 120
+  step: 5
+  icon: mdi:equalizer
+
+kef_ls50_low_hz:
+  name: Low Hz
+  min: 40
+  max: 250
+  step: 5
+  icon: mdi:equalizer
+
+kef_ls50_sub_db:
+  name: Sub dB
+  min: -10
+  max: 10
+  step: 1
+  icon: mdi:equalizer
