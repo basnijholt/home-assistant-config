@@ -8,6 +8,5 @@
 #               |_|
 #
 #- from github.com/basnijholt/home-assistant-config
-base_url: !secret base_url
 ssl_certificate: /ssl/fullchain.pem
 ssl_key: /ssl/privkey.pem
