@@ -13,9 +13,9 @@ See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
 function e(e, t, r, n) {
-  var i,
-      s = arguments.length,
-      o = s < 3 ? t : null === n ? n = Object.getOwnPropertyDescriptor(t, r) : n;if ("object" == typeof Reflect && "function" == typeof Reflect.decorate) o = Reflect.decorate(e, t, r, n);else for (var a = e.length - 1; a >= 0; a--) (i = e[a]) && (o = (s < 3 ? i(o) : s > 3 ? i(t, r, o) : i(t, r)) || o);return s > 3 && o && Object.defineProperty(t, r, o), o;
+  var s,
+      i = arguments.length,
+      o = i < 3 ? t : null === n ? n = Object.getOwnPropertyDescriptor(t, r) : n;if ("object" == typeof Reflect && "function" == typeof Reflect.decorate) o = Reflect.decorate(e, t, r, n);else for (var a = e.length - 1; a >= 0; a--) (s = e[a]) && (o = (i < 3 ? s(o) : i > 3 ? s(t, r, o) : s(t, r)) || o);return i > 3 && o && Object.defineProperty(t, r, o), o;
   /**
    * @license
    * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
@@ -36,11 +36,11 @@ function e(e, t, r, n) {
   }
 },
       n = `{{lit-${String(Math.random()).slice(2)}}}`,
-      i = `\x3c!--${n}--\x3e`,
-      s = new RegExp(`${n}|${i}`);class o {
+      s = `\x3c!--${n}--\x3e`,
+      i = new RegExp(`${n}|${s}`);class o {
   constructor(e, t) {
     this.parts = [], this.element = t;const r = [],
-          i = [],
+          s = [],
           o = document.createTreeWalker(t.content, 133, null, !1);let c = 0,
         u = -1,
         h = 0;const { strings: p, values: { length: f } } = e;for (; h < f;) {
@@ -52,26 +52,26 @@ function e(e, t, r, n) {
               const t = p[h],
                     r = d.exec(t)[2],
                     n = r.toLowerCase() + "$lit$",
-                    i = e.getAttribute(n);e.removeAttribute(n);const o = i.split(s);this.parts.push({ type: "attribute", index: u, name: r, strings: o }), h += o.length - 1;
+                    s = e.getAttribute(n);e.removeAttribute(n);const o = s.split(i);this.parts.push({ type: "attribute", index: u, name: r, strings: o }), h += o.length - 1;
             }
-          }"TEMPLATE" === e.tagName && (i.push(e), o.currentNode = e.content);
+          }"TEMPLATE" === e.tagName && (s.push(e), o.currentNode = e.content);
         } else if (3 === e.nodeType) {
           const t = e.data;if (t.indexOf(n) >= 0) {
             const n = e.parentNode,
-                  i = t.split(s),
-                  o = i.length - 1;for (let t = 0; t < o; t++) {
+                  s = t.split(i),
+                  o = s.length - 1;for (let t = 0; t < o; t++) {
               let r,
-                  s = i[t];if ("" === s) r = l();else {
-                const e = d.exec(s);null !== e && a(e[2], "$lit$") && (s = s.slice(0, e.index) + e[1] + e[2].slice(0, -"$lit$".length) + e[3]), r = document.createTextNode(s);
+                  i = s[t];if ("" === i) r = l();else {
+                const e = d.exec(i);null !== e && a(e[2], "$lit$") && (i = i.slice(0, e.index) + e[1] + e[2].slice(0, -"$lit$".length) + e[3]), r = document.createTextNode(i);
               }n.insertBefore(r, e), this.parts.push({ type: "node", index: ++u });
-            }"" === i[o] ? (n.insertBefore(l(), e), r.push(e)) : e.data = i[o], h += o;
+            }"" === s[o] ? (n.insertBefore(l(), e), r.push(e)) : e.data = s[o], h += o;
           }
         } else if (8 === e.nodeType) if (e.data === n) {
           const t = e.parentNode;null !== e.previousSibling && u !== c || (u++, t.insertBefore(l(), e)), c = u, this.parts.push({ type: "node", index: u }), null === e.nextSibling ? e.data = "" : (r.push(e), u--), h++;
         } else {
           let t = -1;for (; -1 !== (t = e.data.indexOf(n, t + 1));) this.parts.push({ type: "node", index: -1 }), h++;
         }
-      } else o.currentNode = i.pop();
+      } else o.currentNode = s.pop();
     }for (const e of r) e.parentNode.removeChild(e);
   }
 }const a = (e, t) => {
@@ -81,11 +81,11 @@ function e(e, t, r, n) {
       l = () => document.createComment(""),
       d = /([ \x09\x0a\x0c\x0d])([^\0-\x1F\x7F-\x9F "'>=/]+)([ \x09\x0a\x0c\x0d]*=[ \x09\x0a\x0c\x0d]*(?:[^ \x09\x0a\x0c\x0d"'`<>=]*|"[^"]*|'[^']*))$/;function u(e, t) {
   const { element: { content: r }, parts: n } = e,
-        i = document.createTreeWalker(r, 133, null, !1);let s = p(n),
-      o = n[s],
+        s = document.createTreeWalker(r, 133, null, !1);let i = p(n),
+      o = n[i],
       a = -1,
-      c = 0;const l = [];let d = null;for (; i.nextNode();) {
-    a++;const e = i.currentNode;for (e.previousSibling === d && (d = null), t.has(e) && (l.push(e), null === d && (d = e)), null !== d && c++; void 0 !== o && o.index === a;) o.index = null !== d ? -1 : o.index - c, s = p(n, s), o = n[s];
+      c = 0;const l = [];let d = null;for (; s.nextNode();) {
+    a++;const e = s.currentNode;for (e.previousSibling === d && (d = null), t.has(e) && (l.push(e), null === d && (d = e)), null !== d && c++; void 0 !== o && o.index === a;) o.index = null !== d ? -1 : o.index - c, i = p(n, i), o = n[i];
   }l.forEach(e => e.parentNode.removeChild(e));
 }const h = e => {
   let t = 11 === e.nodeType ? 0 : 1;const r = document.createTreeWalker(e, 133, null, !1);for (; r.nextNode();) t++;return t;
@@ -134,13 +134,13 @@ class _ {
     const e = t ? this.template.element.content.cloneNode(!0) : document.importNode(this.template.element.content, !0),
           r = [],
           n = this.template.parts,
-          i = document.createTreeWalker(e, 133, null, !1);let s,
+          s = document.createTreeWalker(e, 133, null, !1);let i,
         o = 0,
         a = 0,
-        l = i.nextNode();for (; o < n.length;) if (s = n[o], c(s)) {
-      for (; a < s.index;) a++, "TEMPLATE" === l.nodeName && (r.push(l), i.currentNode = l.content), null === (l = i.nextNode()) && (i.currentNode = r.pop(), l = i.nextNode());if ("node" === s.type) {
+        l = s.nextNode();for (; o < n.length;) if (i = n[o], c(i)) {
+      for (; a < i.index;) a++, "TEMPLATE" === l.nodeName && (r.push(l), s.currentNode = l.content), null === (l = s.nextNode()) && (s.currentNode = r.pop(), l = s.nextNode());if ("node" === i.type) {
         const e = this.processor.handleTextExpression(this.options);e.insertAfterNode(l.previousSibling), this.__parts.push(e);
-      } else this.__parts.push(...this.processor.handleAttributeExpressions(l, s.name, s.strings, this.options));o++;
+      } else this.__parts.push(...this.processor.handleAttributeExpressions(l, i.name, i.strings, this.options));o++;
     } else this.__parts.push(void 0), o++;return t && (document.adoptNode(e), customElements.upgrade(e)), e;
   }
 }
@@ -161,9 +161,9 @@ class _ {
     this.strings = e, this.values = t, this.type = r, this.processor = n;
   }getHTML() {
     const e = this.strings.length - 1;let t = "",
-        r = !1;for (let s = 0; s < e; s++) {
-      const e = this.strings[s],
-            o = e.lastIndexOf("\x3c!--");r = (o > -1 || r) && -1 === e.indexOf("--\x3e", o + 1);const a = d.exec(e);t += null === a ? e + (r ? v : i) : e.substr(0, a.index) + a[1] + a[2] + "$lit$" + a[3] + n;
+        r = !1;for (let i = 0; i < e; i++) {
+      const e = this.strings[i],
+            o = e.lastIndexOf("\x3c!--");r = (o > -1 || r) && -1 === e.indexOf("--\x3e", o + 1);const a = d.exec(e);t += null === a ? e + (r ? v : s) : e.substr(0, a.index) + a[1] + a[2] + "$lit$" + a[3] + n;
     }return t += this.strings[e], t;
   }getTemplateElement() {
     const e = document.createElement("template");return e.innerHTML = this.getHTML(), e;
@@ -238,7 +238,7 @@ class _ {
     }
   }__commitIterable(e) {
     Array.isArray(this.value) || (this.value = [], this.clear());const t = this.value;let r,
-        n = 0;for (const i of e) r = t[n], void 0 === r && (r = new N(this.options), t.push(r), 0 === n ? r.appendIntoPart(this) : r.insertAfterPart(t[n - 1])), r.setValue(i), r.commit(), n++;n < t.length && (t.length = n, this.clear(r && r.endNode));
+        n = 0;for (const s of e) r = t[n], void 0 === r && (r = new N(this.options), t.push(r), 0 === n ? r.appendIntoPart(this) : r.insertAfterPart(t[n - 1])), r.setValue(s), r.commit(), n++;n < t.length && (t.length = n, this.clear(r && r.endNode));
   }clear(e = this.startNode) {
     r(this.startNode.parentNode, e.nextSibling, this.endNode);
   }
@@ -297,7 +297,7 @@ class _ {
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */;function R(e) {
-  let t = A.get(e.type);void 0 === t && (t = { stringsArray: new WeakMap(), keyString: new Map() }, A.set(e.type, t));let r = t.stringsArray.get(e.strings);if (void 0 !== r) return r;const i = e.strings.join(n);return r = t.keyString.get(i), void 0 === r && (r = new o(e, e.getTemplateElement()), t.keyString.set(i, r)), t.stringsArray.set(e.strings, r), r;
+  let t = A.get(e.type);void 0 === t && (t = { stringsArray: new WeakMap(), keyString: new Map() }, A.set(e.type, t));let r = t.stringsArray.get(e.strings);if (void 0 !== r) return r;const s = e.strings.join(n);return r = t.keyString.get(s), void 0 === r && (r = new o(e, e.getTemplateElement()), t.keyString.set(s, r)), t.stringsArray.set(e.strings, r), r;
 }const A = new Map(),
       k = new WeakMap();
 /**
@@ -328,9 +328,9 @@ class _ {
  */
 class {
   handleAttributeExpressions(e, t, r, n) {
-    const i = t[0];if ("." === i) {
+    const s = t[0];if ("." === s) {
       return new C(e, t.slice(1), r).parts;
-    }return "@" === i ? [new M(e, t.slice(1), n.eventContext)] : "?" === i ? [new T(e, t.slice(1), r)] : new x(e, t, r).parts;
+    }return "@" === s ? [new M(e, t.slice(1), n.eventContext)] : "?" === s ? [new T(e, t.slice(1), r)] : new x(e, t, r).parts;
   }handleTextExpression(e) {
     return new N(e);
   }
@@ -362,17 +362,17 @@ class {
  * http://polymer.github.io/PATENTS.txt
  */,
       H = (e, t) => `${e}--${t}`;let Y = !0;void 0 === window.ShadyCSS ? Y = !1 : void 0 === window.ShadyCSS.prepareTemplateDom && (console.warn("Incompatible ShadyCSS version detected. Please update to at least @webcomponents/webcomponentsjs@2.0.2 and @webcomponents/shadycss@1.3.1."), Y = !1);const j = e => t => {
-  const r = H(t.type, e);let i = A.get(r);void 0 === i && (i = { stringsArray: new WeakMap(), keyString: new Map() }, A.set(r, i));let s = i.stringsArray.get(t.strings);if (void 0 !== s) return s;const a = t.strings.join(n);if (s = i.keyString.get(a), void 0 === s) {
-    const r = t.getTemplateElement();Y && window.ShadyCSS.prepareTemplateDom(r, e), s = new o(t, r), i.keyString.set(a, s);
-  }return i.stringsArray.set(t.strings, s), s;
+  const r = H(t.type, e);let s = A.get(r);void 0 === s && (s = { stringsArray: new WeakMap(), keyString: new Map() }, A.set(r, s));let i = s.stringsArray.get(t.strings);if (void 0 !== i) return i;const a = t.strings.join(n);if (i = s.keyString.get(a), void 0 === i) {
+    const r = t.getTemplateElement();Y && window.ShadyCSS.prepareTemplateDom(r, e), i = new o(t, r), s.keyString.set(a, i);
+  }return s.stringsArray.set(t.strings, i), i;
 },
       z = ["html", "svg"],
       U = new Set(),
       F = (e, t, r) => {
   U.add(e);const n = r ? r.element : document.createElement("template"),
-        i = t.querySelectorAll("style"),
-        { length: s } = i;if (0 === s) return void window.ShadyCSS.prepareTemplateStyles(n, e);const o = document.createElement("style");for (let e = 0; e < s; e++) {
-    const t = i[e];t.parentNode.removeChild(t), o.textContent += t.textContent;
+        s = t.querySelectorAll("style"),
+        { length: i } = s;if (0 === i) return void window.ShadyCSS.prepareTemplateStyles(n, e);const o = document.createElement("style");for (let e = 0; e < i; e++) {
+    const t = s[e];t.parentNode.removeChild(t), o.textContent += t.textContent;
   }(e => {
     z.forEach(t => {
       const r = A.get(H(t, e));void 0 !== r && r.keyString.forEach(e => {
@@ -383,13 +383,13 @@ class {
       });
     });
   })(e);const a = n.content;r ? function (e, t, r = null) {
-    const { element: { content: n }, parts: i } = e;if (null == r) return void n.appendChild(t);const s = document.createTreeWalker(n, 133, null, !1);let o = p(i),
+    const { element: { content: n }, parts: s } = e;if (null == r) return void n.appendChild(t);const i = document.createTreeWalker(n, 133, null, !1);let o = p(s),
         a = 0,
-        c = -1;for (; s.nextNode();) {
-      for (c++, s.currentNode === r && (a = h(t), r.parentNode.insertBefore(t, r)); -1 !== o && i[o].index === c;) {
+        c = -1;for (; i.nextNode();) {
+      for (c++, i.currentNode === r && (a = h(t), r.parentNode.insertBefore(t, r)); -1 !== o && s[o].index === c;) {
         if (a > 0) {
-          for (; -1 !== o;) i[o].index += a, o = p(i, o);return;
-        }o = p(i, o);
+          for (; -1 !== o;) s[o].index += a, o = p(s, o);return;
+        }o = p(s, o);
       }
     }
   }(r, o, a.firstChild) : a.insertBefore(o, a.firstChild), window.ShadyCSS.prepareTemplateStyles(n, e);const c = a.querySelector("style");if (window.ShadyCSS.nativeShadow && null !== c) t.insertBefore(c.cloneNode(!0), t.firstChild);else if (r) {
@@ -440,7 +440,7 @@ class {
   }static _propertyValueFromAttribute(e, t) {
     const r = t.type,
           n = t.converter || q,
-          i = "function" == typeof n ? n : n.fromAttribute;return i ? i(e, r) : e;
+          s = "function" == typeof n ? n : n.fromAttribute;return s ? s(e, r) : e;
   }static _propertyValueToAttribute(e, t) {
     if (void 0 === t.reflect) return;const r = t.type,
           n = t.converter;return (n && n.toAttribute || q.toAttribute)(e, r);
@@ -462,8 +462,8 @@ class {
     t !== r && this._attributeToProperty(e, r);
   }_propertyToAttribute(e, t, r = W) {
     const n = this.constructor,
-          i = n._attributeNameForProperty(e, r);if (void 0 !== i) {
-      const e = n._propertyValueToAttribute(t, r);if (void 0 === e) return;this._updateState = 8 | this._updateState, null == e ? this.removeAttribute(i) : this.setAttribute(i, e), this._updateState = -9 & this._updateState;
+          s = n._attributeNameForProperty(e, r);if (void 0 !== s) {
+      const e = n._propertyValueToAttribute(t, r);if (void 0 === e) return;this._updateState = 8 | this._updateState, null == e ? this.removeAttribute(s) : this.setAttribute(s, e), this._updateState = -9 & this._updateState;
     }
   }_attributeToProperty(e, t) {
     if (8 & this._updateState) return;const r = this.constructor,
@@ -473,7 +473,7 @@ class {
   }_requestUpdate(e, t) {
     let r = !0;if (void 0 !== e) {
       const n = this.constructor,
-            i = n.getPropertyOptions(e);n._valueHasChanged(this[e], t, i.hasChanged) ? (this._changedProperties.has(e) || this._changedProperties.set(e, t), !0 !== i.reflect || 16 & this._updateState || (void 0 === this._reflectingProperties && (this._reflectingProperties = new Map()), this._reflectingProperties.set(e, i))) : r = !1;
+            s = n.getPropertyOptions(e);n._valueHasChanged(this[e], t, s.hasChanged) ? (this._changedProperties.has(e) || this._changedProperties.set(e, t), !0 !== s.reflect || 16 & this._updateState || (void 0 === this._reflectingProperties && (this._reflectingProperties = new Map()), this._reflectingProperties.set(e, s))) : r = !1;
     }!this._hasRequestedUpdate && r && (this._updatePromise = this._enqueueUpdate());
   }requestUpdate(e, t) {
     return this._requestUpdate(e, t), this.updateComplete;
@@ -588,33 +588,33 @@ found at http://polymer.github.io/PATENTS.txt
     return X;
   }
 }ee.finalized = !0, ee.render = (e, t, n) => {
-  if (!n || "object" != typeof n || !n.scopeName) throw new Error("The `scopeName` option is required.");const i = n.scopeName,
-        s = k.has(t),
+  if (!n || "object" != typeof n || !n.scopeName) throw new Error("The `scopeName` option is required.");const s = n.scopeName,
+        i = k.has(t),
         o = Y && 11 === t.nodeType && !!t.host,
-        a = o && !U.has(i),
+        a = o && !U.has(s),
         c = a ? document.createDocumentFragment() : t;if (((e, t, n) => {
-    let i = k.get(t);void 0 === i && (r(t, t.firstChild), k.set(t, i = new N(Object.assign({ templateFactory: R }, n))), i.appendInto(t)), i.setValue(e), i.commit();
-  })(e, c, Object.assign({ templateFactory: j(i) }, n)), a) {
-    const e = k.get(c);k.delete(c);const n = e.value instanceof _ ? e.value.template : void 0;F(i, c, n), r(t, t.firstChild), t.appendChild(c), k.set(t, e);
-  }!s && o && window.ShadyCSS.styleElement(t.host);
+    let s = k.get(t);void 0 === s && (r(t, t.firstChild), k.set(t, s = new N(Object.assign({ templateFactory: R }, n))), s.appendInto(t)), s.setValue(e), s.commit();
+  })(e, c, Object.assign({ templateFactory: j(s) }, n)), a) {
+    const e = k.get(c);k.delete(c);const n = e.value instanceof _ ? e.value.template : void 0;F(s, c, n), r(t, t.firstChild), t.appendChild(c), k.set(t, e);
+  }!i && o && window.ShadyCSS.styleElement(t.host);
 };var te = /d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|Z|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g,
     re = "[^\\s]+",
-    ne = /\[([^]*?)\]/gm;function ie(e, t) {
-  for (var r = [], n = 0, i = e.length; n < i; n++) r.push(e[n].substr(0, t));return r;
-}var se = function (e) {
+    ne = /\[([^]*?)\]/gm;function se(e, t) {
+  for (var r = [], n = 0, s = e.length; n < s; n++) r.push(e[n].substr(0, t));return r;
+}var ie = function (e) {
   return function (t, r) {
     var n = r[e].map(function (e) {
       return e.toLowerCase();
     }).indexOf(t.toLowerCase());return n > -1 ? n : null;
   };
 };function oe(e) {
-  for (var t = [], r = 1; r < arguments.length; r++) t[r - 1] = arguments[r];for (var n = 0, i = t; n < i.length; n++) {
-    var s = i[n];for (var o in s) e[o] = s[o];
+  for (var t = [], r = 1; r < arguments.length; r++) t[r - 1] = arguments[r];for (var n = 0, s = t; n < s.length; n++) {
+    var i = s[n];for (var o in i) e[o] = i[o];
   }return e;
 }var ae = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     ce = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    le = ie(ce, 3),
-    de = { dayNamesShort: ie(ae, 3), dayNames: ae, monthNamesShort: le, monthNames: ce, amPm: ["am", "pm"], DoFn: function (e) {
+    le = se(ce, 3),
+    de = { dayNamesShort: se(ae, 3), dayNames: ae, monthNamesShort: le, monthNames: ce, amPm: ["am", "pm"], DoFn: function (e) {
     return e + ["th", "st", "nd", "rd"][e % 10 > 3 ? 0 : (e - e % 10 != 10 ? 1 : 0) * e % 10];
   } },
     ue = oe({}, de),
@@ -691,11 +691,11 @@ found at http://polymer.github.io/PATENTS.txt
     var r = 60 * +t[1] + parseInt(t[2], 10);return "+" === t[0] ? r : -r;
   }return 0;
 }],
-    ve = (se("monthNamesShort"), se("monthNames"), { default: "ddd MMM DD YYYY HH:mm:ss", shortDate: "M/D/YY", mediumDate: "MMM D, YYYY", longDate: "MMMM D, YYYY", fullDate: "dddd, MMMM D, YYYY", isoDate: "YYYY-MM-DD", isoDateTime: "YYYY-MM-DDTHH:mm:ssZ", shortTime: "HH:mm", mediumTime: "HH:mm:ss", longTime: "HH:mm:ss.SSS" });var we = function (e, t, r) {
+    ve = (ie("monthNamesShort"), ie("monthNames"), { default: "ddd MMM DD YYYY HH:mm:ss", shortDate: "M/D/YY", mediumDate: "MMM D, YYYY", longDate: "MMMM D, YYYY", fullDate: "dddd, MMMM D, YYYY", isoDate: "YYYY-MM-DD", isoDateTime: "YYYY-MM-DDTHH:mm:ssZ", shortTime: "HH:mm", mediumTime: "HH:mm:ss", longTime: "HH:mm:ss.SSS" });var we = function (e, t, r) {
   if (void 0 === t && (t = ve.default), void 0 === r && (r = {}), "number" == typeof e && (e = new Date(e)), "[object Date]" !== Object.prototype.toString.call(e) || isNaN(e.getTime())) throw new Error("Invalid Date pass to format");var n = [];t = (t = ve[t] || t).replace(ne, function (e, t) {
     return n.push(t), "@@@";
-  });var i = oe(oe({}, ue), r);return (t = t.replace(te, function (t) {
-    return pe[t](e, i);
+  });var s = oe(oe({}, ue), r);return (t = t.replace(te, function (t) {
+    return pe[t](e, s);
   })).replace(/@@@/g, function () {
     return n.shift();
   });
@@ -730,15 +730,15 @@ found at http://polymer.github.io/PATENTS.txt
     } catch (n) {
       return console.error(e, n), r(n.message, t);
     }return n;
-  };if (!e || "object" != typeof e || !t && !e.type) return r("No type defined", e);var i = e.type;if (i && i.startsWith("custom:")) i = i.substr("custom:".length);else if (t) {
-    if (be.has(i)) i = "hui-" + i + "-row";else {
-      if (!e.entity) return r("Invalid config given.", e);var s = e.entity.split(".", 1)[0];i = "hui-" + (Se[s] || "text") + "-entity-row";
+  };if (!e || "object" != typeof e || !t && !e.type) return r("No type defined", e);var s = e.type;if (s && s.startsWith("custom:")) s = s.substr("custom:".length);else if (t) {
+    if (be.has(s)) s = "hui-" + s + "-row";else {
+      if (!e.entity) return r("Invalid config given.", e);var i = e.entity.split(".", 1)[0];s = "hui-" + (Se[i] || "text") + "-entity-row";
     }
-  } else i = "hui-" + i + "-card";if (customElements.get(i)) return n(i, e);var o = r("Custom element doesn't exist: " + e.type + ".", e);o.style.display = "None";var a = setTimeout(function () {
+  } else s = "hui-" + s + "-card";if (customElements.get(s)) return n(s, e);var o = r("Custom element doesn't exist: " + e.type + ".", e);o.style.display = "None";var a = setTimeout(function () {
     o.style.display = "";
   }, 2e3);return customElements.whenDefined(e.type).then(function () {
     clearTimeout(a), function (e, t, r, n) {
-      n = n || {}, r = null == r ? {} : r;var i = new Event(t, { bubbles: void 0 === n.bubbles || n.bubbles, cancelable: Boolean(n.cancelable), composed: void 0 === n.composed || n.composed });i.detail = r, e.dispatchEvent(i);
+      n = n || {}, r = null == r ? {} : r;var s = new Event(t, { bubbles: void 0 === n.bubbles || n.bubbles, cancelable: Boolean(n.cancelable), composed: void 0 === n.composed || n.composed });s.detail = r, e.dispatchEvent(s);
     }(o, "ll-rebuild", {}, o);
   }), o;
 };function Pe(e) {
@@ -775,15 +775,15 @@ found at http://polymer.github.io/PATENTS.txt
         if (void 0 === e) return "Failed to construct 'ResizeObserver': 1 argument required, but only 0 present.";if ("function" != typeof e) return "Failed to construct 'ResizeObserver': The callback provided as parameter 1 is not a function.";
       }(e);if (t) throw TypeError(t);this.$$callback = e, r.push(this);
     }return e.prototype.observe = function (e) {
-      var t = i("observe", e);if (t) throw TypeError(t);s(this.$$observationTargets, e) > 0 || (this.$$observationTargets.push(new Ce.ResizeObservation(e)), u());
+      var t = s("observe", e);if (t) throw TypeError(t);i(this.$$observationTargets, e) > 0 || (this.$$observationTargets.push(new Ce.ResizeObservation(e)), u());
     }, e.prototype.unobserve = function (e) {
-      var t = i("unobserve", e);if (t) throw TypeError(t);var r = s(this.$$observationTargets, e);r < 0 || (this.$$observationTargets.splice(r, 1), p());
+      var t = s("unobserve", e);if (t) throw TypeError(t);var r = i(this.$$observationTargets, e);r < 0 || (this.$$observationTargets.splice(r, 1), p());
     }, e.prototype.disconnect = function () {
       this.$$observationTargets = [], this.$$activeTargets = [];
     }, e;
-  }();function i(e, t) {
+  }();function s(e, t) {
     return void 0 === t ? "Failed to execute '" + e + "' on 'ResizeObserver': 1 argument required, but only 0 present." : t instanceof window.Element ? void 0 : "Failed to execute '" + e + "' on 'ResizeObserver': parameter 1 is not of type 'Element'.";
-  }function s(e, t) {
+  }function i(e, t) {
     for (var r = 0; r < e.length; r += 1) if (e[r].target === t) return r;return -1;
   }t.ResizeObserver = n;var o,
       a = function (e) {
@@ -797,7 +797,7 @@ found at http://polymer.github.io/PATENTS.txt
     var e = 1 / 0;return r.forEach(function (t) {
       if (t.$$activeTargets.length) {
         var r = [];t.$$activeTargets.forEach(function (t) {
-          var n = new Ee.ResizeObserverEntry(t.target);r.push(n), t.$$broadcastWidth = n.contentRect.width, t.$$broadcastHeight = n.contentRect.height;var i = l(t.target);i < e && (e = i);
+          var n = new Ee.ResizeObserverEntry(t.target);r.push(n), t.$$broadcastWidth = n.contentRect.width, t.$$broadcastHeight = n.contentRect.height;var s = l(t.target);s < e && (e = s);
         }), t.$$callback(r, t), t.$$activeTargets = [];
       }
     }), e;
@@ -828,9 +828,11 @@ found at http://polymer.github.io/PATENTS.txt
   };t.install = function () {
     return window.ResizeObserver = n;
   };
-});Pe($e);var Me = $e.ResizeObserver;$e.install;const Oe = window.loadCardHelpers ? window.loadCardHelpers() : void 0;console.info("%c DECLUTTERING-CARD \n%c   Version 0.6.2   ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");let Re = class extends ee {
+});Pe($e);var Me = $e.ResizeObserver;$e.install;const Oe = window.loadCardHelpers ? window.loadCardHelpers() : void 0;console.info("%c DECLUTTERING-CARD \n%c   Version 0.6.3   ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");let Re = class extends ee {
   set hass(e) {
-    this._hass = e, this._card && (this._card.hass = e);
+    e && (!this._hass && e && this._createCard(this._config, this._type).then(e => {
+      var t;return this._card = e, this._card && (null === (t = this._ro) || void 0 === t || t.observe(this._card)), this._card;
+    }), this._hass = e, this._card && (this._card.hass = e));
   }static get styles() {
     return Q`
       :host(.child-card-hidden) {
@@ -861,14 +863,12 @@ found at http://polymer.github.io/PATENTS.txt
           const e = new RegExp(`"\\[\\[${t}\\]\\]"`, "gm");n = n.replace(e, r);
         }if ("object" == typeof r) {
           const e = new RegExp(`"\\[\\[${t}\\]\\]"`, "gm"),
-                i = JSON.stringify(r);n = n.replace(e, i);
+                s = JSON.stringify(r);n = n.replace(e, s);
         } else {
           const e = new RegExp(`\\[\\[${t}\\]\\]`, "gm");n = n.replace(e, r);
         }
       }), JSON.parse(n);
-    })(e.variables, r);const n = r.card ? "card" : "element";this._createCard(this._config, n).then(e => {
-      var t;return this._card = e, null === (t = this._ro) || void 0 === t || t.observe(this._card), this._card;
-    });
+    })(e.variables, r), this._type = r.card ? "card" : "element";
   }render() {
     return this._hass && this._card && this._config ? V`
       <div id="root">${this._card}</div>
@@ -880,7 +880,7 @@ found at http://polymer.github.io/PATENTS.txt
       n.stopPropagation(), this._rebuildCard(r, e, t);
     }, { once: !0 }), r.id = "declutter-child", r;
   }async _rebuildCard(e, t, r) {
-    var n;const i = await this._createCard(t, r);e.replaceWith(i), this._card = i, null === (n = this._ro) || void 0 === n || n.observe(this._card);
+    var n;const s = await this._createCard(t, r);e.replaceWith(s), this._card = s, null === (n = this._ro) || void 0 === n || n.observe(this._card);
   }getCardSize() {
     return this._card && "function" == typeof this._card.getCardSize ? this._card.getCardSize() : 1;
   }
