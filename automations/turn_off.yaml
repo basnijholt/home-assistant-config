@@ -30,7 +30,12 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_bedroom
+        id: smart_switch_bedroom_1
+        event: 1007  # Shake button
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_bedroom_2
         event: 1007  # Shake button
   action:
     - service: light.turn_off
