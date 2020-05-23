@@ -22,7 +22,12 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_bedroom
+        id: smart_switch_bedroom_1
+        event: 1004  # Double click
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_bedroom_2
         event: 1004  # Double click
     - platform: event
       event_type: deconz_event
@@ -94,7 +99,12 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_bedroom
+        id: smart_switch_bedroom_1
+        event: 1002  # Single click
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_bedroom_2
         event: 1002  # Single click
     - platform: event
       event_type: deconz_event
@@ -342,7 +352,11 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_bedroom
+        id: smart_switch_bedroom_1
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_bedroom_2
   condition:
     condition: state
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
