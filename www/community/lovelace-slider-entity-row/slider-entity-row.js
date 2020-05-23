@@ -44,7 +44,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        flex-grow: 100;
+        flex-grow: 2;
         height: 40px;
       }
       .state {
