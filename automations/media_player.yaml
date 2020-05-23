@@ -25,7 +25,8 @@
         {{ not is_state_attr("media_player.kef_ls50", "source", "Opt") }}
     - condition: template
       value_template: >
-        {{ not is_state_attr("media_player.kef_ls50", "source", "Usb") }}
+        {{ not (is_state_attr("media_player.kef_ls50", "source", "Usb")
+                and is_state_attr("media_player.tv", "source", "HDMI 3")) }}
     - condition: template
       value_template: >
         {{ not (is_state_attr("media_player.spotify", "source", "LS50 Wireless")
