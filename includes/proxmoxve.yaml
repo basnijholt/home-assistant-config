@@ -1,0 +1,9 @@
+---
+- host: !secret ip_proxmox
+  username: root
+  password: !secret proxmox_pw
+  verify_ssl: false
+  nodes:
+    - node: nuc
+      vms:
+        - 100

@@ -51,6 +51,7 @@ plant: !include includes/plant.yaml
 spotify: !include includes/spotify.yaml
 climate: !include  includes/climate.yaml
 influxdb: !include includes/influxdb.yaml
+proxmoxve: !include includes/proxmoxve.yaml
 
 # Custom components
 circadian_lighting: !include includes/circadian_lighting.yaml
