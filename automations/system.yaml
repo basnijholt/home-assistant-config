@@ -52,3 +52,11 @@
       data:
         message: >
           CPU temperature in the Xbox cabinet is {{ states("sensor.temperature_xbox") }} °C! ⚠️
+
+- alias: "System: update DNS"
+  description: Update the DNS at Gandi
+  trigger:
+    platform: time_pattern  # XXX: trigger on IP change
+    minutes: "/15"
+  action:
+    service: script.update_dns

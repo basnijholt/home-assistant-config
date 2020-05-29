@@ -261,3 +261,11 @@ arriving:
   sequence:
     - service: script.set_high_temperature
     - service: script.cozy_lights_living_room
+update_dns:
+  alias: Update DNS record
+  sequence:
+    - service: shell_command.update_dns
+      data_template:
+        api: !secret gandi_api_key
+        domain: !secret domain
+        subdomain: !secret subdomain
