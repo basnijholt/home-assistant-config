@@ -55,6 +55,7 @@ views:
       - light.ceiling_bedroom
       - light.lampan
       - light.bamboo
+      - light.bed_reading
       - light.philips_go
       - light.bed_led
       - input_boolean.automatic_bedroom_lights
@@ -83,7 +84,6 @@ views:
       type: custom:fold-entity-row
     - entities:
       - light.ceiling_kitchen
-      - light.bed_reading
       - light.ceiling_bathroom
       - light.toilet
       - light.kitchen_counter
@@ -775,6 +775,14 @@ views:
         type: custom:button-card
       type: horizontal-stack
     type: vertical-stack
+  - control: false
+    entity: climate.thermostat
+    icon: false
+    name: false
+    step_layout: row
+    step_size: 0.5
+    style: "ha-card {\n  --st-font-size-xl: 30px;\n}\n"
+    type: custom:simple-thermostat
   - cards:
     - entity: plant.yucca_elephantipes
       type: plant-status
@@ -787,14 +795,6 @@ views:
         delay: 5000
       speed: 2000
     type: custom:swipe-card
-  - control: false
-    entity: climate.thermostat
-    icon: false
-    name: false
-    step_layout: row
-    step_size: 0.5
-    style: "ha-card {\n  --st-font-size-xl: 30px;\n}\n"
-    type: custom:simple-thermostat
   - entities:
     - entities:
       - align: center
@@ -1307,12 +1307,13 @@ views:
     show_name: false
     title: Motion sensor
     type: glance
-  - columns: 4
+  - columns: 5
     entities:
-    - entity: sensor.button_mini_bedroom_battery_level
-    - entity: sensor.button_mini_doorbell_battery_level
-    - entity: sensor.button_mini_downstairs_battery_level
-    - entity: sensor.button_mini_living_room_battery_level
+    - entity: sensor.smart_switch_bedroom_1_battery_level
+    - entity: sensor.smart_switch_bedroom_2_battery_level
+    - entity: sensor.smart_switch_doorbell_battery_level
+    - entity: sensor.smart_switch_downstairs_battery_level
+    - entity: sensor.smart_switch_living_room_battery_level
     show_icon: true
     show_name: false
     title: Buttons
