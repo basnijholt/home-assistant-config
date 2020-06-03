@@ -147,6 +147,7 @@
         {% set start_of_month = now().replace(day=1) %}
         {% set start_of_last_month = start_of_month.replace(month=now().month-1) %}
         {{ ((start_of_month - start_of_last_month).total_seconds() / 86400) | round }}
+      entity_id: sensor.date
 
     daily_power:
       friendly_name: Daily Power
