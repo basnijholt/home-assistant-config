@@ -292,11 +292,12 @@
     - date
     - time
 
-- platform: command_line
-  name: CPU Temperature
-  command: "cat /sys/class/thermal/thermal_zone4/temp"
-  unit_of_measurement: "°C"
-  value_template: "{{ value | multiply(0.001) | round(2) }}"
+# XXX: not available on Proxmox!
+# - platform: command_line
+#   name: CPU Temperature
+#   command: "cat /sys/class/thermal/thermal_zone4/temp"
+#   unit_of_measurement: "°C"
+#   value_template: "{{ value | multiply(0.001) | round(2) }}"
 
 - platform: systemmonitor
   resources:
