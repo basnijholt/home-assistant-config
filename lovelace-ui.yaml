@@ -55,7 +55,8 @@ views:
       - light.ceiling_bedroom
       - light.lampan
       - light.bamboo
-      - light.bed_reading
+      - light.bed_reading_up
+      - light.bed_reading_down
       - light.philips_go
       - light.bed_led
       - input_boolean.automatic_bedroom_lights
