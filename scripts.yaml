@@ -124,7 +124,13 @@ cozy_lights_bedroom:
       - 100
     service: light.turn_on
   - data:
-      entity_id: light.bed_reading
+      entity_id: light.bed_reading_up
+      hs_color:
+      - 26.725
+      - 89.804
+    service: light.turn_on
+  - data:
+      entity_id: light.bed_reading_down
       hs_color:
       - 26.725
       - 89.804
