@@ -2,6 +2,9 @@
     const html = LitElement.prototype.html;
     const css = LitElement.prototype.css;
 
+    const UNAVAILABLE = 'unavailable';
+    const UNKNOWN = 'unknown';
+
     class MultipleEntityRow extends LitElement {
 
         static get properties() {
@@ -114,7 +117,7 @@
         }
 
         renderTimestamp(value, format) {
-            return !['unknown', 'unavailable'].includes(value.toLowerCase())
+            return ![UNKNOWN, UNAVAILABLE].includes(value.toLowerCase())
                 ? html`<hui-timestamp-display .ts=${new Date(value)} .format=${format} .hass=${this._hass}></hui-timestamp-display>`
                 : html`${value}`;
         }
@@ -125,7 +128,7 @@
 
         renderEntityValue(entity) {
             if (entity.toggle) return this.renderToggle(entity.stateObj);
-            else if (entity.icon) return this.renderIcon(entity);
+            else if (entity.icon !== undefined) return this.renderIcon(entity);
             else if (entity.format) return this.renderTimestamp(entity.value, entity.format);
             else return html`${entity.value}`;
         }
@@ -209,7 +212,7 @@
                     ? this.entityAttribute(stateObj, config.attribute, config.unit)
                     : this.entityStateValue(stateObj, config.unit),
                 toggle: this.checkToggle(config, stateObj),
-                icon: config.icon === true ? stateObj.attributes.icon : config.icon,
+                icon: config.icon === true ? (stateObj.attributes.icon || null) : config.icon,
                 format: config.format || false,
                 state_color: config.state_color || false,
                 onClick: this.getAction(config.tap_action, stateObj.entity_id),
@@ -231,30 +234,28 @@
         }
 
         entityStateValue(stateObj, unit) {
-            let display;
-            const domain = stateObj.entity_id.substr(0, stateObj.entity_id.indexOf("."));
-
-            if (domain === 'binary_sensor') {
-                if (stateObj.attributes.device_class) {
-                    display = this._hass.localize(`state.${domain}.${stateObj.attributes.device_class}.${stateObj.state}`);
-                }
-                if (!display) {
-                    display = this._hass.localize(`state.${domain}.default.${stateObj.state}`);
-                }
-            } else if (unit !== false && (unit || stateObj.attributes.unit_of_measurement) && !['unknown', 'unavailable'].includes(stateObj.state)) {
-                display = `${stateObj.state} ${unit || stateObj.attributes.unit_of_measurement}`;
-            } else if (domain === 'zwave') {
-                display = ['initializing', 'dead'].includes(stateObj.state)
-                    ? this._hass.localize(`state.zwave.query_stage.${stateObj.state}`, 'query_stage', stateObj.attributes.query_stage)
-                    : this._hass.localize(`state.zwave.default.${stateObj.state}`);
-            } else {
-                display = this._hass.localize(`state.${domain}.${stateObj.state}`);
+            if (stateObj.state === UNKNOWN || stateObj.state === UNAVAILABLE) {
+                return this._hass.localize(`state.default.${stateObj.state}`);
             }
 
-            return display ||
-                this._hass.localize(`state.default.${stateObj.state}`) ||
-                this._hass.localize(`component.${domain}.state.${stateObj.state}`) ||
-                stateObj.state;
+            if (unit !== false && (unit || stateObj.attributes.unit_of_measurement)) {
+                return `${stateObj.state} ${unit || stateObj.attributes.unit_of_measurement}`;
+            }
+
+            const domain = stateObj.entity_id.substr(0, stateObj.entity_id.indexOf('.'));
+
+            if (domain === 'zwave') {
+                return ['initializing', 'dead'].includes(stateObj.state)
+                    ? this._hass.localize(`state.zwave.query_stage.${stateObj.state}`, 'query_stage', stateObj.attributes.query_stage)
+                    : this._hass.localize(`state.zwave.default.${stateObj.state}`);
+            }
+
+            return (
+                (stateObj.attributes.device_class
+                    && this._hass.localize(`component.${domain}.state.${stateObj.attributes.device_class}.${stateObj.state}`))
+                || this._hass.localize(`component.${domain}.state._.${stateObj.state}`)
+                || stateObj.state
+            );
         }
 
         getAction(config, entityId) {
