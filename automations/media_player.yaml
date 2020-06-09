@@ -71,6 +71,9 @@
     - condition: state
       entity_id: timer.block_tv_volume_sync
       state: "idle"
+    - condition: template
+      value_template: >
+        {{ states("sensor.tv_volume") != None }}
   action:
     - service: timer.start
       entity_id: timer.block_kef_ls50_volume_sync
