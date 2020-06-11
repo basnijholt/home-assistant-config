@@ -40,6 +40,19 @@
     data:
       source: Opt
 
+- alias: "Media player: turn off speakers when turning off TV"
+  trigger:
+    platform: state
+    entity_id: media_player.tv
+    to: "off"
+  condition:
+    condition: template
+    value_template: >
+      {{ is_state_attr("media_player.kef_ls50", "source", "Opt") }}
+  action:
+    service: media_player.turn_off
+    entity_id: media_player.kef_ls50
+
 - alias: "Media player: TV volume delay"
   trigger:
     platform: state
