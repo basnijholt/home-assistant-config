@@ -60,3 +60,9 @@
     - light.hall_1
     - light.hall_2
     - light.hall_3
+
+- platform: group
+  name: Bed reading
+  entities:
+    - light.bed_reading_up
+    - light.bed_reading_down
