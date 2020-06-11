@@ -27,6 +27,15 @@ last_script_bedroom:
     - script.white_lights_bedroom
   icon: mdi:lightbulb-on
 
+bathroom_color:
+  options:
+    - red
+    - blue
+    - purple
+    - pink
+    - white
+  icon: mdi:lightbulb-on
+
 theme:
   options:
     - blue-red

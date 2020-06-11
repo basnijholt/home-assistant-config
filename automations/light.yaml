@@ -133,6 +133,34 @@
     data:
       group: light.living_room_lights
 
+- alias: "Light: toggle max/min brightness in the bathroom"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_bathroom
+      event: 1002  # Single click
+  action:
+    service: script.increase_brightness
+    data:
+      group: light.ceiling_bathroom
+
+- alias: "Light: next colors in the bathroom"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_bathroom
+      event: 1004  # Double click
+  action:
+    - service: input_select.select_next
+      entity_id: input_select.bathroom_color
+    - service: light.turn_on
+      entity_id: light.ceiling_bathroom
+      data_template:
+        color_name: >
+          {{ states("input_select.bathroom_color") }}
+
 #     _         _                        _   _        _ _       _     _
 #    / \  _   _| |_ ___  _ __ ___   __ _| |_(_) ___  | (_) __ _| |__ | |_ ___
 #   / _ \| | | | __/ _ \| '_ ` _ \ / _` | __| |/ __| | | |/ _` | '_ \| __/ __|
