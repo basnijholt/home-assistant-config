@@ -1952,7 +1952,7 @@ class lt {
       });
     }this._config.entity && !this._entities.includes(this._config.entity) && this._entities.push(this._config.entity);const s = new RegExp("\\[\\[\\[.*\\]\\]\\]", "gm");this._hasTemplate = !("all" !== this._config.triggers_update || !n.match(s)), this._initial_setup_complete || this._initConnected();
   }getCardSize() {
-    return 3;
+    return 2;
   }_evalActions(t, e) {
     const i = JSON.parse(JSON.stringify(t)),
           n = t => t ? (Object.keys(t).forEach(e => {
