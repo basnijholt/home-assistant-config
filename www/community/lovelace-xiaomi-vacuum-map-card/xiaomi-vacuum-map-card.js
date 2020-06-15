@@ -583,7 +583,7 @@ class XiaomiVacuumMapCard extends LitElement {
     }
 
     getCardSize() {
-        return 3;
+        return 5;
     }
 
     convertMapToVacuumRect(rect, repeats) {
