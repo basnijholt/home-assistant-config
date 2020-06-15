@@ -25,6 +25,7 @@ Using my [iOS Light and Dark Mode Themes](https://github.com/basnijholt/lovelace
 * [Notifications when the dishwasher  or washing machine is done](automations/utilities.yaml)
 * [Time at work 📈 tracking and notifications to go home](includes/sensors.yaml)
 * Using [HA-Menu](https://github.com/codechimp-org/ha-menu) to control [my speakers on my iMac](automations/lsx-control.yaml)
+* Using [home-assistant-macbook-touch-bar](https://github.com/basnijholt/home-assistant-macbook-touch-bar) to control HA on my MacBook Pro's Touch Bar 💻
 * [Automatically switch Lovelace's theme between backgrounds and light/dark mode](automations/frontend.yaml)
 * [Sync volume TV ⇄ speakers 🔊](automations/media_player.yaml)
 * [Security notifications when the front door 🚪 has been open for too long or motion is detected when no one is home](automations/security.yaml)
