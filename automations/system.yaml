@@ -44,14 +44,14 @@
       data:
         title: "System"
         message: >
-          CPU temperature in the Xbox cabinet is {{ states("sensor.temperature_xbox") }} °C! ⚠️
+          Temperature in the Xbox cabinet is {{ states("sensor.temperature_xbox") }} °C! ⚠️
     - condition: state
       entity_id: media_player.tv
       state: "on"
     - service: notify.tv
       data:
         message: >
-          CPU temperature in the Xbox cabinet is {{ states("sensor.temperature_xbox") }} °C! ⚠️
+          Temperature in the Xbox cabinet is {{ states("sensor.temperature_xbox") }} °C! ⚠️
 
 - alias: "System: update DNS"
   description: Update the DNS at Gandi
