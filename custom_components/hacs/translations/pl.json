@@ -102,7 +102,7 @@
         "no_category": "Brak kategorii",
         "no_repository": "Brak repozytorium",
         "title": "Niestandardowe repozytoria",
-        "url_placeholder": "Dodaj adres URL niestandardowego repozytorium"
+        "url_placeholder": "Adres URL niestandardowego repozytorium"
     },
     "dialog_info": {
         "author": "Autor",
@@ -142,11 +142,11 @@
                 "title": "Wykonywane są zadania w tle"
             },
             "resources": {
-                "content": "Masz {number} elementów Lovelace, które nie zostały poprawnie załadowane.",
+                "content": "Elementy Lovelace, które nie zostały poprawnie załadowane: {number}",
                 "title": "Nie załadowano w Lovelace"
             },
             "restart": {
-                "content": "Masz {number} integracji, która wymagają ponownego uruchomienia Home Assistanta, możesz to zrobić w sekcji 'Kontrola serwera' w części konfiguracyjnej interfejsu użytkownika Home Assistanta.",
+                "content": "Integracje, które wymagają ponownego uruchomienia Home Assistanta: {number}\nMożesz to zrobić w sekcji 'Kontrola serwera' konfiguracji Home Assistanta.",
                 "title": "Oczekiwanie na restart"
             },
             "startup": {
