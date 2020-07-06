@@ -16,10 +16,9 @@
       {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
   condition:
     - condition: state
-      entity_id: input_boolean.alarm_clock
-      state: "on"
-    - condition: state
-      entity_id: input_boolean.automatic_temperature
+      entity_id:
+        - input_boolean.alarm_clock
+        - input_boolean.automatic_temperature
       state: "on"
   action:
     service: script.set_high_temperature
