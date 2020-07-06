@@ -8,10 +8,11 @@
 #          |___/ |___/
 #
 #- from github.com/basnijholt/home-assistant-config
-default: critical
+default: warning
 logs:
-  custom_components.kef_custom: warning
-  custom_components.aiokef: warning
-  aiokef: warning
+  homeassistant.core: warning
+  custom_components.kef_custom: debug
+  custom_components.aiokef: debug
+  aiokef: debug
   homeassistant.component.opentherm_gw: warning
   pyotgw: warning
