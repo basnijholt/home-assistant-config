@@ -7,6 +7,7 @@ import logging
 import socket
 import time
 from collections import namedtuple
+from contextlib import AsyncExitStack
 from typing import Any, Callable, Optional, Tuple, Union
 
 from async_timeout import timeout
@@ -247,8 +248,14 @@ class _AsyncCommunicator:
 
     async def open_connection(self) -> None:
         if self.is_connected:
-            _LOGGER.debug("%s: Connection is still alive", self.host)
-            return
+            if self._writer.is_closing():
+                _LOGGER.debug(
+                    "%s: Connection closing but did not disconnect", self.host
+                )
+                await self._disconnect()
+            else:
+                _LOGGER.debug("%s: Connection is still alive", self.host)
+                return
         retries = 0
         while retries < _MAX_CONNECTION_RETRIES:
             _LOGGER.debug("%s: Opening connection", self.host)
@@ -260,7 +267,7 @@ class _AsyncCommunicator:
                     )
                     _LOGGER.debug("%s: Opening connection successful", self.host)
             except ConnectionRefusedError:
-                _LOGGER.debug("%s: Opening connection failed", self.host)
+                _LOGGER.exception("%s: Opening connection failed", self.host)
                 await asyncio.sleep(0.5)
             except BlockingIOError:  # Connection incomming
                 # XXX: I have never seen this.
@@ -284,9 +291,16 @@ class _AsyncCommunicator:
             assert self._reader is not None
             _LOGGER.debug("%s: Writing message: %s", self.host, str(message))
             try:
+                # I am getting `[asyncio] socket.send() raised exception.`
+                # in one of the two lines below.
+                # After adding this, I've never seen the error again, but also
+                # never seen the log message below...
                 self._writer.write(message)
                 await self._writer.drain()
-            except:
+            except ConnectionResetError:
+                _LOGGER.exception("%s: Got an exception in writing", self.host)
+                await self._disconnect(use_lock=False)
+                raise
 
             _LOGGER.debug("%s: Reading message", self.host)
             try:
@@ -300,24 +314,36 @@ class _AsyncCommunicator:
             finally:
                 return data
 
-    async def _disconnect(self) -> None:
+    async def _disconnect(self, use_lock=True) -> None:
+        _LOGGER.debug("%s: _disconnect called", self.host)
+        self._maybe_cancel_disconnect_task()
+        maybe_lock = self._lock if use_lock else AsyncExitStack()
         if self.is_connected:
-            async with self._lock:
+            async with maybe_lock:
                 assert self._writer is not None
-                _LOGGER.debug("%s: Disconnecting", self.host)
-                self._writer.close()
-                await self._writer.wait_closed()
+                _LOGGER.debug("%s: Going to disconnect now", self.host)
+                try:
+                    self._writer.close()
+                    await self._writer.wait_closed()
+                    _LOGGER.debug("%s: Disconnected", self.host)
+                except ConnectionResetError:
+                    # Raised ConnectionResetError: [Errno 104] Connection reset by peer
+                    # which means that the speaker closed the connection.
+                    _LOGGER.exception("%s: Disconnecting raised", self.host)
                 self._reader, self._writer = (None, None)
 
     async def _disconnect_in(self, dt):
         await asyncio.sleep(dt)
         await asyncio.shield(self._disconnect())  # ℹ️ shield it from being cancelled
 
-    def _schedule_disconnect(self, dt=_KEEP_ALIVE):
+    def _maybe_cancel_disconnect_task():
         if self._disconnect_task is not None:
             _LOGGER.debug("%s: Cancelling the _disconnect_task", self.host)
             self._disconnect_task.cancel()
             self._disconnect_task = None
+
+    def _schedule_disconnect(self, dt=_KEEP_ALIVE):
+        self._maybe_cancel_disconnect_task()
         self._disconnect_task = asyncio.create_task(self._disconnect_in(dt))
 
     @retry(**_SEND_MSG_RETRY_KWARGS)
