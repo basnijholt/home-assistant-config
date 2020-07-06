@@ -54,3 +54,18 @@
         {% else %}
           script.going_to_sleep
         {% endif %}
+
+- alias: "Turn off: Turn off all lights when shaking button and sleep mode is on"
+  trigger:
+    event_data:
+      event: 1007
+      id: smart_switch_bedroom_1
+    event_type: deconz_event
+    platform: event
+  condition:
+    condition: state
+    entity_id: input_boolean.sleep_mode
+    state: "on"
+  action:
+    entity_id: all
+    service: light.turn_off
