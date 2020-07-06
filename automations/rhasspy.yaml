@@ -113,3 +113,11 @@
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.start_the_music
+
+- alias: "Rhasspy: Sleeping mode"
+  trigger:
+    event_type: rhasspy_SleepMode
+    platform: event
+  action:
+    entity_id: input_boolean.sleep_mode
+    service_template: "input_boolean.turn_{{ trigger.event.data.state }}"
