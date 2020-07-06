@@ -8,19 +8,23 @@ start_speakers:
     source:
       description: Which source to use on the speakers
       example: Wifi
+    entity_id:
+      description: entity_id of the speaker
+      example: media_player.kef_ls50
   sequence:
   - service: media_player.turn_on
-    entity_id: media_player.kef_ls50
-  - service: media_player.select_source
-    entity_id: media_player.kef_ls50
     data_template:
+      entity_id: "{{ entity_id }}"
+  - service: media_player.select_source
+    data_template:
+      entity_id: "{{ entity_id }}"
       source: '{{ source }}'
   - wait_template: '{{ is_state("media_player.kef_ls50", "on") }}'
     timeout: 00:01:00
     continue_on_timeout: 'false'
   - service: media_player.volume_set
-    entity_id: media_player.kef_ls50
     data_template:
+      entity_id: "{{ entity_id }}"
       volume_level: '{{ volume }}'
 start_spotify:
   alias: Start Spotify
@@ -60,11 +64,15 @@ start_spotify_playlist_of_nearest_person:
     source:
       description: The name of the speaker as it appears in Spotify
       example: Sonos One
+    entity_id:
+      description: entity_id of the speaker
+      example: media_player.kef_ls50
   sequence:
   - service: script.start_speakers
-    data:
+    data_template:
       source: Wifi
       volume: 0.25
+      entity_id: "{{ entity_id }}"
   - service: script.start_spotify
     data_template:
       source: "{{ source }}"
