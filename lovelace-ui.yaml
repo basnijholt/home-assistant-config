@@ -177,6 +177,7 @@ views:
           action: call-service
           service: script.start_spotify_playlist_of_nearest_person
           service_data:
+            entity_id: media_player.kef_ls50
             source: LS50 Wireless
         type: custom:button-card
       - icon: mdi:bed-king
@@ -190,6 +191,7 @@ views:
           action: call-service
           service: script.start_spotify_playlist_of_nearest_person
           service_data:
+            entity_id: media_player.kef_lsx
             source: LSX
         type: custom:button-card
       type: horizontal-stack
@@ -1942,6 +1944,41 @@ views:
       type: custom:fold-entity-row
     show_header_toggle: false
     type: entities
+  - cards:
+    - color_thresholds_transition: smooth
+      entities:
+      - entity: sensor.daily_power_cost
+        name: Power cost
+      font_size: 100
+      group: false
+      hour24: true
+      line_width: 6
+      points_per_hour: 1
+      show:
+        extrema: false
+        fill: fade
+        labels: false
+        name: true
+        state: true
+      type: custom:mini-graph-card
+    - color_thresholds_transition: smooth
+      entities:
+      - entity: sensor.daily_gas_cost
+        name: Gas cost
+      font_size: 100
+      group: false
+      hour24: true
+      line_width: 6
+      points_per_hour: 1
+      show:
+        extrema: false
+        fill: fade
+        labels: false
+        name: true
+        state: true
+      type: custom:mini-graph-card
+    name: Speedtest
+    type: horizontal-stack
   icon: mdi:test-tube
   path: tests
   title: Tests
