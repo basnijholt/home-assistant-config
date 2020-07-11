@@ -37,12 +37,12 @@ See also [my guide for my girlfriend ❤️](guide.md).
 ### Switches
 * TP-Link HS110 (3x) (€70.84)
 * Xiaomi Aqara Magic Cube (€11.08)
-* Xiaomi Aqara Single Button (4x) (€37.05)
+* Xiaomi Aqara Single Button (4x) (€57.38)
 * Philips Hue Dimmer switch (2x) (€33.22)
 
 ### Sensors
 * Xiaomi Aqara Door Sensor (4x) (€32.71)
-* Xiaomi Aqara Temperature Sensor (4x) (€34.40)
+* Xiaomi Aqara Temperature Sensor (5x) (€45.74)
 * Xiaomi Aqara Motion Sensor (6x) (€61.13)
 * Xiaomi Aqara Vibration Sensor (€11.59)
 * Xiaomi Mi Flora (3x) (€46.63)
@@ -56,7 +56,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 * LG OLED 55 C9
 
 ### Lights
-* Philips Hue E27 White and Color (12x) (€266.7)
+* Philips Hue E27 White and Color (12x) (€266.70)
 * Philips Hue E14 White and Color (2x) (€69.77)
 * Philips Hue GU10 Ambient White (5x) (92.70)
 * Philips Hue Go (€57.05)
@@ -81,7 +81,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 * Nodo-Shop – OpenTherm Gateway (OTGW) with NodeMCU (€48.81)
 
 ### Total cost
-*€1487.21* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
+*€1426.18* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
 I bought many things on Aliexpress and with discount or used on Amazon.
 
 ## Automation plans
