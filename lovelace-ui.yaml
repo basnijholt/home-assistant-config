@@ -1355,24 +1355,28 @@ views:
     show_name: false
     title: Open/close sensor
     type: glance
-  - columns: 4
+  - columns: 5
     entities:
     - entity: sensor.temperature_living_room
     - entity: sensor.temperature_bedroom
     - entity: sensor.temperature_hall
     - entity: sensor.temperature_bathroom
+    - entity: sensor.temperature_xbox
     - entity: sensor.humidity_living_room
     - entity: sensor.humidity_bedroom
     - entity: sensor.humidity_hall
     - entity: sensor.humidity_bathroom
+    - entity: sensor.humidity_xbox
     - entity: sensor.pressure_living_room
     - entity: sensor.pressure_bedroom
     - entity: sensor.pressure_hall
     - entity: sensor.pressure_bathroom
+    - entity: sensor.pressure_xbox
     - entity: sensor.temperature_sensor_living_room_battery_level
     - entity: sensor.temperature_sensor_bedroom_battery_level
     - entity: sensor.temperature_sensor_hall_battery_level
     - entity: sensor.temperature_sensor_bathroom_battery_level
+    - entity: sensor.temperature_sensor_xbox_battery_level
     show_icon: true
     show_name: false
     show_state: true
