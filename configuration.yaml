@@ -40,7 +40,6 @@ timer: !include includes/timers.yaml
 ios: !include includes/ios.yaml
 tplink: !include includes/tplink.yaml
 webostv: !include includes/webostv.yaml
-speedtestdotnet: !include includes/speedtestdotnet.yaml
 vacuum: !include includes/vacuum.yaml
 media_player: !include includes/media_players.yaml
 #homekit: !include includes/homekit.yaml
