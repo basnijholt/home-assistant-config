@@ -32,7 +32,6 @@
         message: >
           Cube set to {{ states("input_select.cube_mode") }}
 
-
 - alias: "Cube: change hue of living room lights with cube"
   trigger:
     platform: event
