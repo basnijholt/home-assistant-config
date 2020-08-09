@@ -257,7 +257,7 @@
     hours_outside_per_day_marcella:
       friendly_name: Ten minutes before alarm
       value_template: >
-        {% set d, h, m = state_attr("sensor.quarantine_meter_marcella", "value").split() %}
+        {% set d, h, m = state_attr("sensor.quarantine_meter_marcella", "value").split() %}  # XXX: fails when returns "0m"
         {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
         {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
         {{ (hours_outside / 14) | round(1) }}
@@ -265,7 +265,7 @@
     hours_outside_per_day_bas:
       friendly_name: Ten minutes before alarm
       value_template: >
-        {% set d, h, m = state_attr("sensor.quarantine_meter_bas", "value").split() %}
+        {% set d, h, m = state_attr("sensor.quarantine_meter_bas", "value").split() %}  # XXX: fails when returns "0m"
         {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
         {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
         {{ (hours_outside / 14) | round(1) }}
