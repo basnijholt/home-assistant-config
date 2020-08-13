@@ -1,0 +1,211 @@
+---
+
+- alias: "Light: living room Hue dimmer switch"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: dimmer_switch_living_room
+  action:
+    choose:
+    - conditions:  # Next color
+        - condition: template
+          value_template: "{{ trigger.event.data.event == 4002 }}"  # Lowest button
+      sequence:
+        - service: script.next_colors
+          data:
+            input_select: input_select.last_script_living_room
+
+    - conditions:  # Bright lights
+        - condition: template
+          value_template: "{{ trigger.event.data.event == 2000 }}"  # Second from highest button
+        - condition: state
+          entity_id: light.living_room_lights
+          state: "on"
+      sequence:
+        - service: script.white_lights_living_room
+        - service: light.turn_on
+          entity_id: light.living_room_lights
+          data:
+            brightness: "255"
+
+    - conditions:  # Increase brightness
+        - condition: template
+          value_template: "{{ trigger.event.data.event == 1002 }}"  # Second from highest button
+      sequence:
+        - service: script.increase_brightness
+          data:
+            group: light.living_room_lights
+
+- alias: "Light: bedroom Hue dimmer switch"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: dimmer_switch_bedroom
+  action:
+    choose:
+      - conditions:  # Next color
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 4002 }}"  # Lowest button
+        sequence:
+          - service: script.next_colors
+            data:
+              input_select: input_select.last_script_bedroom
+
+      - conditions:  # Bright lights
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 2000 }}"  # Second from highest button
+          - condition: state
+            entity_id: light.bedroom_lights
+            state: "on"
+        sequence:
+          - service: script.white_lights_bedroom
+          - service: light.turn_on
+            entity_id: light.bedroom_lights
+            data:
+              brightness: "255"
+
+      - conditions:  # Increase brightness
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1002 }}"  # Second from highest button
+        sequence:
+          - service: script.increase_brightness
+            data:
+              group: light.bedroom_lights
+
+- alias: "Light: living_room smart switch"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_living_room
+  action:
+    choose:
+      - conditions:  # Next color
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1004 }}"  # Double click
+        sequence:
+          - service: script.next_colors
+            data:
+              input_select: input_select.last_script_living_room
+
+      - conditions:  # Increase brightness
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1002 }}"  # Single click
+        sequence:
+          - service: script.increase_brightness
+            data:
+              group: light.living_room_lights
+
+      - conditions:  # Turn off everything in the living_room 
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1007 }}"  # Shake button
+          - condition: state
+            entity_id: light.living_room_lights
+            state: "on"
+        sequence:
+          - service: media_player.turn_off
+            entity_id: media_player.tv
+          - service: media_player.turn_off
+            entity_id: media_player.kef_ls50
+          - service: light.turn_off
+            entity_id: light.living_room_lights
+            data:
+              transition: 30
+
+- alias: "Light: bedroom smart switch"
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_bedroom_1
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: smart_switch_bedroom_2
+  action:
+    choose:
+      - conditions:  # Next color
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1004 }}"  # Double click
+        sequence:
+          - service: script.next_colors
+            data:
+              input_select: input_select.last_script_bedroom    
+
+      - conditions:  # Increase brightness
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1002 }}"  # Single click
+        sequence:
+          - service: script.increase_brightness
+            data:
+              group: light.bedroom_lights
+
+      - conditions:  # Turn on sleep mode, else, turn all lights off
+          condition: template
+          value_template: "{{ trigger.event.data.event == 1007 }}"  # Shake button
+        sequence:
+          choose:
+            - conditions:
+                condition: state
+                entity_id: input_boolean.sleep_mode
+                state: "on"
+              sequence:
+                service: light.turn_off
+                entity_id: all
+          default:
+            - service: light.turn_off
+              entity_id: light.bedroom_lights
+            - service: light.turn_off
+              entity_id: light.living_room_lights
+              data:
+                transition: 10
+            - service_template: >
+                {% set h, m = states("sensor.ten_minutes_before_alarm").split(":") %}
+                {% set t_diff = as_timestamp(now()) - as_timestamp(now().replace(hour=h|int, minute=m|int)) %}
+                {% set is_near_alarm = (t_diff|abs) < 1800 %}
+                {% set is_morning = now().replace(hour=6, minute=0) < now() < now().replace(hour=12, minute=0) %}
+                {% if is_near_alarm or is_morning %}
+                  script.turn_off_everything_non_automatic
+                {% else %}
+                  script.going_to_sleep
+                {% endif %}
+
+- alias: "Light: bathroom smart switch"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_bathroom
+  action:
+    choose:
+      - conditions:  # Increase brightness
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1002 }}"  # Single click
+        sequence:
+          - service: script.increase_brightness
+            data:
+              group: light.bathroom_lights
+      
+      - conditions:  # Next color
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1004 }}"  # Double click
+        sequence:
+          - service: input_select.select_next
+            entity_id: input_select.bathroom_color
+          - service: light.turn_on
+            entity_id: light.ceiling_bathroom
+            data_template:
+              color_name: >
+                {{ states("input_select.bathroom_color") }}
+
+      - conditions:  # Turn off everything in the bathroom 
+          - condition: template
+            value_template: "{{ trigger.event.data.event == 1007 }}"  # Shake button
+          - condition: state
+            entity_id: light.bathroom_lights
+            state: "on"
+        sequence:
+          - service: light.turn_off
+            entity_id: light.bathroom_lights
