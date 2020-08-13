@@ -15,12 +15,13 @@ Using my [iOS Light and Dark Mode Themes](https://github.com/basnijholt/lovelace
 ## Noteworthy (useful) automations
 * [Alarm clock](automations/alarm_clock.yaml) that uses the AppDaemon volume ramp and sunrise app ⏰
 * [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](automations/lovelace.yaml) for version control 🤖
-* [Controlling music using the Xiaomi Aqara Magic Cube](automations/cube.yaml) ∛
-* [Controlling the lights (hue and brightness) using the Xiaomi Aqara Magic Cube](automations/lights.yaml) ∛
+* [Controlling music and lights (hue and brightness) using the Xiaomi Aqara Magic Cube](automations/cube.yaml) ∛
+* [Controlling the lights using *Phillips Hue Dimmers* the *Xiaomi Aqara Smart Switches*](automations/control_switches.yaml) 🎛
+* [Automated lights](automations/lights.yaml) 💡
 * Guest mode that turns off automations
 * [Vacation mode](automations/vacation_mode.yaml)
 * [Presence detection in different rooms based on various binary template sensors](includes/binary_sensors.yaml)
-* [Robot vacuum automations](automations/vacuum.yaml)
+* [Robot vacuum automations](automations/vacuum.yaml) 🧹
 * [Arriving and leaving automations](automations/leaving_and_arriving.yaml)
 * [Notifications when the dishwasher  or washing machine is done](automations/utilities.yaml)
 * [Time at work 📈 tracking and notifications to go home](includes/sensors.yaml)
