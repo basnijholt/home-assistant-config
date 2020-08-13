@@ -8,23 +8,6 @@
 #
 #
 #- from github.com/basnijholt/home-assistant-config
-block_tv_volume_sync:
-  duration: "00:00:05"
-
-block_kef_ls50_volume_sync:
-  duration: "00:00:05"
-
-tv_volume_delay:
-  duration: "00:00:01"
-
-kef_ls50_volume_delay:
-  duration: "00:00:01"
-
-block_kef_lsx_volume_sync:
-  duration: "00:00:05"
-
-block_ha_menu_volume_sync:
-  duration: "00:00:05"
 
 block_dsp_sync:
   duration: "00:00:01"

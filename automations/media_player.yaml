@@ -77,73 +77,6 @@
       data:
         source: Opt
 
-- alias: "Media player: TV volume delay"
-  trigger:
-    platform: state
-    entity_id: sensor.tv_volume
-  action:
-    service: timer.start
-    entity_id: timer.tv_volume_delay
-
-- alias: "Media player: KEF volume delay"
-  trigger:
-    platform: state
-    entity_id: sensor.kef_ls50_volume
-  action:
-    service: timer.start
-    entity_id: timer.kef_ls50_volume_delay
-
-- alias: "Media player: sync volume TV → KEF"
-  trigger:
-    - platform: state
-      entity_id: timer.tv_volume_delay
-      to: "idle"
-    - platform: state
-      entity_id: sensor.tv_volume
-  condition:
-    - condition: template
-      value_template: >
-        {{ is_state_attr("media_player.kef_ls50", "source", "Opt")
-           or is_state_attr("media_player.kef_ls50", "source", "Usb") }}
-    - condition: state
-      entity_id: timer.block_tv_volume_sync
-      state: "idle"
-    - condition: template
-      value_template: >
-        {{ states("sensor.tv_volume") != None }}
-  action:
-    - service: timer.start
-      entity_id: timer.block_kef_ls50_volume_sync
-    - service: media_player.volume_set
-      entity_id: media_player.kef_ls50
-      data_template:
-        volume_level: >
-          {{ states("sensor.tv_volume") }}
-
-- alias: "Media player: sync volume KEF → TV"
-  trigger:
-    - platform: state
-      entity_id: timer.kef_ls50_volume_delay
-      to: "idle"
-    - platform: state
-      entity_id: sensor.kef_ls50_volume
-  condition:
-    - condition: template
-      value_template: >
-        {{ is_state_attr("media_player.kef_ls50", "source", "Opt")
-           or is_state_attr("media_player.kef_ls50", "source", "Usb") }}
-    - condition: state
-      entity_id: timer.block_kef_ls50_volume_sync
-      state: "idle"
-  action:
-    - service: timer.start
-      entity_id: timer.block_tv_volume_sync
-    - service: media_player.volume_set
-      entity_id: media_player.tv
-      data_template:
-        volume_level: >
-          {{ states("sensor.kef_ls50_volume") }}
-
 - alias: "Media player: update Spotify entity when TV is on every 5 seconds"
   trigger:
     platform: time_pattern
@@ -158,3 +91,32 @@
   action:
     service: homeassistant.update_entity
     entity_id: media_player.spotify
+
+- alias: "Media player: sync KEF LS50 and TV volume"
+  trigger:
+    - platform: state
+      entity_id: media_player.kef_ls50
+    - platform: state
+      entity_id: media_player.tv
+  condition:
+    condition: template
+    value_template: >
+      {{ trigger.from_state.attributes["volume_level"] != trigger.to_state.attributes["volume_level"]
+         and trigger.to_state.state != "off"
+         and state_attr("media_player.kef_ls50", "source") in ("Opt", "Usb") }}
+  action:
+    repeat:
+      sequence:
+        - service_template: media_player.volume_set
+          data_template:
+            entity_id: >
+              media_player.{{ "tv" if (trigger.entity_id == "media_player.kef_ls50") else "kef_ls50" }}
+            volume_level: >
+              {{ state_attr(trigger.entity_id, "volume_level") }}
+        - delay:
+            milliseconds: 200
+      until:
+        condition: template
+        value_template: >
+          {{ state_attr("media_player.tv", "volume_level") == state_attr("media_player.kef_ls50", "volume_level")
+             or not (is_state("media_player.tv", "on") and is_state("media_player.kef_ls50", "on")) }}
