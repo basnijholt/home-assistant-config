@@ -12,6 +12,6 @@ home:
   ignored_zones:
     - work
   devices:
-    - device_tracker.iphone_bas
-    - device_tracker.iphone_marcella
+    - device_tracker.basnijholt_iphone_2
+    - device_tracker.marcella_iphone
   tolerance: 50
