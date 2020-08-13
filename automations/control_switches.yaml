@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Light: living room Hue dimmer switch"
+- alias: "Control switches: living room Hue dimmer switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -46,7 +46,7 @@
           data:
             group: light.living_room_lights
 
-- alias: "Light: bedroom Hue dimmer switch"
+- alias: "Control switches: bedroom Hue dimmer switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -83,7 +83,7 @@
           data:
             group: light.bedroom_lights
 
-- alias: "Light: living_room smart switch"
+- alias: "Control switches: living_room smart switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -123,7 +123,7 @@
             data:
               transition: 30
 
-- alias: "Light: bedroom smart switch"
+- alias: "Control switches: bedroom smart switch"
   trigger:
     - platform: event
       event_type: deconz_event
@@ -156,32 +156,27 @@
           value_template: "{{ trigger.event.data.event == 1007 }}"  # Shake button
         sequence:
           choose:
-            conditions:
-              condition: state
-              entity_id: input_boolean.sleep_mode
-              state: "on"
-            sequence:
-              service: light.turn_off
-              entity_id: all
+            - conditions:
+                condition: state
+                entity_id: input_boolean.sleep_mode
+                state: "on"
+              sequence:
+                service: light.turn_off
+                entity_id: all
+            - conditions:
+                condition: template
+                value_template: >
+                  {% set h, m = states("sensor.ten_minutes_before_alarm").split(":") %}
+                  {% set t_diff = as_timestamp(now()) - as_timestamp(now().replace(hour=h|int, minute=m|int)) %}
+                  {% set is_near_alarm = (t_diff|abs) < 1800 %}
+                  {% set is_morning = now().replace(hour=6, minute=0) < now() < now().replace(hour=12, minute=0) %}
+                  {{ is_near_alarm or is_morning }}
+              sequence:
+                service: script.turn_off_everything
           default:
-            - service: light.turn_off
-              entity_id: light.bedroom_lights
-            - service: light.turn_off
-              entity_id: light.living_room_lights
-              data:
-                transition: 10
-            - service_template: >
-                {% set h, m = states("sensor.ten_minutes_before_alarm").split(":") %}
-                {% set t_diff = as_timestamp(now()) - as_timestamp(now().replace(hour=h|int, minute=m|int)) %}
-                {% set is_near_alarm = (t_diff|abs) < 1800 %}
-                {% set is_morning = now().replace(hour=6, minute=0) < now() < now().replace(hour=12, minute=0) %}
-                {% if is_near_alarm or is_morning %}
-                  script.turn_off_everything_non_automatic
-                {% else %}
-                  script.going_to_sleep
-                {% endif %}
+            service: script.going_to_sleep
 
-- alias: "Light: bathroom smart switch"
+- alias: "Control switches: bathroom smart switch"
   trigger:
     platform: event
     event_type: deconz_event
