@@ -18,8 +18,10 @@
     - platform: state
       entity_id: input_number.kef_ls50_desk_db
   action:
-    service: script.sync_kef_ls50_input_number
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: desk_db
@@ -32,8 +34,10 @@
     - platform: state
       entity_id: input_number.kef_ls50_wall_db
   action:
-    service: script.sync_kef_ls50_input_number
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "wall_db"
@@ -46,8 +50,10 @@
     - platform: state
       entity_id: input_number.kef_ls50_treble_db
   action:
-    service: script.sync_kef_ls50_input_number
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "treble_db"
@@ -60,8 +66,10 @@
     - platform: state
       entity_id: input_number.kef_ls50_high_hz
   action:
-    service: script.sync_kef_ls50_input_number
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "high_hz"
@@ -74,8 +82,10 @@
     - platform: state
       entity_id: input_number.kef_ls50_low_hz
   action:
-    service: script.sync_kef_ls50_input_number
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "low_hz"
@@ -88,8 +98,10 @@
     - platform: state
       entity_id: input_number.kef_ls50_sub_db
   action:
-    service: script.sync_kef_ls50_input_number
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "sub_db"
@@ -104,8 +116,10 @@
     - platform: state
       entity_id: input_select.kef_ls50_sub_polarity
   action:
-    service: script.sync_kef_ls50_input_select
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: select
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "sub_polarity"
@@ -117,8 +131,10 @@
     - platform: state
       entity_id: input_select.kef_ls50_bass_extension
   action:
-    service: script.sync_kef_ls50_input_select
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: select
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "bass_extension"
@@ -133,8 +149,10 @@
     - platform: state
       entity_id: input_boolean.kef_ls50_desk_mode
   action:
-    service: script.sync_kef_ls50_input_boolean
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "desk_mode"
@@ -146,8 +164,10 @@
     - platform: state
       entity_id: input_boolean.kef_ls50_wall_mode
   action:
-    service: script.sync_kef_ls50_input_boolean
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "wall_mode"
@@ -159,8 +179,10 @@
     - platform: state
       entity_id: input_boolean.kef_ls50_phase_correction
   action:
-    service: script.sync_kef_ls50_input_boolean
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "phase_correction"
@@ -172,8 +194,10 @@
     - platform: state
       entity_id: input_boolean.kef_ls50_high_pass
   action:
-    service: script.sync_kef_ls50_input_boolean
+    service: script.sync_kef_dsp
     data_template:
+      name: kef_ls50
+      domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "high_pass"

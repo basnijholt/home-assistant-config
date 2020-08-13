@@ -8,9 +8,3 @@
 #
 #
 #- from github.com/basnijholt/home-assistant-config
-
-block_dsp_sync:
-  duration: "00:00:01"
-
-block_dsp_sync_reversed:
-  duration: "00:00:01"
