@@ -283,3 +283,152 @@ update_dns:
         api: !secret gandi_api_key
         domain: !secret domain
         subdomain: !secret subdomain
+sync_kef_ls50_input_number:
+  alias: Sync KEF LS50 DSP setting with input_number
+  mode: parallel
+  fields:
+    trigger_entity_id:
+      description: trigger_entity_id
+    trigger_to_state:
+      description: trigger_to_state
+    attribute:
+      description: attribute
+    type:
+      description: type
+  sequence:
+    - condition: template
+      value_template: >
+        {{ state_attr("media_player.kef_ls50", attribute) != states('input_number.kef_ls50_{}'.format(attribute)) }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - choose:
+        - conditions:  # KEF LS50 has changed
+            condition: template
+            value_template: >
+              {{ (trigger_entity_id == "media_player.kef_ls50") }}
+          sequence:
+            service: input_number.set_value
+            data_template:
+              entity_id: "{{ 'input_number.kef_ls50_' + attribute }}"
+              value: "{{ state_attr('media_player.kef_ls50', attribute) | float }}"
+        - conditions:  # input_number changed
+            condition: template
+            value_template: "{{ trigger_entity_id == 'input_number.kef_ls50_' + attribute }}"
+          sequence:
+            service_template: kef_custom.set_{{ attribute }}
+            data_template:
+              entity_id: media_player.kef_ls50
+              value: >
+                {% if type == "int" %}
+                {{ trigger_to_state | int }}
+                {% else %}
+                {{ trigger_to_state | float }}
+                {% endif %}
+sync_kef_ls50_input_select:
+  alias: Sync KEF LS50 DSP setting with input_select
+  mode: parallel
+  fields:
+    trigger_entity_id:
+      description: trigger_entity_id
+    trigger_to_state:
+      description: trigger_to_state
+    attribute:
+      description: attribute
+  sequence:
+    - condition: template
+      value_template: >
+        {{ state_attr("media_player.kef_ls50", attribute) != states('input_select.kef_ls50_{}'.format(attribute)) }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - choose:
+        - conditions:  # KEF LS50 has changed
+            condition: template
+            value_template: >
+              {{ (trigger_entity_id == "media_player.kef_ls50") }}
+          sequence:
+            service: input_select.select_option
+            data_template:
+              entity_id: "input_selet.kef_ls50_{{ attribute }}"
+              option: "{{ state_attr('media_player.kef_ls50', attribute) }}"
+        - conditions:  # input_select.sub_polarity changed
+            condition: template
+            value_template: "{{ trigger_entity_id == 'input_select.kef_ls50_sub_polarity' }}"
+          sequence:
+            service: kef_custom.set_mode
+            entity_id: media_player.kef_ls50
+            data_template:
+              sub_polarity: "{{ trigger_to_state }}"
+        - conditions:  # input_select.bass_extension changed
+            condition: template
+            value_template: "{{ trigger_entity_id == 'input_select.kef_ls50_bass_extension' }}"
+          sequence:
+            service: kef_custom.set_mode
+            entity_id: media_player.kef_ls50
+            data_template:
+              bass_extension: "{{ trigger_to_state }}"
+
+sync_kef_ls50_input_boolean:
+  alias: Sync KEF LS50 DSP setting with input_boolean
+  mode: parallel
+  fields:
+    trigger_entity_id:
+      description: trigger_entity_id
+    trigger_to_state:
+      description: trigger_to_state
+    attribute:
+      description: attribute
+  sequence:
+    - condition: template
+      value_template: >
+        {{ state_attr("media_player.kef_ls50", attribute) != states('input_boolean.kef_ls50_{}'.format(attribute)) }}
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
+    - choose:
+        - conditions:  # KEF LS50 has changed
+            condition: template
+            value_template: >
+              {{ (trigger_entity_id == "media_player.kef_ls50") }}
+          sequence:
+            service_template: >
+              {% if state_attr('media_player.kef_ls50', attribute) %}
+              input_boolean.turn_on
+              {% else %}
+              input_boolean.turn_off
+              {% endif %}
+            data_template:
+              entity_id: "input_boolean.kef_ls50_{{ attribute }}"
+        - conditions:  # input_boolean.desk_mode changed
+            condition: template
+            value_template: "{{ trigger_entity_id == 'input_boolean.kef_ls50_desk_mode' }}"
+          sequence:
+            service: kef_custom.set_mode
+            entity_id: media_player.kef_ls50
+            data_template:
+              desk_mode: "{{ trigger_to_state }}"
+        - conditions:  # input_boolean.wall_mode changed
+            condition: template
+            value_template: "{{ trigger_entity_id == 'input_boolean.kef_ls50_wall_mode' }}"
+          sequence:
+            service: kef_custom.set_mode
+            entity_id: media_player.kef_ls50
+            data_template:
+              wall_mode: "{{ trigger_to_state }}"
+        - conditions:  # input_boolean.phase_correction changed
+            condition: template
+            value_template: "{{ trigger_entity_id == 'input_boolean.kef_ls50_phase_correction' }}"
+          sequence:
+            service: kef_custom.set_mode
+            entity_id: media_player.kef_ls50
+            data_template:
+              phase_correction: "{{ trigger_to_state }}"
+        - conditions:  # input_boolean.high_pass changed
+            condition: template
+            value_template: "{{ trigger_entity_id == 'input_boolean.kef_ls50_high_pass' }}"
+          sequence:
+            service: kef_custom.set_mode
+            entity_id: media_player.kef_ls50
+            data_template:
+              high_pass: "{{ trigger_to_state }}"
