@@ -58,6 +58,25 @@
     - service: media_player.turn_off
       entity_id: media_player.kef_ls50
 
+- alias: "Media player: if speakers off and TV on, turn on the speaker on TV state change"
+  trigger:
+    platform: state
+    entity_id: media_player.tv
+  condition:  # Happens e.g., when speakers auto-shutdown and the TV is on but idle
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "off"
+    - condition: state
+      entity_id: media_player.tv
+      state: "on"
+  action:
+    - service: media_player.turn_on
+      entity_id: media_player.kef_ls50
+    - service: media_player.select_source
+      entity_id: media_player.kef_ls50
+      data:
+        source: Opt
+
 - alias: "Media player: TV volume delay"
   trigger:
     platform: state
