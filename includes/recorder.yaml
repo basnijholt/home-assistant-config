@@ -14,7 +14,6 @@ purge_keep_days: 14
 exclude:
   domains:
     - sun
-    - weather
   entities:
     - sensor.n_days_last_month
     - sensor.monthly_power_last_period
