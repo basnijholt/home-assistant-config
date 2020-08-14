@@ -40,7 +40,7 @@
 
       - conditions: # Increase brightness
           condition: template
-          value_template: "{{ trigger.event.data.event == 1002 }}" # Second from highest button
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Top button
         sequence:
           service: script.increase_brightness
           data:
@@ -77,7 +77,7 @@
 
       - conditions: # Increase brightness
           condition: template
-          value_template: "{{ trigger.event.data.event == 1002 }}" # Second from highest button
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Top button
         sequence:
           service: script.increase_brightness
           data:
