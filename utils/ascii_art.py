@@ -32,7 +32,8 @@ def add_text(text, content):
 
 folders = ["automations", "includes"]
 for folder in folders:
-    for fname in Path(folder).glob("*.yaml"):
+    folder = Path("/config") / folder
+    for fname in folder.glob("*.yaml"):
         with fname.open() as f:
             content = f.readlines()
 
