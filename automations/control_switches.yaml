@@ -213,3 +213,41 @@
         sequence:
           service: light.turn_off
           entity_id: light.bathroom_lights
+
+- alias: "Control switches: downstairs smart switch"
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: smart_switch_downstairs
+  action:
+    choose:
+      - conditions: # Leaving: turn off everything
+          condition: template
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Single click
+        sequence:
+          - service: light.turn_on
+            data:
+              flash: "short"
+              entity_id: light.stairs_down
+          - service: script.turn_off_everything_non_automatic
+          - service: script.set_low_temperature
+
+      - conditions: # Arriving: turn on music and cozy lights
+          condition: template
+          value_template: "{{ trigger.event.data.event == 1004 }}" # Double click
+        sequence:
+          - service: light.turn_on
+            data:
+              flash: "short"
+              entity_id: light.stairs_up
+          - service: light.turn_on
+            entity_id: light.living_room_lights
+            data:
+              brightness: 100
+          - service: script.arriving
+          - service: script.start_spotify
+            data_template:
+              source: LS50 Wireless
+              playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
+              volume: 0.25
