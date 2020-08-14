@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# http://patorjk.com/software/taag/#p=display&f=Standard&t=input_boolean
 from pathlib import Path
 
 import pyfiglet
