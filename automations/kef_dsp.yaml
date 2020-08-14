@@ -139,7 +139,6 @@
       trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "bass_extension"
 
-
 # input_booleans
 
 - alias: "KEF DSP: sync desk_mode"
