@@ -332,7 +332,7 @@ sync_kef_dsp:
   sequence:
     - condition: template
       value_template: >
-        {{ state_attr("media_player.{}".format(name), attribute) 
+        {{ state_attr("media_player.{}".format(name), attribute)
            != states('input_{}.{}_{}'.format(domain, name, attribute)) }}
     - condition: template
       value_template: "{{ is_state('media_player.{}'.format(name), 'on') }}"
