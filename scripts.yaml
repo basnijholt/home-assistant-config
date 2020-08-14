@@ -310,7 +310,7 @@ update_dns:
         subdomain: !secret subdomain
 
 sync_kef_dsp:
-  alias: Sync KEF DSP setting with input_number
+  alias: Sync KEF DSP setting with input_number, input_select, or input_boolean
   mode: parallel
   max: 20
   fields:
