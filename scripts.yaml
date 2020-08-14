@@ -351,19 +351,24 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'input_number.{}_{}'.format(name, attribute) }}"
                     value: "{{ state_attr('media_player.{}'.format(name), attribute) | float }}"
-              - conditions: # input_number changed
+              - conditions: # input_number in db changed
                   condition: template
-                  value_template: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) }}"
+                  value_template: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) and attribute[-2:] == 'db' }}"
                 sequence:
                   service_template: kef_custom.set_{{ attribute }}
                   data_template:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
-                    value: >
-                      {% if type == "int" %}
-                      {{ trigger_to_state | int }}
-                      {% else %}
-                      {{ trigger_to_state | float }}
-                      {% endif %}
+                    db_value: >
+                      {% if type == "int" %}{{ trigger_to_state | int }}{% else %}{{ trigger_to_state | float }}{% endif %}
+              - conditions: # input_number in hz changed
+                  condition: template
+                  value_template: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) and attribute[-2:] == 'hz' }}"
+                sequence:
+                  service_template: kef_custom.set_{{ attribute }}
+                  data_template:
+                    entity_id: "{{ 'media_player.{}'.format(name) }}"
+                    hz_value: >
+                      {% if type == "int" %}{{ trigger_to_state | int }}{% else %}{{ trigger_to_state | float }}{% endif %}
 
         - conditions: # input_select
             condition: template
