@@ -37,7 +37,7 @@
   lights_rgb:
     - light.toilet
     - light.ceiling_kitchen
-  lights_ct:  # XXX: these lights can handle `color_temp = [153, 500]` but maybe it is alright?
+  lights_ct: # XXX: these lights can handle `color_temp = [153, 500]` but maybe it is alright?
     - light.stairs_up
     - light.stairs_down
     - light.hall_1

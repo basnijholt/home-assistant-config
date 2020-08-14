@@ -55,7 +55,7 @@
       entity_id: input_boolean.guest_mode
       state: "off"
   action:
-    - delay: "00:05:00"  # something still needs to be on in 5 min
+    - delay: "00:05:00" # something still needs to be on in 5 min
     - condition: state
       entity_id: binary_sensor.no_one_home
       state: "on"
@@ -82,7 +82,7 @@
     event_type: deconz_event
     event_data:
       id: smart_switch_downstairs
-      event: 1002  # Single click
+      event: 1002 # Single click
   action:
     - service: light.turn_on
       data:

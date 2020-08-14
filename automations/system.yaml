@@ -56,7 +56,7 @@
 - alias: "System: update DNS"
   description: Update the DNS at Gandi
   trigger:
-    platform: time_pattern  # XXX: trigger on IP change
+    platform: time_pattern # XXX: trigger on IP change
     minutes: "/15"
   action:
     service: script.update_dns

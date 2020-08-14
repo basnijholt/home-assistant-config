@@ -8,5 +8,5 @@
 #                   |_____|
 #
 #- from github.com/basnijholt/home-assistant-config
-convert_lovelace: 'python /config/json2yaml.py /config/.storage/lovelace /config/lovelace-ui.yaml'
+convert_lovelace: "python /config/json2yaml.py /config/.storage/lovelace /config/lovelace-ui.yaml"
 update_dns: '/bin/bash /config/update_dns.sh "{{ api }}" "{{ domain }}" "{{ subdomain }}"'

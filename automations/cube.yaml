@@ -52,7 +52,6 @@
           - service: media_player.media_next_track
             entity_id: media_player.spotify
 
-
       # Pause and play Spotify song by tapping cube on side 1
       - conditions:
           - condition: template
@@ -82,7 +81,7 @@
       id: mi_magic_cube
   action:
     choose:
-      - conditions:  # Change hue of living room lights
+      - conditions: # Change hue of living room lights
           condition: state
           entity_id: input_select.cube_mode
           state: "Hue"
@@ -102,7 +101,7 @@
                 {% if hue_sat == None %} {% set hue_sat = [30, 56] %} {% endif %}
                 {{ hue_sat[1] }}
 
-      - conditions:  # Change brightness of living room lights
+      - conditions: # Change brightness of living room lights
           condition: state
           entity_id: input_select.cube_mode
           state: "Brightness"
@@ -116,14 +115,14 @@
               {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
               {{ new_brightness|int }}
 
-      - conditions:  # Change speaker volume
+      - conditions: # Change speaker volume
           condition: state
           entity_id: input_select.cube_mode
           state: "Volume"
         sequence:
           - service: media_player.volume_set
             entity_id: media_player.kef_ls50
-            data_template:  # 90 deg is 10%
+            data_template: # 90 deg is 10%
               volume_level: >
                 {% set max_change = 0.15 %}
                 {% set dV = [trigger.event.data.event / 100 / 900, max_change] | min %}

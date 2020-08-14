@@ -15,7 +15,7 @@
     event_type: deconz_event
     event_data:
       id: smart_switch_doorbell
-      event: 1002  # Single click
+      event: 1002 # Single click
   action:
     - service: light.turn_on
       data:

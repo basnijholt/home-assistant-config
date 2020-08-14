@@ -62,7 +62,7 @@
   trigger:
     platform: state
     entity_id: media_player.tv
-  condition:  # Happens e.g., when speakers auto-shutdown and the TV is on but idle
+  condition: # Happens e.g., when speakers auto-shutdown and the TV is on but idle
     - condition: state
       entity_id: media_player.kef_ls50
       state: "off"

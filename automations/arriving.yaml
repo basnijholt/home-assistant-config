@@ -16,7 +16,7 @@
       event_type: deconz_event
       event_data:
         id: smart_switch_downstairs
-        event: 1004  # Double click
+        event: 1004 # Double click
   action:
     - service: light.turn_on
       data:

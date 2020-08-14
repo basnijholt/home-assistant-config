@@ -17,17 +17,17 @@
       id: dimmer_switch_living_room
   action:
     choose:
-      - conditions:  # Next color
+      - conditions: # Next color
           condition: template
-          value_template: "{{ trigger.event.data.event == 4002 }}"  # Lowest button
+          value_template: "{{ trigger.event.data.event == 4002 }}" # Lowest button
         sequence:
           service: script.next_colors
           data:
             input_select: input_select.last_script_living_room
 
-      - conditions:  # Bright lights
+      - conditions: # Bright lights
           - condition: template
-            value_template: "{{ trigger.event.data.event == 2000 }}"  # Second from highest button
+            value_template: "{{ trigger.event.data.event == 2000 }}" # Second from highest button
           - condition: state
             entity_id: light.living_room_lights
             state: "on"
@@ -38,9 +38,9 @@
             data:
               brightness: "255"
 
-      - conditions:  # Increase brightness
+      - conditions: # Increase brightness
           condition: template
-          value_template: "{{ trigger.event.data.event == 1002 }}"  # Second from highest button
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Second from highest button
         sequence:
           service: script.increase_brightness
           data:
@@ -54,17 +54,17 @@
       id: dimmer_switch_bedroom
   action:
     choose:
-      - conditions:  # Next color
+      - conditions: # Next color
           condition: template
-          value_template: "{{ trigger.event.data.event == 4002 }}"  # Lowest button
+          value_template: "{{ trigger.event.data.event == 4002 }}" # Lowest button
         sequence:
           service: script.next_colors
           data:
             input_select: input_select.last_script_bedroom
 
-      - conditions:  # Bright lights
+      - conditions: # Bright lights
           - condition: template
-            value_template: "{{ trigger.event.data.event == 2000 }}"  # Second from highest button
+            value_template: "{{ trigger.event.data.event == 2000 }}" # Second from highest button
           - condition: state
             entity_id: light.bedroom_lights
             state: "on"
@@ -75,9 +75,9 @@
             data:
               brightness: "255"
 
-      - conditions:  # Increase brightness
+      - conditions: # Increase brightness
           condition: template
-          value_template: "{{ trigger.event.data.event == 1002 }}"  # Second from highest button
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Second from highest button
         sequence:
           service: script.increase_brightness
           data:
@@ -91,25 +91,25 @@
       id: smart_switch_living_room
   action:
     choose:
-      - conditions:  # Next color
+      - conditions: # Next color
           condition: template
-          value_template: "{{ trigger.event.data.event == 1004 }}"  # Double click
+          value_template: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
           service: script.next_colors
           data:
             input_select: input_select.last_script_living_room
 
-      - conditions:  # Increase brightness
+      - conditions: # Increase brightness
           condition: template
-          value_template: "{{ trigger.event.data.event == 1002 }}"  # Single click
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
           service: script.increase_brightness
           data:
             group: light.living_room_lights
 
-      - conditions:  # Turn off everything in the living room
+      - conditions: # Turn off everything in the living room
           - condition: template
-            value_template: "{{ trigger.event.data.event == 1007 }}"  # Shake button
+            value_template: "{{ trigger.event.data.event == 1007 }}" # Shake button
           - condition: state
             entity_id: light.living_room_lights
             state: "on"
@@ -135,25 +135,25 @@
         id: smart_switch_bedroom_2
   action:
     choose:
-      - conditions:  # Next color
+      - conditions: # Next color
           condition: template
-          value_template: "{{ trigger.event.data.event == 1004 }}"  # Double click
+          value_template: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
           service: script.next_colors
           data:
             input_select: input_select.last_script_bedroom
 
-      - conditions:  # Increase brightness
+      - conditions: # Increase brightness
           condition: template
-          value_template: "{{ trigger.event.data.event == 1002 }}"  # Single click
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
           service: script.increase_brightness
           data:
             group: light.bedroom_lights
 
-      - conditions:  # Turn on sleep mode, else, turn all lights off
+      - conditions: # Turn on sleep mode, else, turn all lights off
           condition: template
-          value_template: "{{ trigger.event.data.event == 1007 }}"  # Shake button
+          value_template: "{{ trigger.event.data.event == 1007 }}" # Shake button
         sequence:
           choose:
             - conditions:
@@ -184,17 +184,17 @@
       id: smart_switch_bathroom
   action:
     choose:
-      - conditions:  # Increase brightness
+      - conditions: # Increase brightness
           condition: template
-          value_template: "{{ trigger.event.data.event == 1002 }}"  # Single click
+          value_template: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
           service: script.increase_brightness
           data:
             group: light.bathroom_lights
 
-      - conditions:  # Next color
+      - conditions: # Next color
           condition: template
-          value_template: "{{ trigger.event.data.event == 1004 }}"  # Double click
+          value_template: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
           - service: input_select.select_next
             entity_id: input_select.bathroom_color
@@ -204,9 +204,9 @@
               color_name: >
                 {{ states("input_select.bathroom_color") }}
 
-      - conditions:  # Turn off everything in the bathroom
+      - conditions: # Turn off everything in the bathroom
           - condition: template
-            value_template: "{{ trigger.event.data.event == 1007 }}"  # Shake button
+            value_template: "{{ trigger.event.data.event == 1007 }}" # Shake button
           - condition: state
             entity_id: light.bathroom_lights
             state: "on"

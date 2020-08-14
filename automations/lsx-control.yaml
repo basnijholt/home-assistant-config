@@ -17,7 +17,7 @@
       entity_id: input_select.lsx_volume
   action:
     choose:
-      - conditions:  # KEF LSX volume changed
+      - conditions: # KEF LSX volume changed
           condition: template
           value_template: >
             {{ (trigger.entity_id == "media_player.kef_lsx")
@@ -31,7 +31,7 @@
               {% set volume = ((100 * state_attr("media_player.kef_lsx", "volume_level")) // 5 * 5) | int %}
               {% if volume == 100 %}{% set volume = 95 %}{% endif %}
               {{ volume }}
-      - conditions:  # input_select changed
+      - conditions: # input_select changed
           condition: template
           value_template: "{{ trigger.entity_id == 'input_select.lsx_volume' }}"
         sequence:
@@ -49,7 +49,7 @@
       entity_id: input_select.lsx_source
   action:
     choose:
-      - conditions:  # KEF LSX source changed
+      - conditions: # KEF LSX source changed
           condition: template
           value_template: >
             {{ (trigger.entity_id == "media_player.kef_lsx")
@@ -61,7 +61,7 @@
           data_template:
             option: >
               {{ trigger.to_state.attributes["source"] }}
-      - conditions:  # input_select changed
+      - conditions: # input_select changed
           condition: template
           value_template: "{{ trigger.entity_id == 'input_select.lsx_source' }}"
         sequence:
