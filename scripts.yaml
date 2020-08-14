@@ -4,7 +4,7 @@ start_speakers:
   fields:
     volume:
       description: Volume at which to play
-      example: '0.3'
+      example: "0.3"
     source:
       description: Which source to use on the speakers
       example: Wifi
@@ -12,20 +12,21 @@ start_speakers:
       description: entity_id of the speaker
       example: media_player.kef_ls50
   sequence:
-  - service: media_player.turn_on
-    data_template:
-      entity_id: "{{ entity_id }}"
-  - service: media_player.select_source
-    data_template:
-      entity_id: "{{ entity_id }}"
-      source: '{{ source }}'
-  - wait_template: '{{ is_state("media_player.kef_ls50", "on") }}'
-    timeout: 00:01:00
-    continue_on_timeout: 'false'
-  - service: media_player.volume_set
-    data_template:
-      entity_id: "{{ entity_id }}"
-      volume_level: '{{ volume }}'
+    - service: media_player.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+    - service: media_player.select_source
+      data_template:
+        entity_id: "{{ entity_id }}"
+        source: "{{ source }}"
+    - wait_template: '{{ is_state("media_player.kef_ls50", "on") }}'
+      timeout: 00:01:00
+      continue_on_timeout: false
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "{{ entity_id }}"
+        volume_level: "{{ volume }}"
+
 start_spotify:
   alias: Start Spotify
   description: Start a Spotify playlist on KEF speakers
@@ -37,26 +38,27 @@ start_spotify:
       description: The playlist URI from Spotify
       example: 6rPTm9dYftKcFAfwyRqmDZ
   sequence:
-  - service: homeassistant.update_entity
-    entity_id: media_player.spotify
-  - wait_template: '{{ source in state_attr("media_player.spotify", "source_list")  }}'
-    timeout: 00:01:00
-    continue_on_timeout: false
-  - service: media_player.select_source
-    entity_id: media_player.spotify
-    data_template:
-      source: '{{ source }}'
-  - service: media_player.shuffle_set
-    entity_id: media_player.spotify
-    data:
-      shuffle: true
-  - service: media_player.play_media
-    data_template:
+    - service: homeassistant.update_entity
       entity_id: media_player.spotify
-      media_content_type: "playlist"
-      media_content_id: spotify:playlist:{{ playlist }}
-  - service: media_player.media_play
-    entity_id: media_player.spotify
+    - wait_template: '{{ source in state_attr("media_player.spotify", "source_list")  }}'
+      timeout: 00:01:00
+      continue_on_timeout: false
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data_template:
+        source: "{{ source }}"
+    - service: media_player.shuffle_set
+      entity_id: media_player.spotify
+      data:
+        shuffle: true
+    - service: media_player.play_media
+      data_template:
+        entity_id: media_player.spotify
+        media_content_type: "playlist"
+        media_content_id: spotify:playlist:{{ playlist }}
+    - service: media_player.media_play
+      entity_id: media_player.spotify
+
 start_spotify_playlist_of_nearest_person:
   alias: Start Spotify
   description: Start a Spotify playlist on KEF speakers
@@ -68,127 +70,132 @@ start_spotify_playlist_of_nearest_person:
       description: entity_id of the speaker
       example: media_player.kef_ls50
   sequence:
-  - service: script.start_speakers
-    data_template:
-      source: Wifi
-      volume: 0.25
-      entity_id: "{{ entity_id }}"
-  - service: script.start_spotify
-    data_template:
-      source: "{{ source }}"
-      playlist: >
-        {{ states("sensor.favorite_playlist_of_nearest_person") }}
-      volume: 0.25
+    - service: script.start_speakers
+      data_template:
+        source: Wifi
+        volume: 0.25
+        entity_id: "{{ entity_id }}"
+    - service: script.start_spotify
+      data_template:
+        source: "{{ source }}"
+        playlist: >
+          {{ states("sensor.favorite_playlist_of_nearest_person") }}
+        volume: 0.25
+
 cozy_lights_living_room:
   alias: Set cozy lights in the living room
   sequence:
-  - data:
-      entity_id: light.sphere_1
-      hs_color:
-      - 336.293
-      - 80.392
-    service: light.turn_on
-  - data:
-      entity_id: light.sphere_2
-      hs_color:
-      - 299.147
-      - 82.745
-    service: light.turn_on
-  - data:
-      entity_id: light.corner_living_room
-      hs_color:
-      - 26.667
-      - 88.235
-    service: light.turn_on
-  - data:
-      entity_id: light.ceiling_living_room
-      hs_color:
-      - 268.267
-      - 88.235
-    service: light.turn_on
-  - data:
-      entity_id: light.tv_led
-      hs_color:
-      - 26.725
-      - 89.804
-    service: light.turn_on
-  - service: input_select.select_option
-    entity_id: input_select.last_script_living_room
-    data:
-      option: script.cozy_lights_living_room
+    - data:
+        entity_id: light.sphere_1
+        hs_color:
+          - 336.293
+          - 80.392
+      service: light.turn_on
+    - data:
+        entity_id: light.sphere_2
+        hs_color:
+          - 299.147
+          - 82.745
+      service: light.turn_on
+    - data:
+        entity_id: light.corner_living_room
+        hs_color:
+          - 26.667
+          - 88.235
+      service: light.turn_on
+    - data:
+        entity_id: light.ceiling_living_room
+        hs_color:
+          - 268.267
+          - 88.235
+      service: light.turn_on
+    - data:
+        entity_id: light.tv_led
+        hs_color:
+          - 26.725
+          - 89.804
+      service: light.turn_on
+    - service: input_select.select_option
+      entity_id: input_select.last_script_living_room
+      data:
+        option: script.cozy_lights_living_room
+
 cozy_lights_bedroom:
   alias: Set cozy lights in the bedroom
   sequence:
-  - data:
-      entity_id: light.bamboo
-      hs_color:
-      - 299.72
-      - 83.922
-    service: light.turn_on
-  - data:
-      entity_id: light.philips_go
-      hs_color:
-      - 0
-      - 100
-    service: light.turn_on
-  - data:
-      entity_id: light.bed_reading_up
-      hs_color:
-      - 26.725
-      - 89.804
-    service: light.turn_on
-  - data:
-      entity_id: light.bed_reading_down
-      hs_color:
-      - 26.725
-      - 89.804
-    service: light.turn_on
-  - data:
-      entity_id: light.lampan
-      hs_color:
-      - 269.86
-      - 84.314
-    service: light.turn_on
-  - data:
-      entity_id: light.ceiling_bedroom
-      hs_color:
-      - 22
-      - 100
-    service: light.turn_on
-  - data:
-      entity_id: light.bed_led
-      hs_color:
-      - 10
-      - 100
-    service: light.turn_on
-  - service: input_select.select_option
-    entity_id: input_select.last_script_bedroom
-    data:
-      option: script.cozy_lights_bedroom
+    - data:
+        entity_id: light.bamboo
+        hs_color:
+          - 299.72
+          - 83.922
+      service: light.turn_on
+    - data:
+        entity_id: light.philips_go
+        hs_color:
+          - 0
+          - 100
+      service: light.turn_on
+    - data:
+        entity_id: light.bed_reading_up
+        hs_color:
+          - 26.725
+          - 89.804
+      service: light.turn_on
+    - data:
+        entity_id: light.bed_reading_down
+        hs_color:
+          - 26.725
+          - 89.804
+      service: light.turn_on
+    - data:
+        entity_id: light.lampan
+        hs_color:
+          - 269.86
+          - 84.314
+      service: light.turn_on
+    - data:
+        entity_id: light.ceiling_bedroom
+        hs_color:
+          - 22
+          - 100
+      service: light.turn_on
+    - data:
+        entity_id: light.bed_led
+        hs_color:
+          - 10
+          - 100
+      service: light.turn_on
+    - service: input_select.select_option
+      entity_id: input_select.last_script_bedroom
+      data:
+        option: script.cozy_lights_bedroom
+
 white_lights_living_room:
   alias: Set white lights in the living room
   sequence:
-  - service: light.turn_on
-    data:
-      entity_id:
-      - light.living_room_lights
-      color_temp: 366
-  - service: input_select.select_option
-    entity_id: input_select.last_script_living_room
-    data:
-      option: script.white_lights_living_room
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.living_room_lights
+        color_temp: 366
+    - service: input_select.select_option
+      entity_id: input_select.last_script_living_room
+      data:
+        option: script.white_lights_living_room
+
 white_lights_bedroom:
   alias: Set white lights in the bedroom
   sequence:
-  - data:
-      color_temp: 366
-      entity_id:
-      - light.bedroom_lights
-    service: light.turn_on
-  - service: input_select.select_option
-    entity_id: input_select.last_script_bedroom
-    data:
-      option: script.white_lights_bedroom
+    - data:
+        color_temp: 366
+        entity_id:
+          - light.bedroom_lights
+      service: light.turn_on
+    - service: input_select.select_option
+      entity_id: input_select.last_script_bedroom
+      data:
+        option: script.white_lights_bedroom
+
 increase_brightness:
   alias: Increase the brightness of a group of lights
   fields:
@@ -196,39 +203,51 @@ increase_brightness:
       description: The group to apply the light increase to.
       example: light.living_room_lights
   sequence:
-  - service: light.turn_on
-    data_template:
-      entity_id: '{{ group }}'
-      brightness: "{% set b = state_attr(group, 'brightness') %} {% if b == None\
-        \ %}\n  10\n{% elif b < 20 %}\n  128\n{% elif b < 140 %}\n  255\n{% else %}\n\
-        \  10\n{% endif %}\n"
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ group }}"
+        brightness: >
+          {% set b = state_attr(group, 'brightness') %}
+          {% if b == None %}
+            10
+          {% elif b < 20 %}
+            128
+          {% elif b < 140 %}
+            255
+          {% else %}
+            10
+          {% endif %}
+
 turn_off_everything_non_automatic:
   alias: Turn off everything
   sequence:
-  - service: light.turn_off
-    data:
-      transition: 4
-      entity_id:
-      - light.living_room_lights
-      - light.bedroom_lights
-  - service: media_player.turn_off
-    entity_id: media_player.kef_ls50
-  - service: media_player.turn_off
-    entity_id: media_player.kef_lsx
-  - service: media_player.turn_off
-    entity_id: media_player.tv
+    - service: light.turn_off
+      data:
+        transition: 4
+        entity_id:
+          - light.living_room_lights
+          - light.bedroom_lights
+    - service: media_player.turn_off
+      entity_id: media_player.kef_ls50
+    - service: media_player.turn_off
+      entity_id: media_player.kef_lsx
+    - service: media_player.turn_off
+      entity_id: media_player.tv
+
 turn_off_everything:
   alias: Turn off everything
   sequence:
-  - service: script.turn_off_everything_non_automatic
-  - service: light.turn_off
-    entity_id: all
+    - service: script.turn_off_everything_non_automatic
+    - service: light.turn_off
+      entity_id: all
+
 going_to_sleep:
   alias: Going to sleep
   sequence:
-  - entity_id: input_boolean.sleep_mode
-    service: input_boolean.turn_on
-  - service: script.turn_off_everything_non_automatic
+    - entity_id: input_boolean.sleep_mode
+      service: input_boolean.turn_on
+    - service: script.turn_off_everything_non_automatic
+
 next_colors:
   alias: Change the colors of lights
   fields:
@@ -236,19 +255,21 @@ next_colors:
       description: The input select that lists script names.
       example: input_select.last_script_living_room
   sequence:
-  - service: input_select.select_next
-    data_template:
-      entity_id: '{{ input_select }}'
-  - service_template: '{{ states(input_select) }}'
+    - service: input_select.select_next
+      data_template:
+        entity_id: "{{ input_select }}"
+    - service_template: "{{ states(input_select) }}"
+
 start_netflix:
   alias: Start Netflix
   sequence:
-  - entity_id: media_player.tv
-    service: media_player.turn_on
-  - data:
-      source: Netflix
-    entity_id: media_player.tv
-    service: media_player.select_source
+    - entity_id: media_player.tv
+      service: media_player.turn_on
+    - data:
+        source: Netflix
+      entity_id: media_player.tv
+      service: media_player.select_source
+
 set_low_temperature:
   alias: Set low temperature
   sequence:
@@ -257,6 +278,7 @@ set_low_temperature:
       data_template:
         temperature: >
           {{ states("input_number.temperature_low") }}
+
 set_high_temperature:
   alias: Set high temperature
   sequence:
@@ -265,16 +287,19 @@ set_high_temperature:
       data_template:
         temperature: >
           {{ states("input_number.temperature_high") }}
+
 leaving:
   alias: Leaving the house
   sequence:
     - service: script.set_low_temperature
     - service: script.turn_off_everything
+
 arriving:
   alias: Arriving home
   sequence:
     - service: script.set_high_temperature
     - service: script.cozy_lights_living_room
+
 update_dns:
   alias: Update DNS record
   sequence:
@@ -283,9 +308,11 @@ update_dns:
         api: !secret gandi_api_key
         domain: !secret domain
         subdomain: !secret subdomain
+
 sync_kef_dsp:
   alias: Sync KEF DSP setting with input_number
   mode: parallel
+  max: 20
   fields:
     trigger_entity_id:
       description: trigger_entity_id
@@ -295,10 +322,13 @@ sync_kef_dsp:
       description: attribute
     domain:
       description: domain
+      example: select
     name:
       description: name
+      example: kef_ls50
     type:
-      description: type
+      description: int or float
+      example: int
   sequence:
     - condition: template
       value_template: >
@@ -307,13 +337,12 @@ sync_kef_dsp:
     - condition: template
       value_template: "{{ is_state('media_player.{}'.format(name), 'on') }}"
     - choose:
-
-        - conditions:  # input_number
+        - conditions: # input_number
             condition: template
             value_template: "{{ domain == 'number' }}"
           sequence:
             choose:
-              - conditions:  # KEF has changed
+              - conditions: # KEF has changed
                   condition: template
                   value_template: >
                     {{ trigger_entity_id == "media_player.{}".format(name) }}
@@ -322,7 +351,7 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'input_number.{}_{}'.format(name, attribute) }}"
                     value: "{{ state_attr('media_player.{}'.format(name), attribute) | float }}"
-              - conditions:  # input_number changed
+              - conditions: # input_number changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) }}"
                 sequence:
@@ -336,12 +365,12 @@ sync_kef_dsp:
                       {{ trigger_to_state | float }}
                       {% endif %}
 
-        - conditions:  # input_select
+        - conditions: # input_select
             condition: template
             value_template: "{{ domain == 'select' }}"
           sequence:
             choose:
-              - conditions:  # KEF has changed
+              - conditions: # KEF has changed
                   condition: template
                   value_template: >
                     {{ trigger_entity_id == "media_player.{}".format(name) }}
@@ -350,7 +379,7 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'input_select.{}_{}'.format(name, attribute) }}"
                     option: "{{ state_attr('media_player.{}'.format(name), attribute) }}"
-              - conditions:  # input_select.sub_polarity changed
+              - conditions: # input_select.sub_polarity changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_select.{}_sub_polarity'.format(name) }}"
                 sequence:
@@ -358,7 +387,7 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     sub_polarity: "{{ trigger_to_state }}"
-              - conditions:  # input_select.bass_extension changed
+              - conditions: # input_select.bass_extension changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_select.{}_bass_extension'.format(name) }}"
                 sequence:
@@ -366,13 +395,13 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     bass_extension: "{{ trigger_to_state }}"
-        
-        - conditions:  # input_boolean
+
+        - conditions: # input_boolean
             condition: template
             value_template: "{{ domain == 'boolean' }}"
           sequence:
             choose:
-              - conditions:  # KEF has changed
+              - conditions: # KEF has changed
                   condition: template
                   value_template: >
                     {{ trigger_entity_id == "media_player.{}".format(name) }}
@@ -385,7 +414,7 @@ sync_kef_dsp:
                     {% endif %}
                   data_template:
                     entity_id: "{{ 'input_boolean.{}_{}'.format(name, attribute) }}"
-              - conditions:  # input_boolean.desk_mode changed
+              - conditions: # input_boolean.desk_mode changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_boolean.{}_desk_mode'.format(name) }}"
                 sequence:
@@ -393,7 +422,7 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     desk_mode: "{{ trigger_to_state }}"
-              - conditions:  # input_boolean.wall_mode changed
+              - conditions: # input_boolean.wall_mode changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_boolean.{}_wall_mode'.format(name) }}"
                 sequence:
@@ -401,7 +430,7 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     wall_mode: "{{ trigger_to_state }}"
-              - conditions:  # input_boolean.phase_correction changed
+              - conditions: # input_boolean.phase_correction changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_boolean.{}_phase_correction'.format(name) }}"
                 sequence:
@@ -409,7 +438,7 @@ sync_kef_dsp:
                   data_template:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     phase_correction: "{{ trigger_to_state }}"
-              - conditions:  # input_boolean.high_pass changed
+              - conditions: # input_boolean.high_pass changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_boolean.{}_high_pass'.format(name) }}"
                 sequence:
