@@ -15,11 +15,11 @@
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
   condition:
-    - condition: state
-      entity_id:
-        - input_boolean.alarm_clock
-        - input_boolean.automatic_temperature
-      state: "on"
+    condition: state
+    entity_id:
+      - input_boolean.alarm_clock
+      - input_boolean.automatic_temperature
+    state: "on"
   action:
     service: script.set_high_temperature
 
@@ -82,15 +82,15 @@
     event_data:
       actionName: TURN_ON_HEATING
   action:
-    - service: script.set_high_temperature
+    service: script.set_high_temperature
 
 - alias: "Climate: set outside temperature every hour"
   trigger:
     platform: time_pattern
     hours: "/1"
   action:
-    - service: mqtt.publish
-      data:
-        topic: actions/otmonitor/outside
-        payload_template: >
-          {{ state_attr("weather.huis", "temperature") }}
+    service: mqtt.publish
+    data:
+      topic: actions/otmonitor/outside
+      payload_template: >
+        {{ state_attr("weather.huis", "temperature") }}
