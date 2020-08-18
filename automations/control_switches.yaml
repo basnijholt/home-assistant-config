@@ -83,7 +83,7 @@
           data:
             group: light.bedroom_lights
 
-- alias: "Control switches: living_room smart switch"
+- alias: "Control switches: living room smart switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -114,6 +114,10 @@
             entity_id: light.living_room_lights
             state: "on"
         sequence:
+          - service: light.turn_on
+            data:
+              flash: "short"
+              entity_id: light.sphere_2
           - service: media_player.turn_off
             entity_id: media_player.tv
           - service: media_player.turn_off
