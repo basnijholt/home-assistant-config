@@ -332,8 +332,7 @@ sync_kef_dsp:
   sequence:
     - condition: template
       value_template: >
-        {{ state_attr("media_player.{}".format(name), attribute)
-           != states('input_{}.{}_{}'.format(domain, name, attribute)) }}
+        {{ state_attr("media_player.{}".format(name), attribute) != states('input_{}.{}_{}'.format(domain, name, attribute)) }}
     - condition: template
       value_template: "{{ is_state('media_player.{}'.format(name), 'on') }}"
     - choose:
@@ -386,7 +385,7 @@ sync_kef_dsp:
                     option: "{{ state_attr('media_player.{}'.format(name), attribute) }}"
               - conditions: # input_select.sub_polarity changed
                   condition: template
-                  value_template: "{{ trigger_entity_id == 'input_select.{}_sub_polarity'.format(name) }}"
+                  value_template: "{{ trigger_entity_id == 'input_select.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data_template:
@@ -394,7 +393,7 @@ sync_kef_dsp:
                     sub_polarity: "{{ trigger_to_state }}"
               - conditions: # input_select.bass_extension changed
                   condition: template
-                  value_template: "{{ trigger_entity_id == 'input_select.{}_bass_extension'.format(name) }}"
+                  value_template: "{{ trigger_entity_id == 'input_select.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data_template:
@@ -421,7 +420,7 @@ sync_kef_dsp:
                     entity_id: "{{ 'input_boolean.{}_{}'.format(name, attribute) }}"
               - conditions: # input_boolean.desk_mode changed
                   condition: template
-                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_desk_mode'.format(name) }}"
+                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data_template:
@@ -429,7 +428,7 @@ sync_kef_dsp:
                     desk_mode: "{{ trigger_to_state }}"
               - conditions: # input_boolean.wall_mode changed
                   condition: template
-                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_wall_mode'.format(name) }}"
+                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data_template:
@@ -437,7 +436,7 @@ sync_kef_dsp:
                     wall_mode: "{{ trigger_to_state }}"
               - conditions: # input_boolean.phase_correction changed
                   condition: template
-                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_phase_correction'.format(name) }}"
+                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data_template:
@@ -445,7 +444,7 @@ sync_kef_dsp:
                     phase_correction: "{{ trigger_to_state }}"
               - conditions: # input_boolean.high_pass changed
                   condition: template
-                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_high_pass'.format(name) }}"
+                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data_template:
