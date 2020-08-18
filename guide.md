@@ -9,7 +9,7 @@
 * Button living room/bedroom
     * Single: click, increase the brightness between [10%, 50%, 100%]
     * Double click: change between bright lights and cozy lights
-    * Shake: turn off the whole room (in the bedroom it will active sleep mode)
+    * Shake: turn off the whole room (in the bedroom it will activate sleep mode)
 * Dimmer switches on the wall living room/bedroom
     * Top button: increase the brightness between [10%, 50%, 100%]
     * Middle two buttons: turn on and off (or hold to dim)
@@ -30,7 +30,7 @@
 * The TV and speakers
     * If Spotify is not playing on the speakers, the speakers will automatically switch to the TV
     * Speakers will turn on when turning on the TV
-* Sleep mode automatically turns off if the alarm goes or if there is no alarm it's at 06:00
+* Sleep mode automatically turns off if the alarm goes or if there is no alarm, it's at 06:00
 * When sleep mode turns on, the temperature will be set to low
 * We will get a notification on our phones when either the dishwasher or washing machine is done
 
