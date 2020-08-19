@@ -47,6 +47,7 @@ views:
           action: call-service
           service: script.white_lights_living_room
       head:
+        color_picker: true
         entity: light.living_room_lights
         name: Living
         type: custom:slider-entity-row
@@ -1438,14 +1439,11 @@ views:
     title: Inputs (automatically switched)
     type: entities
   - entities:
-    - entity: timer.block_kef_ls50_volume_sync
-    - entity: timer.block_tv_volume_sync
     - entity: sensor.kef_ls50_volume
     - entity: sensor.tv_volume
-    - entity: timer.tv_volume_delay
-    - entity: timer.kef_ls50_volume_delay
     - type: divider
     - entity: sensor.kef_lsx_volume
+    - entity: input_select.lsx_volume
     show_header_toggle: false
     title: Volume sync
     type: entities
