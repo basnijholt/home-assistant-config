@@ -194,7 +194,7 @@
         sequence:
           service: script.increase_brightness
           data:
-            group: light.bathroom_lights
+            group: light.ceiling_bathroom
 
       - conditions: # Next color
           condition: template
@@ -212,11 +212,11 @@
           - condition: template
             value_template: "{{ trigger.event.data.event == 1007 }}" # Shake button
           - condition: state
-            entity_id: light.bathroom_lights
+            entity_id: light.ceiling_bathroom
             state: "on"
         sequence:
           service: light.turn_off
-          entity_id: light.bathroom_lights
+          entity_id: light.ceiling_bathroom
 
 - alias: "Control switches: downstairs smart switch"
   trigger:
