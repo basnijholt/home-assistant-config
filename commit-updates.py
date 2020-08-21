@@ -27,7 +27,7 @@ for line in p.split("\n"):
         hacs = "custom_components/hacs/"
         if path.startswith(hacs):
             folders_to_add.add(hacs)
-        
+
         if path == ha_version:
             ha_update = True
 

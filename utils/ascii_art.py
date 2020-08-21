@@ -30,6 +30,7 @@ def add_text(text, content):
     content.insert(i + 3, end)  # end
     return content
 
+
 folders = ["automations", "includes"]
 for folder in folders:
     folder = Path("/config") / folder
