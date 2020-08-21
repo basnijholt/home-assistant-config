@@ -10,6 +10,10 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - alias: "Media player: turn on Opt when TV is on and Spotify is not playing and not Usb"
+  description: |
+    The speaker is connected via an optical cable to the TV. Whenever the speakers
+    aren't playing Spotify (via WiFi) directly, switch the source of the speakers
+    to "Opt".
   trigger:
     - platform: state
       entity_id: media_player.tv
