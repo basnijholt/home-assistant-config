@@ -2,7 +2,6 @@ import json
 import sqlite3
 from collections import Counter, defaultdict
 
-
 conn = sqlite3.connect("home-assistant_v2.db")
 cur = conn.cursor()
 

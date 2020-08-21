@@ -1,8 +1,9 @@
-from contextlib import suppress
 import functools
-from pathlib import Path
 import re
 import subprocess
+from contextlib import suppress
+from pathlib import Path
+
 import yaml
 
 URL = "https://github.com/basnijholt/home-assistant-config/blob/{commit_hash}/{fname}"

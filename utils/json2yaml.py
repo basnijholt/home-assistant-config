@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import sys
-import json
-import yaml
 import argparse
+import json
+import sys
+
+import yaml
 
 p = argparse.ArgumentParser()
 p.add_argument("json_fname", nargs="?", type=str, default=sys.stdin)
