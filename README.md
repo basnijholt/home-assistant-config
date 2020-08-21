@@ -125,7 +125,6 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L63)
   - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L87)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L249)
-  - [sensor.time](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L610)
 
 [^ toc](#automations---table-of-content)
 
@@ -147,7 +146,6 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L40)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L282)
   - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L241)
-  - [sensor.time](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L610)
 
 ### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L26)
 

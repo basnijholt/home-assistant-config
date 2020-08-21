@@ -1,6 +1,3 @@
-# found this for `sensor.time`:
-# https://github.com/basnijholt/home-assistant-config/blob/3a3fd4f499a08a529c98ad97f0420c1265a5f5e9/includes/sensors.yaml#L610
-
 from contextlib import suppress
 import functools
 from pathlib import Path
@@ -25,11 +22,13 @@ def git_latest_edit_hash(fname):
     return git_output.decode("utf-8").replace("\n", "")
 
 
-def line_number(fname, text):
+def line_number(fname, text, regex_check):
     assert isinstance(text, str)
     with fname.open() as f:
         for i, line in enumerate(f):
             if text in line:
+                if regex_check and re.search(fr"\b{text}", line) is None:
+                    break
                 return i + 1
     raise ValueError(f"Text ({text}) doesn't exist in file {fname}.")
 
@@ -39,14 +38,14 @@ def permalink(fname):
 
 
 def permalink_automation(fname, automation):
-    from_line = line_number(fname, automation["alias"])
+    from_line = line_number(fname, automation["alias"], False)
     return permalink(fname) + f"#L{from_line}"
 
 
 def permalink_entity(x, yaml_fname):
     domain, name = x.split(".")
     fname = Path(yaml_fname or f"includes/{domain}s.yaml")
-    from_line = line_number(fname, f"{name}:")
+    from_line = line_number(fname, f"{name}:", True)
     return permalink(fname) + f"#L{from_line}"
 
 
