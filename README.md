@@ -31,6 +31,8 @@ Using my [iOS Light and Dark Mode Themes](https://github.com/basnijholt/lovelace
 * [Sync volume TV ⇄ speakers 🔊](automations/media_player.yaml)
 * [Security notifications when the front door 🚪 has been open for too long or motion is detected when no one is home](automations/security.yaml)
 
+See *all* my automations and its dependencies [below](#automations---table-of-content)!
+
 See also [my guide for my girlfriend ❤️](guide.md).
 
 ## My devices

@@ -42,7 +42,7 @@ tplink: !include includes/tplink.yaml
 webostv: !include includes/webostv.yaml
 vacuum: !include includes/vacuum.yaml
 media_player: !include includes/media_players.yaml
-#homekit: !include includes/homekit.yaml
+homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml
 mqtt: !include includes/mqtt.yaml
 utility_meter: !include includes/utility_meter.yaml
@@ -50,7 +50,7 @@ plant: !include includes/plant.yaml
 spotify: !include includes/spotify.yaml
 climate: !include  includes/climate.yaml
 influxdb: !include includes/influxdb.yaml
-proxmoxve: !include includes/proxmoxve.yaml
+# proxmoxve: !include includes/proxmoxve.yaml
 
 # Custom components
 circadian_lighting: !include includes/circadian_lighting.yaml

@@ -267,7 +267,7 @@ class _AsyncCommunicator:
                     )
                     _LOGGER.debug("%s: Opening connection successful", self.host)
             except ConnectionRefusedError:
-                _LOGGER.exception("%s: Opening connection failed", self.host)
+                _LOGGER.debug("%s: Opening connection failed", self.host)
                 await asyncio.sleep(0.5)
             except BlockingIOError:  # Connection incomming
                 # XXX: I have never seen this.
@@ -293,8 +293,6 @@ class _AsyncCommunicator:
             try:
                 # I am getting `[asyncio] socket.send() raised exception.`
                 # in one of the two lines below.
-                # After adding this, I've never seen the error again, but also
-                # never seen the log message below...
                 self._writer.write(message)
                 await self._writer.drain()
             except ConnectionResetError:
@@ -330,13 +328,18 @@ class _AsyncCommunicator:
                     # Raised ConnectionResetError: [Errno 104] Connection reset by peer
                     # which means that the speaker closed the connection.
                     _LOGGER.exception("%s: Disconnecting raised", self.host)
+                    socket = self._writer._transport.get_extra_info('socket')
+                    _LOGGER.info("%s: Called `transport.get_extra_info('socket')`: %s", self.host, socket)
+                    _LOGGER.info("%s: Call `socket.close()`", self.host)
+                    socket.close()
+
                 self._reader, self._writer = (None, None)
 
     async def _disconnect_in(self, dt):
         await asyncio.sleep(dt)
         await asyncio.shield(self._disconnect())  # ℹ️ shield it from being cancelled
 
-    def _maybe_cancel_disconnect_task():
+    def _maybe_cancel_disconnect_task(self):
         if self._disconnect_task is not None:
             _LOGGER.debug("%s: Cancelling the _disconnect_task", self.host)
             self._disconnect_task.cancel()
