@@ -122,10 +122,10 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   *which uses:*
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L46)
   - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
-  - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L87)
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L63)
-  - [sensor.time](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L610)
+  - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L87)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L249)
+  - [sensor.time](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L610)
 
 [^ toc](#automations---table-of-content)
 
@@ -143,11 +143,11 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 ### [Turn on the heating 30 min before waking up](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L12)
 
   *which uses:*
-  - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L40)
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L46)
+  - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L40)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L282)
-  - [sensor.time](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L610)
   - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L241)
+  - [sensor.time](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L610)
 
 ### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L26)
 
@@ -181,9 +181,9 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/2862f016799c09513e5af5f5030c243be1047f62/includes/input_selects.yaml#L18)
-  - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L173)
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L199)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L251)
+  - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L173)
 
 ### [Bedroom Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/7a0d42e6be1e3723c8cfaa5e127f0b1bb7eb8961/automations/control_switches.yaml#L49)
 
@@ -205,10 +205,10 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   *which uses:*
   - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/2862f016799c09513e5af5f5030c243be1047f62/includes/input_selects.yaml#L24)
-  - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L237)
-  - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L199)
   - [script.going_to_sleep](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L244)
+  - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L199)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L251)
+  - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L237)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L249)
 
 ### [Bathroom smart switch](https://github.com/basnijholt/home-assistant-config/blob/7a0d42e6be1e3723c8cfaa5e127f0b1bb7eb8961/automations/control_switches.yaml#L183)
@@ -221,9 +221,9 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L297)
-  - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L221)
-  - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L30)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L273)
+  - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L30)
+  - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L221)
   - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L93)
 
 [^ toc](#automations---table-of-content)
@@ -265,9 +265,9 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 ### [Change theme](https://github.com/basnijholt/home-assistant-config/blob/ff33da69af7479b1bab67d353d517a24a656bbbb/automations/frontend.yaml#L27)
 
   *which uses:*
-  - [input_select.theme](https://github.com/basnijholt/home-assistant-config/blob/2862f016799c09513e5af5f5030c243be1047f62/includes/input_selects.yaml#L39)
-  - [input_boolean.theme_alternative](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L35)
   - [input_boolean.dark_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L32)
+  - [input_boolean.theme_alternative](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L35)
+  - [input_select.theme](https://github.com/basnijholt/home-assistant-config/blob/2862f016799c09513e5af5f5030c243be1047f62/includes/input_selects.yaml#L39)
 
 [^ toc](#automations---table-of-content)
 
@@ -354,16 +354,16 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L22)
   - [script.leaving](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L291)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
   - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L112)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
   - [binary_sensor.someone_in_the_house_in_last_hour](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L34)
 
 ### [Ask to turn off everything](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/leaving.yaml#L39)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L22)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
   - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L112)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
 
 ### [Turn off everything after notification](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/leaving.yaml#L69)
 
@@ -423,9 +423,9 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 ### [Automatically turn on the bedroom](https://github.com/basnijholt/home-assistant-config/blob/ac2b0930a9404075fcf6e2f3bda75a3e451319e0/automations/light.yaml#L179)
 
   *which uses:*
+  - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L37)
   - [input_boolean.bedroom_lights_automatically_turned_on](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L28)
   - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
-  - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L37)
   - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L66)
 
 ### [Automatically turn off the bedroom](https://github.com/basnijholt/home-assistant-config/blob/ac2b0930a9404075fcf6e2f3bda75a3e451319e0/automations/light.yaml#L205)
@@ -544,14 +544,14 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 ### [Automatically turn off when alarm turns off or at 6AM](https://github.com/basnijholt/home-assistant-config/blob/1e64e0e1752fcdc5d71354f993e1d7156c1981dc/automations/night_mode.yaml#L12)
 
   *which uses:*
-  - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L46)
+  - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
 
 ### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob/1e64e0e1752fcdc5d71354f993e1d7156c1981dc/automations/night_mode.yaml#L28)
 
   *which uses:*
-  - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
   - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L37)
+  - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
 
 ### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob/1e64e0e1752fcdc5d71354f993e1d7156c1981dc/automations/night_mode.yaml#L38)
 
@@ -690,8 +690,8 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 ### [Auto turn on](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/vacation_mode.yaml#L11)
 
   *which uses:*
-  - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L19)
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L22)
+  - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L19)
 
 ### [Auto turn off](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/vacation_mode.yaml#L31)
 
@@ -719,9 +719,9 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 ### [Cleanup if nobody is home](https://github.com/basnijholt/home-assistant-config/blob/c38dd957697a5c73b03f59419618f99362645234/automations/vacuum.yaml#L51)
 
   *which uses:*
+  - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L16)
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L19)
-  - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L16)
   - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L121)
 
 ### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/c38dd957697a5c73b03f59419618f99362645234/automations/vacuum.yaml#L89)

@@ -76,7 +76,7 @@ def find_entities(s, domain):
 def get_dependencies(automation):
     deps = []
     inputs = find_inputs(str(automation))
-    for input_entity in inputs:
+    for input_entity in sorted(inputs):
         with suppress(ValueError):
             url = permalink_entity(input_entity, None)
             s = f"  - [{input_entity}]({url})"
@@ -89,7 +89,7 @@ def get_dependencies(automation):
         ("switch", "includes/switches.yaml"),
     ]:
         entities = find_entities(str(automation), domain)
-        for entity in entities:
+        for entity in sorted(entities):
             with suppress(ValueError):
                 url = permalink_entity(entity, yaml_file)
                 s = f"  - [{entity}]({url})"
