@@ -116,7 +116,7 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: 102 ⚠️
+⚠️ Total number of automations: **102** ⚠️
 
 ## [Alarm clock ⏰](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml)
 ### [Wake up with Spotify and light](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml#L11)
@@ -140,8 +140,8 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 [^ toc](#automations---table-of-content)
 
 
-## [Climate 🔥🥶](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml)
-### [Turn on the heating 30 min before waking up](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L12)
+## [Climate 🔥🥶](https://github.com/basnijholt/home-assistant-config/blob/3de974f8930a982f49b398294bf06a3836607d4f/automations/climate.yaml)
+### [Turn on the heating 30 min before waking up](https://github.com/basnijholt/home-assistant-config/blob/3de974f8930a982f49b398294bf06a3836607d4f/automations/climate.yaml#L12)
 
   *which uses:*
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L46)
@@ -149,7 +149,7 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L282)
   - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/sensors.yaml#L241)
 
-### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L26)
+### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/3de974f8930a982f49b398294bf06a3836607d4f/automations/climate.yaml#L26)
 
   *which uses:*
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L40)
@@ -157,7 +157,7 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L282)
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
 
-### [Turn off the heating at 22:00](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L55)
+### [Turn off the heating at 22:00](https://github.com/basnijholt/home-assistant-config/blob/3de974f8930a982f49b398294bf06a3836607d4f/automations/climate.yaml#L55)
 
   *which uses:*
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L40)
@@ -165,12 +165,12 @@ I bought many things on Aliexpress and with discount or used on Amazon.
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L273)
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
 
-### [Turn on heating again after notification](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L78)
+### [Turn on heating again after notification](https://github.com/basnijholt/home-assistant-config/blob/3de974f8930a982f49b398294bf06a3836607d4f/automations/climate.yaml#L78)
 
   *which uses:*
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/cc9571657e45898cb7cb745f2165867782c14953/scripts.yaml#L282)
 
-### [Set outside temperature every hour](https://github.com/basnijholt/home-assistant-config/blob/984fe7088df103f783f937837889ab654c3f6d63/automations/climate.yaml#L87)
+### [Set outside temperature every hour](https://github.com/basnijholt/home-assistant-config/blob/3de974f8930a982f49b398294bf06a3836607d4f/automations/climate.yaml#L87)
 
 
 [^ toc](#automations---table-of-content)
@@ -488,6 +488,8 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 ## [Lovelace 👨‍💻](https://github.com/basnijholt/home-assistant-config/blob/3d2e9bf4eb93f78662fe4f247ad3c73d41ce68fb/automations/lovelace.yaml)
 ### [Convert lovelace.json to lovelace-ui.yaml](https://github.com/basnijholt/home-assistant-config/blob/3d2e9bf4eb93f78662fe4f247ad3c73d41ce68fb/automations/lovelace.yaml#L11)
 
+  *which uses:*
+  - [shell_command.convert_lovelace](https://github.com/basnijholt/home-assistant-config/blob/64a874ed6bb84af4b65537819b03c6cae14f93f1/includes/shell_commands.yaml#L11)
 
 [^ toc](#automations---table-of-content)
 
@@ -506,20 +508,25 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 [^ toc](#automations---table-of-content)
 
 
-## [Media player 🔈📺](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/automations/media_player.yaml)
-### [Turn on Opt when TV is on and Spotify is not playing and not Usb](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/automations/media_player.yaml#L12)
+## [Media player 🔈📺](https://github.com/basnijholt/home-assistant-config/blob/56ef77032f4da7d889911310c8ee0adf2f4557df/automations/media_player.yaml)
+### [Turn on Opt when TV is on and Spotify is not playing and not Usb](https://github.com/basnijholt/home-assistant-config/blob/56ef77032f4da7d889911310c8ee0adf2f4557df/automations/media_player.yaml#L12)
+
+  The speaker is connected via an optical cable to the TV. Whenever the speakers
+aren't playing Spotify (via WiFi) directly, switch the source of the speakers
+to "Opt".
 
 
-### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/automations/media_player.yaml#L43)
+
+### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/56ef77032f4da7d889911310c8ee0adf2f4557df/automations/media_player.yaml#L47)
 
 
-### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/automations/media_player.yaml#L61)
+### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/56ef77032f4da7d889911310c8ee0adf2f4557df/automations/media_player.yaml#L65)
 
 
-### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/automations/media_player.yaml#L80)
+### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/56ef77032f4da7d889911310c8ee0adf2f4557df/automations/media_player.yaml#L84)
 
 
-### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/automations/media_player.yaml#L95)
+### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/56ef77032f4da7d889911310c8ee0adf2f4557df/automations/media_player.yaml#L99)
 
 
 [^ toc](#automations---table-of-content)

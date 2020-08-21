@@ -9,14 +9,14 @@ import yaml
 URL = "https://github.com/basnijholt/home-assistant-config/blob/{commit_hash}/{fname}"
 
 
-@functools.lru_cache
+@functools.lru_cache()
 def git_revision_hash():
     """Get the git hash to save with data to ensure reproducibility."""
     git_output = subprocess.check_output(["git", "rev-parse", "HEAD"])
     return git_output.decode("utf-8").replace("\n", "")
 
 
-@functools.lru_cache
+@functools.lru_cache()
 def git_latest_edit_hash(fname):
     """Get the git hash to save with data to ensure reproducibility."""
     git_output = subprocess.check_output(["git", "rev-list", "-1", "master", str(fname)])
@@ -87,6 +87,7 @@ def get_dependencies(automation):
         ("sensor", "includes/sensors.yaml"),
         ("binary_sensor", "includes/binary_sensors.yaml"),
         ("switch", "includes/switches.yaml"),
+        ("shell_command", "includes/shell_commands.yaml"),
     ]:
         entities = find_entities(str(automation), domain)
         for entity in sorted(entities):
@@ -181,7 +182,7 @@ for fname in automation_files:
     total_automations += len(automations)
     text.append(toc_entry(automations))
 text.append("\n")
-text.append(f"⚠️ Total number of automations: {total_automations} ⚠️\n")
+text.append(f"⚠️ Total number of automations: **{total_automations}** ⚠️\n")
 back_to_toc = f"[^ toc](#{slugify(toc_title)})"
 
 # List automations
