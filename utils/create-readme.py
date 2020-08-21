@@ -88,6 +88,9 @@ def get_dependencies(automation):
         ("binary_sensor", "includes/binary_sensors.yaml"),
         ("switch", "includes/switches.yaml"),
         ("shell_command", "includes/shell_commands.yaml"),
+        ("group", "includes/groups.yaml"),
+        ("plant", "includes/plant.yaml"),
+        ("sensor", "includes/utility_meter.yaml"),
     ]:
         entities = find_entities(str(automation), domain)
         for entity in sorted(entities):
@@ -166,7 +169,7 @@ def get_emoji(title):
         "Vacation mode": "🏝",
         "Vacuum": "🧹",
         "Work": "💼",
-    }.get(title, "")
+    }[title]
 
 
 automation_files = sorted(list(Path("automations/").glob("*yaml")))
