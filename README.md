@@ -35,55 +35,284 @@ See also [my guide for my girlfriend ❤️](guide.md).
 
 ## My devices
 
-### Switches
-* TP-Link HS110 (3x) (€70.84)
-* Xiaomi Aqara Magic Cube (€11.08)
-* Xiaomi Aqara Single Button (4x) (€57.38)
-* Philips Hue Dimmer switch (2x) (€33.22)
+<!-- start-table -->
 
-### Sensors
-* Xiaomi Aqara Door Sensor (4x) (€32.71)
-* Xiaomi Aqara Temperature Sensor (5x) (€45.74)
-* Xiaomi Aqara Motion Sensor (6x) (€61.13)
-* Xiaomi Aqara Vibration Sensor (€11.59)
-* Xiaomi Mi Flora (3x) (€46.63)
-
-### Vacuum
-* Xiaomi Mi Roborock S5 (€294.31)
-
-### Media player
-* KEF LS50 Wireless speakers
-* KEF LSX speakers
-* LG OLED 55 C9
-
-### Lights
-* Philips Hue E27 White and Color (12x) (€266.70)
-* Philips Hue E14 White and Color (2x) (€69.77)
-* Philips Hue GU10 Ambient White (5x) (92.70)
-* Philips Hue Go (€57.05)
-* Philips Hue LED strip 2m (2x) (€86.39)
-* Philips Hue LED strip 1m (€13.84)
-
-### Hubs
-* ConBee II (€39.95)
-
-### Server
-* Raspberry Pi 4, 4GB RAM, running [*Hass.io*](https://www.home-assistant.io/hassio/) (€70.90)
-* Raspberry Pi 4 FLIRC Case (€25.85)
-* SanDisk Ultra microSDHC Memory Card 32GB (€6.99)
-* Raspberry Pi 3 Model B (connected to power/gas meter and connected over MQTT to main HA instance) (€40.40)
-
-### Device tracker
-* iPhone X with the new iOS app (2x)
-
-### Other
-* PlayStation Eye Webcam and Microphone array (€14.95)
-* DSMR - Slimme Meter kabel (€19.95)
-* Nodo-Shop – OpenTherm Gateway (OTGW) with NodeMCU (€48.81)
-
-### Total cost
-*€1426.18* without my TV, phones, and speakers, **yes**, this is shocking to me too 😅
-I bought many things on Aliexpress and with discount or used on Amazon.
+<table>
+    <thead>
+        <tr>
+            <th>Switches 🎚</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>TP-Link HS110</td>
+            <td>3</td>
+            <td>70.84</td>
+        </tr>
+        <tr>
+            <td>Xiaomi Aqara Magic Cube</td>
+            <td>1</td>
+            <td>11.08</td>
+        </tr>
+        <tr>
+            <td>Xiaomi Aqara Single Button</td>
+            <td>4</td>
+            <td>57.38</td>
+        </tr>
+        <tr>
+            <td>Philips Hue Dimmer switch</td>
+            <td>2</td>
+            <td>33.22</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Sensors 🌡</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Xiaomi Aqara Door Sensor</td>
+            <td>4</td>
+            <td>32.71</td>
+        </tr>
+        <tr>
+            <td>Xiaomi Aqara Temperature Sensor</td>
+            <td>5</td>
+            <td>45.74</td>
+        </tr>
+        <tr>
+            <td>Xiaomi Aqara Motion Sensor</td>
+            <td>6</td>
+            <td>61.13</td>
+        </tr>
+        <tr>
+            <td>Xiaomi Aqara Vibration Sensor</td>
+            <td>1</td>
+            <td>11.59</td>
+        </tr>
+        <tr>
+            <td>Xiaomi Mi Flora</td>
+            <td>3</td>
+            <td>46.63</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Vacuum 🧹</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Xiaomi Mi Roborock S5</td>
+            <td>1</td>
+            <td>294.31</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Media player 📺🔈</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>KEF LS50 Wireless speakers</td>
+            <td>1</td>
+            <td>nan</td>
+        </tr>
+        <tr>
+            <td>KEF LSX speakers</td>
+            <td>1</td>
+            <td>nan</td>
+        </tr>
+        <tr>
+            <td>LG OLED 55 C9</td>
+            <td>1</td>
+            <td>nan</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Lights 💡</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Philips Hue E27 White and Color</td>
+            <td>12</td>
+            <td>266.7</td>
+        </tr>
+        <tr>
+            <td>Philips Hue E14 White and Color</td>
+            <td>2</td>
+            <td>69.77</td>
+        </tr>
+        <tr>
+            <td>Philips Hue GU10 Ambient White</td>
+            <td>5</td>
+            <td>(92.70)</td>
+        </tr>
+        <tr>
+            <td>Philips Hue Go</td>
+            <td>1</td>
+            <td>57.05</td>
+        </tr>
+        <tr>
+            <td>Philips Hue LED strip 2m</td>
+            <td>2</td>
+            <td>86.39</td>
+        </tr>
+        <tr>
+            <td>Philips Hue LED strip 1m</td>
+            <td>1</td>
+            <td>13.84</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Hubs 🌎</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ConBee II</td>
+            <td>1</td>
+            <td>39.95</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Server 🖥</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Raspberry Pi 4, 4GB RAM, with Supervised Home Assistant</td>
+            <td>1</td>
+            <td>70.9</td>
+        </tr>
+        <tr>
+            <td>Raspberry Pi 4 FLIRC Case</td>
+            <td>1</td>
+            <td>25.85</td>
+        </tr>
+        <tr>
+            <td>SanDisk Ultra microSDHC Memory Card 32GB</td>
+            <td>1</td>
+            <td>6.99</td>
+        </tr>
+        <tr>
+            <td>Raspberry Pi 3 Model B (connected to power/gas meter and connected over MQTT to main HA instance)</td>
+            <td>1</td>
+            <td>40.4</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Device tracker 🔍</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>iPhone X with the new iOS app</td>
+            <td>2</td>
+            <td>nan</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Other</th>
+            <th>Units (#)</th>
+            <th>Price (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PlayStation Eye Webcam and Microphone array</td>
+            <td>1</td>
+            <td>14.95</td>
+        </tr>
+        <tr>
+            <td>DSMR - Slimme Meter kabel</td>
+            <td>1</td>
+            <td>19.95</td>
+        </tr>
+        <tr>
+            <td>Nodo-Shop – OpenTherm Gateway (OTGW) with NodeMCU</td>
+            <td>1</td>
+            <td>48.81</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Total</th>
+            <th>€1426.18</th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+<!-- end-table -->
 
 ## Automation plans
 * Notify us when the window is open and it is raining.

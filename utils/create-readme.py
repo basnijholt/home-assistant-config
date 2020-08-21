@@ -6,6 +6,8 @@ from pathlib import Path
 
 import yaml
 
+from tables import html_table
+
 URL = "https://github.com/basnijholt/home-assistant-config/blob/{commit_hash}/{fname}"
 
 
@@ -172,6 +174,15 @@ def get_emoji(title):
     }[title]
 
 
+def modify_lines(to_insert, lines, tag):
+    MARKDOWN_COMMENT = "<!-- {} -->"
+    start = MARKDOWN_COMMENT.format(f"start-{tag}")
+    end = MARKDOWN_COMMENT.format(f"end-{tag}")
+    new_lines = remove_text(lines, start, end)
+    i = next((i for (i, line) in enumerate(new_lines) if start in line)) + 1
+    return new_lines[:i] + [s + "\n" for s in to_insert] + new_lines[i:]
+
+
 automation_files = sorted(list(Path("automations/").glob("*yaml")))
 text = []
 
@@ -202,10 +213,9 @@ for fname in automation_files:
 # Modify README.md
 with open("README.md") as f:
     lines = f.readlines()
-start = "<!-- start-automations -->"
-end = "<!-- end-automations -->"
-new_lines = remove_text(lines, start, end)
-i = next((i for (i, line) in enumerate(new_lines) if start in line)) + 1
-readme = new_lines[:i] + [s + "\n" for s in text] + new_lines[i:]
+
+lines = modify_lines(text, lines, "automations")
+lines = modify_lines(html_table.split("\n"), lines, "table")
+
 with open("README.md", "w") as f:
-    f.write("".join(readme))
+    f.write("".join(lines))
