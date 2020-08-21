@@ -18,6 +18,13 @@ def git_revision_hash():
     return git_output.decode("utf-8").replace("\n", "")
 
 
+@functools.lru_cache
+def git_latest_edit_hash(fname):
+    """Get the git hash to save with data to ensure reproducibility."""
+    git_output = subprocess.check_output(["git", "rev-list", "-1", "master", str(fname)])
+    return git_output.decode("utf-8").replace("\n", "")
+
+
 def line_number(fname, text):
     assert isinstance(text, str)
     with fname.open() as f:
@@ -28,7 +35,7 @@ def line_number(fname, text):
 
 
 def permalink(fname):
-    return URL.format(commit_hash=git_revision_hash(), fname=fname)
+    return URL.format(commit_hash=git_latest_edit_hash(fname), fname=fname)
 
 
 def permalink_automation(fname, automation):
