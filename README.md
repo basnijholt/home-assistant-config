@@ -18,7 +18,7 @@ See *all* my automations and its dependencies [below](#automations---table-of-co
 * [Alarm clock](automations/alarm_clock.yaml) that uses the AppDaemon volume ramp and sunrise app ⏰
 * [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](#lovelace-) for version control 🤖
 * [Controlling music and lights (hue and brightness) using the Xiaomi Aqara Magic Cube](#cube-) ∛
-* [Controlling the lights using *Phillips Hue Dimmers* the *Xiaomi Aqara Smart Switches*](#controlswitches-) 🎛
+* [Controlling the lights using *Phillips Hue Dimmers* the *Xiaomi Aqara Smart Switches*](#control-switches-) 🎛
 * [Automated lights](#light-) 💡
 * [Presence detection in different rooms based on various binary template sensors](includes/binary_sensors.yaml)
 * [Robot vacuum automations](#vacuum-) 🧹
@@ -28,7 +28,7 @@ See *all* my automations and its dependencies [below](#automations---table-of-co
 * Using [HA-Menu](https://github.com/codechimp-org/ha-menu) to control [my speakers on my iMac](#lsx-)
 * Using [home-assistant-macbook-touch-bar](https://github.com/basnijholt/home-assistant-macbook-touch-bar) to control HA on my MacBook Pro's Touch Bar 💻
 * [Automatically switch Lovelace's theme between backgrounds and light/dark mode](#frontend-)
-* [Sync volume TV ⇄ speakers 🔊](#media_player-)
+* [Sync volume TV ⇄ speakers 🔊](#media-player-)
 * [Security notifications when the front door 🚪 has been open for too long or motion is detected when no one is home](#security-)
 
 See also [my guide for my girlfriend ❤️](guide.md).
