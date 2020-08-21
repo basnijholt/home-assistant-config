@@ -116,6 +116,8 @@ I bought many things on Aliexpress and with discount or used on Amazon.
 1. [Work 💼](#work-) (3 automations)
 
 
+⚠️ Total number of automations: 102 ⚠️
+
 ## [Alarm clock ⏰](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml)
 ### [Wake up with Spotify and light](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml#L11)
 

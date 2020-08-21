@@ -174,10 +174,13 @@ text = []
 # Create TOC
 toc_title = "Automations - Table of Content"
 text.append(f"# {toc_title}")
+total_automations = 0
 for fname in automation_files:
     automations = automations_as_dict(fname)
+    total_automations += len(automations)
     text.append(toc_entry(automations))
 text.append("\n")
+text.append(f"⚠️ Total number of automations: {total_automations} ⚠️\n")
 back_to_toc = f"[^ toc](#{slugify(toc_title)})"
 
 # List automations
