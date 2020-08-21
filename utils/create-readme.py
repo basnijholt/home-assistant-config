@@ -1,3 +1,6 @@
+# found this for `sensor.time`:
+# https://github.com/basnijholt/home-assistant-config/blob/3a3fd4f499a08a529c98ad97f0420c1265a5f5e9/includes/sensors.yaml#L610
+
 from contextlib import suppress
 import functools
 from pathlib import Path
@@ -42,6 +45,8 @@ def permalink_entity(x, yaml_fname):
 
 def title_and_summary(automation):
     title, summary = automation["alias"].split(": ")
+    emoji = get_emoji(title.strip())
+    title = f"{title} {emoji}"
     summary = summary[0].upper() + summary[1:]
     return title, summary
 
@@ -90,22 +95,22 @@ def get_dependencies(automation):
 
 
 def toc_entry(automations):
-    title, summary = title_and_summary(automations[0])
+    title, _ = title_and_summary(automations[0])
     return f"1. [{title}](#{slugify(title)}) ({len(automations)} automations)"
 
 
 def get_header(fname, automation):
-    title, summary = title_and_summary(automation)
+    title, _ = title_and_summary(automation)
     return f"## [{title}]({permalink(fname)})"
 
 
 def get_automation_line(fname, automation):
-    title, summary = title_and_summary(automation)
+    _, summary = title_and_summary(automation)
     return f"### [{summary}]({permalink_automation(fname, automation)})"
 
 
 def slugify(s):
-    return s.lower().strip().replace(" ", "-")
+    return s.lower().strip().replace(" ", "-").encode('ascii', 'ignore').decode('ascii')
 
 
 def get_description(automation):
@@ -126,6 +131,34 @@ def remove_text(content, start, end):
         if start in line:
             do_append = not do_append
     return new
+
+
+def get_emoji(title):
+    return {
+        "Alarm clock": "⏰",
+        "Arriving": "👞",
+        "Climate": "🔥🥶",
+        "Control switches": "🎛",
+        "Cube": "∛",
+        "Doorbell": "🚪🔔",
+        "Frontend": "👨‍💻",
+        "KEF DSP": "🔈🎛",
+        "Leaving": "👞",
+        "Light": "💡",
+        "Lovelace": "👨‍💻",
+        "LSX": "🔈",
+        "Media player": "🔈📺",
+        "Music": "🎵",
+        "Night mode": "🌕🌑",
+        "Plant": "☘️",
+        "Rhasspy": "🤖",
+        "Security": "👮‍♂️🚨",
+        "System": "🖥",
+        "Utilities": "🧺👚🍽",
+        "Vacation mode": "🏝",
+        "Vacuum": "🧹",
+        "Work": "💼",
+    }.get(title, "")
 
 
 automation_files = sorted(list(Path("automations/").glob("*yaml")))
