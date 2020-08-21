@@ -572,12 +572,18 @@ to "Opt".
 ## [Plant ☘️](https://github.com/basnijholt/home-assistant-config/blob/5709ae3c7802fc787517c8aa7ab7763548cc63ad/automations/plant.yaml)
 ### [Problem with Ficus microcarpa Ginseng](https://github.com/basnijholt/home-assistant-config/blob/5709ae3c7802fc787517c8aa7ab7763548cc63ad/automations/plant.yaml#L11)
 
+  *which uses:*
+  - [plant.ficus_microcarpa_ginseng](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/plant.yaml#L35)
 
 ### [Problem with Kentia Palm](https://github.com/basnijholt/home-assistant-config/blob/5709ae3c7802fc787517c8aa7ab7763548cc63ad/automations/plant.yaml#L29)
 
+  *which uses:*
+  - [plant.kentia_palm](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/plant.yaml#L51)
 
 ### [Problem with Yucca Elephantipes](https://github.com/basnijholt/home-assistant-config/blob/5709ae3c7802fc787517c8aa7ab7763548cc63ad/automations/plant.yaml#L47)
 
+  *which uses:*
+  - [plant.yucca_elephantipes](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/plant.yaml#L67)
 
 [^ toc](#automations---table-of-content)
 
@@ -631,6 +637,7 @@ to "Opt".
 
   *which uses:*
   - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L19)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/49f5b605823ba615432fe4ad3e65895f6fa73936/includes/groups.yaml#L11)
 
 ### [Sound alarm after notification](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/security.yaml#L32)
 
@@ -699,12 +706,14 @@ to "Opt".
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L19)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/49f5b605823ba615432fe4ad3e65895f6fa73936/includes/groups.yaml#L11)
 
 ### [Auto turn off](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/vacation_mode.yaml#L31)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L19)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/49f5b605823ba615432fe4ad3e65895f6fa73936/includes/groups.yaml#L11)
 
 [^ toc](#automations---table-of-content)
 
@@ -730,6 +739,7 @@ to "Opt".
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L19)
   - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L121)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/49f5b605823ba615432fe4ad3e65895f6fa73936/includes/groups.yaml#L11)
 
 ### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/c38dd957697a5c73b03f59419618f99362645234/automations/vacuum.yaml#L89)
 
