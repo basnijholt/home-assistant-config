@@ -35,6 +35,11 @@ See *all* my automations and its dependencies [below](#automations---table-of-co
 
 See also [my guide for my girlfriend ❤️](guide.md).
 
+## Ideas?
+* Notify us when the window is open and it is raining.
+* Add budget keeper using the Bunq API
+* Use Siri Shortcuts to control the TV from my Apple Watch
+
 ## My devices
 
 <!-- start-table -->
@@ -315,10 +320,6 @@ See also [my guide for my girlfriend ❤️](guide.md).
     </thead>
 </table>
 <!-- end-table -->
-
-## Automation plans
-* Notify us when the window is open and it is raining.
-* Add budget keeper using the Bunq API
 
 <!-- start-automations -->
 # Automations - Table of Content
