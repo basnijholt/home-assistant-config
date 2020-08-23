@@ -7,10 +7,7 @@
 
 Using my [iOS Light and Dark Mode Themes](https://github.com/basnijholt/lovelace-ios-themes).
 
-## My cool AppDaemon apps
-* [Sunrise emulator app](appdaemon/apps/wake_up_light.py) 🌅
-* [Wake up with Spotify app](appdaemon/apps/wake_up_with_spotify.py) that slowly ramps the volume 📢
-* [Low Battery level notifications 🔋](appdaemon/apps/battery_monitor.py) 
+See also [my guide for my girlfriend ❤️](guide.md).
 
 ## Noteworthy (useful) automations
 See *all* my automations and its dependencies [down the page](#automations---table-of-content)!
@@ -31,7 +28,10 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 * [Sync volume TV ⇄ speakers 🔊](#media-player-)
 * [Security notifications when the front door 🚪 has been open for too long or motion is detected when no one is home](#security-%EF%B8%8F)
 
-See also [my guide for my girlfriend ❤️](guide.md).
+## My cool AppDaemon apps
+* [Sunrise emulator app](appdaemon/apps/wake_up_light.py) 🌅
+* [Wake up with Spotify app](appdaemon/apps/wake_up_with_spotify.py) that slowly ramps the volume 📢
+* [Low Battery level notifications 🔋](appdaemon/apps/battery_monitor.py)
 
 ## Ideas?
 * Notify us when the window is open and it is raining.
