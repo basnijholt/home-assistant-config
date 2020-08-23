@@ -16,3 +16,4 @@ logs:
   aiokef: debug
   homeassistant.component.opentherm_gw: warning
   pyotgw: warning
+  custom_components.derivative_custom: debug
