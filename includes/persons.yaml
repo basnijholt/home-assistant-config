@@ -13,8 +13,9 @@
   device_trackers:
     - device_tracker.basnijholt_iphone_2 # from iOS app
     - device_tracker.basnijholt_iphone
+    - device_tracker.bas_iphone_ping
 - name: Marcella
   id: marcella
   device_trackers:
     - device_tracker.marcella_iphone # from iOS app
-    # XXX: add router entity_id
+    - device_tracker.marcella_iphone_ping # XXX: fix in includes/device_trackers.yaml
