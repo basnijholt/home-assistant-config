@@ -7,7 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from tables import html_table
+from _readme_tables import html_table
 
 URL = "https://github.com/basnijholt/home-assistant-config/blob/{commit_hash}/{fname}"
 
