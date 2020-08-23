@@ -1,4 +1,17 @@
-# "security-%EF%B8%8F" is the anchor...
+#
+#  _   _ ____  ____    _  _____ _____   ____  _____    _    ____  __  __ _____
+# | | | |  _ \|  _ \  / \|_   _| ____| |  _ \| ____|  / \  |  _ \|  \/  | ____|
+# | | | | |_) | | | |/ _ \ | | |  _|   | |_) |  _|   / _ \ | | | | |\/| |  _|
+# | |_| |  __/| |_| / ___ \| | | |___  |  _ <| |___ / ___ \| |_| | |  | | |___
+#  \___/|_|   |____/_/   \_\_| |_____| |_| \_\_____/_/   \_\____/|_|  |_|_____|
+#
+
+# Run this script from the main repo root!
+# It updates the table of devices and the list of automations.
+# This code relies on the way I have structeded my files and named my automations.
+
+# XXX: note that "security-%EF%B8%8F" is the anchor...
+
 import functools
 import re
 import subprocess

@@ -2,4 +2,4 @@
 
 python3 utils/commit-updates.py
 python3 utils/ascii_art.py  # make sure that `init_commands: ['pip3 install pyfiglet']` in ssh config
-python3 utils/create-readme.py
+python3 utils/update-readme.py
