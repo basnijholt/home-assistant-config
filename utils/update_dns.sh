@@ -1,4 +1,13 @@
 #!/bin/bash
+
+#   _   _           _       _         ____  _   _ ____
+#  | | | |_ __   __| | __ _| |_ ___  |  _ \| \ | / ___|
+#  | | | | '_ \ / _` |/ _` | __/ _ \ | | | |  \| \___ \
+#  | |_| | |_) | (_| | (_| | ||  __/ | |_| | |\  |___) |
+#   \___/| .__/ \__,_|\__,_|\__\___| |____/|_| \_|____/
+#        |_|
+#- from github.com/basnijholt/home-assistant-config
+
 # This script gets the external IP of your systems then connects to the Gandi
 # LiveDNS API and updates your dns record with the IP.
 

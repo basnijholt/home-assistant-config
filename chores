@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#    ____ _
+#   / ___| |__   ___  _ __ ___  ___
+#  | |   | '_ \ / _ \| '__/ _ \/ __|
+#  | |___| | | | (_) | | |  __/\__ \
+#   \____|_| |_|\___/|_|  \___||___/
+#
+#- from github.com/basnijholt/home-assistant-config
+
 python3 utils/commit-updates.py
 python3 utils/ascii_art.py  # make sure that `init_commands: ['pip3 install pyfiglet']` in ssh config
 python3 utils/update-readme.py

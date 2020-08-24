@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# http://patorjk.com/software/taag/#p=display&f=Standard&t=input_boolean
+
+#      _    ____   ____ ___ ___              _
+#     / \  / ___| / ___|_ _|_ _|   __ _ _ __| |_
+#    / _ \ \___ \| |    | | | |   / _` | '__| __|
+#   / ___ \ ___) | |___ | | | |  | (_| | |  | |_
+#  /_/   \_\____/ \____|___|___|  \__,_|_|   \__|
+#
+#- from github.com/basnijholt/home-assistant-config
+
+# Use manually on http://patorjk.com/software/taag/#p=display&f=Standard&t=input_boolean
+
 from pathlib import Path
 
 import pyfiglet

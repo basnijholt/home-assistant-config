@@ -1,10 +1,12 @@
-#
+#!/usr/bin/env python3
+
 #  _   _ ____  ____    _  _____ _____   ____  _____    _    ____  __  __ _____
 # | | | |  _ \|  _ \  / \|_   _| ____| |  _ \| ____|  / \  |  _ \|  \/  | ____|
 # | | | | |_) | | | |/ _ \ | | |  _|   | |_) |  _|   / _ \ | | | | |\/| |  _|
 # | |_| |  __/| |_| / ___ \| | | |___  |  _ <| |___ / ___ \| |_| | |  | | |___
 #  \___/|_|   |____/_/   \_\_| |_____| |_| \_\_____/_/   \_\____/|_|  |_|_____|
 #
+#- from github.com/basnijholt/home-assistant-config
 
 # Run this script from the main repo root!
 # It updates the table of devices and the list of automations.

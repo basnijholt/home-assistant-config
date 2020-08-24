@@ -1,3 +1,17 @@
+#!/usr/bin/env python3
+
+#                           _                  _        _     _
+#        _ __ ___  __ _  __| |_ __ ___   ___  | |_ __ _| |__ | | ___  ___
+#       | '__/ _ \/ _` |/ _` | '_ ` _ \ / _ \ | __/ _` | '_ \| |/ _ \/ __|
+#       | | |  __/ (_| | (_| | | | | | |  __/ | || (_| | |_) | |  __/\__ \
+#   ____|_|  \___|\__,_|\__,_|_| |_| |_|\___|  \__\__,_|_.__/|_|\___||___/
+#  |_____|
+#
+#- from github.com/basnijholt/home-assistant-config
+
+# This script generates the HTML table in my README.md.
+# It is used in `update-readme.py`.
+
 from jinja2 import Template
 
 tables = {

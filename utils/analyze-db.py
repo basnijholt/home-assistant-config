@@ -1,3 +1,16 @@
+#!/usr/bin/env python3
+
+#      _                _                     _ _
+#     / \   _ __   __ _| |_   _ _______    __| | |__
+#    / _ \ | '_ \ / _` | | | | |_  / _ \  / _` | '_ \
+#   / ___ \| | | | (_| | | |_| |/ /  __/ | (_| | |_) |
+#  /_/   \_\_| |_|\__,_|_|\__, /___\___|  \__,_|_.__/
+#                         |___/
+#
+#- from github.com/basnijholt/home-assistant-config
+
+# Use with sqlite database!
+
 import json
 import sqlite3
 from collections import Counter, defaultdict
