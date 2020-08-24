@@ -14,7 +14,7 @@
 
 - alias: "Rhasspy: light states"
   trigger:
-    event_type: rhasspy_ChangeLightState
+    event_type: rhasspy_SetLightState
     platform: event
   action:
     data_template:
@@ -23,7 +23,7 @@
 
 - alias: "Rhasspy: living room light states"
   trigger:
-    event_type: rhasspy_ChangeLivingRoomLightState
+    event_type: rhasspy_SetLivingRoomLightState
     platform: event
   action:
     entity_id: light.living_room_lights
@@ -31,7 +31,7 @@
 
 - alias: "Rhasspy: light colors"
   trigger:
-    event_type: rhasspy_ChangeLightColor
+    event_type: rhasspy_SetLightColor
     platform: event
   action:
     data_template:
@@ -41,7 +41,7 @@
 
 - alias: "Rhasspy: living room light colors"
   trigger:
-    event_type: rhasspy_ChangeLivingRoomLightColor
+    event_type: rhasspy_SetLivingRoomLightColor
     platform: event
   action:
     data_template:
@@ -61,7 +61,7 @@
 
 - alias: "Rhasspy: media player states"
   trigger:
-    event_type: rhasspy_ChangeMediaPlayerState
+    event_type: rhasspy_SetMediaPlayerState
     platform: event
   action:
     data_template:
