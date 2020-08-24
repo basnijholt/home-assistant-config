@@ -1,4 +1,4 @@
-background: var(--background-image)
+---
 #-
 #  _                _                            _
 # | | _____   _____| | __ _  ___ ___       _   _(_)
@@ -8,6 +8,7 @@ background: var(--background-image)
 #
 #
 #- from github.com/basnijholt/home-assistant-config
+background: var(--background-image)
 custom_header:
   background: rgba(155, 155, 155, 0.25)
   button_text:
@@ -1105,7 +1106,7 @@ views:
           \ 0, 0)';\n}\n"
         type: custom:bar-card
       - animation: 'off'
-        entity: sensor.cpu_temperature
+        entity: sensor.temperature_xbox
         entity_row: true
         height: 30px
         indicator: 'off'
@@ -1291,16 +1292,6 @@ views:
     show_name: true
     show_state: false
     type: glance
-  - entity: light.kitchen_counter
-    hold_action:
-      action: more-info
-    show_icon: true
-    show_name: true
-    show_state: false
-    tap_action:
-      action: call-service
-      service: shell_command.chores
-    type: button
   icon: mdi:home-assistant
   path: system
   title: System Information

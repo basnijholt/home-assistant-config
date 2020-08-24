@@ -24,4 +24,5 @@ with open(json_fname) as f:
 
 yaml_fname = p.parse_args().yaml_fname
 with open(yaml_fname, "w") as f:
+    f.write("---\n")
     yaml.dump(info, f, allow_unicode=True)
