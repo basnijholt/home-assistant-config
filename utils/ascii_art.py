@@ -41,7 +41,7 @@ def add_text(text, content):
     return content
 
 
-folders = ["automations", "includes"]
+folders = ["automations", "includes", ""]
 for folder in folders:
     folder = Path("/config") / folder
     for fname in folder.glob("*.yaml"):
