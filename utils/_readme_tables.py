@@ -7,7 +7,7 @@
 #   ____|_|  \___|\__,_|\__,_|_| |_| |_|\___|  \__\__,_|_.__/|_|\___||___/
 #  |_____|
 #
-#- from github.com/basnijholt/home-assistant-config
+# - from github.com/basnijholt/home-assistant-config
 
 # This script generates the HTML table in my README.md.
 # It is used in `update-readme.py`.
@@ -37,21 +37,23 @@ tables = {
     "Lights 💡": [
         ["Philips Hue E27 White and Color", 12, 266.70],
         ["Philips Hue E14 White and Color", 2, 69.77],
-        ["Philips Hue GU10 Ambient White", 5, "(92.70)"],
+        ["Philips Hue GU10 Ambient White", 5, 92.70],
         ["Philips Hue Go", 1, 57.05],
         ["Philips Hue LED strip 2m", 2, 86.39],
         ["Philips Hue LED strip 1m", 1, 13.84],
     ],
     "Hubs 🌎": [["ConBee II", 1, 39.95]],
     "Server 🖥": [
-        ["Raspberry Pi 4, 4GB RAM, with Supervised Home Assistant", 1, 70.90,],
+        ["Intel NUC Kit NUC8i3BEH", 1, 278.30],
+        ["8 GB Crucial CT8G4SFS824A DDR4", 2, 51.04],
+        ["Samsung 970 EVO M.2 500GB", 1, 94.99],
+        [
+            "Raspberry Pi 4, 4GB RAM (connected to power/gas meter and connected over MQTT to main HA instance)",
+            1,
+            70.90,
+        ],
         ["Raspberry Pi 4 FLIRC Case", 1, 25.85],
         ["SanDisk Ultra microSDHC Memory Card 32GB", 1, 6.99],
-        [
-            "Raspberry Pi 3 Model B (connected to power/gas meter and connected over MQTT to main HA instance)",
-            1,
-            40.40,
-        ],
     ],
     "Device tracker 🔍": [["iPhone X with the new iOS app", 2, "nan"]],
     "Other": [
@@ -62,6 +64,20 @@ tables = {
 }
 
 
+def add_unit_price(lst):
+    return [
+        (
+            name,
+            units,
+            round(tot_price / units, 2) if isinstance(tot_price, float) else "nan",
+            tot_price,
+        )
+        for name, units, tot_price in lst
+    ]
+
+
+tables = {title: add_unit_price(lst) for title, lst in tables.items()}
+
 table_template = """
 <table>
     {%- for k, v in dicts.items() %}
@@ -69,18 +85,21 @@ table_template = """
         <tr>
             <th>{{ k }}</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
     <tbody>
-    {%- for row in v %}
+    {%- for name, units, unit_price, tot_price in v %}
         <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] }}</td>
+            <td>{{ name }}</td>
+            <td>{{ units }}</td>
+            <td>{{ unit_price }}</td>
+            <td>{{ tot_price }}</td>
         </tr>
     {%- endfor %}
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -90,8 +109,9 @@ table_template = """
     <thead>
         <tr>
             <th>Total</th>
-            <th>€{{ total }}</th>
             <th></th>
+            <th></th>
+            <th>€{{ total }}</th>
         </tr>
     </thead>
 </table>"""
@@ -99,6 +119,9 @@ table_template = """
 
 template = Template(table_template)
 total_cost = sum(
-    cost for lst in tables.values() for _, _, cost in lst if isinstance(cost, float)
+    cost for lst in tables.values() for _, _, _, cost in lst if isinstance(cost, float)
 )
 html_table = template.render(dicts=tables, total=total_cost)
+
+if __name__ == "__main__":
+    print(html_table)

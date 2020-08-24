@@ -47,6 +47,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Switches 🎚</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -54,24 +55,29 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <td>TP-Link HS110</td>
             <td>3</td>
+            <td>23.61</td>
             <td>70.84</td>
         </tr>
         <tr>
             <td>Xiaomi Aqara Magic Cube</td>
             <td>1</td>
             <td>11.08</td>
+            <td>11.08</td>
         </tr>
         <tr>
             <td>Xiaomi Aqara Single Button</td>
             <td>4</td>
+            <td>14.35</td>
             <td>57.38</td>
         </tr>
         <tr>
             <td>Philips Hue Dimmer switch</td>
             <td>2</td>
+            <td>16.61</td>
             <td>33.22</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -81,6 +87,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Sensors 🌡</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -88,29 +95,35 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <td>Xiaomi Aqara Door Sensor</td>
             <td>4</td>
+            <td>8.18</td>
             <td>32.71</td>
         </tr>
         <tr>
             <td>Xiaomi Aqara Temperature Sensor</td>
             <td>5</td>
+            <td>9.15</td>
             <td>45.74</td>
         </tr>
         <tr>
             <td>Xiaomi Aqara Motion Sensor</td>
             <td>6</td>
+            <td>10.19</td>
             <td>61.13</td>
         </tr>
         <tr>
             <td>Xiaomi Aqara Vibration Sensor</td>
             <td>1</td>
             <td>11.59</td>
+            <td>11.59</td>
         </tr>
         <tr>
             <td>Xiaomi Mi Flora</td>
             <td>3</td>
+            <td>15.54</td>
             <td>46.63</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -120,6 +133,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Vacuum 🧹</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -128,8 +142,10 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td>Xiaomi Mi Roborock S5</td>
             <td>1</td>
             <td>294.31</td>
+            <td>294.31</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -139,6 +155,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Media player 📺🔈</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -147,18 +164,22 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td>KEF LS50 Wireless speakers</td>
             <td>1</td>
             <td>nan</td>
+            <td>nan</td>
         </tr>
         <tr>
             <td>KEF LSX speakers</td>
             <td>1</td>
+            <td>nan</td>
             <td>nan</td>
         </tr>
         <tr>
             <td>LG OLED 55 C9</td>
             <td>1</td>
             <td>nan</td>
+            <td>nan</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -168,6 +189,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Lights 💡</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -175,34 +197,41 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <td>Philips Hue E27 White and Color</td>
             <td>12</td>
+            <td>22.22</td>
             <td>266.7</td>
         </tr>
         <tr>
             <td>Philips Hue E14 White and Color</td>
             <td>2</td>
+            <td>34.88</td>
             <td>69.77</td>
         </tr>
         <tr>
             <td>Philips Hue GU10 Ambient White</td>
             <td>5</td>
-            <td>(92.70)</td>
+            <td>18.54</td>
+            <td>92.7</td>
         </tr>
         <tr>
             <td>Philips Hue Go</td>
             <td>1</td>
             <td>57.05</td>
+            <td>57.05</td>
         </tr>
         <tr>
             <td>Philips Hue LED strip 2m</td>
             <td>2</td>
+            <td>43.2</td>
             <td>86.39</td>
         </tr>
         <tr>
             <td>Philips Hue LED strip 1m</td>
             <td>1</td>
             <td>13.84</td>
+            <td>13.84</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -212,6 +241,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Hubs 🌎</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -220,8 +250,10 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td>ConBee II</td>
             <td>1</td>
             <td>39.95</td>
+            <td>39.95</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -231,31 +263,49 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Server 🖥</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Raspberry Pi 4, 4GB RAM, with Supervised Home Assistant</td>
+            <td>Intel NUC Kit NUC8i3BEH</td>
             <td>1</td>
+            <td>278.3</td>
+            <td>278.3</td>
+        </tr>
+        <tr>
+            <td>8 GB Crucial CT8G4SFS824A DDR4</td>
+            <td>2</td>
+            <td>25.52</td>
+            <td>51.04</td>
+        </tr>
+        <tr>
+            <td>Samsung 970 EVO M.2 500GB</td>
+            <td>1</td>
+            <td>94.99</td>
+            <td>94.99</td>
+        </tr>
+        <tr>
+            <td>Raspberry Pi 4, 4GB RAM (connected to power/gas meter and connected over MQTT to main HA instance)</td>
+            <td>1</td>
+            <td>70.9</td>
             <td>70.9</td>
         </tr>
         <tr>
             <td>Raspberry Pi 4 FLIRC Case</td>
             <td>1</td>
             <td>25.85</td>
+            <td>25.85</td>
         </tr>
         <tr>
             <td>SanDisk Ultra microSDHC Memory Card 32GB</td>
             <td>1</td>
             <td>6.99</td>
+            <td>6.99</td>
         </tr>
         <tr>
-            <td>Raspberry Pi 3 Model B (connected to power/gas meter and connected over MQTT to main HA instance)</td>
-            <td>1</td>
-            <td>40.4</td>
-        </tr>
-        <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -265,6 +315,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Device tracker 🔍</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -273,8 +324,10 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td>iPhone X with the new iOS app</td>
             <td>2</td>
             <td>nan</td>
+            <td>nan</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -284,6 +337,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         <tr>
             <th>Other</th>
             <th>Units (#)</th>
+            <th>Price per unit (€)</th>
             <th>Price (€)</th>
         </tr>
     </thead>
@@ -292,18 +346,22 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td>PlayStation Eye Webcam and Microphone array</td>
             <td>1</td>
             <td>14.95</td>
+            <td>14.95</td>
         </tr>
         <tr>
             <td>DSMR - Slimme Meter kabel</td>
             <td>1</td>
+            <td>19.95</td>
             <td>19.95</td>
         </tr>
         <tr>
             <td>Nodo-Shop – OpenTherm Gateway (OTGW) with NodeMCU</td>
             <td>1</td>
             <td>48.81</td>
+            <td>48.81</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -312,8 +370,9 @@ See *all* my automations and its dependencies [down the page](#automations---tab
     <thead>
         <tr>
             <th>Total</th>
-            <th>€1426.18</th>
             <th></th>
+            <th></th>
+            <th>€1902.81</th>
         </tr>
     </thead>
 </table>
@@ -818,43 +877,43 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Rhasspy 🤖](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml)
-### [Light states](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L15)
+## [Rhasspy 🤖](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml)
+### [Light states](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L15)
 
 
-### [Living room light states](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L24)
+### [Living room light states](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L24)
 
 
-### [Light colors](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L32)
+### [Light colors](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L32)
 
 
-### [Living room light colors](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L42)
+### [Living room light colors](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L42)
 
 
-### [Living room light brightness](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L52)
+### [Living room light brightness](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L52)
 
 
-### [Media player states](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L62)
+### [Media player states](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L62)
 
 
-### [Play/pause media player](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L71)
+### [Play/pause media player](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L71)
 
 
-### [Increase/decrease the volume](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L80)
+### [Increase/decrease the volume](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L80)
 
 
-### [Set the volume](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L91)
+### [Set the volume](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L91)
 
 
-### [Cozy/white lights in the living room](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L102)
+### [Cozy/white lights in the living room](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L102)
 
 
-### [Start the music](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L109)
+### [Start the music](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L109)
 
   *which uses:*
   - [input_boolean.start_the_music](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L12)
 
-### [Sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/2b1c68839a514a0f495ab1b6b101f25be3e7012b/automations/rhasspy.yaml#L117)
+### [Sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L117)
 
   *which uses:*
   - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
