@@ -12,7 +12,7 @@ See also [my guide for my girlfriend ❤️](guide.md).
 ## Noteworthy (useful) automations
 See *all* my automations and its dependencies [down the page](#automations---table-of-content)!
 
-* [Alarm clock](automations/alarm_clock.yaml) that uses the AppDaemon volume ramp and sunrise app ⏰
+* [Alarm clock](#alarm-clock-) that uses the AppDaemon volume ramp and sunrise app ⏰
 * [Automatic `lovelace.json` to `lovelace-ui.yaml` converter](#lovelace-) for version control 🤖
 * [Controlling music and lights (hue and brightness) using the Xiaomi Aqara Magic Cube](#cube-) ∛
 * [Controlling the lights using *Phillips Hue Dimmers* the *Xiaomi Aqara Smart Switches*](#control-switches-) 🎛
