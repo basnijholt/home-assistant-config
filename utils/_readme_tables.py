@@ -55,7 +55,10 @@ tables = {
         ["Raspberry Pi 4 FLIRC Case", 1, 25.85],
         ["SanDisk Ultra microSDHC Memory Card 32GB", 1, 6.99],
     ],
-    "Device tracker 🔍": [["iPhone X with the new iOS app", 2, "nan"]],
+    "Device tracker 🔍": [
+        ["iPhone X with the iOS app", 1, "nan"],
+        ["iPhone SE2 with the iOS app", 1, "nan"]
+    ],
     "Other": [
         ["PlayStation Eye Webcam and Microphone array", 1, 14.95],
         ["DSMR - Slimme Meter kabel", 1, 19.95],
