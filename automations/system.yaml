@@ -60,3 +60,11 @@
     minutes: "/15"
   action:
     service: script.update_dns
+
+- alias: "System: run chores"
+  description: Run shell and Python scripts in utils folder
+  trigger:
+    platform: time_pattern
+    minutes: "/15"
+  action:
+    service: shell_command.chores
