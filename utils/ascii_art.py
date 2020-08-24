@@ -6,7 +6,7 @@
 #   / ___ \ ___) | |___ | | | |  | (_| | |  | |_
 #  /_/   \_\____/ \____|___|___|  \__,_|_|   \__|
 #
-#- from github.com/basnijholt/home-assistant-config
+# - from github.com/basnijholt/home-assistant-config
 
 # Use manually on http://patorjk.com/software/taag/#p=display&f=Standard&t=input_boolean
 

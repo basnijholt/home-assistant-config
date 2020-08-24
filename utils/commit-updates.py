@@ -7,7 +7,7 @@
 #   \____\___/|_| |_| |_|_| |_| |_|_|\__|  \__,_| .__/ \__,_|\__,_|\__\___||___/
 #                                               |_|
 #
-#- from github.com/basnijholt/home-assistant-config
+# - from github.com/basnijholt/home-assistant-config
 
 import subprocess
 from pathlib import Path

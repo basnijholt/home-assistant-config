@@ -6,7 +6,7 @@
 #  | |_| |___) | |_| | |\  | | || (_) |   | |/ ___ \| |  | | |___
 #   \___/|____/ \___/|_| \_|  \__\___/    |_/_/   \_\_|  |_|_____|
 #
-#- from github.com/basnijholt/home-assistant-config
+# - from github.com/basnijholt/home-assistant-config
 
 import argparse
 import json

@@ -6,7 +6,7 @@
 # | |_| |  __/| |_| / ___ \| | | |___  |  _ <| |___ / ___ \| |_| | |  | | |___
 #  \___/|_|   |____/_/   \_\_| |_____| |_| \_\_____/_/   \_\____/|_|  |_|_____|
 #
-#- from github.com/basnijholt/home-assistant-config
+# - from github.com/basnijholt/home-assistant-config
 
 # Run this script from the main repo root!
 # It updates the table of devices and the list of automations.
