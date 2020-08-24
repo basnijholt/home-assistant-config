@@ -18,4 +18,4 @@
   id: marcella
   device_trackers:
     - device_tracker.marcella_iphone # from iOS app
-    - device_tracker.marcella_iphone_ping # XXX: fix in includes/device_trackers.yaml
+    - device_tracker.marcella_iphone_ping
