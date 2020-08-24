@@ -780,10 +780,11 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [Lovelace 👨‍💻](https://github.com/basnijholt/home-assistant-config/blob/3d2e9bf4eb93f78662fe4f247ad3c73d41ce68fb/automations/lovelace.yaml)
-### [Convert lovelace.json to lovelace-ui.yaml](https://github.com/basnijholt/home-assistant-config/blob/3d2e9bf4eb93f78662fe4f247ad3c73d41ce68fb/automations/lovelace.yaml#L11)
+## [Lovelace 👨‍💻](https://github.com/basnijholt/home-assistant-config/blob/dc715e0185302b39caf58117fcfeb03d71d99de4/automations/lovelace.yaml)
+### [Convert lovelace.json to lovelace-ui.yaml](https://github.com/basnijholt/home-assistant-config/blob/dc715e0185302b39caf58117fcfeb03d71d99de4/automations/lovelace.yaml#L11)
 
   *which uses:*
+  - [shell_command.chores](https://github.com/basnijholt/home-assistant-config/blob/160ad08e4015f9a698a27dcadbd43ba630a82662/includes/shell_commands.yaml#L13)
   - [shell_command.convert_lovelace](https://github.com/basnijholt/home-assistant-config/blob/160ad08e4015f9a698a27dcadbd43ba630a82662/includes/shell_commands.yaml#L11)
 
 [^ toc](#automations---table-of-content)
