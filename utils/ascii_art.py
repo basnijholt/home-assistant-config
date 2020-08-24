@@ -34,16 +34,18 @@ def remove_text(content):
 def add_text(text, content):
     text = pyfiglet.figlet_format(text, width=200)
     formatted = [("# " + i).rstrip(" ") for i in text.split("\n")]
-    content.insert(1, start)  # start
+    i_insert_gen = (i + 1 for i, line in enumerate(content) if line.startswith("---"))
+    i_insert = next(i_insert_gen, 0)
+    content.insert(i_insert, start)  # start
     for i, line in enumerate(formatted):
-        content.insert(i + 2, line + "\n")
-    content.insert(i + 3, end)  # end
+        content.insert(i + 1 + i_insert, line + "\n")
+    content.insert(i + 2 + i_insert, end)  # end
     return content
 
 
 folders = ["automations", "includes", ""]
 for folder in folders:
-    folder = Path("/config") / folder
+    folder = Path(".") / folder
     for fname in folder.glob("*.yaml"):
         with fname.open() as f:
             content = f.readlines()
