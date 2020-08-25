@@ -2021,7 +2021,6 @@ views:
       - entity_id: automation.rhasspy_*
       - entity_id: automation.security_*
       - entity_id: automation.system_*
-      - entity_id: automation.turn_off_*
       - entity_id: automation.utilities_*
       - entity_id: automation.vacation_mode_*
       - entity_id: automation.vacuum_*
@@ -2125,11 +2124,6 @@ views:
     variables:
     - name: System
     - slug: system_
-  - template: automation_template
-    type: custom:decluttering-card
-    variables:
-    - name: Turn off
-    - slug: turn_off_
   - template: automation_template
     type: custom:decluttering-card
     variables:
