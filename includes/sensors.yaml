@@ -292,12 +292,11 @@
     - date
     - time
 
-# XXX: not available on Proxmox!
-# - platform: command_line
-#   name: CPU Temperature
-#   command: "cat /sys/class/thermal/thermal_zone4/temp"
-#   unit_of_measurement: "°C"
-#   value_template: "{{ value | multiply(0.001) | round(2) }}"
+# Set up on Proxmox https://community.home-assistant.io/t/intel-nuc-proxmox-cpu-temperature-monitor-with-python-mqtt/194236/8
+- platform: mqtt
+  name: CPU Temperature
+  state_topic: "pve/cpu_temp"
+  value_template: "{{ value | multiply(0.001) | round(1) }}"
 
 - platform: systemmonitor
   resources:

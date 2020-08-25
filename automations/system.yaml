@@ -24,7 +24,7 @@
 - alias: "System: warning about high CPU temperature"
   trigger:
     platform: numeric_state
-    entity_id: sensor.processor_use # XXX: this isn't using the CPU temperature!
+    entity_id: sensor.cpu_temperature
     above: 70
     for:
       hours: 4
