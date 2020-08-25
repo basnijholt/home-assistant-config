@@ -1000,14 +1000,14 @@ to "Opt".
 
 ### [Update DNS](https://github.com/basnijholt/home-assistant-config/blob/160ad08e4015f9a698a27dcadbd43ba630a82662/automations/system.yaml#L56)
 
-  Update the DNS at Gandi
+  Update the DNS at Gandi to point my domain to my Home Assistant instance.
 
   *which uses:*
   - [script.update_dns](https://github.com/basnijholt/home-assistant-config/blob/a7d4c998c6cd58e449404033735f056af535befb/scripts.yaml#L312)
 
 ### [Run chores](https://github.com/basnijholt/home-assistant-config/blob/160ad08e4015f9a698a27dcadbd43ba630a82662/automations/system.yaml#L64)
 
-  Run shell and Python scripts in utils folder
+  Run shell and Python scripts in utils folder.
 
   *which uses:*
   - [shell_command.chores](https://github.com/basnijholt/home-assistant-config/blob/160ad08e4015f9a698a27dcadbd43ba630a82662/includes/shell_commands.yaml#L13)
