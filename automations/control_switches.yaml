@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Control switches: living room Hue dimmer switch"
+- alias: "Control switches: living room Philips Hue dimmer switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -46,7 +46,7 @@
           data:
             group: light.living_room_lights
 
-- alias: "Control switches: bedroom Hue dimmer switch"
+- alias: "Control switches: bedroom Philips Hue dimmer switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -83,7 +83,7 @@
           data:
             group: light.bedroom_lights
 
-- alias: "Control switches: living room smart switch"
+- alias: "Control switches: living room Aqara Wireless Mini Switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -127,7 +127,7 @@
             data:
               transition: 30
 
-- alias: "Control switches: bedroom smart switch"
+- alias: "Control switches: bedroom Aqara Wireless Mini Switch"
   trigger:
     - platform: event
       event_type: deconz_event
@@ -180,7 +180,7 @@
           default:
             service: script.going_to_sleep
 
-- alias: "Control switches: bathroom smart switch"
+- alias: "Control switches: bathroom Aqara Wireless Mini Switch"
   trigger:
     platform: event
     event_type: deconz_event
@@ -218,7 +218,7 @@
           service: light.turn_off
           entity_id: light.ceiling_bathroom
 
-- alias: "Control switches: downstairs smart switch"
+- alias: "Control switches: downstairs Aqara Wireless Mini Switch"
   trigger:
     platform: event
     event_type: deconz_event
