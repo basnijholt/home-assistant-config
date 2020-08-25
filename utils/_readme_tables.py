@@ -57,7 +57,7 @@ tables = {
     ],
     "Device tracker 🔍": [
         ["iPhone X with the iOS app", 1, "nan"],
-        ["iPhone SE2 with the iOS app", 1, "nan"]
+        ["iPhone SE2 with the iOS app", 1, "nan"],
     ],
     "Other": [
         ["PlayStation Eye Webcam and Microphone array", 1, 14.95],
@@ -80,6 +80,10 @@ def add_unit_price(lst):
 
 
 tables = {title: add_unit_price(lst) for title, lst in tables.items()}
+total_per_title = {
+    title: sum(x[-1] for x in lst if isinstance(x[-1], float))
+    for title, lst in tables.items()
+}
 
 table_template = """
 <table>
@@ -101,6 +105,12 @@ table_template = """
             <td>{{ tot_price }}</td>
         </tr>
     {%- endfor %}
+        <tr>
+            <td><i><b>Total</b></i></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>{{ total_per_title[k] | round(2) }}</td>
+        </tr>
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -124,7 +134,9 @@ template = Template(table_template)
 total_cost = sum(
     cost for lst in tables.values() for _, _, _, cost in lst if isinstance(cost, float)
 )
-html_table = template.render(dicts=tables, total=total_cost)
+html_table = template.render(
+    dicts=tables, total=total_cost, total_per_title=total_per_title
+)
 
 if __name__ == "__main__":
     print(html_table)
