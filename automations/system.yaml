@@ -24,7 +24,7 @@
 - alias: "System: warning about high CPU temperature"
   trigger:
     platform: numeric_state
-    entity_id: sensor.processor_use
+    entity_id: sensor.processor_use # XXX: this isn't using the CPU temperature!
     above: 70
     for:
       hours: 4
@@ -54,7 +54,7 @@
           Temperature in the Xbox cabinet is {{ states("sensor.temperature_xbox") }} °C! ⚠️
 
 - alias: "System: update DNS"
-  description: Update the DNS at Gandi
+  description: Update the DNS at Gandi to point my domain to my Home Assistant instance.
   trigger:
     platform: time_pattern # XXX: trigger on IP change
     minutes: "/15"
@@ -62,7 +62,7 @@
     service: script.update_dns
 
 - alias: "System: run chores"
-  description: Run shell and Python scripts in utils folder
+  description: Run shell and Python scripts in utils folder.
   trigger:
     platform: time_pattern
     minutes: "/15"
