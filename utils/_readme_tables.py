@@ -105,12 +105,14 @@ table_template = """
             <td>{{ tot_price }}</td>
         </tr>
     {%- endfor %}
+        {%- if total_per_title[k] > 0 %}
         <tr>
             <td><i><b>Total</b></i></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>{{ total_per_title[k] | round(2) }}</td>
         </tr>
+        {%- endif %}
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>

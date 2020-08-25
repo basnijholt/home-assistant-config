@@ -197,12 +197,6 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td>nan</td>
         </tr>
         <tr>
-            <td><i><b>Total</b></i></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>0</td>
-        </tr>
-        <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -373,12 +367,6 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td>1</td>
             <td>nan</td>
             <td>nan</td>
-        </tr>
-        <tr>
-            <td><i><b>Total</b></i></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>0</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
