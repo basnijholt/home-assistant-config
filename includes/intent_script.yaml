@@ -1,0 +1,83 @@
+---
+#-
+#  _       _             _                     _       _
+# (_)_ __ | |_ ___ _ __ | |_     ___  ___ _ __(_)_ __ | |_
+# | | '_ \| __/ _ \ '_ \| __|   / __|/ __| '__| | '_ \| __|
+# | | | | | ||  __/ | | | |_    \__ \ (__| |  | | |_) | |_
+# |_|_| |_|\__\___|_| |_|\__|___|___/\___|_|  |_| .__/ \__|
+#                          |_____|              |_|
+#
+#- from github.com/basnijholt/home-assistant-config
+SetLightState:
+  action:
+    data_template:
+      entity_id: "{{ name }}"
+    service_template: "light.turn_{{ state }}"
+
+SetLivingRoomLightState:
+  action:
+    entity_id: light.living_room_lights
+    service_template: "light.turn_{{ state }}"
+
+SetLightColor:
+  action:
+    data_template:
+      entity_id: "{{ name }}"
+      color_name: "{{ color }}"
+    service: light.turn_on
+
+SetLivingRoomLightColor:
+  action:
+    data_template:
+      entity_id: light.living_room_lights
+      color_name: "{{ color }}"
+    service: light.turn_on
+
+SetLivingRoomBrightness:
+  action:
+    data_template:
+      entity_id: light.living_room_lights
+      brightness_pct: "{{ brightness }}"
+    service: light.turn_on
+
+SetMediaPlayerState:
+  action:
+    data_template:
+      entity_id: "{{ name }}"
+    service_template: "media_player.turn_{{ state }}"
+
+PlayPauseMediaPlayer:
+  action:
+    data_template:
+      entity_id: "{{ name }}"
+    service_template: "media_player.media_{{ state }}"
+
+IncreaseDecreaseVolume:
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.kef_ls50
+      volume_level: >
+        {{ state_attr("media_player.kef_ls50", "volume_level") + delta|float }}
+
+SetVolume:
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.kef_ls50
+      volume_level: >
+        {{ (volume|float / 100)|round(2) }}
+
+SetWhiteCozyLights:
+  action:
+    service_template: "script.{{ state }}_lights_living_room"
+
+StartTheMusic:
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.start_the_music
+
+SleepMode:
+  action:
+    entity_id: input_boolean.sleep_mode
+    service_template: "input_boolean.turn_{{ state }}"

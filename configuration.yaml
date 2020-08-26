@@ -60,6 +60,8 @@ plant: !include includes/plant.yaml
 spotify: !include includes/spotify.yaml
 climate: !include  includes/climate.yaml
 influxdb: !include includes/influxdb.yaml
+intent:
+intent_script: !include includes/intent_script.yaml
 # proxmoxve: !include includes/proxmoxve.yaml
 
 # Custom components
