@@ -444,7 +444,6 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 1. [Music 🎵](#music-) (2 automations)
 1. [Night mode 🌕🌑](#night-mode-) (3 automations)
 1. [Plant ☘️](#plant-) (3 automations)
-1. [Rhasspy 🤖](#rhasspy-) (12 automations)
 1. [Security 👮‍♂️🚨](#security-) (3 automations)
 1. [System 🖥](#system-) (5 automations)
 1. [Utilities 🧺👚🍽](#utilities-) (4 automations)
@@ -453,7 +452,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **103** ⚠️
+⚠️ Total number of automations: **91** ⚠️
 
 ## [Alarm clock ⏰](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml)
 ### [Wake up with Spotify and light](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml#L11)
@@ -922,50 +921,6 @@ to "Opt".
 
   *which uses:*
   - [plant.yucca_elephantipes](https://github.com/basnijholt/home-assistant-config/blob/9be72f4f3b5f056b44f984e016b629a5dba9c774/includes/plant.yaml#L67)
-
-[^ toc](#automations---table-of-content)
-
-
-## [Rhasspy 🤖](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml)
-### [Light states](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L15)
-
-
-### [Living room light states](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L24)
-
-
-### [Light colors](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L32)
-
-
-### [Living room light colors](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L42)
-
-
-### [Living room light brightness](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L52)
-
-
-### [Media player states](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L62)
-
-
-### [Play/pause media player](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L71)
-
-
-### [Increase/decrease the volume](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L80)
-
-
-### [Set the volume](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L91)
-
-
-### [Cozy/white lights in the living room](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L102)
-
-
-### [Start the music](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L109)
-
-  *which uses:*
-  - [input_boolean.start_the_music](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L12)
-
-### [Sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/e11613782e9cfafd1722fc8d095049d6cd650d77/automations/rhasspy.yaml#L117)
-
-  *which uses:*
-  - [input_boolean.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L25)
 
 [^ toc](#automations---table-of-content)
 
