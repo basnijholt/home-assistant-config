@@ -8,17 +8,40 @@
 #
 #
 #- from github.com/basnijholt/home-assistant-config
-exclude_domains:
-  - device_tracker
-  - automation
-  - sensor
-  - person
-  - input_boolean
+filter:
+  exclude_domains:
+    - automation
+    - binary_sensor
+    - device_tracker
+    - input_boolean
+    - persistent_notification
+    - person
+    - script
+    - sensor
+    - sun
+    - switch
+    - zone
+  exclude_entity_globs:
+    - light.*_deconz_group
+  exclude_entities:
+    - light.conbee_unknown
 entity_config:
   media_player.kef_ls50:
-    name: KEF Speakers
+    name: Living room speakers
     feature_list:
       - feature: on_off
+      - feature: toggle_mute
+  media_player.kef_lsx:
+    name: Bedroom speakers
+    feature_list:
+      - feature: on_off
+      - feature: toggle_mute
+  media_player.tv:
+    name: TV
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
       - feature: toggle_mute
   light.ceiling_bedroom:
     name: Bedroom ceiling lamp
