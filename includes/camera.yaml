@@ -1,0 +1,15 @@
+---
+#-
+#
+#   ___ __ _ _ __ ___   ___ _ __ __ _
+#  / __/ _` | '_ ` _ \ / _ \ '__/ _` |
+# | (_| (_| | | | | | |  __/ | | (_| |
+#  \___\__,_|_| |_| |_|\___|_|  \__,_|
+#
+#
+#- from github.com/basnijholt/home-assistant-config
+- platform: mjpeg
+  name: Living room camera
+  mjpeg_url: http://192.168.1.4:8081
+  username: user
+  password: !secret motioneye_pw

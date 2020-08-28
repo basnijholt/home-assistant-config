@@ -1,0 +1,15 @@
+---
+#-
+#  _                                                                   _
+# (_)_ __ ___   __ _  __ _  ___      _ __  _ __ ___   ___ ___  ___ ___(_)_ __   __ _
+# | | '_ ` _ \ / _` |/ _` |/ _ \    | '_ \| '__/ _ \ / __/ _ \/ __/ __| | '_ \ / _` |
+# | | | | | | | (_| | (_| |  __/    | |_) | | | (_) | (_|  __/\__ \__ \ | | | | (_| |
+# |_|_| |_| |_|\__,_|\__, |\___|____| .__/|_|  \___/ \___\___||___/___/_|_| |_|\__, |
+#                    |___/    |_____|_|                                        |___/
+#
+#- from github.com/basnijholt/home-assistant-config
+- platform: tensorflow
+  source:
+    - entity_id: camera.living_room_camera
+  model:
+    graph: /config/tensorflow/models/efficientdet_d0_coco17_tpu-32/
