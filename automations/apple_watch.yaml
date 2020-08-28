@@ -1,0 +1,37 @@
+---
+#-
+#                    _                      _       _
+#   __ _ _ __  _ __ | | ___  __      ____ _| |_ ___| |__
+#  / _` | '_ \| '_ \| |/ _ \ \ \ /\ / / _` | __/ __| '_ \
+# | (_| | |_) | |_) | |  __/  \ V  V / (_| | || (__| | | |
+#  \__,_| .__/| .__/|_|\___|___\_/\_/ \__,_|\__\___|_| |_|
+#       |_|   |_|         |_____|
+#
+#- from github.com/basnijholt/home-assistant-config
+- alias: "Apple Watch: Play or Pause the TV"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Play TV
+  condition:
+    condition: state
+    entity_id: media_player.tv
+    state: "on"
+  action:
+    service: media_player.media_play_pause
+    entity_id: media_player.tv
+
+# - alias: "Apple Watch: One person goes to sleep"
+#   trigger:
+#     platform: event
+#     event_type: ios.action_fired
+#     event_data:
+#       actionName: One person goes to sleep
+#   condition:
+#     condition: state
+#     entity_id: media_player.tv
+#     state: "on"
+#   action:
+#     service: media_player.media_play_pause
+#     entity_id: media_player.tv
