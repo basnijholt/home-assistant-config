@@ -14,6 +14,8 @@ filter:
     - binary_sensor
     - device_tracker
     - input_boolean
+    - light
+    - media_player
     - persistent_notification
     - person
     - script
@@ -21,10 +23,21 @@ filter:
     - sun
     - switch
     - zone
-  exclude_entity_globs:
-    - light.*_deconz_group
-  exclude_entities:
-    - light.conbee_unknown
+  include_entities:
+    - light.living_room_lights
+    - light.bedroom_lights
+    - light.automatic_lights
+    - light.kitchen_lights
+    - light.kitchen_lights
+    - light.stairs_lights
+    - light.hall_lights
+    - light.toilet
+    - light.ceiling_bathroom
+    - media_player.kef_ls50
+    - media_player.kef_lsx
+    - media_player.tv
+    - input_boolean.sleep_mode
+    - input_boolean.start_the_music
 entity_config:
   media_player.kef_ls50:
     name: Living room speakers
@@ -43,7 +56,5 @@ entity_config:
       - feature: play_pause
       - feature: play_stop
       - feature: toggle_mute
-  light.ceiling_bedroom:
-    name: Bedroom ceiling lamp
   input_boolean.start_the_music:
     name: Start Spotify
