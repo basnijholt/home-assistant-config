@@ -1106,7 +1106,7 @@ views:
           \ 0, 0)';\n}\n"
         type: custom:bar-card
       - animation: 'off'
-        entity: sensor.temperature_xbox
+        entity: sensor.cpu_temperature
         entity_row: true
         height: 30px
         indicator: 'off'
