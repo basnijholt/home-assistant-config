@@ -65,7 +65,7 @@ intent:
 intent_script: !include includes/intent_script.yaml
 # image_processing: !include includes/image_processing.yaml
 # proxmoxve: !include includes/proxmoxve.yaml
-  
+
 # Custom components
 circadian_lighting: !include includes/circadian_lighting.yaml
 pyscript:
