@@ -429,6 +429,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 <!-- start-automations -->
 # Automations - Table of Content
 1. [Alarm clock ⏰](#alarm-clock-) (1 automations)
+1. [Apple Watch ⌚️](#apple-watch-) (1 automations)
 1. [Arriving 👞](#arriving-) (1 automations)
 1. [Climate 🔥🥶](#climate-) (5 automations)
 1. [Control switches 🎛](#control-switches-) (6 automations)
@@ -452,7 +453,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **91** ⚠️
+⚠️ Total number of automations: **92** ⚠️
 
 ## [Alarm clock ⏰](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml)
 ### [Wake up with Spotify and light](https://github.com/basnijholt/home-assistant-config/blob/e247eb5e9327631293f3c4dff711e825fcb6b107/automations/alarm_clock.yaml#L11)
@@ -463,6 +464,13 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L63)
   - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_booleans.yaml#L87)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/690a89a47cbc3779b253fdc49fe145c9fcbf9b12/includes/sensors.yaml#L249)
+
+[^ toc](#automations---table-of-content)
+
+
+## [Apple Watch ⌚️](https://github.com/basnijholt/home-assistant-config/blob/154195bcc713d2b4156be798ead120cc6fbc5aa6/automations/apple_watch.yaml)
+### [Play or Pause the TV](https://github.com/basnijholt/home-assistant-config/blob/154195bcc713d2b4156be798ead120cc6fbc5aa6/automations/apple_watch.yaml#L11)
+
 
 [^ toc](#automations---table-of-content)
 
