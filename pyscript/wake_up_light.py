@@ -53,23 +53,22 @@ RGB_SEQUENCE = [
 MIN_TIME_STEP = 2  # time between settings
 
 
-class Interpolate:
-    def __init__(self, xs, ys):
-        if any(y - x <= 0 for x, y in zip(xs, xs[1:])):
-            raise ValueError("xs must be in strictly ascending order!")
-        assert len(xs) == len(ys)
-        self.xs = xs
-        self.ys = ys
-        intervals = zip(xs, xs[1:], ys, ys[1:])
-        self.slopes = [(y2 - y1) / (x2 - x1) for x1, x2, y1, y2 in intervals]
+def interpolate(xs, ys):
+    if any(y - x <= 0 for x, y in zip(xs, xs[1:])):
+        raise ValueError("xs must be in strictly ascending order!")
+    assert len(xs) == len(ys)
+    intervals = zip(xs, xs[1:], ys, ys[1:])
+    slopes = [(y2 - y1) / (x2 - x1) for x1, x2, y1, y2 in intervals]
 
-    def __call__(self, x):
-        if not (self.xs[0] <= x <= self.xs[-1]):
+    def _wrapped(self, x):
+        if not (xs[0] <= x <= xs[-1]):
             raise ValueError("x out of bounds!")
-        if x == self.xs[-1]:
-            return self.ys[-1]
-        i = bisect.bisect_right(self.xs, x) - 1
-        return self.ys[i] + self.slopes[i] * (x - self.xs[i])
+        if x == xs[-1]:
+            return ys[-1]
+        i = bisect.bisect_right(xs, x) - 1
+        return ys[i] + slopes[i] * (x - xs[i])
+
+    return _wrapped
 
 
 def linspace(a, b, n=100):
@@ -106,9 +105,9 @@ def rgb_and_brightness(total_time, rgb_sequence):
     """
     xs = linspace(0, total_time, len(rgb_sequence))
     hsvs = zip(*[colorsys.rgb_to_hsv(*rgb) for rgb in rgb_sequence])
-    hue, saturation, value = [Interpolate(xs, ys) for ys in hsvs]
+    hue, saturation, value = [interpolate(xs, ys) for ys in hsvs]
     # start at brightness=2 because it considers 1 to be off...
-    _brightness = Interpolate([0, total_time], [2, 255])
+    _brightness = interpolate([0, total_time], [2, 255])
 
     def rgb(t):
         rgb = colorsys.hsv_to_rgb(hue(t), saturation(t), value(t))
@@ -126,6 +125,7 @@ def wake_up_light(
     total_time=DEFAULT_TOTAL_TIME,
     input_boolean=DEFAULT_INPUT_BOOLEAN,
 ):
+    service.call("input_boolean", "turn_off", entity_id=input_boolean)
     rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
     steps = min(total_time // MIN_TIME_STEP, 255) + 1
     transition = total_time / (steps - 1)
