@@ -8,16 +8,6 @@ The routine can be triggered by toggling an input_boolean.
 
 The sequence is canceled by turning the light on and off.
 
-# Example `apps.yaml` config:
-```
-wake_up_light:
-  module: wake_up_light
-  class: WakeUpLight
-  total_time: 900
-  lamp: "light.ceiling_bedroom"
-  input_boolean: "input_boolean.wake_up_light"
-```
-
 # Example `configuration.yaml`:
 ```
 input_boolean:
