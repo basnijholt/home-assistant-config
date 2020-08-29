@@ -128,16 +128,15 @@ def wake_up_light(
 ):
     rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
     steps = min(total_time // MIN_TIME_STEP, 255) + 1
-    wait = total_time / steps
+    transition = total_time / (steps - 1)
     t = 0
     for i in range(steps):
-        service_data = {
-            "entity_id": lamp,
-            "rgb_color": rgb(t),
-            "brightness": brightness(t),
-            "transition": total_time / (steps - 1),
-        }
-        service.call(*lamp.split("."), **service_data)
-        task.sleep(wait)
-        t += wait
-
+        service.call(
+            *lamp.split("."),
+            entity_id=lamp,
+            rgb_color=rgb(t),
+            brightness=brightness(t),
+            transition=transition,
+        )
+        task.sleep(transition)
+        t += transition
