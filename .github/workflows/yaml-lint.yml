@@ -9,4 +9,4 @@ jobs:
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@master
         with:
-          config_file: .github/workflows/.yamllint.yml
+          config_file: .github/yamllint-config.yml
