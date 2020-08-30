@@ -18,7 +18,10 @@ input_boolean:
 ```
 """
 
-from _wake_up_light import rgb_and_brightness
+import sys
+sys.path.append("/config/pyscript_modules")
+
+from wake_up_light import rgb_and_brightness
 
 DEFAULT_LAMP = "light.ceiling_living_room"
 DEFAULT_TOTAL_TIME = 900
@@ -30,16 +33,6 @@ DEFAULTS = {
     "input_boolean": DEFAULT_INPUT_BOOLEAN,
 }
 
-RGB_SEQUENCE = [
-    (255, 0, 0),
-    (255, 0, 0),
-    (255, 63, 0),
-    (255, 120, 0),
-    (255, 187, 131),
-    (255, 205, 166),
-]
-
-MIN_TIME_STEP = 2  # time between settings
 
 
 @service
@@ -48,6 +41,17 @@ def wake_up_light(
     total_time=DEFAULT_TOTAL_TIME,
     input_boolean=DEFAULT_INPUT_BOOLEAN,
 ):
+    RGB_SEQUENCE = [
+        (255, 0, 0),
+        (255, 0, 0),
+        (255, 63, 0),
+        (255, 120, 0),
+        (255, 187, 131),
+        (255, 205, 166),
+    ]
+
+    MIN_TIME_STEP = 2  # time between settings
+
     service.call("input_boolean", "turn_off", entity_id=input_boolean)
     rgb, brightness = rgb_and_brightness(total_time, RGB_SEQUENCE)
     steps = min(total_time // MIN_TIME_STEP, 255) + 1
