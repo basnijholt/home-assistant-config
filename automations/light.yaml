@@ -48,8 +48,10 @@
     to: "on"
   condition:
     condition: state
-    entity_id: input_boolean.sleep_mode
-    state: "off"
+    entity_id: input_select.sleep_mode
+    state:
+      - "off"
+      - "half"
   action:
     service: light.turn_on
     entity_id: light.kitchen_counter
@@ -70,50 +72,14 @@
 # |____/ \__,_|\__|_| |_|_|  \___/ \___/|_| |_| |_|
 #
 
-- alias: "Light: turn on bathroom"
+- alias: "Light: toggle bathroom"
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
-    to: "on"
   action:
-    service: light.turn_on
-    entity_id: light.ceiling_bathroom
-    data_template:
-      transition: 1
-      brightness_pct: >
-        {{ (state_attr("switch.circadian_lighting_circadian_lighting", "brightness") or 100) | round(0) }}
-      xy_color:
-        - '{{ state_attr("sensor.circadian_values", "xy_color")[0] }}'
-        - '{{ state_attr("sensor.circadian_values", "xy_color")[1] }}'
-
-- alias: "Light: turn bathroom to sleep mode"
-  trigger:
-    platform: state
-    entity_id: input_boolean.sleep_mode
-  condition:
-    condition: state
-    entity_id: light.ceiling_bathroom
-    state: "on"
-  action:
-    service: light.turn_on
-    entity_id: light.ceiling_bathroom
-    data_template:
-      brightness_pct: >
-        {% if trigger.to_state.state == "on" %}
-          5
-        {% else %}
-          100
-        {% endif %}
-
-- alias: "Light: turn off bathroom"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.activity_in_bathroom
-    to: "off"
-  action:
-    service: light.turn_off
-    entity_id: light.ceiling_bathroom
+    service_template: light.turn_{{ trigger.to_state.state }}
     data:
+      entity_id: light.ceiling_bathroom
       transition: 1
 
 #  _____     _ _      _
@@ -186,7 +152,7 @@
       entity_id: light.bedroom_lights
       state: "off"
     - condition: state
-      entity_id: input_boolean.sleep_mode
+      entity_id: input_select.sleep_mode
       state: "off"
     - condition: state
       entity_id: input_boolean.automatic_bedroom_lights

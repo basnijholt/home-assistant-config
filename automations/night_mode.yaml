@@ -22,15 +22,16 @@
     entity_id: input_boolean.alarm_clock
     state: "off"
   action:
-    entity_id: input_boolean.sleep_mode
-    service: input_boolean.turn_off
+    entity_id: input_select.sleep_mode
+    service: input_select.select_option
+    data:
+      option: "off"
 
 - alias: "Night mode: turn off automatic bedroom lights"
   trigger:
     platform: state
-    entity_id: input_boolean.sleep_mode
+    entity_id: input_select.sleep_mode
     from: "off"
-    to: "on"
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.automatic_bedroom_lights
@@ -38,8 +39,7 @@
 - alias: "Night mode: set low temperature when sleep mode turns on"
   trigger:
     platform: state
-    entity_id: input_boolean.sleep_mode
+    entity_id: input_select.sleep_mode
     from: "off"
-    to: "on"
   action:
     service: script.set_low_temperature

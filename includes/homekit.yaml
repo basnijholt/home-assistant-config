@@ -36,7 +36,7 @@ filter:
     - media_player.kef_ls50
     - media_player.kef_lsx
     - media_player.tv
-    - input_boolean.sleep_mode
+    - input_select.sleep_mode
     - input_boolean.start_the_music
 entity_config:
   media_player.kef_ls50:

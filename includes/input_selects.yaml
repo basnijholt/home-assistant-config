@@ -8,6 +8,13 @@
 #         |_|            |_____|
 #
 #- from github.com/basnijholt/home-assistant-config
+sleep_mode:
+  options:
+    - total
+    - half
+    - "off"
+  icon: mdi:bed-king
+
 cube_mode:
   options:
     - Volume

@@ -162,8 +162,8 @@
           choose:
             - conditions:
                 condition: state
-                entity_id: input_boolean.sleep_mode
-                state: "on"
+                entity_id: input_select.sleep_mode
+                state: "total"
               sequence:
                 service: light.turn_off
                 entity_id: all

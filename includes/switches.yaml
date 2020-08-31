@@ -37,14 +37,50 @@
   lights_rgb:
     - light.toilet
     - light.ceiling_kitchen
-  lights_ct: # XXX: these lights can handle `color_temp = [153, 500]` but maybe it is alright?
+    - light.bedroom_lights
+    - light.ceiling_bathroom
+  lights_ct:
     - light.stairs_up
     - light.stairs_down
     - light.hall_1
     - light.hall_2
     - light.hall_3
-  sleep_entity: input_boolean.sleep_mode
-  sleep_state: "on"
-  sleep_colortemp: 1000
-  sleep_brightness: 1
+  sleep_entity: input_select.sleep_mode
+  sleep_state: total
+  disable_entity: input_select.sleep_mode
+  disable_state: half
   min_brightness: 70
+  once_only: true
+
+- platform: circadian_lighting
+  name: "half and dim"
+  lights_rgb:
+    - light.bedroom_lights
+    - light.ceiling_bathroom
+  lights_ct:
+    - light.hall_2
+    - light.hall_3
+  sleep_entity: input_select.sleep_mode
+  sleep_state: half
+  disable_entity: input_select.sleep_mode
+  disable_state:
+    - total
+    - "off"
+  min_brightness: 70
+  once_only: true
+
+- platform: circadian_lighting
+  name: "half and full"
+  lights_rgb:
+    - light.toilet
+    - light.ceiling_kitchen
+  lights_ct:
+    - light.stairs_up
+    - light.stairs_down
+    - light.hall_1
+  disable_entity: input_select.sleep_mode
+  disable_state:
+    - total
+    - "off"
+  min_brightness: 70
+  once_only: true

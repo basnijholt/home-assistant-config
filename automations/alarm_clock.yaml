@@ -24,5 +24,7 @@
       entity_id: input_boolean.wake_up_with_spotify
     - service: input_boolean.turn_on
       entity_id: input_boolean.wake_up_light
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.sleep_mode
+    - service: input_select.select_option
+      entity_id: input_select.sleep_mode
+      data:
+        option: "off"

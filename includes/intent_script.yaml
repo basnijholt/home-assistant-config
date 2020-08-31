@@ -79,5 +79,7 @@ StartTheMusic:
 
 SleepMode:
   action:
-    entity_id: input_boolean.sleep_mode
-    service_template: "input_boolean.turn_{{ state }}"
+    entity_id: input_select.sleep_mode
+    service: input_select.select_option
+    data_template:
+      option: "{{ state }}"

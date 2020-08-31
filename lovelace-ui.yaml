@@ -224,7 +224,7 @@ views:
   - entities:
     - entity: input_boolean.alarm_clock
     - entity: input_datetime.alarm_clock
-    - entity: input_boolean.sleep_mode
+    - entity: input_select.sleep_mode
     - entities:
       - input_select.theme
       - input_boolean.theme_alternative
@@ -740,9 +740,10 @@ views:
         tap_action:
           action: call-service
           haptic: success
-          service: input_boolean.turn_off
+          service: input_select.select_option
           service_data:
-            entity_id: input_boolean.sleep_mode
+            entity_id: input_select.sleep_mode
+            option: 'off'
         type: custom:button-card
       - color: auto
         entity: input_boolean.sleep_mode
@@ -1868,6 +1869,7 @@ views:
   - entities:
     - entity: input_boolean.test
     - entity: sensor.average_sleep_time
+    - entity: input_select.sleep_mode
     type: entities
   - entities:
     - animation: 'off'

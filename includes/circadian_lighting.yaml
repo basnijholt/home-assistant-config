@@ -9,3 +9,4 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 min_colortemp: 2000
+interval: 30
