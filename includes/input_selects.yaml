@@ -10,9 +10,9 @@
 #- from github.com/basnijholt/home-assistant-config
 sleep_mode:
   options:
-    - total
-    - half
-    - "off"
+    - total # everyone is sleeping
+    - half # one person is awake and one person is sleeping
+    - "off" # everyone is awake
   icon: mdi:bed-king
 
 cube_mode:
