@@ -36,7 +36,7 @@ class BatteryMonitor(hass.Hass):
             entity_id: info
             for entity_id, info in self.get_state("sensor").items()
             if "battery_level" in entity_id
-            and int(info["state"]) < self.low_level
+            and 0 <= int(info["state"]) < self.low_level
             and "ipad" not in entity_id
             and "iphone" not in entity_id
         }
