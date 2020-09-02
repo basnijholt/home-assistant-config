@@ -9,6 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
+# XXX: sometimes triggers when leaving!
 - alias: "Arriving: switch music from iPhone to speakers if no one is home"
   trigger:
     platform: state
