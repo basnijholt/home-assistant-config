@@ -16,10 +16,10 @@
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       from: "on"
       to: "off"
+      for: "00:01:00"
     - platform: time_pattern
       hours: "/1"
   condition:
-    - delay: "00:01:00" # to avoid a momentary "home -> away -> home" switch
     - condition: state
       entity_id:
         - binary_sensor.no_one_home
