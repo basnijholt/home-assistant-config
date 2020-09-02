@@ -45,7 +45,8 @@ def wake_up_light(
     t = 0
     for i in range(steps):
         service.call(
-            *lamp.split("."),
+            "light",
+            "turn_on",
             entity_id=lamp,
             rgb_color=rgb(t),
             brightness=brightness(t),

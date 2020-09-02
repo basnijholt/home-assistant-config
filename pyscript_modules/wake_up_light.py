@@ -9,7 +9,7 @@ def interpolate(xs, ys):
     intervals = zip(xs, xs[1:], ys, ys[1:])
     slopes = [(y2 - y1) / (x2 - x1) for x1, x2, y1, y2 in intervals]
 
-    def _wrapped(self, x):
+    def _wrapped(x):
         if not (xs[0] <= x <= xs[-1]):
             raise ValueError("x out of bounds!")
         if x == xs[-1]:
