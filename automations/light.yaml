@@ -160,11 +160,6 @@
   action:
     - service: light.turn_on
       entity_id: light.bedroom_lights
-      data_template:
-        brightness: 255
-        xy_color:
-          - '{{ state_attr("sensor.circadian_values", "xy_color")[0] }}'
-          - '{{ state_attr("sensor.circadian_values", "xy_color")[1] }}'
     - service: input_boolean.turn_on
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
