@@ -19,6 +19,7 @@
     - platform: time_pattern
       hours: "/1"
   condition:
+    - delay: "00:01:00" # to avoid a momentary "home -> away -> home" switch
     - condition: state
       entity_id:
         - binary_sensor.no_one_home
