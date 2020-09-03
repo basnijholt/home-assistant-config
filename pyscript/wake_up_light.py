@@ -43,7 +43,7 @@ def wake_up_light(
     steps = min(total_time // MIN_TIME_STEP, 255) + 1
     transition = total_time / (steps - 1)
     t = 0
-    for i in range(steps):
+    for _ in range(steps):
         service.call(
             "light",
             "turn_on",
