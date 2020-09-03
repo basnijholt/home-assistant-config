@@ -692,8 +692,8 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [Leaving 👞](https://github.com/basnijholt/home-assistant-config/blob/4e08fce15b82401842caef8cf730b76b84f273aa/automations/leaving.yaml)
-### [Automatically turn off everything](https://github.com/basnijholt/home-assistant-config/blob/4e08fce15b82401842caef8cf730b76b84f273aa/automations/leaving.yaml#L12)
+## [Leaving 👞](https://github.com/basnijholt/home-assistant-config/blob/77845b0b0a3c5b804c2f370266809505b8bca464/automations/leaving.yaml)
+### [Automatically turn off everything](https://github.com/basnijholt/home-assistant-config/blob/77845b0b0a3c5b804c2f370266809505b8bca464/automations/leaving.yaml#L12)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L22)
@@ -702,14 +702,14 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
   - [binary_sensor.someone_in_the_house_in_last_hour](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L34)
 
-### [Ask to turn off everything](https://github.com/basnijholt/home-assistant-config/blob/4e08fce15b82401842caef8cf730b76b84f273aa/automations/leaving.yaml#L40)
+### [Ask to turn off everything](https://github.com/basnijholt/home-assistant-config/blob/77845b0b0a3c5b804c2f370266809505b8bca464/automations/leaving.yaml#L40)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L22)
   - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L112)
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/092f77267f82ef7a66b60c65b26f634bc167dadf/includes/binary_sensors.yaml#L127)
 
-### [Turn off everything after notification](https://github.com/basnijholt/home-assistant-config/blob/4e08fce15b82401842caef8cf730b76b84f273aa/automations/leaving.yaml#L70)
+### [Turn off everything after notification](https://github.com/basnijholt/home-assistant-config/blob/77845b0b0a3c5b804c2f370266809505b8bca464/automations/leaving.yaml#L70)
 
   *which uses:*
   - [script.leaving](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/scripts.yaml#L302)
