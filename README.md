@@ -445,15 +445,15 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 1. [Music 🎵](#music-) (2 automations)
 1. [Night mode 🌕🌑](#night-mode-) (4 automations)
 1. [Plant ☘️](#plant-) (3 automations)
-1. [Security 👮‍♂️🚨](#security-) (3 automations)
-1. [System 🖥](#system-) (5 automations)
+1. [Security 👮‍♂️🚨](#security-) (4 automations)
+1. [System 🖥](#system-) (6 automations)
 1. [Utilities 🧺👚🍽](#utilities-) (4 automations)
 1. [Vacation mode 🏝](#vacation-mode-) (2 automations)
 1. [Vacuum 🧹](#vacuum-) (6 automations)
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **91** ⚠️
+⚠️ Total number of automations: **93** ⚠️
 
 ## [Alarm clock ⏰](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/automations/alarm_clock.yaml)
 ### [Wake up with Spotify and light](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/automations/alarm_clock.yaml#L11)
@@ -932,47 +932,57 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Security 👮‍♂️🚨](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/security.yaml)
-### [Motion detected but we are not home](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/security.yaml#L11)
+## [Security 👮‍♂️🚨](https://github.com/basnijholt/home-assistant-config/blob/379b5a3fdc3e9f6c5b5774b98a4c3fc9340d3c71/automations/security.yaml)
+### [Motion detected but we are not home](https://github.com/basnijholt/home-assistant-config/blob/379b5a3fdc3e9f6c5b5774b98a4c3fc9340d3c71/automations/security.yaml#L11)
 
   *which uses:*
   - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/24e8f93a3402f38236da4b60fd8687cbfc5d416f/includes/binary_sensors.yaml#L19)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/49f5b605823ba615432fe4ad3e65895f6fa73936/includes/groups.yaml#L11)
 
-### [Sound alarm after notification](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/security.yaml#L32)
+### [Sound alarm after notification](https://github.com/basnijholt/home-assistant-config/blob/379b5a3fdc3e9f6c5b5774b98a4c3fc9340d3c71/automations/security.yaml#L32)
 
 
-### [Door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/security.yaml#L45)
+### [Door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/379b5a3fdc3e9f6c5b5774b98a4c3fc9340d3c71/automations/security.yaml#L45)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L22)
 
+### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/379b5a3fdc3e9f6c5b5774b98a4c3fc9340d3c71/automations/security.yaml#L62)
+
+  *which uses:*
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/24e8f93a3402f38236da4b60fd8687cbfc5d416f/includes/binary_sensors.yaml#L137)
+
 [^ toc](#automations---table-of-content)
 
 
-## [System 🖥](https://github.com/basnijholt/home-assistant-config/blob/690a89a47cbc3779b253fdc49fe145c9fcbf9b12/automations/system.yaml)
-### [Warning about high CPU usage](https://github.com/basnijholt/home-assistant-config/blob/690a89a47cbc3779b253fdc49fe145c9fcbf9b12/automations/system.yaml#L11)
+## [System 🖥](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml)
+### [Warning about high CPU usage](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L11)
 
 
-### [Warning about high CPU temperature](https://github.com/basnijholt/home-assistant-config/blob/690a89a47cbc3779b253fdc49fe145c9fcbf9b12/automations/system.yaml#L24)
+### [Warning about high CPU temperature](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L24)
 
 
-### [Warning about high Xbox temperature](https://github.com/basnijholt/home-assistant-config/blob/690a89a47cbc3779b253fdc49fe145c9fcbf9b12/automations/system.yaml#L37)
+### [Warning about high Xbox temperature](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L37)
 
 
-### [Update DNS](https://github.com/basnijholt/home-assistant-config/blob/690a89a47cbc3779b253fdc49fe145c9fcbf9b12/automations/system.yaml#L56)
+### [Update DNS](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L56)
 
   Update the DNS at Gandi to point my domain to my Home Assistant instance.
 
   *which uses:*
   - [script.update_dns](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/scripts.yaml#L314)
 
-### [Run chores](https://github.com/basnijholt/home-assistant-config/blob/690a89a47cbc3779b253fdc49fe145c9fcbf9b12/automations/system.yaml#L64)
+### [Run chores](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L64)
 
   Run shell and Python scripts in utils folder.
 
   *which uses:*
   - [shell_command.chores](https://github.com/basnijholt/home-assistant-config/blob/160ad08e4015f9a698a27dcadbd43ba630a82662/includes/shell_commands.yaml#L13)
+
+### [MQTT sensors are not updating](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L72)
+
+  Check whether we are receiving messages over MQTT from my other HA instance.
+
 
 [^ toc](#automations---table-of-content)
 
