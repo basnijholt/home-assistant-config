@@ -68,3 +68,15 @@
     minutes: "/15"
   action:
     service: shell_command.chores
+
+- alias: "System: MQTT sensors are not updating"
+  description: Check whether we are receiving messages over MQTT from my other HA instance.
+  trigger:
+    platform: template
+    value_template: "{{ (as_timestamp(now()) - as_timestamp(states.sensor.power_consumption.last_changed)) > 5 * 60 }}"
+    for: "00:15:00"
+  action:
+    service: notify.mobile_app_basnijholt_iphone
+    data:
+      title: "System"
+      message: "Not receiving MQTT updates, maybe reboot the other HA instance! ⚠️"
