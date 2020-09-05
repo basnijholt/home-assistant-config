@@ -58,3 +58,21 @@
     data:
       title: "Security"
       message: "The door has been open for more than 5 minutes."
+
+- alias: "Security: no one is home but high power usage"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.power_consumption
+    above: 1
+    for: "00:30:00"
+  condition:
+    condition: state
+    entity_id: binary_sensor.no_one_home
+    state: "on"
+  action:
+    service: notify.all_iphones
+    data_template:
+      title: "Security"
+      message: >
+        No one is home and we are using a lot of energy
+        ({{ states('sensor.power_consumption') }} kW now)! ⚡️
