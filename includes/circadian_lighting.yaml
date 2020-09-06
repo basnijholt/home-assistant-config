@@ -10,3 +10,10 @@
 #- from github.com/basnijholt/home-assistant-config
 min_colortemp: 2000
 interval: 30
+profiles:
+  default:
+    sleep_entity: input_select.sleep_mode
+    disable_entity: input_select.sleep_mode
+    min_brightness: 70
+    initial_transition: 0
+    only_once: true

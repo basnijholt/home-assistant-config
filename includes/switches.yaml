@@ -51,13 +51,9 @@
     - light.hall_1
     - light.hall_2
     - light.hall_3
-  sleep_entity: input_select.sleep_mode
   sleep_state: total
-  disable_entity: input_select.sleep_mode
   disable_state: half
-  min_brightness: 70
-  initial_transition: 0
-  only_once: true
+  profile: default
 
 - platform: circadian_lighting
   name: "half and dim"
@@ -73,15 +69,11 @@
   lights_ct:
     - light.hall_2
     - light.hall_3
-  sleep_entity: input_select.sleep_mode
   sleep_state: half
-  disable_entity: input_select.sleep_mode
   disable_state:
     - total
     - "off"
-  min_brightness: 70
-  initial_transition: 0
-  only_once: true
+  profile: default
 
 - platform: circadian_lighting
   name: "half and full"
@@ -92,10 +84,7 @@
     - light.stairs_up
     - light.stairs_down
     - light.hall_1
-  disable_entity: input_select.sleep_mode
   disable_state:
     - total
     - "off"
-  min_brightness: 70
-  initial_transition: 0
-  only_once: true
+  profile: default
