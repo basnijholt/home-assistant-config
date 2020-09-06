@@ -35,10 +35,16 @@
 
 - platform: circadian_lighting
   lights_rgb:
+    - light.philips_go
+    - light.bamboo
+    - light.ceiling_bedroom
+    - light.lampan
+    - light.bed_led
+    - light.bed_reading_up
+    - light.bed_reading_down
+    - light.ceiling_bathroom
     - light.toilet
     - light.ceiling_kitchen
-    - light.bedroom_lights
-    - light.ceiling_bathroom
   lights_ct:
     - light.stairs_up
     - light.stairs_down
@@ -50,12 +56,19 @@
   disable_entity: input_select.sleep_mode
   disable_state: half
   min_brightness: 70
+  initial_transition: 0
   only_once: true
 
 - platform: circadian_lighting
   name: "half and dim"
   lights_rgb:
-    - light.bedroom_lights
+    - light.philips_go
+    - light.bamboo
+    - light.ceiling_bedroom
+    - light.lampan
+    - light.bed_led
+    - light.bed_reading_up
+    - light.bed_reading_down
     - light.ceiling_bathroom
   lights_ct:
     - light.hall_2
@@ -67,6 +80,7 @@
     - total
     - "off"
   min_brightness: 70
+  initial_transition: 0
   only_once: true
 
 - platform: circadian_lighting
@@ -83,4 +97,5 @@
     - total
     - "off"
   min_brightness: 70
+  initial_transition: 0
   only_once: true
