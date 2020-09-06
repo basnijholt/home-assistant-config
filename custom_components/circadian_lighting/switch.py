@@ -2,13 +2,13 @@
 Circadian Lighting Switch for Home-Assistant.
 """
 
-DEPENDENCIES = ["circadian_lighting", "light"]
-
+import asyncio
 import logging
-from contextlib import suppress
+from itertools import repeat
+
+import voluptuous as vol
 
 import homeassistant.helpers.config_validation as cv
-import voluptuous as vol
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
     ATTR_COLOR_TEMP,
@@ -19,6 +19,7 @@ from homeassistant.components.light import (
 )
 from homeassistant.components.light import DOMAIN as LIGHT_DOMAIN
 from homeassistant.components.light import VALID_TRANSITION, is_on
+from homeassistant.components.switch import SwitchEntity
 from homeassistant.const import (
     ATTR_ENTITY_ID,
     CONF_NAME,
@@ -26,8 +27,8 @@ from homeassistant.const import (
     SERVICE_TURN_ON,
     STATE_ON,
 )
-from homeassistant.helpers.dispatcher import dispatcher_connect
-from homeassistant.helpers.event import track_state_change
+from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.helpers.event import async_track_state_change
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.util import slugify
 from homeassistant.util.color import (
@@ -37,16 +38,7 @@ from homeassistant.util.color import (
     color_xy_to_hs,
 )
 
-from custom_components.circadian_lighting import (
-    CIRCADIAN_LIGHTING_UPDATE_TOPIC,
-    DATA_CIRCADIAN_LIGHTING,
-)
-
-try:
-    from homeassistant.components.switch import SwitchEntity
-except ImportError:
-    from homeassistant.components.switch import SwitchDevice as SwitchEntity
-
+from . import CIRCADIAN_LIGHTING_UPDATE_TOPIC, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -57,18 +49,16 @@ CONF_LIGHTS_RGB = "lights_rgb"
 CONF_LIGHTS_XY = "lights_xy"
 CONF_LIGHTS_BRIGHT = "lights_brightness"
 CONF_DISABLE_BRIGHTNESS_ADJUST = "disable_brightness_adjust"
-CONF_MIN_BRIGHT = "min_brightness"
-DEFAULT_MIN_BRIGHT = 1
-CONF_MAX_BRIGHT = "max_brightness"
-DEFAULT_MAX_BRIGHT = 100
+CONF_MIN_BRIGHT, DEFAULT_MIN_BRIGHT = "min_brightness", 1
+CONF_MAX_BRIGHT, DEFAULT_MAX_BRIGHT = "max_brightness", 100
 CONF_SLEEP_ENTITY = "sleep_entity"
 CONF_SLEEP_STATE = "sleep_state"
-CONF_SLEEP_CT = "sleep_colortemp"
-CONF_SLEEP_BRIGHT = "sleep_brightness"
+CONF_SLEEP_CT, DEFAULT_SLEEP_CT = "sleep_colortemp", 1000
+CONF_SLEEP_BRIGHT, DEFAULT_SLEEP_BRIGHT = "sleep_brightness", 1
 CONF_DISABLE_ENTITY = "disable_entity"
 CONF_DISABLE_STATE = "disable_state"
-CONF_INITIAL_TRANSITION = "initial_transition"
-DEFAULT_INITIAL_TRANSITION = 1
+CONF_INITIAL_TRANSITION, DEFAULT_INITIAL_TRANSITION = "initial_transition", 1
+CONF_ONLY_ONCE = "only_once"
 
 PLATFORM_SCHEMA = vol.Schema(
     {
@@ -86,29 +76,30 @@ PLATFORM_SCHEMA = vol.Schema(
             vol.Coerce(int), vol.Range(min=1, max=100)
         ),
         vol.Optional(CONF_SLEEP_ENTITY): cv.entity_id,
-        vol.Optional(CONF_SLEEP_STATE): cv.string,
-        vol.Optional(CONF_SLEEP_CT): vol.All(
+        vol.Optional(CONF_SLEEP_STATE): vol.All(cv.ensure_list, [cv.string]),
+        vol.Optional(CONF_SLEEP_CT, default=DEFAULT_SLEEP_CT): vol.All(
             vol.Coerce(int), vol.Range(min=1000, max=10000)
         ),
-        vol.Optional(CONF_SLEEP_BRIGHT): vol.All(
+        vol.Optional(CONF_SLEEP_BRIGHT, default=DEFAULT_SLEEP_BRIGHT): vol.All(
             vol.Coerce(int), vol.Range(min=1, max=100)
         ),
         vol.Optional(CONF_DISABLE_ENTITY): cv.entity_id,
-        vol.Optional(CONF_DISABLE_STATE): cv.string,
+        vol.Optional(CONF_DISABLE_STATE): vol.All(cv.ensure_list, [cv.string]),
         vol.Optional(
             CONF_INITIAL_TRANSITION, default=DEFAULT_INITIAL_TRANSITION
         ): VALID_TRANSITION,
+        vol.Optional(CONF_ONLY_ONCE, default=False): cv.boolean,
     }
 )
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the Circadian Lighting switches."""
-    cl = hass.data.get(DATA_CIRCADIAN_LIGHTING)
-    if cl:
-        cs = CircadianSwitch(
+    circadian_lighting = hass.data.get(DOMAIN)
+    if circadian_lighting is not None:
+        switch = CircadianSwitch(
             hass,
-            cl,
+            circadian_lighting,
             name=config.get(CONF_NAME),
             lights_ct=config.get(CONF_LIGHTS_CT, []),
             lights_rgb=config.get(CONF_LIGHTS_RGB, []),
@@ -124,16 +115,46 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
             disable_entity=config.get(CONF_DISABLE_ENTITY),
             disable_state=config.get(CONF_DISABLE_STATE),
             initial_transition=config.get(CONF_INITIAL_TRANSITION),
+            only_once=config.get(CONF_ONLY_ONCE),
         )
-        add_devices([cs])
-
-        def update(call=None):
-            """Update lights."""
-            cs.update_switch()
+        add_devices([switch])
 
         return True
     else:
         return False
+
+
+def _difference_between_states(from_state, to_state):
+    start = "Lights adjusting because "
+    if from_state is None and to_state is None:
+        return start + "both states None"
+    if from_state is None:
+        return start + f"from_state: None, to_state: {to_state}"
+    if to_state is None:
+        return start + f"from_state: {from_state}, to_state: None"
+
+    changed_attrs = ", ".join(
+        [
+            f"{key}: {val}"
+            for key, val in to_state.attributes.items()
+            if from_state.attributes.get(key) != val
+        ]
+    )
+    if from_state.state == to_state.state:
+        return start + (
+            f"{from_state.entity_id} is still {to_state.state} but"
+            f" these attributes changes: {changed_attrs}."
+        )
+    elif changed_attrs != "":
+        return start + (
+            f"{from_state.entity_id} changed from {from_state.state} to"
+            f" {to_state.state} and these attributes changes: {changed_attrs}."
+        )
+    else:
+        return start + (
+            f"{from_state.entity_id} changed from {from_state.state} to"
+            f" {to_state.state} and no attributes changed."
+        )
 
 
 class CircadianSwitch(SwitchEntity, RestoreEntity):
@@ -142,7 +163,7 @@ class CircadianSwitch(SwitchEntity, RestoreEntity):
     def __init__(
         self,
         hass,
-        cl,
+        circadian_lighting,
         name,
         lights_ct,
         lights_rgb,
@@ -158,19 +179,17 @@ class CircadianSwitch(SwitchEntity, RestoreEntity):
         disable_entity,
         disable_state,
         initial_transition,
+        only_once,
     ):
         """Initialize the Circadian Lighting switch."""
         self.hass = hass
-        self._cl = cl
+        self._circadian_lighting = circadian_lighting
         self._name = name
-        self._entity_id = "switch." + slugify(f"circadian_lighting {name}")
+        self._entity_id = f"switch.circadian_lighting_{slugify(name)}"
         self._state = None
         self._icon = ICON
         self._hs_color = None
-        self._lights_ct = lights_ct
-        self._lights_rgb = lights_rgb
-        self._lights_xy = lights_xy
-        self._lights_brightness = lights_brightness
+        self._brightness = None
         self._disable_brightness_adjust = disable_brightness_adjust
         self._min_brightness = min_brightness
         self._max_brightness = max_brightness
@@ -181,17 +200,12 @@ class CircadianSwitch(SwitchEntity, RestoreEntity):
         self._disable_entity = disable_entity
         self._disable_state = disable_state
         self._initial_transition = initial_transition
-        self._attributes = {"hs_color": self._hs_color, "brightness": None}
-
-        self._lights = lights_ct + lights_rgb + lights_xy + lights_brightness
-
-        # Register callbacks
-        dispatcher_connect(hass, CIRCADIAN_LIGHTING_UPDATE_TOPIC, self.update_switch)
-        track_state_change(hass, self._lights, self.light_state_changed)
-        if self._sleep_entity is not None:
-            track_state_change(hass, self._sleep_entity, self.sleep_state_changed)
-        if self._disable_entity is not None:
-            track_state_change(hass, self._disable_entity, self.disable_state_changed)
+        self._only_once = only_once
+        self._lights_types = dict(zip(lights_ct, repeat("ct")))
+        self._lights_types.update(zip(lights_rgb, repeat("rgb")))
+        self._lights_types.update(zip(lights_xy, repeat("xy")))
+        self._lights_types.update(zip(lights_brightness, repeat("brightness")))
+        self._lights = list(self._lights_types.keys())
 
     @property
     def entity_id(self):
@@ -210,9 +224,31 @@ class CircadianSwitch(SwitchEntity, RestoreEntity):
 
     async def async_added_to_hass(self):
         """Call when entity about to be added to hass."""
-        # If not None, we got an initial value.
-        await super().async_added_to_hass()
-        if self._state is not None:
+        # Add callback
+        self.async_on_remove(
+            async_dispatcher_connect(
+                self.hass, CIRCADIAN_LIGHTING_UPDATE_TOPIC, self._update_switch
+            )
+        )
+
+        # Add listeners
+        async_track_state_change(
+            self.hass, self._lights, self._light_state_changed, to_state="on"
+        )
+        track_kwargs = dict(hass=self.hass, action=self._state_changed)
+        if self._sleep_entity is not None:
+            sleep_kwargs = dict(track_kwargs, entity_ids=self._sleep_entity)
+            async_track_state_change(**sleep_kwargs, to_state=self._sleep_state)
+            async_track_state_change(**sleep_kwargs, from_state=self._sleep_state)
+
+        if self._disable_entity is not None:
+            async_track_state_change(
+                **track_kwargs,
+                entity_ids=self._disable_entity,
+                from_state=self._disable_state,
+            )
+
+        if self._state is not None:  # If not None, we got an initial value
             return
 
         state = await self.async_get_last_state()
@@ -230,152 +266,125 @@ class CircadianSwitch(SwitchEntity, RestoreEntity):
     @property
     def device_state_attributes(self):
         """Return the attributes of the switch."""
-        return self._attributes
+        return {"hs_color": self._hs_color, "brightness": self._brightness}
 
-    def turn_on(self, **kwargs):
+    async def async_turn_on(self, **kwargs):
         """Turn on circadian lighting."""
         self._state = True
+        await self._force_update_switch()
 
-        # Make initial update
-        self.update_switch(self._initial_transition)
-
-        self.schedule_update_ha_state()
-
-    def turn_off(self, **kwargs):
+    async def async_turn_off(self, **kwargs):
         """Turn off circadian lighting."""
         self._state = False
-        self.schedule_update_ha_state()
         self._hs_color = None
-        self._attributes["hs_color"] = self._hs_color
-        self._attributes["brightness"] = None
+        self._brightness = None
 
-    def is_sleep(self):
-        is_sleep = (
+    def _is_sleep(self):
+        return (
             self._sleep_entity is not None
-            and self.hass.states.get(self._sleep_entity).state == self._sleep_state
+            and self.hass.states.get(self._sleep_entity).state in self._sleep_state
         )
-        if is_sleep:
-            _LOGGER.debug(f"{self._name} in Sleep mode")
 
-        return is_sleep
-
-    @property
     def _color_temperature(self):
-        return self._sleep_colortemp if self.is_sleep() else self._cl.data["colortemp"]
+        return (
+            self._circadian_lighting._colortemp
+            if not self._is_sleep()
+            else self._sleep_colortemp
+        )
 
-    def calc_ct(self):
-        return color_temperature_kelvin_to_mired(self._color_temperature)
+    def _calc_ct(self):
+        return color_temperature_kelvin_to_mired(self._color_temperature())
 
-    def calc_rgb(self):
-        return color_temperature_to_rgb(self._color_temperature)
+    def _calc_rgb(self):
+        return color_temperature_to_rgb(self._color_temperature())
 
-    def calc_xy(self):
-        return color_RGB_to_xy(*self.calc_rgb())
+    def _calc_xy(self):
+        return color_RGB_to_xy(*self._calc_rgb())
 
-    def calc_hs(self):
-        return color_xy_to_hs(*self.calc_xy())
+    def _calc_hs(self):
+        return color_xy_to_hs(*self._calc_xy())
 
-    def calc_brightness(self):
-        if self._disable_brightness_adjust is True:
-            return None
-        elif self.is_sleep():
+    def _calc_brightness(self) -> float:
+        if self._disable_brightness_adjust:
+            return
+        if self._is_sleep():
             return self._sleep_brightness
-        elif self._cl.data["percent"] > 0:
+        if self._circadian_lighting._percent > 0:
             return self._max_brightness
-        else:
-            return (
-                (self._max_brightness - self._min_brightness)
-                * ((100 + self._cl.data["percent"]) / 100)
-            ) + self._min_brightness
+        delta_brightness = self._max_brightness - self._min_brightness
+        percent = (100 + self._circadian_lighting._percent) / 100
+        return (delta_brightness * percent) + self._min_brightness
 
-    def update_switch(self, transition=None):
-        if self._cl.data is not None:
-            self._hs_color = self.calc_hs()
-            self._attributes["hs_color"] = self._hs_color
-            self._attributes["brightness"] = self.calc_brightness()
-            _LOGGER.debug(f"{self._name} Switch Updated")
+    async def _update_switch(self, lights=None, transition=None, force=False):
+        if self._only_once and not force:
+            return
+        self._hs_color = self._calc_hs()
+        self._brightness = self._calc_brightness()
+        await self._adjust_lights(lights or self._lights, transition)
 
-        self.adjust_lights(self._lights, transition)
+    async def _force_update_switch(self, lights=None):
+        return await self._update_switch(
+            lights, transition=self._initial_transition, force=True
+        )
 
-    def should_adjust(self):
-        if self._state is not True:
-            _LOGGER.debug(f"{self._name} off - not adjusting")
-            return False
-        elif self._cl.data is None:
-            _LOGGER.debug(f"{self._name} could not retrieve Circadian Lighting data")
-            return False
-        elif (
+    def _is_disabled(self):
+        return (
             self._disable_entity is not None
-            and self.hass.states.get(self._disable_entity).state == self._disable_state
-        ):
-            _LOGGER.debug(f"{self._name} disabled by {self._disable_entity}")
-            return False
-        else:
-            return True
+            and self.hass.states.get(self._disable_entity).state in self._disable_state
+        )
 
-    def adjust_lights(self, lights, transition=None):
-        if not self.should_adjust():
+    def _should_adjust(self):
+        if self._state is not True:
+            return False
+        if self._is_disabled():
+            return False
+        return True
+
+    async def _adjust_lights(self, lights, transition):
+        if not self._should_adjust():
             return
 
         if transition is None:
-            transition = self._cl.data["transition"]
+            transition = self._circadian_lighting._transition
 
+        tasks = []
         for light in lights:
             if not is_on(self.hass, light):
                 continue
 
-            service_data = {ATTR_ENTITY_ID: light}
-            brightness = self._attributes["brightness"]
-            if brightness is not None:
-                service_data[ATTR_BRIGHTNESS] = int((brightness / 100) * 254)
-            if transition is not None:
-                service_data[ATTR_TRANSITION] = transition
+            service_data = {ATTR_ENTITY_ID: light, ATTR_TRANSITION: transition}
+            if self._brightness is not None:
+                service_data[ATTR_BRIGHTNESS] = int((self._brightness / 100) * 254)
 
-            # Set color of array of ct.
-            if light in self._lights_ct:
-                which = "CT"
-                service_data[ATTR_COLOR_TEMP] = int(self.calc_ct())
-
-            # Set color of array of rgb.
-            elif light in self._lights_rgb:
-                which = "RGB"
-                service_data[ATTR_RGB_COLOR] = tuple(map(int, self.calc_rgb()))
-
-            # Set color of array of xy.
-            elif light in self._lights_xy:
-                which = "XY"
-                service_data[ATTR_XY_COLOR] = self.calc_xy()
+            light_type = self._lights_types[light]
+            if light_type == "ct":
+                service_data[ATTR_COLOR_TEMP] = int(self._calc_ct())
+            elif light_type == "rgb":
+                r, g, b = self._calc_rgb()
+                service_data[ATTR_RGB_COLOR] = (int(r), int(g), int(b))
+            elif light_type == "xy":
+                service_data[ATTR_XY_COLOR] = self._calc_xy()
                 if service_data.get(ATTR_BRIGHTNESS, False):
                     service_data[ATTR_WHITE_VALUE] = service_data[ATTR_BRIGHTNESS]
 
-            # Set color of array of brightness.
-            elif light in self._lights_brightness:
-                which = "Brightness"
+            _LOGGER.debug(
+                "Scheduling 'light.turn_on' with the following 'service_data': %s",
+                service_data,
+            )
+            tasks.append(
+                self.hass.services.async_call(
+                    LIGHT_DOMAIN, SERVICE_TURN_ON, service_data
+                )
+            )
+        if tasks:
+            await asyncio.wait(tasks)
 
-            self.hass.services.call(LIGHT_DOMAIN, SERVICE_TURN_ON, service_data)
-            key_value_strings = [
-                f"{k}: {v}" for k, v in service_data.items() if k != ATTR_ENTITY_ID
-            ]
-            msg = ", ".join(key_value_strings)
-            _LOGGER.debug(f"{light} {which} Adjusted - {msg}")
+    async def _light_state_changed(self, entity_id, from_state, to_state):
+        assert to_state.state == "on"
+        if from_state is None or from_state.state != "on":
+            _LOGGER.debug(_difference_between_states(from_state, to_state))
+            await self._force_update_switch(lights=[entity_id])
 
-    def light_state_changed(self, entity_id, from_state, to_state):
-        with suppress(Exception):
-            _LOGGER.debug(f"{entity_id} change from {from_state} to {to_state}")
-            if to_state.state == "on" and from_state.state != "on":
-                self.adjust_lights([entity_id], self._initial_transition)
-
-    def sleep_state_changed(self, entity_id, from_state, to_state):
-        with suppress(Exception):
-            _LOGGER.debug(f"{entity_id} change from {from_state} to {to_state}")
-            if (
-                to_state.state == self._sleep_state
-                or from_state.state == self._sleep_state
-            ):
-                self.update_switch(self._initial_transition)
-
-    def disable_state_changed(self, entity_id, from_state, to_state):
-        with suppress(Exception):
-            _LOGGER.debug("{entity_id} change from {from_state} to {to_state}")
-            if from_state.state == self._disable_state:
-                self.update_switch(self._initial_transition)
+    async def _state_changed(self, entity_id, from_state, to_state):
+        _LOGGER.debug(_difference_between_states(from_state, to_state))
+        await self._force_update_switch()
