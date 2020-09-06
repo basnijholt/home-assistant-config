@@ -955,31 +955,31 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [System 🖥](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml)
-### [Warning about high CPU usage](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L11)
+## [System 🖥](https://github.com/basnijholt/home-assistant-config/blob/b761cd30bfa6d13733e767ece9de53f6008096e9/automations/system.yaml)
+### [Warning about high CPU usage](https://github.com/basnijholt/home-assistant-config/blob/b761cd30bfa6d13733e767ece9de53f6008096e9/automations/system.yaml#L11)
 
 
-### [Warning about high CPU temperature](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L24)
+### [Warning about high CPU temperature](https://github.com/basnijholt/home-assistant-config/blob/b761cd30bfa6d13733e767ece9de53f6008096e9/automations/system.yaml#L24)
 
 
-### [Warning about high Xbox temperature](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L37)
+### [Warning about high Xbox temperature](https://github.com/basnijholt/home-assistant-config/blob/b761cd30bfa6d13733e767ece9de53f6008096e9/automations/system.yaml#L37)
 
 
-### [Update DNS](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L56)
+### [Update DNS](https://github.com/basnijholt/home-assistant-config/blob/b761cd30bfa6d13733e767ece9de53f6008096e9/automations/system.yaml#L56)
 
   Update the DNS at Gandi to point my domain to my Home Assistant instance.
 
   *which uses:*
   - [script.update_dns](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/scripts.yaml#L314)
 
-### [Run chores](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L64)
+### [Run chores](https://github.com/basnijholt/home-assistant-config/blob/b761cd30bfa6d13733e767ece9de53f6008096e9/automations/system.yaml#L64)
 
   Run shell and Python scripts in utils folder.
 
   *which uses:*
   - [shell_command.chores](https://github.com/basnijholt/home-assistant-config/blob/160ad08e4015f9a698a27dcadbd43ba630a82662/includes/shell_commands.yaml#L13)
 
-### [MQTT sensors are not updating](https://github.com/basnijholt/home-assistant-config/blob/185e33aa5f6637c4c66667fe84394e5448869954/automations/system.yaml#L72)
+### [MQTT sensors are not updating](https://github.com/basnijholt/home-assistant-config/blob/b761cd30bfa6d13733e767ece9de53f6008096e9/automations/system.yaml#L72)
 
   Check whether we are receiving messages over MQTT from my other HA instance.
 
