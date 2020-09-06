@@ -2,6 +2,7 @@
 
 import asyncio
 import functools
+import gc
 import inspect
 import logging
 import socket
@@ -328,12 +329,14 @@ class _AsyncCommunicator:
                     # Raised ConnectionResetError: [Errno 104] Connection reset by peer
                     # which means that the speaker closed the connection.
                     _LOGGER.exception("%s: Disconnecting raised", self.host)
-                    socket = self._writer._transport.get_extra_info('socket')
-                    _LOGGER.info("%s: Called `transport.get_extra_info('socket')`: %s", self.host, socket)
+                    sock = self._writer._transport.get_extra_info('socket')
+                    _LOGGER.info("%s: Called `transport.get_extra_info('socket')`: %s", self.host, sock)
                     _LOGGER.info("%s: Call `socket.close()`", self.host)
-                    socket.close()
+                    sock.shutdown(socket.SHUT_RD)
+                    sock.close()
 
                 self._reader, self._writer = (None, None)
+                # gc.collect()
 
     async def _disconnect_in(self, dt):
         await asyncio.sleep(dt)
