@@ -172,6 +172,9 @@ BASS_EXTENSION_MAPPING_INV = {v: k for k, v in BASS_EXTENSION_MAPPING.items()}
 
 
 def bits_to_mode(bits: int) -> Mode:
+    if bits == 255:  # Happens if device is off
+        return Mode(*(len(Mode._fields) * ["Unknown"]))
+
     mode_bits = f"{bits:08b}"
 
     desk_mode = mode_bits[7] == "1"
@@ -529,9 +532,6 @@ class AsyncKefSpeaker:
     @retry(**_CMD_RETRY_KWARGS)
     async def get_mode(self) -> Union[Mode, str]:
         response = await self._comm.send_message(COMMANDS["get_mode"])
-        if response == 255:
-            # Happens if device is off
-            return "Unknown"
         return bits_to_mode(response)
 
     @retry(**_CMD_RETRY_KWARGS)
