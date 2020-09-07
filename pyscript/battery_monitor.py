@@ -10,7 +10,7 @@ def get_low_battery_level(low_battery_level):
     # TODO: use ast_namedexpr when implemented
     low_battery_level = {
         entity_id: int(state.get(entity_id))
-        for entity_id in entity_ids("sensor")
+        for entity_id in state.names("sensor")
         if "battery_level" in entity_id
         and "ipad" not in entity_id
         and "iphone" not in entity_id
