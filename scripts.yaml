@@ -321,33 +321,18 @@ update_dns:
         subdomain: !secret subdomain
 
 fix_sound:
-  alias: Find Opt sound sync
+  alias: Fix Opt LG Sound Sync bug
   sequence:
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: HOME
-    - delay:
-        milliseconds: 500
-    - repeat:
-        count: 25
-        sequence:
-          - service: webostv.button
-            entity_id: media_player.tv
-            data:
-              button: RIGHT  # go all the way to the right for the settings button
-          - delay:
-              milliseconds: 200
-    - service: webostv.button
-      entity_id: media_player.tv
-      data:
-        button: ENTER  # enter into "Settings"
+        button: MENU  # Open "Menu"
     - delay:
         milliseconds: 500
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: UP  # navigate to "All settings"
+        button: UP  # Navigate to "All settings"
     - delay:
         milliseconds: 500
     - service: webostv.button
@@ -359,13 +344,13 @@ fix_sound:
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: DOWN
+        button: DOWN  # Navigate to "Sound"
     - delay:
         milliseconds: 1500
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: RIGHT  # Move to "Sound" menu
+        button: RIGHT  # Move into "Sound" menu
     - delay:
         milliseconds: 500
     - service: webostv.button
@@ -377,37 +362,37 @@ fix_sound:
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: DOWN
+        button: DOWN  # Move to "Optical"
     - delay:
         milliseconds: 500
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: DOWN  # Move to sound sync
+        button: DOWN  # Move to "Optical - LG Sound Sync"
     - delay:
         milliseconds: 500
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: ENTER  # Disable sound sync
+        button: ENTER  # Disable "LG Sound Sync"
     - delay:
         milliseconds: 500
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: ENTER  # Enable sound sync
+        button: ENTER  # Enable "LG Sound Sync"
     - delay:
         milliseconds: 500
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: BACK
+        button: BACK  # Go up one menu in "All settings"
     - delay:
         milliseconds: 500
     - service: webostv.button
       entity_id: media_player.tv
       data:
-        button: BACK
+        button: BACK  # Close the "All settings" windo
 
 sync_kef_dsp:
   alias: Sync KEF DSP setting with input_number, input_select, or input_boolean
