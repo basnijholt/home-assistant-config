@@ -127,6 +127,12 @@
             data:
               transition: 30
 
+      - conditions: # Fix the sounds on the TV (LG TV sound sync bug 🐛)
+          condition: template
+          value_template: "{{ trigger.event.data.event == 1001 }}" # Long click
+        sequence:
+          service: script.fix_sound
+
 - alias: "Control switches: bedroom Aqara Wireless Mini Switch"
   trigger:
     - platform: event

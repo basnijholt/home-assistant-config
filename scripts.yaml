@@ -320,6 +320,95 @@ update_dns:
         domain: !secret domain
         subdomain: !secret subdomain
 
+fix_sound:
+  alias: Find Opt sound sync
+  sequence:
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: HOME
+    - delay:
+        milliseconds: 500
+    - repeat:
+        count: 25
+        sequence:
+          - service: webostv.button
+            entity_id: media_player.tv
+            data:
+              button: RIGHT  # go all the way to the right for the settings button
+          - delay:
+              milliseconds: 200
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: ENTER  # enter into "Settings"
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: UP  # navigate to "All settings"
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: ENTER  # enter into "All settings"
+    - delay:
+        milliseconds: 1000
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: DOWN
+    - delay:
+        milliseconds: 1500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: RIGHT  # Move to "Sound" menu
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: ENTER  # Enter "Sound Out" menu
+    - delay:
+        milliseconds: 1500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: DOWN
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: DOWN  # Move to sound sync
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: ENTER  # Disable sound sync
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: ENTER  # Enable sound sync
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: BACK
+    - delay:
+        milliseconds: 500
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: BACK
+
 sync_kef_dsp:
   alias: Sync KEF DSP setting with input_number, input_select, or input_boolean
   mode: parallel
