@@ -8,11 +8,10 @@ The routine can be triggered a service `pyscript.wake_up_light`.
 
 The sequence is canceled by turning the light on and off.
 """
-
 import sys
-sys.path.append("/config/pyscript_modules")
+sys.path.append("/config/pyscript")
 
-from wake_up_light import rgb_and_brightness
+from python_modules.wake_up_light import rgb_and_brightness
 
 DEFAULT_LAMP = "light.ceiling_living_room"
 DEFAULT_TOTAL_TIME = 900
