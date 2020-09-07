@@ -332,11 +332,12 @@ class _AsyncCommunicator:
                     # Raised ConnectionResetError: [Errno 104] Connection reset by peer
                     # which means that the speaker closed the connection.
                     _LOGGER.exception("%s: Disconnecting raised", self.host)
-                    sock = self._writer._transport.get_extra_info('socket')
-                    _LOGGER.info("%s: Called `transport.get_extra_info('socket')`: %s", self.host, sock)
-                    _LOGGER.info("%s: Call `socket.close()`", self.host)
-                    sock.shutdown(socket.SHUT_RD)
-                    sock.close()
+                    _LOGGER.info("%s: Calling `self._writer._transport.abort()`", self.host)
+                    self._writer._transport.abort()
+                    # sock = self._writer._transport.get_extra_info('socket')
+                    # _LOGGER.info("%s: Call `socket.close()`", self.host)
+                    # sock.shutdown(socket.SHUT_RDWR)
+                    # sock.close()
 
                 self._reader, self._writer = (None, None)
                 # gc.collect()
