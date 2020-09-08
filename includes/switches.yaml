@@ -56,7 +56,6 @@
   disable_entity: input_select.sleep_mode
   disable_state: half
   min_brightness: 70
-  initial_transition: 0
   only_once: true
 
 - platform: circadian_lighting
@@ -80,7 +79,6 @@
     - total
     - "off"
   min_brightness: 70
-  initial_transition: 0
   only_once: true
 
 - platform: circadian_lighting
@@ -97,5 +95,4 @@
     - total
     - "off"
   min_brightness: 70
-  initial_transition: 0
   only_once: true
