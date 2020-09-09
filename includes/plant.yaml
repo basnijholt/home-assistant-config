@@ -32,29 +32,61 @@
 # for k, v in d.items():
 #     print(f"  {k}: {row[v]}")
 
-ficus_microcarpa_ginseng:
+# ficus_microcarpa_ginseng:
+#   sensors:
+#     moisture: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
+#     battery: sensor.mi_flora_ficus_microcarpa_ginseng_battery
+#     temperature: sensor.mi_flora_ficus_microcarpa_ginseng_temperature
+#     conductivity: sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
+#     brightness: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
+#   min_moisture: 20
+#   max_moisture: 60
+#   min_conductivity: 350
+#   max_conductivity: 2000
+#   min_brightness: 250
+#   max_brightness: 3500
+#   min_temperature: 8
+#   max_temperature: 32
+
+# kentia_palm:
+#   sensors:
+#     moisture: sensor.mi_flora_kentia_palm_moisture
+#     battery: sensor.mi_flora_kentia_palm_battery
+#     temperature: sensor.mi_flora_kentia_palm_temperature
+#     conductivity: sensor.mi_flora_kentia_palm_conductivity
+#     brightness: sensor.mi_flora_kentia_palm_light_intensity
+#   min_moisture: 15
+#   max_moisture: 60
+#   min_conductivity: 350
+#   max_conductivity: 2000
+#   min_brightness: 150
+#   max_brightness: 2500
+#   min_temperature: 8
+#   max_temperature: 32
+
+northern_light:
   sensors:
-    moisture: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
-    battery: sensor.mi_flora_ficus_microcarpa_ginseng_battery
-    temperature: sensor.mi_flora_ficus_microcarpa_ginseng_temperature
-    conductivity: sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
-    brightness: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
-  min_moisture: 20
+    moisture: sensor.mi_flora_northern_light_moisture
+    battery: sensor.mi_flora_northern_light_battery
+    temperature: sensor.mi_flora_northern_light_temperature
+    conductivity: sensor.mi_flora_northern_light_conductivity
+    brightness: sensor.mi_flora_northern_light_light_intensity
+  min_moisture: 15
   max_moisture: 60
   min_conductivity: 350
   max_conductivity: 2000
-  min_brightness: 250
-  max_brightness: 3500
+  min_brightness: 150
+  max_brightness: 2500
   min_temperature: 8
   max_temperature: 32
 
-kentia_palm:
+royal_haze:
   sensors:
-    moisture: sensor.mi_flora_kentia_palm_moisture
-    battery: sensor.mi_flora_kentia_palm_battery
-    temperature: sensor.mi_flora_kentia_palm_temperature
-    conductivity: sensor.mi_flora_kentia_palm_conductivity
-    brightness: sensor.mi_flora_kentia_palm_light_intensity
+    moisture: sensor.mi_flora_royal_haze_moisture
+    battery: sensor.mi_flora_royal_haze_battery
+    temperature: sensor.mi_flora_royal_haze_temperature
+    conductivity: sensor.mi_flora_royal_haze_conductivity
+    brightness: sensor.mi_flora_royal_haze_light_intensity
   min_moisture: 15
   max_moisture: 60
   min_conductivity: 350
