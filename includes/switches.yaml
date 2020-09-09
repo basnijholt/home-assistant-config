@@ -34,6 +34,17 @@
         entity_id: media_player.kef_lsx
 
 - platform: circadian_lighting
+  name: living room
+  lights_rgb:
+    - light.sphere_1
+    - light.sphere_2
+    - light.corner_living_room
+    - light.ceiling_living_room
+    - light.tv_led
+  min_brightness: 70
+  only_once: true
+
+- platform: circadian_lighting
   lights_rgb:
     - light.philips_go
     - light.bamboo
@@ -59,7 +70,7 @@
   only_once: true
 
 - platform: circadian_lighting
-  name: "half and dim"
+  name: half and dim
   lights_rgb:
     - light.philips_go
     - light.bamboo
@@ -82,7 +93,7 @@
   only_once: true
 
 - platform: circadian_lighting
-  name: "half and full"
+  name: half and full
   lights_rgb:
     - light.toilet
     - light.ceiling_kitchen
