@@ -9,10 +9,10 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Night mode: automatically turn off when alarm turns off or at 6AM"
+- alias: "Night mode: automatically turn off when alarm turns off or at 7AM"
   trigger:
     - platform: time
-      at: "06:00"
+      at: "07:00"
     - platform: state
       entity_id: input_boolean.alarm_clock
       from: "on"
