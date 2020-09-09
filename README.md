@@ -884,7 +884,7 @@ to "Opt".
 
 
 ## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob/24e8f93a3402f38236da4b60fd8687cbfc5d416f/automations/night_mode.yaml)
-### [Automatically turn off when alarm turns off or at 6AM](https://github.com/basnijholt/home-assistant-config/blob/24e8f93a3402f38236da4b60fd8687cbfc5d416f/automations/night_mode.yaml#L12)
+### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob/24e8f93a3402f38236da4b60fd8687cbfc5d416f/automations/night_mode.yaml#L12)
 
   *which uses:*
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L43)
