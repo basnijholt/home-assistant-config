@@ -31,62 +31,50 @@
       friendly_name: Dishwasher usage
 
     count_automations:
-      entity_id: sensor.date
       icon_template: mdi:autorenew
       value_template: "{{ states.automation | count }}"
 
     count_scripts:
-      entity_id: sensor.date
       icon_template: mdi:script-text-outline
       value_template: "{{ states.script| count }}"
 
     count_device_trackers:
-      entity_id: sensor.date
       icon_template: mdi:map-marker
       value_template: "{{ states.device_tracker | count }}"
 
     count_binary_sensors:
-      entity_id: sensor.date
       icon_template: mdi:unfold-more-horizontal
       value_template: "{{ states.binary_sensor| count }}"
 
     count_sensors:
-      entity_id: sensor.date
       icon_template: mdi:resistor
       value_template: "{{ states.sensor | count }}"
 
     count_switches:
-      entity_id: sensor.date
       icon_template: mdi:light-switch
       value_template: "{{ states.switch | count }}"
 
     count_zones:
-      entity_id: sensor.date
       icon_template: mdi:map-marker-radius
       value_template: "{{ states.zone | count }}"
 
     count_input_booleans:
-      entity_id: sensor.date
       icon_template: mdi:toggle-switch
       value_template: "{{ states.input_boolean | count }}"
 
     count_input_numbers:
-      entity_id: sensor.date
       icon_template: mdi:numeric
       value_template: "{{ states.input_number | count }}"
 
     count_input_texts:
-      entity_id: sensor.date
       icon_template: mdi:alphabetical
       value_template: "{{ states.input_text | count }}"
 
     count_input_selects:
-      entity_id: sensor.date
       icon_template: mdi:view-list
       value_template: "{{ states.input_select | count }}"
 
     count_input_datetimes:
-      entity_id: sensor.date
       icon_template: mdi:calendar-clock
       value_template: "{{ states.input_datetime | count }}"
 
@@ -115,9 +103,9 @@
 
     timestamp_start_of_today:
       value_template: >
+        {% set _ = states("sensor.date") %}
         {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}
       unit_of_measurement: "s"
-      entity_id: sensor.date
 
     time_at_work_prognosis:
       value_template: >
@@ -144,10 +132,10 @@
 
     n_days_last_month:
       value_template: >
+        {% set _ = states("sensor.date") %}
         {% set start_of_month = now().replace(day=1) %}
         {% set start_of_last_month = start_of_month.replace(month=now().month-1) %}
         {{ ((start_of_month - start_of_last_month).total_seconds() / 86400) | round }}
-      entity_id: sensor.date
 
     daily_power:
       friendly_name: Daily Power
@@ -209,21 +197,19 @@
     daily_energy_fixed_cost:
       friendly_name: Fixed daily energy cost (gas and power)
       unit_of_measurement: €
-      entity_id: sensor.date # To get rid of the warning
       value_template: >
+        {% set _ = states("sensor.date") %}
         {{ (0.1480 + 0.3554) + (0.1480 + 0.6293) }}
 
     monthly_energy_fixed_cost:
       friendly_name: Fixed daily energy cost (gas and power)
       unit_of_measurement: €
-      entity_id: sensor.date
       value_template: >
         {{ states("sensor.daily_energy_fixed_cost")|float * now().day }}
 
     monthly_energy_fixed_cost_last_period:
       friendly_name: Fixed energy cost (gas and power) (Last period)
       unit_of_measurement: €
-      entity_id: sensor.date
       value_template: >
         {{ states("sensor.daily_energy_fixed_cost")|float * states("sensor.n_days_last_month")|int }}
 
