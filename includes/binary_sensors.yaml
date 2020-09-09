@@ -132,7 +132,6 @@
       friendly_name: Vacuum day today
       value_template: >
         {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Wed", "Sun") }}
-      entity_id: sensor.date
 
     no_one_home:
       friendly_name: No one is home
