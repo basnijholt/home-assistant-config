@@ -24,20 +24,14 @@
     - condition: state
       entity_id: media_player.tv
       state: "on"
-    - condition: template
-      value_template: >
-        {{ not is_state_attr("media_player.kef_ls50", "source", "Opt") }}
-    - condition: template
-      value_template: >
-        {{ not (is_state_attr("media_player.kef_ls50", "source", "Usb")
-                and is_state_attr("media_player.tv", "source", "HDMI 3")) }}
-    - condition: template
-      value_template: >
-        {{ not (is_state_attr("media_player.spotify", "source", "LS50 Wireless")
-                and is_state("media_player.spotify", "playing")) }}
-    - condition: template
-      value_template: >
-        {{ not is_state_attr("media_player.tv", "source", "GALLERY") }}
+    - "{{ not is_state_attr('media_player.kef_ls50', 'source', 'Opt') }}"
+    - "{{ not is_state_attr('media_player.tv', 'source', 'GALLERY') }}"
+    - >
+      {{ not (is_state_attr('media_player.kef_ls50', 'source', 'Usb')
+              and is_state_attr('media_player.tv', 'source', 'HDMI 3')) }}
+    - >
+      {{ not (is_state_attr('media_player.spotify', 'source', 'LS50 Wireless')
+              and is_state('media_player.spotify', 'playing')) }}
   action:
     service: media_player.select_source
     entity_id: media_player.kef_ls50
@@ -103,11 +97,9 @@
     - platform: state
       entity_id: media_player.tv
   condition:
-    condition: template
-    value_template: >
-      {{ trigger.from_state.attributes["volume_level"] != trigger.to_state.attributes["volume_level"]
-         and trigger.to_state.state != "off"
-         and state_attr("media_player.kef_ls50", "source") in ("Opt", "Usb") }}
+    - "{{ trigger.from_state.attributes['volume_level'] != trigger.to_state.attributes['volume_level'] }}"
+    - "{{ trigger.to_state.state != 'off' }}"
+    - "{{ state_attr('media_player.kef_ls50', 'source') in ('Opt', 'Usb') }}"
   action:
     repeat:
       sequence:
@@ -120,7 +112,6 @@
         - delay:
             milliseconds: 200
       until:
-        condition: template
-        value_template: >
+        - >
           {{ state_attr("media_player.tv", "volume_level") == state_attr("media_player.kef_ls50", "volume_level")
-             or not (is_state("media_player.tv", "on") and is_state("media_player.kef_ls50", "on")) }}
+              or not (is_state("media_player.tv", "on") and is_state("media_player.kef_ls50", "on")) }}
