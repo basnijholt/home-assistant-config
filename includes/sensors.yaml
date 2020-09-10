@@ -654,61 +654,61 @@
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_battery/state
   unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Palm Battery"
+  name: "Mi Flora: Royal Haze Battery"
   icon: mdi:battery-charging
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_conductivity/state
   unit_of_measurement: µS/cm
-  name: "Mi Flora: Kentia Palm Conductivity"
+  name: "Mi Flora: Royal Haze Conductivity"
   icon: mdi:flash-circle
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_light_intensity/state
   unit_of_measurement: lx
-  name: "Mi Flora: Kentia Palm Light intensity"
+  name: "Mi Flora: Royal Haze Light intensity"
   icon: mdi:white-balance-sunny
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_moisture/state
   unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Palm Moisture"
+  name: "Mi Flora: Royal Haze Moisture"
   icon: mdi:water-percent
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_temperature/state
   unit_of_measurement: °C
-  name: "Mi Flora: Kentia Palm Temperature"
+  name: "Mi Flora: Royal Haze Temperature"
   icon: mdi:thermometer
 
-# Northern light
+# Northern Light
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_battery/state
   unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Palm Battery"
+  name: "Mi Flora: Northern Light Battery"
   icon: mdi:battery-charging
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_conductivity/state
   unit_of_measurement: µS/cm
-  name: "Mi Flora: Kentia Palm Conductivity"
+  name: "Mi Flora: Northern Light Conductivity"
   icon: mdi:flash-circle
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_light_intensity/state
   unit_of_measurement: lx
-  name: "Mi Flora: Kentia Palm Light intensity"
+  name: "Mi Flora: Northern Light Light intensity"
   icon: mdi:white-balance-sunny
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_moisture/state
   unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Palm Moisture"
+  name: "Mi Flora: Northern Light Moisture"
   icon: mdi:water-percent
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_temperature/state
   unit_of_measurement: °C
-  name: "Mi Flora: Kentia Palm Temperature"
+  name: "Mi Flora: Northern Light Temperature"
   icon: mdi:thermometer
