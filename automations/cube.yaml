@@ -18,14 +18,12 @@
   action:
     choose:
       # Change cube mode by shifting on one side, or rotating from one side to another side
-      - conditions:
-          condition: template
-          value_template: >
-            {% set event = trigger.event.data.event | string %}
-            {% set correct_start = event[:3] in ("100", "200", "300") %}
-            {% set first_last_different = event[0] != event[-1] %}
-            {% set last_is_zero = event[-1] == 0 %}
-            {{ correct_start and (first_last_different or last_is_zero) }}
+      - conditions: >
+          {% set event = trigger.event.data.event | string %}
+          {% set correct_start = event[:3] in ("100", "200", "300") %}
+          {% set first_last_different = event[0] != event[-1] %}
+          {% set last_is_zero = event[-1] == 0 %}
+          {{ correct_start and (first_last_different or last_is_zero) }}
         sequence:
           - service: input_select.select_option
             entity_id: input_select.cube_mode
@@ -43,12 +41,8 @@
 
       # Shuffle Spotify song by shaking cube
       - conditions:
-          - condition: template
-            value_template: >
-              {{ trigger.event.data.event == 7007 }}
-          - condition: template
-            value_template: >
-              {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless")}}
+          - "{{ trigger.event.data.event == 7007 }}"
+          - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
         sequence:
           - service: media_player.shuffle_set
             entity_id: media_player.spotify
@@ -59,21 +53,14 @@
 
       # Pause and play Spotify song by tapping cube on side 1
       - conditions:
-          - condition: template
-            value_template: >
-              {{ trigger.event.data.event in (1001, 2002, 3003, 4004, 5005, 6006) }}
-          - condition: template
-            value_template: >
-              {{ is_state_attr("media_player.spotify", "source", "LS50 Wireless") }}
+          - "{{ trigger.event.data.event in (1001, 2002, 3003, 4004, 5005, 6006) }}"
+          - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
         sequence:
           service: media_player.media_play_pause
           entity_id: media_player.spotify
 
       # Start music by throwing the cube
-      - conditions:
-          condition: template
-          value_template: >
-            {{ trigger.event.data.event == 7008 }}
+      - conditions: "{{ trigger.event.data.event == 7008 }}"
         sequence:
           service: input_boolean.turn_on
           entity_id: input_boolean.start_the_music
