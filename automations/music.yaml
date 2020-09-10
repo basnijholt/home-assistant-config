@@ -36,10 +36,8 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
-    - condition: template
-      value_template: >
-        {{ is_state_attr("media_player.spotify", "source", "basnijholt-iphone")
-           and is_state("media_player.spotify", "playing") }}
+    - "{{ is_state_attr('media_player.spotify', 'source', 'basnijholt-iphone') }}"
+    - "{{ is_state('media_player.spotify', 'playing') }}"
     - condition: numeric_state
       entity_id: proximity.home
       below: 2
