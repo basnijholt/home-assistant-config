@@ -39,5 +39,9 @@ customize:
     friendly_name: Ficus microcarpa Ginseng
   plant.kentia_palm:
     friendly_name: Kentia Palm
+  plant.royal_haze:
+    friendly_name: Royal Haze
+  plant.northern_light:
+    friendly_name: Northern Light
   plant.yucca_elephantipes:
     friendly_name: Yucca Elephantipes
