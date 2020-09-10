@@ -115,12 +115,29 @@
       from: "off"
       to: "on"
   action:
-    service: light.turn_on
-    data:
-      entity_id:
-        - light.stairs_lights
-        - "light.hall_{{ '2' if state('input_select.sleep_mode', 'total') else 'lights' }}"
-      transition: 1
+    choose:
+      - conditions: # sleep_mode is off
+          condition: state
+          entity_id: input_select.sleep_mode
+          state:  "off"
+        sequence:
+          service: light.turn_on
+          data:
+            entity_id:
+              - light.stairs_lights
+              - light.hall_lights
+            transition: 1
+      - conditions: # sleep_mode is on
+          condition: state
+          entity_id: input_select.sleep_mode
+          state:  "total"
+        sequence:
+          service: light.turn_on
+          data:
+            entity_id:
+              - light.stairs_lights
+              - light.hall_2
+            transition: 1
 
 - alias: "Light: turn off hall"
   trigger:
