@@ -163,14 +163,12 @@
               sequence:
                 service: light.turn_off
                 entity_id: all
-            - conditions:
-                condition: template
-                value_template: >
-                  {% set h, m = states("sensor.ten_minutes_before_alarm").split(":") %}
-                  {% set t_diff = as_timestamp(now()) - as_timestamp(now().replace(hour=h|int, minute=m|int)) %}
-                  {% set is_near_alarm = (t_diff|abs) < 1800 %}
-                  {% set is_morning = now().replace(hour=6, minute=0) < now() < now().replace(hour=12, minute=0) %}
-                  {{ is_near_alarm or is_morning }}
+            - conditions: >
+                {% set h, m = states("sensor.ten_minutes_before_alarm").split(":") %}
+                {% set t_diff = as_timestamp(now()) - as_timestamp(now().replace(hour=h|int, minute=m|int)) %}
+                {% set is_near_alarm = (t_diff|abs) < 1800 %}
+                {% set is_morning = now().replace(hour=6, minute=0) < now() < now().replace(hour=12, minute=0) %}
+                {{ is_near_alarm or is_morning }}
               sequence:
                 service: script.turn_off_everything
           default:
