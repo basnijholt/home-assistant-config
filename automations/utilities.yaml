@@ -32,7 +32,7 @@
       entity_id: input_datetime.washing_machine_done
       data:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    - service_template: >
+    - service: >
         {{ states("sensor.nearest_iphone_notify") }}
       data:
         title: "Utilities"
@@ -49,7 +49,7 @@
       entity_id: input_datetime.dishwasher_done
       data:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    - service_template: >
+    - service: >
         {{ states("sensor.nearest_iphone_notify") }}
       data:
         title: "Utilities"

@@ -33,7 +33,7 @@
       # input_select changed
       - conditions: "{{ trigger.entity_id == 'input_select.lsx_volume' }}"
         sequence:
-          service_template: media_player.volume_set
+          service: media_player.volume_set
           entity_id: media_player.kef_lsx
           data:
             volume_level: "{{ trigger.to_state.state|float / 100 }}"

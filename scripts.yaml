@@ -269,7 +269,7 @@ next_colors:
     - service: input_select.select_next
       data:
         entity_id: "{{ input_select }}"
-    - service_template: "{{ states(input_select) }}"
+    - service: "{{ states(input_select) }}"
 
 start_netflix:
   alias: Start Netflix
@@ -436,7 +436,7 @@ sync_kef_dsp:
               # input_number changed
               - conditions: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) }}"
                 sequence:
-                  service_template: kef_custom.set_{{ attribute }}
+                  service: kef_custom.set_{{ attribute }}
                   data:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     "{{ attribute[-2:] }}_value": >
@@ -472,7 +472,7 @@ sync_kef_dsp:
               # KEF has changed
               - conditions: "{{ trigger_entity_id == 'media_player.{}'.format(name) }}"
                 sequence:
-                  service_template: >
+                  service: >
                     {% if state_attr('media_player.{}'.format(name), attribute) %}
                     input_boolean.turn_on
                     {% else %}

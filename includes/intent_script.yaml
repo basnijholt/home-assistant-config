@@ -12,12 +12,12 @@ SetLightState:
   action:
     data:
       entity_id: "{{ name }}"
-    service_template: "light.turn_{{ state }}"
+    service: "light.turn_{{ state }}"
 
 SetLivingRoomLightState:
   action:
     entity_id: light.living_room_lights
-    service_template: "light.turn_{{ state }}"
+    service: "light.turn_{{ state }}"
 
 SetLightColor:
   action:
@@ -44,13 +44,13 @@ SetMediaPlayerState:
   action:
     data:
       entity_id: "{{ name }}"
-    service_template: "media_player.turn_{{ state }}"
+    service: "media_player.turn_{{ state }}"
 
 PlayPauseMediaPlayer:
   action:
     data:
       entity_id: "{{ name }}"
-    service_template: "media_player.media_{{ state }}"
+    service: "media_player.media_{{ state }}"
 
 IncreaseDecreaseVolume:
   action:
@@ -70,7 +70,7 @@ SetVolume:
 
 SetWhiteCozyLights:
   action:
-    service_template: "script.{{ state }}_lights_living_room"
+    service: "script.{{ state }}_lights_living_room"
 
 StartTheMusic:
   action:
