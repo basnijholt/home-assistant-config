@@ -119,7 +119,7 @@
       - conditions: # sleep_mode is off
           condition: state
           entity_id: input_select.sleep_mode
-          state:  "off"
+          state: "off"
         sequence:
           service: light.turn_on
           data:
@@ -130,7 +130,7 @@
       - conditions: # sleep_mode is on
           condition: state
           entity_id: input_select.sleep_mode
-          state:  "total"
+          state: "total"
         sequence:
           service: light.turn_on
           data:
