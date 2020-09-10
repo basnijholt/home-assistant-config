@@ -94,10 +94,11 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: volume_level
     - platform: state
       entity_id: media_player.tv
+      attribute: volume_level
   condition:
-    - "{{ trigger.from_state.attributes['volume_level'] != trigger.to_state.attributes['volume_level'] }}"
     - "{{ trigger.to_state.state != 'off' }}"
     - "{{ state_attr('media_player.kef_ls50', 'source') in ('Opt', 'Usb') }}"
   action:
@@ -106,7 +107,7 @@
         - service: media_player.volume_set
           data:
             entity_id: >
-              media_player.{{ "tv" if (trigger.entity_id == "media_player.kef_ls50") else "kef_ls50" }}
+              media_player.{{ "tv" if ("kef" in trigger.entity_id) else "kef_ls50" }}
             volume_level: >
               {{ state_attr(trigger.entity_id, "volume_level") }}
         - delay:

@@ -13,6 +13,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_lsx
+      attribute: volume_level
     - platform: state
       entity_id: input_select.lsx_volume
   action:
@@ -20,7 +21,6 @@
       # KEF LSX volume changed
       - conditions:
           - "{{ trigger.entity_id == 'media_player.kef_lsx' }}"
-          - "{{ trigger.from_state.attributes['volume_level'] != trigger.to_state.attributes['volume_level'] }}"
           - "{{ trigger.to_state.state != 'off' }}"
         sequence:
           service: input_select.select_option
@@ -42,6 +42,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_lsx
+      attribute: source
     - platform: state
       entity_id: input_select.lsx_source
   action:
@@ -49,7 +50,6 @@
       # KEF LSX source changed
       - conditions:
           - "{{ trigger.entity_id == 'media_player.kef_lsx' }}"
-          - "{{ trigger.from_state.attributes['source'] != trigger.to_state.attributes['source'] }}"
           - "{{ trigger.to_state.state != 'off' }}"
         sequence:
           service: input_select.select_option
