@@ -11,7 +11,8 @@
 - name: Bas Nijholt
   id: 13984b139dd9426ca31369725c9e23e0
   device_trackers:
-    - device_tracker.basnijholt_iphone_2 # from iOS app
+    - device_tracker.basnijholt_iphone_2 # from old iOS app, I cannot remove this entity...
+    - device_tracker.basnijholt_iphone_3 # from iOS app
     - device_tracker.basnijholt_iphone
     - device_tracker.bas_iphone_ping
 - name: Marcella
