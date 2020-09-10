@@ -28,7 +28,7 @@
     to: docked
   action:
     - service: notify.all_iphones
-      data_template:
+      data:
         title: "Robot"
         message: "Cleanup successful after {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes."
     - service: input_boolean.turn_on

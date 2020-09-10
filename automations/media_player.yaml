@@ -112,7 +112,7 @@
     repeat:
       sequence:
         - service_template: media_player.volume_set
-          data_template:
+          data:
             entity_id: >
               media_player.{{ "tv" if (trigger.entity_id == "media_player.kef_ls50") else "kef_ls50" }}
             volume_level: >

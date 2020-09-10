@@ -210,7 +210,7 @@
             entity_id: input_select.bathroom_color
           - service: light.turn_on
             entity_id: light.ceiling_bathroom
-            data_template:
+            data:
               color_name: >
                 {{ states("input_select.bathroom_color") }}
 
@@ -257,7 +257,7 @@
               brightness: 100
           - service: script.arriving
           - service: script.start_spotify
-            data_template:
+            data:
               source: LS50 Wireless
               playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
               volume: 0.25

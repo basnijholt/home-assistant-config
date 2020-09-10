@@ -22,17 +22,17 @@ start_speakers:
       example: media_player.kef_ls50
   sequence:
     - service: media_player.turn_on
-      data_template:
+      data:
         entity_id: "{{ entity_id }}"
     - service: media_player.select_source
-      data_template:
+      data:
         entity_id: "{{ entity_id }}"
         source: "{{ source }}"
     - wait_template: '{{ is_state("media_player.kef_ls50", "on") }}'
       timeout: 00:01:00
       continue_on_timeout: false
     - service: media_player.volume_set
-      data_template:
+      data:
         entity_id: "{{ entity_id }}"
         volume_level: "{{ volume }}"
 
@@ -54,14 +54,14 @@ start_spotify:
       continue_on_timeout: false
     - service: media_player.select_source
       entity_id: media_player.spotify
-      data_template:
+      data:
         source: "{{ source }}"
     - service: media_player.shuffle_set
       entity_id: media_player.spotify
       data:
         shuffle: true
     - service: media_player.play_media
-      data_template:
+      data:
         entity_id: media_player.spotify
         media_content_type: "playlist"
         media_content_id: spotify:playlist:{{ playlist }}
@@ -80,12 +80,12 @@ start_spotify_playlist_of_nearest_person:
       example: media_player.kef_ls50
   sequence:
     - service: script.start_speakers
-      data_template:
+      data:
         source: Wifi
         volume: 0.25
         entity_id: "{{ entity_id }}"
     - service: script.start_spotify
-      data_template:
+      data:
         source: "{{ source }}"
         playlist: >
           {{ states("sensor.favorite_playlist_of_nearest_person") }}
@@ -213,7 +213,7 @@ increase_brightness:
       example: light.living_room_lights
   sequence:
     - service: light.turn_on
-      data_template:
+      data:
         entity_id: "{{ group }}"
         brightness: >
           {% set b = state_attr(group, 'brightness') %}
@@ -267,7 +267,7 @@ next_colors:
       example: input_select.last_script_living_room
   sequence:
     - service: input_select.select_next
-      data_template:
+      data:
         entity_id: "{{ input_select }}"
     - service_template: "{{ states(input_select) }}"
 
@@ -286,7 +286,7 @@ set_low_temperature:
   sequence:
     - service: climate.set_temperature
       entity_id: climate.thermostat
-      data_template:
+      data:
         temperature: >
           {{ states("input_number.temperature_low") }}
 
@@ -295,7 +295,7 @@ set_high_temperature:
   sequence:
     - service: climate.set_temperature
       entity_id: climate.thermostat
-      data_template:
+      data:
         temperature: >
           {{ states("input_number.temperature_high") }}
 
@@ -315,7 +315,7 @@ update_dns:
   alias: Update DNS record
   sequence:
     - service: shell_command.update_dns
-      data_template:
+      data:
         api: !secret gandi_api_key
         domain: !secret domain
         subdomain: !secret subdomain
@@ -432,7 +432,7 @@ sync_kef_dsp:
                     {{ trigger_entity_id == "media_player.{}".format(name) }}
                 sequence:
                   service: input_number.set_value
-                  data_template:
+                  data:
                     entity_id: "{{ 'input_number.{}_{}'.format(name, attribute) }}"
                     value: "{{ state_attr('media_player.{}'.format(name), attribute) | float }}"
               - conditions: # input_number changed
@@ -440,7 +440,7 @@ sync_kef_dsp:
                   value_template: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service_template: kef_custom.set_{{ attribute }}
-                  data_template:
+                  data:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     "{{ attribute[-2:] }}_value": >
                       {% if type == "int" %}{{ trigger_to_state | int }}{% else %}{{ trigger_to_state | float }}{% endif %}
@@ -456,7 +456,7 @@ sync_kef_dsp:
                     {{ trigger_entity_id == "media_player.{}".format(name) }}
                 sequence:
                   service: input_select.select_option
-                  data_template:
+                  data:
                     entity_id: "{{ 'input_select.{}_{}'.format(name, attribute) }}"
                     option: "{{ state_attr('media_player.{}'.format(name), attribute) }}"
               - conditions: # input_select changed
@@ -464,7 +464,7 @@ sync_kef_dsp:
                   value_template: "{{ trigger_entity_id == 'input_select.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
-                  data_template:
+                  data:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     "{{ attribute }}": "{{ trigger_to_state }}"
 
@@ -484,13 +484,13 @@ sync_kef_dsp:
                     {% else %}
                     input_boolean.turn_off
                     {% endif %}
-                  data_template:
+                  data:
                     entity_id: "{{ 'input_boolean.{}_{}'.format(name, attribute) }}"
               - conditions: # input_boolean changed
                   condition: template
                   value_template: "{{ trigger_entity_id == 'input_boolean.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
-                  data_template:
+                  data:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     "{{ attribute }}": "{{ trigger_to_state }}"

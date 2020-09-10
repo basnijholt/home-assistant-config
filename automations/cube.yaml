@@ -29,7 +29,7 @@
         sequence:
           - service: input_select.select_option
             entity_id: input_select.cube_mode
-            data_template:
+            data:
               option: >
                 {% set event = trigger.event.data.event | string %}
                 {{ {"100": "Volume", "200": "Hue", "300": "Brightness"}[event[:3]] }}
@@ -37,7 +37,7 @@
             entity_id: media_player.tv
             state: "on"
           - service: notify.tv
-            data_template:
+            data:
               message: >
                 Cube set to {{ states("input_select.cube_mode") }}
 
@@ -93,7 +93,7 @@
         sequence:
           service: light.turn_on
           entity_id: light.living_room_lights
-          data_template:
+          data:
             hs_color:
               - >
                 {% set hue_sat = state_attr('light.sphere_1', 'hs_color') %}
@@ -113,7 +113,7 @@
         sequence:
           service: light.turn_on
           entity_id: light.living_room_lights
-          data_template:
+          data:
             brightness: >
               {% set brightness = state_attr('light.sphere_1', 'brightness') %}
               {% set delta = trigger.event.data.event / 450 %}
@@ -127,7 +127,7 @@
         sequence:
           - service: media_player.volume_set
             entity_id: media_player.kef_ls50
-            data_template: # 90 deg is 10%
+            data: # 90 deg is 10%
               volume_level: >
                 {% set max_change = 0.15 %}
                 {% set dV = [trigger.event.data.event / 100 / 900, max_change] | min %}

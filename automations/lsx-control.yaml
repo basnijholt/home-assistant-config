@@ -26,7 +26,7 @@
         sequence:
           service: input_select.select_option
           entity_id: input_select.lsx_volume
-          data_template:
+          data:
             option: >
               {% set volume = ((100 * state_attr("media_player.kef_lsx", "volume_level")) // 5 * 5) | int %}
               {% if volume == 100 %}{% set volume = 95 %}{% endif %}
@@ -37,7 +37,7 @@
         sequence:
           service_template: media_player.volume_set
           entity_id: media_player.kef_lsx
-          data_template:
+          data:
             volume_level: >
               {{ trigger.to_state.state|float / 100 }}
 
@@ -58,7 +58,7 @@
         sequence:
           service: input_select.select_option
           entity_id: input_select.lsx_source
-          data_template:
+          data:
             option: >
               {{ trigger.to_state.attributes["source"] }}
       - conditions: # input_select changed
@@ -67,6 +67,6 @@
         sequence:
           service: media_player.select_source
           entity_id: media_player.kef_lsx
-          data_template:
+          data:
             source: >
               {{ trigger.to_state.state }}

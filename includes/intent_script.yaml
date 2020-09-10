@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 SetLightState:
   action:
-    data_template:
+    data:
       entity_id: "{{ name }}"
     service_template: "light.turn_{{ state }}"
 
@@ -21,41 +21,41 @@ SetLivingRoomLightState:
 
 SetLightColor:
   action:
-    data_template:
+    data:
       entity_id: "{{ name }}"
       color_name: "{{ color }}"
     service: light.turn_on
 
 SetLivingRoomLightColor:
   action:
-    data_template:
+    data:
       entity_id: light.living_room_lights
       color_name: "{{ color }}"
     service: light.turn_on
 
 SetLivingRoomBrightness:
   action:
-    data_template:
+    data:
       entity_id: light.living_room_lights
       brightness_pct: "{{ brightness }}"
     service: light.turn_on
 
 SetMediaPlayerState:
   action:
-    data_template:
+    data:
       entity_id: "{{ name }}"
     service_template: "media_player.turn_{{ state }}"
 
 PlayPauseMediaPlayer:
   action:
-    data_template:
+    data:
       entity_id: "{{ name }}"
     service_template: "media_player.media_{{ state }}"
 
 IncreaseDecreaseVolume:
   action:
     service: media_player.volume_set
-    data_template:
+    data:
       entity_id: media_player.kef_ls50
       volume_level: >
         {{ state_attr("media_player.kef_ls50", "volume_level") + delta|float }}
@@ -63,7 +63,7 @@ IncreaseDecreaseVolume:
 SetVolume:
   action:
     service: media_player.volume_set
-    data_template:
+    data:
       entity_id: media_player.kef_ls50
       volume_level: >
         {{ (volume|float / 100)|round(2) }}
@@ -81,5 +81,5 @@ SleepMode:
   action:
     entity_id: input_select.sleep_mode
     service: input_select.select_option
-    data_template:
+    data:
       option: "{{ state }}"

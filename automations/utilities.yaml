@@ -18,7 +18,7 @@
   action:
     service: input_datetime.set_datetime
     entity_id: input_datetime.washing_machine_started
-    data_template:
+    data:
       datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
 - alias: "Utilities: washing machine is done"
@@ -30,7 +30,7 @@
   action:
     - service: input_datetime.set_datetime
       entity_id: input_datetime.washing_machine_done
-      data_template:
+      data:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     - service_template: >
         {{ states("sensor.nearest_iphone_notify") }}
@@ -47,7 +47,7 @@
   action:
     - service: input_datetime.set_datetime
       entity_id: input_datetime.dishwasher_done
-      data_template:
+      data:
         datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     - service_template: >
         {{ states("sensor.nearest_iphone_notify") }}
@@ -64,5 +64,5 @@
   action:
     service: input_datetime.set_datetime
     entity_id: input_datetime.dishwasher_started
-    data_template:
+    data:
       datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"

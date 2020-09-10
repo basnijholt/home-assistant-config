@@ -71,7 +71,7 @@
     state: "on"
   action:
     service: notify.all_iphones
-    data_template:
+    data:
       title: "Security"
       message: >
         No one is home and we are using a lot of energy

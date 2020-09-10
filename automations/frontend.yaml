@@ -36,7 +36,7 @@
       event: start
   action:
     service: frontend.set_theme
-    data_template:
+    data:
       name: >
         {% set which = "dark" if is_state("input_boolean.dark_mode", "on") else "light" -%}
         {% set name = states("input_select.theme") -%}

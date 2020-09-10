@@ -21,7 +21,7 @@
     state: "problem"
   action:
     service: notify.all_iphones
-    data_template:
+    data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
         You need to give the Ficus microcarpa Ginseng 🌳 attention and love: {{ state_attr("plant.ficus_microcarpa_ginseng", "problem") }}!
@@ -39,7 +39,7 @@
     state: "problem"
   action:
     service: notify.all_iphones
-    data_template:
+    data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
         You need to give the Kentia Palm 🌴 attention and love: {{ state_attr("plant.kentia_palm", "problem") }}!
@@ -57,7 +57,7 @@
     state: "problem"
   action:
     service: notify.all_iphones
-    data_template:
+    data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
         You need to give the Yucca Elephantipes 🌿 attention and love: {{ state_attr("plant.yucca_elephantipes", "problem") }}!

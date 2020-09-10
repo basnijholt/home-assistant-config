@@ -24,7 +24,7 @@
       entity_id: input_number.kef_ls50_desk_db
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -40,7 +40,7 @@
       entity_id: input_number.kef_ls50_wall_db
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -56,7 +56,7 @@
       entity_id: input_number.kef_ls50_treble_db
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -72,7 +72,7 @@
       entity_id: input_number.kef_ls50_high_hz
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -88,7 +88,7 @@
       entity_id: input_number.kef_ls50_low_hz
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -104,7 +104,7 @@
       entity_id: input_number.kef_ls50_sub_db
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -127,7 +127,7 @@
       entity_id: input_select.kef_ls50_sub_polarity
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: select
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -142,7 +142,7 @@
       entity_id: input_select.kef_ls50_bass_extension
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: select
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -164,7 +164,7 @@
       entity_id: input_boolean.kef_ls50_desk_mode
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -179,7 +179,7 @@
       entity_id: input_boolean.kef_ls50_wall_mode
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -194,7 +194,7 @@
       entity_id: input_boolean.kef_ls50_phase_correction
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
@@ -209,7 +209,7 @@
       entity_id: input_boolean.kef_ls50_high_pass
   action:
     service: script.sync_kef_dsp
-    data_template:
+    data:
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
