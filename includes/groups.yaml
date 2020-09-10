@@ -30,6 +30,7 @@ iphone_bas:
   - sensor.basnijholt_iphone_ssid
   - sensor.basnijholt_iphone_steps
   - device_tracker.basnijholt_iphone_2
+  - device_tracker.basnijholt_iphone_3
 
 iphone_marcella:
   - sensor.marcella_iphone_activity
