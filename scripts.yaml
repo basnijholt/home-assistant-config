@@ -417,66 +417,60 @@ sync_kef_dsp:
   sequence:
     - condition: template
       value_template: >
-        {{ state_attr("media_player.{}".format(name), attribute) != states('input_{}.{}_{}'.format(domain, name, attribute)) }}
+        {{ state_attr("media_player.{}".format(name), attribute)
+            != states('input_{}.{}_{}'.format(domain, name, attribute)) }}
     - condition: template
       value_template: "{{ is_state('media_player.{}'.format(name), 'on') }}"
     - choose:
-        - conditions: # input_number
-            condition: template
-            value_template: "{{ domain == 'number' }}"
+        # input_number
+        - conditions: "{{ domain == 'number' }}"
           sequence:
             choose:
-              - conditions: # KEF has changed
-                  condition: template
-                  value_template: >
-                    {{ trigger_entity_id == "media_player.{}".format(name) }}
+              # KEF has changed
+              - conditions: "{{ trigger_entity_id == 'media_player.{}'.format(name) }}"
                 sequence:
                   service: input_number.set_value
                   data:
                     entity_id: "{{ 'input_number.{}_{}'.format(name, attribute) }}"
                     value: "{{ state_attr('media_player.{}'.format(name), attribute) | float }}"
-              - conditions: # input_number changed
-                  condition: template
-                  value_template: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) }}"
+              # input_number changed
+              - conditions: "{{ trigger_entity_id == 'input_number.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service_template: kef_custom.set_{{ attribute }}
                   data:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     "{{ attribute[-2:] }}_value": >
-                      {% if type == "int" %}{{ trigger_to_state | int }}{% else %}{{ trigger_to_state | float }}{% endif %}
+                      {% if type == "int" %}
+                      {{ trigger_to_state | int }}
+                      {% else %}
+                      {{ trigger_to_state | float }}
+                      {% endif %}
 
-        - conditions: # input_select
-            condition: template
-            value_template: "{{ domain == 'select' }}"
+        # input_select
+        - conditions: "{{ domain == 'select' }}"
           sequence:
             choose:
-              - conditions: # KEF has changed
-                  condition: template
-                  value_template: >
-                    {{ trigger_entity_id == "media_player.{}".format(name) }}
+              # KEF has changed
+              - conditions: "{{ trigger_entity_id == 'media_player.{}'.format(name) }}"
                 sequence:
                   service: input_select.select_option
                   data:
                     entity_id: "{{ 'input_select.{}_{}'.format(name, attribute) }}"
                     option: "{{ state_attr('media_player.{}'.format(name), attribute) }}"
-              - conditions: # input_select changed
-                  condition: template
-                  value_template: "{{ trigger_entity_id == 'input_select.{}_{}'.format(name, attribute) }}"
+              # input_select changed
+              - conditions: "{{ trigger_entity_id == 'input_select.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data:
                     entity_id: "{{ 'media_player.{}'.format(name) }}"
                     "{{ attribute }}": "{{ trigger_to_state }}"
 
-        - conditions: # input_boolean
-            condition: template
-            value_template: "{{ domain == 'boolean' }}"
+        # input_boolean
+        - conditions: "{{ domain == 'boolean' }}"
           sequence:
             choose:
-              - conditions: # KEF has changed
-                  condition: template
-                  value_template: >
-                    {{ trigger_entity_id == "media_player.{}".format(name) }}
+              # KEF has changed
+              - conditions: "{{ trigger_entity_id == 'media_player.{}'.format(name) }}"
                 sequence:
                   service_template: >
                     {% if state_attr('media_player.{}'.format(name), attribute) %}
@@ -486,9 +480,8 @@ sync_kef_dsp:
                     {% endif %}
                   data:
                     entity_id: "{{ 'input_boolean.{}_{}'.format(name, attribute) }}"
-              - conditions: # input_boolean changed
-                  condition: template
-                  value_template: "{{ trigger_entity_id == 'input_boolean.{}_{}'.format(name, attribute) }}"
+              # input_boolean changed
+              - conditions: "{{ trigger_entity_id == 'input_boolean.{}_{}'.format(name, attribute) }}"
                 sequence:
                   service: kef_custom.set_mode
                   data:
