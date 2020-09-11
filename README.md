@@ -831,13 +831,13 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [LSX 🔈](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/lsx-control.yaml)
-### [Sync volume](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/lsx-control.yaml#L12)
+## [LSX 🔈](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/lsx-control.yaml)
+### [Sync volume](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/lsx-control.yaml#L12)
 
   *which uses:*
   - [input_select.lsx_volume](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L58)
 
-### [Sync source](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/lsx-control.yaml#L42)
+### [Sync source](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/lsx-control.yaml#L41)
 
   *which uses:*
   - [input_select.lsx_source](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L82)
@@ -845,8 +845,8 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [Media player 🔈📺](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/media_player.yaml)
-### [Turn on Opt when TV is on and Spotify is not playing and not Usb](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/media_player.yaml#L12)
+## [Media player 🔈📺](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/media_player.yaml)
+### [Turn on Opt when TV is on and Spotify is not playing and not Usb](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/media_player.yaml#L12)
 
   The speaker is connected via an optical cable to the TV. Whenever the speakers
 aren't playing Spotify (via WiFi) directly, switch the source of the speakers
@@ -854,16 +854,16 @@ to "Opt".
 
 
 
-### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/media_player.yaml#L41)
+### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/media_player.yaml#L41)
 
 
-### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/media_player.yaml#L59)
+### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/media_player.yaml#L59)
 
 
-### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/media_player.yaml#L78)
+### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/media_player.yaml#L78)
 
 
-### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/ef624651f14e9171e9a0091af4d82644a15bff22/automations/media_player.yaml#L93)
+### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/media_player.yaml#L93)
 
 
 [^ toc](#automations---table-of-content)
