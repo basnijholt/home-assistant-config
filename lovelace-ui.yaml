@@ -799,9 +799,9 @@ views:
     style: "ha-card {\n  --st-font-size-xl: 30px;\n}\n"
     type: custom:simple-thermostat
   - cards:
-    - entity: plant.yucca_elephantipes
+    - entity: plant.royal_haze
       type: plant-status
-    - entity: plant.ficus_microcarpa_ginseng
+    - entity: plant.northern_light
       type: plant-status
     - entity: plant.kentia_palm
       type: plant-status
