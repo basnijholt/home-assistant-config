@@ -21,7 +21,6 @@
       # KEF LSX volume changed
       - conditions:
           - "{{ trigger.entity_id == 'media_player.kef_lsx' }}"
-          - "{{ trigger.from_state.attributes['volume_level'] != trigger.to_state.attributes['volume_level'] }}"
           - "{{ trigger.to_state.state != 'off' }}"
         sequence:
           service: input_select.select_option
@@ -51,7 +50,6 @@
       # KEF LSX source changed
       - conditions:
           - "{{ trigger.entity_id == 'media_player.kef_lsx' }}"
-          - "{{ trigger.from_state.attributes['source'] != trigger.to_state.attributes['source'] }}"
           - "{{ trigger.to_state.state != 'off' }}"
         sequence:
           service: input_select.select_option

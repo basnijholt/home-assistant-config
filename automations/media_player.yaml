@@ -99,7 +99,6 @@
       entity_id: media_player.tv
       attribute: volume_level
   condition:
-    - "{{ trigger.from_state.attributes['volume_level'] != trigger.to_state.attributes['volume_level'] }}"
     - "{{ trigger.to_state.state != 'off' }}"
     - "{{ state_attr('media_player.kef_ls50', 'source') in ('Opt', 'Usb') }}"
   action:
