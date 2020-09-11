@@ -13,6 +13,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_lsx
+      attribute: volume_level
     - platform: state
       entity_id: input_select.lsx_volume
   action:
@@ -42,6 +43,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_lsx
+      attribute: source
     - platform: state
       entity_id: input_select.lsx_source
   action:
