@@ -282,6 +282,7 @@
 - platform: mqtt
   name: CPU Temperature
   state_topic: "pve/cpu_temp"
+  unit_of_measurement: "°C"
   value_template: "{{ value | multiply(0.001) | round(1) }}"
 
 - platform: systemmonitor
