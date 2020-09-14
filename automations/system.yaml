@@ -79,3 +79,35 @@
     data:
       title: "System"
       message: "Not receiving MQTT updates, maybe reboot the other HA instance! ⚠️"
+
+- alias: "System: battery level low"
+  trigger:
+    platform: time
+    at: "14:30:00"
+  variables:
+    min_battery_level: 50
+    notify_service: notify.mobile_app_basnijholt_iphone
+    battery_ids: ""
+    current: ""
+  action:
+    - variables:
+        battery_ids: >
+          {% set ns = namespace(battery=[]) %}
+          {% for s in states.sensor if 'battery_level' in s.entity_id %}
+            {% set ns.battery = ns.battery + [s] %}
+          {% endfor %}
+          {{ ns.battery | map(attribute='entity_id') | join(', ') }}
+    - alias: Repeat
+      repeat:
+        count: "{{ battery_ids.split(', ') | length }}"
+        sequence:
+          - variables:
+              current: "{{ battery_ids.split(', ')[repeat.index] }}"
+          - condition: template
+            value_template: "{{ 'iphone' not in current and 'ipad' not in current }}"
+          - condition: template
+            value_template: "{{ 0 < (states(current) | float) < (min_battery_level | float ) }}"
+          - service: "{{ notify_service }}"
+            data:
+              title: "System"
+              message: "Battery level low of {{ current }}: {{ states(current) }}%! ⚠️"
