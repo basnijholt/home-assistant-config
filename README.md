@@ -443,9 +443,9 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 1. [LSX 🔈](#lsx-) (2 automations)
 1. [Media player 🔈📺](#media-player-) (5 automations)
 1. [Music 🎵](#music-) (2 automations)
-1. [Night mode 🌕🌑](#night-mode-) (4 automations)
 1. [Plant ☘️](#plant-) (3 automations)
 1. [Security 👮‍♂️🚨](#security-) (4 automations)
+1. [Night mode 🌕🌑](#night-mode-) (4 automations)
 1. [System 🖥](#system-) (7 automations)
 1. [Utilities 🧺👚🍽](#utilities-) (4 automations)
 1. [Vacation mode 🏝](#vacation-mode-) (2 automations)
@@ -884,37 +884,6 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob/30c0fe8c22f4777837e22009484af9f0fe7b2789/automations/night_mode.yaml)
-### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob/30c0fe8c22f4777837e22009484af9f0fe7b2789/automations/night_mode.yaml#L12)
-
-  *which uses:*
-  - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L43)
-  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-
-### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob/30c0fe8c22f4777837e22009484af9f0fe7b2789/automations/night_mode.yaml#L30)
-
-  *which uses:*
-  - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L34)
-  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-
-### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob/30c0fe8c22f4777837e22009484af9f0fe7b2789/automations/night_mode.yaml#L39)
-
-  *which uses:*
-  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L284)
-
-### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/30c0fe8c22f4777837e22009484af9f0fe7b2789/automations/night_mode.yaml#L47)
-
-  When it is half sleeping mode and there is no activity in the house for more than an hour go to total sleeping mode.
-
-
-  *which uses:*
-  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [binary_sensor.activity_outside_bedroom](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L74)
-
-[^ toc](#automations---table-of-content)
-
-
 ## [Plant ☘️](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml)
 ### [Problem with Ficus microcarpa Ginseng](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml#L11)
 
@@ -953,6 +922,37 @@ to "Opt".
 
   *which uses:*
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L137)
+
+[^ toc](#automations---table-of-content)
+
+
+## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml)
+### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L12)
+
+  *which uses:*
+  - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L43)
+  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
+
+### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L30)
+
+  *which uses:*
+  - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L34)
+  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
+
+### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L39)
+
+  *which uses:*
+  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
+  - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L284)
+
+### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L47)
+
+  When it is half sleeping mode and there is no activity in the house for more than an hour go to total sleeping mode.
+
+
+  *which uses:*
+  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
+  - [binary_sensor.activity_outside_bedroom](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L74)
 
 [^ toc](#automations---table-of-content)
 
