@@ -156,23 +156,50 @@
       - conditions: "{{ trigger.event.data.event == 1007 }}" # Shake button
         sequence:
           choose:
-            - conditions:
-                condition: state
-                entity_id: input_select.sleep_mode
-                state: "total"
-              sequence:
-                service: light.turn_off
-                entity_id: all
-            - conditions: >
+            - conditions: > # In the morning just turn lights off
                 {% set h, m = states("sensor.ten_minutes_before_alarm").split(":") %}
                 {% set t_diff = as_timestamp(now()) - as_timestamp(now().replace(hour=h|int, minute=m|int)) %}
                 {% set is_near_alarm = (t_diff|abs) < 1800 %}
                 {% set is_morning = now().replace(hour=6, minute=0) < now() < now().replace(hour=12, minute=0) %}
                 {{ is_near_alarm or is_morning }}
               sequence:
-                service: script.turn_off_everything
-          default:
-            service: script.going_to_sleep
+                service: light.turn_off
+                entity_id: all
+
+            - conditions: # off -> half
+                condition: state
+                entity_id: input_select.sleep_mode
+                state: "off"
+              sequence:
+                - service: light.turn_off
+                  entity_id:
+                    - light.hall_lights
+                    - light.bedroom_lights
+                    - light.ceiling_bathroom
+                    - light.stairs_lights
+                - service: input_select.select_option
+                  entity_id: input_select.sleep_mode
+                  data:
+                    option: half
+
+            - conditions: # half -> total
+                condition: state
+                entity_id: input_select.sleep_mode
+                state: half
+              sequence:
+                - service: script.turn_off_everything
+                - service: input_select.select_option
+                  entity_id: input_select.sleep_mode
+                  data:
+                    option: total
+
+            - conditions: # on total, just turn lights off
+                condition: state
+                entity_id: input_select.sleep_mode
+                state: total
+              sequence:
+                service: light.turn_off
+                entity_id: all
 
 - alias: "Control switches: bathroom Aqara Wireless Mini Switch"
   trigger:
