@@ -62,8 +62,10 @@
       # Start music by throwing the cube
       - conditions: "{{ trigger.event.data.event == 7008 }}"
         sequence:
-          service: input_boolean.turn_on
-          entity_id: input_boolean.start_the_music
+          service: script.start_spotify_playlist_of_nearest_person
+          data:
+            source: LS50 Wireless
+            entity_id: media_player.kef_ls50
 
 - alias: "Cube: rotate the cube"
   trigger:
