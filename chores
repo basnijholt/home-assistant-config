@@ -12,4 +12,3 @@ python3 utils/commit-updates.py
 pip3 -q install pyfiglet
 python3 utils/ascii_art.py
 python3 utils/update-readme.py
-zsh utils/fix_corrupt_zsh_history.sh
