@@ -152,6 +152,16 @@
           data:
             group: light.bedroom_lights
 
+      # Turn off lights in and next to bedroom
+      - conditions: "{{ trigger.event.data.event == 1001 }}" # Long click
+        sequence:
+          service: light.turn_off
+          entity_id:
+            - light.hall_lights
+            - light.bedroom_lights
+            - light.ceiling_bathroom
+            - light.stairs_lights
+
       # Turn on sleep mode, else, turn all lights off
       - conditions: "{{ trigger.event.data.event == 1007 }}" # Shake button
         sequence:
