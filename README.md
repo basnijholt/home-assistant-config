@@ -520,8 +520,8 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/916f3fe2186a43a38a88cb9d27482b3d86d4eb5d/automations/control_switches.yaml)
-### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/916f3fe2186a43a38a88cb9d27482b3d86d4eb5d/automations/control_switches.yaml#L12)
+## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/3c2b71e12f6a0a5e467d3527bc2ce5c834a66ccc/automations/control_switches.yaml)
+### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/3c2b71e12f6a0a5e467d3527bc2ce5c834a66ccc/automations/control_switches.yaml#L12)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L25)
@@ -529,7 +529,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L262)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L182)
 
-### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/916f3fe2186a43a38a88cb9d27482b3d86d4eb5d/automations/control_switches.yaml#L47)
+### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/3c2b71e12f6a0a5e467d3527bc2ce5c834a66ccc/automations/control_switches.yaml#L47)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L31)
@@ -537,7 +537,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L262)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L195)
 
-### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/916f3fe2186a43a38a88cb9d27482b3d86d4eb5d/automations/control_switches.yaml#L82)
+### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/3c2b71e12f6a0a5e467d3527bc2ce5c834a66ccc/automations/control_switches.yaml#L82)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L25)
@@ -545,24 +545,23 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L208)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L262)
 
-### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/916f3fe2186a43a38a88cb9d27482b3d86d4eb5d/automations/control_switches.yaml#L129)
+### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/3c2b71e12f6a0a5e467d3527bc2ce5c834a66ccc/automations/control_switches.yaml#L129)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L31)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [script.going_to_sleep](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L253)
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L208)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L262)
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L246)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L235)
 
-### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/916f3fe2186a43a38a88cb9d27482b3d86d4eb5d/automations/control_switches.yaml#L177)
+### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/3c2b71e12f6a0a5e467d3527bc2ce5c834a66ccc/automations/control_switches.yaml#L204)
 
   *which uses:*
   - [input_select.bathroom_color](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L37)
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L208)
 
-### [Downstairs Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/916f3fe2186a43a38a88cb9d27482b3d86d4eb5d/automations/control_switches.yaml#L213)
+### [Downstairs Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/3c2b71e12f6a0a5e467d3527bc2ce5c834a66ccc/automations/control_switches.yaml#L240)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L308)
@@ -926,26 +925,26 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml)
-### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L12)
+## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml)
+### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L12)
 
   *which uses:*
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L43)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L30)
+### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L30)
 
   *which uses:*
   - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L34)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L39)
+### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L39)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/423402f7fb675b4856a77ca82a411cbd4bd6dd1a/scripts.yaml#L284)
 
-### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob//automations/sleep_mode.yaml#L47)
+### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L47)
 
   When it is half sleeping mode and there is no activity in the house for more than an hour go to total sleeping mode.
 
