@@ -299,6 +299,7 @@ views:
   - entities:
     - entity: input_boolean.vacation_mode
     - entity: input_boolean.guest_mode
+    - entity: input_boolean.automatic_temperature
     show_header_toggle: false
     type: entities
   - entities:
