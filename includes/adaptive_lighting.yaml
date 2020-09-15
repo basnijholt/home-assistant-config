@@ -1,0 +1,115 @@
+#-
+#            _             _   _               _ _       _     _   _
+#   __ _  __| | __ _ _ __ | |_(_)_   _____    | (_) __ _| |__ | |_(_)_ __   __ _
+#  / _` |/ _` |/ _` | '_ \| __| \ \ / / _ \   | | |/ _` | '_ \| __| | '_ \ / _` |
+# | (_| | (_| | (_| | |_) | |_| |\ V /  __/   | | | (_| | | | | |_| | | | | (_| |
+#  \__,_|\__,_|\__,_| .__/ \__|_| \_/ \___|___|_|_|\__, |_| |_|\__|_|_| |_|\__, |
+#                   |_|                  |_____|   |___/                   |___/
+#
+#- from github.com/basnijholt/home-assistant-config
+- name: living room
+  lights_rgb:
+    - light.sphere_1
+    - light.sphere_2
+    - light.corner_living_room
+    - light.ceiling_living_room
+    - light.tv_led
+  min_brightness: 70
+  only_once: true
+  min_colortemp: 2000
+  interval: 30
+
+- name: default
+  lights_rgb:
+    - light.philips_go
+    - light.bamboo
+    - light.ceiling_bedroom
+    - light.lampan
+    - light.bed_reading_up
+    - light.bed_reading_down
+    - light.ceiling_bathroom
+    - light.toilet
+    - light.ceiling_kitchen
+  lights_mired:
+    - light.stairs_up
+    - light.stairs_down
+    - light.hall_1
+    - light.hall_2
+    - light.hall_3
+  sleep_entity: input_select.sleep_mode
+  sleep_state: total
+  disable_entity: input_select.sleep_mode
+  disable_state: half
+  min_brightness: 70
+  only_once: true
+  min_colortemp: 2000
+  interval: 30
+
+- name: default bed
+  lights_rgb:
+    - light.bed_led
+  sleep_entity: input_select.sleep_mode
+  sleep_state: total
+  sleep_brightness: 20
+  disable_entity: input_select.sleep_mode
+  disable_state: half
+  min_brightness: 70
+  only_once: true
+  min_colortemp: 2000
+  interval: 30
+
+- name: half and dim
+  lights_rgb:
+    - light.philips_go
+    - light.bamboo
+    - light.ceiling_bedroom
+    - light.lampan
+    - light.bed_led
+    - light.bed_reading_up
+    - light.bed_reading_down
+    - light.ceiling_bathroom
+  lights_mired:
+    - light.hall_2
+    - light.hall_3
+  sleep_entity: input_select.sleep_mode
+  sleep_state: half
+  disable_entity: input_select.sleep_mode
+  disable_state:
+    - total
+    - "off"
+  min_brightness: 70
+  only_once: true
+  min_colortemp: 2000
+  interval: 30
+
+- name: half and dim bed
+  lights_rgb:
+    - light.bed_led
+  sleep_entity: input_select.sleep_mode
+  sleep_state: half
+  sleep_brightness: 20
+  disable_entity: input_select.sleep_mode
+  disable_state:
+    - total
+    - "off"
+  min_brightness: 70
+  only_once: true
+  min_colortemp: 2000
+  interval: 30
+
+- name: half and full
+  lights_rgb:
+    - light.toilet
+    - light.ceiling_kitchen
+  lights_mired:
+    - light.stairs_up
+    - light.stairs_down
+    - light.hall_1
+  disable_entity: input_select.sleep_mode
+  disable_state:
+    - total
+    - "off"
+  min_brightness: 70
+  only_once: true
+  min_colortemp: 2000
+  interval: 30
