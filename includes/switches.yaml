@@ -33,89 +33,10 @@
         service: media_player.turn_off
         entity_id: media_player.kef_lsx
 
-# - platform: circadian_lighting
-#   name: living room
-#   lights_rgb:
-#     - light.sphere_1
-#     - light.sphere_2
-#     - light.corner_living_room
-#     - light.ceiling_living_room
-#     - light.tv_led
-#   min_brightness: 70
-#   only_once: true
-
-# - platform: circadian_lighting
-#   lights_rgb:
-#     - light.philips_go
-#     - light.bamboo
-#     - light.ceiling_bedroom
-#     - light.lampan
-#     - light.bed_led
-#     - light.bed_reading_up
-#     - light.bed_reading_down
-#     - light.ceiling_bathroom
-#     - light.toilet
-#     - light.ceiling_kitchen
-#   lights_ct:
-#     - light.stairs_up
-#     - light.stairs_down
-#     - light.hall_1
-#     - light.hall_2
-#     - light.hall_3
-#   sleep_entity: input_select.sleep_mode
-#   sleep_state: total
-#   disable_entity: input_select.sleep_mode
-#   disable_state: half
-#   min_brightness: 70
-#   only_once: true
-
-# - platform: circadian_lighting
-#   name: half and dim
-#   lights_rgb:
-#     - light.philips_go
-#     - light.bamboo
-#     - light.ceiling_bedroom
-#     - light.lampan
-#     - light.bed_led
-#     - light.bed_reading_up
-#     - light.bed_reading_down
-#     - light.ceiling_bathroom
-#   lights_ct:
-#     - light.hall_2
-#     - light.hall_3
-#   sleep_entity: input_select.sleep_mode
-#   sleep_state: half
-#   disable_entity: input_select.sleep_mode
-#   disable_state:
-#     - total
-#     - "off"
-#   min_brightness: 70
-#   only_once: true
-
-# - platform: circadian_lighting
-#   name: half and full
-#   lights_rgb:
-#     - light.toilet
-#     - light.ceiling_kitchen
-#   lights_ct:
-#     - light.stairs_up
-#     - light.stairs_down
-#     - light.hall_1
-#   disable_entity: input_select.sleep_mode
-#   disable_state:
-#     - total
-#     - "off"
-#   min_brightness: 70
-#   only_once: true
-
 - platform: adaptive_lighting
   name: living room
-  lights_rgb:
-    - light.sphere_1
-    - light.sphere_2
-    - light.corner_living_room
-    - light.ceiling_living_room
-    - light.tv_led
+  lights:
+    - light.living_room_lights
   min_brightness: 70
   only_once: true
   min_colortemp: 2000
@@ -123,7 +44,7 @@
 
 - platform: adaptive_lighting
   name: default
-  lights_rgb:
+  lights:
     - light.philips_go
     - light.bamboo
     - light.ceiling_bedroom
@@ -133,7 +54,6 @@
     - light.ceiling_bathroom
     - light.toilet
     - light.ceiling_kitchen
-  lights_mired:
     - light.stairs_up
     - light.stairs_down
     - light.hall_1
@@ -150,7 +70,7 @@
 
 - platform: adaptive_lighting
   name: default bed
-  lights_rgb:
+  lights:
     - light.bed_led
   sleep_entity: input_select.sleep_mode
   sleep_state: total
@@ -164,7 +84,7 @@
 
 - platform: adaptive_lighting
   name: half and dim
-  lights_rgb:
+  lights:
     - light.philips_go
     - light.bamboo
     - light.ceiling_bedroom
@@ -173,7 +93,6 @@
     - light.bed_reading_up
     - light.bed_reading_down
     - light.ceiling_bathroom
-  lights_mired:
     - light.hall_2
     - light.hall_3
   sleep_entity: input_select.sleep_mode
@@ -189,7 +108,7 @@
 
 - platform: adaptive_lighting
   name: half and dim bed
-  lights_rgb:
+  lights:
     - light.bed_led
   sleep_entity: input_select.sleep_mode
   sleep_state: half
@@ -205,10 +124,9 @@
 
 - platform: adaptive_lighting
   name: half and full
-  lights_rgb:
+  lights:
     - light.toilet
     - light.ceiling_kitchen
-  lights_mired:
     - light.stairs_up
     - light.stairs_down
     - light.hall_1
