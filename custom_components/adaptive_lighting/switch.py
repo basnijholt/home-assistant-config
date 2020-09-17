@@ -47,7 +47,6 @@ from homeassistant.components.light import (
     SUPPORT_COLOR,
     SUPPORT_COLOR_TEMP,
     SUPPORT_TRANSITION,
-    VALID_TRANSITION,
     is_on,
 )
 from homeassistant.components.switch import SwitchEntity
@@ -75,6 +74,7 @@ from homeassistant.util.color import (
 )
 
 from .const import (
+    _COMMON_SCHEMA,
     CONF_DISABLE_BRIGHTNESS_ADJUST,
     CONF_DISABLE_ENTITY,
     CONF_DISABLE_STATE,
@@ -82,12 +82,12 @@ from .const import (
     CONF_INTERVAL,
     CONF_LIGHTS,
     CONF_MAX_BRIGHTNESS,
-    CONF_MAX_CT,
+    CONF_MAX_COLOR_TEMP,
     CONF_MIN_BRIGHTNESS,
-    CONF_MIN_CT,
+    CONF_MIN_COLOR_TEMP,
     CONF_ONLY_ONCE,
     CONF_SLEEP_BRIGHTNESS,
-    CONF_SLEEP_CT,
+    CONF_SLEEP_COLOR_TEMP,
     CONF_SLEEP_ENTITY,
     CONF_SLEEP_STATE,
     CONF_SUNRISE_OFFSET,
@@ -95,15 +95,6 @@ from .const import (
     CONF_SUNSET_OFFSET,
     CONF_SUNSET_TIME,
     CONF_TRANSITION,
-    DEFAULT_INITIAL_TRANSITION,
-    DEFAULT_INTERVAL,
-    DEFAULT_MAX_BRIGHTNESS,
-    DEFAULT_MAX_CT,
-    DEFAULT_MIN_BRIGHTNESS,
-    DEFAULT_MIN_CT,
-    DEFAULT_SLEEP_BRIGHTNESS,
-    DEFAULT_SLEEP_CT,
-    DEFAULT_TRANSITION,
     DOMAIN,
     ICON,
     SUN_EVENT_MIDNIGHT,
@@ -126,40 +117,7 @@ PLATFORM_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_PLATFORM): DOMAIN,
         vol.Optional(CONF_NAME, default="Adaptive Lighting"): cv.string,
-        vol.Optional(CONF_LIGHTS): cv.entity_ids,
-        vol.Optional(CONF_DISABLE_BRIGHTNESS_ADJUST, default=False): cv.boolean,
-        vol.Optional(CONF_DISABLE_ENTITY): cv.entity_id,
-        vol.Optional(CONF_DISABLE_STATE): vol.All(cv.ensure_list, [cv.string]),
-        vol.Optional(
-            CONF_INITIAL_TRANSITION, default=DEFAULT_INITIAL_TRANSITION
-        ): VALID_TRANSITION,
-        vol.Optional(CONF_INTERVAL, default=DEFAULT_INTERVAL): cv.time_period,
-        vol.Optional(CONF_MAX_BRIGHTNESS, default=DEFAULT_MAX_BRIGHTNESS): vol.All(
-            vol.Coerce(int), vol.Range(min=1, max=100)
-        ),
-        vol.Optional(CONF_MAX_CT, default=DEFAULT_MAX_CT): vol.All(
-            vol.Coerce(int), vol.Range(min=1000, max=10000)
-        ),
-        vol.Optional(CONF_MIN_BRIGHTNESS, default=DEFAULT_MIN_BRIGHTNESS): vol.All(
-            vol.Coerce(int), vol.Range(min=1, max=100)
-        ),
-        vol.Optional(CONF_MIN_CT, default=DEFAULT_MIN_CT): vol.All(
-            vol.Coerce(int), vol.Range(min=1000, max=10000)
-        ),
-        vol.Optional(CONF_ONLY_ONCE, default=False): cv.boolean,
-        vol.Optional(CONF_SLEEP_BRIGHTNESS, default=DEFAULT_SLEEP_BRIGHTNESS): vol.All(
-            vol.Coerce(int), vol.Range(min=1, max=100)
-        ),
-        vol.Optional(CONF_SLEEP_CT, default=DEFAULT_SLEEP_CT): vol.All(
-            vol.Coerce(int), vol.Range(min=1000, max=10000)
-        ),
-        vol.Optional(CONF_SLEEP_ENTITY): cv.entity_id,
-        vol.Optional(CONF_SLEEP_STATE): vol.All(cv.ensure_list, [cv.string]),
-        vol.Optional(CONF_SUNRISE_OFFSET, default=0): cv.time_period,
-        vol.Optional(CONF_SUNRISE_TIME): cv.time,
-        vol.Optional(CONF_SUNSET_OFFSET, default=0): cv.time_period,
-        vol.Optional(CONF_SUNSET_TIME): cv.time,
-        vol.Optional(CONF_TRANSITION, default=DEFAULT_TRANSITION): VALID_TRANSITION,
+        **_COMMON_SCHEMA,
     }
 )
 
@@ -169,19 +127,19 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     switch = AdaptiveSwitch(
         hass,
         name=config[CONF_NAME],
-        lights=config.get(CONF_LIGHTS, []),
+        lights=config[CONF_LIGHTS],
         disable_brightness_adjust=config[CONF_DISABLE_BRIGHTNESS_ADJUST],
         disable_entity=config.get(CONF_DISABLE_ENTITY),
         disable_state=config.get(CONF_DISABLE_STATE),
         initial_transition=config[CONF_INITIAL_TRANSITION],
         interval=config[CONF_INTERVAL],
         max_brightness=config[CONF_MAX_BRIGHTNESS],
-        max_color_temp=config[CONF_MAX_CT],
+        max_color_temp=config[CONF_MAX_COLOR_TEMP],
         min_brightness=config[CONF_MIN_BRIGHTNESS],
-        min_color_temp=config[CONF_MIN_CT],
+        min_color_temp=config[CONF_MIN_COLOR_TEMP],
         only_once=config[CONF_ONLY_ONCE],
         sleep_brightness=config[CONF_SLEEP_BRIGHTNESS],
-        sleep_color_temp=config[CONF_SLEEP_CT],
+        sleep_color_temp=config[CONF_SLEEP_COLOR_TEMP],
         sleep_entity=config.get(CONF_SLEEP_ENTITY),
         sleep_state=config.get(CONF_SLEEP_STATE),
         sunrise_offset=config[CONF_SUNRISE_OFFSET],
@@ -334,25 +292,26 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
 
     async def async_added_to_hass(self):
         """Call when entity about to be added to hass."""
-        async_track_state_change(
-            self.hass,
-            self._unpack_light_groups(self._lights),
-            self._light_state_changed,
-            to_state="on",
-            from_state="off",
-        )
-        track_kwargs = dict(hass=self.hass, action=self._state_changed)
-        if self._sleep_entity is not None:
-            sleep_kwargs = dict(track_kwargs, entity_ids=self._sleep_entity)
-            async_track_state_change(**sleep_kwargs, to_state=self._sleep_state)
-            async_track_state_change(**sleep_kwargs, from_state=self._sleep_state)
-
-        if self._disable_entity is not None:
+        if self._lights:
             async_track_state_change(
-                **track_kwargs,
-                entity_ids=self._disable_entity,
-                from_state=self._disable_state,
+                self.hass,
+                self._unpack_light_groups(self._lights),
+                self._light_state_changed,
+                to_state="on",
+                from_state="off",
             )
+            track_kwargs = dict(hass=self.hass, action=self._state_changed)
+            if self._sleep_entity is not None:
+                sleep_kwargs = dict(track_kwargs, entity_ids=self._sleep_entity)
+                async_track_state_change(**sleep_kwargs, to_state=self._sleep_state)
+                async_track_state_change(**sleep_kwargs, from_state=self._sleep_state)
+
+            if self._disable_entity is not None:
+                disable_kwargs = dict(track_kwargs, entity_ids=self._disable_entity)
+                async_track_state_change(
+                    **disable_kwargs, from_state=self._disable_state
+                )
+                async_track_state_change(**disable_kwargs, to_state=self._disable_state)
 
         last_state = await self.async_get_last_state()
         if last_state and last_state.state == STATE_ON:
@@ -570,9 +529,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         )
 
     def _should_adjust(self):
-        if not self.is_on:
-            return False
-        if self._is_disabled():
+        if not self._lights or not self.is_on or self._is_disabled():
             return False
         return True
 
@@ -588,12 +545,11 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             await asyncio.wait(tasks)
 
     async def _light_state_changed(self, entity_id, from_state, to_state):
-        assert to_state.state == "on"
-        if from_state is None or from_state.state != "on":
-            _LOGGER.debug(_difference_between_states(from_state, to_state))
-            await self._update_lights(
-                lights=[entity_id], transition=self._initial_transition, force=True
-            )
+        assert to_state.state == "on" and from_state.state == "off"
+        _LOGGER.debug(_difference_between_states(from_state, to_state))
+        await self._update_lights(
+            lights=[entity_id], transition=self._initial_transition, force=True
+        )
 
     async def _state_changed(self, entity_id, from_state, to_state):
         _LOGGER.debug(_difference_between_states(from_state, to_state))

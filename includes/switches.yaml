@@ -39,7 +39,7 @@
     - light.living_room_lights
   min_brightness: 70
   only_once: true
-  min_colortemp: 2000
+  min_color_temp: 2000
   interval: 30
 
 - platform: adaptive_lighting
@@ -65,7 +65,7 @@
   disable_state: half
   min_brightness: 70
   only_once: true
-  min_colortemp: 2000
+  min_color_temp: 2000
   interval: 30
 
 - platform: adaptive_lighting
@@ -79,7 +79,7 @@
   disable_state: half
   min_brightness: 70
   only_once: true
-  min_colortemp: 2000
+  min_color_temp: 2000
   interval: 30
 
 - platform: adaptive_lighting
@@ -103,7 +103,7 @@
     - "off"
   min_brightness: 70
   only_once: true
-  min_colortemp: 2000
+  min_color_temp: 2000
   interval: 30
 
 - platform: adaptive_lighting
@@ -119,7 +119,7 @@
     - "off"
   min_brightness: 70
   only_once: true
-  min_colortemp: 2000
+  min_color_temp: 2000
   interval: 30
 
 - platform: adaptive_lighting
@@ -136,5 +136,5 @@
     - "off"
   min_brightness: 70
   only_once: true
-  min_colortemp: 2000
+  min_color_temp: 2000
   interval: 30
