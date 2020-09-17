@@ -78,7 +78,7 @@
 - alias: "Media player: update Spotify entity when TV is on every 5 seconds"
   trigger:
     platform: time_pattern
-    seconds: 5
+    seconds: "/5"
   condition:
     - condition: state
       entity_id: media_player.spotify
