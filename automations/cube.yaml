@@ -80,20 +80,18 @@
           entity_id: input_select.cube_mode
           state: "Hue"
         sequence:
-          service: light.turn_on
-          entity_id: light.living_room_lights
-          data:
-            hs_color:
-              - >
-                {% set hue_sat = state_attr('light.sphere_1', 'hs_color') %}
-                {% if hue_sat == None %} {% set hue_sat = [30, 56] %} {% endif %}
-                {% set delta = trigger.event.data.event / 200 %}
-                {% set new_hue = [([0, (hue_sat[0] + delta)]|max), 360]|min %}
-                {{ new_hue|round(3) }}
-              - >
-                {% set hue_sat = state_attr('light.sphere_1', 'hs_color') %}
-                {% if hue_sat == None %} {% set hue_sat = [30, 56] %} {% endif %}
-                {{ hue_sat[1] }}
+          - variables:
+              hue: "{{ (state_attr('light.sphere_1', 'hs_color') or [30, 56])[0] }}"
+              sat: "{{ (state_attr('light.sphere_1', 'hs_color') or [30, 56])[1] }}"
+          - service: light.turn_on
+            entity_id: light.living_room_lights
+            data:
+              hs_color:
+                - >
+                  {% set delta = trigger.event.data.event / 200 %}
+                  {% set new_hue = [([0, (hue|float + delta)]|max), 360]|min %}
+                  {{ new_hue|round(3) }}
+                - "{{ sat }}"
 
       - conditions: # Change brightness of living room lights
           condition: state
