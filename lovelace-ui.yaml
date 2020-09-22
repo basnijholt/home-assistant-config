@@ -314,8 +314,8 @@ views:
       head:
         entity: binary_sensor.dishwasher
         name: Dishwasher
-        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_started\"\
-          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_done\"\
+        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_on\"\
+          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.dishwasher_off\"\
           )) %} {% if states(\"binary_sensor.dishwasher\") == \"on\" %}\n  Has been\
           \ on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  Has been off\
           \ for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
@@ -334,8 +334,8 @@ views:
       head:
         entity: binary_sensor.washing_machine
         name: Washing machine
-        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_started\"\
-          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_done\"\
+        secondary: "{% set on_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_on\"\
+          )) %} {% set off_for = as_timestamp(now()) - as_timestamp(states(\"input_datetime.washing_machine_off\"\
           )) %} {% if states(\"binary_sensor.washing_machine\") == \"on\" %}\n  Has\
           \ been on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  Has been\
           \ off for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
@@ -1460,10 +1460,10 @@ views:
     title: Volume sync
     type: entities
   - entities:
-    - entity: input_datetime.dishwasher_started
-    - entity: input_datetime.dishwasher_done
-    - entity: input_datetime.washing_machine_started
-    - entity: input_datetime.washing_machine_done
+    - entity: input_datetime.dishwasher_on
+    - entity: input_datetime.dishwasher_off
+    - entity: input_datetime.washing_machine_on
+    - entity: input_datetime.washing_machine_off
     show_header_toggle: false
     title: Datetimes
     type: entities

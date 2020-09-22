@@ -9,33 +9,22 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Utilities: washing machine started or finished"
+- alias: "Utilities: washing machine or dishwasher started or finished"
   trigger:
-    platform: state
-    entity_id: binary_sensor.washing_machine
+    - platform: state
+      entity_id: binary_sensor.dishwasher
+    - platform: state
+      entity_id: binary_sensor.washing_machine
   variables:
     from_state: "{{ trigger.from_state.state }}"
     to_state: "{{ trigger.to_state.state }}"
+    name: "{{ trigger.entity_id.split('.', 1)[1] }}"
   condition: "{{ (to_state == 'on' and from_state == 'off') or (to_state == 'off' and from_state == 'on') }}"
   action:
     service: input_datetime.set_datetime
     data:
-      entity_id: "input_datetime.washing_machine_{{ 'started' if to_state == 'on' else 'done' }}"
-      datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-
-- alias: "Utilities: dishwasher started or finished"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.dishwasher
-  variables:
-    from_state: "{{ trigger.from_state.state }}"
-    to_state: "{{ trigger.to_state.state }}"
-  condition: "{{ (to_state == 'on' and from_state == 'off') or (to_state == 'off' and from_state == 'on') }}"
-  action:
-    service: input_datetime.set_datetime
-    data:
-      entity_id: "input_datetime.dishwasher_{{ 'started' if to_state == 'on' else 'done' }}"
-      datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+      entity_id: "input_datetime.{{ name }}_{{ to_state }}"
+      timestamp: "{{ now().timestamp() }}"
 
 - alias: "Utilities: washing machine notification"
   trigger:

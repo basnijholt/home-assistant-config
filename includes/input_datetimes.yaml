@@ -13,22 +13,22 @@ alarm_clock:
   has_date: false
   has_time: true
 
-washing_machine_started:
+washing_machine_on:
   name: Washing machine last started
   has_date: true
   has_time: true
 
-washing_machine_done:
+washing_machine_off:
   name: Washing machine last done
   has_date: true
   has_time: true
 
-dishwasher_started:
+dishwasher_on:
   name: Dishwasher last started
   has_date: true
   has_time: true
 
-dishwasher_done:
+dishwasher_off:
   name: Dishwasher last done
   has_date: true
   has_time: true
