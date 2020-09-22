@@ -29,6 +29,7 @@
         push:
           category: sound_alarm
 
+# XXX: Use `wait_for_trigger` the combine the automation below into the one above
 - alias: "Security: sound alarm after notification"
   trigger:
     platform: event
