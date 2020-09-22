@@ -105,7 +105,16 @@ const texts = {
         run: "Start",
         repeats: "Repetitioner:",
         confirmation: "Kommando skickat!"
-    }
+    },
+    "uk": {
+        mode: "Режим",
+        goToTarget: "Рух до цілі",
+        zonedCleanup: "Зональне прибирання",
+        zones: "Зони",
+        run: "Старт",
+        repeats: "Разів:",
+        confirmation: "Команда надіслана"
+    },
 };
 
 export {
