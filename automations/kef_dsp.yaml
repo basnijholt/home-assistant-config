@@ -20,6 +20,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: desk_db
     - platform: state
       entity_id: input_number.kef_ls50_desk_db
   action:
@@ -28,7 +29,6 @@
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: desk_db
       type: float
 
@@ -36,6 +36,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: wall_db
     - platform: state
       entity_id: input_number.kef_ls50_wall_db
   action:
@@ -44,7 +45,6 @@
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "wall_db"
       type: float
 
@@ -52,6 +52,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: treble_db
     - platform: state
       entity_id: input_number.kef_ls50_treble_db
   action:
@@ -60,7 +61,6 @@
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "treble_db"
       type: float
 
@@ -68,6 +68,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: high_hz
     - platform: state
       entity_id: input_number.kef_ls50_high_hz
   action:
@@ -76,7 +77,6 @@
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "high_hz"
       type: int
 
@@ -84,6 +84,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: low_hz
     - platform: state
       entity_id: input_number.kef_ls50_low_hz
   action:
@@ -92,7 +93,6 @@
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "low_hz"
       type: int
 
@@ -100,6 +100,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: sub_db
     - platform: state
       entity_id: input_number.kef_ls50_sub_db
   action:
@@ -108,7 +109,6 @@
       name: kef_ls50
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "sub_db"
       type: int
 
@@ -123,6 +123,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: sub_polarity
     - platform: state
       entity_id: input_select.kef_ls50_sub_polarity
   action:
@@ -131,13 +132,13 @@
       name: kef_ls50
       domain: select
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "sub_polarity"
 
 - alias: "KEF DSP: sync bass_extension"
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: bass_extension
     - platform: state
       entity_id: input_select.kef_ls50_bass_extension
   action:
@@ -146,7 +147,6 @@
       name: kef_ls50
       domain: select
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "bass_extension"
 
 #   _                   _       _                 _
@@ -160,6 +160,7 @@
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: desk_mode
     - platform: state
       entity_id: input_boolean.kef_ls50_desk_mode
   action:
@@ -168,13 +169,13 @@
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "desk_mode"
 
 - alias: "KEF DSP: sync wall_mode"
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: wall_mode
     - platform: state
       entity_id: input_boolean.kef_ls50_wall_mode
   action:
@@ -183,13 +184,13 @@
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "wall_mode"
 
 - alias: "KEF DSP: sync phase_correction"
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: phase_correction
     - platform: state
       entity_id: input_boolean.kef_ls50_phase_correction
   action:
@@ -198,13 +199,13 @@
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "phase_correction"
 
 - alias: "KEF DSP: sync high_pass"
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
+      attribute: high_pass
     - platform: state
       entity_id: input_boolean.kef_ls50_high_pass
   action:
@@ -213,5 +214,4 @@
       name: kef_ls50
       domain: boolean
       trigger_entity_id: "{{ trigger.entity_id }}"
-      trigger_to_state: "{{ trigger.to_state.state }}"
       attribute: "high_pass"
