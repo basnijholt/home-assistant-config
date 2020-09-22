@@ -24,7 +24,7 @@ _LOGGER = logging.getLogger(__name__)
 
 _RESPONSE_OK = 17  # the full response is [82, 17, 255]
 _TIMEOUT = 2.0  # in seconds
-_KEEP_ALIVE = 0.1  # in seconds
+_KEEP_ALIVE = 1.0  # in seconds
 _VOLUME_SCALE = 100.0
 _MAX_ATTEMPT_TILL_SUCCESS = 10
 _MAX_SEND_MESSAGE_TRIES = 5

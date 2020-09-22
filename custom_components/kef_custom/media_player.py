@@ -168,7 +168,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         dtype = type(options[0])  # int or float
         platform.async_register_entity_service(
             name,
-            {vol.Required(option): vol.All(vol.Coerce(dtype), vol.In(options))},
+            {vol.Required(option): vol.All(vol.Coerce(float), vol.Coerce(dtype), vol.In(options))},
             f"set_{which}",
         )
 
