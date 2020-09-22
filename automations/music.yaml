@@ -38,6 +38,7 @@
       state: "off"
     - "{{ is_state_attr('media_player.spotify', 'source', 'basnijholt-iphone') }}"
     - "{{ is_state('media_player.spotify', 'playing') }}"
+    - "{{ as_timestamp(now()) - as_timestamp(states.person.bas.last_changed) < 5 * 60 }}" # recently got home
     - condition: numeric_state
       entity_id: proximity.home
       below: 2
