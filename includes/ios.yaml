@@ -43,3 +43,11 @@ actions:
     icon:
       icon: play-pause
       color: "#ffffff"
+  - name: Half sleep mode
+    background_color: "#000000"
+    label:
+      text: "Half sleep mode"
+      color: "#ff0000"
+    icon:
+      icon: sleep
+      color: "#ffffff"
