@@ -466,3 +466,42 @@ sync_kef_dsp:
                   data:
                     entity_id: "{{ media_player }}"
                     "{{ attribute }}": "{{ trigger_to_state }}"
+
+utility_notification:
+  mode: parallel
+  max: 20
+  fields:
+    name:
+      description: name
+      example: washing_machine
+    emojis:
+      description: emojis
+      example: "👚👕"
+  variables:
+    switch: "{{ 'switch.{}'.format(name) }}"
+    binary_sensor: "{{ 'binary_sensor.{}'.format(name) }}"
+    friendly_name: "{{ name.capitalize().replace('_', ' ') }}"
+  sequence:
+    - variables:
+        start_time: "{{ as_timestamp(now()) }}"
+        start_kwh: "{{ state_attr(switch, 'total_energy_kwh') }}"
+    - wait_for_trigger:
+        platform: template
+        value_template: "{{ is_state(binary_sensor, 'off') }}"
+      timeout: "03:00:00"
+      continue_on_timeout: false
+    - variables:
+        end_time: "{{ as_timestamp(now()) }}"
+        end_kwh: "{{ state_attr(switch, 'total_energy_kwh') }}"
+    - variables:
+        total_time: "{{ (end_time|float - start_time|float) }}"
+        total_kwh: "{{ end_kwh|float - start_kwh|float }}"
+    - variables:
+        minutes: "{{ (total_time|float / 60) | round(0) }}"
+        total_kwh_rounded: "{{ (total_kwh | float) | round(2) }}"
+        price: "{{ (0.2479 * total_kwh | float) | round(2) }}"
+    - service: >
+        {{ states("sensor.nearest_iphone_notify") }}
+      data:
+        title: "Utilities"
+        message: "{{ friendly_name }} is done after {{ minutes }} minutes and it used {{ total_kwh_rounded }} kWh (€{{ price }}) {{ emojis }}"

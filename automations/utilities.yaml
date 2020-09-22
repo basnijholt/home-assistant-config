@@ -66,3 +66,27 @@
     entity_id: input_datetime.dishwasher_started
     data:
       datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
+- alias: "Utilities: washing machine notification"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.washing_machine
+    from: "off"
+    to: "on"
+  action:
+    service: script.utility_notification
+    data:
+      name: "washing_machine"
+      emojis: "👚👕"
+
+- alias: "Utilities: dishwasher notification"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.dishwasher
+    from: "off"
+    to: "on"
+  action:
+    service: script.utility_notification
+    data:
+      name: "dishwasher"
+      emojis: "🍽🍳"
