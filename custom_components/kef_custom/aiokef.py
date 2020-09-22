@@ -2,7 +2,6 @@
 
 import asyncio
 import functools
-import gc
 import inspect
 import logging
 import socket
@@ -25,7 +24,7 @@ _LOGGER = logging.getLogger(__name__)
 
 _RESPONSE_OK = 17  # the full response is [82, 17, 255]
 _TIMEOUT = 2.0  # in seconds
-_KEEP_ALIVE = 1.0  # in seconds
+_KEEP_ALIVE = 0.1  # in seconds
 _VOLUME_SCALE = 100.0
 _MAX_ATTEMPT_TILL_SUCCESS = 10
 _MAX_SEND_MESSAGE_TRIES = 5
@@ -252,7 +251,7 @@ class _AsyncCommunicator:
 
     async def open_connection(self) -> None:
         if self.is_connected:
-            if self._writer.is_closing():
+            if self._writer.is_closing():  # type: ignore
                 _LOGGER.debug(
                     "%s: Connection closing but did not disconnect", self.host
                 )
@@ -273,8 +272,9 @@ class _AsyncCommunicator:
             except ConnectionRefusedError:
                 _LOGGER.debug("%s: Opening connection failed", self.host)
                 await asyncio.sleep(0.5)
-            except BlockingIOError:  # Connection incomming
+            except BlockingIOError:  # Connection incoming
                 # XXX: I have never seen this.
+                _LOGGER.debug("%s: BlockingIOError", self.host)
                 retries = 0
                 await asyncio.sleep(1)
             except (asyncio.TimeoutError, OSError) as e:  # Host is down
@@ -297,6 +297,8 @@ class _AsyncCommunicator:
             try:
                 # I am getting `[asyncio] socket.send() raised exception.`
                 # in one of the two lines below.
+                # After adding this, I've never seen the error again, but also
+                # never seen the log message below...
                 self._writer.write(message)
                 await self._writer.drain()
             except ConnectionResetError:
@@ -321,7 +323,7 @@ class _AsyncCommunicator:
         self._maybe_cancel_disconnect_task()
         maybe_lock = self._lock if use_lock else AsyncExitStack()
         if self.is_connected:
-            async with maybe_lock:
+            async with maybe_lock:  # type: ignore
                 assert self._writer is not None
                 _LOGGER.debug("%s: Going to disconnect now", self.host)
                 try:
@@ -337,7 +339,6 @@ class _AsyncCommunicator:
                     self._writer._transport.abort()
 
                 self._reader, self._writer = (None, None)
-                # gc.collect()
 
     async def _disconnect_in(self, dt):
         await asyncio.sleep(dt)
@@ -460,7 +461,7 @@ class AsyncKefSpeaker:
                 i,
                 current_source,
                 source,
-            ), self.host
+            )
             await asyncio.sleep(0.5)
 
         raise TimeoutError(
@@ -607,7 +608,9 @@ class AsyncKefSpeaker:
 
     @retry(**_CMD_RETRY_KWARGS)
     async def _set_dsp(self, which, value) -> None:
-        i = DSP_OPTION_MAPPING[which].index(value) + 128  # "+ 128" seems to do nothing
+        options = DSP_OPTION_MAPPING[which]
+        as_type = type(options[0])
+        i = options.index(as_type(value)) + 128  # "+ 128" seems to do nothing
         cmd = COMMANDS[f"set_{which}"](i)  # type: ignore
         response = await self._comm.send_message(cmd)
         if response != _RESPONSE_OK:

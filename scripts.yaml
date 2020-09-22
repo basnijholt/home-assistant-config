@@ -409,9 +409,6 @@ sync_kef_dsp:
     name:
       description: name
       example: kef_ls50
-    type:
-      description: int or float
-      example: int
   variables:
     media_player: "{{ 'media_player.{}'.format(name) }}"
     input_helper: "{{ 'input_{}.{}_{}'.format(domain, name, attribute) }}"
@@ -443,12 +440,7 @@ sync_kef_dsp:
                   service: kef_custom.set_{{ attribute }}
                   data:
                     entity_id: "{{ media_player }}"
-                    "{{ attribute[-2:] }}_value": >
-                      {% if type == "int" %}
-                        {{ trigger_to_state | int }}
-                      {% else %}
-                        {{ trigger_to_state | float }}
-                      {% endif %}
+                    "{{ attribute[-2:] }}_value": "{{ trigger_to_state }}"
 
         # input_select or input_boolean
         - conditions: "{{ domain in ('select', 'boolean') }}"

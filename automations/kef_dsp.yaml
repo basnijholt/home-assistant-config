@@ -30,7 +30,6 @@
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       attribute: desk_db
-      type: float
 
 - alias: "KEF DSP: sync wall_db"
   trigger:
@@ -46,7 +45,6 @@
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       attribute: "wall_db"
-      type: float
 
 - alias: "KEF DSP: sync treble_db"
   trigger:
@@ -62,7 +60,6 @@
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       attribute: "treble_db"
-      type: float
 
 - alias: "KEF DSP: sync high_hz"
   trigger:
@@ -78,7 +75,6 @@
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       attribute: "high_hz"
-      type: int
 
 - alias: "KEF DSP: sync low_hz"
   trigger:
@@ -94,7 +90,6 @@
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       attribute: "low_hz"
-      type: int
 
 - alias: "KEF DSP: sync sub_db"
   trigger:
@@ -110,7 +105,6 @@
       domain: number
       trigger_entity_id: "{{ trigger.entity_id }}"
       attribute: "sub_db"
-      type: int
 
 #   _                   _                _           _
 #  (_)_ __  _ __  _   _| |_     ___  ___| | ___  ___| |_
