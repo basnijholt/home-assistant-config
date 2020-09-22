@@ -17,6 +17,7 @@
 import functools
 import re
 import subprocess
+import urllib.parse
 from contextlib import suppress
 from pathlib import Path
 
@@ -202,6 +203,22 @@ def modify_lines(to_insert, lines, tag):
     return new_lines[:i] + [s + "\n" for s in to_insert] + new_lines[i:]
 
 
+def modify_version(lines):
+    with open(".HA_VERSION") as f:
+        version = f.read()
+    msg = f"Running Home Asssistant-{version} -darkblue"
+    url_part = urllib.parse.quote(msg)
+    ha_url = f"https://github.com/home-assistant/core/releases/tag/{version}"
+
+    pattern = "[![HA Version]"
+    new_lines = []
+    for line in lines:
+        if line.startswith(pattern):
+            line = f"{pattern}(https://img.shields.io/badge/{url_part})]({ha_url})\n"
+        new_lines.append(line)
+    return new_lines
+
+
 automation_files = sorted(list(Path("automations/").glob("*yaml")))
 text = []
 
@@ -233,6 +250,7 @@ for fname in automation_files:
 with open("README.md") as f:
     lines = f.readlines()
 
+lines = modify_version(lines)
 lines = modify_lines(text, lines, "automations")
 lines = modify_lines(html_table.split("\n"), lines, "table")
 
