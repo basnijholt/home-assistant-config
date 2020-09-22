@@ -34,3 +34,12 @@ push:
           activationMode: background
           authenticationRequired: true
           destructive: true
+actions:
+  - name: Play TV
+    background_color: "#000000"
+    label:
+      text: "Play/pause TV"
+      color: "#ff0000"
+    icon:
+      icon: play-pause
+      color: "#ffffff"
