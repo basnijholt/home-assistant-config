@@ -417,10 +417,15 @@ sync_kef_dsp:
   variables:
     media_player: "{{ 'media_player.{}'.format(name) }}"
     input_helper: "{{ 'input_{}.{}_{}'.format(domain, name, attribute) }}"
-    attribute_value: "{{ state_attr(media_player, attribute) }}"
+    attribute_value: >
+      {% if domain in ('number', 'select') %}
+      {{ state_attr(media_player, attribute) }}
+      {% else %}
+      {{ 'on' if is_state_attr(media_player, attribute, 'True') else 'off' }}
+      {% endif %}
   sequence:
     - condition: template
-      value_template: "{{ attribute_value != states(input_helper) }}"
+      value_template: "{{ attribute_value != states(input_helper)|string }}"
     - condition: template
       value_template: "{{ is_state(media_player, 'on') }}"
     - choose:
@@ -461,8 +466,8 @@ sync_kef_dsp:
                     option: "{{ attribute_value }}"
               # KEF has changed
               - conditions: "{{ trigger_entity_id == media_player and domain == 'boolean' }}"
-                sequence:  # XXX: check "if attribute_value" is correct!
-                  service: "input_boolean.turn_{% if attribute_value %}on{% else %}off{% endif %}"
+                sequence:
+                  service: "input_boolean.turn_{{ attribute_value }}"
                   data:
                     entity_id: "{{ input_helper }}"
               # input_select or input_boolean changed
@@ -472,18 +477,3 @@ sync_kef_dsp:
                   data:
                     entity_id: "{{ media_player }}"
                     "{{ attribute }}": "{{ trigger_to_state }}"
-
-test:
-  alias: test
-  fields:
-    test:
-      description: trigger_entity_id
-  variables:
-    yolo: "{{ test }}"
-    nested_yolo: "{{ yolo + 'yollooooooooo' }}"  # Using the previous variable!
-  sequence:
-    - service: system_log.write
-      data:
-        message: Testing
-        level: error
-        logger: "yolo: {{yolo }}, test: {{ test }}, nested_yolo: {{ nested_yolo }}"
