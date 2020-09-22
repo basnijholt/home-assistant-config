@@ -22,16 +22,14 @@
     service: media_player.media_play_pause
     entity_id: media_player.tv
 
-# - alias: "Apple Watch: One person goes to sleep"
-#   trigger:
-#     platform: event
-#     event_type: ios.action_fired
-#     event_data:
-#       actionName: One person goes to sleep
-#   condition:
-#     condition: state
-#     entity_id: media_player.tv
-#     state: "on"
-#   action:
-#     service: media_player.media_play_pause
-#     entity_id: media_player.tv
+- alias: "Apple Watch: One person goes to sleep"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Half sleep mode
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.sleep_mode
+      option: "half"
