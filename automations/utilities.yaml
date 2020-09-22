@@ -9,62 +9,32 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Utilities: washing machine has started"
+- alias: "Utilities: washing machine started or finished"
   trigger:
     platform: state
     entity_id: binary_sensor.washing_machine
-    from: "off"
-    to: "on"
+  variables:
+    from_state: "{{ trigger.from_state.state }}"
+    to_state: "{{ trigger.to_state.state }}"
+  condition: "{{ (to_state == 'on' and from_state == 'off') or (to_state == 'off' and from_state == 'on') }}"
   action:
     service: input_datetime.set_datetime
-    entity_id: input_datetime.washing_machine_started
     data:
+      entity_id: "input_datetime.washing_machine_{{ 'started' if to_state == 'on' else 'done' }}"
       datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
-- alias: "Utilities: washing machine is done"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.washing_machine
-    from: "on"
-    to: "off"
-  action:
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.washing_machine_done
-      data:
-        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    - service: >
-        {{ states("sensor.nearest_iphone_notify") }}
-      data:
-        title: "Utilities"
-        message: "Washing machine is done 👚👕"
-
-- alias: "Utilities: dishwasher is done"
+- alias: "Utilities: dishwasher started or finished"
   trigger:
     platform: state
     entity_id: binary_sensor.dishwasher
-    from: "on"
-    to: "off"
-  action:
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.dishwasher_done
-      data:
-        datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    - service: >
-        {{ states("sensor.nearest_iphone_notify") }}
-      data:
-        title: "Utilities"
-        message: "Dishwasher is done 🍽🍳"
-
-- alias: "Utilities: dishwasher has started"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.dishwasher
-    from: "off"
-    to: "on"
+  variables:
+    from_state: "{{ trigger.from_state.state }}"
+    to_state: "{{ trigger.to_state.state }}"
+  condition: "{{ (to_state == 'on' and from_state == 'off') or (to_state == 'off' and from_state == 'on') }}"
   action:
     service: input_datetime.set_datetime
-    entity_id: input_datetime.dishwasher_started
     data:
+      entity_id: "input_datetime.dishwasher_{{ 'started' if to_state == 'on' else 'done' }}"
       datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
 - alias: "Utilities: washing machine notification"
