@@ -8,8 +8,10 @@
 # |_|
 #
 #- from github.com/basnijholt/home-assistant-config
-- name: Bas Nijholt
-  id: 13984b139dd9426ca31369725c9e23e0
+- name: Bas
+  id: bas
+  user_id: 13984b139dd9426ca31369725c9e23e0
+  picture: !secret profile_photo_bas
   device_trackers:
     - device_tracker.basnijholt_iphone_2 # from old iOS app, I cannot remove this entity...
     - device_tracker.basnijholt_iphone_3 # from iOS app
@@ -17,6 +19,8 @@
     - device_tracker.bas_iphone_ping
 - name: Marcella
   id: marcella
+  user_id: 0d8b36da29974dec9a30f767931bde2c
+  picture: !secret profile_photo_marcella
   device_trackers:
     - device_tracker.marcella_iphone # from iOS app
     - device_tracker.marcella_iphone_ping
