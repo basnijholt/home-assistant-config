@@ -447,13 +447,13 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 1. [Security 👮‍♂️🚨](#security-) (4 automations)
 1. [Night mode 🌕🌑](#night-mode-) (4 automations)
 1. [System 🖥](#system-) (7 automations)
-1. [Utilities 🧺👚🍽](#utilities-) (6 automations)
+1. [Utilities 🧺👚🍽](#utilities-) (4 automations)
 1. [Vacation mode 🏝](#vacation-mode-) (2 automations)
 1. [Vacuum 🧹](#vacuum-) (6 automations)
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **97** ⚠️
+⚠️ Total number of automations: **95** ⚠️
 
 ## [Alarm clock ⏰](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/automations/alarm_clock.yaml)
 ### [Wake up with Spotify and light](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/automations/alarm_clock.yaml#L11)
@@ -996,40 +996,24 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Utilities 🧺👚🍽](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/automations/utilities.yaml)
-### [Washing machine has started](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/automations/utilities.yaml#L12)
+## [Utilities 🧺👚🍽](https://github.com/basnijholt/home-assistant-config/blob/840def48ce83f0dd4644b3060e63a1af3fc312da/automations/utilities.yaml)
+### [Washing machine started or finished](https://github.com/basnijholt/home-assistant-config/blob/840def48ce83f0dd4644b3060e63a1af3fc312da/automations/utilities.yaml#L12)
 
   *which uses:*
-  - [input_datetime.washing_machine_started](https://github.com/basnijholt/home-assistant-config/blob/ede0e0905544de83bf8d98348458dbdd99ae2ab5/includes/input_datetimes.yaml#L16)
   - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L84)
 
-### [Washing machine is done](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/automations/utilities.yaml#L24)
+### [Dishwasher started or finished](https://github.com/basnijholt/home-assistant-config/blob/840def48ce83f0dd4644b3060e63a1af3fc312da/automations/utilities.yaml#L26)
 
   *which uses:*
-  - [input_datetime.washing_machine_done](https://github.com/basnijholt/home-assistant-config/blob/ede0e0905544de83bf8d98348458dbdd99ae2ab5/includes/input_datetimes.yaml#L21)
-  - [sensor.nearest_iphone_notify](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L216)
-  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L84)
-
-### [Dishwasher is done](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/automations/utilities.yaml#L41)
-
-  *which uses:*
-  - [input_datetime.dishwasher_done](https://github.com/basnijholt/home-assistant-config/blob/ede0e0905544de83bf8d98348458dbdd99ae2ab5/includes/input_datetimes.yaml#L31)
-  - [sensor.nearest_iphone_notify](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L216)
   - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L96)
 
-### [Dishwasher has started](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/automations/utilities.yaml#L58)
-
-  *which uses:*
-  - [input_datetime.dishwasher_started](https://github.com/basnijholt/home-assistant-config/blob/ede0e0905544de83bf8d98348458dbdd99ae2ab5/includes/input_datetimes.yaml#L26)
-  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L96)
-
-### [Washing machine notification](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/automations/utilities.yaml#L70)
+### [Washing machine notification](https://github.com/basnijholt/home-assistant-config/blob/840def48ce83f0dd4644b3060e63a1af3fc312da/automations/utilities.yaml#L40)
 
   *which uses:*
   - [script.utility_notification](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/scripts.yaml#L470)
   - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L84)
 
-### [Dishwasher notification](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/automations/utilities.yaml#L82)
+### [Dishwasher notification](https://github.com/basnijholt/home-assistant-config/blob/840def48ce83f0dd4644b3060e63a1af3fc312da/automations/utilities.yaml#L52)
 
   *which uses:*
   - [script.utility_notification](https://github.com/basnijholt/home-assistant-config/blob/aee32ef3bcc9480a6c50ac2837a16926bb3f47b3/scripts.yaml#L470)
