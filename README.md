@@ -433,7 +433,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 <!-- start-automations -->
 # Automations - Table of Content
 1. [Alarm clock ⏰](#alarm-clock-) (1 automations)
-1. [Apple Watch ⌚️](#apple-watch-) (2 automations)
+1. [Apple Watch ⌚](#apple-watch-) (2 automations)
 1. [Arriving 👞](#arriving-) (1 automations)
 1. [Climate 🔥🥶](#climate-) (5 automations)
 1. [Control switches 🎛](#control-switches-) (6 automations)
@@ -472,7 +472,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [Apple Watch ⌚️](https://github.com/basnijholt/home-assistant-config/blob/40605af515a5f371dea624033fc10aa8f88897c9/automations/apple_watch.yaml)
+## [Apple Watch ⌚](https://github.com/basnijholt/home-assistant-config/blob/40605af515a5f371dea624033fc10aa8f88897c9/automations/apple_watch.yaml)
 ### [Play or Pause the TV](https://github.com/basnijholt/home-assistant-config/blob/40605af515a5f371dea624033fc10aa8f88897c9/automations/apple_watch.yaml#L11)
 
 
@@ -576,6 +576,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L308)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L284)
   - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L39)
+  - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L246)
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L230)
   - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L81)
 
