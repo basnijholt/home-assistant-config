@@ -447,8 +447,8 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 1. [LSX 🔈](#lsx-) (2 automations)
 1. [Media player 🔈📺](#media-player-) (5 automations)
 1. [Music 🎵](#music-) (2 automations)
-1. [Plant ☘️](#plant-) (3 automations)
-1. [Security 👮‍♂️🚨](#security-) (4 automations)
+1. [Plant 🌱](#plant-) (3 automations)
+1. [Security 👮🚨](#security-) (4 automations)
 1. [Night mode 🌕🌑](#night-mode-) (4 automations)
 1. [System 🖥](#system-) (7 automations)
 1. [Utilities 🧺👚🍽](#utilities-) (3 automations)
@@ -893,7 +893,7 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Plant ☘️](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml)
+## [Plant 🌱](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml)
 ### [Problem with Ficus microcarpa Ginseng](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml#L11)
 
   *which uses:*
@@ -912,7 +912,7 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Security 👮‍♂️🚨](https://github.com/basnijholt/home-assistant-config/blob/2545c32e979971142fb713855491a97c8757d01c/automations/security.yaml)
+## [Security 👮🚨](https://github.com/basnijholt/home-assistant-config/blob/2545c32e979971142fb713855491a97c8757d01c/automations/security.yaml)
 ### [Motion detected but we are not home](https://github.com/basnijholt/home-assistant-config/blob/2545c32e979971142fb713855491a97c8757d01c/automations/security.yaml#L11)
 
   *which uses:*

@@ -168,7 +168,7 @@ def remove_text(content, start, end):
 def get_emoji(title):
     return {
         "Alarm clock": "⏰",
-        "Apple Watch": "⌚️",
+        "Apple Watch": "⌚",
         "Arriving": "👞",
         "Climate": "🔥🥶",
         "Control switches": "🎛",
@@ -183,9 +183,9 @@ def get_emoji(title):
         "Media player": "🔈📺",
         "Music": "🎵",
         "Night mode": "🌕🌑",
-        "Plant": "☘️",
+        "Plant": "🌱",
         "Rhasspy": "🤖",
-        "Security": "👮‍♂️🚨",
+        "Security": "👮🚨",
         "System": "🖥",
         "Utilities": "🧺👚🍽",
         "Vacation mode": "🏝",
