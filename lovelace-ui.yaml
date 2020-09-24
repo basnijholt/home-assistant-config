@@ -747,10 +747,10 @@ views:
             option: 'off'
         type: custom:button-card
       - color: auto
-        entity: input_boolean.sleep_mode
+        entity: input_select.sleep_mode
         icon: mdi:weather-night
-        name: '[[[ if (entity.state == "on") return "Sleep mode on"; else return "Good
-          Night" ]]]'
+        name: '[[[ if (entity.state != "off") return "Sleep mode on"; else return  "Go
+          to sleep" ]]]'
         styles:
           card:
           - font-size: 12px
