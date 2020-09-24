@@ -12,8 +12,6 @@
 # It updates the table of devices and the list of automations.
 # This code relies on the way I have structeded my files and named my automations.
 
-# XXX: note that "security-%EF%B8%8F" is the anchor...
-
 import functools
 import re
 import subprocess
