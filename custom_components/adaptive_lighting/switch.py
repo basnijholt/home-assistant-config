@@ -1,39 +1,11 @@
-"""
-Adaptive Lighting Component for Home-Assistant.
-
-This component calculates color temperature and brightness to synchronize
-your color changing lights with perceived color temperature of the sky throughout
-the day. This gives your environment a more natural feel, with cooler whites during
-the midday and warmer tints near twilight and dawn.
-
-In addition, the component sets your lights to a nice warm white at 1% in "Sleep" mode,
-which is far brighter than starlight but won't reset your adaptive rhythm or break down
-too much rhodopsin in your eyes.
-
-Human circadian rhythms are heavily influenced by ambient light levels and
-hues. Hormone production, brainwave activity, mood and wakefulness are
-just some of the cognitive functions tied to cyclical natural light.
-http://en.wikipedia.org/wiki/Zeitgeber
-
-Here's some further reading:
-
-http://www.cambridgeincolour.com/tutorials/sunrise-sunset-calculator.htm
-http://en.wikipedia.org/wiki/Color_temperature
-
-Technical notes: I had to make a lot of assumptions when writing this app
-*   There are no considerations for weather or altitude, but does use your
-    hub's location to calculate the sun position.
-*   The component doesn't calculate a true "Blue Hour" -- it just sets the
-    lights to 2700K (warm white) until your hub goes into Night mode
-"""
+"""Adaptive Lighting Component for Home-Assistant."""
 
 import asyncio
+import bisect
 import logging
+from copy import deepcopy
 from datetime import timedelta
 
-import voluptuous as vol
-
-import homeassistant.helpers.config_validation as cv
 import homeassistant.util.dt as dt_util
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS_PCT,
@@ -53,7 +25,6 @@ from homeassistant.components.switch import SwitchEntity
 from homeassistant.const import (
     ATTR_ENTITY_ID,
     CONF_NAME,
-    CONF_PLATFORM,
     SERVICE_TURN_ON,
     STATE_ON,
     SUN_EVENT_SUNRISE,
@@ -74,7 +45,6 @@ from homeassistant.util.color import (
 )
 
 from .const import (
-    _COMMON_SCHEMA,
     CONF_DISABLE_BRIGHTNESS_ADJUST,
     CONF_DISABLE_ENTITY,
     CONF_DISABLE_STATE,
@@ -96,9 +66,12 @@ from .const import (
     CONF_SUNSET_TIME,
     CONF_TRANSITION,
     DOMAIN,
+    EXTRA_VALIDATION,
     ICON,
+    NONE_STR,
     SUN_EVENT_MIDNIGHT,
     SUN_EVENT_NOON,
+    VALIDATION_TUPLES,
 )
 
 _SUPPORT_OPTS = {
@@ -108,137 +81,79 @@ _SUPPORT_OPTS = {
     "transition": SUPPORT_TRANSITION,
 }
 
+_ALLOWED_ORDERS = {
+    (SUN_EVENT_SUNRISE, SUN_EVENT_NOON, SUN_EVENT_SUNSET, SUN_EVENT_MIDNIGHT),
+    (SUN_EVENT_SUNSET, SUN_EVENT_MIDNIGHT, SUN_EVENT_SUNRISE, SUN_EVENT_NOON),
+    (SUN_EVENT_MIDNIGHT, SUN_EVENT_SUNRISE, SUN_EVENT_NOON, SUN_EVENT_SUNSET),
+    (SUN_EVENT_NOON, SUN_EVENT_SUNSET, SUN_EVENT_MIDNIGHT, SUN_EVENT_SUNRISE),
+}
+
 
 _LOGGER = logging.getLogger(__name__)
 
 SCAN_INTERVAL = timedelta(seconds=10)
 
-PLATFORM_SCHEMA = vol.Schema(
-    {
-        vol.Required(CONF_PLATFORM): DOMAIN,
-        vol.Optional(CONF_NAME, default="Adaptive Lighting"): cv.string,
-        **_COMMON_SCHEMA,
-    }
-)
+
+async def async_setup_entry(hass, config_entry, async_add_entities):
+    """Set up the AdaptiveLighting switch."""
+    switch = AdaptiveSwitch(hass, config_entry)
+    if DOMAIN not in hass.data:
+        hass.data[DOMAIN] = {}
+    name = config_entry.data[CONF_NAME]
+    hass.data[DOMAIN][name] = switch
+    async_add_entities([switch], update_before_add=True)
 
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
-    """Set up the Adaptive Lighting switches."""
-    switch = AdaptiveSwitch(
-        hass,
-        name=config[CONF_NAME],
-        lights=config[CONF_LIGHTS],
-        disable_brightness_adjust=config[CONF_DISABLE_BRIGHTNESS_ADJUST],
-        disable_entity=config.get(CONF_DISABLE_ENTITY),
-        disable_state=config.get(CONF_DISABLE_STATE),
-        initial_transition=config[CONF_INITIAL_TRANSITION],
-        interval=config[CONF_INTERVAL],
-        max_brightness=config[CONF_MAX_BRIGHTNESS],
-        max_color_temp=config[CONF_MAX_COLOR_TEMP],
-        min_brightness=config[CONF_MIN_BRIGHTNESS],
-        min_color_temp=config[CONF_MIN_COLOR_TEMP],
-        only_once=config[CONF_ONLY_ONCE],
-        sleep_brightness=config[CONF_SLEEP_BRIGHTNESS],
-        sleep_color_temp=config[CONF_SLEEP_COLOR_TEMP],
-        sleep_entity=config.get(CONF_SLEEP_ENTITY),
-        sleep_state=config.get(CONF_SLEEP_STATE),
-        sunrise_offset=config[CONF_SUNRISE_OFFSET],
-        sunrise_time=config.get(CONF_SUNRISE_TIME),
-        sunset_offset=config[CONF_SUNSET_OFFSET],
-        sunset_time=config.get(CONF_SUNSET_TIME),
-        transition=config[CONF_TRANSITION],
-    )
-    add_devices([switch])
+def replace_none(value):
+    """Replaces "None" -> None."""
+    return value if value != NONE_STR else None
 
 
-def _difference_between_states(from_state, to_state):
-    start = "Lights adjusting because "
-    if from_state is None and to_state is None:
-        return start + "both states None"
-    if from_state is None:
-        return start + f"from_state: None, to_state: {to_state}"
-    if to_state is None:
-        return start + f"from_state: {from_state}, to_state: None"
-
-    changed_attrs = ", ".join(
-        [
-            f"{key}: {val}"
-            for key, val in to_state.attributes.items()
-            if from_state.attributes.get(key) != val
-        ]
-    )
-    if from_state.state == to_state.state:
-        return start + (
-            f"{from_state.entity_id} is still {to_state.state} but"
-            f" these attributes changes: {changed_attrs}."
-        )
-    elif changed_attrs != "":
-        return start + (
-            f"{from_state.entity_id} changed from {from_state.state} to"
-            f" {to_state.state} and these attributes changes: {changed_attrs}."
-        )
-    else:
-        return start + (
-            f"{from_state.entity_id} changed from {from_state.state} to"
-            f" {to_state.state} and no attributes changed."
-        )
+def validate(config_entry):
+    """Gets the options and data from the config_entry and adds defaults."""
+    defaults = {key: default for key, default, _ in VALIDATION_TUPLES}
+    data = deepcopy(defaults)
+    data.update(config_entry.options)  # come from options flow
+    data.update(config_entry.data)  # all yaml settings come from data
+    data = {key: replace_none(value) for key, value in data.items()}
+    for key, (validate, _) in EXTRA_VALIDATION.items():
+        value = data.get(key)
+        if value is not None:
+            data[key] = validate(value)  # Fix the types of the inputs
+    return data
 
 
 class AdaptiveSwitch(SwitchEntity, RestoreEntity):
     """Representation of a Adaptive Lighting switch."""
 
-    def __init__(
-        self,
-        hass,
-        name,
-        lights,
-        disable_brightness_adjust,
-        disable_entity,
-        disable_state,
-        initial_transition,
-        interval,
-        max_brightness,
-        max_color_temp,
-        min_brightness,
-        min_color_temp,
-        only_once,
-        sleep_brightness,
-        sleep_color_temp,
-        sleep_entity,
-        sleep_state,
-        sunrise_offset,
-        sunrise_time,
-        sunset_offset,
-        sunset_time,
-        transition,
-    ):
+    def __init__(self, hass, config_entry):
         """Initialize the Adaptive Lighting switch."""
         self.hass = hass
-        self._name = name
-        self._entity_id = f"switch.adaptive_lighting_{slugify(name)}"
+        self._entity_id = f"switch.{DOMAIN}_{slugify(name)}"
         self._icon = ICON
 
-        # Set attributes from arguments
-        self._lights = lights
-        self._disable_brightness_adjust = disable_brightness_adjust
-        self._disable_entity = disable_entity
-        self._disable_state = disable_state
-        self._initial_transition = initial_transition
-        self._interval = interval
-        self._max_brightness = max_brightness
-        self._max_color_temp = max_color_temp
-        self._min_brightness = min_brightness
-        self._min_color_temp = min_color_temp
-        self._only_once = only_once
-        self._sleep_brightness = sleep_brightness
-        self._sleep_color_temp = sleep_color_temp
-        self._sleep_entity = sleep_entity
-        self._sleep_state = sleep_state
-        self._sunrise_offset = sunrise_offset
-        self._sunrise_time = sunrise_time
-        self._sunset_offset = sunset_offset
-        self._sunset_time = sunset_time
-        self._transition = transition
+        data = validate(config_entry)
+        self._name = data[CONF_NAME]
+        self._lights = data[CONF_LIGHTS]
+        self._disable_brightness_adjust = data[CONF_DISABLE_BRIGHTNESS_ADJUST]
+        self._disable_entity = data[CONF_DISABLE_ENTITY]
+        self._disable_state = data[CONF_DISABLE_STATE]
+        self._initial_transition = data[CONF_INITIAL_TRANSITION]
+        self._interval = data[CONF_INTERVAL]
+        self._max_brightness = data[CONF_MAX_BRIGHTNESS]
+        self._max_color_temp = data[CONF_MAX_COLOR_TEMP]
+        self._min_brightness = data[CONF_MIN_BRIGHTNESS]
+        self._min_color_temp = data[CONF_MIN_COLOR_TEMP]
+        self._only_once = data[CONF_ONLY_ONCE]
+        self._sleep_brightness = data[CONF_SLEEP_BRIGHTNESS]
+        self._sleep_color_temp = data[CONF_SLEEP_COLOR_TEMP]
+        self._sleep_entity = data[CONF_SLEEP_ENTITY]
+        self._sleep_state = data[CONF_SLEEP_STATE]
+        self._sunrise_offset = data[CONF_SUNRISE_OFFSET]
+        self._sunrise_time = data[CONF_SUNRISE_TIME]
+        self._sunset_offset = data[CONF_SUNSET_OFFSET]
+        self._sunset_time = data[CONF_SUNSET_TIME]
+        self._transition = data[CONF_TRANSITION]
 
         # Initialize attributes that will be set in self._update_attrs
         self._percent = None
@@ -251,6 +166,11 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
 
         # Set and unset tracker in async_turn_on and async_turn_off
         self.unsub_tracker = None
+        _LOGGER.error(
+            f"Setting up with '{self._lights}',"
+            f" config_entry.data: '{config_entry.data}',"
+            f" config_entry.options: '{config_entry.options}', converted to '{data}'."
+        )
 
     @property
     def entity_id(self):
@@ -404,72 +324,40 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             solar_noon = sunrise + (sunset - sunrise) / 2
             solar_midnight = sunset + ((sunrise + timedelta(days=1)) - sunset) / 2
 
-        return {
-            SUN_EVENT_SUNRISE: sunrise.timestamp(),
-            SUN_EVENT_SUNSET: sunset.timestamp(),
-            SUN_EVENT_NOON: solar_noon.timestamp(),
-            SUN_EVENT_MIDNIGHT: solar_midnight.timestamp(),
-        }
+        events = [
+            (SUN_EVENT_SUNRISE, sunrise.timestamp()),
+            (SUN_EVENT_SUNSET, sunset.timestamp()),
+            (SUN_EVENT_NOON, solar_noon.timestamp()),
+            (SUN_EVENT_MIDNIGHT, solar_midnight.timestamp()),
+        ]
+        # Check whether order is correct
+        events = sorted(events, key=lambda x: x[1])
+        events_names, _ = zip(*events)
+        assert events_names in _ALLOWED_ORDERS, events_names
+
+        return events
+
+    def _relevant_events(self, now):
+        events = [
+            self._get_sun_events(now + timedelta(days=days)) for days in [-1, 0, 1]
+        ]
+        events = sum(events, [])  # flatten lists
+        events = sorted(events, key=lambda x: x[1])
+        i_now = bisect.bisect([ts for _, ts in events], now.timestamp())
+        return events[i_now - 1 : i_now + 1]
 
     def _calc_percent(self):
         now = dt_util.utcnow()
         now_ts = now.timestamp()
-
-        today = self._get_sun_events(now)
-        if now_ts < today[SUN_EVENT_SUNRISE]:
-            # It's before sunrise (after midnight), because it's before
-            # sunrise (and after midnight) sunset must have happend yesterday.
-            yesterday = self._get_sun_events(now - timedelta(days=1))
-            if (
-                today[SUN_EVENT_MIDNIGHT] > today[SUN_EVENT_SUNSET]
-                and yesterday[SUN_EVENT_MIDNIGHT] > yesterday[SUN_EVENT_SUNSET]
-            ):
-                # Solar midnight is after sunset so use yesterdays's time
-                today[SUN_EVENT_MIDNIGHT] = yesterday[SUN_EVENT_MIDNIGHT]
-            today[SUN_EVENT_SUNSET] = yesterday[SUN_EVENT_SUNSET]
-        elif now_ts > today[SUN_EVENT_SUNSET]:
-            # It's after sunset (before midnight), because it's after sunset
-            # (and before midnight) sunrise should happen tomorrow.
-            tomorrow = self._get_sun_events(now + timedelta(days=1))
-            if (
-                today[SUN_EVENT_MIDNIGHT] < today[SUN_EVENT_SUNRISE]
-                and tomorrow[SUN_EVENT_MIDNIGHT] < tomorrow[SUN_EVENT_SUNRISE]
-            ):
-                # Solar midnight is before sunrise so use tomorrow's time
-                today[SUN_EVENT_MIDNIGHT] = tomorrow[SUN_EVENT_MIDNIGHT]
-            today[SUN_EVENT_SUNRISE] = tomorrow[SUN_EVENT_SUNRISE]
-
-        # Figure out where we are in time so we know which half of the
-        # parabola to calculate. We're generating a different
-        # sunset-sunrise parabola for before and after solar midnight.
-        # because it might not be half way between sunrise and sunset.
-        # We're also generating a different parabola for sunrise-sunset.
-
-        # sunrise -> sunset parabola
-        if today[SUN_EVENT_SUNRISE] < now_ts < today[SUN_EVENT_SUNSET]:
-            h = today[SUN_EVENT_NOON]
-            k = 1
-            # parabola before solar_noon else after solar_noon
-            x = (
-                today[SUN_EVENT_SUNRISE]
-                if now_ts < today[SUN_EVENT_NOON]
-                else today[SUN_EVENT_SUNSET]
-            )
-
-        # sunset -> sunrise parabola
-        elif today[SUN_EVENT_SUNSET] < now_ts < today[SUN_EVENT_SUNRISE]:
-            h = today[SUN_EVENT_MIDNIGHT]
-            k = -1
-            # parabola before solar_midnight else after solar_midnight
-            x = (
-                today[SUN_EVENT_SUNSET]
-                if now_ts < today[SUN_EVENT_MIDNIGHT]
-                else today[SUN_EVENT_SUNRISE]
-            )
-
-        y = 0
-        a = (y - k) / (h - x) ** 2
-        percentage = a * (now_ts - h) ** 2 + k
+        today = self._relevant_events(now)
+        (prev_event, prev_ts), (next_event, next_ts) = today
+        h, x = (
+            (prev_ts, next_ts)
+            if next_event in (SUN_EVENT_SUNSET, SUN_EVENT_SUNRISE)
+            else (next_ts, prev_ts)
+        )
+        k = 1 if next_event in (SUN_EVENT_SUNSET, SUN_EVENT_NOON) else -1
+        percentage = (0 - k) * ((now_ts - h) / (h - x)) ** 2 + k
         return percentage
 
     def _is_sleep(self):
@@ -546,11 +434,17 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
 
     async def _light_state_changed(self, entity_id, from_state, to_state):
         assert to_state.state == "on" and from_state.state == "off"
-        _LOGGER.debug(_difference_between_states(from_state, to_state))
+        _LOGGER.debug(
+            "_light_state_changed, from_state: '%s', to_state: '%s'",
+            from_state,
+            to_state,
+        )
         await self._update_lights(
             lights=[entity_id], transition=self._initial_transition, force=True
         )
 
     async def _state_changed(self, entity_id, from_state, to_state):
-        _LOGGER.debug(_difference_between_states(from_state, to_state))
+        _LOGGER.debug(
+            "_state_changed, from_state: '%s', to_state: '%s'", from_state, to_state
+        )
         await self._update_lights(transition=self._initial_transition, force=True)

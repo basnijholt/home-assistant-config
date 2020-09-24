@@ -9,6 +9,7 @@ DOMAIN = "adaptive_lighting"
 SUN_EVENT_NOON = "solar_noon"
 SUN_EVENT_MIDNIGHT = "solar_midnight"
 
+CONF_NAME, DEFAULT_NAME = "name", "default"
 CONF_LIGHTS, DEFAULT_LIGHTS = "lights", []
 CONF_DISABLE_BRIGHTNESS_ADJUST, DEFAULT_DISABLE_BRIGHTNESS_ADJUST = (
     "disable_brightness_adjust",
@@ -33,71 +34,80 @@ CONF_SUNSET_OFFSET, DEFAULT_SUNSET_OFFSET = "sunset_offset", 0
 CONF_SUNSET_TIME = "sunset_time"
 CONF_TRANSITION, DEFAULT_TRANSITION = "transition", 60
 
+UNDO_UPDATE_LISTENER = "undo_update_listener"
+NONE_STR = "None"  # TODO: use `from homeassistant.const import ENTITY_MATCH_NONE`?
 
-_COMMON_SCHEMA = {
-    vol.Optional(CONF_LIGHTS, default=DEFAULT_LIGHTS): cv.entity_ids,
-    vol.Optional(
-        CONF_DISABLE_BRIGHTNESS_ADJUST, default=DEFAULT_DISABLE_BRIGHTNESS_ADJUST
-    ): cv.boolean,
-    vol.Optional(CONF_DISABLE_ENTITY): cv.entity_id,
-    vol.Optional(CONF_DISABLE_STATE): vol.All(cv.ensure_list, [cv.string]),
-    vol.Optional(
-        CONF_INITIAL_TRANSITION, default=DEFAULT_INITIAL_TRANSITION
-    ): VALID_TRANSITION,
-    vol.Optional(CONF_INTERVAL, default=DEFAULT_INTERVAL): cv.time_period,
-    vol.Optional(CONF_MAX_BRIGHTNESS, default=DEFAULT_MAX_BRIGHTNESS): vol.All(
-        vol.Coerce(int), vol.Range(min=1, max=100)
-    ),
-    vol.Optional(CONF_MAX_COLOR_TEMP, default=DEFAULT_MAX_COLOR_TEMP): vol.All(
-        vol.Coerce(int), vol.Range(min=1000, max=10000)
-    ),
-    vol.Optional(CONF_MIN_BRIGHTNESS, default=DEFAULT_MIN_BRIGHTNESS): vol.All(
-        vol.Coerce(int), vol.Range(min=1, max=100)
-    ),
-    vol.Optional(CONF_MIN_COLOR_TEMP, default=DEFAULT_MIN_COLOR_TEMP): vol.All(
-        vol.Coerce(int), vol.Range(min=1000, max=10000)
-    ),
-    vol.Optional(CONF_ONLY_ONCE, default=DEFAULT_ONLY_ONCE): cv.boolean,
-    vol.Optional(CONF_SLEEP_BRIGHTNESS, default=DEFAULT_SLEEP_BRIGHTNESS): vol.All(
-        vol.Coerce(int), vol.Range(min=1, max=100)
-    ),
-    vol.Optional(CONF_SLEEP_COLOR_TEMP, default=DEFAULT_SLEEP_COLOR_TEMP): vol.All(
-        vol.Coerce(int), vol.Range(min=1000, max=10000)
-    ),
-    vol.Optional(CONF_SLEEP_ENTITY): cv.entity_id,
-    vol.Optional(CONF_SLEEP_STATE): vol.All(cv.ensure_list, [cv.string]),
-    vol.Optional(CONF_SUNRISE_OFFSET, default=DEFAULT_SUNRISE_OFFSET): cv.time_period,
-    vol.Optional(CONF_SUNRISE_TIME): cv.time,
-    vol.Optional(CONF_SUNSET_OFFSET, default=DEFAULT_SUNSET_OFFSET): cv.time_period,
-    vol.Optional(CONF_SUNSET_TIME): cv.time,
-    vol.Optional(CONF_TRANSITION, default=DEFAULT_TRANSITION): VALID_TRANSITION,
+
+def int_between(a, b):
+    return vol.All(vol.Coerce(int), vol.Range(min=a, max=b))
+
+
+VALIDATION_TUPLES = [
+    (CONF_LIGHTS, DEFAULT_LIGHTS, cv.entity_ids),
+    (CONF_DISABLE_BRIGHTNESS_ADJUST, DEFAULT_DISABLE_BRIGHTNESS_ADJUST, bool),
+    (CONF_DISABLE_ENTITY, NONE_STR, str),
+    (CONF_DISABLE_STATE, NONE_STR, str),
+    (CONF_INITIAL_TRANSITION, DEFAULT_INITIAL_TRANSITION, VALID_TRANSITION),
+    (CONF_INTERVAL, DEFAULT_INTERVAL, cv.positive_int),
+    (CONF_MAX_BRIGHTNESS, DEFAULT_MAX_BRIGHTNESS, int_between(1, 100)),
+    (CONF_MAX_COLOR_TEMP, DEFAULT_MAX_COLOR_TEMP, int_between(1000, 10000)),
+    (CONF_MIN_BRIGHTNESS, DEFAULT_MIN_BRIGHTNESS, int_between(1, 100)),
+    (CONF_MIN_COLOR_TEMP, DEFAULT_MIN_COLOR_TEMP, int_between(1000, 10000)),
+    (CONF_ONLY_ONCE, DEFAULT_ONLY_ONCE, bool),
+    (CONF_SLEEP_BRIGHTNESS, DEFAULT_SLEEP_BRIGHTNESS, int_between(1, 100)),
+    (CONF_SLEEP_COLOR_TEMP, DEFAULT_SLEEP_COLOR_TEMP, int_between(1000, 10000)),
+    (CONF_SLEEP_ENTITY, NONE_STR, str),
+    (CONF_SLEEP_STATE, NONE_STR, str),
+    (CONF_SUNRISE_OFFSET, DEFAULT_SUNRISE_OFFSET, int),
+    (CONF_SUNRISE_TIME, NONE_STR, str),
+    (CONF_SUNSET_OFFSET, DEFAULT_SUNSET_OFFSET, int),
+    (CONF_SUNSET_TIME, NONE_STR, str),
+    (CONF_TRANSITION, DEFAULT_TRANSITION, VALID_TRANSITION),
+]
+
+
+def timedelta_as_int(value):
+    return value.total_seconds()
+
+
+def join_strings(lst):
+    return ",".join(lst)
+
+
+# conf_option: (validator, coerce) tuples
+# these validators cannot be serialized but can be serialized when coerced by coerce.
+EXTRA_VALIDATION = {
+    CONF_DISABLE_ENTITY: (cv.entity_id, str),
+    CONF_DISABLE_STATE: (vol.All(cv.ensure_list_csv, [cv.string]), join_strings),
+    CONF_INTERVAL: (cv.time_period, timedelta_as_int),
+    CONF_SLEEP_ENTITY: (cv.entity_id, str),
+    CONF_SLEEP_STATE: (vol.All(cv.ensure_list_csv, [cv.string]), join_strings),
+    CONF_SUNRISE_OFFSET: (cv.time_period, timedelta_as_int),
+    CONF_SUNRISE_TIME: (cv.time, str),
+    CONF_SUNSET_OFFSET: (cv.time_period, timedelta_as_int),
+    CONF_SUNSET_TIME: (cv.time, str),
 }
 
 
-def _convert_to_options_schema(hass, options):
-    schema = {}
-    for key, value in _COMMON_SCHEMA.items():
-        if key.schema == CONF_LIGHTS:
-            all_lights = hass.states.async_entity_ids("light")
-            to_type = cv.multi_select(all_lights)
-        elif value == cv.boolean:
-            to_type = bool
-        elif (
-            isinstance(value, vol.All)
-            and hasattr(value.validators, "type")
-            and value.validators[0].type == int
-        ) or value == VALID_TRANSITION:
-            to_type = value
-        elif value == cv.time_period:
-            to_type = cv.time_period_dict
-        else:
-            to_type = str
+def maybe_coerse(key, validation):
+    validation, coerce = EXTRA_VALIDATION.get(key, (validation, None))
+    if coerce is not None:
+        return vol.All(validation, vol.Coerce(coerce))
+    return validation
 
-        default = (
-            key.default()
-            if not isinstance(key.default, vol.Undefined)
-            else vol.UNDEFINED
-        )
-        default = options.get(key.schema, default)
-        schema[vol.Optional(key.schema, default=default)] = to_type
-    return vol.Schema(schema)
+
+def replace_none(x):
+    return x if x != NONE_STR else vol.UNDEFINED
+
+
+validation_tuples = [
+    (key, default, maybe_coerse(key, validation))
+    for key, default, validation in VALIDATION_TUPLES
+] + [(CONF_NAME, DEFAULT_NAME, cv.string)]
+
+_DOMAIN_SCHEMA = vol.Schema(
+    {
+        vol.Optional(key, default=replace_none(default)): validation
+        for key, default, validation in validation_tuples
+    }
+)
