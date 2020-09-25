@@ -5,7 +5,11 @@ import bisect
 import logging
 from copy import deepcopy
 from datetime import timedelta
+from functools import partial
 
+import voluptuous as vol
+
+import homeassistant.helpers.config_validation as cv
 import homeassistant.util.dt as dt_util
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS_PCT,
@@ -19,6 +23,7 @@ from homeassistant.components.light import (
     SUPPORT_COLOR,
     SUPPORT_COLOR_TEMP,
     SUPPORT_TRANSITION,
+    VALID_TRANSITION,
     is_on,
 )
 from homeassistant.components.switch import SwitchEntity
@@ -30,6 +35,7 @@ from homeassistant.const import (
     SUN_EVENT_SUNRISE,
     SUN_EVENT_SUNSET,
 )
+from homeassistant.helpers import entity_platform
 from homeassistant.helpers.event import (
     async_track_state_change,
     async_track_time_interval,
@@ -69,6 +75,7 @@ from .const import (
     EXTRA_VALIDATION,
     ICON,
     NONE_STR,
+    SERVICE_APPLY,
     SUN_EVENT_MIDNIGHT,
     SUN_EVENT_NOON,
     VALIDATION_TUPLES,
@@ -94,6 +101,18 @@ _LOGGER = logging.getLogger(__name__)
 SCAN_INTERVAL = timedelta(seconds=10)
 
 
+async def handle_apply(entity, service_call):
+    """Handle the entity service apply."""
+    if not isinstance(entity, AdaptiveSwitch):
+        raise ValueError("Apply can only be called for a AdaptiveSwitch.")
+    _LOGGER.error(str(entity) + str(service_call))
+    lights = service_call.data[CONF_LIGHTS]
+    transition = service_call.data.get(CONF_TRANSITION, entity._initial_transition)
+    tasks = [await entity._adjust_light(light, transition) for light in lights]
+    if tasks:
+        await asyncio.wait(tasks)
+
+
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the AdaptiveLighting switch."""
     switch = AdaptiveSwitch(hass, config_entry)
@@ -101,6 +120,17 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         hass.data[DOMAIN] = {}
     name = config_entry.data[CONF_NAME]
     hass.data[DOMAIN][name] = switch
+
+    # Register `apply` service
+    platform = entity_platform.current_platform.get()
+    platform.async_register_entity_service(
+        SERVICE_APPLY,
+        {
+            vol.Required(CONF_LIGHTS): cv.entity_ids,
+            vol.Optional(CONF_TRANSITION): VALID_TRANSITION,
+        },
+        handle_apply,
+    )
     async_add_entities([switch], update_before_add=True)
 
 
@@ -129,8 +159,6 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
     def __init__(self, hass, config_entry):
         """Initialize the Adaptive Lighting switch."""
         self.hass = hass
-        self._entity_id = f"switch.{DOMAIN}_{slugify(name)}"
-        self._icon = ICON
 
         data = validate(config_entry)
         self._name = data[CONF_NAME]
@@ -154,6 +182,10 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         self._sunset_offset = data[CONF_SUNSET_OFFSET]
         self._sunset_time = data[CONF_SUNSET_TIME]
         self._transition = data[CONF_TRANSITION]
+
+        # Set other attributes
+        self._icon = ICON
+        self._entity_id = f"switch.{DOMAIN}_{slugify(self._name)}"
 
         # Initialize attributes that will be set in self._update_attrs
         self._percent = None
@@ -421,8 +453,8 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             return False
         return True
 
-    async def _adjust_lights(self, lights, transition):
-        if not self._should_adjust():
+    async def _adjust_lights(self, lights, transition, force=False):
+        if not self._should_adjust() or not force:
             return
         tasks = [
             await self._adjust_light(light, transition)
