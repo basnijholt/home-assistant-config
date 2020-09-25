@@ -69,3 +69,4 @@ intent_script: !include includes/intent_script.yaml
 # Custom components
 circadian_lighting: !include includes/circadian_lighting.yaml
 pyscript: !include includes/pyscript.yaml
+adaptive_lighting: !include includes/adaptive_lighting.yaml
