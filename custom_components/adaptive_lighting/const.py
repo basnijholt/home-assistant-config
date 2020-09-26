@@ -34,9 +34,12 @@ CONF_SUNSET_OFFSET, DEFAULT_SUNSET_OFFSET = "sunset_offset", 0
 CONF_SUNSET_TIME = "sunset_time"
 CONF_TRANSITION, DEFAULT_TRANSITION = "transition", 60
 
-SERVICE_APPLY = "apply"
 UNDO_UPDATE_LISTENER = "undo_update_listener"
 NONE_STR = "None"  # TODO: use `from homeassistant.const import ENTITY_MATCH_NONE`?
+
+SERVICE_APPLY = "apply"
+CONF_COLORS_ONLY = "colors_only"
+CONF_ON_LIGHTS_ONLY = "on_lights_only"
 
 
 def int_between(a, b):
@@ -90,25 +93,26 @@ EXTRA_VALIDATION = {
 }
 
 
-def maybe_coerse(key, validation):
+def maybe_coerce(key, validation):
     validation, coerce = EXTRA_VALIDATION.get(key, (validation, None))
     if coerce is not None:
         return vol.All(validation, vol.Coerce(coerce))
     return validation
 
 
-def replace_none(x):
-    return x if x != NONE_STR else vol.UNDEFINED
+def replace_none(value, replace_with=None):
+    """Replaces "None" -> replace_with."""
+    return value if value != NONE_STR else replace_with
 
 
 validation_tuples = [
-    (key, default, maybe_coerse(key, validation))
+    (key, default, maybe_coerce(key, validation))
     for key, default, validation in VALIDATION_TUPLES
 ] + [(CONF_NAME, DEFAULT_NAME, cv.string)]
 
 _DOMAIN_SCHEMA = vol.Schema(
     {
-        vol.Optional(key, default=replace_none(default)): validation
+        vol.Optional(key, default=replace_none(default, vol.UNDEFINED)): validation
         for key, default, validation in validation_tuples
     }
 )
