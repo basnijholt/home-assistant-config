@@ -240,6 +240,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
                 all_lights.extend(group)
             else:
                 all_lights.append(light)
+        _LOGGER.error(f"{self._name}: _unpack_light_groups: '{all_lights}'")
         return all_lights
 
     async def async_added_to_hass(self):
@@ -249,8 +250,8 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
                 self.hass,
                 self._unpack_light_groups(self._lights),
                 self._light_state_changed,
-                to_state="on",
                 from_state="off",
+                to_state="on",
             )
             track_kwargs = dict(hass=self.hass, action=self._state_changed)
             if self._sleep_entity is not None:
@@ -453,8 +454,8 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             return False
         return True
 
-    async def _adjust_lights(self, lights, transition, force=False):
-        if not self._should_adjust() or not force:
+    async def _adjust_lights(self, lights, transition):
+        if not self._should_adjust():
             return
         tasks = [
             await self._adjust_light(light, transition)
