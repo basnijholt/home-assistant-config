@@ -1,7 +1,8 @@
+"""Constants for the Adaptive Lighting Component in Home-Assistant."""
 import voluptuous as vol
 
-import homeassistant.helpers.config_validation as cv
 from homeassistant.components.light import VALID_TRANSITION
+import homeassistant.helpers.config_validation as cv
 
 ICON = "mdi:theme-light-dark"
 
@@ -43,13 +44,14 @@ CONF_ON_LIGHTS_ONLY = "on_lights_only"
 
 
 def int_between(a, b):
+    """Return an integer between 'a' and 'b'."""
     return vol.All(vol.Coerce(int), vol.Range(min=a, max=b))
 
 
 VALIDATION_TUPLES = [
     (CONF_LIGHTS, DEFAULT_LIGHTS, cv.entity_ids),
     (CONF_DISABLE_BRIGHTNESS_ADJUST, DEFAULT_DISABLE_BRIGHTNESS_ADJUST, bool),
-    (CONF_DISABLE_ENTITY, NONE_STR, str),
+    (CONF_DISABLE_ENTITY, NONE_STR, cv.entity_id),
     (CONF_DISABLE_STATE, NONE_STR, str),
     (CONF_INITIAL_TRANSITION, DEFAULT_INITIAL_TRANSITION, VALID_TRANSITION),
     (CONF_INTERVAL, DEFAULT_INTERVAL, cv.positive_int),
@@ -60,7 +62,7 @@ VALIDATION_TUPLES = [
     (CONF_ONLY_ONCE, DEFAULT_ONLY_ONCE, bool),
     (CONF_SLEEP_BRIGHTNESS, DEFAULT_SLEEP_BRIGHTNESS, int_between(1, 100)),
     (CONF_SLEEP_COLOR_TEMP, DEFAULT_SLEEP_COLOR_TEMP, int_between(1000, 10000)),
-    (CONF_SLEEP_ENTITY, NONE_STR, str),
+    (CONF_SLEEP_ENTITY, NONE_STR, cv.entity_id),
     (CONF_SLEEP_STATE, NONE_STR, str),
     (CONF_SUNRISE_OFFSET, DEFAULT_SUNRISE_OFFSET, int),
     (CONF_SUNRISE_TIME, NONE_STR, str),
@@ -71,10 +73,15 @@ VALIDATION_TUPLES = [
 
 
 def timedelta_as_int(value):
+    """Convert a `datetime.timedelta` object to an integer.
+
+    This integer can be serialized to json but a timedelta cannot.
+    """
     return value.total_seconds()
 
 
 def join_strings(lst):
+    """Join a list to comma-separated values string."""
     return ",".join(lst)
 
 
@@ -94,25 +101,26 @@ EXTRA_VALIDATION = {
 
 
 def maybe_coerce(key, validation):
+    """Coerce the validation into a json serializable type."""
     validation, coerce = EXTRA_VALIDATION.get(key, (validation, None))
     if coerce is not None:
         return vol.All(validation, vol.Coerce(coerce))
     return validation
 
 
-def replace_none(value, replace_with=None):
-    """Replaces "None" -> replace_with."""
+def replace_none_str(value, replace_with=None):
+    """Replace "None" -> replace_with."""
     return value if value != NONE_STR else replace_with
 
 
-validation_tuples = [
+_yaml_validation_tuples = [
     (key, default, maybe_coerce(key, validation))
     for key, default, validation in VALIDATION_TUPLES
 ] + [(CONF_NAME, DEFAULT_NAME, cv.string)]
 
 _DOMAIN_SCHEMA = vol.Schema(
     {
-        vol.Optional(key, default=replace_none(default, vol.UNDEFINED)): validation
-        for key, default, validation in validation_tuples
+        vol.Optional(key, default=replace_none_str(default, vol.UNDEFINED)): validation
+        for key, default, validation in _yaml_validation_tuples
     }
 )

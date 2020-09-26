@@ -1,38 +1,36 @@
-"""
-Adaptive Lighting Component for Home-Assistant.
+"""Adaptive Lighting Component in Home-Assistant.
 
 This component calculates color temperature and brightness to synchronize
-your color changing lights with perceived color temperature of the sky throughout
-the day. This gives your environment a more natural feel, with cooler whites during
-the midday and warmer tints near twilight and dawn.
+your color-changing lights with the perceived color temperature of the sky
+throughout the day. This gives your environment a more natural feel, with
+cooler whites during the midday and warmer tints near twilight and dawn.
 
-In addition, the component sets your lights to a nice warm white at 1% in "Sleep" mode,
-which is far brighter than starlight but won't reset your adaptive rhythm or break down
-too much rhodopsin in your eyes.
+Additionally, the component sets your lights to a nice warm white at 1% in
+"Sleep mode", which is far brighter than starlight but won't reset your
+circadian rhythm or break down too much rhodopsin in your eyes.
 
 Human circadian rhythms are heavily influenced by ambient light levels and
-hues. Hormone production, brainwave activity, mood and wakefulness are
+hues. Hormone production, brainwave activity, mood, and wakefulness are
 just some of the cognitive functions tied to cyclical natural light.
-http://en.wikipedia.org/wiki/Zeitgeber
 
-Here's some further reading:
+Resources:
+- http://en.wikipedia.org/wiki/Zeitgeber
+- http://www.cambridgeincolour.com/tutorials/sunrise-sunset-calculator.htm
+- http://en.wikipedia.org/wiki/Color_temperature
 
-http://www.cambridgeincolour.com/tutorials/sunrise-sunset-calculator.htm
-http://en.wikipedia.org/wiki/Color_temperature
-
-Technical notes: I had to make a lot of assumptions when writing this app
-*   There are no considerations for weather or altitude, but does use your
-    hub's location to calculate the sun position.
-*   The component doesn't calculate a true "Blue Hour" -- it just sets the
-    lights to 2700K (warm white) until your hub goes into Night mode
+## Notes
+* Only your location is taken into account to calculate the the sun's position.
+* Weather and altitude are not considered.
+* The component does not calculate a true "Blue Hour" -- it just sets the
+  lights to 2700K (warm white) until your hub goes into "Sleep mode".
 """
 import asyncio
 import logging
 
 import voluptuous as vol
 
-import homeassistant.helpers.config_validation as cv
 from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
+import homeassistant.helpers.config_validation as cv
 
 from .const import _DOMAIN_SCHEMA, CONF_NAME, DOMAIN, UNDO_UPDATE_LISTENER
 
@@ -41,7 +39,7 @@ _LOGGER = logging.getLogger(__name__)
 PLATFORMS = ["switch"]
 
 
-def _all_unique_profiles(value):
+def _all_unique_names(value):
     """Validate that all enties have a unique profile name."""
     hosts = [device[CONF_NAME] for device in value]
     schema = vol.Schema(vol.Unique())
@@ -50,7 +48,7 @@ def _all_unique_profiles(value):
 
 
 CONFIG_SCHEMA = vol.Schema(
-    {DOMAIN: vol.All(cv.ensure_list, [_DOMAIN_SCHEMA], _all_unique_profiles)},
+    {DOMAIN: vol.All(cv.ensure_list, [_DOMAIN_SCHEMA], _all_unique_names)},
     extra=vol.ALLOW_EXTRA,
 )
 

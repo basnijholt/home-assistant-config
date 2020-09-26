@@ -2,22 +2,18 @@
 
 import asyncio
 import bisect
-import logging
 from copy import deepcopy
 from datetime import timedelta
+import logging
 
 import voluptuous as vol
 
-import homeassistant.helpers.config_validation as cv
-import homeassistant.util.dt as dt_util
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS_PCT,
     ATTR_COLOR_TEMP,
     ATTR_RGB_COLOR,
     ATTR_TRANSITION,
-)
-from homeassistant.components.light import DOMAIN as LIGHT_DOMAIN
-from homeassistant.components.light import (
+    DOMAIN as LIGHT_DOMAIN,
     SUPPORT_BRIGHTNESS,
     SUPPORT_COLOR,
     SUPPORT_COLOR_TEMP,
@@ -35,6 +31,7 @@ from homeassistant.const import (
     SUN_EVENT_SUNSET,
 )
 from homeassistant.helpers import entity_platform
+import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.event import (
     async_track_state_change,
     async_track_time_interval,
@@ -48,6 +45,7 @@ from homeassistant.util.color import (
     color_temperature_to_rgb,
     color_xy_to_hs,
 )
+import homeassistant.util.dt as dt_util
 
 from .const import (
     CONF_COLORS_ONLY,
@@ -79,7 +77,7 @@ from .const import (
     SUN_EVENT_MIDNIGHT,
     SUN_EVENT_NOON,
     VALIDATION_TUPLES,
-    replace_none,
+    replace_none_str,
 )
 
 _SUPPORT_OPTS = {
@@ -104,9 +102,7 @@ async def handle_apply(switch, service_call):
     data = service_call.data
     tasks = [
         await switch._adjust_light(
-            light,
-            data[CONF_TRANSITION],
-            data[CONF_COLORS_ONLY],
+            light, data[CONF_TRANSITION], data[CONF_COLORS_ONLY],
         )
         for light in data[CONF_LIGHTS]
         if not data[CONF_ON_LIGHTS_ONLY] or is_on(switch.hass, light)
@@ -130,7 +126,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         {
             vol.Required(CONF_LIGHTS): cv.entity_ids,
             vol.Optional(
-                CONF_TRANSITION, default=self._initial_transition
+                CONF_TRANSITION, default=switch._initial_transition
             ): VALID_TRANSITION,
             vol.Optional(CONF_COLORS_ONLY, default=False): cv.boolean,
             vol.Optional(CONF_ON_LIGHTS_ONLY, default=False): cv.boolean,
@@ -141,12 +137,12 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 def validate(config_entry):
-    """Gets the options and data from the config_entry and adds defaults."""
+    """Get the options and data from the config_entry and add defaults."""
     defaults = {key: default for key, default, _ in VALIDATION_TUPLES}
     data = deepcopy(defaults)
     data.update(config_entry.options)  # come from options flow
     data.update(config_entry.data)  # all yaml settings come from data
-    data = {key: replace_none(value) for key, value in data.items()}
+    data = {key: replace_none_str(value) for key, value in data.items()}
     for key, (validate, _) in EXTRA_VALIDATION.items():
         value = data.get(key)
         if value is not None:
@@ -199,10 +195,14 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
 
         # Set and unset tracker in async_turn_on and async_turn_off
         self.unsub_tracker = None
-        _LOGGER.error(
-            f"Setting up with '{self._lights}',"
-            f" config_entry.data: '{config_entry.data}',"
-            f" config_entry.options: '{config_entry.options}', converted to '{data}'."
+        _LOGGER.debug(
+            "Setting up with '%s',"
+            " config_entry.data: '%s',"
+            " config_entry.options: '%s', converted to '%s'.",
+            self._lights,
+            config_entry.data,
+            config_entry.options,
+            data,
         )
 
     @property
@@ -424,7 +424,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             and self.hass.states.get(self._disable_entity).state in self._disable_state
         )
 
-    async def _adjust_light(self, light, transition, colors_only):
+    async def _adjust_light(self, light, transition, colors_only=False):
         service_data = {ATTR_ENTITY_ID: light}
         features = self._supported_features(light)
 
