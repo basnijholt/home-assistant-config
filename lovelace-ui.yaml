@@ -101,7 +101,7 @@ views:
       - light.kitchen_counter
       - light.hall_lights
       - light.stairs_lights
-      - switch.circadian_lighting_circadian_lighting
+      - switch.adaptive_lighting_default
       head:
         entity: light.automatic_lights
         name: Auto
