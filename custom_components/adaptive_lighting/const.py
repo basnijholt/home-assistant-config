@@ -1,4 +1,4 @@
-"""Constants for the Adaptive Lighting Component in Home-Assistant."""
+"""Constants for the Adaptive Lighting integration."""
 import voluptuous as vol
 
 from homeassistant.components.light import VALID_TRANSITION
@@ -16,7 +16,14 @@ CONF_DISABLE_BRIGHTNESS_ADJUST, DEFAULT_DISABLE_BRIGHTNESS_ADJUST = (
     "disable_brightness_adjust",
     False,
 )
-CONF_DISABLE_COLOR_ADJUST, DEFAULT_DISABLE_COLOR_ADJUST = "disable_color_adjust", False
+CONF_DISABLE_COLOR_TEMP_ADJUST, DEFAULT_DISABLE_COLOR_TEMP_ADJUST = (
+    "disable_color_temp_adjust",
+    False,
+)
+CONF_DISABLE_RGB_COLOR_ADJUST, DEFAULT_DISABLE_RGB_COLOR_ADJUST = (
+    "disable_rgb_color_adjust",
+    False,
+)
 CONF_DISABLE_ENTITY = "disable_entity"
 CONF_DISABLE_STATE = "disable_state"
 CONF_INITIAL_TRANSITION, DEFAULT_INITIAL_TRANSITION = "initial_transition", 1
@@ -26,6 +33,7 @@ CONF_MAX_COLOR_TEMP, DEFAULT_MAX_COLOR_TEMP = "max_color_temp", 5500
 CONF_MIN_BRIGHTNESS, DEFAULT_MIN_BRIGHTNESS = "min_brightness", 1
 CONF_MIN_COLOR_TEMP, DEFAULT_MIN_COLOR_TEMP = "min_color_temp", 2500
 CONF_ONLY_ONCE, DEFAULT_ONLY_ONCE = "only_once", False
+CONF_PREFER_RGB_COLOR, DEFAULT_PREFER_RGB_COLOR = "prefer_rgb_color", False
 CONF_SLEEP_BRIGHTNESS, DEFAULT_SLEEP_BRIGHTNESS = "sleep_brightness", 1
 CONF_SLEEP_COLOR_TEMP, DEFAULT_SLEEP_COLOR_TEMP = "sleep_color_temp", 1000
 CONF_SLEEP_ENTITY = "sleep_entity"
@@ -36,8 +44,9 @@ CONF_SUNSET_OFFSET, DEFAULT_SUNSET_OFFSET = "sunset_offset", 0
 CONF_SUNSET_TIME = "sunset_time"
 CONF_TRANSITION, DEFAULT_TRANSITION = "transition", 60
 
+ATTR_TURN_ON_OFF_LISTENER = "turn_on_off_listener"
 UNDO_UPDATE_LISTENER = "undo_update_listener"
-NONE_STR = "None"  # TODO: use `from homeassistant.const import ENTITY_MATCH_NONE`?
+NONE_STR = "None"
 
 SERVICE_APPLY = "apply"
 CONF_COLORS_ONLY = "colors_only"
@@ -54,8 +63,9 @@ def int_between(min_int, max_int):
 VALIDATION_TUPLES = [
     (CONF_LIGHTS, DEFAULT_LIGHTS, cv.entity_ids),
     (CONF_DISABLE_BRIGHTNESS_ADJUST, DEFAULT_DISABLE_BRIGHTNESS_ADJUST, bool),
-    (CONF_DISABLE_COLOR_ADJUST, DEFAULT_DISABLE_COLOR_ADJUST, bool),
+    (CONF_DISABLE_COLOR_TEMP_ADJUST, DEFAULT_DISABLE_COLOR_TEMP_ADJUST, bool),
     (CONF_DISABLE_ENTITY, NONE_STR, cv.entity_id),
+    (CONF_DISABLE_RGB_COLOR_ADJUST, DEFAULT_DISABLE_RGB_COLOR_ADJUST, bool),
     (CONF_DISABLE_STATE, NONE_STR, str),
     (CONF_INITIAL_TRANSITION, DEFAULT_INITIAL_TRANSITION, VALID_TRANSITION),
     (CONF_INTERVAL, DEFAULT_INTERVAL, cv.positive_int),
@@ -64,6 +74,7 @@ VALIDATION_TUPLES = [
     (CONF_MIN_BRIGHTNESS, DEFAULT_MIN_BRIGHTNESS, int_between(1, 100)),
     (CONF_MIN_COLOR_TEMP, DEFAULT_MIN_COLOR_TEMP, int_between(1000, 10000)),
     (CONF_ONLY_ONCE, DEFAULT_ONLY_ONCE, bool),
+    (CONF_PREFER_RGB_COLOR, DEFAULT_PREFER_RGB_COLOR, bool),
     (CONF_SLEEP_BRIGHTNESS, DEFAULT_SLEEP_BRIGHTNESS, int_between(1, 100)),
     (CONF_SLEEP_COLOR_TEMP, DEFAULT_SLEEP_COLOR_TEMP, int_between(1000, 10000)),
     (CONF_SLEEP_ENTITY, NONE_STR, cv.entity_id),

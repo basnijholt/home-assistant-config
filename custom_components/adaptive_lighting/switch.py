@@ -1,20 +1,16 @@
-"""Adaptive Lighting Component for Home-Assistant."""
+"""Switch for the Adaptive Lighting integration."""
 
 import asyncio
 import bisect
 from copy import deepcopy
+import datetime
 from datetime import timedelta
 import logging
 from typing import Dict, Tuple
 
 import voluptuous as vol
 
-from homeassistant.components.homeassistant import (
-    DOMAIN as HA_DOMAIN,
-    SERVICE_UPDATE_ENTITY,
-)
 from homeassistant.components.light import (
-    ATTR_BRIGHTNESS,
     ATTR_BRIGHTNESS_PCT,
     ATTR_COLOR_TEMP,
     ATTR_RGB_COLOR,
@@ -35,12 +31,14 @@ from homeassistant.const import (
     ATTR_SERVICE_DATA,
     CONF_NAME,
     EVENT_CALL_SERVICE,
+    EVENT_HOMEASSISTANT_START,
     SERVICE_TURN_OFF,
     SERVICE_TURN_ON,
     STATE_ON,
     SUN_EVENT_SUNRISE,
     SUN_EVENT_SUNSET,
 )
+from homeassistant.core import Event
 from homeassistant.helpers import entity_platform
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.event import (
@@ -60,10 +58,12 @@ from homeassistant.util.color import (
 import homeassistant.util.dt as dt_util
 
 from .const import (
+    ATTR_TURN_ON_OFF_LISTENER,
     CONF_COLORS_ONLY,
     CONF_DISABLE_BRIGHTNESS_ADJUST,
-    CONF_DISABLE_COLOR_ADJUST,
+    CONF_DISABLE_COLOR_TEMP_ADJUST,
     CONF_DISABLE_ENTITY,
+    CONF_DISABLE_RGB_COLOR_ADJUST,
     CONF_DISABLE_STATE,
     CONF_INITIAL_TRANSITION,
     CONF_INTERVAL,
@@ -74,6 +74,7 @@ from .const import (
     CONF_MIN_COLOR_TEMP,
     CONF_ON_LIGHTS_ONLY,
     CONF_ONLY_ONCE,
+    CONF_PREFER_RGB_COLOR,
     CONF_SLEEP_BRIGHTNESS,
     CONF_SLEEP_COLOR_TEMP,
     CONF_SLEEP_ENTITY,
@@ -129,9 +130,14 @@ async def handle_apply(switch, service_call):
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the AdaptiveLighting switch."""
-    switch = AdaptiveSwitch(hass, config_entry)
     if DOMAIN not in hass.data:
         hass.data[DOMAIN] = {}
+
+    if ATTR_TURN_ON_OFF_LISTENER not in hass.data[DOMAIN]:
+        hass.data[DOMAIN][ATTR_TURN_ON_OFF_LISTENER] = TurnOnOffListener(hass)
+
+    turn_on_off_listener = hass.data[DOMAIN][ATTR_TURN_ON_OFF_LISTENER]
+    switch = AdaptiveSwitch(hass, config_entry, turn_on_off_listener)
     name = config_entry.data[CONF_NAME]
     hass.data[DOMAIN][name] = switch
 
@@ -170,15 +176,17 @@ def validate(config_entry):
 class AdaptiveSwitch(SwitchEntity, RestoreEntity):
     """Representation of a Adaptive Lighting switch."""
 
-    def __init__(self, hass, config_entry):
+    def __init__(self, hass, config_entry, turn_on_off_listener):
         """Initialize the Adaptive Lighting switch."""
         self.hass = hass
+        self.turn_on_off_listener = turn_on_off_listener
 
         data = validate(config_entry)
         self._name = data[CONF_NAME]
         self._lights = data[CONF_LIGHTS]
         self._disable_brightness_adjust = data[CONF_DISABLE_BRIGHTNESS_ADJUST]
-        self._disable_color_adjust = data[CONF_DISABLE_COLOR_ADJUST]
+        self._disable_rgb_color_adjust = data[CONF_DISABLE_RGB_COLOR_ADJUST]
+        self._disable_color_temp_adjust = data[CONF_DISABLE_COLOR_TEMP_ADJUST]
         self._disable_entity = data[CONF_DISABLE_ENTITY]
         self._disable_state = data[CONF_DISABLE_STATE]
         self._initial_transition = data[CONF_INITIAL_TRANSITION]
@@ -188,6 +196,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         self._min_brightness = data[CONF_MIN_BRIGHTNESS]
         self._min_color_temp = data[CONF_MIN_COLOR_TEMP]
         self._only_once = data[CONF_ONLY_ONCE]
+        self._prefer_rgb_color = data[CONF_PREFER_RGB_COLOR]
         self._sleep_brightness = data[CONF_SLEEP_BRIGHTNESS]
         self._sleep_color_temp = data[CONF_SLEEP_COLOR_TEMP]
         self._sleep_entity = data[CONF_SLEEP_ENTITY]
@@ -203,9 +212,9 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         self._entity_id = f"switch.{DOMAIN}_{slugify(self._name)}"
 
         # Tracks 'off' → 'on' state changes
-        self._on_to_off_event: Dict[str, Tuple[float, str]] = {}
-        # Tracks 'light.turn_off(..., transition=...)' service calls
-        self._turn_off_service_event: Dict[str, Tuple[str, float]] = {}
+        self._on_to_off_event: Dict[str, Event] = {}
+        # Locks that prevent light adjusting when waiting for a light to 'turn_off'
+        self._locks: Dict[str, asyncio.Lock] = {}
 
         # Initialize attributes that will be set in self._update_attrs
         self._percent = None
@@ -251,49 +260,49 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             key for key, value in _SUPPORT_OPTS.items() if supported_features & value
         }
 
-    def _unpack_light_groups(self, lights):
-        all_lights = []
-        for light in lights:
-            state = self.hass.states.get(light)
-            if state is None:
-                _LOGGER.debug("%s: State of %s is None", self._name, light)
-                # TODO: make sure that the lights are loaded when doing this
-                all_lights.append(light)
-            elif "entity_id" in state.attributes:  # it's a light group
-                group = state.attributes["entity_id"]
-                _LOGGER.debug("%s: Unpacked %s to %s", self._name, lights, group)
-                all_lights.extend(group)
-            else:
-                all_lights.append(light)
-        return all_lights
-
     async def async_added_to_hass(self):
         """Call when entity about to be added to hass."""
         if self._lights:
-            unpacked_lights = self._unpack_light_groups(self._lights)
-            async_track_state_change_event(
-                self.hass, unpacked_lights, self._light_event
-            )
-            # Tracks 'light.turn_off(..., transition=...)' service calls
-            self.hass.bus.async_listen(
-                EVENT_CALL_SERVICE, self._turn_off_event_listener
-            )
-            track_kwargs = dict(hass=self.hass, action=self._state_changed)
-            if self._sleep_entity is not None:
-                sleep_kwargs = dict(track_kwargs, entity_ids=self._sleep_entity)
-                async_track_state_change(**sleep_kwargs, to_state=self._sleep_state)
-                async_track_state_change(**sleep_kwargs, from_state=self._sleep_state)
-
-            if self._disable_entity is not None:
-                disable_kwargs = dict(track_kwargs, entity_ids=self._disable_entity)
-                async_track_state_change(
-                    **disable_kwargs, from_state=self._disable_state
+            if self.hass.is_running:
+                await self._setup_listeners()
+            else:
+                self.hass.bus.async_listen_once(
+                    EVENT_HOMEASSISTANT_START, self._setup_listeners
                 )
-                async_track_state_change(**disable_kwargs, to_state=self._disable_state)
-
         last_state = await self.async_get_last_state()
         if last_state and last_state.state == STATE_ON:
-            await self.async_turn_on()
+            await self.async_turn_on(adjust_lights=False)
+
+    def _unpack_light_groups(self) -> None:
+        all_lights = []
+        for light in self._lights:
+            state = self.hass.states.get(light)
+            if state is None:
+                _LOGGER.debug("%s: State of %s is None", self._name, light)
+                all_lights.append(light)
+            elif "entity_id" in state.attributes:  # it's a light group
+                group = state.attributes["entity_id"]
+                all_lights.extend(group)
+                _LOGGER.debug("%s: Unpacked %s to %s", self._name, light, group)
+            else:
+                all_lights.append(light)
+        self._lights = all_lights
+
+    async def _setup_listeners(self, _=None):
+        self._unpack_light_groups()
+        for light in self._lights:
+            self.turn_on_off_listener.lights.add(light)
+        async_track_state_change_event(self.hass, self._lights, self._light_event)
+        track_kwargs = dict(hass=self.hass, action=self._state_changed)
+        if self._sleep_entity is not None:
+            sleep_kwargs = dict(track_kwargs, entity_ids=self._sleep_entity)
+            async_track_state_change(**sleep_kwargs, to_state=self._sleep_state)
+            async_track_state_change(**sleep_kwargs, from_state=self._sleep_state)
+
+        if self._disable_entity is not None:
+            disable_kwargs = dict(track_kwargs, entity_ids=self._disable_entity)
+            async_track_state_change(**disable_kwargs, from_state=self._disable_state)
+            async_track_state_change(**disable_kwargs, to_state=self._disable_state)
 
     @property
     def icon(self):
@@ -316,12 +325,13 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             return {key: None for key in attrs}
         return attrs
 
-    async def async_turn_on(self, **kwargs):
+    async def async_turn_on(self, adjust_lights=True):
         """Turn on adaptive lighting."""
-        await self._update_lights(transition=self._initial_transition, force=True)
         self.unsub_tracker = async_track_time_interval(
             self.hass, self._async_update_at_interval, self._interval
         )
+        if adjust_lights:
+            await self._update_lights(transition=self._initial_transition, force=True)
 
     async def async_turn_off(self, **kwargs):
         """Turn off adaptive lighting."""
@@ -355,12 +365,15 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
 
     def _get_sun_events(self, date):
         def _replace_time(date, key):
-            other_date = getattr(self, f"_{key}_time")
+            time = getattr(self, f"_{key}_time")
+            dt = datetime.datetime.combine(datetime.date.today(), time)
+            tz = self.hass.config.time_zone
+            utc_time = tz.localize(dt).astimezone(dt_util.UTC)
             return date.replace(
-                hour=other_date.hour,
-                minute=other_date.minute,
-                second=other_date.second,
-                microsecond=other_date.microsecond,
+                hour=utc_time.hour,
+                minute=utc_time.minute,
+                second=utc_time.second,
+                microsecond=utc_time.microsecond,
             )
 
         location = get_astral_location(self.hass)
@@ -433,8 +446,6 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         return self._min_color_temp
 
     def _calc_brightness(self) -> float:
-        if self._disable_brightness_adjust:
-            return
         if self._is_sleep():
             return self._sleep_brightness
         if self._percent > 0:
@@ -459,16 +470,24 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             service_data[ATTR_TRANSITION] = transition
 
         if (
-            self._brightness is not None
-            and "brightness" in features
+            "brightness" in features
+            and not self._disable_brightness_adjust
             and not colors_only
         ):
             service_data[ATTR_BRIGHTNESS_PCT] = self._brightness
 
-        if "color" in features and not self._disable_color_adjust:
+        prefer_rgb_color = self._prefer_rgb_color
+        if (
+            "color_temp" in features
+            and not self._disable_color_temp_adjust
+            and not (prefer_rgb_color and "color" in features)
+        ):
+            attributes = self.hass.states.get(light).attributes
+            min_mireds, max_mireds = attributes["min_mireds"], attributes["max_mireds"]
+            color_temp_mired = max(min(self._color_temp_mired, max_mireds), min_mireds)
+            service_data[ATTR_COLOR_TEMP] = color_temp_mired
+        elif "color" in features and not self._disable_rgb_color_adjust:
             service_data[ATTR_RGB_COLOR] = self._rgb_color
-        elif "color_temp" in features:
-            service_data[ATTR_COLOR_TEMP] = self._color_temp_mired
 
         _LOGGER.debug(
             "%s: Scheduling 'light.turn_on' with the following 'service_data': %s",
@@ -487,6 +506,9 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
     async def _adjust_lights(self, lights, transition):
         if not self._should_adjust():
             return
+        _LOGGER.debug(
+            "%s: '_adjust_lights(%s, %s)' called", self.name, lights, transition
+        )
         tasks = [
             await self._adjust_light(light, transition)
             for light in lights
@@ -502,13 +524,15 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             from_state,
             to_state,
         )
+        lock = self._locks.get(entity_id)
+        if lock is not None and lock.locked:
+            return
         await self._update_lights(transition=self._initial_transition, force=True)
 
     async def _light_event(self, event):
         old_state = event.data.get("old_state")
         new_state = event.data.get("new_state")
         entity_id = event.data.get("entity_id")
-        now_ts = dt_util.now().timestamp()
         if (
             old_state is not None
             and old_state.state == "off"
@@ -518,12 +542,18 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             _LOGGER.debug(
                 "%s: Detected an 'off' → 'on' event for '%s'", self._name, entity_id
             )
-            if await self._maybe_cancel(entity_id, now_ts):
-                # Stop if a rapid 'off' → 'on' → 'off' happens.
-                _LOGGER.debug(
-                    "%s: Cancelling adjusting lights for %s", self._name, entity_id
-                )
-                return
+            lock = self._locks.setdefault(entity_id, asyncio.Lock())
+            async with lock:
+                if await self.turn_on_off_listener.maybe_cancel_adjusting(
+                    entity_id,
+                    off_to_on_event=event,
+                    on_to_off_event=self._on_to_off_event.get(entity_id),
+                ):
+                    # Stop if a rapid 'off' → 'on' → 'off' happens.
+                    _LOGGER.debug(
+                        "%s: Cancelling adjusting lights for %s", self._name, entity_id
+                    )
+                    return
             await self._update_lights(
                 lights=[entity_id],
                 transition=self._initial_transition,
@@ -536,9 +566,29 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             and new_state.state == "off"
         ):
             # Tracks 'off' → 'on' state changes
-            self._on_to_off_event[entity_id] = (now_ts, event.context.id)
+            self._on_to_off_event[entity_id] = event
 
-    async def _maybe_cancel(self, entity_id, now_ts) -> bool:
+
+class TurnOnOffListener:
+    """Track 'light.turn_off' and 'light.turn_on' service calls."""
+
+    def __init__(self, hass):
+        """Initialize the TurnOnOffListener that is shared among all switches."""
+        self.hass = hass
+        self.lights = set()
+
+        # Tracks 'light.turn_off' service calls
+        self.turn_off_event: Dict[str, Tuple[str, float]] = {}
+        # Tracks 'light.turn_on' service calls
+        self.turn_on_event: Dict[str, Tuple[str]] = {}
+
+        self.sleep_tasks: Dict[str, asyncio.Task] = {}
+
+        self.hass.bus.async_listen(EVENT_CALL_SERVICE, self.turn_on_off_event_listener)
+
+    async def maybe_cancel_adjusting(
+        self, entity_id, off_to_on_event, on_to_off_event
+    ) -> bool:
         """Cancel the adjusting of a light if it has just been turned off.
 
         Possibly the lights just got a 'turn_off' call, however, the light
@@ -551,95 +601,100 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         if the brightness is still decreasing. Only if it is the case we
         adjust the lights.
         """
-        ts_on_to_off, id_on_to_off = self._on_to_off_event.get(entity_id, (0, None))
-        id_turn_off, transition = self._turn_off_service_event.get(
-            entity_id, (None, None)
-        )
-        if (
-            id_on_to_off is not None
-            and id_turn_off is not None
-            and id_on_to_off == id_turn_off
-        ):
-            # State change 'off' → 'on' and 'light.turn_off(..., transition=...)' are
-            # from the same event, so wait at least the 'turn_off' transition time.
-            delay = transition
-        elif ts_on_to_off == 0:
+        if on_to_off_event is None:
             # No state change has been registered before.
             return False
+
+        id_on_to_off = on_to_off_event.context.id
+        id_turn_off, transition = self.turn_off_event.get(entity_id, (None, None))
+        id_turn_on = self.turn_on_event.get(entity_id)
+        id_off_to_on = off_to_on_event.context.id
+
+        if id_off_to_on == id_turn_on and id_off_to_on is not None:
+            # State change 'off' → 'on' triggered by 'light.turn_on'.
+            return False
+
+        if (
+            id_on_to_off == id_turn_off
+            and id_on_to_off is not None
+            and transition is not None  # 'turn_off' is called with transition=...
+        ):
+            # State change 'on' → 'off' and 'light.turn_off(..., transition=...)' come
+            # from the same event, so wait at least the 'turn_off' transition time.
+            delay = max(transition, TURNING_OFF_DELAY)
         else:
-            # State change 'off' → 'on' happened but **not** because a
-            # 'light.turn_off' event that is called with 'transition'.
+            # State change 'off' → 'on' happened because the light state was set.
+            # Possibly because of polling.
             delay = TURNING_OFF_DELAY
 
-        delta_time = now_ts - ts_on_to_off
+        delta_time = (dt_util.utcnow() - on_to_off_event.time_fired).total_seconds()
         if delta_time > delay:
             return False
+
+        # Here we could just `return True` but because we want to prevent any updates
+        # from happening to this light (through async_track_time_interval or
+        # sleep_state or disable_state) for some time, we wait below until the light
+        # is 'off' or the time has passed.
+
         delay -= delta_time  # delta_time has passed since the 'off' → 'on' event
-        _LOGGER.debug(
-            "%s: Waiting with adjusting '%s' for %s.", self._name, entity_id, delay
-        )
-        current_state = self.hass.states.get(entity_id)
-        _LOGGER.debug(
-            "%s: '%s' state before sleep is '%s'",
-            self._name,
-            entity_id,
-            current_state,
-        )
+        _LOGGER.debug("Waiting with adjusting '%s' for %s", entity_id, delay)
+
         for _ in range(3):
             # It can happen that the actual transition time is longer than the
-            # specified time in the 'turn_off' service, so we check whether the
-            # brightness is still going down, if so, we wait a little longer.
-            await asyncio.sleep(delay)
-            await self.hass.services.async_call(
-                HA_DOMAIN,
-                SERVICE_UPDATE_ENTITY,
-                {ATTR_ENTITY_ID: entity_id},
-                blocking=True,
-            )
-            old_state = current_state
-            current_state = self.hass.states.get(entity_id)
-            if current_state.state == "off":
+            # specified time in the 'turn_off' service.
+            coro = asyncio.sleep(delay)
+            task = self.sleep_tasks[entity_id] = asyncio.ensure_future(coro)
+            try:
+                await task
+            except asyncio.CancelledError:  # 'light.turn_on' has been called
+                _LOGGER.debug(
+                    "Sleep task is cancelled due to 'light.turn_on('%s')' call",
+                    entity_id,
+                )
+                return False
+
+            if not is_on(self.hass, entity_id):
                 return True
-            old_brightness = old_state.attributes.get(ATTR_BRIGHTNESS, 0)
-            current_brightness = current_state.attributes.get(ATTR_BRIGHTNESS, 0)
-            brightness_going_down = old_brightness > current_brightness
-            _LOGGER.debug(
-                "%s: '%s' state after sleep is '%s'",
-                self._name,
-                entity_id,
-                current_state,
-            )
-            if not brightness_going_down:
-                break
             delay = TURNING_OFF_DELAY  # next time only wait this long
 
         if transition is not None:
-            # Always ignore when there's a transition and light is still on.
-            # TODO: I am doing this because it seems like HA cannot detect
-            # whether a light is transitioning into 'off'. Because in my
-            # tests `brightness_going_down == False` even when it is actually
-            # still going down... Needs some discussion.
+            # Always ignore when there's a 'turn_off' transition.
+            # Because it seems like HA cannot detect whether a light is
+            # transitioning into 'off'. Maybe needs some discussion/input?
             return True
 
-        return current_state.state == "off"
+        return False
 
-    async def _turn_off_event_listener(self, event):
-        """Track 'light.turn_off(..., transition=...)' service calls."""
-        if event.data.get(ATTR_DOMAIN) != LIGHT_DOMAIN:
+    async def turn_on_off_event_listener(self, event):
+        """Track 'light.turn_off' and 'light.turn_on' service calls."""
+        domain = event.data.get(ATTR_DOMAIN)
+        if domain != LIGHT_DOMAIN:
             return
-        if event.data.get(ATTR_SERVICE) != SERVICE_TURN_OFF:
-            return
+
+        service = event.data.get(ATTR_SERVICE)
         service_data = event.data.get(ATTR_SERVICE_DATA, {})
-        transition = service_data.get(ATTR_TRANSITION)
-        if transition is not None and transition > 0:
-            entity_id = service_data[ATTR_ENTITY_ID]
+
+        entity_ids = service_data.get(ATTR_ENTITY_ID)
+        if isinstance(entity_ids, str):
+            entity_ids = [entity_ids]
+
+        if not any(eid in self.lights for eid in entity_ids):
+            return
+
+        if service == SERVICE_TURN_OFF:
+            transition = service_data.get(ATTR_TRANSITION)
             _LOGGER.debug(
-                "%s: Detected an 'light.turn_off('%s', transition=%s)' event",
-                self._name,
-                entity_id,
+                "Detected an 'light.turn_off('%s', transition=%s)' event",
+                entity_ids,
                 transition,
             )
-            if isinstance(entity_id, str):
-                entity_id = [entity_id]
-            for eid in entity_id:
-                self._turn_off_service_event[eid] = (event.context.id, transition)
+            for eid in entity_ids:
+                self.turn_off_event[eid] = (event.context.id, transition)
+
+        elif service == SERVICE_TURN_ON:
+            _LOGGER.debug("Detected an 'light.turn_on('%s')' event", entity_ids)
+            for eid in entity_ids:
+                task = self.sleep_tasks.get(eid)
+                if task is not None:
+                    task.cancel()
+                self.turn_on_event[eid] = event.context.id
