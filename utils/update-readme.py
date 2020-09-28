@@ -165,6 +165,7 @@ def remove_text(content, start, end):
 
 def get_emoji(title):
     return {
+        "Adaptive Lighting": "🌄🌇",
         "Alarm clock": "⏰",
         "Apple Watch": "⌚",
         "Arriving": "👞",
