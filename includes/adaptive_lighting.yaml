@@ -14,6 +14,7 @@
   only_once: true
   min_color_temp: 2000
   interval: 30
+  prefer_rgb_color: true
 
 - name: default
   lights:
@@ -21,16 +22,12 @@
     - light.bamboo
     - light.ceiling_bedroom
     - light.lampan
-    - light.bed_reading_up
-    - light.bed_reading_down
+    - light.bed_reading
     - light.ceiling_bathroom
     - light.toilet
     - light.ceiling_kitchen
-    - light.stairs_up
-    - light.stairs_down
-    - light.hall_1
-    - light.hall_2
-    - light.hall_3
+    - light.stairs_lights
+    - light.hall_lights
   sleep_entity: input_select.sleep_mode
   sleep_state: total
   disable_entity: input_select.sleep_mode
@@ -39,6 +36,7 @@
   only_once: true
   min_color_temp: 2000
   interval: 30
+  prefer_rgb_color: true
 
 - name: default bed
   lights:
@@ -52,16 +50,11 @@
   only_once: true
   min_color_temp: 2000
   interval: 30
+  prefer_rgb_color: true
 
 - name: half and dim
   lights:
-    - light.philips_go
-    - light.bamboo
-    - light.ceiling_bedroom
-    - light.lampan
-    - light.bed_led
-    - light.bed_reading_up
-    - light.bed_reading_down
+    - light.bedroom_lights
     - light.ceiling_bathroom
     - light.hall_2
     - light.hall_3
@@ -75,6 +68,7 @@
   only_once: true
   min_color_temp: 2000
   interval: 30
+  prefer_rgb_color: true
 
 - name: half and dim bed
   lights:
@@ -90,6 +84,7 @@
   only_once: true
   min_color_temp: 2000
   interval: 30
+  prefer_rgb_color: true
 
 - name: half and full
   lights:
@@ -106,3 +101,4 @@
   only_once: true
   min_color_temp: 2000
   interval: 30
+  prefer_rgb_color: true
