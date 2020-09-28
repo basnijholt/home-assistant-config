@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-0.115.2%20-darkblue)](https://github.com/home-assistant/core/releases/tag/0.115.2)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-0.115.3%20-darkblue)](https://github.com/home-assistant/core/releases/tag/0.115.3)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -529,8 +529,8 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/b56f56693c4377b715a0ea286dff397609ad203c/automations/control_switches.yaml)
-### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/b56f56693c4377b715a0ea286dff397609ad203c/automations/control_switches.yaml#L12)
+## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml)
+### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml#L12)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L25)
@@ -538,7 +538,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L262)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L182)
 
-### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/b56f56693c4377b715a0ea286dff397609ad203c/automations/control_switches.yaml#L47)
+### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml#L47)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L31)
@@ -546,7 +546,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L262)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L195)
 
-### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/b56f56693c4377b715a0ea286dff397609ad203c/automations/control_switches.yaml#L82)
+### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml#L82)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L25)
@@ -554,7 +554,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L208)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L262)
 
-### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/b56f56693c4377b715a0ea286dff397609ad203c/automations/control_switches.yaml#L129)
+### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml#L129)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L31)
@@ -564,13 +564,13 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L246)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L235)
 
-### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/b56f56693c4377b715a0ea286dff397609ad203c/automations/control_switches.yaml#L214)
+### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml#L214)
 
   *which uses:*
   - [input_select.bathroom_color](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L37)
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L208)
 
-### [Downstairs Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/b56f56693c4377b715a0ea286dff397609ad203c/automations/control_switches.yaml#L250)
+### [Downstairs Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml#L250)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L308)
