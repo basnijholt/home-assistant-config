@@ -256,6 +256,26 @@
         {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
         {{ (hours_outside / 14) | round(1) }}
 
+    adaptive_lighting_color_temp_mired:
+      unit_of_measurement: "mired"
+      value_template: >
+        {{ state_attr("switch.adaptive_lighting_default", "color_temp_mired") }}
+
+    adaptive_lighting_color_temp_kelvin:
+      unit_of_measurement: "K"
+      value_template: >
+        {{ state_attr("switch.adaptive_lighting_default", "color_temp_kelvin") }}
+
+    adaptive_lighting_percent:
+      unit_of_measurement: "%"
+      value_template: >
+        {{ state_attr("switch.adaptive_lighting_default", "percent") }}
+
+    adaptive_lighting_brightness:
+      unit_of_measurement: "%"
+      value_template: >
+        {{ state_attr("switch.adaptive_lighting_default", "brightness") }}
+
 #   ___  _   _
 #  / _ \| |_| |__   ___ _ __ ___
 # | | | | __| '_ \ / _ \ '__/ __|
