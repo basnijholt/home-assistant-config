@@ -467,7 +467,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L60)
   - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L84)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L235)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/b36b9aedad8df434e9e02fb3e1574e5d504e49bb/includes/sensors.yaml#L235)
 
 [^ toc](#automations---table-of-content)
 
@@ -500,7 +500,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L43)
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L37)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L293)
-  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L227)
+  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/b36b9aedad8df434e9e02fb3e1574e5d504e49bb/includes/sensors.yaml#L227)
 
 ### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/45d4169bf6fc34b1776feb0ab731558024ce8df6/automations/climate.yaml#L26)
 
@@ -562,7 +562,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L208)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L262)
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L246)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L235)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/b36b9aedad8df434e9e02fb3e1574e5d504e49bb/includes/sensors.yaml#L235)
 
 ### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/15a6cf432e08d350c919629bafa707689079a48f/automations/control_switches.yaml#L214)
 
@@ -578,7 +578,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
   - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L39)
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L246)
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/8f8999304a971956546889236e53bc0849239e80/scripts.yaml#L230)
-  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/9a7165d45736509c2908091b14cae2e489c8b5f0/includes/sensors.yaml#L81)
+  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/b36b9aedad8df434e9e02fb3e1574e5d504e49bb/includes/sensors.yaml#L81)
 
 [^ toc](#automations---table-of-content)
 
