@@ -1,0 +1,41 @@
+---
+#-
+#            _             _   _               _ _       _     _   _
+#   __ _  __| | __ _ _ __ | |_(_)_   _____    | (_) __ _| |__ | |_(_)_ __   __ _
+#  / _` |/ _` |/ _` | '_ \| __| \ \ / / _ \   | | |/ _` | '_ \| __| | '_ \ / _` |
+# | (_| | (_| | (_| | |_) | |_| |\ V /  __/   | | | (_| | | | | |_| | | | | (_| |
+#  \__,_|\__,_|\__,_| .__/ \__|_| \_/ \___|___|_|_|\__, |_| |_|\__|_|_| |_|\__, |
+#                   |_|                  |_____|   |___/                   |___/
+#
+#- from github.com/basnijholt/home-assistant-config
+- alias: "Adaptive lighting: turn on and off switches"
+  trigger:
+    platform: state
+    entity_id: input_select.sleep_mode
+  variables:
+    sleep_mode: "{{ trigger.to_state.state }}"
+  action:
+    choose:
+      - conditions: "{{ sleep_mode in ('off', 'total') }}" 
+        sequence:
+          - service: switch.turn_on
+            entity_id:
+              - switch.adaptive_lighting_default
+              - switch.adaptive_lighting_default_bed
+          - service: switch.turn_off
+            entity_id:
+              - switch.adaptive_lighting_half_and_dim
+              - switch.adaptive_lighting_half_and_dim_bed
+              - switch.adaptive_lighting_half_and_full
+
+      - conditions: "{{ sleep_mode == 'half' }}"
+        sequence:
+          - service: switch.turn_on
+            entity_id:
+              - switch.adaptive_lighting_half_and_dim
+              - switch.adaptive_lighting_half_and_dim_bed
+              - switch.adaptive_lighting_half_and_full
+          - service: switch.turn_off
+            entity_id:
+              - switch.adaptive_lighting_default
+              - switch.adaptive_lighting_default_bed
