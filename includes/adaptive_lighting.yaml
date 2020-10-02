@@ -28,8 +28,6 @@
     - light.ceiling_kitchen
     - light.stairs_lights
     - light.hall_lights
-  sleep_entity: input_select.sleep_mode
-  sleep_state: total
   min_brightness: 70
   only_once: true
   min_color_temp: 2000
@@ -39,8 +37,6 @@
 - name: default bed
   lights:
     - light.bed_led
-  sleep_entity: input_select.sleep_mode
-  sleep_state: total
   sleep_brightness: 20
   min_brightness: 70
   only_once: true
@@ -54,8 +50,6 @@
     - light.ceiling_bathroom
     - light.hall_2
     - light.hall_3
-  sleep_entity: input_select.sleep_mode
-  sleep_state: half
   min_brightness: 70
   only_once: true
   min_color_temp: 2000
@@ -65,8 +59,6 @@
 - name: half and dim bed
   lights:
     - light.bed_led
-  sleep_entity: input_select.sleep_mode
-  sleep_state: half
   sleep_brightness: 20
   min_brightness: 70
   only_once: true

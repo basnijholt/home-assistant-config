@@ -16,7 +16,7 @@
     sleep_mode: "{{ trigger.to_state.state }}"
   action:
     choose:
-      - conditions: "{{ sleep_mode in ('off', 'total') }}" 
+      - conditions: "{{ sleep_mode == 'off' }}" 
         sequence:
           - service: switch.turn_on
             entity_id:
@@ -27,6 +27,9 @@
               - switch.adaptive_lighting_half_and_dim
               - switch.adaptive_lighting_half_and_dim_bed
               - switch.adaptive_lighting_half_and_full
+              # sleep_modes
+              - switch.adaptive_lighting_sleep_mode_default
+              - switch.adaptive_lighting_sleep_mode_default_bed
 
       - conditions: "{{ sleep_mode == 'half' }}"
         sequence:
@@ -35,7 +38,27 @@
               - switch.adaptive_lighting_half_and_dim
               - switch.adaptive_lighting_half_and_dim_bed
               - switch.adaptive_lighting_half_and_full
+              # sleep_modes
+              - switch.adaptive_lighting_sleep_mode_half_and_dim
+              - switch.adaptive_lighting_sleep_mode_half_and_dim_bed
           - service: switch.turn_off
             entity_id:
               - switch.adaptive_lighting_default
               - switch.adaptive_lighting_default_bed
+              # sleep_modes
+              - switch.adaptive_lighting_sleep_mode_half_and_full
+
+      - conditions: "{{ sleep_mode == 'total' }}" 
+        sequence:
+          - service: switch.turn_on
+            entity_id:
+              - switch.adaptive_lighting_default
+              - switch.adaptive_lighting_default_bed
+              # sleep_modes
+              - switch.adaptive_lighting_sleep_mode_default
+              - switch.adaptive_lighting_sleep_mode_default_bed
+          - service: switch.turn_off
+            entity_id:
+              - switch.adaptive_lighting_half_and_dim
+              - switch.adaptive_lighting_half_and_dim_bed
+              - switch.adaptive_lighting_half_and_full
