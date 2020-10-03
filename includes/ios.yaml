@@ -18,6 +18,7 @@ push:
           activationMode: background
           authenticationRequired: false
           destructive: true
+
     - name: Sound alarm
       identifier: sound_alarm
       actions:
@@ -26,6 +27,7 @@ push:
           activationMode: background
           authenticationRequired: true
           destructive: true
+
     - name: Turn on heating
       identifier: turn_on_heating
       actions:
@@ -34,6 +36,17 @@ push:
           activationMode: background
           authenticationRequired: true
           destructive: true
+
+    - name: Set sleep mode
+      identifier: set_sleep_mode
+      actions:
+        - identifier: SET_SLEEP_MODE_OFF
+          title: "Off"
+        - identifier: SET_SLEEP_MODE_HALF
+          title: Half
+        - identifier: SET_SLEEP_MODE_TOTAL
+          title: Total
+
 actions:
   - name: Play TV
     background_color: "#000000"
@@ -43,10 +56,20 @@ actions:
     icon:
       icon: play-pause
       color: "#ffffff"
+
   - name: Half sleep mode
     background_color: "#000000"
     label:
       text: "Half sleep mode"
+      color: "#ff0000"
+    icon:
+      icon: sleep
+      color: "#ffffff"
+
+  - name: Set sleep mode
+    background_color: "#000000"
+    label:
+      text: "Set sleep mode"
       color: "#ff0000"
     icon:
       icon: sleep

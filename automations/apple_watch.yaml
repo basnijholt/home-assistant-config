@@ -33,3 +33,27 @@
     data:
       entity_id: input_select.sleep_mode
       option: "half"
+
+- alias: "Apple Watch: set sleep mode"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Set sleep mode
+  action:
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        message: "Apple Watch: set sleep mode."
+        data:
+          push:
+            category: set_sleep_mode
+    - wait_for_trigger:
+        platform: event
+        event_type: ios.notification_action_fired
+    - variables:
+        event: "{{ wait.trigger.event.data.actionName.split('SET_SLEEP_MODE_')[1].lower() }}"
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sleep_mode
+        option: "{{ event }}"
