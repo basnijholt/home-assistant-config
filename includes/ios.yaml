@@ -74,3 +74,12 @@ actions:
     icon:
       icon: sleep
       color: "#ffffff"
+
+  - name: Temperature report
+    background_color: "#000000"
+    label:
+      text: "Temperature report"
+      color: "#ff0000"
+    icon:
+      icon: temperature-celsius
+      color: "#ffffff"
