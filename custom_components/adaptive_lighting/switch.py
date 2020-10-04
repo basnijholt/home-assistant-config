@@ -904,7 +904,12 @@ class TurnOnOffListener:
             applied_brightness = round(255 * service_data[ATTR_BRIGHTNESS_PCT] / 100)
             current_brightness = attributes["brightness"]
             if abs_rel_diff(current_brightness, applied_brightness) > threshold:
-                _LOGGER.error("Brightness of '%s' significantly changed", light)
+                _LOGGER.debug(
+                    "Brightness of '%s' significantly changed from %s to %s",
+                    light,
+                    applied_brightness,
+                    current_brightness,
+                )
                 changed = True
 
         if (
@@ -915,9 +920,11 @@ class TurnOnOffListener:
             applied_color_temp = service_data[ATTR_COLOR_TEMP]
             current_color_temp = attributes[ATTR_COLOR_TEMP]
             if abs_rel_diff(current_color_temp, applied_color_temp) > threshold:
-                _LOGGER.error(
-                    "Color temperature of '%s' significantly changed",
+                _LOGGER.debug(
+                    "Color temperature of '%s' significantly changed from %s to %s",
                     light,
+                    applied_color_temp,
+                    current_color_temp,
                 )
                 changed = True
 
@@ -930,9 +937,11 @@ class TurnOnOffListener:
             current_rgb_color = attributes[ATTR_RGB_COLOR]
             for col_applied, col_current in zip(applied_rgb_color, current_rgb_color):
                 if abs_rel_diff(col_applied, col_current) > threshold:
-                    _LOGGER.error(
-                        "color RGB of '%s' significantly changed",
+                    _LOGGER.debug(
+                        "color RGB of '%s' significantly changed from %s to %s",
                         light,
+                        applied_rgb_color,
+                        current_rgb_color,
                     )
                     changed = True
                     break
@@ -941,7 +950,7 @@ class TurnOnOffListener:
             ATTR_COLOR_TEMP in service_data and ATTR_COLOR_TEMP not in attributes
         ):
             # Light switched from RGB mode to color_temp or visa versa
-            _LOGGER.error(
+            _LOGGER.debug(
                 "'%s' switched from RGB mode to color_temp or visa versa",
                 light,
             )
@@ -971,8 +980,7 @@ class TurnOnOffListener:
         id_on_to_off = on_to_off_event.context.id
 
         turn_off_event = self.turn_off_event.get(entity_id)
-        id_turn_off = turn_off_event.context.id  # TODO: can be none
-        transition = turn_off_event.data[ATTR_SERVICE_DATA].get(ATTR_TRANSITION)
+        transition = turn_off_event.data.get(ATTR_SERVICE_DATA, {}).get(ATTR_TRANSITION)
 
         turn_on_event = self.turn_on_event.get(entity_id)
         id_turn_on = turn_on_event.context.id
@@ -984,7 +992,8 @@ class TurnOnOffListener:
             return False
 
         if (
-            id_on_to_off == id_turn_off
+            turn_off_event is not None
+            and id_on_to_off == turn_off_event.context.id
             and id_on_to_off is not None
             and transition is not None  # 'turn_off' is called with transition=...
         ):
