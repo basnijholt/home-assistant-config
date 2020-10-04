@@ -52,11 +52,13 @@
         platform: event
         event_type: ios.notification_action_fired
     - variables:
-        event: "{{ wait.trigger.event.data.actionName.split('SET_SLEEP_MODE_')[1].lower() }}"
+        event: "{{ wait.trigger.event.data.actionName }}"
+    - condition: template
+      value_template: "{{ event.startswith('SET_SLEEP_MODE_') }}"
     - service: input_select.select_option
       data:
         entity_id: input_select.sleep_mode
-        option: "{{ event }}"
+        option: "{{ event.split('SET_SLEEP_MODE_')[1].lower() }}"
 
 - alias: "Apple Watch: temperature report"
   mode: parallel
@@ -74,4 +76,4 @@
           Living room: {{ states('sensor.temperature_living_room') }}°C
           Hall: {{ states('sensor.temperature_hall') }}°C
           Thermostat: {{ state_attr('climate.thermostat', 'temperature') }}°C
-          Outside: {{ state_attr('weather.huis', 'temperature') }}°C
+          Outside: {{ state_attr('weather.huis', 'temperature') }}°C and it's {{ states('weather.huis') }}
