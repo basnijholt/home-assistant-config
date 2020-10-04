@@ -47,6 +47,42 @@ push:
         - identifier: SET_SLEEP_MODE_TOTAL
           title: Total
 
+    - name: Set lights
+      identifier: set_lights
+      actions:
+        - identifier: LIGHTS_ALL
+          title: All
+        - identifier: LIGHTS_BEDROOM
+          title: Bedroom
+        - identifier: LIGHTS_LIVING_ROOM
+          title: Living room
+        - identifier: LIGHTS_BATHROOM
+          title: Bathroom
+        - identifier: LIGHTS_HALL_AND_STAIRS
+          title: Hall and stairs
+        - identifier: LIGHTS_TOILET
+          title: Toilet
+        - identifier: LIGHTS_KITCHEN
+          title: Kitchen
+
+    - name: Light options
+      identifier: light_options
+      actions:
+        - identifier: "OFF"
+          title: "Off"
+        - identifier: "ON"
+          title: "On"
+        - identifier: FIFTY
+          title: "50%"
+        - identifier: HUNDRED
+          title: "100%"
+        - identifier: ONE
+          title: "1%"
+        - identifier: WHITE
+          title: White lights
+        - identifier: COZY
+          title: Cozy lights
+
 actions:
   - name: Play TV
     background_color: "#000000"
@@ -55,15 +91,6 @@ actions:
       color: "#ff0000"
     icon:
       icon: play-pause
-      color: "#ffffff"
-
-  - name: Half sleep mode
-    background_color: "#000000"
-    label:
-      text: "Half sleep mode"
-      color: "#ff0000"
-    icon:
-      icon: sleep
       color: "#ffffff"
 
   - name: Set sleep mode
@@ -82,4 +109,13 @@ actions:
       color: "#ff0000"
     icon:
       icon: temperature-celsius
+      color: "#ffffff"
+
+  - name: Set lights
+    background_color: "#000000"
+    label:
+      text: "Set lights"
+      color: "#ff0000"
+    icon:
+      icon: lamp
       color: "#ffffff"
