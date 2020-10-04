@@ -10,12 +10,13 @@
 #- from github.com/basnijholt/home-assistant-config
 default: warning
 logs:
-  homeassistant.core: warning
+  # homeassistant.core: debug
   # custom_components.kef_custom: debug
   # custom_components.aiokef: debug
   # aiokef: debug
-  # homeassistant.component.opentherm_gw: warning
+  # homeassistant.component.miflora: debug
   # pyotgw: warning
   # custom_components.derivative_custom: debug
-  custom_components.pyscript: debug
-  custom_components.circadian_lighting: debug
+  # custom_components.pyscript: debug
+  # custom_components.circadian_lighting: debug
+  custom_components.adaptive_lighting: debug
