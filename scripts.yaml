@@ -340,7 +340,7 @@ fix_sound:
       data:
         button: ENTER  # enter into "All settings"
     - delay:
-        milliseconds: 1000
+        milliseconds: 1500
     - service: webostv.button
       entity_id: media_player.tv
       data:
