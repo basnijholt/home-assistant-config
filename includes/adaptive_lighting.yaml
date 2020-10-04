@@ -15,6 +15,7 @@
   min_color_temp: 2000
   interval: 30
   prefer_rgb_color: true
+  detect_non_ha_changes: true
 
 - name: default
   lights:
@@ -33,6 +34,7 @@
   min_color_temp: 2000
   interval: 30
   prefer_rgb_color: true
+  detect_non_ha_changes: true
 
 - name: default bed
   lights:
@@ -43,6 +45,7 @@
   min_color_temp: 2000
   interval: 30
   prefer_rgb_color: true
+  detect_non_ha_changes: true
 
 - name: half and dim
   lights:
@@ -55,6 +58,7 @@
   min_color_temp: 2000
   interval: 30
   prefer_rgb_color: true
+  detect_non_ha_changes: true
 
 - name: half and dim bed
   lights:
@@ -65,6 +69,7 @@
   min_color_temp: 2000
   interval: 30
   prefer_rgb_color: true
+  detect_non_ha_changes: true
 
 - name: half and full
   lights:
@@ -78,3 +83,4 @@
   min_color_temp: 2000
   interval: 30
   prefer_rgb_color: true
+  detect_non_ha_changes: true
