@@ -149,13 +149,6 @@
           sequence:
             service: script.cozy_lights_bedroom
 
-    - service: system_log.write
-      data:
-        message: '{{option}}'
-        level: error
-        logger: mycomponent.myplatform
-
-
 - alias: "Apple Watch: temperature report"
   mode: parallel
   trigger:
