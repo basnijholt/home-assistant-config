@@ -16,7 +16,7 @@
     sleep_mode: "{{ trigger.to_state.state }}"
   action:
     choose:
-      - conditions: "{{ sleep_mode == 'off' }}" 
+      - conditions: "{{ sleep_mode == 'off' }}"
         sequence:
           - service: switch.turn_on
             entity_id:
@@ -48,7 +48,7 @@
               # sleep_modes
               - switch.adaptive_lighting_sleep_mode_half_and_full
 
-      - conditions: "{{ sleep_mode == 'total' }}" 
+      - conditions: "{{ sleep_mode == 'total' }}"
         sequence:
           - service: switch.turn_on
             entity_id:

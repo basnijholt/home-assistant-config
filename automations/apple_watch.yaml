@@ -83,7 +83,7 @@
       continue_on_timeout: false
     - variables:
         light: >
-          {{ 
+          {{
             {'LIGHTS_ALL': 'all',
              'LIGHTS_BEDROOM': 'light.bedroom_lights',
              'LIGHTS_LIVING_ROOM': 'light.living_room_lights',
@@ -108,46 +108,46 @@
     - variables:
         option: "{{ wait.trigger.event.data.actionName }}"
     - choose:
-      - conditions: "{{ option == 'OFF' }}"
-        sequence:
-          service: light.turn_off
-          data:
-            entity_id: "{{ light }}"
-      - conditions: "{{ option == 'ON' }}"
-        sequence:
-          service: light.turn_on
-          data:
-            entity_id: "{{ light }}"
-      - conditions: "{{ option == 'FIFTY' }}"
-        sequence:
-          service: light.turn_on
-          data:
-            entity_id: "{{ light }}"
-            brightness_pct: 50
-      - conditions: "{{ option == 'HUNDRED' }}"
-        sequence:
-          service: light.turn_on
-          data:
-            entity_id: "{{ light }}"
-            brightness_pct: 100
-      - conditions: "{{ option == 'ONE' }}"
-        sequence:
-          service: light.turn_on
-          data:
-            entity_id: "{{ light }}"
-            brightness_pct: 1
-      - conditions: "{{ option == 'WHITE' and light == 'light.living_room_lights'}}"
-        sequence:
-          service: script.white_lights_living_room
-      - conditions: "{{ option == 'WHITE' and light == 'light.bedroom_lights'}}"
-        sequence:
-          service: script.white_lights_living_room
-      - conditions: "{{ option == 'COZY' and light == 'light.living_room_lights'}}"
-        sequence:
-          service: script.cozy_lights_living_room
-      - conditions: "{{ option == 'COZY' and light == 'light.bedroom_lights'}}"
-        sequence:
-          service: script.cozy_lights_bedroom
+        - conditions: "{{ option == 'OFF' }}"
+          sequence:
+            service: light.turn_off
+            data:
+              entity_id: "{{ light }}"
+        - conditions: "{{ option == 'ON' }}"
+          sequence:
+            service: light.turn_on
+            data:
+              entity_id: "{{ light }}"
+        - conditions: "{{ option == 'FIFTY' }}"
+          sequence:
+            service: light.turn_on
+            data:
+              entity_id: "{{ light }}"
+              brightness_pct: 50
+        - conditions: "{{ option == 'HUNDRED' }}"
+          sequence:
+            service: light.turn_on
+            data:
+              entity_id: "{{ light }}"
+              brightness_pct: 100
+        - conditions: "{{ option == 'ONE' }}"
+          sequence:
+            service: light.turn_on
+            data:
+              entity_id: "{{ light }}"
+              brightness_pct: 1
+        - conditions: "{{ option == 'WHITE' and light == 'light.living_room_lights'}}"
+          sequence:
+            service: script.white_lights_living_room
+        - conditions: "{{ option == 'WHITE' and light == 'light.bedroom_lights'}}"
+          sequence:
+            service: script.white_lights_living_room
+        - conditions: "{{ option == 'COZY' and light == 'light.living_room_lights'}}"
+          sequence:
+            service: script.cozy_lights_living_room
+        - conditions: "{{ option == 'COZY' and light == 'light.bedroom_lights'}}"
+          sequence:
+            service: script.cozy_lights_bedroom
 
     - service: system_log.write
       data:

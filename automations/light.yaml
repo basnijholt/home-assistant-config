@@ -92,7 +92,7 @@
   condition:
     condition: state
     entity_id: binary_sensor.activity_in_bathroom
-    state:  "on"
+    state: "on"
   action:
     service: pyscript.set_state
     data:
