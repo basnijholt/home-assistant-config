@@ -218,9 +218,12 @@ def _supported_features(hass, light: str):
     return {key for key, value in _SUPPORT_OPTS.items() if supported_features & value}
 
 
-def abs_rel_diff(a, b):
+def abs_rel_diff(val_a, val_b):
     """Absolute relative difference in %."""
-    return abs((a - b) / b) * 100
+    if val_b == 0:
+        # To avoid ZeroDivisionError
+        val_b = 1e-6
+    return abs((val_a - val_b) / val_b) * 100
 
 
 class AdaptiveSwitch(SwitchEntity, RestoreEntity):
@@ -382,9 +385,6 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             return {key: None for key in self._settings}
         return self._settings
 
-    def _reset_take_over_control(self):
-        self.turn_on_off_listener.reset(*self._lights)
-
     async def async_turn_on(  # pylint: disable=arguments-differ
         self, adapt_lights: bool = True
     ) -> None:
@@ -395,7 +395,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         if self.is_on:
             return
         self._state = True
-        self._reset_take_over_control()
+        self.turn_on_off_listener.reset(*self._lights)
         await self._setup_listeners()
         if adapt_lights:
             await self._update_attrs_and_maybe_adapt_lights(
@@ -408,7 +408,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             return
         self._state = False
         self._remove_listeners()
-        self._reset_take_over_control()
+        self.turn_on_off_listener.reset(*self._lights)
 
     async def _async_update_at_interval(self, now=None) -> None:
         await self._update_attrs_and_maybe_adapt_lights(force=False)
@@ -467,6 +467,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
                 self._adapt_brightness,
                 self._adapt_color_temp,
                 self._adapt_rgb_color,
+                self.__context,
             )
         ):
             return
@@ -516,7 +517,6 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
                 continue
             if (
                 self._take_over_control
-                and False  # XXX: remove this!
                 and self.turn_on_off_listener.is_manually_controlled(
                     light,
                     force,
@@ -535,7 +535,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         if not match_state_event(event, ("on", "off")):
             return
         _LOGGER.debug("%s: _sleep_state_event, event: '%s'", self._name, event)
-        self._reset_take_over_control()
+        self.turn_on_off_listener.reset(*self._lights)
         await self._update_attrs_and_maybe_adapt_lights(
             transition=self._initial_transition, force=True
         )
@@ -553,6 +553,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             _LOGGER.debug(
                 "%s: Detected an 'off' → 'on' event for '%s'", self._name, entity_id
             )
+            self.turn_on_off_listener.reset(entity_id)
             # Tracks 'off' → 'on' state changes
             self._off_to_on_event[entity_id] = event
             lock = self._locks.get(entity_id)
@@ -868,7 +869,13 @@ class TurnOnOffListener:
         return manually_controlled
 
     async def significant_change(
-        self, light, adapt_brightness, adapt_color_temp, adapt_rgb_color, threshold=5
+        self,
+        light,
+        adapt_brightness,
+        adapt_color_temp,
+        adapt_rgb_color,
+        context,
+        threshold=5,
     ):
         """Has the light made a significant change since last update.
 
@@ -886,6 +893,7 @@ class TurnOnOffListener:
             SERVICE_UPDATE_ENTITY,
             {ATTR_ENTITY_ID: light},
             blocking=True,
+            context=context,
         )
         attributes = self.hass.states.get(light).attributes
         if (
@@ -896,7 +904,7 @@ class TurnOnOffListener:
             applied_brightness = round(255 * service_data[ATTR_BRIGHTNESS_PCT] / 100)
             current_brightness = attributes["brightness"]
             if abs_rel_diff(current_brightness, applied_brightness) > threshold:
-                _LOGGER.debug("Brightness of '%s' significantly changed", light)
+                _LOGGER.error("Brightness of '%s' significantly changed", light)
                 changed = True
 
         if (
@@ -907,7 +915,7 @@ class TurnOnOffListener:
             applied_color_temp = service_data[ATTR_COLOR_TEMP]
             current_color_temp = attributes[ATTR_COLOR_TEMP]
             if abs_rel_diff(current_color_temp, applied_color_temp) > threshold:
-                _LOGGER.debug(
+                _LOGGER.error(
                     "Color temperature of '%s' significantly changed",
                     light,
                 )
@@ -922,7 +930,7 @@ class TurnOnOffListener:
             current_rgb_color = attributes[ATTR_RGB_COLOR]
             for col_applied, col_current in zip(applied_rgb_color, current_rgb_color):
                 if abs_rel_diff(col_applied, col_current) > threshold:
-                    _LOGGER.debug(
+                    _LOGGER.error(
                         "color RGB of '%s' significantly changed",
                         light,
                     )
@@ -933,7 +941,7 @@ class TurnOnOffListener:
             ATTR_COLOR_TEMP in service_data and ATTR_COLOR_TEMP not in attributes
         ):
             # Light switched from RGB mode to color_temp or visa versa
-            _LOGGER.debug(
+            _LOGGER.error(
                 "'%s' switched from RGB mode to color_temp or visa versa",
                 light,
             )
