@@ -82,6 +82,24 @@
       entity_id: light.ceiling_bathroom
       transition: 1
 
+# XXX: test if this works!
+- alias: "Light: reset motion sensor"
+  trigger:
+    platform: state
+    entity_id: light.ceiling_bathroom
+    from: "on"
+    to: "off"
+  condition:
+    condition: state
+    entity_id: binary_sensor.activity_in_bathroom
+    state:  "on"
+  action:
+    service: pyscript.set_state
+    data:
+      entity_id: "binary_sensor.activity_in_bathroom"
+      value: "off"
+
+
 #  _____     _ _      _
 # |_   _|__ (_) | ___| |_
 #   | |/ _ \| | |/ _ \ __|
