@@ -23,13 +23,15 @@ from dateutil.parser import isoparse, parse
 
 import hassapi as hass
 
-DEFAULT_TO_WATCH = "media_player.sleep_mode"
+DEFAULT_TO_WATCH = "input_boolean.sleep_mode"
+DEFAULT_TO_WATCH_STATE = "on"
 DEFAULT_FROM_TIME = "19:00"
 DEFAULT_TO_TIME = "02:00"
 DEFAULT_RESULT_SENSOR = "sensor.average_sleep_time"
 
 DEFAULTS = {
     "to_watch": DEFAULT_TO_WATCH,
+    "to_watch_state": DEFAULT_TO_WATCH_STATE,
     "from_time": DEFAULT_FROM_TIME,
     "to_time": DEFAULT_TO_TIME,
     "result_senor": DEFAULT_RESULT_SENSOR,
@@ -65,13 +67,14 @@ def mean_time(times):
 class AverageTime(hass.Hass):
     def initialize(self):
         self.to_watch = self.args.get("to_watch", DEFAULT_TO_WATCH)
+        self.to_watch_state = self.args.get("to_watch_state", DEFAULT_TO_WATCH_STATE)
         self.from_time = parse(self.args.get("from_time", DEFAULT_TO_WATCH)).time()
         self.to_time = parse(self.args.get("to_time", DEFAULT_TO_WATCH)).time()
         self.result_sensor = self.args.get("result_sensor", DEFAULT_RESULT_SENSOR)
         self.tz = tz.gettz("Europe/Amsterdam")
 
         # Update every time the sensor is updated
-        self.listen_state(self.start_cb, self.to_watch, new="on")
+        self.listen_state(self.start_cb, self.to_watch, new=self.to_watch_state)
         # And update once this app is started
         self.start()
 
@@ -91,7 +94,9 @@ class AverageTime(hass.Hass):
         start_of_today = datetime.datetime.now().replace(hour=0, minute=0, second=0)
         start = start_of_today - datetime.timedelta(days=days_ago)
         hist = self.get_history(entity_id=self.to_watch, start_time=start)
-        hist_filtered = [entry for entry in hist[0] if entry["state"] == "on"]
+        if len(hist) == 0:
+            return []
+        hist_filtered = [entry for entry in hist[0] if entry["state"] == self.to_watch_state]
         times = [
             isoparse(entry["last_changed"]).astimezone(self.tz).time()
             for entry in hist_filtered

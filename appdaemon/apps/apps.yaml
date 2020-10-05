@@ -82,7 +82,8 @@ battery_monitor:
 average_bed_time:
   module: average_time
   class: AverageTime
-  to_watch: input_boolean.sleep_mode
+  to_watch: input_select.sleep_mode
+  to_watch_state: total
   result_senor: sensor.average_sleep_time
   from_time: "21:30"
   to_time: "02:00"
