@@ -221,15 +221,15 @@
       {% else %}
         marcella
       {% endif %}
-    other_person: >
-      {% if phone == 'basnijholt' %}Marcella{% else %}Bas{% endif %}
+    other_person: "{% if phone == 'basnijholt' %}Marcella{% else %}Bas{% endif %}"
+    device_tracker: "device_tracker.{{ other_person }}_iphone"
   action:
     service: "notify.mobile_app_{{ phone }}_iphone"
     data:
-      message: "{{ other_person }} is {{ distance('person.bas', 'person.marcella') | round(2) }} km away"
+      message: "{{ other_person }} is {{ distance('device_tracker.basnijholt_iphone', 'device_tracker.marcella_iphone') | round(2) }} km away"
       data:
         push:
           category: map
         action_data:
-          latitude: "{{ state_attr('person.marcella', 'latitude') }}"
-          longitude: "{{ state_attr('person.marcella', 'longitude') }}"
+          latitude: "{{ state_attr(device_tracker, 'latitude') }}"
+          longitude: "{{ state_attr(device_tracker, 'longitude') }}"

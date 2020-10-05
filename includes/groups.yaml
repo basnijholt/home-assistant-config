@@ -29,8 +29,8 @@ iphone_bas:
   - sensor.basnijholt_iphone_sim_1
   - sensor.basnijholt_iphone_ssid
   - sensor.basnijholt_iphone_steps
-  - device_tracker.basnijholt_iphone_2
-  - device_tracker.basnijholt_iphone_3
+  - device_tracker.basnijholt_iphone
+  - device_tracker.basnijholt_iphone_router
 
 iphone_marcella:
   - sensor.marcella_iphone_activity

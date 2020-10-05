@@ -13,9 +13,7 @@
   user_id: 13984b139dd9426ca31369725c9e23e0
   picture: !secret profile_photo_bas
   device_trackers:
-    - device_tracker.basnijholt_iphone_2 # from old iOS app, I cannot remove this entity...
-    - device_tracker.basnijholt_iphone_3 # from iOS app
-    - device_tracker.basnijholt_iphone
+    - device_tracker.basnijholt_iphone # from iOS app
     - device_tracker.bas_iphone_ping
 - name: Marcella
   id: marcella
