@@ -12,9 +12,6 @@
   lights:
     - light.living_room_lights
   min_brightness: 70
-  take_over_control: true
-  min_color_temp: 2000
-  interval: 30
   prefer_rgb_color: true
   detect_non_ha_changes: true
 
@@ -31,9 +28,6 @@
     - light.stairs_lights
     - light.hall_lights
   min_brightness: 70
-  take_over_control: true
-  min_color_temp: 2000
-  interval: 30
   prefer_rgb_color: true
   detect_non_ha_changes: true
 
@@ -42,9 +36,6 @@
     - light.bed_led
   sleep_brightness: 20
   min_brightness: 70
-  take_over_control: true
-  min_color_temp: 2000
-  interval: 30
   prefer_rgb_color: true
   detect_non_ha_changes: true
 
@@ -55,9 +46,6 @@
     - light.hall_2
     - light.hall_3
   min_brightness: 70
-  take_over_control: true
-  min_color_temp: 2000
-  interval: 30
   prefer_rgb_color: true
   detect_non_ha_changes: true
 
@@ -66,9 +54,6 @@
     - light.bed_led
   sleep_brightness: 20
   min_brightness: 70
-  take_over_control: true
-  min_color_temp: 2000
-  interval: 30
   prefer_rgb_color: true
   detect_non_ha_changes: true
 
@@ -80,8 +65,5 @@
     - light.stairs_down
     - light.hall_1
   min_brightness: 70
-  take_over_control: true
-  min_color_temp: 2000
-  interval: 30
   prefer_rgb_color: true
   detect_non_ha_changes: true
