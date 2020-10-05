@@ -214,15 +214,19 @@
     event_type: ios.action_fired
     event_data:
       actionName: Where is
-  action:
-    service: >
+  variables:
+    phone: >
       {% if trigger.event.data.sourceDeviceName == 'basnijholt-iphone' %}
-        notify.mobile_app_basnijholt_iphone
+        basnijholt
       {% else %}
-        notify.mobile_app_marcella_iphone
+        marcella
       {% endif %}
+    other_person: >
+      {% if phone == 'basnijholt' %}Marcella{% else %}Bas{% endif %}
+  action:
+    service: "notify.mobile_app_{{ phone }}_iphone"
     data:
-      message: Here!
+      message: "{{ other_person }} is {{ distance('person.bas', 'person.marcella') | round(2) }} km away"
       data:
         push:
           category: map
