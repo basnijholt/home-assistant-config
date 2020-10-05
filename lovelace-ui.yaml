@@ -1920,11 +1920,13 @@ views:
   - entities:
     - switch.adaptive_lighting_default
     - switch.adaptive_lighting_default_bed
+    - switch.adaptive_lighting_living_room
     - switch.adaptive_lighting_half_and_dim
     - switch.adaptive_lighting_half_and_dim_bed
     - switch.adaptive_lighting_half_and_full
     - switch.adaptive_lighting_sleep_mode_default
     - switch.adaptive_lighting_sleep_mode_default_bed
+    - switch.adaptive_lighting_sleep_mode_living_room
     - switch.adaptive_lighting_sleep_mode_half_and_dim
     - switch.adaptive_lighting_sleep_mode_half_and_dim_bed
     - switch.adaptive_lighting_sleep_mode_half_and_full
