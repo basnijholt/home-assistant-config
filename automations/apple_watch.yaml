@@ -22,17 +22,20 @@
     service: media_player.media_play_pause
     entity_id: media_player.tv
 
-- alias: "Apple Watch: One person goes to sleep"
+- alias: "Apple Watch: minimal lights bedroom"
   trigger:
     platform: event
     event_type: ios.action_fired
     event_data:
-      actionName: Half sleep mode
+      actionName: Minimal lights bedroom
   action:
-    service: input_select.select_option
+    service: light.turn_on
     data:
-      entity_id: input_select.sleep_mode
-      option: "half"
+      entity_id:
+        - light.philips_go
+        - light.bed_led
+      brightness: 1
+      color_name: red
 
 - alias: "Apple Watch: set sleep mode"
   mode: parallel

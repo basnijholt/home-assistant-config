@@ -119,3 +119,12 @@ actions:
     icon:
       icon: lamp
       color: "#ffffff"
+
+  - name: Minimal lights bedroom
+    background_color: "#000000"
+    label:
+      text: "Minimal lights bedroom"
+      color: "#ff0000"
+    icon:
+      icon: lamp
+      color: "#ffffff"
