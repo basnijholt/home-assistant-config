@@ -83,11 +83,29 @@ push:
         - identifier: COZY
           title: Cozy lights
 
+    - name: Vacuum locations
+      identifier: vacuum_locations
+      actions:
+        - identifier: living_room
+          title: Living room
+        - identifier: bedroom
+          title: Bedroom
+        - identifier: office
+          title: Office
+        - identifier: hall
+          title: Hall
+        - identifier: kitchen
+          title: Kitchen
+        - identifier: all
+          title: All
+        - identifier: stop
+          title: Stop and return
+
 actions:
   - name: Play TV
     background_color: "#000000"
     label:
-      text: "Play/pause TV"
+      text: Play/pause TV
       color: "#ff0000"
     icon:
       icon: play-pause
@@ -96,7 +114,7 @@ actions:
   - name: Set sleep mode
     background_color: "#000000"
     label:
-      text: "Set sleep mode"
+      text: Set sleep mode
       color: "#ff0000"
     icon:
       icon: sleep
@@ -105,7 +123,7 @@ actions:
   - name: Temperature report
     background_color: "#000000"
     label:
-      text: "Temperature report"
+      text: Temperature report
       color: "#ff0000"
     icon:
       icon: temperature-celsius
@@ -114,7 +132,7 @@ actions:
   - name: Set lights
     background_color: "#000000"
     label:
-      text: "Set lights"
+      text: Set lights
       color: "#ff0000"
     icon:
       icon: lamp
@@ -123,8 +141,26 @@ actions:
   - name: Minimal lights bedroom
     background_color: "#000000"
     label:
-      text: "Minimal lights bedroom"
+      text: Minimal lights bedroom
       color: "#ff0000"
     icon:
       icon: lamp
+      color: "#ffffff"
+
+  - name: Vacuum
+    background_color: "#000000"
+    label:
+      text: Vacuum
+      color: "#ff0000"
+    icon:
+      icon: robot-vacuum
+      color: "#ffffff"
+
+  - name: Where is
+    background_color: "#000000"
+    label:
+      text: Where is
+      color: "#ff0000"
+    icon:
+      icon: map-marker
       color: "#ffffff"

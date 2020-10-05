@@ -504,3 +504,63 @@ utility_notification:
       data:
         title: "Utilities"
         message: "{{ friendly_name }} is done after {{ minutes }} minutes and it used {{ total_kwh_rounded }} kWh (€{{ price }}) {{ emojis }}"
+
+vacuum_command:
+  alias: Vacuum living room
+  icon: mdi:robot-vacuum
+  fields:
+    option:
+      description: living_room, bedroom, office, hall, kitchen, all, or stop
+      example: living_room
+  sequence:
+    choose:
+      # living_room
+      - conditions: "{{ option == 'living_room' }}"
+        sequence:
+          service: vacuum.send_command
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            command: app_zoned_clean
+            params: [[29706, 27237, 34806, 31137, 1]]
+      # bedroom
+      - conditions: "{{ option == 'bedroom' }}"
+        sequence:
+          service: vacuum.send_command
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            command: app_zoned_clean
+            params: [[22799, 27340, 27649, 31240, 1]]
+      # office
+      - conditions: "{{ option == 'office' }}"
+        sequence:
+          service: vacuum.send_command
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            command: app_zoned_clean
+            params: [[22803, 25150, 26353, 27250, 1]]
+      # hall
+      - conditions: "{{ option == 'hall' }}"
+        sequence:
+          service: vacuum.send_command
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            command: app_zoned_clean
+            params: [[26379, 26239, 31929, 27189, 1]]
+      # kitchen
+      - conditions: "{{ option == 'kitchen' }}"
+        sequence:
+          service: vacuum.send_command
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            command: app_zoned_clean
+            params: [[31941, 25364, 34791, 27164, 1]]
+      # all
+      - conditions: "{{ option == 'all' }}"
+        sequence:
+          service: vacuum.start
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      # stop
+      - conditions: "{{ option == 'stop' }}"
+        sequence:
+          service: vacuum.return_to_base
+          entity_id: vacuum.xiaomi_vacuum_cleaner
