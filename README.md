@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-0.116.0b2%20-darkblue)](https://github.com/home-assistant/core/releases/tag/0.116.0b2)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-0.116.0b3%20-darkblue)](https://github.com/home-assistant/core/releases/tag/0.116.0b3)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -484,34 +484,34 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 [^ toc](#automations---table-of-content)
 
 
-## [Apple Watch ⌚](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml)
-### [Play or Pause the TV](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml#L11)
+## [Apple Watch ⌚](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml)
+### [Play or Pause the TV](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml#L11)
 
 
-### [Minimal lights bedroom](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml#L25)
+### [Minimal lights bedroom](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml#L25)
 
 
-### [Set sleep mode](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml#L40)
+### [Set sleep mode](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml#L40)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Set lights](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml#L70)
+### [Set lights](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml#L70)
 
   *which uses:*
   - [script.cozy_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/scripts.yaml#L132)
   - [script.cozy_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/scripts.yaml#L94)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/scripts.yaml#L182)
 
-### [Temperature report](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml#L161)
+### [Temperature report](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml#L161)
 
 
-### [Send vacuum cleaner](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml#L181)
+### [Send vacuum cleaner](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml#L181)
 
   *which uses:*
   - [script.vacuum_command](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/scripts.yaml#L508)
 
-### [Where is other person?](https://github.com/basnijholt/home-assistant-config/blob/4eb941c30090c382c8dc074a3d013d7c8d1a94cf/automations/apple_watch.yaml#L210)
+### [Where is other person?](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/automations/apple_watch.yaml#L210)
 
 
 [^ toc](#automations---table-of-content)
@@ -955,7 +955,7 @@ to "Opt".
 
   *which uses:*
   - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L19)
-  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/2a719a3aacdb94f8de015aa4a9ec9efbcb9510b5/includes/groups.yaml#L11)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/includes/groups.yaml#L11)
 
 ### [Sound alarm after notification](https://github.com/basnijholt/home-assistant-config/blob/2545c32e979971142fb713855491a97c8757d01c/automations/security.yaml#L33)
 
@@ -1067,14 +1067,14 @@ to "Opt".
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L19)
-  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/2a719a3aacdb94f8de015aa4a9ec9efbcb9510b5/includes/groups.yaml#L11)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/includes/groups.yaml#L11)
 
 ### [Auto turn off](https://github.com/basnijholt/home-assistant-config/blob/585f51eecf4aef718381047225b29f960fd2751b/automations/vacation_mode.yaml#L31)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L19)
-  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/2a719a3aacdb94f8de015aa4a9ec9efbcb9510b5/includes/groups.yaml#L11)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/includes/groups.yaml#L11)
 
 [^ toc](#automations---table-of-content)
 
@@ -1100,7 +1100,7 @@ to "Opt".
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/6ed0cd6c2c3675e9c4a3d9d8771348c148545a3d/includes/input_booleans.yaml#L19)
   - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/afdcbd11dc789c6fa6a07e948304fcc65326ef6e/includes/binary_sensors.yaml#L131)
-  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/2a719a3aacdb94f8de015aa4a9ec9efbcb9510b5/includes/groups.yaml#L11)
+  - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/includes/groups.yaml#L11)
 
 ### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/vacuum.yaml#L89)
 
