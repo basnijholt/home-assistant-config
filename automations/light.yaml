@@ -237,6 +237,19 @@
     entity_id: input_boolean.automatic_bedroom_lights
     service: input_boolean.turn_on
 
+- alias: "Light: turn off bedroom after 2 hours of inactivity"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_bedroom
+    from: "off"
+    to: "on"
+    for: "02:00:00"
+  condition: "{{ is_state('light.bedroom_lights', 'on') }}"
+  action:
+    service: light.turn_off
+    data:
+      entity_id: light.bedroom_lights
+
 #  _____      _                    _               _
 # | ____|_  _| |_ _ __ __ _    ___| |__   ___  ___| | _____
 # |  _| \ \/ / __| '__/ _` |  / __| '_ \ / _ \/ __| |/ / __|
