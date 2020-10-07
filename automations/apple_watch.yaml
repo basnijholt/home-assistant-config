@@ -205,7 +205,7 @@
         location: "{{ wait.trigger.event.data.actionName }}"
     - service: script.vacuum_command
       data:
-        option: "{{ location }}"
+        option: "{{ location.lower() }}"
 
 - alias: "Apple Watch: where is other person?"
   mode: parallel
