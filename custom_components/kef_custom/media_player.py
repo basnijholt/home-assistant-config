@@ -245,9 +245,9 @@ class KefMediaPlayer(MediaPlayerEntity):
                 state = await self._speaker.get_state()
                 self._source = state.source
                 self._state = STATE_ON if state.is_on else STATE_OFF
-                if self._dsp is None:
-                    # Only do this when necessary because it is a slow operation
-                    await self.update_dsp()
+                # if self._dsp is None:
+                #     # Only do this when necessary because it is a slow operation
+                #     await self.update_dsp()
             else:
                 self._muted = None
                 self._source = None
@@ -365,6 +365,7 @@ class KefMediaPlayer(MediaPlayerEntity):
 
     async def update_dsp(self, _=None) -> None:
         """Update the DSP settings."""
+        return
         if self._speaker_type == "LS50" and self._state == STATE_OFF:
             # The LSX is able to respond when off the LS50 has to be on.
             return
