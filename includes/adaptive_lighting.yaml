@@ -44,7 +44,11 @@
 
 - name: half and dim
   lights:
-    - light.bedroom_lights
+    - light.philips_go
+    - light.bamboo
+    - light.ceiling_bedroom
+    - light.lampan
+    - light.bed_reading
     - light.ceiling_bathroom
     - light.hall_2
     - light.hall_3
