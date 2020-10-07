@@ -132,6 +132,9 @@
       entity_id: binary_sensor.openclose_front_door
       from: "off"
       to: "on"
+  condition: >
+    {{ is_state('light.stairs_lights', 'off')
+       and is_state('light.hall_lights', 'off') }}
   action:
     service: light.turn_on
     data:
