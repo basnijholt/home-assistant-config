@@ -114,6 +114,8 @@
               entity_id: light.sphere_2
           - service: media_player.turn_off
             entity_id: media_player.tv
+          - wait_template: "{{ is_state('media_player.tv', 'off') }}"
+            timeout: "00:00:30"
           - service: media_player.turn_off
             entity_id: media_player.kef_ls50
           - service: light.turn_off
