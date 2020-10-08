@@ -186,6 +186,7 @@ def get_emoji(title):
         "Rhasspy": "🤖",
         "Security": "👮🚨",
         "System": "🖥",
+        "Test": "🧪",
         "Utilities": "🧺👚🍽",
         "Vacation mode": "🏝",
         "Vacuum": "🧹",

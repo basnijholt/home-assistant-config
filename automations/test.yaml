@@ -1,0 +1,47 @@
+---
+#-
+#  _            _
+# | |_ ___  ___| |_
+# | __/ _ \/ __| __|
+# | ||  __/\__ \ |_
+#  \__\___||___/\__|
+#
+#
+#- from github.com/basnijholt/home-assistant-config
+- alias: "Test: print manually_controlled"
+  trigger:
+    - platform: state
+      entity_id: switch.adaptive_lighting_default
+      attribute: manually_controlled
+    - platform: state
+      entity_id: switch.adaptive_lighting_default_bed
+      attribute: manually_controlled
+    - platform: state
+      entity_id: switch.adaptive_lighting_living_room
+      attribute: manually_controlled
+    - platform: state
+      entity_id: switch.adaptive_lighting_half_and_dim
+      attribute: manually_controlled
+    - platform: state
+      entity_id: switch.adaptive_lighting_half_and_dim_bed
+      attribute: manually_controlled
+    - platform: state
+      entity_id: switch.adaptive_lighting_half_and_full
+      attribute: manually_controlled
+  variables:
+    entity_id: "{{ trigger.entity_id }}"
+    manually_controlled: "{{ state_attr(entity_id, 'manually_controlled') }}"
+  action:
+    - condition: template
+      value_template: "{{ manually_controlled != '[]' }}"
+    - condition: template
+      value_template: "{{ manually_controlled != 'None' }}"
+    - service: system_log.write
+      data:
+        message: "{{ manually_controlled }}"
+        level: error
+        logger: yolo.yolo
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: "{{ entity_id }} - manually_controlled"
+        message: "{{ manually_controlled }}"
