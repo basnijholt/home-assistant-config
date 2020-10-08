@@ -1001,7 +1001,6 @@ class TurnOnOffListener:
         if (
             new_state is not None
             and new_state.state == STATE_ON
-            and is_our_context(new_state.context)
         ):
             _LOGGER.debug(
                 "Detected a '%s' 'state_changed' event: '%s' with context.id='%s'",
@@ -1009,6 +1008,12 @@ class TurnOnOffListener:
                 new_state.attributes,
                 new_state.context.id,
             )
+
+        if (
+            new_state is not None
+            and new_state.state == STATE_ON
+            and is_our_context(new_state.context)
+        ):
             # It is possible to have multiple state change events with the same context.
             # This can happen because a `turn_on.light(brightness_pct=100, transition=30)`
             # event leads to an instant state change of
