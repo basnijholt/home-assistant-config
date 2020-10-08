@@ -1,4 +1,10 @@
 ((LitElement) => {
+    console.info(
+        '%c MULTIPLE-ENTITY-ROW %c 3.3.0 ',
+        'color: cyan; background: black; font-weight: bold;',
+        'color: darkblue; background: white; font-weight: bold;',
+    );
+
     const html = LitElement.prototype.html;
     const css = LitElement.prototype.css;
 
@@ -53,8 +59,13 @@
             flex: 0 0 40px;
             cursor: pointer;
           }
+          .icon-small {
+            width: auto;
+          }
+          .toggle {
+            margin-left: 8px;
+          }
           .entity {
-            margin-right: 16px;
             text-align: center;
             cursor: pointer;
           }
@@ -62,17 +73,27 @@
             font-size: 10px;
             color: var(--secondary-text-color);
           }
-          .entity:last-of-type {
+          .entities-row {
+            flex-direction: row;
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .entities-row .entity {
+            margin-right: 16px;
+          }
+          .entities-row .entity:last-of-type {
             margin-right: 0;
           }
-          .state {
-            min-width: 45px;
+          .entities-column {
+            flex-direction: column;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-evenly;
           }
-          .toggle {
-            margin-left: 8px;
-          }
-          .icon-small {
-            width: auto;
+          .entities-column .entity div {
+            display: inline-block;
+            vertical-align: middle;
           }`;
         }
 
@@ -89,12 +110,14 @@
                     ${this.state.name}
                     <div class="secondary">${this.renderSecondaryInfo()}</div>
                 </div>
-                ${this.state.entities.map(entity => this.renderEntity(entity))}
-                ${this.state.value ? html`
-                <div class="state entity" @click="${this.onStateClick}">
-                    ${this.stateHeader && html`<span>${this.stateHeader}</span>`}
-                    ${this.renderMainState()}
-                </div>` : null}
+                <div class="${this._config.column ? 'entities-column' : 'entities-row'}">
+                    ${this.state.entities.map(entity => this.renderEntity(entity))}
+                    ${this.state.value ? html`
+                    <div class="state entity" @click="${this.onStateClick}">
+                        ${this.stateHeader && html`<span>${this.stateHeader}</span>`}
+                        ${this.renderMainState()}
+                    </div>` : null}
+                </div>
             </div>`;
         }
 
@@ -265,7 +288,7 @@
                 }
                 const confirmation = config.confirmation === true ? 'Are you sure?' : config.confirmation;
                 if (config.action === 'call-service') {
-                    const [domain, service] = config.service.split(".");
+                    const [domain, service] = config.service.split('.');
                     return () => {
                         if (!confirmation || confirm(confirmation)) {
                             this._hass.callService(domain, service, config.service_data);
@@ -283,9 +306,16 @@
                 }
                 if (config.action === 'url') {
                     return () => {
-                        if (!confirmation || confirm(confirmation)) {
-                            const win = window.open(config.url_path, '_blank');
-                            if (win) win.focus();
+                        if (config.url_path && (!confirmation || confirm(confirmation))) {
+                            window.open(config.url_path);
+                        }
+                    }
+                }
+                if (config.action === 'navigate') {
+                    return () => {
+                        if (config.navigation_path && (!confirmation || confirm(confirmation))) {
+                            history.pushState(null, '', config.navigation_path);
+                            this.fireEvent(window, 'location-changed', {replace: false});
                         }
                     }
                 }
@@ -294,25 +324,25 @@
         }
 
         moreInfoAction(config, entityId) {
-            return () => this.fireEvent('hass-more-info', (config && config.entity) || entityId);
+            return () => this.fireEvent(this, 'hass-more-info', {entityId: (config && config.entity) || entityId});
         }
 
-        fireEvent(type, entity, options = {}) {
+        fireEvent(node, type, detail = {}, options = {}) {
             const event = new Event(type, {
                 bubbles: options.bubbles || true,
                 cancelable: options.cancelable || true,
                 composed: options.composed || true,
             });
-            event.detail = {entityId: entity};
-            this.dispatchEvent(event);
+            event.detail = detail;
+            node.dispatchEvent(event);
         }
 
         forwardHaptic(type) {
-            const event = new Event("haptic", {bubbles: true, cancelable: false, composed: true});
+            const event = new Event('haptic', {bubbles: true, cancelable: false, composed: true});
             event.detail = type;
             this.dispatchEvent(event);
         }
     }
 
     customElements.define('multiple-entity-row', MultipleEntityRow);
-})(window.LitElement || Object.getPrototypeOf(customElements.get('hui-view')));
+})(window.LitElement || Object.getPrototypeOf(customElements.get('hui-masonry-view') || customElements.get('hui-view')));
