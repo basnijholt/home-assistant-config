@@ -61,7 +61,7 @@
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
-        event: "{{ wait.trigger.event.data.actionName.split('SET_SLEEP_MODE_')[1].lower() }}"
+        event: "{{ wait.trigger.event.data.actionName.lower() }}"
     - service: input_select.select_option
       data:
         entity_id: input_select.sleep_mode
@@ -93,13 +93,13 @@
     - variables:
         light: >
           {{
-            {'LIGHTS_ALL': 'all',
-             'LIGHTS_BEDROOM': 'light.bedroom_lights',
-             'LIGHTS_LIVING_ROOM': 'light.living_room_lights',
-             'LIGHTS_BATHROOM': 'light.ceiling_bathroom',
-             'LIGHTS_HALL_AND_STAIRS': 'light.hall_lights,light.stairs_lights',
-             'LIGHTS_TOILET': 'light.toilet',
-             'LIGHTS_KITCHEN': 'light.kitchen_lights',
+            {'ALL': 'all',
+             'BEDROOM': 'light.bedroom_lights',
+             'LIVING_ROOM': 'light.living_room_lights',
+             'BATHROOM': 'light.ceiling_bathroom',
+             'HALL_AND_STAIRS': 'light.hall_lights,light.stairs_lights',
+             'TOILET': 'light.toilet',
+             'KITCHEN': 'light.kitchen_lights',
             }[wait.trigger.event.data.actionName] }}
     - service: "{{ iphone }}"
       data:
@@ -202,10 +202,10 @@
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
-        location: "{{ wait.trigger.event.data.actionName }}"
+        location: "{{ wait.trigger.event.data.actionName.lower() }}"
     - service: script.vacuum_command
       data:
-        option: "{{ location.lower() }}"
+        option: "{{ location }}"
 
 - alias: "Apple Watch: where is other person?"
   mode: parallel

@@ -40,29 +40,29 @@ push:
     - name: Set sleep mode
       identifier: set_sleep_mode
       actions:
-        - identifier: SET_SLEEP_MODE_OFF
+        - identifier: "OFF"
           title: "Off"
-        - identifier: SET_SLEEP_MODE_HALF
+        - identifier: HALF
           title: Half
-        - identifier: SET_SLEEP_MODE_TOTAL
+        - identifier: TOTAL
           title: Total
 
     - name: Set lights
       identifier: set_lights
       actions:
-        - identifier: LIGHTS_ALL
+        - identifier: ALL
           title: All
-        - identifier: LIGHTS_BEDROOM
+        - identifier: BEDROOM
           title: Bedroom
-        - identifier: LIGHTS_LIVING_ROOM
+        - identifier: LIVING_ROOM
           title: Living room
-        - identifier: LIGHTS_BATHROOM
+        - identifier: BATHROOM
           title: Bathroom
-        - identifier: LIGHTS_HALL_AND_STAIRS
+        - identifier: HALL_AND_STAIRS
           title: Hall and stairs
-        - identifier: LIGHTS_TOILET
+        - identifier: TOILET
           title: Toilet
-        - identifier: LIGHTS_KITCHEN
+        - identifier: KITCHEN
           title: Kitchen
 
     - name: Light options
@@ -86,19 +86,19 @@ push:
     - name: Vacuum locations
       identifier: vacuum_locations
       actions:
-        - identifier: living_room
+        - identifier: LIVING_ROOM
           title: Living room
-        - identifier: bedroom
+        - identifier: BEDROOM
           title: Bedroom
-        - identifier: office
+        - identifier: OFFICE
           title: Office
-        - identifier: hall
+        - identifier: HALL
           title: Hall
-        - identifier: kitchen
+        - identifier: KITCHEN
           title: Kitchen
-        - identifier: all
+        - identifier: ALL
           title: All
-        - identifier: stop
+        - identifier: STOP
           title: Stop and return
 
 actions:
