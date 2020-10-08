@@ -21,17 +21,9 @@ from homeassistant.components.homeassistant import (
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
     ATTR_BRIGHTNESS_PCT,
-    ATTR_BRIGHTNESS_STEP,
-    ATTR_BRIGHTNESS_STEP_PCT,
-    ATTR_COLOR_NAME,
     ATTR_COLOR_TEMP,
-    ATTR_EFFECT,
-    ATTR_HS_COLOR,
-    ATTR_KELVIN,
     ATTR_RGB_COLOR,
     ATTR_TRANSITION,
-    ATTR_WHITE_VALUE,
-    ATTR_XY_COLOR,
     DOMAIN as LIGHT_DOMAIN,
     SUPPORT_BRIGHTNESS,
     SUPPORT_COLOR,
@@ -131,25 +123,6 @@ RGB_CHANGE = 30  # ≈12% of total range per component
 
 # Keep a short domain version for the context instances (which can only be 36 chars)
 _DOMAIN_SHORT = "adapt_lgt"
-
-_DISABLE_ON = {
-    ATTR_BRIGHTNESS,
-    ATTR_BRIGHTNESS,
-    ATTR_BRIGHTNESS_PCT,
-    ATTR_BRIGHTNESS,
-    ATTR_BRIGHTNESS_STEP,
-    ATTR_BRIGHTNESS,
-    ATTR_BRIGHTNESS_STEP_PCT,
-    ATTR_BRIGHTNESS,
-    ATTR_COLOR_NAME,
-    ATTR_RGB_COLOR,
-    ATTR_XY_COLOR,
-    ATTR_HS_COLOR,
-    ATTR_COLOR_TEMP,
-    ATTR_KELVIN,
-    ATTR_WHITE_VALUE,
-    ATTR_EFFECT,
-}
 
 
 def _short_hash(string: str, length: int = 4) -> str:
@@ -651,7 +624,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         _LOGGER.debug(
             "%s: '_update_attrs_and_maybe_adapt_lights' called with context.id='%s'",
             self._name,
-            context,
+            context.id,
         )
         assert self.is_on
         self._settings = self._sun_light_settings.get_settings(
@@ -794,7 +767,6 @@ class AdaptiveSleepModeSwitch(SwitchEntity, RestoreEntity):
     async def async_added_to_hass(self) -> None:
         """Call when entity about to be added to hass."""
         last_state = await self.async_get_last_state()
-        # XXX: state isn't correctly restored!
         if last_state is None or STATE_OFF:  # newly added to HA
             await self.async_turn_off()
         else:
@@ -1093,18 +1065,6 @@ class TurnOnOffListener:
                 light,
                 turn_on_event.context.id,
             )
-        # if (
-        #     turn_on_event is not None
-        #     and not is_our_context(turn_on_event.context)
-        #     and any(_DISABLE_ON.intersection(turn_on_event.data[ATTR_SERVICE_DATA]))
-        # ):
-        #     # XXX: add comment
-        #     _LOGGER.debug(
-        #         "'light.turn_on' was called on '%s' with settings '%s' so we stop adapting",
-        #         light,
-        #         turn_on_event.data[ATTR_SERVICE_DATA],
-        #     )
-        #     manually_controlled = self.manually_controlled[light] = True
         return manually_controlled
 
     async def significant_change(
@@ -1130,7 +1090,7 @@ class TurnOnOffListener:
             SERVICE_UPDATE_ENTITY,
             {ATTR_ENTITY_ID: light},
             blocking=True,
-            context=self.create_context("update"),  # XXX: do I need this?
+            context=context,
         )
         new_state = self.hass.states.get(light)
         for index, old_state in enumerate(old_states):
