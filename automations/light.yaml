@@ -76,6 +76,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
+  condition: "{{ not is_state('light.ceiling_bathroom', trigger.to_state.state) }}"
   action:
     service: light.turn_{{ trigger.to_state.state }}
     data:
