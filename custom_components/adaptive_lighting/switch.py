@@ -998,10 +998,7 @@ class TurnOnOffListener:
             return
 
         new_state = event.data.get("new_state")
-        if (
-            new_state is not None
-            and new_state.state == STATE_ON
-        ):
+        if new_state is not None and new_state.state == STATE_ON:
             _LOGGER.debug(
                 "Detected a '%s' 'state_changed' event: '%s' with context.id='%s'",
                 entity_id,
