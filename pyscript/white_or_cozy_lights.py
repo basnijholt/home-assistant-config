@@ -1,3 +1,4 @@
+import statistics
 from homeassistant.const import EVENT_CALL_SERVICE
 
 def white_or_cozy(group_entity_id):
