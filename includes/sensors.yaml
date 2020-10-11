@@ -243,18 +243,24 @@
     hours_outside_per_day_marcella: # XXX: fails when returns "0m"
       friendly_name: Ten minutes before alarm
       value_template: >
-        {% set d, h, m = state_attr("sensor.quarantine_meter_marcella", "value").split() %}
+        {% set value = state_attr("sensor.quarantine_meter_marcella", "value") %}
+        {% if value != None %}
+        {% set d, h, m = value.split() %}
         {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
         {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
         {{ (hours_outside / 14) | round(1) }}
+        {% endif %}
 
     hours_outside_per_day_bas: # XXX: fails when returns "0m"
       friendly_name: Ten minutes before alarm
       value_template: >
-        {% set d, h, m = state_attr("sensor.quarantine_meter_bas", "value").split() %}
+        {% set value = state_attr("sensor.quarantine_meter_bas", "value") %}
+        {% if value != None %}
+        {% set d, h, m = value.split() %}
         {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
         {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
         {{ (hours_outside / 14) | round(1) }}
+        {% endif %}
 
     adaptive_lighting_color_temp_mired:
       unit_of_measurement: "mired"
@@ -274,7 +280,7 @@
     adaptive_lighting_brightness:
       unit_of_measurement: "%"
       value_template: >
-        {{ state_attr("switch.adaptive_lighting_default", "brightness") }}
+        {{ state_attr("switch.adaptive_lighting_default", "brightness_pct") }}
 
 #   ___  _   _
 #  / _ \| |_| |__   ___ _ __ ___
