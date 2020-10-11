@@ -7,6 +7,15 @@ const repeats = "repeats";
 const confirmation = "confirmation";
 
 const texts = {
+    "cz": {
+        mode: "Mód",
+        goToTarget: "Poslat na zvolený bod",
+        zonedCleanup: "Úklid zóny",
+        zones: "Zóny",
+        run: "Start",
+        repeats: "Opakovat:",
+        confirmation: "Příkaz odeslán!"
+    },
     "en": {
         mode: "Mode",
         goToTarget: "Go to target",
