@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c MULTIPLE-ENTITY-ROW %c 3.3.0 ',
+        '%c MULTIPLE-ENTITY-ROW %c 3.4.0 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -55,15 +55,15 @@
             display: block;
             color: var(--secondary-text-color);
           }
+          hui-warning {
+            width: 100%;
+          }
           state-badge {
             flex: 0 0 40px;
             cursor: pointer;
           }
           .icon-small {
             width: auto;
-          }
-          .toggle {
-            margin-left: 8px;
           }
           .entity {
             text-align: center;
@@ -98,7 +98,7 @@
         }
 
         render() {
-            return html`
+            return this.state.stateObj ? html`
             <state-badge
                 .stateObj="${this.state.stateObj}"
                 .overrideIcon="${this._config.icon}"
@@ -113,25 +113,28 @@
                 <div class="${this._config.column ? 'entities-column' : 'entities-row'}">
                     ${this.state.entities.map(entity => this.renderEntity(entity))}
                     ${this.state.value ? html`
-                    <div class="state entity" @click="${this.onStateClick}">
+                    <div class="state entity" @click="${this.onRowClick}">
                         ${this.stateHeader && html`<span>${this.stateHeader}</span>`}
-                        ${this.renderMainState()}
+                        <div>${this.renderMainState()}</div>
                     </div>` : null}
                 </div>
-            </div>`;
+            </div>` : html`
+            <hui-warning>
+                ${this._hass.localize('ui.panel.lovelace.warning.entity_not_found', 'entity', this._config.entity)}
+            </hui-warning>`;
         }
 
         renderMainState() {
-            if (this.state.toggle) return html`<div class="toggle">${this.renderToggle(this.state.stateObj)}</div>`;
-            else if (this._config.format) return this.renderTimestamp(this.state.value, this._config.format);
-            else return html`<div>${this.state.value}</div>`;
+            if (this.state.toggle) return this.renderToggle(this.state.stateObj);
+            else if (this._config.format) return this.renderFormat(this.state.value, this._config.format);
+            else return html`${this.state.value}`;
         }
 
         renderSecondaryInfo() {
             return this.lastChanged
                 ? html`<ha-relative-time datetime="${this.state.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>`
                 : this.state.info && this.state.info.format
-                    ? this.renderTimestamp(this.state.info.value, this.state.info.format)
+                    ? this.renderFormat(this.state.info.value, this.state.info.format)
                     : (this.state.info && `${this.state.info.name ? `${this.state.info.name} ` : ''}${this.state.info.value}`)
         }
 
@@ -139,10 +142,12 @@
             return html`<ha-entity-toggle .stateObj="${stateObj}" .hass="${this._hass}"></ha-entity-toggle>`;
         }
 
-        renderTimestamp(value, format) {
-            return ![UNKNOWN, UNAVAILABLE].includes(value.toLowerCase())
-                ? html`<hui-timestamp-display .ts=${new Date(value)} .format=${format} .hass=${this._hass}></hui-timestamp-display>`
-                : html`${value}`;
+        renderFormat(value, format) {
+            return [UNKNOWN, UNAVAILABLE].includes(value.toLowerCase())
+                ? html`${value}`
+                : format === 'duration'
+                    ? html`${this.secondsToDuration(value)}`
+                    : html`<hui-timestamp-display .ts=${new Date(value)} .format=${format} .hass=${this._hass}></hui-timestamp-display>`;
         }
 
         renderIcon(entity) {
@@ -152,7 +157,7 @@
         renderEntityValue(entity) {
             if (entity.toggle) return this.renderToggle(entity.stateObj);
             else if (entity.icon !== undefined) return this.renderIcon(entity);
-            else if (entity.format) return this.renderTimestamp(entity.value, entity.format);
+            else if (entity.format) return this.renderFormat(entity.value, entity.format);
             else return html`${entity.value}`;
         }
 
@@ -173,10 +178,7 @@
 
             this.lastChanged = config.secondary_info === 'last-changed';
             this.stateHeader = config.state_header !== undefined ? config.state_header : null;
-            this.onRowClick = (!config.tap_action || config.tap_action.action !== 'none')
-                ? this.moreInfoAction(config.tap_action, config.entity)
-                : null;
-            this.onStateClick = this.getAction(config.tap_action, config.entity);
+            this.onRowClick = this.getAction(config.tap_action, config.entity);
 
             this._config = config;
         }
@@ -187,9 +189,7 @@
             if (hass && this._config) {
                 const mainStateObj = hass.states[this._config.entity];
 
-                if (!mainStateObj) throw new Error(`Entity '${this._config.entity}' does not exist.`);
-
-                this.state = {
+                this.state = mainStateObj ? {
                     ...this.state,
 
                     stateObj: mainStateObj,
@@ -202,7 +202,7 @@
                         typeof this._config.secondary_info === 'string'
                             ? {value: this._config.secondary_info}
                             : this.initEntity(this._config.secondary_info, mainStateObj),
-                }
+                } : {};
             }
         }
 
@@ -266,13 +266,6 @@
             }
 
             const domain = stateObj.entity_id.substr(0, stateObj.entity_id.indexOf('.'));
-
-            if (domain === 'zwave') {
-                return ['initializing', 'dead'].includes(stateObj.state)
-                    ? this._hass.localize(`state.zwave.query_stage.${stateObj.state}`, 'query_stage', stateObj.attributes.query_stage)
-                    : this._hass.localize(`state.zwave.default.${stateObj.state}`);
-            }
-
             return (
                 (stateObj.attributes.device_class
                     && this._hass.localize(`component.${domain}.state.${stateObj.attributes.device_class}.${stateObj.state}`))
@@ -282,49 +275,53 @@
         }
 
         getAction(config, entityId) {
-            if (config && config.action) {
-                if (config.action === 'none') {
-                    return null;
-                }
-                const confirmation = config.confirmation === true ? 'Are you sure?' : config.confirmation;
-                if (config.action === 'call-service') {
-                    const [domain, service] = config.service.split('.');
-                    return () => {
-                        if (!confirmation || confirm(confirmation)) {
-                            this._hass.callService(domain, service, config.service_data);
-                            this.forwardHaptic('light');
-                        }
+            if (!config || !config.action || config.action === 'more-info') {
+                return () => this.fireEvent(this, 'hass-more-info', {entityId: (config && config.entity) || entityId});
+            }
+            if (config.action === 'none') {
+                return null;
+            }
+
+            return () => {
+                if (config.confirmation) {
+                    this.forwardHaptic('warning');
+
+                    if (!confirm(config.confirmation === true ? `Are you sure?` : config.confirmation)) {
+                        return;
                     }
                 }
-                if (config.action === 'toggle') {
-                    return () => {
-                        if (!confirmation || confirm(confirmation)) {
-                            this._hass.callService('homeassistant', 'toggle', {entity_id: entityId});
-                            this.forwardHaptic('light');
+
+                switch (config.action) {
+                    case 'call-service': {
+                        if (!config.service) {
+                            this.forwardHaptic('failure');
+                            return;
                         }
+                        const [domain, service] = config.service.split('.');
+                        this._hass.callService(domain, service, config.service_data);
+                        this.forwardHaptic('light');
+                        break;
                     }
-                }
-                if (config.action === 'url') {
-                    return () => {
-                        if (config.url_path && (!confirmation || confirm(confirmation))) {
+                    case 'toggle': {
+                        this._hass.callService('homeassistant', 'toggle', {entity_id: entityId});
+                        this.forwardHaptic('light');
+                        break;
+                    }
+                    case 'url': {
+                        if (config.url_path) {
                             window.open(config.url_path);
                         }
+                        break;
                     }
-                }
-                if (config.action === 'navigate') {
-                    return () => {
-                        if (config.navigation_path && (!confirmation || confirm(confirmation))) {
+                    case 'navigate': {
+                        if (config.navigation_path) {
                             history.pushState(null, '', config.navigation_path);
                             this.fireEvent(window, 'location-changed', {replace: false});
                         }
+                        break;
                     }
                 }
             }
-            return this.moreInfoAction(config, entityId);
-        }
-
-        moreInfoAction(config, entityId) {
-            return () => this.fireEvent(this, 'hass-more-info', {entityId: (config && config.entity) || entityId});
         }
 
         fireEvent(node, type, detail = {}, options = {}) {
@@ -341,6 +338,18 @@
             const event = new Event('haptic', {bubbles: true, cancelable: false, composed: true});
             event.detail = type;
             this.dispatchEvent(event);
+        }
+
+        secondsToDuration(sec) {
+            const h = Math.floor(sec / 3600);
+            const m = Math.floor((sec % 3600) / 60);
+            const s = Math.floor((sec % 3600) % 60);
+            const leftPad = (num) => (num < 10 ? `0${num}` : num);
+
+            if (h > 0) return `${h}:${leftPad(m)}:${leftPad(s)}`;
+            if (m > 0) return `${m}:${leftPad(s)}`;
+            if (s > 0) return `${s}`;
+            return null;
         }
     }
 
