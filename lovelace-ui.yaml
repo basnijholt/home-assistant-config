@@ -9,12 +9,6 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 background: var(--background-image)
-custom_header:
-  background: rgba(155, 155, 155, 0.25)
-  button_text:
-    options: '{{ hours24 }}:{{ minutesLZ }}'
-  compact_mode: true
-  voice_hide: true
 decluttering_templates:
   automation_template:
     card:
