@@ -207,6 +207,36 @@
       data:
         option: "{{ location }}"
 
+- alias: "Apple Watch: set temperature"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Set temperature
+  action:
+    - variables:
+        iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
+    - service: "{{ iphone }}"
+      data:
+        message: "Apple Watch: set temperature"
+        data:
+          push:
+            category: set_temperature
+    - wait_for_trigger:
+        platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          categoryName: set_temperature
+      timeout: "00:00:20"
+      continue_on_timeout: false
+    - variables:
+        temperature: "{{ wait.trigger.event.data.actionName.split('T')[1] | int }}"
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.thermostat
+        temperature : "{{ temperature }}"
+
 - alias: "Apple Watch: where is other person?"
   mode: parallel
   trigger:

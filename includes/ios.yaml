@@ -65,6 +65,24 @@ push:
         - identifier: KITCHEN
           title: Kitchen
 
+    - name: Set temperature
+      identifier: set_temperature
+      actions:
+        - identifier: T15
+          title: 15
+        - identifier: T16
+          title: 16
+        - identifier: T17
+          title: 17
+        - identifier: T18
+          title: 18
+        - identifier: T19
+          title: 19
+        - identifier: T20
+          title: 20
+        - identifier: T21
+          title: 21
+
     - name: Light options
       identifier: light_options
       actions:
@@ -124,6 +142,15 @@ actions:
     background_color: "#000000"
     label:
       text: Temperature report
+      color: "#ff0000"
+    icon:
+      icon: temperature-celsius
+      color: "#ffffff"
+
+  - name: Set temperature
+    background_color: "#000000"
+    label:
+      text: Set temperature
       color: "#ff0000"
     icon:
       icon: temperature-celsius
