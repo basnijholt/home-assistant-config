@@ -266,14 +266,6 @@
               entity_id: light.stairs_down
           - service: script.turn_off_everything_non_automatic
           - service: script.set_low_temperature
-          - wait_for_trigger:  # when the door closes, turn off everything
-              platform: state
-              entity_id: binary_sensor.openclose_front_door
-              from: "on"
-              to: "off"
-            timeout: "00:05:00"
-            continue_on_timeout: false
-          - service: script.turn_off_everything
 
       # Arriving: turn on music and cozy lights
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
