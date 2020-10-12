@@ -250,21 +250,21 @@ class _AsyncCommunicator:
         return (self._reader, self._writer) != (None, None)
 
     async def open_connection(self) -> None:
-        if self.is_connected:
-            if self._writer.is_closing():  # type: ignore
-                _LOGGER.debug(
-                    "%s: Connection closing but did not disconnect", self.host
-                )
-                await self._disconnect()
-            else:
-                _LOGGER.debug("%s: Connection is still alive", self.host)
-                return
         retries = 0
         while retries < _MAX_CONNECTION_RETRIES:
             _LOGGER.debug("%s: Opening connection", self.host)
-
             try:
                 async with self._lock, timeout(_TIMEOUT):
+                    if self.is_connected:
+                        if self._writer.is_closing():  # type: ignore
+                            _LOGGER.debug(
+                                "%s: Connection closing but did not disconnect", self.host
+                            )
+                            await self._disconnect(use_lock=False)
+                        else:
+                            _LOGGER.debug("%s: Connection is still alive", self.host)
+                            return
+                    _LOGGER.debug("%s: Opening connection", self.host)
                     self._reader, self._writer = await asyncio.open_connection(
                         self.host, self.port, family=socket.AF_INET
                     )
