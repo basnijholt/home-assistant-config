@@ -11,10 +11,11 @@
 default: warning
 logs:
   # homeassistant.core: debug
-  # custom_components.kef_custom: debug
-  # custom_components.aiokef: debug
+  custom_components.kef_custom: debug
+  custom_components.aiokef: debug
   # aiokef: debug
   # homeassistant.component.miflora: debug
+  homeassistant.component.deconz: debug
   # pyotgw: warning
   # custom_components.derivative_custom: debug
   # custom_components.pyscript: debug
