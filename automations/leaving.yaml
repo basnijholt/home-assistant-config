@@ -95,5 +95,5 @@
     - service: script.turn_off_everything
     - service: notify.all_iphones
       data:
-        title: "Bye"
+        title: "Bye 👋"
         message: "See you soon!"
