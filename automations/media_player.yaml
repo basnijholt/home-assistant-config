@@ -24,6 +24,9 @@
     - condition: state
       entity_id: media_player.tv
       state: "on"
+    - condition: state
+      entity_id: media_player.kef_ls50
+      state: "on"
     - "{{ not is_state_attr('media_player.kef_ls50', 'source', 'Opt') }}"
     - "{{ not is_state_attr('media_player.tv', 'source', 'GALLERY') }}"
     - >
@@ -67,6 +70,11 @@
     - condition: state
       entity_id: media_player.tv
       state: "on"
+    # only consider meaningful changes to the state
+    - >
+      {{ trigger.from_state.state != trigger.to_state.state
+          or trigger.from_state.attributes["volume_level"] != trigger.to_state.attributes["volume_level"]
+          or trigger.from_state.attributes["source"] != trigger.to_state.attributes["source"] }}
   action:
     - service: media_player.turn_on
       entity_id: media_player.kef_ls50
