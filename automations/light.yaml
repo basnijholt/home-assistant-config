@@ -133,9 +133,9 @@
       entity_id: binary_sensor.openclose_front_door
       from: "off"
       to: "on"
+  # XXX: it can happen that only one light is still on, so check whether *all* are off
   condition: >
-    {{ is_state('light.stairs_lights', 'off')
-       and is_state('light.hall_lights', 'off') }}
+    {{ is_state('light.stairs_lights', 'off') or is_state('light.hall_lights', 'off') }}
   action:
     service: light.turn_on
     data:
