@@ -68,12 +68,12 @@
     - platform: time_pattern
       minutes: "/10"
   condition:
-  - condition: state
-    entity_id: binary_sensor.no_one_home
-    state: "on"
-  - condition: numeric_state
-    entity_id: sensor.power_consumption
-    above: 0.7
+    - condition: state
+      entity_id: binary_sensor.no_one_home
+      state: "on"
+    - condition: numeric_state
+      entity_id: sensor.power_consumption
+      above: 0.7
   action:
     service: notify.all_iphones
     data:

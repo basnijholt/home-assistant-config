@@ -235,7 +235,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.thermostat
-        temperature : "{{ temperature }}"
+        temperature: "{{ temperature }}"
 
 - alias: "Apple Watch: where is other person?"
   mode: parallel
