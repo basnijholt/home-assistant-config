@@ -229,6 +229,8 @@ text.append(f"# {toc_title}")
 total_automations = 0
 for fname in automation_files:
     automations = automations_as_dict(fname)
+    if automations is None:
+        continue
     total_automations += len(automations)
     text.append(toc_entry(automations))
 text.append("\n")
@@ -238,6 +240,8 @@ back_to_toc = f"[^ toc](#{slugify(toc_title)})"
 # List automations
 for fname in automation_files:
     automations = automations_as_dict(fname)
+    if automations is None:
+        continue
     text.append(get_header(fname, automations[0]))
     for automation in automations:
         text.append(get_automation_line(fname, automation))
