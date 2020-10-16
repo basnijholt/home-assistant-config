@@ -8,3 +8,21 @@
 #
 #
 #- from github.com/basnijholt/home-assistant-config
+- alias: "Test: listen to Adaptive Lighting events"
+  mode: parallel
+  max: 100
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        service: turn_on
+        domain: light
+    - platform: event
+      event_type: state_changed
+  condition: "{{ trigger.event.context.id.startswith('adapt_lgt') }}"
+  action:
+    service: system_log.write
+    data:
+      message: "{{ trigger.event.data.entity_id }} is changed by AL: {{ trigger.event.data }}"
+      level: debug
+      logger: yolo.yolo
