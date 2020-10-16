@@ -133,23 +133,32 @@
       entity_id: binary_sensor.openclose_front_door
       from: "off"
       to: "on"
-  # XXX: it can happen that only one light is still on, so check whether *all* are off
-  condition: >
-    {{ is_state('light.stairs_lights', 'off') or is_state('light.hall_lights', 'off') }}
+  variables:
+    off_lights: >
+      {% set hall_lights = ["light.hall_2"]
+                           if is_state('input_select.sleep_mode', 'total')
+                           else ["light.hall_1", "light.hall_2", "light.hall_3"] %}
+      {{ expand(state_attr("light.stairs_lights", "entity_id") + hall_lights)
+          | selectattr("state", "eq", "off")
+          | map(attribute="entity_id")
+          | list | join(",") }}
+  condition: "{{ (off_lights | length) > 0 }}"
   action:
-    service: light.turn_on
-    data:
-      entity_id:
-        - light.stairs_lights
-        - "light.hall_{{ '2' if is_state('input_select.sleep_mode', 'total') else 'lights' }}"
-      transition: 1
+    alias: Turn on lights that are off
+    repeat:
+      count: "{{ off_lights.split(',') | length }}"
+      sequence:
+        service: light.turn_on
+        data:
+          entity_id: "{{ off_lights.split(',')[repeat.index - 1] }}"
+          transition: 1
 
 - alias: "Light: turn off hall"
   trigger:
-    - platform: state
-      entity_id: binary_sensor.activity_in_hall
-      from: "on"
-      to: "off"
+    platform: state
+    entity_id: binary_sensor.activity_in_hall
+    from: "on"
+    to: "off"
   action:
     service: light.turn_off
     data:
@@ -169,10 +178,14 @@
     platform: state
     entity_id: binary_sensor.activity_in_bedroom
     to: "on"
+  variables:
+    off_lights: >
+      {{ expand(state_attr("light.bedroom_lights", "entity_id"))
+          | selectattr("state", "eq", "off")
+          | map(attribute="entity_id")
+          | list | join(",") }}
   condition:
-    - condition: state
-      entity_id: light.bedroom_lights
-      state: "off"
+    - "{{ (off_lights | length) > 0 }}"
     - condition: state
       entity_id: input_select.sleep_mode
       state: "off"
@@ -180,8 +193,13 @@
       entity_id: input_boolean.automatic_bedroom_lights
       state: "on"
   action:
-    - service: light.turn_on
-      entity_id: light.bedroom_lights
+    - alias: Turn on lights that are off
+      repeat:
+        count: "{{ off_lights.split(',') | length }}"
+        sequence:
+          service: light.turn_on
+          data:
+            entity_id: "{{ off_lights.split(',')[repeat.index - 1] }}"
     - service: input_boolean.turn_on
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
