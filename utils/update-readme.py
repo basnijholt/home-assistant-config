@@ -13,6 +13,7 @@
 # This code relies on the way I have structeded my files and named my automations.
 
 import functools
+import json
 import re
 import subprocess
 import urllib.parse
@@ -219,6 +220,39 @@ def modify_version(lines):
     return new_lines
 
 
+def get_addons():
+    """Get the git hash to save with data to ensure reproducibility."""
+    try:
+        output = subprocess.check_output(["ha", "addons", "--raw-json"])
+    except FileNotFoundError:
+        # the 'ha' program isn't available in the host image, I can only
+        # run it from the 'SSH & Web Terminal' Add-on.
+        return None
+    raw = output.decode("utf-8")
+    addons = json.loads(raw)["data"]
+    installed_addons = [
+        addon for addon in addons["addons"] if addon["installed"] is not None
+    ]
+    return installed_addons
+
+
+def get_addon_line(addon):
+    name = addon["name"]
+    url = addon["url"]
+    by = addon["url"].split("github.com/")[1].split("/")[0]
+    version = addon['version']
+    return by, f"- [{name}]({url}) version {version} by @{by}"
+
+
+def get_addon_lines():
+    installed_addons = get_addons()
+    if installed_addons is None:
+        return None
+    addons = {get_addon_line(addon) for addon in installed_addons}
+    _, addons = zip(*sorted(addons))
+    return addons
+
+
 automation_files = sorted(list(Path("automations/").glob("*yaml")))
 text = []
 
@@ -250,6 +284,9 @@ for fname in automation_files:
     text.append(back_to_toc)
     text.append("\n")
 
+# List addons
+addons = get_addon_lines()
+
 # Modify README.md
 with open("README.md") as f:
     lines = f.readlines()
@@ -257,6 +294,9 @@ with open("README.md") as f:
 lines = modify_version(lines)
 lines = modify_lines(text, lines, "automations")
 lines = modify_lines(html_table.split("\n"), lines, "table")
+if addons is not None:
+    # Only works when running from the 'SSH & Web Terminal' Add-on
+    lines = modify_lines(addons, lines, "addons")
 
 with open("README.md", "w") as f:
     f.write("".join(lines))
