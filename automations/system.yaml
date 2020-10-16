@@ -104,7 +104,7 @@
         count: "{{ battery_ids.split(', ') | length }}"
         sequence:
           - variables:
-              current: "{{ battery_ids.split(', ')[repeat.index] }}"
+              current: "{{ battery_ids.split(', ')[repeat.index - 1] }}"
           - condition: template
             value_template: "{{ 'iphone' not in current and 'ipad' not in current }}"
           - condition: template
