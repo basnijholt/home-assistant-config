@@ -37,7 +37,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 * Using [home-assistant-macbook-touch-bar](https://github.com/basnijholt/home-assistant-macbook-touch-bar) to control HA on my MacBook Pro's Touch Bar 💻
 * [Automatically switch Lovelace's theme between backgrounds and light/dark mode](#frontend-)
 * [Sync volume TV ⇄ speakers 🔊](#media-player-)
-* [Security notifications when the front door 🚪 has been open for too long or motion is detected when no one is home](#security-%EF%B8%8F)
+* [Security notifications when the front door 🚪 has been open for too long or motion is detected when no one is home](#security-)
 
 ## My cool AppDaemon apps
 * [Sunrise emulator app](appdaemon/apps/wake_up_light.py) 🌅
