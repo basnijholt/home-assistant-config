@@ -8,6 +8,7 @@
 
 
 ![Lovelace UI](http://files.nijho.lt/ha-ui.gif)
+<img src="https://github.com/basnijholt/home-assistant-macbook-touch-bar/raw/master/example-real-life.jpg?s=400" width="700" alt="MacBook touchbar">
 
 Using my [iOS Light and Dark Mode Themes](https://github.com/basnijholt/lovelace-ios-themes).
 
