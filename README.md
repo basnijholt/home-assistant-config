@@ -14,6 +14,12 @@ Using my [iOS Light and Dark Mode Themes](https://github.com/basnijholt/lovelace
 
 See also [my guide for my girlfriend ❤️](guide.md).
 
+## Table of content
+
+- [My devices](#my-devices)
+- [Supervisor add-ons](#supervisor-add-ons)
+- [All my automations](#automations---table-of-content)
+
 ## Noteworthy (useful) automations
 See *all* my automations and its dependencies [down the page](#automations---table-of-content)!
 
