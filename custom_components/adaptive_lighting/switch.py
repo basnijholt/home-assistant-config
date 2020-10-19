@@ -17,10 +17,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import astral
 import voluptuous as vol
 
-from homeassistant.components.homeassistant import (
-    DOMAIN as HA_DOMAIN,
-    SERVICE_UPDATE_ENTITY,
-)
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
     ATTR_COLOR_TEMP,
@@ -106,6 +102,7 @@ from .const import (
     ICON,
     SERVICE_APPLY,
     SERVICE_SET_MANUAL_CONTROL,
+    SLEEP_MODE_SWITCH,
     SUN_EVENT_MIDNIGHT,
     SUN_EVENT_NOON,
     TURNING_OFF_DELAY,
@@ -158,8 +155,6 @@ def is_our_context(context: Optional[Context]) -> bool:
 
 async def handle_apply(switch: AdaptiveSwitch, service_call: ServiceCall):
     """Handle the entity service apply."""
-    if not isinstance(switch, AdaptiveSwitch):
-        raise ValueError("Apply can only be called for a AdaptiveSwitch.")
     hass = switch.hass
     data = service_call.data
     all_lights = _expand_light_groups(hass, data[CONF_LIGHTS])
@@ -222,7 +217,7 @@ async def async_setup_entry(
     sleep_mode_switch = AdaptiveSleepModeSwitch(hass, config_entry)
     switch = AdaptiveSwitch(hass, config_entry, turn_on_off_listener, sleep_mode_switch)
 
-    data[config_entry.entry_id]["sleep_mode_switch"] = sleep_mode_switch
+    data[config_entry.entry_id][SLEEP_MODE_SWITCH] = sleep_mode_switch
     data[config_entry.entry_id][SWITCH_DOMAIN] = switch
 
     async_add_entities([switch, sleep_mode_switch], update_before_add=True)
@@ -993,6 +988,7 @@ class SunLightSettings:
             "rgb_color": rgb_color,
             "xy_color": xy_color,
             "hs_color": hs_color,
+            "sun_position": percent,
         }
 
 
@@ -1173,13 +1169,7 @@ class TurnOnOffListener:
         if light not in self.last_state_change:
             return False
         old_states: List[State] = self.last_state_change[light]
-        await self.hass.services.async_call(
-            HA_DOMAIN,
-            SERVICE_UPDATE_ENTITY,
-            {ATTR_ENTITY_ID: light},
-            blocking=True,
-            context=context,
-        )
+        await self.hass.helpers.entity_component.async_update_entity(light)
         new_state = self.hass.states.get(light)
         compare_to = functools.partial(
             _attributes_have_changed,
