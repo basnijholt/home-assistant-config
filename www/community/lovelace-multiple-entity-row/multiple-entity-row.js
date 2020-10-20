@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c MULTIPLE-ENTITY-ROW %c 3.4.0 ',
+        '%c MULTIPLE-ENTITY-ROW %c 3.5.0 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -108,12 +108,12 @@
             <div class="flex">
                 <div class="info" @click="${this.onRowClick}">
                     ${this.state.name}
-                    <div class="secondary">${this.renderSecondaryInfo()}</div>
+                    <div class="secondary" style="${this.state.info && this.state.info.style}">${this.renderSecondaryInfo()}</div>
                 </div>
                 <div class="${this._config.column ? 'entities-column' : 'entities-row'}">
                     ${this.state.entities.map(entity => this.renderEntity(entity))}
                     ${this.state.value ? html`
-                    <div class="state entity" @click="${this.onRowClick}">
+                    <div class="state entity" style="${this.state.style}" @click="${this.onRowClick}">
                         ${this.stateHeader && html`<span>${this.stateHeader}</span>`}
                         <div>${this.renderMainState()}</div>
                     </div>` : null}
@@ -131,11 +131,13 @@
         }
 
         renderSecondaryInfo() {
-            return this.lastChanged
-                ? html`<ha-relative-time datetime="${this.state.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>`
-                : this.state.info && this.state.info.format
-                    ? this.renderFormat(this.state.info.value, this.state.info.format)
-                    : (this.state.info && `${this.state.info.name ? `${this.state.info.name} ` : ''}${this.state.info.value}`)
+            if (this.lastChanged)
+                return html`<ha-relative-time datetime="${this.state.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>`;
+            if (this.state.info) {
+                const value = this.state.info.format ?
+                    this.renderFormat(this.state.info.value, this.state.info.format) : this.state.info.value;
+                return html`${this.state.info.name ? `${this.state.info.name} ` : ''}${value}`;
+            }
         }
 
         renderToggle(stateObj) {
@@ -143,11 +145,13 @@
         }
 
         renderFormat(value, format) {
-            return [UNKNOWN, UNAVAILABLE].includes(value.toLowerCase())
-                ? html`${value}`
-                : format === 'duration'
-                    ? html`${this.secondsToDuration(value)}`
-                    : html`<hui-timestamp-display .ts=${new Date(value)} .format=${format} .hass=${this._hass}></hui-timestamp-display>`;
+            if ([UNKNOWN, UNAVAILABLE].includes(value.toLowerCase())) return html`${value}`;
+            if (format === 'duration') return html`${this.secondsToDuration(value)}`;
+            if (format.startsWith('precision')) {
+                const precision = parseInt(format.slice(-1), 10);
+                return html`${parseFloat(value).toFixed(precision)}`;
+            }
+            return html`<hui-timestamp-display .ts=${new Date(value)} .format=${format} .hass=${this._hass}></hui-timestamp-display>`;
         }
 
         renderIcon(entity) {
@@ -163,7 +167,7 @@
 
         renderEntity(entity) {
             return entity ? html`
-            <div class="entity" @click="${entity.onClick}">
+            <div class="entity" style="${entity.style}" @click="${entity.onClick}">
                 <span>${entity.name}</span>
                 <div>${this.renderEntityValue(entity)}</div>
             </div>` : null;
@@ -196,6 +200,7 @@
                     name: this.entityName(this._config.name, mainStateObj),
                     value: this._config.show_state !== false ? this.entityStateValue(mainStateObj, this._config.unit) : null,
                     toggle: this.checkToggle(this._config, mainStateObj),
+                    style: this.entityStyles(this._config),
 
                     entities: this._config.entities ? this._config.entities.map(entity => this.initEntity(entity, mainStateObj)) : [],
                     info: this.lastChanged ? null :
@@ -217,7 +222,7 @@
         }
 
         checkToggle(config, stateObj) {
-            return config.toggle === true && stateObj.state && !['unknown', 'unavailable'].includes(stateObj.state)
+            return config.toggle === true && stateObj.state && ![UNKNOWN, UNAVAILABLE].includes(stateObj.state)
         }
 
         initEntity(config, mainStateObj) {
@@ -225,6 +230,8 @@
 
             const entity = typeof config === 'string' ? config : config.entity;
             const stateObj = entity ? (this._hass && this._hass.states[entity]) : mainStateObj;
+
+            if (config.hide_unavailable && (!stateObj || [UNKNOWN, UNAVAILABLE].includes(stateObj.state))) return null;
 
             if (!stateObj) return {value: this._hass.localize('state.default.unavailable')};
 
@@ -238,6 +245,7 @@
                 icon: config.icon === true ? (stateObj.attributes.icon || null) : config.icon,
                 format: config.format || false,
                 state_color: config.state_color || false,
+                style: this.entityStyles(config),
                 onClick: this.getAction(config.tap_action, stateObj.entity_id),
             };
         }
@@ -274,6 +282,11 @@
             );
         }
 
+        entityStyles(config) {
+            return config.styles && typeof config.styles === 'object'
+                ? Object.keys(config.styles).map(key => `${key}: ${config.styles[key]};`).join('') : '';
+        }
+
         getAction(config, entityId) {
             if (!config || !config.action || config.action === 'more-info') {
                 return () => this.fireEvent(this, 'hass-more-info', {entityId: (config && config.entity) || entityId});
@@ -303,7 +316,7 @@
                         break;
                     }
                     case 'toggle': {
-                        this._hass.callService('homeassistant', 'toggle', {entity_id: entityId});
+                        this.toggleEntity(entityId);
                         this.forwardHaptic('light');
                         break;
                     }
@@ -322,6 +335,25 @@
                     }
                 }
             }
+        }
+
+        toggleEntity(entityId) {
+            const turnOn = ["closed", "locked", "off"].includes(this._hass.states[entityId].state);
+            const stateDomain = entityId.split('.')[0];
+            const serviceDomain = stateDomain === "group" ? "homeassistant" : stateDomain;
+
+            let service;
+            switch (stateDomain) {
+                case "lock":
+                    service = turnOn ? "unlock" : "lock";
+                    break;
+                case "cover":
+                    service = turnOn ? "open_cover" : "close_cover";
+                    break;
+                default:
+                    service = turnOn ? "turn_on" : "turn_off";
+            }
+            this._hass.callService(serviceDomain, service, {entity_id: entityId});
         }
 
         fireEvent(node, type, detail = {}, options = {}) {
