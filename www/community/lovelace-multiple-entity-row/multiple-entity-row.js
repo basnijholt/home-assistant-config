@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c MULTIPLE-ENTITY-ROW %c 3.5.0 ',
+        '%c MULTIPLE-ENTITY-ROW %c 3.5.1 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -126,17 +126,17 @@
 
         renderMainState() {
             if (this.state.toggle) return this.renderToggle(this.state.stateObj);
-            else if (this._config.format) return this.renderFormat(this.state.value, this._config.format);
-            else return html`${this.state.value}`;
+            const unit = this.state.unit && !this.state.unavailable ? ` ${this.state.unit}` : null;
+            return html`${this.renderValue(this.state)}${unit}`;
         }
 
         renderSecondaryInfo() {
             if (this.lastChanged)
                 return html`<ha-relative-time datetime="${this.state.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>`;
             if (this.state.info) {
-                const value = this.state.info.format ?
-                    this.renderFormat(this.state.info.value, this.state.info.format) : this.state.info.value;
-                return html`${this.state.info.name ? `${this.state.info.name} ` : ''}${value}`;
+                const name = this.state.info.name ? `${this.state.info.name} ` : null;
+                const unit = this.state.info.unit && !this.state.info.unavailable ? ` ${this.state.info.unit}` : null;
+                return html`${name}${this.renderValue(this.state.info)}${unit}`;
             }
         }
 
@@ -144,14 +144,14 @@
             return html`<ha-entity-toggle .stateObj="${stateObj}" .hass="${this._hass}"></ha-entity-toggle>`;
         }
 
-        renderFormat(value, format) {
-            if ([UNKNOWN, UNAVAILABLE].includes(value.toLowerCase())) return html`${value}`;
-            if (format === 'duration') return html`${this.secondsToDuration(value)}`;
-            if (format.startsWith('precision')) {
-                const precision = parseInt(format.slice(-1), 10);
-                return html`${parseFloat(value).toFixed(precision)}`;
+        renderValue(entity) {
+            if (entity.unavailable || !entity.format) return entity.value;
+            if (entity.format === 'duration') return html`${this.secondsToDuration(entity.value)}`;
+            if (entity.format.startsWith('precision')) {
+                const precision = parseInt(entity.format.slice(-1), 10);
+                return html`${parseFloat(entity.value).toFixed(precision)}`;
             }
-            return html`<hui-timestamp-display .ts=${new Date(value)} .format=${format} .hass=${this._hass}></hui-timestamp-display>`;
+            return html`<hui-timestamp-display .ts=${new Date(entity.value)} .format=${entity.format} .hass=${this._hass}></hui-timestamp-display>`;
         }
 
         renderIcon(entity) {
@@ -160,9 +160,9 @@
 
         renderEntityValue(entity) {
             if (entity.toggle) return this.renderToggle(entity.stateObj);
-            else if (entity.icon !== undefined) return this.renderIcon(entity);
-            else if (entity.format) return this.renderFormat(entity.value, entity.format);
-            else return html`${entity.value}`;
+            if (entity.icon !== undefined) return this.renderIcon(entity);
+            const unit = entity.unit && !entity.unavailable ? ` ${entity.unit}` : null;
+            return html`${this.renderValue(entity)}${unit}`;
         }
 
         renderEntity(entity) {
@@ -198,8 +198,11 @@
 
                     stateObj: mainStateObj,
                     name: this.entityName(this._config.name, mainStateObj),
-                    value: this._config.show_state !== false ? this.entityStateValue(mainStateObj, this._config.unit) : null,
+                    value: this._config.show_state !== false ? this.entityStateValue(mainStateObj) : null,
+                    unit: this._config.unit === false ? null : (this._config.unit || mainStateObj.attributes.unit_of_measurement),
+                    unavailable: [UNKNOWN, UNAVAILABLE].includes(mainStateObj.state),
                     toggle: this.checkToggle(this._config, mainStateObj),
+                    format: this._config.format || false,
                     style: this.entityStyles(this._config),
 
                     entities: this._config.entities ? this._config.entities.map(entity => this.initEntity(entity, mainStateObj)) : [],
@@ -233,14 +236,16 @@
 
             if (config.hide_unavailable && (!stateObj || [UNKNOWN, UNAVAILABLE].includes(stateObj.state))) return null;
 
-            if (!stateObj) return {value: this._hass.localize('state.default.unavailable')};
+            if (!stateObj) return {value: this._hass.localize('state.default.unavailable'), unavailable: true};
 
             return {
                 stateObj: stateObj,
                 name: entity ? this.entityName(config.name, stateObj) : (config.name || null),
                 value: config.attribute !== undefined
-                    ? this.entityAttribute(stateObj, config.attribute, config.unit)
-                    : this.entityStateValue(stateObj, config.unit),
+                    ? this.entityAttribute(stateObj, config.attribute)
+                    : this.entityStateValue(stateObj),
+                unit: config.unit === false ? null : config.attribute !== undefined ? config.unit : (config.unit || stateObj.attributes.unit_of_measurement),
+                unavailable: [UNKNOWN, UNAVAILABLE].includes(config.attribute !== undefined ? stateObj.attributes[config.attribute] : stateObj.state),
                 toggle: this.checkToggle(config, stateObj),
                 icon: config.icon === true ? (stateObj.attributes.icon || null) : config.icon,
                 format: config.format || false,
@@ -258,19 +263,15 @@
                 : stateObj.attributes.friendly_name || '';
         }
 
-        entityAttribute(stateObj, attribute, unit) {
+        entityAttribute(stateObj, attribute) {
             return (attribute in stateObj.attributes)
-                ? `${stateObj.attributes[attribute]}${unit ? ` ${unit}` : ''}`
+                ? stateObj.attributes[attribute]
                 : this._hass.localize('state.default.unavailable');
         }
 
-        entityStateValue(stateObj, unit) {
+        entityStateValue(stateObj) {
             if (stateObj.state === UNKNOWN || stateObj.state === UNAVAILABLE) {
                 return this._hass.localize(`state.default.${stateObj.state}`);
-            }
-
-            if (unit !== false && (unit || stateObj.attributes.unit_of_measurement)) {
-                return `${stateObj.state} ${unit || stateObj.attributes.unit_of_measurement}`;
             }
 
             const domain = stateObj.entity_id.substr(0, stateObj.entity_id.indexOf('.'));
