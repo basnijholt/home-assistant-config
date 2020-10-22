@@ -13,3 +13,23 @@
   services:
     - service: mobile_app_basnijholt_iphone
     - service: mobile_app_marcella_iphone
+
+- platform: group
+  name: bas
+  services:
+    - service: mobile_app_basnijholt_iphone
+    - service: chrome
+
+- platform: group
+  name: all
+  services:
+    - service: mobile_app_basnijholt_iphone
+    - service: mobile_app_marcella_iphone
+    - service: tv
+    - service: chrome
+
+- platform: html5
+  name: chrome
+  vapid_pub_key: !secret firebase_public_key
+  vapid_prv_key: !secret firebase_private_key
+  vapid_email: !secret firebase_service_account
