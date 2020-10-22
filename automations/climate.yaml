@@ -88,3 +88,25 @@
       topic: actions/otmonitor/outside
       payload_template: >
         {{ state_attr("weather.huis", "temperature") }}
+
+- alias: "Climate: warning when heating on and living room door open"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.openclose_living_room
+    to: "on"
+    for: "00:05:00"
+  condition: "{{ state_attr('climate.thermostat', 'temperature') >= 18 }}"
+  action:
+    repeat:
+      while:
+        - condition: state
+          entity_id: binary_sensor.openclose_living_room
+          state: "on"
+        - condition: template
+          value_template: "{{ repeat.index <= 10 }}"
+      sequence:
+        - service: notify.all
+          data:
+            title: "Climate"
+            message: "The living room door is open and the heating is on! ⚠️ Warning #{{ repeat.index }}!"
+        - delay: "00:05:00"
