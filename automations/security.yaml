@@ -81,3 +81,28 @@
       message: >
         No one is home and we are using a lot of energy
         ({{ states('sensor.power_consumption') }} kW now)! ⚡️
+
+- alias: "Security: office door has opened"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.openclose_guest_room
+    to: "on"
+  condition:
+    condition: state
+    entity_id: input_boolean.office_door_open_warning
+    state: "on"
+  action:
+    - service: notify.bas
+      data:
+        title: Security
+        message: Office door opened!
+    - service: notify.mobile_app_basnijholt_iphone
+      data:
+        title: Security
+        message: Office door opened!
+    - service: light.turn_on
+      data:
+        entity_id: light.philips_go
+        flash: short
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.office_door_open_warning
