@@ -1335,6 +1335,7 @@ views:
     - entity: binary_sensor.activity_in_toilet
     - entity: binary_sensor.activity_in_bedroom
     - entity: binary_sensor.openclose_front_door
+    - entity: binary_sensor.openclose_guest_room
     - type: divider
     - entity: binary_sensor.motion_detected
     - entity: binary_sensor.motion_detected_in_last_hour
@@ -1654,6 +1655,7 @@ views:
     type: entities
   - entities:
     - entity: input_boolean.automatic_temperature
+    - entity: input_boolean.office_door_open_warning
     type: entities
   - cards:
     - cards:
@@ -1926,6 +1928,76 @@ views:
     - switch.adaptive_lighting_sleep_mode_half_and_full
     - input_select.sleep_mode
     type: entities
+  - cards:
+    - cards:
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.adaptive_lighting_brightness
+          name: Brightness
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.adaptive_lighting_sun_position
+          name: Sun position
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      type: horizontal-stack
+    - cards:
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.adaptive_lighting_color_temp_mired
+          name: Color temperature (mired)
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      - color_thresholds_transition: smooth
+        entities:
+        - entity: sensor.adaptive_lighting_color_temp_kelvin
+          name: Color temperature (Kelvin)
+        font_size: 100
+        group: false
+        hour24: true
+        line_width: 6
+        points_per_hour: 1
+        show:
+          extrema: false
+          fill: fade
+          labels: false
+          name: true
+          state: true
+        type: custom:mini-graph-card
+      type: horizontal-stack
+    type: vertical-stack
   icon: mdi:test-tube
   path: tests
   title: Tests
@@ -1937,7 +2009,9 @@ views:
       type: entities
     filter:
       exclude:
+      - entity_id: automation.adaptive_lighting*
       - entity_id: automation.alarm_clock_*
+      - entity_id: automation.apple_watch*
       - entity_id: automation.arriving_*
       - entity_id: automation.climate_*
       - entity_id: automation.control_switches*
@@ -2079,6 +2153,16 @@ views:
     variables:
     - name: Work
     - slug: work
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Apple Watch
+    - slug: apple_watch
+  - template: automation_template
+    type: custom:decluttering-card
+    variables:
+    - name: Adaptive Lighting
+    - slug: adaptive_lighting_
   icon: mdi:robot
   path: automations
   title: Automations
