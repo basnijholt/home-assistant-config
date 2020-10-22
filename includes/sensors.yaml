@@ -101,9 +101,8 @@
         {{ state_attr("media_player.kef_lsx", "volume_level") }}
       unit_of_measurement: "%"
 
-    timestamp_start_of_today:  # XXX: remove _ when 0.117
+    timestamp_start_of_today:
       value_template: >
-        {% set _ = states("sensor.date") %}
         {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}
       unit_of_measurement: "s"
 
@@ -130,9 +129,8 @@
         {{ (5 * hours_per_day)|round(2) }}
       unit_of_measurement: h
 
-    n_days_last_month:  # XXX: remove _ when 0.117
+    n_days_last_month:
       value_template: >
-        {% set _ = states("sensor.date") %}
         {% set start_of_month = now().replace(day=1) %}
         {% set start_of_last_month = start_of_month.replace(month=now().month-1) %}
         {{ ((start_of_month - start_of_last_month).total_seconds() / 86400) | round }}

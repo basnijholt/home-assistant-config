@@ -130,9 +130,7 @@
 
     vacuum_day:
       friendly_name: Vacuum day today
-      # XXX: remove _ when 0.117
       value_template: >
-        {% set _ = states("sensor.date") %}
         {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Wed", "Sun") }}
 
     no_one_home:
