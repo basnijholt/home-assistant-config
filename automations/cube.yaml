@@ -81,17 +81,16 @@
           state: "Hue"
         sequence:
           - variables:
-              hue: "{{ (state_attr('light.sphere_1', 'hs_color') or [30, 56])[0] }}"
-              sat: "{{ (state_attr('light.sphere_1', 'hs_color') or [30, 56])[1] }}"
+              hue_sat: "{{ state_attr('light.sphere_1', 'hs_color') or [30, 56] }}"
           - service: light.turn_on
             entity_id: light.living_room_lights
             data:
               hs_color:
                 - >
                   {% set delta = trigger.event.data.event / 200 %}
-                  {% set new_hue = [([0, (hue|float + delta)]|max), 360]|min %}
+                  {% set new_hue = [([0, (hue_sat[0] + delta)]|max), 360]|min %}
                   {{ new_hue|round(3) }}
-                - "{{ sat }}"
+                - "{{ hue_sat[1] }}"
 
       - conditions: # Change brightness of living room lights
           condition: state
