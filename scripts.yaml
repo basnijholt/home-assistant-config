@@ -494,12 +494,12 @@ utility_notification:
         end_time: "{{ as_timestamp(now()) }}"
         end_kwh: "{{ state_attr(switch, 'total_energy_kwh') }}"
     - variables:
-        total_time: "{{ (end_time|float - start_time|float) }}"
-        total_kwh: "{{ end_kwh|float - start_kwh|float }}"
+        total_time: "{{ (end_time - start_time) }}"
+        total_kwh: "{{ end_kwh - start_kwh }}"
     - variables:
-        minutes: "{{ (total_time|float / 60) | round(0) }}"
-        total_kwh_rounded: "{{ (total_kwh | float) | round(2) }}"
-        price: "{{ (0.2479 * total_kwh | float) | round(2) }}"
+        minutes: "{{ (total_time / 60) | round(0) }}"
+        total_kwh_rounded: "{{ (total_kwh) | round(2) }}"
+        price: "{{ (0.2479 * total_kwh) | round(2) }}"
     - service: "{{ states('sensor.nearest_iphone_notify') }}"
       data:
         title: "Utilities"
