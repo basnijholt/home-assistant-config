@@ -98,13 +98,13 @@
           {% for s in states.sensor if 'battery_level' in s.entity_id %}
             {% set ns.battery = ns.battery + [s] %}
           {% endfor %}
-          {{ ns.battery | map(attribute='entity_id') | join(', ') }}
+          {{ ns.battery | map(attribute='entity_id') | list }}
     - alias: Repeat
       repeat:
-        count: "{{ battery_ids.split(', ') | length }}"
+        count: "{{ battery_ids | length }}"
         sequence:
           - variables:
-              current: "{{ battery_ids.split(', ')[repeat.index - 1] }}"
+              current: "{{ battery_ids[repeat.index - 1] }}"
           - condition: template
             value_template: "{{ 'iphone' not in current and 'ipad' not in current }}"
           - condition: template
