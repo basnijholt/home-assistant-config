@@ -123,16 +123,16 @@
       {{ expand(state_attr("light.stairs_lights", "entity_id") + hall_lights)
           | selectattr("state", "eq", "off")
           | map(attribute="entity_id")
-          | list | join(",") }}
+          | list }}
   condition: "{{ (off_lights | length) > 0 }}"
   action:
     alias: Turn on lights that are off
     repeat:
-      count: "{{ off_lights.split(',') | length }}"
+      count: "{{ off_lights | length }}"
       sequence:
         service: light.turn_on
         data:
-          entity_id: "{{ off_lights.split(',')[repeat.index - 1] }}"
+          entity_id: "{{ off_lights[repeat.index - 1] }}"
           transition: 1
 
 - alias: "Light: turn off hall"
@@ -165,7 +165,7 @@
       {{ expand(state_attr("light.bedroom_lights", "entity_id"))
           | selectattr("state", "eq", "off")
           | map(attribute="entity_id")
-          | list | join(",") }}
+          | list }}
   condition:
     - "{{ (off_lights | length) > 0 }}"
     - condition: state
@@ -177,11 +177,11 @@
   action:
     - alias: Turn on lights that are off
       repeat:
-        count: "{{ off_lights.split(',') | length }}"
+        count: "{{ off_lights | length }}"
         sequence:
           service: light.turn_on
           data:
-            entity_id: "{{ off_lights.split(',')[repeat.index - 1] }}"
+            entity_id: "{{ off_lights[repeat.index - 1] }}"
     - service: input_boolean.turn_on
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
