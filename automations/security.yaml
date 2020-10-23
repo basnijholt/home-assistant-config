@@ -22,26 +22,24 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
       state: "docked"
   action:
-    service: notify.all_iphones
-    data:
-      message: "Security: motion is detected, but we are not home."
+    - service: notify.all_iphones
       data:
-        push:
-          category: sound_alarm
-
-# XXX: Use `wait_for_trigger` the combine the automation below into the one above
-- alias: "Security: sound alarm after notification"
-  trigger:
-    platform: event
-    event_type: ios.notification_action_fired
-    event_data:
-      actionName: SOUND_ALARM
-  action:
-    service: light.turn_on
-    entity_id: all
-    data:
-      flash: long
-      color_name: red
+        message: "Security: motion is detected, but we are not home."
+        data:
+          push:
+            category: sound_alarm
+    - wait_for_trigger:
+        platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: SOUND_ALARM
+      timeout: "01:00:00"
+      continue_on_timeout: false
+    - service: light.turn_on
+      entity_id: all
+      data:
+        flash: long
+        color_name: red
 
 - alias: "Security: door has been open for more than 5 minutes"
   trigger:
