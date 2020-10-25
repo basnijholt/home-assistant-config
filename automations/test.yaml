@@ -26,3 +26,16 @@
       message: "{{ trigger.event.data.entity_id }} is changed by AL: {{ trigger.event.data }}"
       level: debug
       logger: yolo.yolo
+
+- alias: "Test: time"
+  trigger:
+    platform: state
+    entity_id: sensor.time
+  action:
+    - variables:
+        t_start: "{{ as_timestamp(now()) }}"
+    - service: system_log.write
+      data:
+        message: "took {{ as_timestamp(now()) - t_start | int }}"
+        level: debug
+        logger: yolo.yolo
