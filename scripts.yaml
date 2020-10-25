@@ -564,3 +564,17 @@ vacuum_command:
         sequence:
           service: vacuum.return_to_base
           entity_id: vacuum.xiaomi_vacuum_cleaner
+
+turn_on:
+  alias: Turn on lights with Adaptive Lighting
+  icon: mdi:lamp
+  fields:
+    entity_id:
+      description: entity_id of light
+      example: light.bedroom_lights
+  sequence:
+    service: adaptive_lighting.apply
+    data:
+      entity_id: switch.adaptive_lighting_living_room
+      lights: "{{ entity_id }}"
+      turn_on_lights: true
