@@ -565,7 +565,7 @@ vacuum_command:
           service: vacuum.return_to_base
           entity_id: vacuum.xiaomi_vacuum_cleaner
 
-turn_on:
+turn_on_lights:
   alias: Turn on lights with Adaptive Lighting
   icon: mdi:lamp
   fields:

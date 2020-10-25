@@ -124,7 +124,7 @@
               entity_id: "{{ light }}"
         - conditions: "{{ option == 'ON' }}"
           sequence:
-            service: script.turn_on
+            service: script.turn_on_lights
             data:
               entity_id: "{{ light }}"
         - conditions: "{{ option == 'FIFTY' }}"

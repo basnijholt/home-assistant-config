@@ -130,7 +130,7 @@
     repeat:
       count: "{{ off_lights | length }}"
       sequence:
-        service: script.turn_on
+        service: script.turn_on_lights
         data:
           entity_id: "{{ off_lights[repeat.index - 1] }}"
 
@@ -178,7 +178,7 @@
       repeat:
         count: "{{ off_lights | length }}"
         sequence:
-          service: script.turn_on
+          service: script.turn_on_lights
           data:
             entity_id: "{{ off_lights[repeat.index - 1] }}"
     - service: input_boolean.turn_on
