@@ -12,10 +12,10 @@
   initial_state: "on"
   trigger:
     platform: event
-    event_type: deconz_event
+    event_type: zha_event
     event_data:
-      id: smart_switch_doorbell
-      event: 1002 # Single click
+      device_ieee: "00:15:8d:00:02:32:f1:f4" # smart_switch_doorbell
+      command: "single" # Single click
   action:
     - service: light.turn_on
       data:

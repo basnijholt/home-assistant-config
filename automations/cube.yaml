@@ -10,27 +10,25 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - alias: "Cube: perform operation"
+  mode: parallel
   trigger:
     platform: event
-    event_type: deconz_event
+    event_type: zha_event
     event_data:
-      id: lumi_sensor_cube_aqgl01_11
+      device_ieee: "00:15:8d:00:02:a7:00:5c"
   action:
     choose:
+      # XXX: flip doesn't work
       # Change cube mode by shifting on one side, or rotating from one side to another side
       - conditions: >
-          {% set event = trigger.event.data.event | string %}
-          {% set correct_start = event[:3] in ("100", "200", "300") %}
-          {% set first_last_different = event[0] != event[-1] %}
-          {% set last_is_zero = event[-1] == 0 %}
-          {{ correct_start and (first_last_different or last_is_zero) }}
+          {{ trigger.event.data.command in ('slide', 'flip') }}
         sequence:
           - service: input_select.select_option
             entity_id: input_select.cube_mode
             data:
               option: >
-                {% set event = trigger.event.data.event | string %}
-                {{ {"100": "Volume", "200": "Hue", "300": "Brightness"}[event[:3]] }}
+                {% set side = trigger.event.data.args['activated_face'] %}
+                {{ {1: "Volume", 3: "Hue", 5: "Brightness"}[side] }}
           - condition: state
             entity_id: media_player.tv
             state: "on"
@@ -41,7 +39,7 @@
 
       # Shuffle Spotify song by shaking cube
       - conditions:
-          - "{{ trigger.event.data.event == 7007 }}"
+          - "{{ trigger.event.data.command == 'shake' }}"
           - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
         sequence:
           - service: media_player.shuffle_set
@@ -53,32 +51,25 @@
 
       # Pause and play Spotify song by tapping cube on side 1
       - conditions:
-          - "{{ trigger.event.data.event in (1001, 2002, 3003, 4004, 5005, 6006) }}"
+          - "{{ trigger.event.data.command == 'knock' }}"
+          - "{{ trigger.event.data.args['activated_face'] == 1 }}"
           - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
         sequence:
           service: media_player.media_play_pause
           entity_id: media_player.spotify
 
       # Start music by throwing the cube
-      - conditions: "{{ trigger.event.data.event == 7008 }}"
+      - conditions: "{{ trigger.event.data.command == 'drop' }}"
         sequence:
           service: script.start_spotify_playlist_of_nearest_person
           data:
             source: LS50 Wireless
             entity_id: media_player.kef_ls50
 
-- alias: "Cube: rotate the cube"
-  trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: mi_magic_cube
-  action:
-    choose:
-      - conditions: # Change hue of living room lights
-          condition: state
-          entity_id: input_select.cube_mode
-          state: "Hue"
+      # Change hue of living room lights by rotation
+      - conditions: >
+          {{ trigger.event.data.command.startswith('rotate_')
+              and is_state('input_select.cube_mode', 'Hue') }}
         sequence:
           - variables:
               hue_sat: "{{ state_attr('light.sphere_1', 'hs_color') or [30, 56] }}"
@@ -87,36 +78,39 @@
             data:
               hs_color:
                 - >
-                  {% set delta = trigger.event.data.event / 200 %}
+                  {% set angle = trigger.event.data.args['relative_degrees'] %}
+                  {% set delta = angle / 2 %}
                   {% set new_hue = [([0, (hue_sat[0] + delta)]|max), 360]|min %}
                   {{ new_hue|round(3) }}
                 - "{{ hue_sat[1] }}"
 
-      - conditions: # Change brightness of living room lights
-          condition: state
-          entity_id: input_select.cube_mode
-          state: "Brightness"
+      # Change brightness of living room lights by rotation
+      - conditions: >
+          {{ trigger.event.data.command.startswith('rotate_')
+              and is_state('input_select.cube_mode', 'Brightness') }}
         sequence:
           service: light.turn_on
           entity_id: light.living_room_lights
           data:
             brightness: >
               {% set brightness = state_attr('light.sphere_1', 'brightness') %}
-              {% set delta = trigger.event.data.event / 450 %}
+              {% set angle = trigger.event.data.args['relative_degrees'] %}
+              {% set delta = angle / 0.45 %}
               {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
               {{ new_brightness|int }}
 
-      - conditions: # Change speaker volume
-          condition: state
-          entity_id: input_select.cube_mode
-          state: "Volume"
+      # Change speaker volume by rotation
+      - conditions: >
+          {{ trigger.event.data.command.startswith('rotate_')
+          and is_state('input_select.cube_mode', 'Volume') }}
         sequence:
           - service: media_player.volume_set
             entity_id: media_player.kef_ls50
             data: # 90 deg is 10%
               volume_level: >
                 {% set max_change = 0.15 %}
-                {% set dV = [trigger.event.data.event / 100 / 900, max_change] | min %}
+                {% set angle = trigger.event.data.args['relative_degrees'] %}
+                {% set dV = [angle / 100, max_change] | min %}
                 {{ (states.media_player.kef_ls50.attributes.volume_level + dV)|round(2) }}
           - condition: state
             entity_id: media_player.tv

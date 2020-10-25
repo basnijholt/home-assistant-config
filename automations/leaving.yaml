@@ -80,10 +80,10 @@
 - alias: "Leaving: downstairs Aqara Wireless Mini Switch"
   trigger:
     platform: event
-    event_type: deconz_event
+    event_type: zha_event
     event_data:
-      id: smart_switch_downstairs
-      event: 1002  # single click
+      device_ieee: "00:15:8d:00:02:33:38:62" # smart_switch_downstairs
+      command: "single"  # single click
   action:
     - wait_for_trigger:  # when the door closes, turn off everything
         platform: state
