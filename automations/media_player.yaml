@@ -99,6 +99,8 @@
     entity_id: media_player.spotify
 
 - alias: "Media player: sync KEF LS50 and TV volume"
+  mode: single
+  max_exceeded: silent
   trigger:
     - platform: state
       entity_id: media_player.kef_ls50
