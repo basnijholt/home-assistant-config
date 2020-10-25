@@ -279,7 +279,7 @@
     adaptive_lighting_sun_position:
       unit_of_measurement: "%"
       value_template: >
-        {{ state_attr("switch.adaptive_lighting_living_room", "sun_position") }}
+        {{ 100 * state_attr("switch.adaptive_lighting_living_room", "sun_position") }}
 
 #   ___  _   _
 #  / _ \| |_| |__   ___ _ __ ___
