@@ -130,10 +130,9 @@
     repeat:
       count: "{{ off_lights | length }}"
       sequence:
-        service: light.turn_on
+        service: script.turn_on
         data:
           entity_id: "{{ off_lights[repeat.index - 1] }}"
-          transition: 1
 
 - alias: "Light: turn off hall"
   trigger:
@@ -179,7 +178,7 @@
       repeat:
         count: "{{ off_lights | length }}"
         sequence:
-          service: light.turn_on
+          service: script.turn_on
           data:
             entity_id: "{{ off_lights[repeat.index - 1] }}"
     - service: input_boolean.turn_on

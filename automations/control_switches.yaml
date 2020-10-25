@@ -274,10 +274,9 @@
             data:
               flash: "short"
               entity_id: light.stairs_up
-          - service: light.turn_on
-            entity_id: light.living_room_lights
+          - service: script.turn_on
             data:
-              brightness: 100
+              entity_id: light.living_room_lights
           - service: script.arriving
           - service: script.start_spotify
             data:
