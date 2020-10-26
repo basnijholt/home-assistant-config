@@ -37,6 +37,7 @@ class XiaomiVacuumMapCard extends LitElement {
         this.vacuumZonedCleanupRepeats = 1;
         this.currPoint = {x: null, y: null};
         this.outdatedConfig = false;
+        this.missingCameraAttribute = false;
     }
 
     static get properties() {
@@ -83,36 +84,41 @@ class XiaomiVacuumMapCard extends LitElement {
             this._config = config;
             return;
         }
-        if (!config.calibration_points || !Array.isArray(config.calibration_points)) {
-            throw new Error("Missing configuration: calibration_points");
+        if (!config.camera_calibration) {
+            if (!config.calibration_points || !Array.isArray(config.calibration_points)) {
+                throw new Error("Missing configuration: calibration_points or camera_calibration");
+            }
+            if (config.calibration_points.length !== 3) {
+                throw new Error("Exactly 3 calibration_points required");
+            }
+            for (const calibration_point of config.calibration_points) {
+                if (calibration_point.map === null) {
+                    throw new Error("Missing configuration: calibration_points.map");
+                }
+                if (calibration_point.map.x === null) {
+                    throw new Error("Missing configuration: calibration_points.map.x");
+                }
+                if (calibration_point.map.y === null) {
+                    throw new Error("Missing configuration: calibration_points.map.y");
+                }
+                if (calibration_point.vacuum === null) {
+                    throw new Error("Missing configuration: calibration_points.vacuum");
+                }
+                if (calibration_point.vacuum.x === null) {
+                    throw new Error("Missing configuration: calibration_points.vacuum.x");
+                }
+                if (calibration_point.vacuum.y === null) {
+                    throw new Error("Missing configuration: calibration_points.vacuum.y");
+                }
+            }
+    
+            this.updateCoordinates(config)
+        } else {
+            if (!config.map_camera) {
+                throw new Error("Invalid configuration: map_camera is required for camera_calibration");
+            }
         }
-        if (config.calibration_points.length !== 3) {
-            throw new Error("Exactly 3 calibration_points required");
-        }
-        for (const calibration_point of config.calibration_points) {
-            if (calibration_point.map === null) {
-                throw new Error("Missing configuration: calibration_points.map");
-            }
-            if (calibration_point.map.x === null) {
-                throw new Error("Missing configuration: calibration_points.map.x");
-            }
-            if (calibration_point.map.y === null) {
-                throw new Error("Missing configuration: calibration_points.map.y");
-            }
-            if (calibration_point.vacuum === null) {
-                throw new Error("Missing configuration: calibration_points.vacuum");
-            }
-            if (calibration_point.vacuum.x === null) {
-                throw new Error("Missing configuration: calibration_points.vacuum.x");
-            }
-            if (calibration_point.vacuum.y === null) {
-                throw new Error("Missing configuration: calibration_points.vacuum.y");
-            }
-        }
-        const p1 = this.getCalibrationPoint(config, 0);
-        const p2 = this.getCalibrationPoint(config, 1);
-        const p3 = this.getCalibrationPoint(config, 2);
-        this.coordinatesConverter = new CoordinatesConverter(p1, p2, p3);
+        
 
         if (config.modes) {
             if (!Array.isArray(config.modes) || config.modes.length < 1 || config.modes.length > 3) {
@@ -155,6 +161,13 @@ class XiaomiVacuumMapCard extends LitElement {
         }
         this._map_refresh_interval = (config.camera_refresh_interval || 5) * 1000;
         this._config = config;
+    }
+
+    updateCoordinates(config) {
+        const p1 = this.getCalibrationPoint(config, 0);
+        const p2 = this.getCalibrationPoint(config, 1);
+        const p3 = this.getCalibrationPoint(config, 2);
+        this.coordinatesConverter = new CoordinatesConverter(p1, p2, p3);
     }
 
     getConfigurationMigration(config) {
@@ -235,7 +248,12 @@ class XiaomiVacuumMapCard extends LitElement {
                         @touchmove="${e => this.onTouchMove(e)}" />
                 </div>
             </div>
-            <div class="dropdownWrapper">
+            ${this.missingCameraAttribute ? 
+            html`<div style="padding: 5px;">
+            <h3>Your camera entity is not providing calibration_points</h3>
+            <p>Enable calibration_points in camera entity or disable camera_calibration</p>
+            </div>` : 
+            html`<div class="dropdownWrapper">
                 <paper-dropdown-menu label="${texts[this._language][mode]}" @value-changed="${e => this.modeSelected(e)}" class="vacuumDropdown" selected="${this.defaultMode}">
                     <paper-listbox slot="dropdown-content" class="dropdown-content" selected="${this.defaultMode}">
                         ${modesDropdown}
@@ -246,9 +264,8 @@ class XiaomiVacuumMapCard extends LitElement {
                 <span id="increaseButton" hidden><mwc-button @click="${() => this.vacuumZonedIncreaseButton()}">${texts[this._language][repeats]} ${this.vacuumZonedCleanupRepeats}</mwc-button></span>
                 <mwc-button class="vacuumRunButton" @click="${() => this.vacuumStartButton(true)}">${texts[this._language][run]}</mwc-button>
             </p>
-            <div id="toast"><div id="img"><ha-icon icon="mdi:check" style="vertical-align: center"></ha-icon></div><div id="desc">${texts[this._language][confirmation]}</div></div>
-        </ha-card>
-        `;
+            <div id="toast"><div id="img"><ha-icon icon="mdi:check" style="vertical-align: center"></ha-icon></div><div id="desc">${texts[this._language][confirmation]}</div></div>`} 
+        </ha-card>`;
         if (this.getMapImage()) {
             this.calculateScale();
         }
@@ -673,6 +690,13 @@ class XiaomiVacuumMapCard extends LitElement {
         }).then(val => {
             const {content_type: contentType, content} = val;
             this.map_image = `data:${contentType};base64, ${content}`;
+            if (this._config.camera_calibration) {
+                if (!this._hass.states[this._config.map_camera].attributes.calibration_points) {
+                    this.missingCameraAttribute = true;
+                } else {
+                    this.updateCoordinates(this._hass.states[this._config.map_camera].attributes)
+                }
+            }
             this.requestUpdate();
         })
     }
