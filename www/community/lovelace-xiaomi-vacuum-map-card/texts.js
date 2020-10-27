@@ -97,6 +97,15 @@ const texts = {
         repeats: "Razy:",
         confirmation: "Komenda wysłana!"
     },
+    "pt": {
+        mode: "Modo",
+        goToTarget: "Mover-se até um ponto",
+        zonedCleanup: "Limpeza por zona",
+        zones: "Zonas",
+        run: "Iniciar",
+        repeats: "Repetições:",
+        confirmation: "Comando enviado!"
+    },
     "ru": {
         mode: "Режим",
         goToTarget: "Движение к цели",

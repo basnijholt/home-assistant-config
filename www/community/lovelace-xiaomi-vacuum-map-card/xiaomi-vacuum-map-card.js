@@ -111,14 +111,12 @@ class XiaomiVacuumMapCard extends LitElement {
                     throw new Error("Missing configuration: calibration_points.vacuum.y");
                 }
             }
-    
             this.updateCoordinates(config)
         } else {
             if (!config.map_camera) {
                 throw new Error("Invalid configuration: map_camera is required for camera_calibration");
             }
         }
-        
 
         if (config.modes) {
             if (!Array.isArray(config.modes) || config.modes.length < 1 || config.modes.length > 3) {
@@ -421,7 +419,11 @@ class XiaomiVacuumMapCard extends LitElement {
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.translate(0.5, 0.5);
         if (this._config.debug) {
-            for (const calibration_point of this._config.calibration_points) {
+            let calibration_points = this._config.calibration_points;
+            if (this._config.camera_calibration) {
+                calibration_points = this._hass.states[this._config.map_camera].attributes.calibration_points;
+            }
+            for (const calibration_point of calibration_points) {
                 const {x, y} = this.convertVacuumToMapCoordinates(calibration_point.vacuum.x, calibration_point.vacuum.y);
                 this.drawCircle(context, x, y, 4, 'red', 1);
             }
