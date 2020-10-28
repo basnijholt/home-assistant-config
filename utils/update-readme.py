@@ -211,7 +211,6 @@ def modify_version(lines):
     msg = f"Running Home Asssistant-{version} -darkblue"
     url_part = urllib.parse.quote(msg)
     ha_url = f"https://github.com/home-assistant/core/releases/tag/{version}"
-
     pattern = "[![HA Version]"
     new_lines = []
     for line in lines:
@@ -232,7 +231,7 @@ def get_addons():
     raw = output.decode("utf-8")
     addons = json.loads(raw)["data"]
     installed_addons = [
-        addon for addon in addons["addons"] if addon["installed"] is not None
+        addon for addon in addons["addons"] if addon["installed"]
     ]
     return installed_addons
 
@@ -240,7 +239,10 @@ def get_addons():
 def get_addon_line(addon):
     name = addon["name"]
     url = addon["url"]
-    by = addon["url"].split("github.com/")[1].split("/")[0]
+    try:
+        by = addon["url"].split("github.com/")[1].split("/")[0]
+    except IndexError:
+        by = "home-assistant.io"
     version = addon['version']
     return by, f"- [{name}]({url}) version {version} by @{by}"
 
