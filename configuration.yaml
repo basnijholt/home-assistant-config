@@ -69,3 +69,4 @@ proxmoxve: !include includes/proxmoxve.yaml
 # Custom components
 pyscript: !include includes/pyscript.yaml
 adaptive_lighting: !include includes/adaptive_lighting.yaml
+zha_map:
