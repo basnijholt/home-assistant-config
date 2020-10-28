@@ -14,6 +14,7 @@ longitude: !secret longitude_home
 # external_url:  # XXX: take from .storage config
 elevation: 0
 unit_system: metric
+legacy_templates: false
 time_zone: Europe/Amsterdam
 name: Home
 whitelist_external_dirs:
