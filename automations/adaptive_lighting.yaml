@@ -67,7 +67,7 @@
 
 - alias: "Adaptive lighting: reset manual_control after 1 hour"
   mode: parallel
-  max: 20
+  max: 200
   trigger:
     - platform: event
       event_type: adaptive_lighting.manual_control

@@ -10,6 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - alias: "Control switches: living room Philips Hue dimmer switch"
+  mode: parallel
   trigger:
     platform: event
     event_type: zha_event
@@ -62,6 +63,7 @@
             group: light.living_room_lights
 
 - alias: "Control switches: bedroom Philips Hue dimmer switch"
+  mode: parallel
   trigger:
     platform: event
     event_type: zha_event
@@ -114,6 +116,7 @@
             group: light.bedroom_lights
 
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
+  mode: parallel
   trigger:
     platform: event
     event_type: zha_event
@@ -163,6 +166,7 @@
           service: script.fix_sound
 
 - alias: "Control switches: bedroom Aqara Wireless Mini Switch"
+  mode: parallel
   trigger:
     - platform: event
       event_type: zha_event
@@ -248,6 +252,7 @@
                 entity_id: all
 
 - alias: "Control switches: bathroom Aqara Wireless Mini Switch"
+  mode: parallel
   trigger:
     platform: event
     event_type: zha_event
@@ -284,6 +289,7 @@
           entity_id: light.ceiling_bathroom
 
 - alias: "Control switches: downstairs Aqara Wireless Mini Switch"
+  mode: parallel
   trigger:
     platform: event
     event_type: zha_event

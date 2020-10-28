@@ -197,6 +197,7 @@ white_lights_living_room:
 
 white_lights_bedroom:
   alias: Set white lights in the bedroom
+  mode: parallel
   sequence:
     - data:
         color_temp: 366
