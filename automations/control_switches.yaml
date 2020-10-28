@@ -161,7 +161,7 @@
               transition: 30
 
       # Fix the sounds on the TV (LG TV sound sync bug 🐛)
-      - conditions: "{{ trigger.event.data.command == 'long' }}" # Long click
+      - conditions: "{{ trigger.event.data.command == 'hold' }}" # Long click
         sequence:
           service: script.fix_sound
 
@@ -193,7 +193,7 @@
             group: light.bedroom_lights
 
       # Turn off lights in and next to bedroom
-      - conditions: "{{ trigger.event.data.command == 'long' }}" # Long click
+      - conditions: "{{ trigger.event.data.command == 'hold' }}" # Long click
         sequence:
           service: light.turn_off
           entity_id:
