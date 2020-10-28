@@ -183,6 +183,7 @@ def get_emoji(title):
         "Media player": "🔈📺",
         "Music": "🎵",
         "Night mode": "🌕🌑",
+        "Notifications": "🔔",
         "Plant": "🌱",
         "Rhasspy": "🤖",
         "Security": "👮🚨",
