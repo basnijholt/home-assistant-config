@@ -93,9 +93,78 @@ views:
       - light.ceiling_bathroom
       - light.toilet
       - light.kitchen_counter
-      - light.hall_lights
-      - light.stairs_lights
-      - switch.adaptive_lighting_default
+      - entities:
+        - light.hall_1
+        - light.hall_2
+        - light.hall_3
+        head:
+          entity: light.hall_lights
+        type: custom:fold-entity-row
+      - entities:
+        - light.stairs_up
+        - light.stairs_down
+        head:
+          entity: light.stairs_lights
+        type: custom:fold-entity-row
+      - entities:
+        - icon: mdi:currency-eur
+          name: "{% set manual_control = (\n    (state_attr('switch.adaptive_lighting_default',\
+            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_living_room',\
+            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_default_bed',\
+            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_half_and_full',\
+            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_half_and_dim',\
+            \ 'manual_control') or [])\n) %} {% if manual_control %}\n  Manually controlled:\
+            \ {{ manual_control | join(\", \") }}.\n{% else %}\n  Nothing is manually\
+            \ controlled.\n{% endif %}\n"
+          type: custom:template-entity-row
+        - type: divider
+        - entity: switch.adaptive_lighting_default
+          name: default
+        - entity: switch.adaptive_lighting_sleep_mode_default
+          name: Sleep mode
+        - entity: switch.adaptive_lighting_adapt_brightness_default
+          name: Adapt brightness
+        - entity: switch.adaptive_lighting_adapt_color_default
+          name: Adapt color
+        - type: divider
+        - entity: switch.adaptive_lighting_living_room
+          name: living_room
+        - entity: switch.adaptive_lighting_sleep_mode_living_room
+          name: Sleep mode
+        - entity: switch.adaptive_lighting_adapt_brightness_living_room
+          name: Adapt brightness
+        - entity: switch.adaptive_lighting_adapt_color_living_room
+          name: Adapt color
+        - type: divider
+        - entity: switch.adaptive_lighting_default_bed
+          name: default_bed
+        - entity: switch.adaptive_lighting_sleep_mode_default_bed
+          name: Sleep mode
+        - entity: switch.adaptive_lighting_adapt_brightness_default_bed
+          name: Adapt brightness
+        - entity: switch.adaptive_lighting_adapt_color_default_bed
+          name: Adapt color
+        - type: divider
+        - entity: switch.adaptive_lighting_half_and_full
+          name: half_and_full
+        - entity: switch.adaptive_lighting_sleep_mode_half_and_full
+          name: Sleep mode
+        - entity: switch.adaptive_lighting_adapt_brightness_half_and_full
+          name: Adapt brightness
+        - entity: switch.adaptive_lighting_adapt_color_half_and_full
+          name: Adapt color
+        - type: divider
+        - entity: switch.adaptive_lighting_half_and_dim
+          name: half_and_dim
+        - entity: switch.adaptive_lighting_sleep_mode_half_and_dim
+          name: Sleep mode
+        - entity: switch.adaptive_lighting_adapt_brightness_half_and_dim
+          name: Adapt brightness
+        - entity: switch.adaptive_lighting_adapt_color_half_and_dim
+          name: Adapt color
+        head:
+          entity: switch.adaptive_lighting_default
+        type: custom:fold-entity-row
       head:
         entity: light.automatic_lights
         name: Auto
@@ -807,6 +876,8 @@ views:
     type: custom:swipe-card
   - entities:
     - entities:
+      - entity: input_boolean.office_door_open_warning
+      - type: divider
       - align: center
         color: '#0279ff'
         entity: sensor.time_at_work_this_week
@@ -1296,25 +1367,26 @@ views:
   - columns: 3
     entities:
     - entity: binary_sensor.motion_sensor_kitchen
-    - entity: sensor.lightlevel_kitchen
+    - entity: sensor.motion_sensor_kitchen_light_level
     - entity: sensor.motion_sensor_kitchen_battery_level
     - entity: binary_sensor.motion_sensor_toilet
-    - entity: sensor.lightlevel_toilet
+    - entity: sensor.motion_sensor_toilet_light_level
     - entity: sensor.motion_sensor_toilet_battery_level
     - entity: binary_sensor.motion_sensor_hall
-    - entity: sensor.lightlevel_hall
+    - entity: sensor.motion_sensor_hall_light_level
     - entity: sensor.motion_sensor_hall_battery_level
     - entity: binary_sensor.motion_sensor_bathroom
-    - entity: sensor.lightlevel_bathroom
+    - entity: sensor.motion_sensor_bathroom_light_level
     - entity: sensor.motion_sensor_bathroom_battery_level
     - entity: binary_sensor.motion_sensor_bedroom_1
-    - entity: sensor.lightlevel_bedroom_1
+    - entity: sensor.motion_sensor_bedroom_1_light_level
     - entity: sensor.motion_sensor_bedroom_1_battery_level
     - entity: binary_sensor.motion_sensor_bedroom_2
-    - entity: sensor.lightlevel_bedroom_2
+    - entity: sensor.motion_sensor_bedroom_2_light_level
     - entity: sensor.motion_sensor_bedroom_2_battery_level
     show_icon: true
     show_name: false
+    state_color: true
     title: Motion sensor
     type: glance
   - columns: 5
@@ -1336,6 +1408,7 @@ views:
     - entity: binary_sensor.activity_in_bedroom
     - entity: binary_sensor.openclose_front_door
     - entity: binary_sensor.openclose_guest_room
+    - entity: binary_sensor.openclose_living_room
     - type: divider
     - entity: binary_sensor.motion_detected
     - entity: binary_sensor.motion_detected_in_last_hour
@@ -1353,12 +1426,12 @@ views:
     entities:
     - entity: binary_sensor.openclose_front_door
     - entity: binary_sensor.openclose_guest_room
-    - entity: binary_sensor.openclose_3
-    - entity: binary_sensor.openclose_4
+    - entity: binary_sensor.openclose_living_room
+    - entity: binary_sensor.openclose_unused
     - entity: sensor.openclose_front_door_battery_level
     - entity: sensor.openclose_guest_room_battery_level
-    - entity: sensor.openclose_3_battery_level
-    - entity: sensor.openclose_4_battery_level
+    - entity: sensor.openclose_living_room_battery_level
+    - entity: sensor.openclose_unused_battery_level
     show_icon: true
     show_name: false
     title: Open/close sensor
@@ -1654,216 +1727,6 @@ views:
     - entity: sensor.gas_per_hour_filtered
     type: entities
   - entities:
-    - entity: input_boolean.automatic_temperature
-    - entity: input_boolean.office_door_open_warning
-    type: entities
-  - cards:
-    - cards:
-      - cards:
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.netherlands_confirmed
-            name: NL Confirmed
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.netherlands_current
-            name: NL Current
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        type: horizontal-stack
-      - cards:
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.netherlands_recovered
-            name: NL Recovered
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.netherlands_deaths
-            name: NL Deaths
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        type: horizontal-stack
-      type: custom:vertical-stack-in-card
-    - cards:
-      - cards:
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.worldwide_confirmed
-            name: WW Confirmed
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.worldwide_current
-            name: WW Current
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        type: horizontal-stack
-      - cards:
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.worldwide_recovered
-            name: WW Recovered
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        - color_thresholds_transition: smooth
-          entities:
-          - entity: sensor.worldwide_deaths
-            name: WW Deaths
-          font_size: 100
-          group: false
-          hour24: true
-          hours_to_show: 240
-          line_width: 6
-          points_per_hour: 1
-          show:
-            extrema: false
-            fill: fade
-            labels: false
-            name: true
-            state: true
-          style: "ha-card {\n  box-shadow: none;\n  --ha-card-background: 'rgba(0,\
-            \ 0, 0, 0)';\n}\n"
-          type: custom:mini-graph-card
-        type: horizontal-stack
-      type: custom:vertical-stack-in-card
-    type: custom:swipe-card
-  - cards:
-    - columns: 4
-      entities:
-      - entity: sensor.worldwide_confirmed
-        icon: mdi:emoticon-neutral-outline
-        name: Confirmed
-      - entity: sensor.worldwide_current
-        icon: mdi:emoticon-frown-outline
-        name: Current
-      - entity: sensor.worldwide_recovered
-        icon: mdi:emoticon-happy-outline
-        name: Recovered
-      - entity: sensor.worldwide_deaths
-        icon: mdi:emoticon-dead-outline
-        name: Deaths
-      show_icon: true
-      show_name: true
-      show_state: true
-      title: Worldwide
-      type: glance
-    - columns: 4
-      entities:
-      - entity: sensor.netherlands_confirmed
-        icon: mdi:emoticon-neutral-outline
-        name: Confirmed
-      - entity: sensor.netherlands_current
-        icon: mdi:emoticon-frown-outline
-        name: Current
-      - entity: sensor.netherlands_recovered
-        icon: mdi:emoticon-happy-outline
-        name: Recovered
-      - entity: sensor.netherlands_deaths
-        icon: mdi:emoticon-dead-outline
-        name: Deaths
-      show_icon: true
-      show_name: true
-      show_state: true
-      title: Netherlands
-      type: glance
-    type: vertical-stack
-  - entities:
     - entity: input_boolean.test
     - entity: sensor.average_sleep_time
     - entity: input_select.sleep_mode
@@ -1906,27 +1769,6 @@ views:
         \ 0, 0)';\n}\n"
       type: custom:bar-card
     title: Quarantine metrics
-    type: entities
-  - dark_mode: true
-    entities:
-    - entity: person.bas
-    - entity: person.marcella
-    hours_to_show: 240
-    type: map
-  - entities:
-    - switch.adaptive_lighting_default
-    - switch.adaptive_lighting_default_bed
-    - switch.adaptive_lighting_living_room
-    - switch.adaptive_lighting_half_and_dim
-    - switch.adaptive_lighting_half_and_dim_bed
-    - switch.adaptive_lighting_half_and_full
-    - switch.adaptive_lighting_sleep_mode_default
-    - switch.adaptive_lighting_sleep_mode_default_bed
-    - switch.adaptive_lighting_sleep_mode_living_room
-    - switch.adaptive_lighting_sleep_mode_half_and_dim
-    - switch.adaptive_lighting_sleep_mode_half_and_dim_bed
-    - switch.adaptive_lighting_sleep_mode_half_and_full
-    - input_select.sleep_mode
     type: entities
   - cards:
     - cards:
@@ -1998,6 +1840,95 @@ views:
         type: custom:mini-graph-card
       type: horizontal-stack
     type: vertical-stack
+  - cards:
+    - color_thresholds_transition: smooth
+      entities:
+      - entity: sensor.adaptive_lighting_brightness
+        name: Brightness
+        show_state: true
+      - entity: sensor.adaptive_lighting_color_temp_kelvin
+        name: Color temp (Kelvin)
+        show_state: true
+        y_axis: secondary
+      font_size: 80
+      group: false
+      hour24: true
+      hours_to_show: 72
+      line_width: 2
+      lower_bound: 60
+      lower_bound_secondary: 0
+      name: Brightness vs color temp
+      points_per_hour: 2
+      show:
+        extrema: false
+        fill: fade
+        labels: false
+        name: true
+        state: true
+      type: custom:mini-graph-card
+      upper_bound: 105
+      upper_bound_secondary: ~5500
+    - color_thresholds_transition: smooth
+      entities:
+      - entity: sensor.adaptive_lighting_brightness
+        name: Brightness
+        show_state: true
+      - entity: sensor.adaptive_lighting_sun_position
+        name: Sun position
+        show_state: true
+        y_axis: secondary
+      font_size: 80
+      group: false
+      hour24: true
+      hours_to_show: 72
+      line_width: 2
+      lower_bound: 40
+      lower_bound_secondary: -100
+      name: Brightness vs sun position
+      points_per_hour: 2
+      show:
+        extrema: false
+        fill: fade
+        labels: false
+        name: true
+        state: true
+      type: custom:mini-graph-card
+      upper_bound: 100
+      upper_bound_secondary: 100
+    - color_thresholds_transition: smooth
+      entities:
+      - entity: sensor.adaptive_lighting_color_temp_kelvin
+        name: Color temp
+        show_state: true
+      - entity: sensor.adaptive_lighting_sun_position
+        name: Sun position
+        show_state: true
+        y_axis: secondary
+      font_size: 80
+      group: false
+      hour24: true
+      hours_to_show: 72
+      line_width: 2
+      lower_bound: 0
+      lower_bound_secondary: -100
+      name: Color temp vs sun position
+      points_per_hour: 2
+      show:
+        extrema: false
+        fill: fade
+        labels: false
+        name: true
+        state: true
+      type: custom:mini-graph-card
+      upper_bound: ~5500
+      upper_bound_secondary: 100
+    type: custom:swipe-card
+  - dark_mode: true
+    entities:
+    - entity: person.bas
+    - entity: person.marcella
+    hours_to_show: 240
+    type: map
   icon: mdi:test-tube
   path: tests
   title: Tests
@@ -2166,3 +2097,44 @@ views:
   icon: mdi:robot
   path: automations
   title: Automations
+- badges: []
+  cards:
+  - clickable: true
+    columns:
+    - name: Name
+      prop: name
+    - attr: available
+      id: available
+      modify: x || "false"
+      name: Online
+    - attr: manufacturer
+      name: Manufacturer
+    - attr: model
+      name: Model
+    - attr: ieee
+      name: IEEE
+    - name: NWK
+      prop: nwk
+    - attr: rssi
+      name: RSSI
+    - attr: lqi
+      name: LQI
+    - attr: last_seen
+      name: Last Seen
+    - attr: power_source
+      name: Power Source
+    - attr: quirk_class
+      name: Quirk
+    sort_by: available
+    type: custom:zha-network-card
+  icon: mdi:list-status
+  panel: true
+  path: zha
+  title: ZHA
+- badges: []
+  cards:
+  - type: custom:zha-network-visualization-card
+  icon: mdi:network
+  panel: true
+  path: zha-map
+  title: zha-map
