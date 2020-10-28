@@ -8,8 +8,8 @@
 #                            |_____|
 #
 #- from github.com/basnijholt/home-assistant-config
-- platform: netgear
-  password: !secret netgear_password
+# - platform: netgear
+#   password: !secret netgear_password
 
 - platform: ping
   hosts:  # Router -> Advanced -> Setup -> LAN Setup
