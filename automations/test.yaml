@@ -39,3 +39,44 @@
         message: "took {{ as_timestamp(now()) - t_start | int }}"
         level: debug
         logger: yolo.yolo
+
+- alias: "Test: flash lights"
+  trigger:
+    platform: state
+    entity_id: sensor.time
+  variables:  # 'light.ceiling_bathroom',
+    lights: 'light.bed_led,light.philips_go,light.bed_reading_up,light.hall_3,light.toilet,light.ceiling_kitchen,light.bamboo,light.lampan,light.sphere_2,light.sphere_1,light.hall_2,light.bed_reading_down,light.corner_living_room,light.tv_led,light.stairs_up,light.stairs_down,light.ceiling_bedroom,light.ceiling_living_room,light.hall_1,light.bed_reading'
+  action:
+    - alias: Turn on lights that are off
+      repeat:
+        count: "{{ lights | length }}"
+        sequence:
+          - variables:
+              light: "{{ lights.split(',')[repeat.index - 1] }}"
+          - service: light.turn_on
+            data:
+              entity_id: "{{ light }}"
+          - delay: "00:00:01"
+          - service: light.turn_off
+            data:
+              entity_id: "{{ light }}"
+
+- alias: "Test: call update_entity after light.turn_on/turn_off"
+  mode: parallel
+  max: 100
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        service: turn_on
+        domain: light
+    - platform: event
+      event_type: call_service
+      event_data:
+        service: turn_off
+        domain: light
+  action:
+    - delay: "00:00:01"
+    - service: homeassistant.update_entity
+      data:
+        entity_id: "{{ trigger.event.entity_id }}"
