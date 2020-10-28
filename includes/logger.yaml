@@ -11,13 +11,28 @@
 default: warning
 logs:
   # homeassistant.core: debug
-  custom_components.kef_custom: debug
-  custom_components.aiokef: debug
+  # custom_components.kef_custom: debug
+  # custom_components.aiokef: debug
   # aiokef: debug
   # homeassistant.component.miflora: debug
-  homeassistant.component.deconz: debug
+  # homeassistant.component.deconz: debug
   # pyotgw: warning
   # custom_components.derivative_custom: debug
   # custom_components.pyscript: debug
   # custom_components.circadian_lighting: debug
-  custom_components.adaptive_lighting: debug
+  # custom_components.adaptive_lighting: debug
+  # homeassistant.bootstrap: debug
+  # ZHA
+  custom_components.zha_map.scan_now: debug
+  homeassistant.components.zha: debug
+  bellows.zigbee.application: debug
+  bellows.ezsp: debug
+  zigpy: debug
+  zigpy_cc: debug
+  zigpy_deconz.zigbee.application: debug
+  zigpy_deconz.api: debug
+  zigpy_xbee.zigbee.application: debug
+  zigpy_xbee.api: debug
+  zigpy_zigate: debug
+  zigpy_znp: debug
+  zhaquirks: debug
