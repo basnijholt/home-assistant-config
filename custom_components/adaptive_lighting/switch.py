@@ -35,6 +35,7 @@ from homeassistant.components.light import (
     SUPPORT_COLOR,
     SUPPORT_COLOR_TEMP,
     SUPPORT_TRANSITION,
+    SUPPORT_WHITE_VALUE,
     VALID_TRANSITION,
     is_on,
 )
@@ -45,6 +46,7 @@ from homeassistant.const import (
     ATTR_ENTITY_ID,
     ATTR_SERVICE,
     ATTR_SERVICE_DATA,
+    ATTR_SUPPORTED_FEATURES,
     CONF_NAME,
     EVENT_CALL_SERVICE,
     EVENT_HOMEASSISTANT_STARTED,
@@ -122,6 +124,7 @@ from .const import (
 
 _SUPPORT_OPTS = {
     "brightness": SUPPORT_BRIGHTNESS,
+    "white_value": SUPPORT_WHITE_VALUE,
     "color_temp": SUPPORT_COLOR_TEMP,
     "color": SUPPORT_COLOR,
     "transition": SUPPORT_TRANSITION,
@@ -145,12 +148,12 @@ COLOR_ATTRS = {  # Should ATTR_PROFILE be in here?
     ATTR_HS_COLOR,
     ATTR_KELVIN,
     ATTR_RGB_COLOR,
-    ATTR_WHITE_VALUE,  # Should this be here?
     ATTR_XY_COLOR,
 }
 
 BRIGHTNESS_ATTRS = {
     ATTR_BRIGHTNESS,
+    ATTR_WHITE_VALUE,
     ATTR_BRIGHTNESS_PCT,
     ATTR_BRIGHTNESS_STEP,
     ATTR_BRIGHTNESS_STEP_PCT,
@@ -194,13 +197,18 @@ async def handle_apply(switch: AdaptiveSwitch, service_call: ServiceCall):
                 data[CONF_TRANSITION],
                 data[ATTR_ADAPT_BRIGHTNESS],
                 data[ATTR_ADAPT_COLOR],
+                data[CONF_PREFER_RGB_COLOR],
                 force=True,
             )
 
 
 async def handle_set_manual_control(switch: AdaptiveSwitch, service_call: ServiceCall):
     """Set or unset lights as 'manually controlled'."""
-    all_lights = _expand_light_groups(switch.hass, service_call.data[CONF_LIGHTS])
+    lights = service_call.data[CONF_LIGHTS]
+    if not lights:
+        all_lights = switch._lights
+    else:
+        all_lights = _expand_light_groups(switch.hass, lights)
     _LOGGER.debug(
         "Called 'adaptive_lighting.set_manual_control' service with '%s'",
         service_call.data,
@@ -274,6 +282,7 @@ async def async_setup_entry(
             ): VALID_TRANSITION,
             vol.Optional(ATTR_ADAPT_BRIGHTNESS, default=True): cv.boolean,
             vol.Optional(ATTR_ADAPT_COLOR, default=True): cv.boolean,
+            vol.Optional(CONF_PREFER_RGB_COLOR, default=False): cv.boolean,
             vol.Optional(CONF_TURN_ON_LIGHTS, default=False): cv.boolean,
         },
         handle_apply,
@@ -282,7 +291,7 @@ async def async_setup_entry(
     platform.async_register_entity_service(
         SERVICE_SET_MANUAL_CONTROL,
         {
-            vol.Required(CONF_LIGHTS): cv.entity_ids,
+            vol.Optional(CONF_LIGHTS, default=[]): cv.entity_ids,
             vol.Optional(CONF_MANUAL_CONTROL, default=True): cv.boolean,
         },
         handle_set_manual_control,
@@ -335,7 +344,7 @@ def _expand_light_groups(hass: HomeAssistant, lights: List[str]) -> List[str]:
 
 def _supported_features(hass: HomeAssistant, light: str):
     state = hass.states.get(light)
-    supported_features = state.attributes["supported_features"]
+    supported_features = state.attributes[ATTR_SUPPORTED_FEATURES]
     return {key for key, value in _SUPPORT_OPTS.items() if supported_features & value}
 
 
@@ -380,6 +389,24 @@ def _attributes_have_changed(
                 light,
                 last_brightness,
                 current_brightness,
+                context.id,
+            )
+            return True
+
+    if (
+        adapt_brightness
+        and ATTR_WHITE_VALUE in old_attributes
+        and ATTR_WHITE_VALUE in new_attributes
+    ):
+        last_white_value = old_attributes[ATTR_WHITE_VALUE]
+        current_white_value = new_attributes[ATTR_WHITE_VALUE]
+        if abs(current_white_value - last_white_value) > BRIGHTNESS_CHANGE:
+            _LOGGER.debug(
+                "White Value of '%s' significantly changed from %s to %s with"
+                " context.id='%s'",
+                light,
+                last_white_value,
+                current_white_value,
                 context.id,
             )
             return True
@@ -655,6 +682,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         transition: Optional[int] = None,
         adapt_brightness: Optional[bool] = None,
         adapt_color: Optional[bool] = None,
+        prefer_rgb_color: Optional[bool] = None,
         force: bool = False,
         context: Optional[Context] = None,
     ) -> None:
@@ -671,6 +699,8 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             adapt_brightness = self.adapt_brightness_switch.is_on
         if adapt_color is None:
             adapt_color = self.adapt_color_switch.is_on
+        if prefer_rgb_color is None:
+            prefer_rgb_color = self._prefer_rgb_color
 
         if "transition" in features:
             service_data[ATTR_TRANSITION] = transition
@@ -679,10 +709,14 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             brightness = round(255 * self._settings["brightness_pct"] / 100)
             service_data[ATTR_BRIGHTNESS] = brightness
 
+        if "white_value" in features and adapt_brightness:
+            white_value = round(255 * self._settings["brightness_pct"] / 100)
+            service_data[ATTR_WHITE_VALUE] = white_value
+
         if (
             "color_temp" in features
             and adapt_color
-            and not (self._prefer_rgb_color and "color" in features)
+            and not (prefer_rgb_color and "color" in features)
         ):
             attributes = self.hass.states.get(light).attributes
             min_mireds, max_mireds = attributes["min_mireds"], attributes["max_mireds"]
