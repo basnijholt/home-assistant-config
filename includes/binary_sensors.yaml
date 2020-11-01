@@ -44,6 +44,13 @@
             or is_state("binary_sensor.someone_showering", "on") }}
       delay_off: "00:03:00"
 
+    activity_in_living_room:
+      friendly_name: Activity in the living room
+      value_template: >
+        {{ is_state("binary_sensor.motion_sensor_living_room_klok", "on")
+            or is_state("media_player.tv", "on") }}
+      delay_off: "00:20:00"
+
     activity_in_toilet:
       friendly_name: Activity at the toilet
       value_template: >
@@ -66,8 +73,9 @@
     activity_in_bedroom:
       friendly_name: Activity in the bedroom
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_bedroom_1", "on")
-            or is_state("binary_sensor.motion_sensor_bedroom_2", "on")
+        {{ is_state("binary_sensor.motion_sensor_bedroom_door", "on")
+            or is_state("binary_sensor.motion_sensor_bedroom_kabinet", "on")
+            or is_state("binary_sensor.motion_sensor_bedroom_desk", "on")
             or is_state("binary_sensor.vibration", "on") }}
       delay_off: "00:01:00"
 
