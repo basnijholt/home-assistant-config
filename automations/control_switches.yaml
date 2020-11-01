@@ -137,11 +137,11 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_bedroom_1
+        id: smart_switch_bedroom_bas
     - platform: event
       event_type: deconz_event
       event_data:
-        id: smart_switch_bedroom_2
+        id: smart_switch_bedroom_marcella
   action:
     choose:
       # Next color
