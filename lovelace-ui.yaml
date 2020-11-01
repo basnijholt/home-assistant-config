@@ -1929,6 +1929,8 @@ views:
     - entity: person.marcella
     hours_to_show: 240
     type: map
+  - entity: media_player.xboxone
+    type: media-control
   icon: mdi:test-tube
   path: tests
   title: Tests
