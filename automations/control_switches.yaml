@@ -13,13 +13,13 @@
   mode: parallel
   trigger:
     platform: event
-    event_type: zha_event
+    event_type: deconz_event
     event_data:
-      device_ieee: "00:17:88:01:08:0a:93:f7"  # dimmer_switch_living_room
+      id: dimmer_switch_living_room
   action:
     choose:
       # Next color
-      - conditions: "{{ trigger.event.data.command == 'off_press' }}" # Lowest button
+      - conditions: "{{ trigger.event.data.event == 4002 }}" # Lowest button
         sequence:
           service: script.next_colors
           data:
@@ -27,7 +27,7 @@
 
       # Bright lights
       - conditions:
-          - "{{ trigger.event.data.command == 'up_press' }}" # Second from highest button
+          - "{{ trigger.event.data.event == 2000 }}" # Second from highest button
           - condition: state
             entity_id: light.living_room_lights
             state: "on"
@@ -38,25 +38,8 @@
             data:
               brightness: "255"
 
-      # Turn on
-      - conditions:
-          - "{{ trigger.event.data.command == 'up_press' }}" # Second from highest button
-          - condition: state
-            entity_id: light.living_room_lights
-            state: "off"
-        sequence:
-          service: script.turn_on_lights
-          data:
-            entity_id: light.living_room_lights
-
-      # Turn off
-      - conditions: "{{ trigger.event.data.command == 'down_press' }}" # Second from lowest button
-        sequence:
-          service: light.turn_off
-          entity_id: light.living_room_lights
-
       # Increase brightness
-      - conditions: "{{ trigger.event.data.command == 'on_press' }}" # Top button
+      - conditions: "{{ trigger.event.data.event == 1002 }}" # Top button
         sequence:
           service: script.increase_brightness
           data:
@@ -66,13 +49,13 @@
   mode: parallel
   trigger:
     platform: event
-    event_type: zha_event
+    event_type: deconz_event
     event_data:
-      device_ieee: "00:17:88:01:08:0e:8d:80"  # dimmer_switch_bedroom
+      id: dimmer_switch_bedroom
   action:
     choose:
       # Next color
-      - conditions: "{{ trigger.event.data.command == 'off_press' }}" # Lowest button
+      - conditions: "{{ trigger.event.data.event == 4002 }}" # Lowest button
         sequence:
           service: script.next_colors
           data:
@@ -80,7 +63,7 @@
 
       # Bright lights
       - conditions:
-          - "{{ trigger.event.data.command == 'up_press' }}" # Second from highest button
+          - "{{ trigger.event.data.event == 2000 }}" # Second from highest button
           - condition: state
             entity_id: light.bedroom_lights
             state: "on"
@@ -91,25 +74,8 @@
             data:
               brightness: "255"
 
-      # Turn on
-      - conditions:
-          - "{{ trigger.event.data.command == 'up_press' }}" # Second from highest button
-          - condition: state
-            entity_id: light.bedroom_lights
-            state: "off"
-        sequence:
-          service: script.turn_on_lights
-          data:
-            entity_id: light.bedroom_lights
-
-      # Turn off
-      - conditions: "{{ trigger.event.data.command == 'down_press' }}" # Second from lowest button
-        sequence:
-          service: light.turn_off
-          entity_id: light.bedroom_lights
-
       # Increase brightness
-      - conditions: "{{ trigger.event.data.command == 'on_press' }}" # Top button
+      - conditions: "{{ trigger.event.data.event == 1002 }}" # Top button
         sequence:
           service: script.increase_brightness
           data:
@@ -119,20 +85,20 @@
   mode: parallel
   trigger:
     platform: event
-    event_type: zha_event
+    event_type: deconz_event
     event_data:
-      device_ieee: "00:15:8d:00:04:4a:d3:29"  # smart_switch_living_room
+      id: smart_switch_living_room
   action:
     choose:
       # Next color
-      - conditions: "{{ trigger.event.data.command == 'double' }}" # Double click
+      - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
           service: script.next_colors
           data:
             input_select: input_select.last_script_living_room
 
       # Increase brightness
-      - conditions: "{{ trigger.event.data.command == 'single' }}" # Single click
+      - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
           service: script.increase_brightness
           data:
@@ -140,7 +106,7 @@
 
       # Turn off everything in the living room
       - conditions:
-          - "{{ trigger.event.data.command == 'shake' }}" # Shake button
+          - "{{ trigger.event.data.event == 1007 }}" # Shake button
           - condition: state
             entity_id: light.living_room_lights
             state: "on"
@@ -161,7 +127,7 @@
               transition: 30
 
       # Fix the sounds on the TV (LG TV sound sync bug 🐛)
-      - conditions: "{{ trigger.event.data.command == 'hold' }}" # Long click
+      - conditions: "{{ trigger.event.data.event == 1001 }}" # Long click
         sequence:
           service: script.fix_sound
 
@@ -169,31 +135,31 @@
   mode: parallel
   trigger:
     - platform: event
-      event_type: zha_event
+      event_type: deconz_event
       event_data:
-        device_ieee: "00:15:8d:00:04:29:e7:65" # smart_switch_bedroom_1
+        id: smart_switch_bedroom_1
     - platform: event
-      event_type: zha_event
+      event_type: deconz_event
       event_data:
-        device_ieee: "00:15:8d:00:02:e3:29:33" # smart_switch_bedroom_2
+        id: smart_switch_bedroom_2
   action:
     choose:
       # Next color
-      - conditions: "{{ trigger.event.data.command == 'double' }}" # Double click
+      - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
           service: script.next_colors
           data:
             input_select: input_select.last_script_bedroom
 
       # Increase brightness
-      - conditions: "{{ trigger.event.data.command == 'single' }}" # Single click
+      - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
           service: script.increase_brightness
           data:
             group: light.bedroom_lights
 
       # Turn off lights in and next to bedroom
-      - conditions: "{{ trigger.event.data.command == 'hold' }}" # Long click
+      - conditions: "{{ trigger.event.data.event == 1001 }}" # Long click
         sequence:
           service: light.turn_off
           entity_id:
@@ -203,7 +169,7 @@
             - light.stairs_lights
 
       # Turn on sleep mode, else, turn all lights off
-      - conditions: "{{ trigger.event.data.command == 'shake' }}" # Shake button
+      - conditions: "{{ trigger.event.data.event == 1007 }}" # Shake button
         sequence:
           choose:
             - conditions: > # In the morning just turn lights off
@@ -255,20 +221,20 @@
   mode: parallel
   trigger:
     platform: event
-    event_type: zha_event
+    event_type: deconz_event
     event_data:
-      device_ieee: "00:15:8d:00:02:eb:59:2f" # smart_switch_bathroom
+      id: smart_switch_bathroom
   action:
     choose:
       # Increase brightness
-      - conditions: "{{ trigger.event.data.command == 'single' }}" # Single click
+      - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
           service: script.increase_brightness
           data:
             group: light.ceiling_bathroom
 
       # Next color
-      - conditions: "{{ trigger.event.data.command == 'double' }}" # Double click
+      - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
           - service: input_select.select_next
             entity_id: input_select.bathroom_color
@@ -280,7 +246,7 @@
 
       # Turn off everything in the bathroom
       - conditions:
-          - "{{ trigger.event.data.command == 'shake' }}" # Shake button
+          - "{{ trigger.event.data.event == 1007 }}" # Shake button
           - condition: state
             entity_id: light.ceiling_bathroom
             state: "on"
@@ -292,13 +258,13 @@
   mode: parallel
   trigger:
     platform: event
-    event_type: zha_event
+    event_type: deconz_event
     event_data:
-      device_ieee: "00:15:8d:00:02:33:38:62"  # smart_switch_downstairs
+      id: smart_switch_downstairs
   action:
     choose:
       # Leaving: turn off everything
-      - conditions: "{{ trigger.event.data.command == 'single' }}" # Single click
+      - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
           - service: light.turn_on
             data:
@@ -308,13 +274,13 @@
           - service: script.set_low_temperature
 
       # Arriving: turn on music and cozy lights
-      - conditions: "{{ trigger.event.data.command == 'double' }}" # Double click
+      - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
           - service: light.turn_on
             data:
               flash: "short"
               entity_id: light.stairs_up
-          - service: script.turn_on_lights
+          - service: script.turn_on
             data:
               entity_id: light.living_room_lights
           - service: script.arriving

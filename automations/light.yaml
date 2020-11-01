@@ -215,17 +215,17 @@
       entity_id: light.bedroom_lights
       to: "off"
     - platform: event
-      event_type: zha_event
+      event_type: deconz_event
       event_data:
-        device_ieee: "00:17:88:01:08:0e:8d:80" # dimmer_switch_bedroom
+        id: dimmer_switch_bedroom
     - platform: event
-      event_type: zha_event
+      event_type: deconz_event
       event_data:
-        device_ieee: "00:15:8d:00:04:29:e7:65" # smart_switch_bedroom_1
+        id: smart_switch_bedroom_1
     - platform: event
-      event_type: zha_event
+      event_type: deconz_event
       event_data:
-        device_ieee: "00:15:8d:00:02:e3:29:33" # smart_switch_bedroom_2
+        id: smart_switch_bedroom_2
   condition:
     condition: state
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
