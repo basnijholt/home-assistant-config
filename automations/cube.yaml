@@ -15,12 +15,15 @@
     platform: event
     event_type: deconz_event
     event_data:
-      id: lumi_sensor_cube_aqgl01_11
+      id: mi_magic_cube
+  variables:
+    event: "{{ trigger.event.data.event }}"
+  condition: "{{ (event | string)[1:-1] == '00' }}"
   action:
     choose:
       # Change cube mode by shifting on one side, or rotating from one side to another side
       - conditions: >
-          {% set event = trigger.event.data.event | string %}
+          {% set event = event | string %}
           {% set correct_start = event[:3] in ("100", "200", "300") %}
           {% set first_last_different = event[0] != event[-1] %}
           {% set last_is_zero = event[-1] == 0 %}
@@ -30,7 +33,7 @@
             entity_id: input_select.cube_mode
             data:
               option: >
-                {% set event = trigger.event.data.event | string %}
+                {% set event = event | string %}
                 {{ {"100": "Volume", "200": "Hue", "300": "Brightness"}[event[:3]] }}
           - condition: state
             entity_id: media_player.tv
@@ -42,7 +45,7 @@
 
       # Shuffle Spotify song by shaking cube
       - conditions:
-          - "{{ trigger.event.data.event == 7007 }}"
+          - "{{ event == 7007 }}"
           - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
         sequence:
           - service: media_player.shuffle_set
@@ -54,14 +57,14 @@
 
       # Pause and play Spotify song by tapping cube on side 1
       - conditions:
-          - "{{ trigger.event.data.event in (1001, 2002, 3003, 4004, 5005, 6006) }}"
+          - "{{ event in (1001, 2002, 3003, 4004, 5005, 6006) }}"
           - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
         sequence:
           service: media_player.media_play_pause
           entity_id: media_player.spotify
 
       # Start music by throwing the cube
-      - conditions: "{{ trigger.event.data.event == 7008 }}"
+      - conditions: "{{ event == 7008 }}"
         sequence:
           service: script.start_spotify_playlist_of_nearest_person
           data:
@@ -74,6 +77,9 @@
     event_type: deconz_event
     event_data:
       id: mi_magic_cube
+  variables:
+    event: "{{ trigger.event.data.event }}"
+  condition: "{{ (event | string)[1:-1] != '00' or event < 0 }}"
   action:
     choose:
       - conditions: # Change hue of living room lights
@@ -88,7 +94,7 @@
             data:
               hs_color:
                 - >
-                  {% set delta = trigger.event.data.event / 200 %}
+                  {% set delta = event / 200 %}
                   {% set new_hue = [([0, (hue_sat[0] + delta)]|max), 360]|min %}
                   {{ new_hue|round(3) }}
                 - "{{ hue_sat[1] }}"
@@ -103,7 +109,7 @@
           data:
             brightness: >
               {% set brightness = state_attr('light.sphere_1', 'brightness') %}
-              {% set delta = trigger.event.data.event / 450 %}
+              {% set delta = event / 450 %}
               {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
               {{ new_brightness|int }}
 
@@ -117,7 +123,7 @@
             data: # 90 deg is 10%
               volume_level: >
                 {% set max_change = 0.15 %}
-                {% set dV = [trigger.event.data.event / 100 / 900, max_change] | min %}
+                {% set dV = [event / 100 / 900, max_change] | min %}
                 {{ (states.media_player.kef_ls50.attributes.volume_level + dV)|round(2) }}
           - condition: state
             entity_id: media_player.tv
