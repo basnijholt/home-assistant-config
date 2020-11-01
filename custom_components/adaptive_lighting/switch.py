@@ -100,6 +100,7 @@ from .const import (
     CONF_MIN_COLOR_TEMP,
     CONF_ONLY_ONCE,
     CONF_PREFER_RGB_COLOR,
+    CONF_SEPARATE_TURN_ON_COMMANDS,
     CONF_SLEEP_BRIGHTNESS,
     CONF_SLEEP_COLOR_TEMP,
     CONF_SUNRISE_OFFSET,
@@ -183,6 +184,28 @@ def is_our_context(context: Optional[Context]) -> bool:
     return context.id.startswith(_DOMAIN_SHORT)
 
 
+def _copy_and_pop(dct, keys):
+    """Copy a dictionary and remove 'keys' if they exist."""
+    copy = dct.copy()
+    for key in keys:
+        copy.pop(key, None)
+    return copy
+
+
+def _split_service_data(service_data, adapt_brightness, adapt_color):
+    """Split service_data into two dictionaries (for color and brightness)."""
+    service_datas = []
+    if adapt_color:
+        service_datas.append(
+            _copy_and_pop(service_data, (ATTR_WHITE_VALUE, ATTR_BRIGHTNESS))
+        )
+    if adapt_brightness:
+        service_datas.append(
+            _copy_and_pop(service_data, (ATTR_RGB_COLOR, ATTR_COLOR_TEMP))
+        )
+    return service_datas
+
+
 async def handle_apply(switch: AdaptiveSwitch, service_call: ServiceCall):
     """Handle the entity service apply."""
     hass = switch.hass
@@ -206,7 +229,7 @@ async def handle_set_manual_control(switch: AdaptiveSwitch, service_call: Servic
     """Set or unset lights as 'manually controlled'."""
     lights = service_call.data[CONF_LIGHTS]
     if not lights:
-        all_lights = switch._lights
+        all_lights = switch._lights  # pylint: disable=protected-access
     else:
         all_lights = _expand_light_groups(switch.hass, lights)
     _LOGGER.debug(
@@ -492,6 +515,7 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
         self._interval = data[CONF_INTERVAL]
         self._only_once = data[CONF_ONLY_ONCE]
         self._prefer_rgb_color = data[CONF_PREFER_RGB_COLOR]
+        self._separate_turn_on_commands = data[CONF_SEPARATE_TURN_ON_COMMANDS]
         self._take_over_control = data[CONF_TAKE_OVER_CONTROL]
         self._transition = min(
             data[CONF_TRANSITION], self._interval.total_seconds() // 2
@@ -739,20 +763,26 @@ class AdaptiveSwitch(SwitchEntity, RestoreEntity):
             )
         ):
             return
-        _LOGGER.debug(
-            "%s: Scheduling 'light.turn_on' with the following 'service_data': %s"
-            " with context.id='%s'",
-            self._name,
-            service_data,
-            context.id,
-        )
         self.turn_on_off_listener.last_service_data[light] = service_data
-        await self.hass.services.async_call(
-            LIGHT_DOMAIN,
-            SERVICE_TURN_ON,
-            service_data,
-            context=context,
+        service_datas = (
+            _split_service_data(service_data, adapt_brightness, adapt_color)
+            if self._separate_turn_on_commands
+            else [service_data]
         )
+        for service_data in service_datas:
+            _LOGGER.debug(
+                "%s: Scheduling 'light.turn_on' with the following 'service_data': %s"
+                " with context.id='%s'",
+                self._name,
+                service_data,
+                context.id,
+            )
+            await self.hass.services.async_call(
+                LIGHT_DOMAIN,
+                SERVICE_TURN_ON,
+                service_data,
+                context=context,
+            )
 
     async def _update_attrs_and_maybe_adapt_lights(
         self,
