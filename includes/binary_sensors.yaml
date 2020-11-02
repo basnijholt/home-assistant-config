@@ -23,6 +23,7 @@
       friendly_name: Any motion detected
       value_template: >
         {{ is_state("binary_sensor.activity_in_kitchen", "on")
+            or is_state("binary_sensor.activity_in_living_room", "on")
             or is_state("binary_sensor.activity_in_hall", "on")
             or is_state("binary_sensor.activity_in_toilet", "on")
             or is_state("binary_sensor.activity_in_bathroom", "on")
@@ -51,7 +52,8 @@
       friendly_name: Activity in the living room
       value_template: >
         {{ is_state("binary_sensor.motion_sensor_living_room_klok", "on")
-            or is_state("media_player.tv", "on") }}
+            or is_state("media_player.tv", "on")
+            or is_state("media_player.kef_ls50", "on") }}
       delay_off: "00:20:00"
 
     activity_in_toilet:
@@ -86,10 +88,10 @@
       friendly_name: Activity outside the bedroom
       value_template: >
         {{ is_state("binary_sensor.activity_in_hall", "on")
+            or is_state("binary_sensor.activity_in_living_room", "on")
             or is_state("binary_sensor.activity_in_toilet", "on")
             or is_state("binary_sensor.activity_in_kitchen", "on")
-            or is_state("media_player.tv", "on")
-            or is_state("media_player.kef_lsx", "on") }}
+            or is_state("media_player.kef_ls50", "on") }}
       delay_off: "00:01:00"
 
     washing_machine:
