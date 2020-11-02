@@ -63,7 +63,12 @@ def permalink_automation(fname, automation):
     return permalink(fname) + f"#L{from_line}"
 
 
+SKIP_LIST = {"switch.turn_on", "switch.turn_off"}
+
+
 def permalink_entity(x, yaml_fname):
+    if x in SKIP_LIST:
+        raise ValueError("Incorrectly identified entity which is actually a service.")
     domain, name = x.split(".")
     fname = Path(yaml_fname or f"includes/{domain}s.yaml")
     from_line = line_number(fname, f"{name}:", True)
