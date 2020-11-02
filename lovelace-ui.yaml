@@ -1444,7 +1444,7 @@ views:
       name: ''
     - entity: sensor.motion_sensor_bedroom_kabinet_battery_level
       name: ''
-    - entity: binary_sensor.motion_sensor_bedroom_kabinet
+    - entity: binary_sensor.motion_sensor_bedroom_desk
       name: Bedroom desk
     - entity: sensor.motion_sensor_bedroom_desk_light_level
       name: ''
