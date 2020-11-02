@@ -14,7 +14,10 @@
     someone_showering:
       friendly_name: Someone is showering
       value_template: >
-        {{ states("sensor.humidity_bathroom") | float(0) > 85 }}
+        {% set humidity = states("sensor.humidity_bathroom") | float(0) %}
+        {% set treshold = 1.05 * state_attr("sensor.humidity_bathroom_stats", "median") | float(0) %}
+        {% set derivative = states("sensor.humidity_bathroom_derivative") | float(0) %}
+        {{ humidity > treshold and derivative > 0.25 }}
 
     motion_detected:
       friendly_name: Any motion detected
@@ -149,3 +152,10 @@
 
 - platform: workday
   country: NL
+
+- platform: trend
+  sensors:
+    humidity_bathroom_trend:
+      entity_id: sensor.humidity_bathroom
+      sample_duration: 300
+      max_samples: 3

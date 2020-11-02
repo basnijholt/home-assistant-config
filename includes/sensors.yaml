@@ -288,6 +288,18 @@
 #  \___/ \__|_| |_|\___|_|  |___/
 #
 
+- platform: statistics
+  name: Humidity bathroom stats
+  entity_id: sensor.humidity_bathroom
+  sampling_size: 86400 # make sure all data points of the last 24hrs are included
+  max_age: "24:00:00"
+
+- platform: derivative
+  source: sensor.humidity_bathroom
+  name: Humidity bathroom derivative
+  unit_time: min
+  time_window: "00:10:00"
+
 # XXX: not used
 - platform: min_max
   name: Temperature mean
