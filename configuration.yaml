@@ -65,6 +65,7 @@ intent:
 intent_script: !include includes/intent_script.yaml
 # image_processing: !include includes/image_processing.yaml
 proxmoxve: !include includes/proxmoxve.yaml
+panel_iframe: !include includes/panel_iframe.yaml
 
 # Custom components
 pyscript: !include includes/pyscript.yaml
