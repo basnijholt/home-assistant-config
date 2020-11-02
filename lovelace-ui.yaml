@@ -107,16 +107,17 @@ views:
           entity: light.stairs_lights
         type: custom:fold-entity-row
       - entities:
-        - icon: mdi:currency-eur
+        - icon: mdi:human-edit
           name: "{% set manual_control = (\n    (state_attr('switch.adaptive_lighting_default',\
             \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_living_room',\
             \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_default_bed',\
             \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_half_and_full',\
             \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_half_and_dim',\
-            \ 'manual_control') or [])\n) %} {% if manual_control %}\n  Manually controlled:\
-            \ {{ manual_control | join(\", \") }}.\n{% else %}\n  Nothing is manually\
-            \ controlled.\n{% endif %}\n"
+            \ 'manual_control') or [])\n) %} {% if manual_control %}\n  {{ manual_control\
+            \ | join(\", \") }}.\n{% else %}\n  Nothing is manually controlled.\n\
+            {% endif %}\n"
           type: custom:template-entity-row
+        - entity: script.reset_adaptive_lighting
         - type: divider
         - entity: switch.adaptive_lighting_default
           name: default
@@ -1547,6 +1548,14 @@ views:
     theme: Backend-selected
     title: Temperature sensors
     type: glance
+  - entities:
+    - entity: sensor.humidity_bathroom
+    - entity: binary_sensor.humidity_bathroom_trend
+    - entity: sensor.humidity_bathroom_derivative
+    - entity: sensor.humidity_bathroom_stats
+    - entity: binary_sensor.someone_showering
+    title: Shower occupied
+    type: entities
   icon: mdi:motion-sensor
   path: sensors
   title: Sensors
