@@ -136,9 +136,9 @@ See *all* my automations and its dependencies [down the page](#automations---tab
         </tr>
         <tr>
             <td>Xiaomi Aqara Motion Sensor</td>
-            <td>6</td>
-            <td>10.19</td>
-            <td>61.13</td>
+            <td>10</td>
+            <td>9.79</td>
+            <td>97.85</td>
         </tr>
         <tr>
             <td>Xiaomi Aqara Vibration Sensor</td>
@@ -156,7 +156,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <td><i><b>Total</b></i></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>197.8</td>
+            <td>234.52</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -444,7 +444,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
             <th>Total</th>
             <th></th>
             <th></th>
-            <th>€1902.81</th>
+            <th>€1939.53</th>
         </tr>
     </thead>
 </table>

@@ -24,7 +24,7 @@ tables = {
     "Sensors 🌡": [
         ["Xiaomi Aqara Door Sensor", 4, 32.71],
         ["Xiaomi Aqara Temperature Sensor", 5, 45.74],
-        ["Xiaomi Aqara Motion Sensor", 6, 61.13],
+        ["Xiaomi Aqara Motion Sensor", 6 + 4, 61.13 + 36.72],
         ["Xiaomi Aqara Vibration Sensor", 1, 11.59],
         ["Xiaomi Mi Flora", 3, 46.63],
     ],

@@ -235,9 +235,7 @@ def get_addons():
         return None
     raw = output.decode("utf-8")
     addons = json.loads(raw)["data"]
-    installed_addons = [
-        addon for addon in addons["addons"] if addon["installed"]
-    ]
+    installed_addons = [addon for addon in addons["addons"] if addon["installed"]]
     return installed_addons
 
 
@@ -248,7 +246,7 @@ def get_addon_line(addon):
         by = addon["url"].split("github.com/")[1].split("/")[0]
     except IndexError:
         by = "home-assistant.io"
-    version = addon['version']
+    version = addon["version"]
     return by, f"- [{name}]({url}) version {version} by @{by}"
 
 
