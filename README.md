@@ -533,7 +533,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L63)
   - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L87)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/04b93a43dd09180aa527bc893e8e25d05d695729/includes/sensors.yaml#L234)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L234)
 
 [^ toc](#automations---table-of-content)
 
@@ -591,7 +591,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L46)
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L40)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L302)
-  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/04b93a43dd09180aa527bc893e8e25d05d695729/includes/sensors.yaml#L226)
+  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L226)
 
 ### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/c633f1637bb22a4dd5c9090942609c315282dcee/automations/climate.yaml#L26)
 
@@ -658,7 +658,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L212)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L270)
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L252)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/04b93a43dd09180aa527bc893e8e25d05d695729/includes/sensors.yaml#L234)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L234)
 
 ### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/b133cb5d69be8eb916f63d91ecf034d9708ebe07/automations/control_switches.yaml#L220)
 
@@ -673,7 +673,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L293)
   - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L39)
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L235)
-  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/04b93a43dd09180aa527bc893e8e25d05d695729/includes/sensors.yaml#L81)
+  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L81)
 
 [^ toc](#automations---table-of-content)
 
@@ -957,13 +957,13 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [LSX 🔈](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/lsx-control.yaml)
-### [Sync volume](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/lsx-control.yaml#L12)
+## [LSX 🔈](https://github.com/basnijholt/home-assistant-config/blob/ae2ef498666f0558e3e8fcccd2813dde5237c770/automations/lsx-control.yaml)
+### [Sync volume](https://github.com/basnijholt/home-assistant-config/blob/ae2ef498666f0558e3e8fcccd2813dde5237c770/automations/lsx-control.yaml#L12)
 
   *which uses:*
   - [input_select.lsx_volume](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L58)
 
-### [Sync source](https://github.com/basnijholt/home-assistant-config/blob/8530f88be45d191834c249305f9a8df163144537/automations/lsx-control.yaml#L41)
+### [Sync source](https://github.com/basnijholt/home-assistant-config/blob/ae2ef498666f0558e3e8fcccd2813dde5237c770/automations/lsx-control.yaml#L43)
 
   *which uses:*
   - [input_select.lsx_source](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L82)
