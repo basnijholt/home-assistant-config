@@ -1556,6 +1556,89 @@ views:
     - entity: binary_sensor.someone_showering
     title: Shower occupied
     type: entities
+  - entities:
+    - entity: sensor.hours_bedroom_lights_have_been_on_last_7_days
+      icon: mdi:clock
+      name: Bedroom lights
+      secondary: 'Been on {{ (states(''sensor.hours_bedroom_lights_have_been_on_last_7_days'')|float
+        / (7*24) * 100) | round(2) }}% during last 7 days.
+
+        '
+      state: '{{ states("sensor.hours_bedroom_lights_have_been_on_last_7_days") }}
+        h'
+      type: custom:template-entity-row
+    - entity: sensor.hours_living_room_lights_have_been_on_last_7_days
+      icon: mdi:clock
+      name: Living room lights
+      secondary: 'Been on {{ (states(''sensor.hours_living_room_lights_have_been_on_last_7_days'')|float
+        / (7*24) * 100) | round(2) }}% during last 7 days.
+
+        '
+      state: '{{ states("sensor.hours_living_room_lights_have_been_on_last_7_days")
+        }} h'
+      type: custom:template-entity-row
+    - entity: sensor.hours_toilet_light_has_been_on_last_7_days
+      icon: mdi:clock
+      name: Toilet
+      secondary: 'Been on {{ (states(''sensor.hours_toilet_light_has_been_on_last_7_days'')|float
+        / (7*24) * 100) | round(2) }}% during last 7 days.
+
+        '
+      state: '{{ states("sensor.hours_toilet_light_has_been_on_last_7_days") }} h'
+      type: custom:template-entity-row
+    - entity: sensor.hours_bathroom_light_has_been_on_last_7_days
+      icon: mdi:clock
+      name: Bathroom
+      secondary: 'Been on {{ (states(''sensor.hours_bathroom_light_has_been_on_last_7_days'')|float
+        / (7*24) * 100) | round(2) }}% during last 7 days.
+
+        '
+      state: '{{ states("sensor.hours_bathroom_light_has_been_on_last_7_days") }}
+        h'
+      type: custom:template-entity-row
+    - entity: sensor.hours_kitchen_lights_have_been_on_last_7_days
+      icon: mdi:clock
+      name: Kitchen lights
+      secondary: 'Been on {{ (states(''sensor.hours_kitchen_lights_have_been_on_last_7_days'')|float
+        / (7*24) * 100) | round(2) }}% during last 7 days.
+
+        '
+      state: '{{ states("sensor.hours_kitchen_lights_have_been_on_last_7_days") }}
+        h'
+      type: custom:template-entity-row
+    - entity: sensor.hours_hall_lights_have_been_on_last_7_days
+      icon: mdi:clock
+      name: Hall lights
+      secondary: 'Been on {{ (states(''sensor.hours_hall_lights_have_been_on_last_7_days'')|float
+        / (7*24) * 100) | round(2) }}% during last 7 days.
+
+        '
+      state: '{{ states("sensor.hours_hall_lights_have_been_on_last_7_days") }} h'
+      type: custom:template-entity-row
+    - entity: sensor.hours_bathroom_light_has_been_on_last_7_days
+      icon: mdi:clock
+      name: Hall lights
+      secondary: 'Been on {{ (states(''sensor.hours_bathroom_light_has_been_on_last_7_days'')|float
+        / (7*24) * 100) | round(2) }}% during last 7 days.
+
+        '
+      state: '{{ states("sensor.hours_bathroom_light_has_been_on_last_7_days") }}
+        h'
+      type: custom:template-entity-row
+    - type: divider
+    - entity: sensor.hours_bathroom_light_has_been_on_last_7_days
+      icon: mdi:clock
+      name: Total cost estimate for last 7 days
+      secondary: 'Total is {{ states(''sensor.lights_on_total_hours'') | round(1)
+        }} hours, {{ states(''sensor.lights_on_total_kwh'') | round(1) }} kWh, €{{
+        (states(''sensor.lights_on_total_kwh'')|float * 0.21) | round(2) }}.
+
+        '
+      state: '{{ states("sensor.hours_bathroom_light_has_been_on_last_7_days") }}
+        h'
+      type: custom:template-entity-row
+    title: Lights on last 7 days
+    type: entities
   icon: mdi:motion-sensor
   path: sensors
   title: Sensors
