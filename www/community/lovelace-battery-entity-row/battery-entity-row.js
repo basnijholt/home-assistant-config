@@ -1,12 +1,12 @@
 ((LitElement) => {
     console.info(
-        '%c BATTERY-ENTITY-ROW %c 1.1.0 ',
+        '%c BATTERY-ENTITY-ROW %c 1.2.0 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
+    const {html, css} = LitElement.prototype;
 
-    const html = LitElement.prototype.html;
-    const css = LitElement.prototype.css;
+    const defaultOnStates = ['on', 'charging', 'true'];
 
     class BatteryEntityRow extends LitElement {
 
@@ -14,8 +14,7 @@
             return {
                 _hass: Object,
                 _config: Object,
-                stateObj: Object,
-                state: Object
+                stateObj: Object
             }
         }
 
@@ -51,27 +50,37 @@
         }
 
         render() {
-            return this.stateObj ? html`
+            if (!this._hass || !this._config) return html``;
+            if (!this.stateObj) return this.renderWarning();
+
+            const charging = this.getChargingState(this._config.charging)
+            const batteryValue = this.getBatteryLevel(this._config.attribute);
+
+            const isUnavailable = !batteryValue || ['unavailable', 'unknown'].includes(batteryValue);
+            const isNumeric = !isNaN(parseFloat(batteryValue)) && isFinite(batteryValue);
+
+            const numericValue = isUnavailable ? null : isNumeric ? batteryValue : this.parseStringValue(batteryValue);
+
+            const icon = this._config.icon || this.getIcon(numericValue, charging);
+            const color = this.getColor(numericValue);
+
+            const name = this._config.name || this.stateObj.attributes.friendly_name;
+            const unit = this._config.unit === false ? null : (this._config.unit || (isNumeric ? '%' : null));
+            const state = isUnavailable
+                ? this._hass.localize('state.default.unknown')
+                : html`${batteryValue}${unit && html`&nbsp;${unit}`}`;
+
+            return html`
             <state-badge
                 .stateObj="${this.stateObj}"
-                .overrideIcon="${this.state.icon}"
+                .overrideIcon="${icon}"
                 @click="${this.moreInfo}"
-                class="pointer ${this.state.color}">
+                class="pointer ${color}">
             </state-badge>
             <div class="flex" @click="${this.moreInfo}">
-                <div class="info">
-                    ${this.state.name}
-                    ${this.renderSecondaryInfo()}
-                </div>
-                <div class="state">
-                    ${this.state.valid
-                ? html`${this.state.level}${this.state.unit && html`&nbsp;${this.state.unit}`}`
-                : this._hass.localize('state.default.unknown')}
-                </div>
-            </div>` : html`
-            <hui-warning>
-                ${this._hass.localize('ui.panel.lovelace.warning.entity_not_found', 'entity', this._config.entity)}
-            </hui-warning>`;
+                <div class="info">${name}${this.renderSecondaryInfo()}</div>
+                <div class="state">${state}</div>
+            </div>`;
         }
 
         renderSecondaryInfo() {
@@ -81,6 +90,12 @@
                 </div>` : null;
         }
 
+        renderWarning() {
+            return html`<hui-warning>
+                ${this._hass.localize('ui.panel.lovelace.warning.entity_not_found', 'entity', this._config.entity)}
+            </hui-warning>`;
+        }
+
         setConfig(config) {
             if (!config.entity) throw new Error('Please define a valid entity.');
 
@@ -88,25 +103,15 @@
             this._config = config;
         }
 
+        shouldUpdate(changedProps) {
+            return changedProps.has('stateObj');
+        }
+
         set hass(hass) {
             this._hass = hass;
 
             if (hass && this._config) {
                 this.stateObj = this._config.entity in hass.states ? hass.states[this._config.entity] : null;
-
-                if (this.stateObj) {
-                    const charging = this.getChargingState(this._config.charging)
-                    const batteryLevel = this.getBatteryLevel(this._config.attribute);
-
-                    this.state = {
-                        valid: batteryLevel !== null,
-                        level: batteryLevel,
-                        name: this._config.name || this.stateObj.attributes.friendly_name,
-                        unit: this._config.unit === false ? null : (this._config.unit || '%'),
-                        icon: this._config.icon || this.getIcon(batteryLevel, charging),
-                        color: this.getColor(batteryLevel)
-                    };
-                }
             }
         }
 
@@ -115,17 +120,23 @@
             if (this.stateObj.attributes.battery) batteryValue = this.stateObj.attributes.battery;
             if (this.stateObj.attributes.battery_level) batteryValue = this.stateObj.attributes.battery_level;
             if (this.stateObj.attributes[attribute]) batteryValue = this.stateObj.attributes[attribute];
-            return Number.isFinite(parseInt(batteryValue)) ? Math.round(parseInt(batteryValue, 10)) : null;
+            return !isNaN(parseFloat(batteryValue)) && isFinite(batteryValue)
+                ? Math.round(parseInt(batteryValue, 10)) : batteryValue;
         }
 
         getChargingState(chargingConfig) {
             if (!chargingConfig) return false;
-            if (chargingConfig === true) return this.stateObj.state === 'on';
+            if (chargingConfig === true) {
+                return defaultOnStates.includes(this.stateObj.state.toString().toLowerCase());
+            }
+
+            const additionalStates = chargingConfig.state || [];
+            const onStates = defaultOnStates.concat(additionalStates).map(value => value.toString().toLowerCase());
 
             const entity = (chargingConfig.entity && chargingConfig.entity in this._hass.states)
                 ? this._hass.states[chargingConfig.entity] : this.stateObj;
             const state = chargingConfig.attribute ? entity.attributes[chargingConfig.attribute] : entity.state;
-            return state === 'on';
+            return onStates.includes(state.toString().toLowerCase());
         }
 
         getIcon(batteryLevel, charging) {
@@ -147,6 +158,15 @@
                 : (batteryLevel > critical)
                     ? 'warning'
                     : 'critical';
+        }
+
+        parseStringValue(v) {
+            const val = v.toString().toLowerCase();
+            if (['full', 'high', 'max', 'maximum'].includes(val)) return 90;
+            if (['medium', 'med', 'normal'].includes(val)) return 50;
+            if (['low', 'min', 'minimal'].includes(val)) return 10;
+            if (['empty', 'critical', 'none'].includes(val)) return 0;
+            return null;
         }
 
         fireEvent(node, type, detail = {}, options = {}) {
