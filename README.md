@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-0.117.2%20-darkblue)](https://github.com/home-assistant/core/releases/tag/0.117.2)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-0.118.4%20-darkblue)](https://github.com/home-assistant/core/releases/tag/0.118.4)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -457,22 +457,22 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 <!-- start-addons -->
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
-- [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.3.1 by @hassio-addons
+- [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.3.2 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.9.1 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 5.3.4 by @hassio-addons
-- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 3.7.8 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 5.3.6 by @hassio-addons
+- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 3.7.9 by @hassio-addons
 - [JupyterLab Lite](https://github.com/hassio-addons/addon-jupyterlab-lite) version 0.3.1 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.9.1 by @hassio-addons
-- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 7.7.0 by @hassio-addons
+- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 7.8.0 by @hassio-addons
 - [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 2.8.2 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.10.2 by @hassio-addons
 - [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.1.4 by @hassio-addons
-- [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.1.0 by @home-assistant
+- [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.2.0 by @home-assistant
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.11.0 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.2.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 5.1 by @home-assistant
 - [Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba) version 9.3.0 by @home-assistant
-- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.4.1 by @home-assistant
+- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.5.0 by @home-assistant
 - [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.102.0 by @sabeechen
 - [Rhasspy Assistant 2.5](https://github.com/synesthesiam/hassio-addons/tree/master/rhasspy) version 2.5.7.2 by @synesthesiam
 <!-- end-addons -->
@@ -499,7 +499,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Notifications 🔔](#notifications-) (1 automations)
 1. [Plant 🌱](#plant-) (3 automations)
 1. [Security 👮🚨](#security-) (4 automations)
-1. [Night mode 🌕🌑](#night-mode-) (4 automations)
+1. [Night mode 🌕🌑](#night-mode-) (5 automations)
 1. [System 🖥](#system-) (7 automations)
 1. [Test 🧪](#test-) (4 automations)
 1. [Utilities 🧺👚🍽](#utilities-) (3 automations)
@@ -508,7 +508,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **114** ⚠️
+⚠️ Total number of automations: **115** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L11)
@@ -1091,6 +1091,15 @@ to "Opt".
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
   - [binary_sensor.activity_outside_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L87)
+
+### [Set sleeping mode in the living room](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L70)
+
+  Set the living room lights to sleep mode only when no-one is there anymore.
+
+
+  *which uses:*
+  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
+  - [binary_sensor.activity_in_living_room](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L51)
 
 [^ toc](#automations---table-of-content)
 
