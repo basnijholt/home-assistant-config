@@ -66,3 +66,31 @@
       data:
         title: "Night mode"
         message: "Automatically switched from 'half' to 'total' sleeping mode! 💤🛌"
+
+- alias: "Night mode: set sleeping mode in the living room"
+  description: >
+    Set the living room lights to sleep mode only when no-one is there anymore.
+  trigger:
+    platform: state
+    entity_id: input_select.sleep_mode
+    to: "total"
+  action:
+    choose:
+    - conditions: "{{ is_state('binary_sensor.activity_in_living_room', 'on') }}"
+      sequence:
+        - wait_for_trigger:
+            platform: state
+            entity_id: binary_sensor.activity_in_living_room
+            from: "on"
+            to: "off"
+          timeout: "06:00:00"
+          continue_on_timeout: false
+        - condition: state # make sure sleep mode is still on
+          entity_id: input_select.sleep_mode
+          state: "total"
+        - service: switch.turn_on
+          entity_id: switch.adaptive_lighting_sleep_mode_living_room
+    - conditions: "{{ is_state('binary_sensor.activity_in_living_room', 'off') }}"
+      sequence:
+        service: switch.turn_on
+        entity_id: switch.adaptive_lighting_sleep_mode_living_room
