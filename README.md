@@ -456,6 +456,8 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 I run a [Supervised install](https://www.home-assistant.io/getting-started/) with the following add-ons:
 
 <!-- start-addons -->
+- [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.0.1 by @Poeschl
+- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.6.2 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.3.2 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.9.1 by @hassio-addons
@@ -464,7 +466,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [JupyterLab Lite](https://github.com/hassio-addons/addon-jupyterlab-lite) version 0.3.1 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.9.1 by @hassio-addons
 - [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 7.8.0 by @hassio-addons
-- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 2.8.2 by @hassio-addons
+- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 2.9.1 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.10.2 by @hassio-addons
 - [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.1.4 by @hassio-addons
 - [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.2.0 by @home-assistant
@@ -1064,26 +1066,26 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml)
-### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L12)
+## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob/cf3257e2b00c55b3c5adfd1c5a922296a06d04d7/automations/sleep_mode.yaml)
+### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob/cf3257e2b00c55b3c5adfd1c5a922296a06d04d7/automations/sleep_mode.yaml#L12)
 
   *which uses:*
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L46)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L30)
+### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob/cf3257e2b00c55b3c5adfd1c5a922296a06d04d7/automations/sleep_mode.yaml#L30)
 
   *which uses:*
   - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L37)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L39)
+### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob/cf3257e2b00c55b3c5adfd1c5a922296a06d04d7/automations/sleep_mode.yaml#L39)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L293)
 
-### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L47)
+### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/cf3257e2b00c55b3c5adfd1c5a922296a06d04d7/automations/sleep_mode.yaml#L47)
 
   When it is half sleeping mode and there is no activity in the house for more than an hour go to total sleeping mode.
 
@@ -1092,7 +1094,7 @@ to "Opt".
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
   - [binary_sensor.activity_outside_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L87)
 
-### [Set sleeping mode in the living room](https://github.com/basnijholt/home-assistant-config/blob/2031eebb1fe183e19dbe1fb41da55402e48c201b/automations/sleep_mode.yaml#L70)
+### [Set sleeping mode in the living room](https://github.com/basnijholt/home-assistant-config/blob/cf3257e2b00c55b3c5adfd1c5a922296a06d04d7/automations/sleep_mode.yaml#L70)
 
   Set the living room lights to sleep mode only when no-one is there anymore.
 
