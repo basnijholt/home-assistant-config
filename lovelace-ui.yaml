@@ -389,9 +389,9 @@ views:
       type: custom:fold-entity-row
     - entities:
       - icon: mdi:currency-eur
-        name: '{% set kwh = state_attr("switch.washing_machine", "today_energy_kwh")
-          | float %} {% set cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh
-          and cost €{{ cost_today | round(2) }}.
+        name: '{% set kwh = states("sensor.washing_machine_daily_energy") | float
+          %} {% set cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh and cost
+          €{{ cost_today | round(2) }}.
 
           '
         type: custom:template-entity-row
@@ -404,7 +404,7 @@ views:
           \ been on for {{ (on_for / 60)|round(0) }} minutes.\n{% else %}\n  Has been\
           \ off for {{ (off_for / 3600)|round(1) }} hours.\n{% endif %}\n"
         state: "{% if is_state(\"binary_sensor.washing_machine\", \"on\") %}\n  {{\
-          \ states(\"sensor.washing_machine_watts\") }} Watt\n{% else %}\n  Off\n\
+          \ states(\"sensor.washing_machine_power\") }} Watt\n{% else %}\n  Off\n\
           {% endif %}\n"
         type: custom:template-entity-row
       type: custom:fold-entity-row
@@ -1480,17 +1480,17 @@ views:
     title: Devices are on
     type: entities
   - entities:
-    - entity: sensor.mi_flora_yucca_elephantipes_moisture
-    - entity: sensor.mi_flora_yucca_elephantipes_temperature
-    - entity: sensor.mi_flora_yucca_elephantipes_battery
-    - entity: sensor.mi_flora_yucca_elephantipes_conductivity
-    - entity: sensor.mi_flora_yucca_elephantipes_light_intensity
+    - entity: sensor.mi_flora_northern_light_moisture
+    - entity: sensor.mi_flora_northern_light_temperature
+    - entity: sensor.mi_flora_northern_light_battery
+    - entity: sensor.mi_flora_northern_light_conductivity
+    - entity: sensor.mi_flora_northern_light_light_intensity
     - type: divider
-    - entity: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
-    - entity: sensor.mi_flora_ficus_microcarpa_ginseng_temperature
-    - entity: sensor.mi_flora_ficus_microcarpa_ginseng_battery
-    - entity: sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
-    - entity: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
+    - entity: sensor.mi_flora_royal_haze_moisture
+    - entity: sensor.mi_flora_royal_haze_temperature
+    - entity: sensor.mi_flora_royal_haze_battery
+    - entity: sensor.mi_flora_royal_haze_conductivity
+    - entity: sensor.mi_flora_royal_haze_light_intensity
     - type: divider
     - entity: sensor.mi_flora_kentia_palm_moisture
     - entity: sensor.mi_flora_kentia_palm_temperature
