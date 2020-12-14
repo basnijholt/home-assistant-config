@@ -512,16 +512,16 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 ⚠️ Total number of automations: **115** ⚠️
 
-## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml)
-### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L11)
+## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/cad11833938497dfdc484fb7900fc80d06ca2778/automations/adaptive_lighting.yaml)
+### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/cad11833938497dfdc484fb7900fc80d06ca2778/automations/adaptive_lighting.yaml#L11)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Reset manual_control after 1 hour](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L69)
+### [Reset manual_control after 1 hour](https://github.com/basnijholt/home-assistant-config/blob/cad11833938497dfdc484fb7900fc80d06ca2778/automations/adaptive_lighting.yaml#L69)
 
 
-### [Notify manual_control](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L93)
+### [Notify manual_control](https://github.com/basnijholt/home-assistant-config/blob/cad11833938497dfdc484fb7900fc80d06ca2778/automations/adaptive_lighting.yaml#L93)
 
 
 [^ toc](#automations---table-of-content)
