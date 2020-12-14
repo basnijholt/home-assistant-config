@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-0.118.4%20-darkblue)](https://github.com/home-assistant/core/releases/tag/0.118.4)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2020.12.0%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2020.12.0)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -457,7 +457,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 <!-- start-addons -->
 - [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.0.1 by @Poeschl
-- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.6.2 by @Poeschl
+- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.7.0 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.3.2 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.9.1 by @hassio-addons
@@ -474,7 +474,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.2.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 5.1 by @home-assistant
 - [Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba) version 9.3.0 by @home-assistant
-- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.5.0 by @home-assistant
+- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.6.0 by @home-assistant
 - [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.102.0 by @sabeechen
 - [Rhasspy Assistant 2.5](https://github.com/synesthesiam/hassio-addons/tree/master/rhasspy) version 2.5.7.2 by @synesthesiam
 <!-- end-addons -->
@@ -518,10 +518,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Reset manual_control after 1 hour](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L68)
+### [Reset manual_control after 1 hour](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L69)
 
 
-### [Notify manual_control](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L92)
+### [Notify manual_control](https://github.com/basnijholt/home-assistant-config/blob/df277ce733d876b071d976ec630817de7111c4c8/automations/adaptive_lighting.yaml#L93)
 
 
 [^ toc](#automations---table-of-content)
@@ -535,7 +535,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L63)
   - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L87)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L234)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L228)
 
 [^ toc](#automations---table-of-content)
 
@@ -593,7 +593,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L46)
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L40)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L302)
-  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L226)
+  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L220)
 
 ### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/c633f1637bb22a4dd5c9090942609c315282dcee/automations/climate.yaml#L26)
 
@@ -660,7 +660,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L212)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L270)
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L252)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L234)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L228)
 
 ### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/b133cb5d69be8eb916f63d91ecf034d9708ebe07/automations/control_switches.yaml#L220)
 
@@ -675,7 +675,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L293)
   - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L39)
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L235)
-  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L81)
+  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L75)
 
 [^ toc](#automations---table-of-content)
 
