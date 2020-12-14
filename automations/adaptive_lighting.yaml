@@ -28,6 +28,7 @@
               # sleep_modes
               - switch.adaptive_lighting_sleep_mode_default
               - switch.adaptive_lighting_sleep_mode_default_bed
+              - switch.adaptive_lighting_sleep_mode_living_room
           - service: switch.turn_on
             entity_id:
               - switch.adaptive_lighting_default
