@@ -18,12 +18,6 @@
 
 - platform: template
   sensors:
-    washing_machine_watts:
-      value_template: >
-        {{ state_attr("switch.washing_machine", "current_power_w") | replace(" W", "") | float("Unavailable") }}
-      unit_of_measurement: Watt
-      friendly_name: Washing machine usage
-
     dishwasher_watts:
       value_template: >
         {{ state_attr("switch.dishwasher", "current_power_w") | replace(" W", "") | float("Unavailable") }}

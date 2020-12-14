@@ -97,7 +97,7 @@
     washing_machine:
       friendly_name: Washing machine
       value_template: >
-        {{ states("sensor.washing_machine_watts") | float(0) > 3 }}
+        {{ states("sensor.washing_machine_power") | float(0) > 3 }}
       delay_off: "00:05:00"
       icon_template: >
         {% if is_state("binary_sensor.washing_machine", "on") %}
