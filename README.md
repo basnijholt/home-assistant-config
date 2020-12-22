@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2020.12.0%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2020.12.0)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2020.12.1%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2020.12.1)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -456,7 +456,7 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 I run a [Supervised install](https://www.home-assistant.io/getting-started/) with the following add-ons:
 
 <!-- start-addons -->
-- [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.0.1 by @Poeschl
+- [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.1.1 by @Poeschl
 - [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.7.0 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.3.2 by @hassio-addons
@@ -474,7 +474,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.2.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 5.1 by @home-assistant
 - [Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba) version 9.3.0 by @home-assistant
-- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.6.0 by @home-assistant
+- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.6.1 by @home-assistant
 - [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.102.0 by @sabeechen
 - [Rhasspy Assistant 2.5](https://github.com/synesthesiam/hassio-addons/tree/master/rhasspy) version 2.5.7.2 by @synesthesiam
 <!-- end-addons -->
@@ -535,7 +535,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L63)
   - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L87)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L228)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/sensors.yaml#L228)
 
 [^ toc](#automations---table-of-content)
 
@@ -593,7 +593,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L46)
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L40)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L302)
-  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L220)
+  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/sensors.yaml#L220)
 
 ### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/c633f1637bb22a4dd5c9090942609c315282dcee/automations/climate.yaml#L26)
 
@@ -601,7 +601,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L40)
   - [input_number.temperature_high](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_numbers.yaml#L20)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L302)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L149)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L149)
 
 ### [Turn off the heating at 22:00](https://github.com/basnijholt/home-assistant-config/blob/c633f1637bb22a4dd5c9090942609c315282dcee/automations/climate.yaml#L51)
 
@@ -609,7 +609,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L40)
   - [input_number.temperature_low](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_numbers.yaml#L12)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L293)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L149)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L149)
 
 ### [Turn on heating again after notification](https://github.com/basnijholt/home-assistant-config/blob/c633f1637bb22a4dd5c9090942609c315282dcee/automations/climate.yaml#L72)
 
@@ -660,7 +660,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L212)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L270)
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L252)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L228)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/sensors.yaml#L228)
 
 ### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/b133cb5d69be8eb916f63d91ecf034d9708ebe07/automations/control_switches.yaml#L220)
 
@@ -675,7 +675,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L293)
   - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L39)
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L235)
-  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/5e1f48d357b16bddebcb52d72dedf2f168d72a31/includes/sensors.yaml#L75)
+  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/sensors.yaml#L75)
 
 [^ toc](#automations---table-of-content)
 
@@ -805,16 +805,16 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L22)
   - [script.leaving](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L311)
-  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L135)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L149)
-  - [binary_sensor.someone_in_the_house_in_last_hour](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L38)
+  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L135)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L149)
+  - [binary_sensor.someone_in_the_house_in_last_hour](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L38)
 
 ### [Ask to turn off everything](https://github.com/basnijholt/home-assistant-config/blob/7fed19ad132833e0ab1b4405356a9f084e1f0004/automations/leaving.yaml#L40)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L22)
-  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L135)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L149)
+  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L135)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L149)
 
 ### [Turn off everything after notification](https://github.com/basnijholt/home-assistant-config/blob/7fed19ad132833e0ab1b4405356a9f084e1f0004/automations/leaving.yaml#L70)
 
@@ -833,50 +833,50 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Turn on living room](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L35)
 
   *which uses:*
-  - [binary_sensor.activity_in_living_room](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L51)
+  - [binary_sensor.activity_in_living_room](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L51)
 
 ### [Turn off living room](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L44)
 
   *which uses:*
-  - [binary_sensor.activity_in_living_room](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L51)
+  - [binary_sensor.activity_in_living_room](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L51)
 
 ### [Toggle kitchen ceiling](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L59)
 
   *which uses:*
-  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L65)
+  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L65)
 
 ### [Turn on kitchen counter if sleep mode is off](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L69)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L65)
+  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L65)
 
 ### [Turn off kitchen counter](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L84)
 
   *which uses:*
-  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L65)
+  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L65)
 
 ### [Toggle bathroom](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L100)
 
   *which uses:*
-  - [binary_sensor.activity_in_bathroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L44)
+  - [binary_sensor.activity_in_bathroom](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L44)
 
 ### [Toggle toilet](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L117)
 
   *which uses:*
-  - [binary_sensor.activity_in_toilet](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L59)
+  - [binary_sensor.activity_in_toilet](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L59)
 
 ### [Turn on hall](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L133)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
   - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L577)
-  - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L71)
+  - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L71)
 
 ### [Turn off hall](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L163)
 
   *which uses:*
-  - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L71)
+  - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L71)
 
 ### [Automatically turn on the bedroom](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L183)
 
@@ -885,14 +885,14 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.bedroom_lights_automatically_turned_on](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L28)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
   - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L577)
-  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L78)
+  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L78)
 
 ### [Automatically turn off the bedroom](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L213)
 
   *which uses:*
   - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L37)
   - [input_boolean.bedroom_lights_automatically_turned_on](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L28)
-  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L78)
+  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L78)
 
 ### [Turn off bedroom lights auto switch](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L236)
 
@@ -907,35 +907,35 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Turn off bedroom after 2 hours of inactivity](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L270)
 
   *which uses:*
-  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L78)
+  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L78)
 
 ### [Turn off toilet (extra check)](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L289)
 
   In case the other automation failed
 
   *which uses:*
-  - [binary_sensor.activity_in_toilet](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L59)
+  - [binary_sensor.activity_in_toilet](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L59)
 
 ### [Turn off bathroom (extra check)](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L305)
 
   In case the other automation failed
 
   *which uses:*
-  - [binary_sensor.activity_in_bathroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L44)
+  - [binary_sensor.activity_in_bathroom](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L44)
 
 ### [Turn off kitchen (extra check)](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L321)
 
   In case the other automation failed
 
   *which uses:*
-  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L65)
+  - [binary_sensor.activity_in_kitchen](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L65)
 
 ### [Turn off hall (extra check)](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L337)
 
   In case the other automation failed
 
   *which uses:*
-  - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L71)
+  - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L71)
 
 ### [Turn off bedroom (extra check)](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L360)
 
@@ -944,7 +944,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   *which uses:*
   - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L37)
   - [input_boolean.bedroom_lights_automatically_turned_on](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L28)
-  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L78)
+  - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L78)
 
 [^ toc](#automations---table-of-content)
 
@@ -1045,7 +1045,7 @@ to "Opt".
 ### [Motion detected but we are not home](https://github.com/basnijholt/home-assistant-config/blob/a332e6388c9bf0275b282fd9dfd3f388a073f807/automations/security.yaml#L11)
 
   *which uses:*
-  - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L22)
+  - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L22)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/includes/groups.yaml#L11)
 
 ### [Door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/a332e6388c9bf0275b282fd9dfd3f388a073f807/automations/security.yaml#L44)
@@ -1056,7 +1056,7 @@ to "Opt".
 ### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/a332e6388c9bf0275b282fd9dfd3f388a073f807/automations/security.yaml#L61)
 
   *which uses:*
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L149)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L149)
 
 ### [Office door has opened](https://github.com/basnijholt/home-assistant-config/blob/a332e6388c9bf0275b282fd9dfd3f388a073f807/automations/security.yaml#L83)
 
@@ -1092,7 +1092,7 @@ to "Opt".
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [binary_sensor.activity_outside_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L87)
+  - [binary_sensor.activity_outside_bedroom](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L87)
 
 ### [Set sleeping mode in the living room](https://github.com/basnijholt/home-assistant-config/blob/cf3257e2b00c55b3c5adfd1c5a922296a06d04d7/automations/sleep_mode.yaml#L70)
 
@@ -1101,7 +1101,7 @@ to "Opt".
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [binary_sensor.activity_in_living_room](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L51)
+  - [binary_sensor.activity_in_living_room](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L51)
 
 [^ toc](#automations---table-of-content)
 
@@ -1161,20 +1161,20 @@ to "Opt".
 ### [Washing machine or dishwasher started or finished](https://github.com/basnijholt/home-assistant-config/blob/66d951dc84a6d10ecb21cd9fb02ba20852afedeb/automations/utilities.yaml#L12)
 
   *which uses:*
-  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L109)
-  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L97)
+  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L109)
+  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L97)
 
 ### [Washing machine notification](https://github.com/basnijholt/home-assistant-config/blob/66d951dc84a6d10ecb21cd9fb02ba20852afedeb/automations/utilities.yaml#L29)
 
   *which uses:*
   - [script.utility_notification](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L479)
-  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L97)
+  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L97)
 
 ### [Dishwasher notification](https://github.com/basnijholt/home-assistant-config/blob/66d951dc84a6d10ecb21cd9fb02ba20852afedeb/automations/utilities.yaml#L41)
 
   *which uses:*
   - [script.utility_notification](https://github.com/basnijholt/home-assistant-config/blob/c8c49ce0e4d1156247d671765a78433e9b6ee1a0/scripts.yaml#L479)
-  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L109)
+  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L109)
 
 [^ toc](#automations---table-of-content)
 
@@ -1209,7 +1209,7 @@ to "Opt".
 ### [Reminder notification](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/vacuum.yaml#L37)
 
   *which uses:*
-  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L144)
+  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L144)
 
 ### [Cleanup if nobody is home](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/vacuum.yaml#L51)
 
@@ -1217,7 +1217,7 @@ to "Opt".
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L16)
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L19)
-  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L144)
+  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L144)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/includes/groups.yaml#L11)
 
 ### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/vacuum.yaml#L89)
@@ -1236,7 +1236,7 @@ to "Opt".
 
   *which uses:*
   - [input_boolean.work_hour_notification_sent](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L43)
-  - [binary_sensor.worked_enough_today](https://github.com/basnijholt/home-assistant-config/blob/5eb0355161689611cbd5e9e74f89216b63e1c497/includes/binary_sensors.yaml#L121)
+  - [binary_sensor.worked_enough_today](https://github.com/basnijholt/home-assistant-config/blob/ddbb28175a40b328d6be856368be8f197dd71e1a/includes/binary_sensors.yaml#L121)
 
 ### [Reset input_boolean at midnight](https://github.com/basnijholt/home-assistant-config/blob/33f7f51622d8542228e98201ec6cd6e04eeebd03/automations/work.yaml#L32)
 
