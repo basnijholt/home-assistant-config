@@ -26,6 +26,3 @@ monthly_power_peak:
 monthly_gas:
   source: sensor.gas_consumption
   cycle: monthly
-washing_machine_daily_energy:
-  source: sensor.washing_machine_energy
-  cycle: daily
