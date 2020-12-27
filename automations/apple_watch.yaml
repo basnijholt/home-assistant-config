@@ -207,6 +207,34 @@
       data:
         option: "{{ location }}"
 
+- alias: "Apple Watch: movie time"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Movie time
+  action:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.living_room_lights
+        brightness: 5
+        color_name: red
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.tv_led
+        brightness: 20
+
+- alias: "Apple Watch: reset adaptive lighting"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Reset adaptive lighting
+  action:
+    service: script.reset_adaptive_lighting
+
 - alias: "Apple Watch: set temperature"
   mode: parallel
   trigger:
