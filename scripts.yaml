@@ -490,10 +490,11 @@ utility_notification:
     switch: "{{ 'switch.{}'.format(name) }}"
     binary_sensor: "{{ 'binary_sensor.{}'.format(name) }}"
     friendly_name: "{{ name.capitalize().replace('_', ' ') }}"
+    energy_sensor: "{{ 'sensor.{}_energy'.format(name) }}"
   sequence:
     - variables:
         start_time: "{{ as_timestamp(now()) }}"
-        start_kwh: "{{ state_attr(switch, 'total_energy_kwh') }}"
+        start_kwh: "{{ states(energy_sensor) }}"
     - wait_for_trigger:
         platform: template
         value_template: "{{ is_state(binary_sensor, 'off') }}"
@@ -501,7 +502,7 @@ utility_notification:
       continue_on_timeout: false
     - variables:
         end_time: "{{ as_timestamp(now()) }}"
-        end_kwh: "{{ state_attr(switch, 'total_energy_kwh') }}"
+        end_kwh: "{{ states(energy_sensor) }}"
     - variables:
         total_time: "{{ (end_time - start_time) }}"
         total_kwh: "{{ end_kwh - start_kwh }}"
