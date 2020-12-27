@@ -142,9 +142,10 @@
         {{ light_on or tv_on or kef_on or kef_lsx_on }}
 
     vacuum_day:
+      # XXX: was '("Mon", "Wed", "Sun")'  pre-corona because now we're mostly at home
       friendly_name: Vacuum day today
       value_template: >
-        {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Wed", "Sun") }}
+        {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun") }}
 
     no_one_home:
       friendly_name: No one is home
