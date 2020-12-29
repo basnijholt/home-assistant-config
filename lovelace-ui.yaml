@@ -736,7 +736,7 @@ views:
         type: custom:mini-graph-card
       - color_thresholds_transition: smooth
         entities:
-        - entity: sensor.gas_consumption
+        - entity: sensor.daily_gas
           name: Gas consumption
         font_size: 100
         group: false
