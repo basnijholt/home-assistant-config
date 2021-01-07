@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2020.12.1%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2020.12.1)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.1.0%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.1.0)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -476,7 +476,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.2.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 5.1 by @home-assistant
 - [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.6.2 by @home-assistant
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.102.0 by @sabeechen
+- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.103.0 by @sabeechen
 - [Rhasspy Assistant 2.5](https://github.com/synesthesiam/hassio-addons/tree/master/rhasspy) version 2.5.7.2 by @synesthesiam
 <!-- end-addons -->
 
