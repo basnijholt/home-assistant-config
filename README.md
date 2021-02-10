@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.1.5%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.1.5)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.2.2%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.2.2)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -457,25 +457,25 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 <!-- start-addons -->
 - [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.2.0 by @Poeschl
-- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.7.0 by @Poeschl
+- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.8.0 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.3.0-nas6 by @dianlight
 - [AdGuard Home](https://github.com/hassio-addons/addon-adguard-home) version 3.0.0 by @hassio-addons
-- [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.4.1 by @hassio-addons
-- [Glances](https://github.com/hassio-addons/addon-glances) version 0.10.0 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.0.0 by @hassio-addons
-- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.0.1 by @hassio-addons
-- [JupyterLab Lite](https://github.com/hassio-addons/addon-jupyterlab-lite) version 0.3.1 by @hassio-addons
+- [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.4.3 by @hassio-addons
+- [Glances](https://github.com/hassio-addons/addon-glances) version 0.11.0 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.1.0 by @hassio-addons
+- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.0.3 by @hassio-addons
+- [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab) version 0.4.0 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.9.1 by @hassio-addons
-- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 8.0.0 by @hassio-addons
-- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.0.1 by @hassio-addons
+- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 8.0.1 by @hassio-addons
+- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.0.3 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.11.0 by @hassio-addons
 - [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.2.0 by @hassio-addons
 - [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.2.0 by @home-assistant
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.11.0 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.2.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 5.1 by @home-assistant
-- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.6.2 by @home-assistant
+- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.6.5 by @home-assistant
 - [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.103.1 by @sabeechen
 - [Rhasspy Assistant 2.5](https://github.com/synesthesiam/hassio-addons/tree/master/rhasspy) version 2.5.7.2 by @synesthesiam
 <!-- end-addons -->
