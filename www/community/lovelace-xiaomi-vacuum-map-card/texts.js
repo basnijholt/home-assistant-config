@@ -52,6 +52,15 @@ const texts = {
         repeats: "Veces:",
         confirmation: "Comando enviado!"
     },
+    "fi": {
+        mode: "Toiminto",
+        goToTarget: "Mene kohteeseen",
+        zonedCleanup: "Siivoa alue",
+        zones: "Alueet",
+        run: "Aloita",
+        repeats: "Toistot:",
+        confirmation: "Komento lähetetty!"
+    },
     "fr": {
         mode: "Mode",
         goToTarget: "Aller sur la cible",
@@ -60,6 +69,15 @@ const texts = {
         run: "Démarrage",
         repeats: "Répéter:",
         confirmation: "Commande envoyée!"
+    },
+    "hu": {
+        mode: "Mód",
+        goToTarget: "Mozgás a célponthoz",
+        zonedCleanup: "Zóna tisztítása",
+        zones: "Zónák",
+        run: "Indítás",
+        repeats: "Ismétlések:",
+        confirmation: "Parancs elküldve!"
     },
     "it": {
         mode: "Modalità",
