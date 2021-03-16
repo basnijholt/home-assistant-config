@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c BATTERY-ENTITY-ROW %c 1.2.0 ',
+        '%c BATTERY-ENTITY-ROW %c 1.3.1 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -84,10 +84,17 @@
         }
 
         renderSecondaryInfo() {
-            return this._config.secondary_info === 'last-changed' ?
-                html`<div class="secondary">
-                    <ha-relative-time datetime="${this.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>
-                </div>` : null;
+            const secondaryInfo = this._config.secondary_info;
+            let content = undefined;
+
+            if (secondaryInfo === 'last-changed') {
+                content = html`<ha-relative-time .datetime="${this.stateObj.last_changed}" .hass="${this._hass}"></ha-relative-time>`;
+            } else if (secondaryInfo === 'last-updated') {
+                content = html`<ha-relative-time .datetime="${this.stateObj.last_updated}" .hass="${this._hass}"></ha-relative-time>`;
+            } else if (secondaryInfo in this.stateObj.attributes) {
+                content = this.stateObj.attributes[secondaryInfo];
+            }
+            return content ? html`<div class="secondary">${content}</div>` : null;
         }
 
         renderWarning() {
