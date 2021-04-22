@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.4.5%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.4.5)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.4.6%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.4.6)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -461,22 +461,22 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.3.0-nas8 by @dianlight
 - [AdGuard Home](https://github.com/hassio-addons/addon-adguard-home) version 4.0.0 by @hassio-addons
-- [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.5.2 by @hassio-addons
+- [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.6.0 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.11.2 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.3.1 by @hassio-addons
-- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.0.4 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.3.2 by @hassio-addons
+- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.0.6 by @hassio-addons
 - [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab) version 0.5.0 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.10.2 by @hassio-addons
-- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 8.1.1 by @hassio-addons
+- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 8.2.0 by @hassio-addons
 - [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.3.0 by @hassio-addons
-- [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.11.1 by @hassio-addons
-- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.3.0 by @hassio-addons
+- [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.12.0 by @hassio-addons
+- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.4.0 by @hassio-addons
 - [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.2.0 by @home-assistant
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.11.0 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.3.0 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 5.1.1 by @home-assistant
 - [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.8.0 by @home-assistant
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.103.1 by @sabeechen
+- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.104.2 by @sabeechen
 - [Rhasspy Assistant 2.5](https://github.com/synesthesiam/hassio-addons/tree/master/rhasspy) version 2.5.7.2 by @synesthesiam
 <!-- end-addons -->
 
@@ -558,7 +558,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   *which uses:*
   - [script.cozy_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L133)
   - [script.cozy_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L94)
-  - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L578)
+  - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L586)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L184)
 
 ### [Temperature report](https://github.com/basnijholt/home-assistant-config/blob/81141dffc10e17b12200fdec3bd1247ff5291c6c/automations/apple_watch.yaml#L161)
@@ -567,7 +567,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Send vacuum cleaner](https://github.com/basnijholt/home-assistant-config/blob/81141dffc10e17b12200fdec3bd1247ff5291c6c/automations/apple_watch.yaml#L181)
 
   *which uses:*
-  - [script.vacuum_command](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L518)
+  - [script.vacuum_command](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L526)
 
 ### [Movie time](https://github.com/basnijholt/home-assistant-config/blob/81141dffc10e17b12200fdec3bd1247ff5291c6c/automations/apple_watch.yaml#L210)
 
@@ -575,7 +575,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Reset adaptive lighting](https://github.com/basnijholt/home-assistant-config/blob/81141dffc10e17b12200fdec3bd1247ff5291c6c/automations/apple_watch.yaml#L229)
 
   *which uses:*
-  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L592)
+  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L600)
 
 ### [Set temperature](https://github.com/basnijholt/home-assistant-config/blob/81141dffc10e17b12200fdec3bd1247ff5291c6c/automations/apple_watch.yaml#L238)
 
@@ -879,7 +879,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L578)
+  - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L586)
   - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/3dde6241c54c3b5391b3e11282fecf865149c336/includes/binary_sensors.yaml#L71)
 
 ### [Turn off hall](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L163)
@@ -893,7 +893,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L37)
   - [input_boolean.bedroom_lights_automatically_turned_on](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L28)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
-  - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L578)
+  - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/edcdcf0ea80b0f974da5ebd91aa9f08813e20f4d/scripts.yaml#L586)
   - [binary_sensor.activity_in_bedroom](https://github.com/basnijholt/home-assistant-config/blob/3dde6241c54c3b5391b3e11282fecf865149c336/includes/binary_sensors.yaml#L78)
 
 ### [Automatically turn off the bedroom](https://github.com/basnijholt/home-assistant-config/blob/864acad1b80ef40eafc78bcfd1ab5482f73a8716/automations/light.yaml#L213)
