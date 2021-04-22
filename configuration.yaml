@@ -48,7 +48,7 @@ wake_on_lan:
 proximity: !include includes/proximity.yaml
 timer: !include includes/timers.yaml
 ios: !include includes/ios.yaml
-# tplink: !include includes/tplink.yaml  # causing https://github.com/home-assistant/core/issues/40743
+tplink: !include includes/tplink.yaml  # causing https://github.com/home-assistant/core/issues/40743
 webostv: !include includes/webostv.yaml
 vacuum: !include includes/vacuum.yaml
 media_player: !include includes/media_players.yaml
