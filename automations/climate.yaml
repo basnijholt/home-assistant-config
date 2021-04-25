@@ -122,3 +122,13 @@
       data:
         temperature: >
           {{ states("input_number.temperature_low") }}
+
+- alias: "Climate: set temperature setpoint to 50 °C"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: actions/otmonitor/maxdhwsetpt
+      payload: "50"
