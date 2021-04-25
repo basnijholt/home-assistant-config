@@ -487,7 +487,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Alarm clock ⏰](#alarm-clock-) (1 automations)
 1. [Apple Watch ⌚](#apple-watch-) (10 automations)
 1. [Arriving 👞](#arriving-) (1 automations)
-1. [Climate 🔥🥶](#climate-) (6 automations)
+1. [Climate 🔥🥶](#climate-) (7 automations)
 1. [Control switches 🎛](#control-switches-) (6 automations)
 1. [Cube ∛](#cube-) (2 automations)
 1. [Doorbell 🚪🔔](#doorbell-) (1 automations)
@@ -511,7 +511,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **117** ⚠️
+⚠️ Total number of automations: **118** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/84ddde022abad6d2901921952f4620f50f0c195d/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/84ddde022abad6d2901921952f4620f50f0c195d/automations/adaptive_lighting.yaml#L11)
@@ -632,6 +632,9 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
   *which uses:*
   - [input_number.temperature_low](https://github.com/basnijholt/home-assistant-config/blob/b8c88b2b0cbb45093573d24cce5c8d3b07e7683e/includes/input_numbers.yaml#L12)
+
+### [Set temperature setpoint to 50 °C](https://github.com/basnijholt/home-assistant-config/blob/c633f1637bb22a4dd5c9090942609c315282dcee/automations/climate.yaml#L126)
+
 
 [^ toc](#automations---table-of-content)
 
