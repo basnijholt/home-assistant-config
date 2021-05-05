@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.5.0b2%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.5.0b2)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.5.0b7%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.5.0b7)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -462,7 +462,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.3.0-nas8 by @dianlight
 - [AdGuard Home](https://github.com/hassio-addons/addon-adguard-home) version 4.0.0 by @hassio-addons
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.6.0 by @hassio-addons
-- [Glances](https://github.com/hassio-addons/addon-glances) version 0.12.0 by @hassio-addons
+- [Glances](https://github.com/hassio-addons/addon-glances) version 0.12.1 by @hassio-addons
 - [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.3.3 by @hassio-addons
 - [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.0.6 by @hassio-addons
 - [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab) version 0.5.0 by @hassio-addons
