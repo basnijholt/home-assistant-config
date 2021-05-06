@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.5.0b8%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.5.0b8)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2021.5.0%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2021.5.0)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -466,9 +466,9 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.3.3 by @hassio-addons
 - [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.0.6 by @hassio-addons
 - [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab) version 0.5.0 by @hassio-addons
-- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.10.2 by @hassio-addons
+- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.11.0 by @hassio-addons
 - [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 8.2.1 by @hassio-addons
-- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.3.0 by @hassio-addons
+- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.3.1 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.12.0 by @hassio-addons
 - [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.4.0 by @hassio-addons
 - [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.3.0 by @home-assistant
