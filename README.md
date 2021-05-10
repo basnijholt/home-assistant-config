@@ -457,7 +457,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 <!-- start-addons -->
 - [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.4.0 by @Poeschl
-- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.9.0 by @Poeschl
+- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.10.0 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.3.0-nas8 by @dianlight
 - [AdGuard Home](https://github.com/hassio-addons/addon-adguard-home) version 4.0.0 by @hassio-addons
