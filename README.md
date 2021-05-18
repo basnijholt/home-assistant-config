@@ -463,13 +463,13 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [AdGuard Home](https://github.com/hassio-addons/addon-adguard-home) version 4.0.0 by @hassio-addons
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.6.0 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.12.1 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.3.3 by @hassio-addons
-- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.0.6 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.3.4 by @hassio-addons
+- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.1.0 by @hassio-addons
 - [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab) version 0.5.0 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.11.0 by @hassio-addons
 - [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 8.2.1 by @hassio-addons
-- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.3.1 by @hassio-addons
-- [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.12.0 by @hassio-addons
+- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.4.0 by @hassio-addons
+- [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.13.0 by @hassio-addons
 - [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.4.0 by @hassio-addons
 - [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.3.0 by @home-assistant
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.11.0 by @home-assistant
