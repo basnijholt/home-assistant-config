@@ -16,12 +16,3 @@
   maximum_volume: 0.6
   volume_step: 0.05
   standby_time: 60
-
-- platform: kef_custom
-  type: LSX
-  name: KEF LSX
-  host: !secret ip_kef_lsx
-  maximum_volume: 0.9
-  volume_step: 0.05
-  inverse_speaker_mode: true
-  standby_time: 60
