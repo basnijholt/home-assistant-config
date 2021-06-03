@@ -4,5 +4,6 @@
     "documentation": "https://github.com/Juvawa/Home-Assisant-Sensor-9292",
     "dependencies": [],
     "codeowners": [],
-    "requirements": []
+    "requirements": [],
+    "version": "1.0.0"
   }
