@@ -125,8 +125,8 @@
 
 - alias: "Climate: set temperature setpoint to 50 °C"
   trigger:
-    platform: homeassistant
-    event: start
+    platform: time_pattern
+    hours: "/2"
   action:
     service: mqtt.publish
     data:
