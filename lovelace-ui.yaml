@@ -53,6 +53,7 @@ views:
       head:
         color_picker: true
         entity: light.living_room_lights
+        hide_when_off: false
         name: Living
         type: custom:slider-entity-row
       type: custom:fold-entity-row
@@ -84,11 +85,13 @@ views:
           service: script.white_lights_bedroom
       head:
         entity: light.bedroom_lights
+        hide_when_off: false
         name: Bedroom
         type: custom:slider-entity-row
       name: Bed
       type: custom:fold-entity-row
     - entities:
+      - light.ceiling_office
       - light.ceiling_kitchen
       - light.ceiling_bathroom
       - light.toilet
@@ -168,7 +171,8 @@ views:
         type: custom:fold-entity-row
       head:
         entity: light.automatic_lights
-        name: Auto
+        hide_when_off: false
+        name: Auto and office
         type: custom:slider-entity-row
       type: custom:fold-entity-row
     show_header_toggle: false
@@ -229,17 +233,6 @@ views:
         type: custom:fold-entity-row
       show_header_toggle: false
       type: entities
-    - background: /local/lsx_speakers.png
-      entity: media_player.kef_lsx
-      hide:
-        controls: true
-        mute: false
-        play_stop: true
-        volume: false
-      style: "ha-card {\n  --mini-media-player-base-color: red;\n  --mini-media-player-icon-color:\
-        \ red;\n  --mini-media-player-background-opacity: 0.1;\n  --mini-media-player-overlay-color:\
-        \ white;\n}\n"
-      type: custom:mini-media-player
     - cards:
       - icon: mdi:sofa
         name: Play music in living room
@@ -2161,6 +2154,8 @@ views:
       type: custom:template-entity-row
     title: Motion sensors
     type: entities
+  - entity: camera.camera1
+    type: picture-entity
   icon: mdi:test-tube
   path: tests
   title: Tests
