@@ -52,12 +52,12 @@
         message: "Apple Watch: set sleep mode."
         data:
           push:
-            category: set_sleep_mode
+            category: SET_SLEEP_MODE
     - wait_for_trigger:
         platform: event
         event_type: ios.notification_action_fired
         event_data:
-          categoryName: set_sleep_mode
+          categoryName: SET_SLEEP_MODE
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -82,12 +82,12 @@
         message: "Apple Watch: set lights"
         data:
           push:
-            category: set_lights
+            category: SET_LIGHTS
     - wait_for_trigger:
         platform: event
         event_type: ios.notification_action_fired
         event_data:
-          categoryName: set_lights
+          categoryName: SET_LIGHTS
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -106,12 +106,12 @@
         message: "Apple Watch: choose option"
         data:
           push:
-            category: light_options
+            category: LIGHT_OPTIONS
     - wait_for_trigger:
         platform: event
         event_type: ios.notification_action_fired
         event_data:
-          categoryName: light_options
+          categoryName: LIGHT_OPTIONS
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -193,12 +193,12 @@
         message: "Apple Watch: vacuum"
         data:
           push:
-            category: vacuum_locations
+            category: VACUUM_LOCATIONS
     - wait_for_trigger:
         platform: event
         event_type: ios.notification_action_fired
         event_data:
-          categoryName: vacuum_locations
+          categoryName: VACUUM_LOCATIONS
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -250,12 +250,12 @@
         message: "Apple Watch: set temperature"
         data:
           push:
-            category: set_temperature
+            category: SET_TEMPERATURE
     - wait_for_trigger:
         platform: event
         event_type: ios.notification_action_fired
         event_data:
-          categoryName: set_temperature
+          categoryName: SET_TEMPERATURE
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -287,7 +287,7 @@
       message: "{{ other_person }} is {{ distance('device_tracker.basnijholt_iphone', 'device_tracker.marcella_iphone') | round(2) }} km away"
       data:
         push:
-          category: map
+          category: MAP
         action_data:
           latitude: "{{ state_attr(device_tracker, 'latitude') }}"
           longitude: "{{ state_attr(device_tracker, 'longitude') }}"
