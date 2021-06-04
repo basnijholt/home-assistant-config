@@ -16,7 +16,7 @@ from jinja2 import Template
 
 tables = {
     "Switches 🎚": [
-        ["TP-Link HS110", 3, 70.84],
+        ["TP-Link HS110", 1, 35.84],
         ["Xiaomi Aqara Magic Cube", 1, 11.08],
         ["Xiaomi Aqara Single Button", 4, 57.38],
         ["Philips Hue Dimmer switch", 2, 33.22],

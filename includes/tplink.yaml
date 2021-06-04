@@ -10,6 +10,4 @@
 #- from github.com/basnijholt/home-assistant-config
 discovery: false
 switch:
-  - host: !secret ip_hs110_1
-  - host: !secret ip_hs110_2
-  - host: !secret ip_hs110_3
+  - host: !secret ip_hs110
