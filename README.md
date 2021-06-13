@@ -457,12 +457,12 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 <!-- start-addons -->
 - [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.4.0 by @Poeschl
-- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.10.0 by @Poeschl
+- [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.11.0 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.3.0-nas8 by @dianlight
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.6.1 by @hassio-addons
-- [Glances](https://github.com/hassio-addons/addon-glances) version 0.12.1 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 6.3.5 by @hassio-addons
+- [Glances](https://github.com/hassio-addons/addon-glances) version 0.12.2 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 7.0.0 by @hassio-addons
 - [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.1.1 by @hassio-addons
 - [JupyterLab](https://github.com/hassio-addons/addon-jupyterlab) version 0.5.0 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.11.0 by @hassio-addons
