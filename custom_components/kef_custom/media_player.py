@@ -127,8 +127,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     )
 
     mode = get_ip_mode(host)
-    mac = await hass.async_add_executor_job(partial(get_mac_address, **{mode: host}))
-    unique_id = f"kef-{mac}" if mac is not None else None
+    # mac = await hass.async_add_executor_job(partial(get_mac_address, **{mode: host}))
+    # unique_id = f"kef-{mac}" if mac is not None else None
 
     media_player = KefMediaPlayer(
         name,
@@ -142,7 +142,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         sources,
         speaker_type,
         loop=hass.loop,
-        unique_id=unique_id,
+        unique_id=config[CONF_HOST],
     )
 
     if host in hass.data[DOMAIN]:
