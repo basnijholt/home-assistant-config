@@ -11,13 +11,13 @@
 default: warning
 logs:
   # homeassistant.core: debug
-  # custom_components.kef_custom: debug
-  # custom_components.aiokef: debug
-  # aiokef: debug
-  # homeassistant.component.miflora: debug
-  # homeassistant.component.deconz: debug
+  custom_components.kef_custom: debug
+  custom_components.aiokef: debug
+  aiokef: debug
+  homeassistant.components.tplink: debug
+  # homeassistant.components.deconz: debug
   # pyotgw: warning
   # custom_components.derivative_custom: debug
   # custom_components.pyscript: debug
   # custom_components.circadian_lighting: debug
-  custom_components.adaptive_lighting: debug
+  # custom_components.adaptive_lighting: debug
