@@ -713,18 +713,18 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Frontend 👨‍💻](https://github.com/basnijholt/home-assistant-config/blob/a944a779cf1dd0e36f78d067420c6fe641f0a2c8/automations/frontend.yaml)
-### [Turn on dark mode](https://github.com/basnijholt/home-assistant-config/blob/a944a779cf1dd0e36f78d067420c6fe641f0a2c8/automations/frontend.yaml#L11)
+## [Frontend 👨‍💻](https://github.com/basnijholt/home-assistant-config/blob/87197a46e9db3a7fd566278fbdfc6f076a767a44/automations/frontend.yaml)
+### [Turn on dark mode](https://github.com/basnijholt/home-assistant-config/blob/87197a46e9db3a7fd566278fbdfc6f076a767a44/automations/frontend.yaml#L11)
 
   *which uses:*
   - [input_boolean.dark_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L32)
 
-### [Turn on light mode](https://github.com/basnijholt/home-assistant-config/blob/a944a779cf1dd0e36f78d067420c6fe641f0a2c8/automations/frontend.yaml#L22)
+### [Turn on light mode](https://github.com/basnijholt/home-assistant-config/blob/87197a46e9db3a7fd566278fbdfc6f076a767a44/automations/frontend.yaml#L22)
 
   *which uses:*
   - [input_boolean.dark_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L32)
 
-### [Change theme](https://github.com/basnijholt/home-assistant-config/blob/a944a779cf1dd0e36f78d067420c6fe641f0a2c8/automations/frontend.yaml#L33)
+### [Change theme](https://github.com/basnijholt/home-assistant-config/blob/87197a46e9db3a7fd566278fbdfc6f076a767a44/automations/frontend.yaml#L33)
 
   *which uses:*
   - [input_boolean.dark_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L32)
