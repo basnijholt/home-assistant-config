@@ -466,10 +466,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.1.1 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.11.1 by @hassio-addons
 - [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 9.0.0 by @hassio-addons
-- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.6.0 by @hassio-addons
+- [Visual Studio Code](https://github.com/hassio-addons/addon-vscode) version 3.6.1 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.15.0 by @hassio-addons
 - [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.4.3 by @hassio-addons
-- [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.3.2 by @home-assistant
+- [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.3.3 by @home-assistant
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.11.0 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.4.0 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 6.0.1 by @home-assistant
