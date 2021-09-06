@@ -459,7 +459,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.4.0 by @Poeschl
 - [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.12.0 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
-- [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.3.0-nas8 by @dianlight
+- [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.5.1-nas1 by @dianlight
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.7.0 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.13.0 by @hassio-addons
 - [Grafana](https://github.com/hassio-addons/addon-grafana) version 7.2.0 by @hassio-addons
