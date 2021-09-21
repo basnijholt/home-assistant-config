@@ -509,7 +509,7 @@ utility_notification:
     - variables:
         minutes: "{{ (total_time / 60) | round(0) }}"
         total_kwh_rounded: "{{ (total_kwh) | round(2) }}"
-        price: "{{ (0.2479 * total_kwh) | round(2) }}"
+        price: "{{ (states('sensor.electricity_price_peak')|float * total_kwh) | round(2) }}"
     - service: "{{ states('sensor.nearest_iphone_notify') }}"
       data:
         title: "Utilities"

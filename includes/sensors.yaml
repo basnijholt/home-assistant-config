@@ -151,8 +151,14 @@
       friendly_name: Monthly Power (Last period)
       unit_of_measurement: €
       value_template: >
-        {{ (state_attr("sensor.monthly_power_offpeak", "last_period")|float * 0.2307
-            + state_attr("sensor.monthly_power_peak", "last_period")|float * 0.2479) | round(2) }}
+        {{ (state_attr("sensor.monthly_power_offpeak", "last_period")|float * states("sensor.electricity_price_offpeak")|float
+            + state_attr("sensor.monthly_power_peak", "last_period")|float * states("sensor.electricity_price_peak")|float) | round(2) }}
+
+    gas_price:
+      friendly_name: Gas price
+      unit_of_measurement: €/m³
+      value_template: >
+        {{ 0.7884 }}
 
     daily_gas_cost:
       friendly_name: Daily Power
@@ -172,19 +178,31 @@
       value_template: >
         {{ (state_attr("sensor.monthly_gas", "last_period")|float * 0.7884) | round(2) }}
 
+    electricity_price_offpeak:
+      friendly_name: Electricity price
+      unit_of_measurement: €/kWh
+      value_template: >
+        {{ 0.2307 }}
+
+    electricity_price_peak:
+      friendly_name: Electricity price
+      unit_of_measurement: €/kWh
+      value_template: >
+        {{ 0.2479 }}
+
     daily_power_cost:
       friendly_name: Daily Power
       unit_of_measurement: €
       value_template: >
-        {{ (states("sensor.daily_power_offpeak")|float * 0.2307
-            + states("sensor.daily_power_peak")|float * 0.2479) | round(2) }}
+        {{ (states("sensor.daily_power_offpeak")|float * states("sensor.electricity_price_offpeak")|float
+            + states("sensor.daily_power_peak")|float * states("sensor.electricity_price_peak")|float) | round(2) }}
 
     monthly_power_cost:
       friendly_name: Monthly Power
       unit_of_measurement: €
       value_template: >
-        {{ (states("sensor.monthly_power_offpeak")|float * 0.2307
-            + states("sensor.monthly_power_peak")|float * 0.2479) | round(2) }}
+        {{ (states("sensor.monthly_power_offpeak")|float * states("sensor.electricity_price_offpeak")|float
+            + states("sensor.monthly_power_peak")|float * states("sensor.electricity_price_peak")|float) | round(2) }}
 
     daily_energy_fixed_cost:
       friendly_name: Fixed daily energy cost (gas and power)
@@ -648,33 +666,43 @@
 
 - platform: mqtt
   state_topic: homeassistant/sensor/gas_consumption/state
-  unit_of_measurement: m3
+  unit_of_measurement: m³
   name: Gas Consumption
   icon: mdi:fire
+  device_class: gas
+  state_class: total_increasing
 
 - platform: mqtt
   state_topic: homeassistant/sensor/hourly_gas_consumption/state
-  unit_of_measurement: m3/h
+  unit_of_measurement: m³/h
   name: Hourly Gas Consumption
   icon: mdi:fire
+  device_class: gas
+  state_class: total_increasing
 
 - platform: mqtt
   state_topic: homeassistant/sensor/power_consumption/state
   unit_of_measurement: kW
   name: Power Consumption
   icon: mdi:flash
+  device_class: power
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/energy_consumption_tarif_1/state
   unit_of_measurement: kWh
   name: Energy Consumption (tarif 1)
   icon: mdi:flash
+  device_class: energy
+  state_class: total_increasing
 
 - platform: mqtt
   state_topic: homeassistant/sensor/energy_consumption_tarif_2/state
   unit_of_measurement: kWh
   name: Energy Consumption (tarif 2)
   icon: mdi:flash
+  device_class: energy
+  state_class: total_increasing
 
 - platform: mqtt
   state_topic: homeassistant/sensor/power_tariff/state
@@ -725,30 +753,38 @@
   unit_of_measurement: "%"
   name: "Mi Flora: Kentia Palm Battery"
   icon: mdi:battery-charging
+  device_class: battery
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_conductivity/state
   unit_of_measurement: µS/cm
   name: "Mi Flora: Kentia Palm Conductivity"
   icon: mdi:flash-circle
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_light_intensity/state
   unit_of_measurement: lx
   name: "Mi Flora: Kentia Palm Light intensity"
   icon: mdi:white-balance-sunny
+  device_class: illuminance
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_moisture/state
   unit_of_measurement: "%"
   name: "Mi Flora: Kentia Palm Moisture"
   icon: mdi:water-percent
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_kentia_palm_temperature/state
   unit_of_measurement: °C
   name: "Mi Flora: Kentia Palm Temperature"
   icon: mdi:thermometer
+  device_class: temperature
+  state_class: measurement
 
 # Royal Haze
 
@@ -757,30 +793,38 @@
   unit_of_measurement: "%"
   name: "Mi Flora: Royal Haze Battery"
   icon: mdi:battery-charging
+  device_class: battery
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_conductivity/state
   unit_of_measurement: µS/cm
   name: "Mi Flora: Royal Haze Conductivity"
   icon: mdi:flash-circle
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_light_intensity/state
   unit_of_measurement: lx
   name: "Mi Flora: Royal Haze Light intensity"
   icon: mdi:white-balance-sunny
+  device_class: illuminance
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_moisture/state
   unit_of_measurement: "%"
   name: "Mi Flora: Royal Haze Moisture"
   icon: mdi:water-percent
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_royal_haze_temperature/state
   unit_of_measurement: °C
   name: "Mi Flora: Royal Haze Temperature"
   icon: mdi:thermometer
+  device_class: temperature
+  state_class: measurement
 
 # Northern Light
 
@@ -789,27 +833,35 @@
   unit_of_measurement: "%"
   name: "Mi Flora: Northern Light Battery"
   icon: mdi:battery-charging
+  device_class: battery
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_conductivity/state
   unit_of_measurement: µS/cm
   name: "Mi Flora: Northern Light Conductivity"
   icon: mdi:flash-circle
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_light_intensity/state
   unit_of_measurement: lx
   name: "Mi Flora: Northern Light Light intensity"
   icon: mdi:white-balance-sunny
+  device_class: illuminance
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_moisture/state
   unit_of_measurement: "%"
   name: "Mi Flora: Northern Light Moisture"
   icon: mdi:water-percent
+  state_class: measurement
 
 - platform: mqtt
   state_topic: homeassistant/sensor/mi_flora_northern_light_temperature/state
   unit_of_measurement: °C
   name: "Mi Flora: Northern Light Temperature"
   icon: mdi:thermometer
+  device_class: temperature
+  state_class: measurement
