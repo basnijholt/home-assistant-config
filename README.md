@@ -459,7 +459,6 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.4.0 by @Poeschl
 - [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.12.0 by @Poeschl
 - [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
-- [Samba NAS](https://github.com/dianlight/hassio-addons/tree/master/sambanas) version 9.5.1-nas2 by @dianlight
 - [AppDaemon 4](https://github.com/hassio-addons/addon-appdaemon) version 0.7.0 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.13.0 by @hassio-addons
 - [Grafana](https://github.com/hassio-addons/addon-grafana) version 7.2.0 by @hassio-addons
@@ -473,8 +472,9 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.11.0 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.4.0 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 6.0.1 by @home-assistant
+- [Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba) version 9.5.1 by @home-assistant
 - [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.10.0 by @home-assistant
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.105.1 by @sabeechen
+- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.105.2 by @sabeechen
 - [Rhasspy Assistant 2.5](https://github.com/synesthesiam/hassio-addons/tree/master/rhasspy) version 2.5.7.2 by @synesthesiam
 <!-- end-addons -->
 
