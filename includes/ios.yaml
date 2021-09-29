@@ -129,6 +129,15 @@ actions:
       icon: play-pause
       color: "#ffffff"
 
+  - name: Fix TV sound
+    background_color: "#000000"
+    label:
+      text: Fix TV sound
+      color: "#ff0000"
+    icon:
+      icon: volume-high
+      color: "#ffffff"
+
   - name: Set sleep mode
     background_color: "#000000"
     label:

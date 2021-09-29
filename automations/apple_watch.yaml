@@ -37,6 +37,15 @@
       brightness: 1
       color_name: red
 
+- alias: "Apple Watch: fix TV sound"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Fix TV sound
+  action:
+    service: script.fix_sound
+
 - alias: "Apple Watch: set sleep mode"
   mode: parallel
   trigger:
