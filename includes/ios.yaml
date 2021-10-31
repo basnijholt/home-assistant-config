@@ -138,6 +138,15 @@ actions:
       icon: volume-high
       color: "#ffffff"
 
+  - name: Portfolio value
+    background_color: "#000000"
+    label:
+      text: Portfolio value
+      color: "#ff0000"
+    icon:
+      icon: bitcoin
+      color: "#ffffff"
+
   - name: Set sleep mode
     background_color: "#000000"
     label:

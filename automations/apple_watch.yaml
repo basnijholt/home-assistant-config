@@ -187,6 +187,22 @@
           Thermostat: {{ state_attr('climate.thermostat', 'temperature') }}°C
           Outside: {{ state_attr('weather.huis', 'temperature') }}°C and it's {{ states('weather.huis') }}
 
+- alias: "Apple Watch: portfolio value"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Portfolio value
+  action:
+    - variables:
+        iphone: "notify.mobile_app_basnijholt_iphone"
+    - service: "{{ iphone }}"
+      data:
+        title: Portfolio value
+        message: >
+          €{{ states('sensor.portfolio_value') }}
+
 - alias: "Apple Watch: send vacuum cleaner"
   mode: parallel
   trigger:

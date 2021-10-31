@@ -865,3 +865,9 @@
   icon: mdi:thermometer
   device_class: temperature
   state_class: measurement
+
+- platform: command_line
+  command: !secret portfolio_value
+  name: portfolio_value
+  unit_of_measurement: '€'
+  scan_interval: 20
