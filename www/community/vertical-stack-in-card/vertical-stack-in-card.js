@@ -48,10 +48,12 @@ class VerticalStackInCard extends HTMLElement {
       });
     }
     card.appendChild(cardContent);
-    while (this.hasChildNodes()) {
-      this.removeChild(this.lastChild);
+    
+    const shadowRoot = this.shadowRoot || this.attachShadow({mode: 'open'});
+    while (shadowRoot.hasChildNodes()) {
+      shadowRoot.removeChild(shadowRoot.lastChild);
     }
-    this.appendChild(card);
+    shadowRoot.appendChild(card);
 
     // Calculate card size
     this._cardSize.resolve();
