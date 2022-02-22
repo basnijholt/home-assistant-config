@@ -44,8 +44,9 @@
     service: frontend.set_theme
     data:
       name: >
+        {% set mode_name = "dark-mode" if is_state("input_boolean.dark_mode", "on") else "light-mode" -%}
         {% set name = states("input_select.theme") -%}
         {% set suffix = "-alternative" if is_state("input_boolean.theme_alternative", "on") else "" -%}
-        ios-{{ name }}{{ suffix }}
+        ios-{{ mode_name }}-{{ name }}{{ suffix }}
       mode: >
         {{ "dark" if is_state("input_boolean.dark_mode", "on") else "light" }}
