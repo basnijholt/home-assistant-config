@@ -25,15 +25,15 @@ class GithubEntityRow extends Polymer.Element {
             <div class="flex">
               <div class="entity" on-click="issues"  title="Open issues">
                 <ha-icon class="icon" icon="mdi:alert-circle-outline"></ha-icon>
-                <span>[[stateObj.attributes.open_issues]]</span>
+                <span>[[stateObjIssues.state]]</span>
               </div>
               <div class="entity" on-click="pulls" title="Open pull requests">
                 <ha-icon class="icon" icon="mdi:source-pull"></ha-icon>
-                <span>[[stateObj.attributes.open_pull_requests]]</span>
+                <span>[[stateObjPRs.state]]</span>
               </div>
               <div class="entity" on-click="stars" title="Stargazers">
                 <ha-icon class="icon" icon="mdi:star"></ha-icon>
-                <span>[[stateObj.attributes.stargazers]]</span>
+                <span>[[stateObjStars.state]]</span>
               </div>
             </div>
           </hui-generic-entity-row>
@@ -46,23 +46,42 @@ class GithubEntityRow extends Polymer.Element {
 
     goto(event, path) {
         event.stopPropagation();
-        window.open(`https://github.com/${this.stateObj.attributes.path}/${path}`);
+        window.open(`https://github.com/${this._config.repo}/${path}`);
     }
 
     setConfig(config) {
-        if (!config.entity) throw new Error('Please define an entity.');
-        if (config.entity.split('.')[0] !== 'sensor') throw new Error('Please define a GitHub sensor entity.');
+        if (!config.repo) throw new Error('Please define a GitHub repository path.');
 
-        this._config = config;
+        const sensor = config.sensor || config.repo.replaceAll('-', '_').replaceAll('/', '_');
+        this._config = {
+            ...config,
+            name: config.name || config.repo,
+            icon: config.icon || 'mdi:github',
+            sensor: sensor,
+            entity: `sensor.${sensor}_issues`, // required by ha-generic-entity-row
+        };
+    }
+
+    getStateObject(hass, sensor, suffix) {
+        const entity = `sensor.${sensor}_${suffix}`;
+        return entity in hass.states ? hass.states[entity] : null;
     }
 
     set hass(hass) {
         this._hass = hass;
 
         if (hass && this._config) {
-            this.stateObj = this._config.entity in hass.states ? hass.states[this._config.entity] : null;
+            this.stateObjStars = this.getStateObject(hass, this._config.sensor, 'stars');
+            this.stateObjIssues = this.getStateObject(hass, this._config.sensor, 'issues');
+            this.stateObjPRs = this.getStateObject(hass, this._config.sensor, 'pull_requests');
         }
     }
 }
+
+console.info(
+    '%c GITHUB-ENTITY-ROW %c 2.1.0 ',
+    'color: cyan; background: black; font-weight: bold;',
+    'color: darkblue; background: white; font-weight: bold;'
+);
 
 customElements.define('github-entity-row', GithubEntityRow);
