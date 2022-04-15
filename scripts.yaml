@@ -529,7 +529,7 @@ vacuum_command:
         sequence:
           service: vacuum.send_command
           data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.robot_vacuum
             command: app_zoned_clean
             params: [[29706, 27237, 34806, 31137, 1]]
       # bedroom
@@ -537,7 +537,7 @@ vacuum_command:
         sequence:
           service: vacuum.send_command
           data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.robot_vacuum
             command: app_zoned_clean
             params: [[22799, 27340, 27649, 31240, 1]]
       # office
@@ -545,7 +545,7 @@ vacuum_command:
         sequence:
           service: vacuum.send_command
           data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.robot_vacuum
             command: app_zoned_clean
             params: [[22803, 25150, 26353, 27250, 1]]
       # hall
@@ -553,7 +553,7 @@ vacuum_command:
         sequence:
           service: vacuum.send_command
           data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.robot_vacuum
             command: app_zoned_clean
             params: [[26379, 26239, 31929, 27189, 1]]
       # kitchen
@@ -561,19 +561,19 @@ vacuum_command:
         sequence:
           service: vacuum.send_command
           data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.robot_vacuum
             command: app_zoned_clean
             params: [[31941, 25364, 34791, 27164, 1]]
       # all
       - conditions: "{{ option == 'all' }}"
         sequence:
           service: vacuum.start
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+          entity_id: vacuum.robot_vacuum
       # stop
       - conditions: "{{ option == 'stop' }}"
         sequence:
           service: vacuum.return_to_base
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+          entity_id: vacuum.robot_vacuum
 
 turn_on_lights:
   alias: Turn on lights with Adaptive Lighting

@@ -12,13 +12,13 @@
   switches:
     vacuum_mode:
       value_template: >
-        {{ is_state("vacuum.xiaomi_vacuum_cleaner", "cleaning")}}
+        {{ is_state("vacuum.robot_vacuum", "cleaning")}}
       turn_on:
         service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.robot_vacuum
       turn_off:
         service: vacuum.return_to_base
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.robot_vacuum
 
     kef_lsx:
       friendly_name: Bedroom speakers

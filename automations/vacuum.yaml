@@ -11,7 +11,7 @@
 - alias: "Vacuum: started cleaning"
   trigger:
     platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.robot_vacuum
     from: docked
     to: cleaning
   action:
@@ -23,14 +23,14 @@
 - alias: "Vacuum: stopped cleaning"
   trigger:
     platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.robot_vacuum
     from: returning
     to: docked
   action:
     - service: notify.all_iphones
       data:
         title: "Robot"
-        message: "Cleanup successful after {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes."
+        message: "Cleanup successful after {{ state_attr('vacuum.robot_vacuum', 'cleaning_time') }} minutes."
     - service: input_boolean.turn_on
       entity_id: input_boolean.cleaned_today
 
@@ -84,7 +84,7 @@
       state: "off"
   action:
     service: vacuum.start
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.robot_vacuum
 
 - alias: "Vacuum: reset cleaned today"
   initial_state: "on"
@@ -102,6 +102,6 @@
     to: docked
   action:
     service: vacuum.set_fan_speed
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.robot_vacuum
     data:
       fan_speed: Standard

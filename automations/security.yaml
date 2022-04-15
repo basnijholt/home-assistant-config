@@ -19,7 +19,7 @@
       entity_id: group.persons
       state: not_home
     - condition: state
-      entity_id: vacuum.xiaomi_vacuum_cleaner
+      entity_id: vacuum.robot_vacuum
       state: "docked"
   action:
     - service: notify.all_iphones

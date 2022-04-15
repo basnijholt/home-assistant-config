@@ -50,8 +50,7 @@ timer: !include includes/timers.yaml
 ios: !include includes/ios.yaml
 tplink: !include includes/tplink.yaml  # causing https://github.com/home-assistant/core/issues/40743
 webostv: !include includes/webostv.yaml
-vacuum: !include includes/vacuum.yaml
-media_player: !include includes/media_players.yaml
+# media_player: !include includes/media_players.yaml
 homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml
 mqtt: !include includes/mqtt.yaml
@@ -70,3 +69,11 @@ panel_iframe: !include includes/panel_iframe.yaml
 # Custom components
 pyscript: !include includes/pyscript.yaml
 adaptive_lighting: !include includes/adaptive_lighting.yaml
+
+kef_custom:
+  - type: LS50
+    name: KEF LS50
+    host: !secret ip_kef_ls50
+    maximum_volume: 0.6
+    volume_step: 0.05
+    standby_time: 60
