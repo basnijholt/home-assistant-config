@@ -224,6 +224,21 @@ views:
         - entity: input_boolean.kef_ls50_wall_mode
         - entity: input_boolean.kef_ls50_phase_correction
         - entity: input_boolean.kef_ls50_high_pass
+        - type: divider
+        - entity: number.kef_ls50_desk_db
+        - entity: number.kef_ls50_wall_db
+        - entity: number.kef_ls50_treble_db
+        - entity: number.kef_ls50_high_hz
+        - entity: number.kef_ls50_low_hz
+        - entity: number.kef_ls50_sub_db
+        - type: divider
+        - entity: select.kef_ls50_bass_extension
+        - entity: select.kef_ls50_sub_polarity
+        - type: divider
+        - entity: select.kef_ls50_desk_mode
+        - entity: select.kef_ls50_wall_mode
+        - entity: select.kef_ls50_phase_correction
+        - entity: select.kef_ls50_high_pass
         head:
           icon: mdi:equalizer
           name: 'KEF LS50 Equalizer
@@ -293,7 +308,7 @@ views:
     type: entities
   - cards:
     - entities:
-      - entity: vacuum.xiaomi_vacuum_cleaner
+      - entity: vacuum.robot_vacuum
         name: Vacuum cleaner
         primary:
           entity: binary_sensor.vacuum_day
@@ -308,50 +323,60 @@ views:
       - entity: binary_sensor.vacuum_day
       show_header_toggle: false
       type: entities
-    - calibration_points:
-      - map:
-          x: 711
-          y: 474
-        vacuum:
-          x: 30194
-          y: 26665
-      - map:
-          x: 911
-          y: 269
-        vacuum:
-          x: 32508
-          y: 28968
-      - map:
-          x: 41
-          y: 63
-        vacuum:
-          x: 22813
-          y: 31276
-      entity: vacuum.xiaomi_vacuum_cleaner
-      map_image: /local/vacuum-map.png
+    - calibration_source:
+        calibration_points:
+        - map:
+            x: 711
+            y: 474
+          vacuum:
+            x: 30194
+            y: 26665
+        - map:
+            x: 911
+            y: 269
+          vacuum:
+            x: 32508
+            y: 28968
+        - map:
+            x: 41
+            y: 63
+          vacuum:
+            x: 22813
+            y: 31276
+      entity: vacuum.robot_vacuum
+      map_modes:
+      - template: vacuum_clean_zone
+      - predefined_selections:
+        - zones:
+          - - 29706
+            - 27237
+            - 34806
+            - 31137
+        - zones:
+          - - 22799
+            - 27340
+            - 27649
+            - 31240
+        - zones:
+          - - 22803
+            - 25150
+            - 26353
+            - 27250
+        - zones:
+          - - 26379
+            - 26239
+            - 31929
+            - 27189
+        - zones:
+          - - 31941
+            - 25364
+            - 34791
+            - 27164
+        template: vacuum_clean_zone_predefined
+      map_source:
+        image: /local/vacuum-map.png
       service: vacuum.send_command
       type: custom:xiaomi-vacuum-map-card
-      zones:
-      - - - 29706
-          - 27237
-          - 34806
-          - 31137
-      - - - 22799
-          - 27340
-          - 27649
-          - 31240
-      - - - 22803
-          - 25150
-          - 26353
-          - 27250
-      - - - 26379
-          - 26239
-          - 31929
-          - 27189
-      - - - 31941
-          - 25364
-          - 34791
-          - 27164
     type: vertical-stack
   - entities:
     - entity: input_boolean.vacation_mode
