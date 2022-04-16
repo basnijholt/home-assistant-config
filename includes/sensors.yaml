@@ -392,15 +392,6 @@
       column: value
       unit_of_measurement: MB
 
-- platform: github
-  access_token: !secret hass_sensor_gh_token
-  repositories:
-    - path: "basnijholt/lovelace-ios-dark-mode-theme"
-    - path: "basnijholt/lovelace-ios-light-mode-theme"
-    - path: "basnijholt/lovelace-ios-themes"
-    - path: "python-adaptive/adaptive"
-    - path: "basnijholt/home-assistant-config"
-
 - platform: dutch_public_transport_api
   name: Bus from Rotterdam to Delft
   station: !secret bus_stop_to_delft
