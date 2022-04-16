@@ -10,8 +10,8 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - platform: kef_custom
-  type: LS50
-  name: KEF LS50
+  type: ls50
+  name: kef ls50
   host: !secret ip_kef_ls50
   maximum_volume: 0.6
   volume_step: 0.05
