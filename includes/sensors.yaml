@@ -321,6 +321,7 @@
   entity_id: sensor.humidity_bathroom
   sampling_size: 86400 # make sure all data points of the last 24hrs are included
   max_age: "24:00:00"
+  state_characteristic: mean
 
 - platform: derivative
   source: sensor.humidity_bathroom
@@ -361,12 +362,6 @@
       arg: eth0
     - type: processor_use
     - type: last_boot
-
-- platform: version
-  name: Latest Available Version
-  beta: false
-  image: raspberrypi4
-  source: hassio
 
 - platform: uptime
 
