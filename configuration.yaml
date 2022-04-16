@@ -58,7 +58,6 @@ plant: !include includes/plant.yaml
 spotify: !include includes/spotify.yaml
 climate: !include  includes/climate.yaml
 influxdb: !include includes/influxdb.yaml
-camera: !include includes/camera.yaml
 intent:
 intent_script: !include includes/intent_script.yaml
 # image_processing: !include includes/image_processing.yaml
