@@ -40,7 +40,7 @@ automation old: !include_dir_merge_list automations
 switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
 binary_sensor: !include includes/binary_sensors.yaml
-weather: !include includes/weather.yaml
+# weather: !include includes/weather.yaml
 shell_command: !include includes/shell_commands.yaml
 notify: !include includes/notify.yaml
 light: !include includes/lights.yaml
@@ -49,7 +49,6 @@ proximity: !include includes/proximity.yaml
 timer: !include includes/timers.yaml
 ios: !include includes/ios.yaml
 tplink: !include includes/tplink.yaml  # causing https://github.com/home-assistant/core/issues/40743
-webostv: !include includes/webostv.yaml
 # media_player: !include includes/media_players.yaml
 homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml
@@ -70,10 +69,10 @@ panel_iframe: !include includes/panel_iframe.yaml
 pyscript: !include includes/pyscript.yaml
 adaptive_lighting: !include includes/adaptive_lighting.yaml
 
-kef_custom:
-  - type: LS50
-    name: KEF LS50
-    host: !secret ip_kef_ls50
-    maximum_volume: 0.6
-    volume_step: 0.05
-    standby_time: 60
+# kef_custom:
+#   - type: LS50
+#     name: KEF LS50
+#     host: !secret ip_kef_ls50
+#     maximum_volume: 0.6
+#     volume_step: 0.05
+#     standby_time: 60
