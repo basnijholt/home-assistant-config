@@ -458,7 +458,6 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 <!-- start-addons -->
 - [Docker Container Stats](https://github.com/Poeschl/Hassio-Addons/tree/master/container-stats) version 1.5.0 by @Poeschl
 - [Syncthing](https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing) version 1.14.0 by @Poeschl
-- [otmonitor](https://github.com/basnijholt/addon-otmonitor) version dev by @basnijholt
 - [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.8.2 by @hassio-addons
 - [Glances](https://github.com/hassio-addons/addon-glances) version 0.15.0 by @hassio-addons
 - [Grafana](https://github.com/hassio-addons/addon-grafana) version 7.5.2 by @hassio-addons
