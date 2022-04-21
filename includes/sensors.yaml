@@ -251,13 +251,13 @@
         {% set before_alarm = t_alarm + t_start - 60 * 10 %}
         {{ before_alarm | timestamp_custom("%H:%M", True) }}
 
+    # Includes fix from https://github.com/basnijholt/home-assistant-config/issues/32
     hours_outside_per_day_marcella:
       friendly_name: Hours outside per day (Marcella)
       value_template: >
         {% set value = state_attr("sensor.quarantine_meter_marcella", "value") %}
         {% if value != None %}
 
-        # Fix from https://github.com/basnijholt/home-assistant-config/issues/32
         {% set nargs = 1 + (value | length) - (value.replace(' ', '') | length) %}
         {% if nargs < 2 %}{% set value = "0h " ~ value %}{% endif %}
         {% if nargs < 3 %}{% set value = "0d " ~ value %}{% endif %}
@@ -268,13 +268,13 @@
         {{ (hours_outside / 14) | round(1) }}
         {% endif %}
 
+    # Includes fix from https://github.com/basnijholt/home-assistant-config/issues/32
     hours_outside_per_day_bas:
       friendly_name: Hours outside per day (Marcella)
       value_template: >
         {% set value = state_attr("sensor.quarantine_meter_bas", "value") %}
         {% if value != None %}
 
-        # Fix from https://github.com/basnijholt/home-assistant-config/issues/32
         {% set nargs = 1 + (value | length) - (value.replace(' ', '') | length) %}
         {% if nargs < 2 %}{% set value = "0h " ~ value %}{% endif %}
         {% if nargs < 3 %}{% set value = "0d " ~ value %}{% endif %}
