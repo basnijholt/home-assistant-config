@@ -555,7 +555,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/c24d6e6c9aded06456477a0c3874d014884d37a6/includes/input_selects.yaml#L11)
 
-### [Set lights](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L85)
+### [Set lights](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L92)
 
   *which uses:*
   - [script.cozy_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/scripts.yaml#L133)
@@ -563,29 +563,29 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/scripts.yaml#L578)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/scripts.yaml#L184)
 
-### [Temperature report](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L202)
+### [Temperature report](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L209)
 
 
-### [Portfolio value](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L222)
+### [Portfolio value](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L229)
 
 
-### [Send vacuum cleaner](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L238)
+### [Send vacuum cleaner](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L245)
 
   *which uses:*
   - [script.vacuum_command](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/scripts.yaml#L518)
 
-### [Movie time](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L280)
+### [Movie time](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L287)
 
 
-### [Reset adaptive lighting](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L299)
+### [Reset adaptive lighting](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L306)
 
   *which uses:*
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/scripts.yaml#L592)
 
-### [Set temperature](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L308)
+### [Set temperature](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L315)
 
 
-### [Where is other person?](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L352)
+### [Where is other person?](https://github.com/basnijholt/home-assistant-config/blob/b815be9edc303f19dbd8d776b4564a2433bbbd8e/automations/apple_watch.yaml#L358)
 
 
 [^ toc](#automations---table-of-content)
@@ -1065,17 +1065,17 @@ to "Opt".
   - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/3dde6241c54c3b5391b3e11282fecf865149c336/includes/binary_sensors.yaml#L22)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/16952d475c87bd853445afbc5531d5e6571fbd5e/includes/groups.yaml#L11)
 
-### [Door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/automations/security.yaml#L49)
+### [Door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/automations/security.yaml#L48)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L22)
 
-### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/automations/security.yaml#L66)
+### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/automations/security.yaml#L65)
 
   *which uses:*
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/3dde6241c54c3b5391b3e11282fecf865149c336/includes/binary_sensors.yaml#L150)
 
-### [Office door has opened](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/automations/security.yaml#L88)
+### [Office door has opened](https://github.com/basnijholt/home-assistant-config/blob/1c16f23fb92d6ddc637439704408ce74fc78770f/automations/security.yaml#L87)
 
   *which uses:*
   - [input_boolean.office_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L25)
