@@ -76,7 +76,7 @@ cube:
 battery_monitor:
   module: battery_monitor
   class: BatteryMonitor
-  service: mobile_app_basnijholt_iphone
+  service: iphone_bas
   low_level: 20
 
 average_bed_time:

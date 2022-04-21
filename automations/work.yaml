@@ -22,7 +22,7 @@
       entity_id: input_boolean.work_hour_notification_sent
       state: "off"
   action:
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.iphone_bas
       data:
         title: "Work"
         message: "You have worked 8 hours today, very good! Go home 🎉"

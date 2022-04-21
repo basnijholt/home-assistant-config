@@ -230,7 +230,7 @@
         {% if is_state("person.bas", "home") and is_state("person.marcella", "home") %}
           notify.all_iphones
         {% elif is_state_attr("proximity.home", "nearest", "basnijholt-iphone") %}
-          notify.mobile_app_basnijholt_iphone
+          notify.iphone_bas
         {% else %}
           notify.mobile_app_marcella_iphone
         {% endif %}

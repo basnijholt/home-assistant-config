@@ -98,7 +98,7 @@
       data:
         title: Security
         message: Office door opened!
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.iphone_bas
       data:
         title: Security
         message: Office door opened!

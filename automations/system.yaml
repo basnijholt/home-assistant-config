@@ -16,7 +16,7 @@
     for:
       hours: 4
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.iphone_bas
     data:
       title: "System"
       message: "CPU usage has been above 70% for 4 hours! ⚠️🖥"
@@ -29,7 +29,7 @@
     for:
       hours: 4
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.iphone_bas
     data:
       title: "System"
       message: "CPU temperature has been above 70 °C for 4 hours! ⚠️"
@@ -40,7 +40,7 @@
     entity_id: sensor.temperature_xbox
     above: 50
   action:
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.iphone_bas
       data:
         title: "System"
         message: >
@@ -76,7 +76,7 @@
     minutes: "/5"
   condition: "{{ (as_timestamp(now()) - as_timestamp(states.sensor.power_consumption.last_changed)) > 20 * 60 }}"
   action:
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.iphone_bas
       data:
         title: "System"
         message: "Not receiving MQTT updates, maybe reboot the other HA instance! ⚠️"
@@ -88,7 +88,7 @@
     at: "14:30:00"
   variables:
     min_battery_level: 50
-    notify_service: notify.mobile_app_basnijholt_iphone
+    notify_service: notify.iphone_bas
     battery_ids: ""
     current: ""
   action:

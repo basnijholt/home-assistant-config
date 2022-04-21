@@ -85,7 +85,7 @@
         entity_id: "{{ switch }}"
         lights: "{{ light }}"
         manual_control: false
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.iphone_bas
       data:
         title: "Adaptive Ligthing: manual_control reset"
         message: "{{ light }} is reset to not 'manually controlled'"
@@ -105,7 +105,7 @@
         message: "{{ light }} is manually controlled"
         level: error
         logger: yolo.yolo
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.iphone_bas
       data:
         title: "Adaptive Ligthing: manual_control"
         message: "{{ light }} is now 'manually controlled', context={{ trigger.event.context }}"

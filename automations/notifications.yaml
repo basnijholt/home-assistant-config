@@ -15,7 +15,7 @@
     entity_id: device_tracker.marcella_iphone
     to: rotterdam_centraal
   action:
-    service: notify.mobile_app_basnijholt_iphone
+    service: notify.iphone_bas
     data:
       title: "Arriving"
       message: "Marcella arrived at Rotterdam Centraal"

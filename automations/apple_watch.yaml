@@ -283,7 +283,7 @@
       actionName: Portfolio value
   action:
     - variables:
-        iphone: "notify.mobile_app_basnijholt_iphone"
+        iphone: "notify.iphone_bas"
     - service: "{{ iphone }}"
       data:
         title: Portfolio value

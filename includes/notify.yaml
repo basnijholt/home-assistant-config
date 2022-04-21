@@ -23,6 +23,12 @@
     - service: chrome
 
 - platform: group
+  name: iphone_bas
+  services:
+    - service: mobile_app_basnijholt_iphone
+    - service: mobile_app_basnijholt_iphone2
+
+- platform: group
   name: all
   services:
     - service: mobile_app_basnijholt_iphone

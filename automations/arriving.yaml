@@ -26,7 +26,7 @@
     - "{{ is_state_attr('media_player.spotify', 'source', 'basnijholt-iphone') }}"
     - "{{ is_state('media_player.spotify', 'playing') }}"
   action:
-    - service: notify.mobile_app_basnijholt_iphone
+    - service: notify.iphone_bas
       data:
         title: "Arriving"
         message: "Switched music from phone to speakers"
