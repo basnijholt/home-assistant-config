@@ -251,8 +251,8 @@
         {% set before_alarm = t_alarm + t_start - 60 * 10 %}
         {{ before_alarm | timestamp_custom("%H:%M", True) }}
 
-    hours_outside_per_day_marcella: # XXX: fails when returns "0m"
-      friendly_name: Ten minutes before alarm
+    hours_outside_per_day_marcella:
+      friendly_name: Hours outside per day (Marcella)
       value_template: >
         {% set value = state_attr("sensor.quarantine_meter_marcella", "value") %}
         {% if value != None %}
@@ -268,8 +268,8 @@
         {{ (hours_outside / 14) | round(1) }}
         {% endif %}
 
-    hours_outside_per_day_bas: # XXX: fails when returns "0m"
-      friendly_name: Ten minutes before alarm
+    hours_outside_per_day_bas:
+      friendly_name: Hours outside per day (Marcella)
       value_template: >
         {% set value = state_attr("sensor.quarantine_meter_bas", "value") %}
         {% if value != None %}
