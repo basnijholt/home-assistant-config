@@ -22,9 +22,9 @@
   entities:
     - light.philips_go
     # - light.bamboo
-    # - light.ceiling_bedroom
+    - light.ceiling_bedroom
     # - light.lampan
-    # - light.bed_led
+    - light.bed_led
     # - light.bed_reading_up
     # - light.bed_reading_down
 
