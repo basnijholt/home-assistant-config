@@ -387,8 +387,7 @@ views:
   - entities:
     - entities:
       - icon: mdi:currency-eur
-        name: '{% set kwh = state_attr("switch.dishwasher", "today_energy_kwh") |
-          float %} {% set cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh and
+        name: '{% set kwh = state_attr("switch.dishwasher", "consumption").0 %} {% set cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh and
           cost €{{ cost_today | round(2) }}.
 
           '
