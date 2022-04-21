@@ -60,17 +60,30 @@
       data:
         message: "Apple Watch: set sleep mode."
         data:
-          push:
-            category: SET_SLEEP_MODE
+          actions:
+            - action: SLEEP_OFF
+              title: "Off"
+            - action: SLEEP_HALF
+              title: Half
+            - action: SLEEP_TOTAL
+              title: Total
     - wait_for_trigger:
-        platform: event
-        event_type: ios.notification_action_fired
-        event_data:
-          categoryName: SET_SLEEP_MODE
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_OFF
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_HALF
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_TOTAL
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
-        event: "{{ wait.trigger.event.data.actionName.lower() }}"
+        event: "{{ wait.trigger.event.data.action.lower().split('_')[1] }}"
     - service: input_select.select_option
       data:
         entity_id: input_select.sleep_mode
@@ -90,80 +103,154 @@
       data:
         message: "Apple Watch: set lights"
         data:
-          push:
-            category: SET_LIGHTS
+          actions:
+            - action: SET_LIGHTS_ALL
+              title: All
+            - action: SET_LIGHTS_BEDROOM
+              title: Bedroom
+            - action: SET_LIGHTS_LIVING_ROOM
+              title: Living room
+            - action: SET_LIGHTS_BATHROOM
+              title: Bathroom
+            - action: SET_LIGHTS_HALL_AND_STAIRS
+              title: Hall and stairs
+            - action: SET_LIGHTS_TOILET
+              title: Toilet
+            - action: SET_LIGHTS_KITCHEN
+              title: Kitchen
     - wait_for_trigger:
-        platform: event
-        event_type: ios.notification_action_fired
-        event_data:
-          categoryName: SET_LIGHTS
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SET_LIGHTS_ALL
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SET_LIGHTS_BEDROOM
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SET_LIGHTS_LIVING_ROOM
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SET_LIGHTS_BATHROOM
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SET_LIGHTS_HALL_AND_STAIRS
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SET_LIGHTS_TOILET
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SET_LIGHTS_KITCHEN
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
         light: >
           {{
-            {'ALL': 'all',
-             'BEDROOM': 'light.bedroom_lights',
-             'LIVING_ROOM': 'light.living_room_lights',
-             'BATHROOM': 'light.ceiling_bathroom',
-             'HALL_AND_STAIRS': 'light.hall_lights,light.stairs_lights',
-             'TOILET': 'light.toilet',
-             'KITCHEN': 'light.kitchen_lights',
-            }[wait.trigger.event.data.actionName] }}
+            {'SET_LIGHTS_ALL': 'all',
+             'SET_LIGHTS_BEDROOM': 'light.bedroom_lights',
+             'SET_LIGHTS_LIVING_ROOM': 'light.living_room_lights',
+             'SET_LIGHTS_BATHROOM': 'light.ceiling_bathroom',
+             'SET_LIGHTS_HALL_AND_STAIRS': 'light.hall_lights,light.stairs_lights',
+             'SET_LIGHTS_TOILET': 'light.toilet',
+             'SET_LIGHTS_KITCHEN': 'light.kitchen_lights',
+            }[wait.trigger.event.data.action] }}
     - service: "{{ iphone }}"
       data:
         message: "Apple Watch: choose option"
         data:
-          push:
-            category: LIGHT_OPTIONS
+          actions:
+            - action: LIGHTS_OFF
+              title: "Off"
+            - action: LIGHTS_ON
+              title: "On"
+            - action: LIGHTS_FIFTY
+              title: "50%"
+            - action: LIGHTS_HUNDRED
+              title: "100%"
+            - action: LIGHTS_ONE
+              title: "1%"
+            - action: LIGHTS_WHITE
+              title: White lights
+            - action: LIGHTS_COZY
+              title: Cozy lights
     - wait_for_trigger:
-        platform: event
-        event_type: ios.notification_action_fired
-        event_data:
-          categoryName: LIGHT_OPTIONS
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: LIGHTS_OFF
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: LIGHTS_ON
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: LIGHTS_FIFTY
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: LIGHTS_HUNDRED
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: LIGHTS_ONE
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: LIGHTS_WHITE
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: LIGHTS_COZY
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
-        option: "{{ wait.trigger.event.data.actionName }}"
+        option: "{{ wait.trigger.event.data.action }}"
     - choose:
-        - conditions: "{{ option == 'OFF' }}"
+        - conditions: "{{ option == 'LIGHTS_OFF' }}"
           sequence:
             service: light.turn_off
             data:
               entity_id: "{{ light }}"
-        - conditions: "{{ option == 'ON' }}"
+        - conditions: "{{ option == 'LIGHTS_ON' }}"
           sequence:
             service: script.turn_on_lights
             data:
               entity_id: "{{ light }}"
-        - conditions: "{{ option == 'FIFTY' }}"
+        - conditions: "{{ option == 'LIGHTS_FIFTY' }}"
           sequence:
             service: light.turn_on
             data:
               entity_id: "{{ light }}"
               brightness_pct: 50
-        - conditions: "{{ option == 'HUNDRED' }}"
+        - conditions: "{{ option == 'LIGHTS_HUNDRED' }}"
           sequence:
             service: light.turn_on
             data:
               entity_id: "{{ light }}"
               brightness_pct: 100
-        - conditions: "{{ option == 'ONE' }}"
+        - conditions: "{{ option == 'LIGHTS_ONE' }}"
           sequence:
             service: light.turn_on
             data:
               entity_id: "{{ light }}"
               brightness_pct: 1
-        - conditions: "{{ option == 'WHITE' and light == 'light.living_room_lights'}}"
+        - conditions: "{{ option == 'LIGHTS_WHITE' and light == 'light.living_room_lights'}}"
           sequence:
             service: script.white_lights_living_room
-        - conditions: "{{ option == 'WHITE' and light == 'light.bedroom_lights'}}"
+        - conditions: "{{ option == 'LIGHTS_WHITE' and light == 'light.bedroom_lights'}}"
           sequence:
             service: script.white_lights_living_room
-        - conditions: "{{ option == 'COZY' and light == 'light.living_room_lights'}}"
+        - conditions: "{{ option == 'LIGHTS_COZY' and light == 'light.living_room_lights'}}"
           sequence:
             service: script.cozy_lights_living_room
-        - conditions: "{{ option == 'COZY' and light == 'light.bedroom_lights'}}"
+        - conditions: "{{ option == 'LIGHTS_COZY' and light == 'light.bedroom_lights'}}"
           sequence:
             service: script.cozy_lights_bedroom
 
@@ -217,17 +304,54 @@
       data:
         message: "Apple Watch: vacuum"
         data:
-          push:
-            category: VACUUM_LOCATIONS
+          actions:
+            - action: VACUUM_LIVING_ROOM
+              title: Living room
+            - action: VACUUM_BEDROOM
+              title: Bedroom
+            - action: VACUUM_OFFICE
+              title: Office
+            - action: VACUUM_HALL
+              title: Hall
+            - action: VACUUM_KITCHEN
+              title: Kitchen
+            - action: VACUUM_ALL
+              title: All
+            - action: VACUUM_STOP
+              title: Stop and return
     - wait_for_trigger:
-        platform: event
-        event_type: ios.notification_action_fired
-        event_data:
-          categoryName: VACUUM_LOCATIONS
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_LIVING_ROOM
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_BEDROOM
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_OFFICE
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_HALL
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_KITCHEN
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_ALL
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_STOP
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
-        location: "{{ wait.trigger.event.data.actionName.lower() }}"
+        location: "{{ wait.trigger.event.data.action.lower().split('vacuum_')[1] }}"
     - service: script.vacuum_command
       data:
         option: "{{ location }}"
@@ -274,17 +398,54 @@
       data:
         message: "Apple Watch: set temperature"
         data:
-          push:
-            category: SET_TEMPERATURE
+          actions:
+            - action: T15
+              title: "15"
+            - action: T16
+              title: "16"
+            - action: T17
+              title: "17"
+            - action: T18
+              title: "18"
+            - action: T19
+              title: "19"
+            - action: T20
+              title: "20"
+            - action: T21
+              title: "21"
     - wait_for_trigger:
-        platform: event
-        event_type: ios.notification_action_fired
-        event_data:
-          categoryName: SET_TEMPERATURE
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: T15
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: T16
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: T17
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: T18
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: T19
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: T20
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: T21
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
-        temperature: "{{ wait.trigger.event.data.actionName.split('T')[1] | int }}"
+        temperature: "{{ wait.trigger.event.data.action.split('T')[1] | int }}"
     - service: climate.set_temperature
       data:
         entity_id: climate.thermostat

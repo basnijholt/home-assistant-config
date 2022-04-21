@@ -26,13 +26,17 @@
       data:
         message: "Security: motion is detected, but we are not home."
         data:
-          push:
-            category: sound_alarm
+          actions:
+            - action: SOUND_ALARM
+              title: Sound alarm
+              activationMode: background
+              authenticationRequired: true
+              destructive: true
     - wait_for_trigger:
         platform: event
-        event_type: ios.notification_action_fired
+        event_type: mobile_app_notification_action
         event_data:
-          actionName: SOUND_ALARM
+          action: SOUND_ALARM
       timeout: "01:00:00"
       continue_on_timeout: false
     - service: light.turn_on

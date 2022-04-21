@@ -64,15 +64,19 @@
       data:
         message: "No one is home, turn off everything?"
         data:
-          push:
-            category: turn_off_everything
+          actions:
+            - action: TURN_OFF_EVERYTHING
+              title: Turn off everything
+              activationMode: background
+              authenticationRequired: false
+              destructive: true
 
 - alias: "Leaving: turn off everything after notification"
   trigger:
     platform: event
-    event_type: ios.notification_action_fired
+    event_type: mobile_app_notification_action
     event_data:
-      actionName: TURN_OFF_EVERYTHING
+      action: TURN_OFF_EVERYTHING
   action:
     service: script.leaving
 

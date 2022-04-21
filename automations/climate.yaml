@@ -66,17 +66,20 @@
       data:
         message: "Turned off the heating 🥶, click to turn it on again?"
         data:
-          push:
-            category: turn_on_heating
-
-- alias: "Climate: turn on heating again after notification"
-  trigger:
-    platform: event
-    event_type: ios.notification_action_fired
-    event_data:
-      actionName: TURN_ON_HEATING
-  action:
-    service: script.set_high_temperature
+          actions:
+            - action: TURN_ON_HEATING
+              title: Turn on heating
+              activationMode: background
+              authenticationRequired: true
+              destructive: true
+    - wait_for_trigger:
+        platform: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: TURN_ON_HEATING
+      timeout: "00:00:20"
+      continue_on_timeout: false
+    - service: script.set_high_temperature
 
 - alias: "Climate: set outside temperature every hour"
   trigger:
