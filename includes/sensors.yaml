@@ -256,6 +256,12 @@
       value_template: >
         {% set value = state_attr("sensor.quarantine_meter_marcella", "value") %}
         {% if value != None %}
+
+        # Fix from https://github.com/basnijholt/home-assistant-config/issues/32
+        {% set nargs = 1 + (value | length) - (value.replace(' ', '') | length) %}
+        {% if nargs < 2 %}{% set value = "0h " ~ value %}{% endif %}
+        {% if nargs < 3 %}{% set value = "0d " ~ value %}{% endif %}
+
         {% set d, h, m = value.split() %}
         {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
         {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
@@ -267,6 +273,12 @@
       value_template: >
         {% set value = state_attr("sensor.quarantine_meter_bas", "value") %}
         {% if value != None %}
+
+        # Fix from https://github.com/basnijholt/home-assistant-config/issues/32
+        {% set nargs = 1 + (value | length) - (value.replace(' ', '') | length) %}
+        {% if nargs < 2 %}{% set value = "0h " ~ value %}{% endif %}
+        {% if nargs < 3 %}{% set value = "0d " ~ value %}{% endif %}
+
         {% set d, h, m = value.split() %}
         {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
         {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
