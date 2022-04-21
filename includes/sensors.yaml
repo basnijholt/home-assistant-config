@@ -20,7 +20,7 @@
   sensors:
     dishwasher_watts:
       value_template: >
-        {{ state_attr("switch.dishwasher", "current_power_w") | replace(" W", "") | float("Unavailable") }}
+        {{ state_attr("switch.dishwasher", "power") | float("Unavailable") }}
       unit_of_measurement: Watt
       friendly_name: Dishwasher usage
 
