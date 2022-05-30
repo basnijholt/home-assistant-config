@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..enums import HacsCategory
+from ..enums import HacsCategory, HacsDispatchEvent
 from ..exceptions import HacsException
 from ..utils import filters
 from ..utils.decorator import concurrent
@@ -36,7 +36,7 @@ class HacsNetdaemonRepository(HacsRepository):
 
         # Custom step 1: Validate content.
         if self.repository_manifest:
-            if self.data.content_in_root:
+            if self.repository_manifest.content_in_root:
                 self.content.path.remote = ""
 
         if self.content.path.remote == "apps":
@@ -70,7 +70,7 @@ class HacsNetdaemonRepository(HacsRepository):
 
         # Get appdaemon objects.
         if self.repository_manifest:
-            if self.data.content_in_root:
+            if self.repository_manifest.content_in_root:
                 self.content.path.remote = ""
 
         if self.content.path.remote == "apps":
@@ -84,8 +84,8 @@ class HacsNetdaemonRepository(HacsRepository):
 
         # Signal entities to refresh
         if self.data.installed:
-            self.hacs.hass.bus.async_fire(
-                "hacs/repository",
+            self.hacs.async_dispatch(
+                HacsDispatchEvent.REPOSITORY,
                 {
                     "id": 1337,
                     "action": "update",

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..enums import HacsCategory
+from ..enums import HacsCategory, HacsDispatchEvent
 from ..exceptions import HacsException
 from ..utils.decorator import concurrent
 from .base import HacsRepository
@@ -53,7 +53,7 @@ class HacsThemeRepository(HacsRepository):
                 f"Repository structure for {self.ref.replace('tags/','')} is not compliant"
             )
 
-        if self.data.content_in_root:
+        if self.repository_manifest.content_in_root:
             self.content.path.remote = ""
 
         # Handle potential errors
@@ -69,6 +69,9 @@ class HacsThemeRepository(HacsRepository):
         self.update_filenames()
         self.content.path.local = self.localpath
 
+        if self.hacs.system.action:
+            await self.hacs.validation.async_run_repository_checks(self)
+
     @concurrent(concurrenttasks=10, backoff_time=5)
     async def update_repository(self, ignore_issues=False, force=False):
         """Update."""
@@ -76,7 +79,7 @@ class HacsThemeRepository(HacsRepository):
             return
 
         # Get theme objects.
-        if self.data.content_in_root:
+        if self.repository_manifest.content_in_root:
             self.content.path.remote = ""
 
         # Update name
@@ -85,8 +88,8 @@ class HacsThemeRepository(HacsRepository):
 
         # Signal entities to refresh
         if self.data.installed:
-            self.hacs.hass.bus.async_fire(
-                "hacs/repository",
+            self.hacs.async_dispatch(
+                HacsDispatchEvent.REPOSITORY,
                 {
                     "id": 1337,
                     "action": "update",

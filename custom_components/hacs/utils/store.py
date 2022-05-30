@@ -36,7 +36,7 @@ def get_store_key(key):
 
 def _get_store_for_key(hass, key, encoder):
     """Create a Store object for the key."""
-    return HACSStore(hass, VERSION_STORAGE, get_store_key(key), encoder=encoder)
+    return HACSStore(hass, VERSION_STORAGE, get_store_key(key), encoder=encoder, atomic_writes=True)
 
 
 def get_store_for_key(hass, key):
@@ -47,16 +47,6 @@ def get_store_for_key(hass, key):
 async def async_load_from_store(hass, key):
     """Load the retained data from store and return de-serialized data."""
     return await get_store_for_key(hass, key).async_load() or {}
-
-
-async def async_save_to_store_default_encoder(hass, key, data):
-    """Generate store json safe data to the filesystem.
-
-    The data is expected to be encodable with the default
-    python json encoder. It should have already been passed through
-    JSONEncoder if needed.
-    """
-    await _get_store_for_key(hass, key, None).async_save(data)
 
 
 async def async_save_to_store(hass, key, data):

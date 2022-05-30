@@ -3,14 +3,15 @@ from __future__ import annotations
 
 import asyncio
 from importlib import import_module
+import os
 from pathlib import Path
 from typing import TYPE_CHECKING
 
 from homeassistant.core import HomeAssistant
 
-from custom_components.hacs.repositories.base import HacsRepository
-
-from .base import ValidationBase
+from ..enums import HacsGitHubRepo
+from ..repositories.base import HacsRepository
+from .base import ActionValidationBase
 
 if TYPE_CHECKING:
     from ..base import HacsBase
@@ -23,10 +24,10 @@ class ValidationManager:
         """Initialize the setup manager class."""
         self.hacs = hacs
         self.hass = hass
-        self._validatiors: dict[str, ValidationBase] = {}
+        self._validatiors: dict[str, ActionValidationBase] = {}
 
     @property
-    def validatiors(self) -> dict[str, ValidationBase]:
+    def validatiors(self) -> list[ActionValidationBase]:
         """Return all list of all tasks."""
         return list(self._validatiors.values())
 
@@ -46,32 +47,36 @@ class ValidationManager:
                 self._validatiors[task.slug] = task
 
         await asyncio.gather(*[_load_module(task) for task in validator_modules])
-        self.hacs.log.debug("Loaded %s validators for %s", len(self.validatiors), repository)
 
     async def async_run_repository_checks(self, repository: HacsRepository) -> None:
         """Run all validators for a repository."""
-        if not self.hacs.system.running:
+        if not self.hacs.system.action:
             return
 
         await self.async_load(repository)
 
-        await asyncio.gather(
-            *[
-                validator.execute_validation()
-                for validator in self.validatiors or []
-                if (self.hacs.system.action or not validator.action_only)
-                and (
-                    validator.category == "common" or validator.category == repository.data.category
-                )
-            ]
+        is_pull_from_fork = (
+            not os.getenv("INPUT_REPOSITORY")
+            and os.getenv("GITHUB_REPOSITORY") != repository.data.full_name
         )
 
-        total = len([x for x in self.validatiors if self.hacs.system.action or not x.action_only])
-        failed = len([x for x in self.validatiors if x.failed])
+        validatiors = [
+            validator
+            for validator in self.validatiors or []
+            if (
+                (not validator.categories or repository.data.category in validator.categories)
+                and validator.slug not in os.getenv("INPUT_IGNORE", "").split(" ")
+                and (not is_pull_from_fork or validator.allow_fork)
+            )
+        ]
+
+        await asyncio.gather(*[validator.execute_validation() for validator in validatiors])
+
+        total = len(validatiors)
+        failed = len([x for x in validatiors if x.failed])
 
         if failed != 0:
             repository.logger.error("%s %s/%s checks failed", repository.string, failed, total)
-            if self.hacs.system.action:
-                exit(1)
+            exit(1)
         else:
-            repository.logger.debug("%s All (%s) checks passed", repository.string, total)
+            repository.logger.info("%s All (%s) checks passed", repository.string, total)

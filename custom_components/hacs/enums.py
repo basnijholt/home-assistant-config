@@ -24,6 +24,19 @@ class HacsCategory(str, Enum):
         return str(self.value)
 
 
+class HacsDispatchEvent(str, Enum):
+    """HacsDispatchEvent."""
+
+    CONFIG = "hacs_dispatch_config"
+    ERROR = "hacs_dispatch_error"
+    RELOAD = "hacs_dispatch_reload"
+    REPOSITORY = "hacs_dispatch_repository"
+    REPOSITORY_DOWNLOAD_PROGRESS = "hacs_dispatch_repository_download_progress"
+    STAGE = "hacs_dispatch_stage"
+    STARTUP = "hacs_dispatch_startup"
+    STATUS = "hacs_dispatch_status"
+
+
 class RepositoryFile(str, Enum):
     """Repository file names."""
 
