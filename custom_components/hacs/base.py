@@ -5,7 +5,6 @@ import asyncio
 from dataclasses import asdict, dataclass, field
 from datetime import timedelta
 import gzip
-import json
 import logging
 import math
 import os
@@ -53,7 +52,9 @@ from .exceptions import (
 )
 from .repositories import RERPOSITORY_CLASSES
 from .utils.decode import decode_content
-from .utils.logger import get_hacs_logger
+from .utils.json import json_loads
+from .utils.logger import LOGGER
+from .utils.platform_setup import async_setup_entity_platforms
 from .utils.queue_manager import QueueManager
 from .utils.store import async_load_from_store, async_save_to_store
 
@@ -163,8 +164,6 @@ class HacsStatus:
 
     startup: bool = True
     new: bool = False
-    reloading_data: bool = False
-    upgrading_all: bool = False
 
 
 @dataclass
@@ -347,7 +346,7 @@ class HacsBase:
     githubapi: GitHubAPI | None = None
     hass: HomeAssistant | None = None
     integration: Integration | None = None
-    log: logging.Logger = get_hacs_logger()
+    log: logging.Logger = LOGGER
     queue: QueueManager | None = None
     recuring_tasks = []
     repositories: HacsRepositories = HacsRepositories()
@@ -473,7 +472,7 @@ class HacsBase:
         if response is None:
             return []
 
-        return json.loads(decode_content(response.data.content))
+        return json_loads(decode_content(response.data.content))
 
     async def async_github_api_method(
         self,
@@ -732,7 +731,9 @@ class HacsBase:
             platforms=platforms,
         )
 
-        self.hass.config_entries.async_setup_platforms(self.configuration.config_entry, platforms)
+        await async_setup_entity_platforms(
+            self, self.hass, self.configuration.config_entry, platforms
+        )
 
     @callback
     def async_dispatch(self, signal: HacsDispatchEvent, data: dict | None = None) -> None:

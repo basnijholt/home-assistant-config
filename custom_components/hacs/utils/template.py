@@ -6,11 +6,15 @@ from typing import TYPE_CHECKING
 from jinja2 import Template
 
 if TYPE_CHECKING:
+    from ..base import HacsBase
     from ..repositories.base import HacsRepository
 
 
-def render_template(content: str, context: HacsRepository) -> str:
+def render_template(hacs: HacsBase, content: str, context: HacsRepository) -> str:
     """Render templates in content."""
+    if hacs.configuration.experimental:
+        # Do not render for experimental
+        return content
     # Fix None issues
     if context.releases.last_release_object is not None:
         prerelease = context.releases.last_release_object.prerelease

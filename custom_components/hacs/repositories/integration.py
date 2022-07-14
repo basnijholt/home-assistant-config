@@ -1,7 +1,6 @@
 """Class for integrations in HACS."""
 from __future__ import annotations
 
-import json
 from typing import TYPE_CHECKING, Any
 
 from homeassistant.loader import async_get_custom_components
@@ -11,6 +10,7 @@ from ..exceptions import AddonRepositoryException, HacsException
 from ..utils.decode import decode_content
 from ..utils.decorator import concurrent
 from ..utils.filters import get_first_directory_in_directory
+from ..utils.json import json_loads
 from .base import HacsRepository
 
 if TYPE_CHECKING:
@@ -62,7 +62,7 @@ class HacsIntegrationRepository(HacsRepository):
                 ):
                     raise AddonRepositoryException()
                 raise HacsException(
-                    f"Repository structure for {self.ref.replace('tags/','')} is not compliant"
+                    f"{self.string} Repository structure for {self.ref.replace('tags/','')} is not compliant"
                 )
             self.content.path.remote = f"custom_components/{name}"
 
@@ -163,4 +163,4 @@ class HacsIntegrationRepository(HacsRepository):
             **{"params": {"ref": ref or self.version_to_download()}},
         )
         if response:
-            return json.loads(decode_content(response.data.content))
+            return json_loads(decode_content(response.data.content))
