@@ -995,19 +995,19 @@ to "Opt".
 
 
 
-### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L44)
+### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L45)
 
 
-### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L62)
+### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L64)
 
 
-### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L86)
+### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L88)
 
 
-### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L101)
+### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L103)
 
 
-### [Automatically turn off TV and speakers after two hours of inactivity](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L130)
+### [Automatically turn off TV and speakers after two hours of inactivity](https://github.com/basnijholt/home-assistant-config/blob/0504597d07b22023e42b51eca48dbb31fecea73b/automations/media_player.yaml#L132)
 
 
 [^ toc](#automations---table-of-content)
