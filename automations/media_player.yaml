@@ -24,10 +24,8 @@
     - condition: state
       entity_id: media_player.tv
       state: "on"
-    - condition: state
-      entity_id: media_player.kef_ls50
-      state: "on"
-    - "{{ not is_state_attr('media_player.kef_ls50', 'source', 'Opt') }}"
+    - "{{ not is_state_attr('media_player.kef_ls50', 'source', 'Optical Input 1') }}"
+    - "{{ not is_state_attr('media_player.kef_ls50', 'source', 'HDMI ARC') }}"
     - "{{ not is_state_attr('media_player.tv', 'source', 'GALLERY') }}"
     - >
       {{ not (is_state_attr('media_player.kef_ls50', 'source', 'Usb')
@@ -39,7 +37,7 @@
     service: media_player.select_source
     entity_id: media_player.kef_ls50
     data:
-      source: Opt
+      source: Optical Input 1
 
 - alias: "Media player: turn off speakers when turning off TV"
   trigger:
@@ -55,7 +53,8 @@
       entity_id: media_player.kef_ls50
     - condition: template
       value_template: >
-        {{ is_state_attr("media_player.kef_ls50", "source", "Opt") }}
+        {{ is_state_attr("media_player.kef_ls50", "source", "HDMI ARC")
+           or is_state_attr("media_player.kef_ls50", "source", "Optical Input 1") }}
     - service: media_player.turn_off
       entity_id: media_player.kef_ls50
 
@@ -81,7 +80,7 @@
     - service: media_player.select_source
       entity_id: media_player.kef_ls50
       data:
-        source: Opt
+        source: Optical Input 1
 
 - alias: "Media player: update Spotify entity when TV is on every 5 seconds"
   trigger:
@@ -110,7 +109,7 @@
       attribute: volume_level
   condition:
     - "{{ trigger.to_state.state != 'off' }}"
-    - "{{ state_attr('media_player.kef_ls50', 'source') in ('Opt', 'Usb') }}"
+    - "{{ state_attr('media_player.kef_ls50', 'source') in ('Optical Input 1', 'HDMI ARC', 'Usb') }}"
   action:
     repeat:
       sequence:
@@ -135,8 +134,6 @@
     for: "02:00:00"
   action:
     - service: media_player.turn_off
-      data:
-        entity_id: media_player.kef_ls50
+      entity_id: media_player.kef_ls50
     - service: media_player.turn_off
-      data:
-        entity_id: media_player.tv
+      entity_id: media_player.tv
