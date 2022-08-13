@@ -13,8 +13,12 @@
   user_id: 13984b139dd9426ca31369725c9e23e0
   picture: !secret profile_photo_bas
   device_trackers:
+    # iPhone X
     - device_tracker.basnijholt_iphone # from iOS app
     - device_tracker.bas_iphone_ping
+    # iPhone 13
+    - device_tracker.basnijholt_iphone2 # from iOS app
+    - device_tracker.bas_iphone13_ping
 - name: Marcella
   id: marcella
   user_id: 0d8b36da29974dec9a30f767931bde2c
