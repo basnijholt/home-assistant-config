@@ -389,6 +389,12 @@
       column: value
       unit_of_measurement: MB
 
+- platform: command_line
+  command: !secret portfolio_value
+  name: portfolio_value
+  unit_of_measurement: '€'
+  scan_interval: 20
+
 #  _____ _                  _                  _
 # |_   _(_)_ __ ___   ___  | |_ _ __ __ _  ___| | _____ _ __ ___
 #   | | | | '_ ` _ \ / _ \ | __| '__/ _` |/ __| |/ / _ \ '__/ __|
@@ -699,145 +705,3 @@
   name: Gas per hour (filtered)
   unit: m³/h
   unit_time: h
-
-#  ____  _             _
-# |  _ \| | __ _ _ __ | |_ ___
-# | |_) | |/ _` | '_ \| __/ __|
-# |  __/| | (_| | | | | |_\__ \
-# |_|   |_|\__,_|_| |_|\__|___/
-#
-
-# - platform: miflora
-#   mac: "80:EA:CA:89:1A:4E"
-#   name: "Mi Flora: Yucca Elephantipes"
-
-# # https://www.growabonsaitree.com/species/ficus-bonsai/
-# - platform: miflora
-#   mac: "80:EA:CA:89:20:24"
-#   name: "Mi Flora: Ficus microcarpa Ginseng"
-
-# Kentia Palm
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_monstera_battery/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Palm Battery"
-  icon: mdi:battery-charging
-  device_class: battery
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_monstera_conductivity/state
-  unit_of_measurement: µS/cm
-  name: "Mi Flora: Kentia Palm Conductivity"
-  icon: mdi:flash-circle
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_monstera_illuminance/state
-  unit_of_measurement: lx
-  name: "Mi Flora: Kentia Palm Light intensity"
-  icon: mdi:white-balance-sunny
-  device_class: illuminance
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_monstera_moisture/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Kentia Palm Moisture"
-  icon: mdi:water-percent
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_monstera_temperature/state
-  unit_of_measurement: °C
-  name: "Mi Flora: Kentia Palm Temperature"
-  icon: mdi:thermometer
-  device_class: temperature
-  state_class: measurement
-
-# Royal Haze
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_peace_lily_battery/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Royal Haze Battery"
-  icon: mdi:battery-charging
-  device_class: battery
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_peace_lily_conductivity/state
-  unit_of_measurement: µS/cm
-  name: "Mi Flora: Royal Haze Conductivity"
-  icon: mdi:flash-circle
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_peace_lily_illuminance/state
-  unit_of_measurement: lx
-  name: "Mi Flora: Royal Haze Light intensity"
-  icon: mdi:white-balance-sunny
-  device_class: illuminance
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_peace_lily_moisture/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Royal Haze Moisture"
-  icon: mdi:water-percent
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_peace_lily_temperature/state
-  unit_of_measurement: °C
-  name: "Mi Flora: Royal Haze Temperature"
-  icon: mdi:thermometer
-  device_class: temperature
-  state_class: measurement
-
-# Northern Light
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_calathea_battery/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Northern Light Battery"
-  icon: mdi:battery-charging
-  device_class: battery
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_calathea_conductivity/state
-  unit_of_measurement: µS/cm
-  name: "Mi Flora: Northern Light Conductivity"
-  icon: mdi:flash-circle
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_calathea_illuminance/state
-  unit_of_measurement: lx
-  name: "Mi Flora: Northern Light Light intensity"
-  icon: mdi:white-balance-sunny
-  device_class: illuminance
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_calathea_moisture/state
-  unit_of_measurement: "%"
-  name: "Mi Flora: Northern Light Moisture"
-  icon: mdi:water-percent
-  state_class: measurement
-
-- platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_calathea_temperature/state
-  unit_of_measurement: °C
-  name: "Mi Flora: Northern Light Temperature"
-  icon: mdi:thermometer
-  device_class: temperature
-  state_class: measurement
-
-- platform: command_line
-  command: !secret portfolio_value
-  name: portfolio_value
-  unit_of_measurement: '€'
-  scan_interval: 20
