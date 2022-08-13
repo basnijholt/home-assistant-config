@@ -11,11 +11,11 @@
 - name: Home
   latitude: !secret latitude_home
   longitude: !secret longitude_home
-  radius: 50
+  radius: 100
   icon: mdi:home
 
 - name: Work
   latitude: !secret latitude_work
   longitude: !secret longitude_work
-  radius: 300
+  radius: 500
   icon: mdi:work
