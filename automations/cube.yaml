@@ -88,7 +88,7 @@
           state: "Hue"
         sequence:
           - variables:
-              hue_sat: "{{ state_attr('light.sphere_1', 'hs_color') or [30, 56] }}"
+              hue_sat: "{{ state_attr('light.sphere', 'hs_color') or [30, 56] }}"
           - service: light.turn_on
             entity_id: light.living_room_lights
             data:
@@ -108,7 +108,7 @@
           entity_id: light.living_room_lights
           data:
             brightness: >
-              {% set brightness = state_attr('light.sphere_1', 'brightness') %}
+              {% set brightness = state_attr('light.sphere', 'brightness') %}
               {% set delta = event / 450 %}
               {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
               {{ new_brightness|int }}

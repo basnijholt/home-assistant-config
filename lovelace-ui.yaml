@@ -29,7 +29,7 @@ views:
   cards:
   - entities:
     - entities:
-      - light.sphere_1
+      - light.sphere
       - light.sphere_2
       - light.corner_living_room
       - light.ceiling_living_room
@@ -881,11 +881,11 @@ views:
     style: "ha-card {\n  --st-font-size-xl: 30px;\n}\n"
     type: custom:simple-thermostat
   - cards:
-    - entity: plant.royal_haze
+    - entity: plant.peace_lily
       type: plant-status
-    - entity: plant.northern_light
+    - entity: plant.calathea
       type: plant-status
-    - entity: plant.kentia_palm
+    - entity: plant.monstera
       type: plant-status
     parameters:
       autoplay:
@@ -1497,23 +1497,20 @@ views:
     title: Devices are on
     type: entities
   - entities:
-    - entity: sensor.mi_flora_northern_light_moisture
-    - entity: sensor.mi_flora_northern_light_temperature
-    - entity: sensor.mi_flora_northern_light_battery
-    - entity: sensor.mi_flora_northern_light_conductivity
-    - entity: sensor.mi_flora_northern_light_light_intensity
+    - entity: sensor.mi_flora_calathea_moisture
+    - entity: sensor.mi_flora_calathea_temperature
+    - entity: sensor.mi_flora_calathea_conductivity
+    - entity: sensor.mi_flora_calathea_illuminance
     - type: divider
-    - entity: sensor.mi_flora_royal_haze_moisture
-    - entity: sensor.mi_flora_royal_haze_temperature
-    - entity: sensor.mi_flora_royal_haze_battery
-    - entity: sensor.mi_flora_royal_haze_conductivity
-    - entity: sensor.mi_flora_royal_haze_light_intensity
+    - entity: sensor.mi_flora_peace_lily_moisture
+    - entity: sensor.mi_flora_peace_lily_temperature
+    - entity: sensor.mi_flora_peace_lily_conductivity
+    - entity: sensor.mi_flora_peace_lily_illuminance
     - type: divider
-    - entity: sensor.mi_flora_kentia_palm_moisture
-    - entity: sensor.mi_flora_kentia_palm_temperature
-    - entity: sensor.mi_flora_kentia_palm_battery
-    - entity: sensor.mi_flora_kentia_palm_conductivity
-    - entity: sensor.mi_flora_kentia_palm_light_intensity
+    - entity: sensor.mi_flora_monstera_moisture
+    - entity: sensor.mi_flora_monstera_temperature
+    - entity: sensor.mi_flora_monstera_conductivity
+    - entity: sensor.mi_flora_monstera_illuminance
     show_header_toggle: false
     title: Plant sensors
     type: entities

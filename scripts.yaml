@@ -102,7 +102,7 @@ cozy_lights_living_room:
           - 80.392
       service: light.turn_on
     - data:
-        entity_id: light.sphere_2
+        entity_id: light.sphere
         hs_color:
           - 299.147
           - 82.745
@@ -114,7 +114,7 @@ cozy_lights_living_room:
           - 88.235
       service: light.turn_on
     - data:
-        entity_id: light.ceiling_living_room
+        entity_id: light.cabinet_led
         hs_color:
           - 268.267
           - 88.235

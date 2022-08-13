@@ -11,10 +11,8 @@
 - platform: group
   name: Living room lights
   entities:
-    # - light.sphere_1
-    # - light.sphere_2
+    - light.sphere
     # - light.corner_living_room
-    # - light.ceiling_living_room
     - light.tv_led
     - light.cabinet_led
 
