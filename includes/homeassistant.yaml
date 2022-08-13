@@ -32,13 +32,9 @@ customize:
     icon: mdi:bed-king
   light.toilet:
     icon: mdi:emoticon-poop
-  plant.ficus_microcarpa_ginseng:
-    friendly_name: Ficus microcarpa Ginseng
-  plant.kentia_palm:
-    friendly_name: Kentia Palm
-  plant.royal_haze:
-    friendly_name: Royal Haze
-  plant.northern_light:
-    friendly_name: Northern Light
-  plant.yucca_elephantipes:
-    friendly_name: Yucca Elephantipes
+  plant.monstera:
+    friendly_name: Monstera
+  plant.peace_lily:
+    friendly_name: Peace lily
+  plant.calathea:
+    friendly_name: Calathea

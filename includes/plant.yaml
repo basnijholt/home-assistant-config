@@ -17,97 +17,71 @@
 # pd.set_option("display.max_columns", 100)
 
 # # https://github.com/khronimo/MiFloraDB/blob/master/PlantDB_5335_U0.csv
+# import pandas as pd
 # df = pd.read_csv("PlantDB_5335_U0.txt")
-# row = df[df.pid.str.contains("basil")].iloc[0]
-# d = {
-#     "min_moisture": "min_soil_moist",
-#     "max_moisture": "max_soil_moist",
-#     "min_conductivity": "min_soil_ec",
-#     "max_conductivity": "max_soil_ec",
-#     "min_brightness": "min_light_lux / 10", # not sure about the units
-#     "max_brightness": "max_light_lux / 10",
-#     "min_temperature": "min_temp",
-#     "max_temperature": "max_temp",
-# }
-# for k, v in d.items():
-#     print(f"  {k}: {row[v]}")
+# for plant in ["monstera", "spathiphyllum", "calathea"]:
+#     rows = df[df.pid.str.contains(plant)]
+#     for _, row in rows.iterrows():
+#         d = {
+#             "min_moisture": "min_soil_moist",
+#             "max_moisture": "max_soil_moist",
+#             "min_conductivity": "min_soil_ec",
+#             "max_conductivity": "max_soil_ec",
+#             "min_brightness": "min_light_lux",  # not sure about the units (/ 10)
+#             "max_brightness": "max_light_lux",  # (/ 10)
+#             "min_temperature": "min_temp",
+#             "max_temperature": "max_temp",
+#         }
+#         print(f"{row.alias.replace(' ', '_')}:")
+#         for k, v in d.items():
+#             print(f"  {k}: {row[v]}")
+#         print()
 
-# ficus_microcarpa_ginseng:
-#   sensors:
-#     moisture: sensor.mi_flora_ficus_microcarpa_ginseng_moisture
-#     battery: sensor.mi_flora_ficus_microcarpa_ginseng_battery
-#     temperature: sensor.mi_flora_ficus_microcarpa_ginseng_temperature
-#     conductivity: sensor.mi_flora_ficus_microcarpa_ginseng_conductivity
-#     brightness: sensor.mi_flora_ficus_microcarpa_ginseng_light_intensity
-#   min_moisture: 20
-#   max_moisture: 60
-#   min_conductivity: 350
-#   max_conductivity: 2000
-#   min_brightness: 250
-#   max_brightness: 3500
-#   min_temperature: 8
-#   max_temperature: 32
-
-# yucca_elephantipes:
-#   sensors:
-#     moisture: sensor.mi_flora_yucca_elephantipes_moisture
-#     battery: sensor.mi_flora_yucca_elephantipes_battery
-#     temperature: sensor.mi_flora_yucca_elephantipes_temperature
-#     conductivity: sensor.mi_flora_yucca_elephantipes_conductivity
-#     brightness: sensor.mi_flora_yucca_elephantipes_light_intensity
-#   min_moisture: 15
-#   max_moisture: 60
-#   min_conductivity: 350
-#   max_conductivity: 2000
-#   min_brightness: 150
-#   max_brightness: 2000
-#   min_temperature: 8
-#   max_temperature: 32
-
-kentia_palm:
+monstera:
   sensors:
-    moisture: sensor.mi_flora_kentia_palm_moisture
-    battery: sensor.mi_flora_kentia_palm_battery
-    temperature: sensor.mi_flora_kentia_palm_temperature
-    conductivity: sensor.mi_flora_kentia_palm_conductivity
-    brightness: sensor.mi_flora_kentia_palm_light_intensity
+    moisture: sensor.mi_flora_monstera_moisture
+    battery: sensor.mi_flora_monstera_battery
+    temperature: sensor.mi_flora_monstera_temperature
+    conductivity: sensor.mi_flora_monstera_conductivity
+    brightness: sensor.mi_flora_monstera_illuminance
   min_moisture: 15
   max_moisture: 60
   min_conductivity: 350
   max_conductivity: 2000
-  min_brightness: 150
-  max_brightness: 2500
-  min_temperature: 8
+  min_brightness: 80
+  max_brightness: 1500
+  min_temperature: 12
   max_temperature: 32
 
-northern_light:
+
+calathea:  # calathea_makoyana
   sensors:
-    moisture: sensor.mi_flora_northern_light_moisture
-    battery: sensor.mi_flora_northern_light_battery
-    temperature: sensor.mi_flora_northern_light_temperature
-    conductivity: sensor.mi_flora_northern_light_conductivity
-    brightness: sensor.mi_flora_northern_light_light_intensity
+    moisture: sensor.mi_flora_calathea_moisture
+    battery: sensor.mi_flora_calathea_battery
+    temperature: sensor.mi_flora_calathea_temperature
+    conductivity: sensor.mi_flora_calathea_conductivity
+    brightness: sensor.mi_flora_calathea_illuminance
   min_moisture: 15
-  max_moisture: 60
+  max_moisture: 65
   min_conductivity: 350
-  max_conductivity: 2000
-  min_brightness: 150
-  max_brightness: 2500
-  min_temperature: 8
+  max_conductivity: 1000
+  min_brightness: 80
+  max_brightness: 2000
+  min_temperature: 12
   max_temperature: 32
 
-royal_haze:
+peace_lily:  # spathiphyllum
   sensors:
-    moisture: sensor.mi_flora_royal_haze_moisture
-    battery: sensor.mi_flora_royal_haze_battery
-    temperature: sensor.mi_flora_royal_haze_temperature
-    conductivity: sensor.mi_flora_royal_haze_conductivity
-    brightness: sensor.mi_flora_royal_haze_light_intensity
+    moisture: sensor.mi_flora_peace_lily_moisture
+    battery: sensor.mi_flora_peace_lily_battery
+    temperature: sensor.mi_flora_peace_lily_temperature
+    conductivity: sensor.mi_flora_peace_lily_conductivity
+    brightness: sensor.mi_flora_peace_lily_illuminance
   min_moisture: 15
-  max_moisture: 60
+  max_moisture: 65
   min_conductivity: 350
   max_conductivity: 2000
-  min_brightness: 150
-  max_brightness: 2500
-  min_temperature: 8
+  min_brightness: 100
+  max_brightness: 2250
+  min_temperature: 15
   max_temperature: 32

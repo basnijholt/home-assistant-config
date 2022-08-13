@@ -719,7 +719,7 @@
 # Kentia Palm
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_kentia_palm_battery/state
+  state_topic: homeassistant/sensor/mi_flora_monstera_battery/state
   unit_of_measurement: "%"
   name: "Mi Flora: Kentia Palm Battery"
   icon: mdi:battery-charging
@@ -727,14 +727,14 @@
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_kentia_palm_conductivity/state
+  state_topic: homeassistant/sensor/mi_flora_monstera_conductivity/state
   unit_of_measurement: µS/cm
   name: "Mi Flora: Kentia Palm Conductivity"
   icon: mdi:flash-circle
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_kentia_palm_light_intensity/state
+  state_topic: homeassistant/sensor/mi_flora_monstera_illuminance/state
   unit_of_measurement: lx
   name: "Mi Flora: Kentia Palm Light intensity"
   icon: mdi:white-balance-sunny
@@ -742,14 +742,14 @@
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_kentia_palm_moisture/state
+  state_topic: homeassistant/sensor/mi_flora_monstera_moisture/state
   unit_of_measurement: "%"
   name: "Mi Flora: Kentia Palm Moisture"
   icon: mdi:water-percent
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_kentia_palm_temperature/state
+  state_topic: homeassistant/sensor/mi_flora_monstera_temperature/state
   unit_of_measurement: °C
   name: "Mi Flora: Kentia Palm Temperature"
   icon: mdi:thermometer
@@ -759,7 +759,7 @@
 # Royal Haze
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_royal_haze_battery/state
+  state_topic: homeassistant/sensor/mi_flora_peace_lily_battery/state
   unit_of_measurement: "%"
   name: "Mi Flora: Royal Haze Battery"
   icon: mdi:battery-charging
@@ -767,14 +767,14 @@
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_royal_haze_conductivity/state
+  state_topic: homeassistant/sensor/mi_flora_peace_lily_conductivity/state
   unit_of_measurement: µS/cm
   name: "Mi Flora: Royal Haze Conductivity"
   icon: mdi:flash-circle
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_royal_haze_light_intensity/state
+  state_topic: homeassistant/sensor/mi_flora_peace_lily_illuminance/state
   unit_of_measurement: lx
   name: "Mi Flora: Royal Haze Light intensity"
   icon: mdi:white-balance-sunny
@@ -782,14 +782,14 @@
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_royal_haze_moisture/state
+  state_topic: homeassistant/sensor/mi_flora_peace_lily_moisture/state
   unit_of_measurement: "%"
   name: "Mi Flora: Royal Haze Moisture"
   icon: mdi:water-percent
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_royal_haze_temperature/state
+  state_topic: homeassistant/sensor/mi_flora_peace_lily_temperature/state
   unit_of_measurement: °C
   name: "Mi Flora: Royal Haze Temperature"
   icon: mdi:thermometer
@@ -799,7 +799,7 @@
 # Northern Light
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_northern_light_battery/state
+  state_topic: homeassistant/sensor/mi_flora_calathea_battery/state
   unit_of_measurement: "%"
   name: "Mi Flora: Northern Light Battery"
   icon: mdi:battery-charging
@@ -807,14 +807,14 @@
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_northern_light_conductivity/state
+  state_topic: homeassistant/sensor/mi_flora_calathea_conductivity/state
   unit_of_measurement: µS/cm
   name: "Mi Flora: Northern Light Conductivity"
   icon: mdi:flash-circle
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_northern_light_light_intensity/state
+  state_topic: homeassistant/sensor/mi_flora_calathea_illuminance/state
   unit_of_measurement: lx
   name: "Mi Flora: Northern Light Light intensity"
   icon: mdi:white-balance-sunny
@@ -822,14 +822,14 @@
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_northern_light_moisture/state
+  state_topic: homeassistant/sensor/mi_flora_calathea_moisture/state
   unit_of_measurement: "%"
   name: "Mi Flora: Northern Light Moisture"
   icon: mdi:water-percent
   state_class: measurement
 
 - platform: mqtt
-  state_topic: homeassistant/sensor/mi_flora_northern_light_temperature/state
+  state_topic: homeassistant/sensor/mi_flora_calathea_temperature/state
   unit_of_measurement: °C
   name: "Mi Flora: Northern Light Temperature"
   icon: mdi:thermometer

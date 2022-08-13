@@ -29,20 +29,20 @@
 - alias: "Plant: problem with Kentia Palm"
   trigger:
     - platform: state
-      entity_id: plant.kentia_palm
+      entity_id: plant.monstera
       to: "problem"
     - platform: time
       at: "20:00"
   condition:
     condition: state
-    entity_id: plant.kentia_palm
+    entity_id: plant.monstera
     state: "problem"
   action:
     service: notify.all_iphones
     data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
-        You need to give the Kentia Palm 🌴 attention and love: {{ state_attr("plant.kentia_palm", "problem") }}!
+        You need to give the Kentia Palm 🌴 attention and love: {{ state_attr("plant.monstera", "problem") }}!
 
 - alias: "Plant: problem with Yucca Elephantipes"
   trigger:
