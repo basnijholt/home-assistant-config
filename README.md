@@ -1038,18 +1038,14 @@ to "Opt".
 ## [Plant 🌱](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml)
 ### [Problem with Ficus microcarpa Ginseng](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml#L11)
 
-  *which uses:*
-  - [plant.ficus_microcarpa_ginseng](https://github.com/basnijholt/home-assistant-config/blob/48d69dcca0180bde84b32553225cd38e2bf10a99/includes/plant.yaml#L35)
 
 ### [Problem with Kentia Palm](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml#L29)
 
   *which uses:*
-  - [plant.monstera](https://github.com/basnijholt/home-assistant-config/blob/48d69dcca0180bde84b32553225cd38e2bf10a99/includes/plant.yaml#L67)
+  - [plant.monstera](https://github.com/basnijholt/home-assistant-config/blob/48d69dcca0180bde84b32553225cd38e2bf10a99/includes/plant.yaml#L40)
 
 ### [Problem with Yucca Elephantipes](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml#L47)
 
-  *which uses:*
-  - [plant.yucca_elephantipes](https://github.com/basnijholt/home-assistant-config/blob/48d69dcca0180bde84b32553225cd38e2bf10a99/includes/plant.yaml#L51)
 
 [^ toc](#automations---table-of-content)
 
