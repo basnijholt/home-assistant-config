@@ -9,10 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- platform: kef_custom
-  type: ls50
-  name: kef ls50
-  host: !secret ip_kef_ls50
-  maximum_volume: 0.6
-  volume_step: 0.05
-  standby_time: 60
+- platform: bluesound
+  hosts:
+    - host: 192.168.1.241
+      name: KEF LS50
