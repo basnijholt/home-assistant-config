@@ -28,8 +28,6 @@ filter:
     - light.bedroom_lights
     - light.automatic_lights
     - light.kitchen_lights
-    - light.kitchen_lights
-    - light.stairs_lights
     - light.hall_lights
     - light.toilet
     - light.ceiling_bathroom
