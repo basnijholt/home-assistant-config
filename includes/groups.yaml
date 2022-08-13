@@ -15,11 +15,13 @@ persons:
     - person.marcella
 
 iphone_bas:
+  # iPhone X
+  - binary_sensor.basnijholt_iphone_focus
   - sensor.basnijholt_iphone_activity
   - sensor.basnijholt_iphone_average_active_pace
-  - sensor.basnijholt_iphone_bssid
   - sensor.basnijholt_iphone_battery_level
   - sensor.basnijholt_iphone_battery_state
+  - sensor.basnijholt_iphone_bssid
   - sensor.basnijholt_iphone_connection_type
   - sensor.basnijholt_iphone_distance
   - sensor.basnijholt_iphone_floors_ascended
@@ -29,8 +31,27 @@ iphone_bas:
   - sensor.basnijholt_iphone_sim_1
   - sensor.basnijholt_iphone_ssid
   - sensor.basnijholt_iphone_steps
+  - sensor.basnijholt_iphone_storage
   - device_tracker.basnijholt_iphone
   - device_tracker.basnijholt_iphone_router
+  # iPhone 13 Pro
+  - binary_sensor.basnijholt_iphone2_focus
+  - sensor.basnijholt_iphone2_activity
+  - sensor.basnijholt_iphone2_average_active_pace
+  - sensor.basnijholt_iphone2_battery_level
+  - sensor.basnijholt_iphone2_battery_state
+  - sensor.basnijholt_iphone2_bssid
+  - sensor.basnijholt_iphone2_connection_type
+  - sensor.basnijholt_iphone2_distance
+  - sensor.basnijholt_iphone2_floors_ascended
+  - sensor.basnijholt_iphone2_floors_descended
+  - sensor.basnijholt_iphone2_geocoded_location
+  - sensor.basnijholt_iphone2_last_update_trigger
+  - sensor.basnijholt_iphone2_sim_1
+  - sensor.basnijholt_iphone2_sim_2
+  - sensor.basnijholt_iphone2_ssid
+  - sensor.basnijholt_iphone2_steps
+  - sensor.basnijholt_iphone2_storage
 
 iphone_marcella:
   - sensor.marcella_iphone_activity
