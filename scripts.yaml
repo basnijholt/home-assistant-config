@@ -245,8 +245,6 @@ turn_off_everything_non_automatic:
     - service: media_player.turn_off
       entity_id: media_player.kef_ls50
     - service: media_player.turn_off
-      entity_id: media_player.kef_lsx
-    - service: media_player.turn_off
       entity_id: media_player.tv
 
 turn_off_everything:
@@ -402,79 +400,6 @@ fix_sound:
       entity_id: media_player.tv
       data:
         button: BACK  # Close the "All settings" window
-
-sync_kef_dsp:
-  alias: Sync KEF DSP setting with input_number, input_select, or input_boolean
-  mode: parallel
-  max: 20
-  fields:
-    trigger_entity_id:
-      description: trigger_entity_id
-    attribute:
-      description: attribute
-    domain:
-      description: domain
-      example: select
-    name:
-      description: name
-      example: kef_ls50
-  variables:
-    media_player: "{{ 'media_player.{}'.format(name) }}"
-    input_helper: "{{ 'input_{}.{}_{}'.format(domain, name, attribute) }}"
-    attribute_value: "{{ state_attr(media_player, attribute) }}"
-    trigger_to_state: >
-      {% if trigger_entity_id == media_player %}
-        {{ state_attr(media_player, attribute) }}
-      {% else %}
-        {{ states(input_helper) }}
-      {% endif %}
-  sequence:
-    - condition: template
-      value_template: "{{ is_state(media_player, 'on') }}"
-    - choose:
-        # input_number
-        - conditions: "{{ domain == 'number' }}"
-          sequence:
-            choose:
-              # KEF has changed
-              - conditions: "{{ trigger_entity_id == media_player }}"
-                sequence:
-                  service: input_number.set_value
-                  data:
-                    entity_id: "{{ input_helper }}"
-                    value: "{{ attribute_value | float }}"
-              # input_number changed
-              - conditions: "{{ trigger_entity_id == input_helper }}"
-                sequence:
-                  service: kef_custom.set_{{ attribute }}
-                  data:
-                    entity_id: "{{ media_player }}"
-                    "{{ attribute[-2:] }}_value": "{{ trigger_to_state }}"
-
-        # input_select or input_boolean
-        - conditions: "{{ domain in ('select', 'boolean') }}"
-          sequence:
-            choose:
-              # KEF has changed, select
-              - conditions: "{{ trigger_entity_id == media_player and domain == 'select' }}"
-                sequence:
-                  service: input_select.select_option
-                  data:
-                    entity_id: "{{ input_helper }}"
-                    option: "{{ attribute_value }}"
-              # KEF has changed, boolean
-              - conditions: "{{ trigger_entity_id == media_player and domain == 'boolean' }}"
-                sequence:
-                  service: "input_boolean.turn_{{ 'on' if attribute_value == 'True' else 'off' }}"
-                  data:
-                    entity_id: "{{ input_helper }}"
-              # input_select or input_boolean changed
-              - conditions: "{{ trigger_entity_id == input_helper }}"
-                sequence:
-                  service: kef_custom.set_mode
-                  data:
-                    entity_id: "{{ media_player }}"
-                    "{{ attribute }}": "{{ trigger_to_state }}"
 
 utility_notification:
   mode: parallel

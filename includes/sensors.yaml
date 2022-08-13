@@ -90,11 +90,6 @@
         {{ state_attr("media_player.kef_ls50", "volume_level") }}
       unit_of_measurement: "%"
 
-    kef_lsx_volume:
-      value_template: >
-        {{ state_attr("media_player.kef_lsx", "volume_level") }}
-      unit_of_measurement: "%"
-
     timestamp_start_of_today:
       value_template: >
         {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}

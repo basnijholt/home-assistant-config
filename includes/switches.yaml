@@ -19,16 +19,3 @@
       turn_off:
         service: vacuum.return_to_base
         entity_id: vacuum.robot_vacuum
-
-    kef_lsx:
-      friendly_name: Bedroom speakers
-      value_template: >
-        {{ is_state("media_player.kef_lsx", "on") }}
-      availability_template: >
-        {{ not is_state("media_player.kef_lsx", "unavailable") }}
-      turn_on:
-        service: media_player.turn_on
-        entity_id: media_player.kef_lsx
-      turn_off:
-        service: media_player.turn_off
-        entity_id: media_player.kef_lsx
