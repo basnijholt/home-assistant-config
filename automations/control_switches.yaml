@@ -114,7 +114,7 @@
           - service: light.turn_on
             data:
               flash: "short"
-              entity_id: light.sphere_2
+              entity_id: light.cabinet_led
           - service: media_player.turn_off
             entity_id: media_player.tv
           - wait_template: "{{ is_state('media_player.tv', 'off') }}"

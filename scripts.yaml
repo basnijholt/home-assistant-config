@@ -96,7 +96,7 @@ cozy_lights_living_room:
   mode: parallel
   sequence:
     - data:
-        entity_id: light.sphere_1
+        entity_id: light.cabinet_led
         hs_color:
           - 336.293
           - 80.392
