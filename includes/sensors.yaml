@@ -377,18 +377,6 @@
 
 - platform: uptime
 
-- platform: sql
-  db_url: !secret maria_db_url
-  queries:
-    - name: MariaDB size
-      query: >
-        SELECT table_schema AS "database",
-        ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "value"
-        FROM information_schema.tables WHERE table_schema="homeassistant"
-        GROUP BY table_schema;
-      column: value
-      unit_of_measurement: MB
-
 - platform: command_line
   command: !secret portfolio_value
   name: portfolio_value
