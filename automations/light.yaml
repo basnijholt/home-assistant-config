@@ -346,16 +346,12 @@
     - condition: or
       conditions:
         - condition: state
-          entity_id: light.stairs_lights
-          state: "on"
-        - condition: state
           entity_id: light.hall_lights
           state: "on"
   action:
     service: light.turn_off
     entity_id:
       - light.hall_lights
-      - light.stairs_lights
 
 - alias: "Light: turn off bedroom (extra check)"
   description: In case the other automation failed
