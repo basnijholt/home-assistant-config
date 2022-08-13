@@ -8,25 +8,25 @@
 # |_|
 #
 #- from github.com/basnijholt/home-assistant-config
-- alias: "Plant: problem with Ficus microcarpa Ginseng"
+- alias: "Plant: problem with Calathea"
   trigger:
     - platform: state
-      entity_id: plant.ficus_microcarpa_ginseng
+      entity_id: plant.calathea
       to: "problem"
     - platform: time
       at: "20:00"
   condition:
     condition: state
-    entity_id: plant.ficus_microcarpa_ginseng
+    entity_id: plant.calathea
     state: "problem"
   action:
     service: notify.all_iphones
     data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
-        You need to give the Ficus microcarpa Ginseng 🌳 attention and love: {{ state_attr("plant.ficus_microcarpa_ginseng", "problem") }}!
+        You need to give the Calathea 🌳 attention and love: {{ state_attr("plant.calathea", "problem") }}!
 
-- alias: "Plant: problem with Kentia Palm"
+- alias: "Plant: problem with Monstera"
   trigger:
     - platform: state
       entity_id: plant.monstera
@@ -42,22 +42,22 @@
     data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
-        You need to give the Kentia Palm 🌴 attention and love: {{ state_attr("plant.monstera", "problem") }}!
+        You need to give the Monstera 🌴 attention and love: {{ state_attr("plant.monstera", "problem") }}!
 
-- alias: "Plant: problem with Yucca Elephantipes"
+- alias: "Plant: problem with Peace lily"
   trigger:
     - platform: state
-      entity_id: plant.yucca_elephantipes
+      entity_id: plant.peace_lily
       to: "problem"
     - platform: time
       at: "20:00"
   condition:
     condition: state
-    entity_id: plant.yucca_elephantipes
+    entity_id: plant.peace_lily
     state: "problem"
   action:
     service: notify.all_iphones
     data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
-        You need to give the Yucca Elephantipes 🌿 attention and love: {{ state_attr("plant.yucca_elephantipes", "problem") }}!
+        You need to give the Peace lily 🌿 attention and love: {{ state_attr("plant.peace_lily", "problem") }}!
