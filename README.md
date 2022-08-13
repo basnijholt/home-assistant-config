@@ -1044,7 +1044,7 @@ to "Opt".
 ### [Problem with Kentia Palm](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml#L29)
 
   *which uses:*
-  - [plant.kentia_palm](https://github.com/basnijholt/home-assistant-config/blob/48d69dcca0180bde84b32553225cd38e2bf10a99/includes/plant.yaml#L67)
+  - [plant.monstera](https://github.com/basnijholt/home-assistant-config/blob/48d69dcca0180bde84b32553225cd38e2bf10a99/includes/plant.yaml#L67)
 
 ### [Problem with Yucca Elephantipes](https://github.com/basnijholt/home-assistant-config/blob/734719c63de4b8f99a849719702e042913ec7832/automations/plant.yaml#L47)
 
