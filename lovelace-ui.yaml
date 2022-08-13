@@ -1158,7 +1158,7 @@ views:
       - entity: sensor.installed_version
         icon: mdi:home-assistant
         name: Hassio Installed Version
-      - entity: sensor.latest_available_version
+      - entity: sensor.home_assistant_versions
         icon: mdi:home-assistant
         name: Hassio Current Version
       - entity: sensor.hacs
