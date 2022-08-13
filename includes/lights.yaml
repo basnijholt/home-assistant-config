@@ -16,6 +16,7 @@
     # - light.corner_living_room
     # - light.ceiling_living_room
     - light.tv_led
+    - light.cabinet_led
 
 - platform: group
   name: Bedroom lights
@@ -32,27 +33,27 @@
   name: Automatic lights
   entities:
     - light.ceiling_kitchen
-    - light.kitchen_counter
-    - light.toilet
-    - light.ceiling_bathroom
-    - light.hall_lights
-    - light.stairs_lights
+    # - light.kitchen_counter
+    # - light.toilet
+    # - light.ceiling_bathroom
+    # - light.hall_lights
+    # - light.stairs_lights
 
 - platform: group
   name: Kitchen lights
   entities:
     - light.ceiling_kitchen
-    - light.kitchen_counter
+    # - light.kitchen_counter
 
 - platform: switch
   name: Kitchen counter
   entity_id: switch.kitchen_counter
 
-- platform: group
-  name: Stairs lights
-  entities:
-    - light.stairs_up
-    - light.stairs_down
+# - platform: group
+#   name: Stairs lights
+#   entities:
+#     - light.stairs_up
+#     - light.stairs_down
 
 - platform: group
   name: Hall lights

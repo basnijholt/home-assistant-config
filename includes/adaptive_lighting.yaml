@@ -26,7 +26,6 @@
     - light.ceiling_bathroom
     - light.toilet
     - light.ceiling_kitchen
-    - light.stairs_lights
     - light.hall_lights
   min_brightness: 70
   prefer_rgb_color: true
