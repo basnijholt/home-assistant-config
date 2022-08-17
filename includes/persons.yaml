@@ -14,15 +14,15 @@
   picture: !secret profile_photo_bas
   device_trackers:
     # iPhone X
-    - device_tracker.basnijholt_iphone # from iOS app
-    - device_tracker.bas_iphone_ping
+    - device_tracker.basnijholt_iphone_10 # from iOS app
+    - device_tracker.basnijholt_iphone_10_ping
     # iPhone 13
-    - device_tracker.basnijholt_iphone2 # from iOS app
-    - device_tracker.bas_iphone13_ping
+    - device_tracker.basnijholt_iphone_13 # from iOS app
+    - device_tracker.basnijholt_iphone_13_ping
 - name: Marcella
   id: marcella
   user_id: 0d8b36da29974dec9a30f767931bde2c
   picture: !secret profile_photo_marcella
   device_trackers:
-    - device_tracker.marcella_iphone # from iOS app
+    - device_tracker.marcella_iphone_se # from iOS app
     - device_tracker.marcella_iphone_ping
