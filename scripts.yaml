@@ -81,7 +81,7 @@ start_spotify_playlist_of_nearest_person:
   sequence:
     - service: script.start_speakers
       data:
-        source: Wifi
+        source: Spotify
         volume: 0.25
         entity_id: "{{ entity_id }}"
     - service: script.start_spotify
