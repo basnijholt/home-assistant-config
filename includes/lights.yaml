@@ -12,7 +12,7 @@
   name: Living room lights
   entities:
     - light.sphere
-    # - light.corner_living_room
+    - light.corner_living_room
     - light.tv_led
     - light.cabinet_led
 
