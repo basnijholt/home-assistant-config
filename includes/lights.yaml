@@ -22,7 +22,7 @@
     - light.philips_go
     - light.ceiling_bedroom
     - light.bed_led
-    # - light.bamboo
+    - light.bamboo
     # - light.lampan
     # - light.bed_reading_up
     # - light.bed_reading_down
@@ -32,7 +32,7 @@
   entities:
     - light.philips_go
     - light.bed_led
-    # - light.bamboo
+    - light.bamboo
     # - light.lampan
     # - light.bed_reading_up
     # - light.bed_reading_down
