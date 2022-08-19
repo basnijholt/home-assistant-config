@@ -20,10 +20,20 @@
   name: Bedroom lights
   entities:
     - light.philips_go
-    # - light.bamboo
     - light.ceiling_bedroom
-    # - light.lampan
     - light.bed_led
+    # - light.bamboo
+    # - light.lampan
+    # - light.bed_reading_up
+    # - light.bed_reading_down
+
+- platform: group
+  name: Bedroom lights Hue
+  entities:
+    - light.philips_go
+    - light.bed_led
+    # - light.bamboo
+    # - light.lampan
     # - light.bed_reading_up
     # - light.bed_reading_down
 

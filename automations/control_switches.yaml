@@ -156,7 +156,12 @@
         sequence:
           service: script.increase_brightness
           data:
-            group: light.bedroom_lights
+            group: >
+              {% if states('input_select.sleep_mode') == "off" %}
+              light.bedroom_lights
+              {% else %}
+              light.bedroom_lights_hue
+              {% endif %}
 
       # Turn off lights in and next to bedroom
       - conditions: "{{ trigger.event.data.event == 1001 }}" # Long click

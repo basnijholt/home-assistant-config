@@ -60,6 +60,11 @@
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
+  condition:
+    condition: state
+    entity_id: input_select.sleep_mode
+    state:
+      - "off"
   action:
     service: light.turn_{{ trigger.to_state.state }}
     data:
