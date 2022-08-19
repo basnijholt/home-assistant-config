@@ -30,7 +30,7 @@
     - service: notify.all_iphones
       data:
         title: "Robot"
-        message: "Cleanup successful after {{ state_attr('vacuum.robot_vacuum', 'cleaning_time') }} minutes."
+        message: "Cleanup successful after {{ (states('sensor.robot_vacuum_last_clean_duration') | int / 60) | round }} minutes"
     - service: input_boolean.turn_on
       entity_id: input_boolean.cleaned_today
 
@@ -56,14 +56,7 @@
       entity_id: group.persons
       from: home
       to: not_home
-    - platform: state
-      entity_id: binary_sensor.openclose_guest_room
-      from: "off"
-      to: "on"
   condition:
-    - condition: state
-      entity_id: binary_sensor.openclose_guest_room
-      state: "on"
     - condition: time
       after: "13:00:00"
       before: "22:00:00"
