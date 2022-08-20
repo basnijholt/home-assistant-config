@@ -28,6 +28,10 @@
     platform: state
     entity_id: binary_sensor.activity_in_living_room
     to: "on"
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: "off"
   action:
     service: light.turn_on
     entity_id: light.living_room_lights
@@ -37,6 +41,10 @@
     platform: state
     entity_id: binary_sensor.activity_in_living_room
     to: "off"
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: "off"
   action:
     service: light.turn_off
     entity_id: light.living_room_lights
@@ -52,10 +60,12 @@
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
   condition:
-    condition: state
-    entity_id: input_select.sleep_mode
-    state:
-      - "off"
+    - condition: state
+      entity_id: input_select.sleep_mode
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
   action:
     service: light.turn_{{ trigger.to_state.state }}
     data:
