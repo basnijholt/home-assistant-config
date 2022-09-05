@@ -20,7 +20,9 @@
     state: "on"
   action:
     service: media_player.media_play_pause
-    entity_id: media_player.tv
+    target:
+      entity_id: |
+        media_player.{{ 'living_room_xbox' if is_state_attr('media_player.tv', 'source', 'XBOX') else 'tv'}}
 
 - alias: "Apple Watch: minimal lights bedroom"
   trigger:
