@@ -30,6 +30,8 @@
   min_brightness: 70
   prefer_rgb_color: true
   detect_non_ha_changes: true
+  sleep_rgb_or_color_temp: "rgb_color"
+  sleep_rgb_color: [255, 128, 0]
   interval: 30
 
 - name: default bed
@@ -39,6 +41,8 @@
   min_brightness: 70
   prefer_rgb_color: true
   detect_non_ha_changes: true
+  sleep_rgb_or_color_temp: "rgb_color"
+  sleep_rgb_color: [255, 128, 0]
   interval: 30
 
 - name: half and dim
@@ -54,6 +58,8 @@
   min_brightness: 70
   prefer_rgb_color: true
   detect_non_ha_changes: true
+  sleep_rgb_or_color_temp: "rgb_color"
+  sleep_rgb_color: [255, 128, 0]
   interval: 30
 
 - name: half and dim bed
@@ -63,6 +69,8 @@
   min_brightness: 70
   prefer_rgb_color: true
   detect_non_ha_changes: true
+  sleep_rgb_or_color_temp: "rgb_color"
+  sleep_rgb_color: [255, 128, 0]
   interval: 30
 
 - name: half and full
@@ -75,4 +83,6 @@
   min_brightness: 70
   prefer_rgb_color: true
   detect_non_ha_changes: true
+  sleep_rgb_or_color_temp: "rgb_color"
+  sleep_rgb_color: [255, 128, 0]
   interval: 30
