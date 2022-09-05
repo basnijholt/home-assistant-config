@@ -917,7 +917,7 @@ to "Opt".
 ### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/572cce2154fae5f80c43d9571fcbe42339ff4fcb/automations/media_player.yaml#L100)
 
 
-### [Automatically turn off TV and speakers after two hours of inactivity](https://github.com/basnijholt/home-assistant-config/blob/572cce2154fae5f80c43d9571fcbe42339ff4fcb/automations/media_player.yaml#L129)
+### [Automatically turn off TV and Xbox after two hours of inactivity](https://github.com/basnijholt/home-assistant-config/blob/572cce2154fae5f80c43d9571fcbe42339ff4fcb/automations/media_player.yaml#L129)
 
 
 [^ toc](#automations---table-of-content)
