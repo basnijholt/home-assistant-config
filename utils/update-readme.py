@@ -235,7 +235,8 @@ def get_addons():
         return None
     raw = output.decode("utf-8")
     addons = json.loads(raw)["data"]
-    installed_addons = [addon for addon in addons["addons"] if addon["installed"]]
+    from pprint import pprint
+    installed_addons = addons["addons"]
     return installed_addons
 
 

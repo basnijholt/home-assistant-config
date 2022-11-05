@@ -370,8 +370,6 @@
     - type: processor_use
     - type: last_boot
 
-- platform: uptime
-
 - platform: command_line
   command: !secret portfolio_value
   name: portfolio_value
@@ -623,50 +621,50 @@
 
 # From the "Meterkast" Home Assistant
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/gas_consumption/state
-  unit_of_measurement: m³
-  name: Gas Consumption
-  icon: mdi:fire
-  device_class: gas
-  state_class: total_increasing
+# - platform: mqtt
+#   state_topic: homeassistant/sensor/gas_consumption/state
+#   unit_of_measurement: m³
+#   name: Gas Consumption
+#   icon: mdi:fire
+#   device_class: gas
+#   state_class: total_increasing
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/hourly_gas_consumption/state
-  unit_of_measurement: m³/h
-  name: Hourly Gas Consumption
-  icon: mdi:fire
-  device_class: gas
-  state_class: total_increasing
+# - platform: mqtt
+#   state_topic: homeassistant/sensor/hourly_gas_consumption/state
+#   unit_of_measurement: m³/h
+#   name: Hourly Gas Consumption
+#   icon: mdi:fire
+#   device_class: gas
+#   state_class: total_increasing
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_consumption/state
-  unit_of_measurement: kW
-  name: Power Consumption
-  icon: mdi:flash
-  device_class: power
-  state_class: measurement
+# - platform: mqtt
+#   state_topic: homeassistant/sensor/power_consumption/state
+#   unit_of_measurement: kW
+#   name: Power Consumption
+#   icon: mdi:flash
+#   device_class: power
+#   state_class: measurement
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/energy_consumption_tarif_1/state
-  unit_of_measurement: kWh
-  name: Energy Consumption (tarif 1)
-  icon: mdi:flash
-  device_class: energy
-  state_class: total_increasing
+# - platform: mqtt
+#   state_topic: homeassistant/sensor/energy_consumption_tarif_1/state
+#   unit_of_measurement: kWh
+#   name: Energy Consumption (tarif 1)
+#   icon: mdi:flash
+#   device_class: energy
+#   state_class: total_increasing
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/energy_consumption_tarif_2/state
-  unit_of_measurement: kWh
-  name: Energy Consumption (tarif 2)
-  icon: mdi:flash
-  device_class: energy
-  state_class: total_increasing
+# - platform: mqtt
+#   state_topic: homeassistant/sensor/energy_consumption_tarif_2/state
+#   unit_of_measurement: kWh
+#   name: Energy Consumption (tarif 2)
+#   icon: mdi:flash
+#   device_class: energy
+#   state_class: total_increasing
 
-- platform: mqtt
-  state_topic: homeassistant/sensor/power_tariff/state
-  name: Power Tariff
-  icon: mdi:flash
+# - platform: mqtt
+#   state_topic: homeassistant/sensor/power_tariff/state
+#   name: Power Tariff
+#   icon: mdi:flash
 
 - platform: filter
   name: "Gas consumption filtered"

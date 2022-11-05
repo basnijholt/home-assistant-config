@@ -126,7 +126,7 @@
           {{ state_attr("media_player.tv", "volume_level") == state_attr("media_player.kef_ls50", "volume_level")
               or not (is_state("media_player.tv", "on") and is_state("media_player.kef_ls50", "on")) }}
 
-- alias: "Media player: automatically turn off TV and speakers after two hours of inactivity"
+- alias: "Media player: automatically turn off TV and Xbox after two hours of inactivity"
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_living_room_klok
@@ -134,6 +134,6 @@
     for: "02:00:00"
   action:
     - service: media_player.turn_off
-      entity_id: media_player.kef_ls50
+      entity_id: media_player.living_room_xbox
     - service: media_player.turn_off
       entity_id: media_player.tv
