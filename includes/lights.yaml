@@ -57,7 +57,7 @@
   entity_id: switch.kitchen_counter
 
 - platform: group
-  name: Bathroom
+  name: Bathroom lights
   entities:
     - light.bathroom_ceiling
     - light.bathroom_mirror

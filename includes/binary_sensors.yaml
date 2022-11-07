@@ -25,7 +25,6 @@
         {{ is_state("binary_sensor.activity_in_kitchen", "on")
             or is_state("binary_sensor.activity_in_living_room", "on")
             or is_state("binary_sensor.activity_in_hall", "on")
-            or is_state("binary_sensor.activity_in_toilet", "on")
             or is_state("binary_sensor.activity_in_bathroom", "on")
             or is_state("binary_sensor.activity_in_bedroom", "on") }}
 
@@ -57,12 +56,6 @@
             or is_state("media_player.kef_ls50", "on") }}
       delay_off: "00:20:00"
 
-    activity_in_toilet:
-      friendly_name: Activity at the toilet
-      value_template: >
-        {{ is_state("binary_sensor.motion_sensor_toilet", "on") }}
-      delay_off: "00:01:00"
-
     activity_in_kitchen:
       friendly_name: Activity in the kitchen
       value_template: >
@@ -90,7 +83,7 @@
       value_template: >
         {{ is_state("binary_sensor.activity_in_hall", "on")
             or is_state("binary_sensor.activity_in_living_room", "on")
-            or is_state("binary_sensor.activity_in_toilet", "on")
+            or is_state("binary_sensor.activity_in_bathroom", "on")
             or is_state("binary_sensor.activity_in_kitchen", "on")
             or is_state("media_player.kef_ls50", "on") }}
       delay_off: "00:01:00"

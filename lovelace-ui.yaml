@@ -93,7 +93,7 @@ views:
     - entities:
       - light.ceiling_office
       - light.ceiling_kitchen
-      - light.ceiling_bathroom
+      - light.bathroom_ceiling
       - light.toilet
       - light.kitchen_counter
       - entities:

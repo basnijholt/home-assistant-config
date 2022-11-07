@@ -103,31 +103,27 @@
 # |____/ \__,_|\__|_| |_|_|  \___/ \___/|_| |_| |_|
 #
 
-- alias: "Light: toggle bathroom"
+- alias: "Light: turn on bathroom"
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
-  condition: "{{ not is_state('light.bathroom_ceiling', trigger.to_state.state) }}"
+    to: "on"
+  condition: "{{ states('input_select.sleep_mode') != 'total' }}"
   action:
-    service: light.turn_{{ trigger.to_state.state }}
+    service: light.turn_on
     data:
-      entity_id: light.bathroom_ceiling
+      entity_id: light.bathroom_lights
       transition: 1
 
-#  _____     _ _      _
-# |_   _|__ (_) | ___| |_
-#   | |/ _ \| | |/ _ \ __|
-#   | | (_) | | |  __/ |_
-#   |_|\___/|_|_|\___|\__|
-
-- alias: "Light: toggle toilet"
+- alias: "Light: turn off bathroom"
   trigger:
     platform: state
-    entity_id: binary_sensor.activity_in_toilet
+    entity_id: binary_sensor.activity_in_bathroom
+    to: "off"
   action:
-    service: light.turn_{{ trigger.to_state.state }}
+    service: light.turn_off
     data:
-      entity_id: light.toilet
+      entity_id: light.bathroom_lights
       transition: 1
 
   #  _   _       _ _                   _       _        _
@@ -292,22 +288,6 @@
 # | |___ >  <| |_| | | (_| | | (__| | | |  __/ (__|   <\__ \
 # |_____/_/\_\\__|_|  \__,_|  \___|_| |_|\___|\___|_|\_\___/
 
-- alias: "Light: turn off toilet (extra check)"
-  description: In case the other automation failed
-  trigger:
-    platform: time_pattern
-    minutes: "/10"
-  condition:
-    - condition: state
-      entity_id: binary_sensor.activity_in_toilet
-      state: "off"
-    - condition: state
-      entity_id: light.toilet
-      state: "on"
-  action:
-    service: light.turn_off
-    entity_id: light.toilet
-
 - alias: "Light: turn off bathroom (extra check)"
   description: In case the other automation failed
   trigger:
@@ -318,11 +298,11 @@
       entity_id: binary_sensor.activity_in_bathroom
       state: "off"
     - condition: state
-      entity_id: light.bathroom_ceiling
+      entity_id: light.bathroom_lights
       state: "on"
   action:
     service: light.turn_off
-    entity_id: light.bathroom_ceiling
+    entity_id: light.bathroom_lights
 
 - alias: "Light: turn off kitchen (extra check)"
   description: In case the other automation failed
