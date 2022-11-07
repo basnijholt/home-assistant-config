@@ -107,11 +107,11 @@
   trigger:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
-  condition: "{{ not is_state('light.ceiling_bathroom', trigger.to_state.state) }}"
+  condition: "{{ not is_state('light.bathroom_ceiling', trigger.to_state.state) }}"
   action:
     service: light.turn_{{ trigger.to_state.state }}
     data:
-      entity_id: light.ceiling_bathroom
+      entity_id: light.bathroom_ceiling
       transition: 1
 
 #  _____     _ _      _
@@ -318,11 +318,11 @@
       entity_id: binary_sensor.activity_in_bathroom
       state: "off"
     - condition: state
-      entity_id: light.ceiling_bathroom
+      entity_id: light.bathroom_ceiling
       state: "on"
   action:
     service: light.turn_off
-    entity_id: light.ceiling_bathroom
+    entity_id: light.bathroom_ceiling
 
 - alias: "Light: turn off kitchen (extra check)"
   description: In case the other automation failed

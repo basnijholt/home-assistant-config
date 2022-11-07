@@ -30,7 +30,7 @@ filter:
     - light.kitchen_lights
     - light.hall_lights
     - light.toilet
-    - light.ceiling_bathroom
+    - light.bathroom_ceiling
     - media_player.kef_ls50
     - media_player.kef_lsx
     - media_player.tv

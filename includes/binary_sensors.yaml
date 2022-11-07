@@ -45,6 +45,7 @@
       friendly_name: Activity in the bathroom
       value_template: >
         {{ is_state("binary_sensor.motion_sensor_bathroom", "on")
+            or is_state("binary_sensor.motion_sensor_toilet", "on")
             or is_state("binary_sensor.someone_showering", "on") }}
       delay_off: "00:03:00"
 

@@ -41,11 +41,10 @@
   name: Automatic lights
   entities:
     - light.ceiling_kitchen
+    - light.bathroom_ceiling
+    - light.bathroom_mirror
     # - light.kitchen_counter
-    # - light.toilet
-    # - light.ceiling_bathroom
     # - light.hall_lights
-    # - light.stairs_lights
 
 - platform: group
   name: Kitchen lights
@@ -57,18 +56,18 @@
   name: Kitchen counter
   entity_id: switch.kitchen_counter
 
-# - platform: group
-#   name: Stairs lights
-#   entities:
-#     - light.stairs_up
-#     - light.stairs_down
-
 - platform: group
-  name: Hall lights
+  name: Bathroom
   entities:
-    - light.hall_1
-    - light.hall_2
-    - light.hall_3
+    - light.bathroom_ceiling
+    - light.bathroom_mirror
+
+# - platform: group
+#   name: Hall lights
+#   entities:
+#     - light.hall_1
+#     - light.hall_2
+#     - light.hall_3
 
 - platform: group
   name: Bed reading

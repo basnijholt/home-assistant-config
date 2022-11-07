@@ -170,7 +170,7 @@
           entity_id:
             - light.hall_lights
             - light.bedroom_lights
-            - light.ceiling_bathroom
+            - light.bathroom_ceiling
             - light.stairs_lights
 
       # Turn on sleep mode, else, turn all lights off
@@ -196,7 +196,7 @@
                   entity_id:
                     - light.hall_lights
                     - light.bedroom_lights
-                    - light.ceiling_bathroom
+                    - light.bathroom_ceiling
                     - light.stairs_lights
                 - service: input_select.select_option
                   entity_id: input_select.sleep_mode
@@ -236,7 +236,7 @@
         sequence:
           service: script.increase_brightness
           data:
-            group: light.ceiling_bathroom
+            group: light.bathroom_ceiling
 
       # Next color
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
@@ -244,7 +244,7 @@
           - service: input_select.select_next
             entity_id: input_select.bathroom_color
           - service: light.turn_on
-            entity_id: light.ceiling_bathroom
+            entity_id: light.bathroom_ceiling
             data:
               color_name: >
                 {{ states("input_select.bathroom_color") }}
@@ -253,11 +253,11 @@
       - conditions:
           - "{{ trigger.event.data.event == 1007 }}" # Shake button
           - condition: state
-            entity_id: light.ceiling_bathroom
+            entity_id: light.bathroom_ceiling
             state: "on"
         sequence:
           service: light.turn_off
-          entity_id: light.ceiling_bathroom
+          entity_id: light.bathroom_ceiling
 
 - alias: "Control switches: downstairs Aqara Wireless Mini Switch"
   mode: parallel

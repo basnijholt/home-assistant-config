@@ -520,7 +520,7 @@
 
 - platform: history_stats
   name: Hours bathroom light has been on last 7 days
-  entity_id: light.ceiling_bathroom
+  entity_id: light.bathroom_ceiling
   state: "on"
   type: time
   duration:

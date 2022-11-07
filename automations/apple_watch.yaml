@@ -114,8 +114,8 @@
               title: Living room
             - action: SET_LIGHTS_BATHROOM
               title: Bathroom
-            - action: SET_LIGHTS_HALL_AND_STAIRS
-              title: Hall and stairs
+            - action: SET_LIGHTS_HALL
+              title: Hall
             - action: SET_LIGHTS_TOILET
               title: Toilet
             - action: SET_LIGHTS_KITCHEN
@@ -140,7 +140,7 @@
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_HALL_AND_STAIRS
+            action: SET_LIGHTS_HALL
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
@@ -157,8 +157,8 @@
             {'SET_LIGHTS_ALL': 'all',
              'SET_LIGHTS_BEDROOM': 'light.bedroom_lights',
              'SET_LIGHTS_LIVING_ROOM': 'light.living_room_lights',
-             'SET_LIGHTS_BATHROOM': 'light.ceiling_bathroom',
-             'SET_LIGHTS_HALL_AND_STAIRS': 'light.hall_lights,light.stairs_lights',
+             'SET_LIGHTS_BATHROOM': 'light.bathroom_ceiling',
+             'SET_LIGHTS_HALL': 'light.hall_lights,light.stairs_lights',
              'SET_LIGHTS_TOILET': 'light.toilet',
              'SET_LIGHTS_KITCHEN': 'light.kitchen_lights',
             }[wait.trigger.event.data.action] }}

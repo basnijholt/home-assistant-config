@@ -23,7 +23,7 @@
     - light.ceiling_bedroom
     - light.lampan
     - light.bed_reading
-    - light.ceiling_bathroom
+    - light.bathroom_ceiling
     - light.toilet
     - light.ceiling_kitchen
     - light.hall_lights
@@ -52,7 +52,7 @@
     - light.ceiling_bedroom
     - light.lampan
     - light.bed_reading
-    - light.ceiling_bathroom
+    - light.bathroom_ceiling
     - light.hall_2
     - light.hall_3
   min_brightness: 70
@@ -77,8 +77,6 @@
   lights:
     - light.toilet
     - light.ceiling_kitchen
-    - light.stairs_up
-    - light.stairs_down
     - light.hall_1
   min_brightness: 70
   prefer_rgb_color: true
