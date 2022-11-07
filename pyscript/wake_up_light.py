@@ -13,7 +13,7 @@ sys.path.append("/config/pyscript")
 
 from python_modules.wake_up_light import rgb_and_brightness
 
-DEFAULT_LAMP = "light.ceiling_living_room"
+DEFAULT_LAMP = "light.corner_living_room"
 DEFAULT_TOTAL_TIME = 900
 
 DEFAULTS = {
