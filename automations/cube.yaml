@@ -111,7 +111,7 @@
               {% set brightness = state_attr('light.sphere', 'brightness') %}
               {% set delta = event / 450 %}
               {% set new_brightness = [([0, (brightness + delta)]|max), 255]|min %}
-              {{ new_brightness|int }}
+              {{ new_brightness|int(0) }}
 
       - conditions: # Change speaker volume
           condition: state

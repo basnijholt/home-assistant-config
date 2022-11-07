@@ -217,7 +217,7 @@
       friendly_name: Fixed energy cost (gas and power) (Last period)
       unit_of_measurement: €
       value_template: >
-        {{ states("sensor.daily_energy_fixed_cost")|float(0) * states("sensor.n_days_last_month")|int }}
+        {{ states("sensor.daily_energy_fixed_cost")|float(0) * states("sensor.n_days_last_month")|int(0) }}
 
     nearest_iphone_notify:
       friendly_name: Nearest iPhone's notify service
