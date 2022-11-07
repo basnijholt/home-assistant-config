@@ -30,22 +30,16 @@ filter:
     - light.kitchen_lights
     - light.hall_lights
     - light.toilet
-    - light.bathroom_ceiling
-    - media_player.kef_ls50
-    - media_player.kef_lsx
+    - light.bathroom_lights
     - media_player.tv
+    - media_player.xbox
+    - media_player.kef_ls50
     - input_select.sleep_mode
     - input_boolean.start_the_music
 entity_config:
   media_player.kef_ls50:
     name: Living room speakers
     feature_list:
-      - feature: on_off
-      - feature: toggle_mute
-  media_player.kef_lsx:
-    name: Bedroom speakers
-    feature_list:
-      - feature: on_off
       - feature: toggle_mute
   media_player.tv:
     name: TV

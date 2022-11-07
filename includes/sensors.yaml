@@ -98,8 +98,8 @@
     time_at_work_prognosis:
       value_template: >
         {% set day = [now().weekday(), 4] | min %}
-        {% set t_total = states("sensor.time_at_work_this_week")|float %}
-        {% set t_today = states("sensor.time_at_work_today")|float %}
+        {% set t_total = states("sensor.time_at_work_this_week")|float(0) %}
+        {% set t_today = states("sensor.time_at_work_today")|float(0) %}
         {% set hours_per_day_including_today = t_total / (day + 1) %}
         {% set hours_per_day_excluding_today = (t_total - t_today ) / (day + 10**-16) %}
         {% set seven_oclock = as_timestamp(now().replace(hour=19).replace(minute=0).replace(second=0)) %}
@@ -128,26 +128,26 @@
       friendly_name: Daily Power
       unit_of_measurement: kWh
       value_template: >
-        {{ states("sensor.daily_power_offpeak")|float + states("sensor.daily_power_peak")|float }}
+        {{ states("sensor.daily_power_offpeak")|float(0) + states("sensor.daily_power_peak")|float(0) }}
 
     monthly_power:
       friendly_name: Monthly Power
       unit_of_measurement: kWh
       value_template: >
-        {{ states("sensor.monthly_power_offpeak")|float + states("sensor.monthly_power_peak")|float }}
+        {{ states("sensor.monthly_power_offpeak")|float(0) + states("sensor.monthly_power_peak")|float(0) }}
 
     monthly_power_last_period:
       friendly_name: Monthly Power (Last period)
       unit_of_measurement: kWh
       value_template: >
-        {{ state_attr("sensor.monthly_power_offpeak", "last_period")|float + state_attr("sensor.monthly_power_peak", "last_period")|float }}
+        {{ state_attr("sensor.monthly_power_offpeak", "last_period")|float(0) + state_attr("sensor.monthly_power_peak", "last_period")|float(0) }}
 
     monthly_power_cost_last_period:
       friendly_name: Monthly Power (Last period)
       unit_of_measurement: €
       value_template: >
-        {{ (state_attr("sensor.monthly_power_offpeak", "last_period")|float * states("sensor.electricity_price_offpeak")|float
-            + state_attr("sensor.monthly_power_peak", "last_period")|float * states("sensor.electricity_price_peak")|float) | round(2) }}
+        {{ (state_attr("sensor.monthly_power_offpeak", "last_period")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
+            + state_attr("sensor.monthly_power_peak", "last_period")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
 
     gas_price:
       friendly_name: Gas price
@@ -159,19 +159,19 @@
       friendly_name: Daily Power
       unit_of_measurement: €
       value_template: >
-        {{ (states("sensor.daily_gas")|float * 0.7884) | round(2) }}
+        {{ (states("sensor.daily_gas")|float(0) * 0.7884) | round(2) }}
 
     monthly_gas_cost:
       friendly_name: Monthly Power
       unit_of_measurement: €
       value_template: >
-        {{ (states("sensor.monthly_gas")|float * 0.7884) | round(2) }}
+        {{ (states("sensor.monthly_gas")|float(0) * 0.7884) | round(2) }}
 
     monthly_gas_cost_last_period:
       friendly_name: Monthly Power (Last period)
       unit_of_measurement: €
       value_template: >
-        {{ (state_attr("sensor.monthly_gas", "last_period")|float * 0.7884) | round(2) }}
+        {{ (state_attr("sensor.monthly_gas", "last_period")|float(0) * 0.7884) | round(2) }}
 
     electricity_price_offpeak:
       friendly_name: Electricity price
@@ -189,15 +189,15 @@
       friendly_name: Daily Power
       unit_of_measurement: €
       value_template: >
-        {{ (states("sensor.daily_power_offpeak")|float * states("sensor.electricity_price_offpeak")|float
-            + states("sensor.daily_power_peak")|float * states("sensor.electricity_price_peak")|float) | round(2) }}
+        {{ (states("sensor.daily_power_offpeak")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
+            + states("sensor.daily_power_peak")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
 
     monthly_power_cost:
       friendly_name: Monthly Power
       unit_of_measurement: €
       value_template: >
-        {{ (states("sensor.monthly_power_offpeak")|float * states("sensor.electricity_price_offpeak")|float
-            + states("sensor.monthly_power_peak")|float * states("sensor.electricity_price_peak")|float) | round(2) }}
+        {{ (states("sensor.monthly_power_offpeak")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
+            + states("sensor.monthly_power_peak")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
 
     daily_energy_fixed_cost:
       friendly_name: Fixed daily energy cost (gas and power)
@@ -211,13 +211,13 @@
       friendly_name: Fixed daily energy cost (gas and power)
       unit_of_measurement: €
       value_template: >
-        {{ states("sensor.daily_energy_fixed_cost")|float * now().day }}
+        {{ states("sensor.daily_energy_fixed_cost")|float(0) * now().day }}
 
     monthly_energy_fixed_cost_last_period:
       friendly_name: Fixed energy cost (gas and power) (Last period)
       unit_of_measurement: €
       value_template: >
-        {{ states("sensor.daily_energy_fixed_cost")|float * states("sensor.n_days_last_month")|int }}
+        {{ states("sensor.daily_energy_fixed_cost")|float(0) * states("sensor.n_days_last_month")|int }}
 
     nearest_iphone_notify:
       friendly_name: Nearest iPhone's notify service
@@ -303,18 +303,18 @@
     lights_on_total_hours:
       unit_of_measurement: h
       value_template: >
-        {{ states('sensor.hours_bedroom_lights_have_been_on_last_7_days')|float * 7
-            + states('sensor.hours_living_room_lights_have_been_on_last_7_days')|float * 5
-            + states('sensor.hours_toilet_light_has_been_on_last_7_days')|float * 1
-            + states('sensor.hours_bathroom_light_has_been_on_last_7_days')|float * 1
-            + states('sensor.hours_kitchen_lights_have_been_on_last_7_days')|float * 2
-            + states('sensor.hours_hall_lights_have_been_on_last_7_days')|float * 5
-            + states('sensor.hours_bathroom_light_has_been_on_last_7_days')|float * 1 }}
+        {{ states('sensor.hours_bedroom_lights_have_been_on_last_7_days')|float(0) * 7
+            + states('sensor.hours_living_room_lights_have_been_on_last_7_days')|float(0) * 5
+            + states('sensor.hours_toilet_light_has_been_on_last_7_days')|float(0) * 1
+            + states('sensor.hours_bathroom_light_has_been_on_last_7_days')|float(0) * 1
+            + states('sensor.hours_kitchen_lights_have_been_on_last_7_days')|float(0) * 2
+            + states('sensor.hours_hall_lights_have_been_on_last_7_days')|float(0) * 5
+            + states('sensor.hours_bathroom_light_has_been_on_last_7_days')|float(0) * 1 }}
 
     lights_on_total_kwh:
       unit_of_measurement: h
       value_template: >
-        {{ states('sensor.lights_on_total_hours')|float * 5.4 / 1000 }}
+        {{ states('sensor.lights_on_total_hours')|float(0) * 5.4 / 1000 }}
 
 #   ___  _   _
 #  / _ \| |_| |__   ___ _ __ ___
@@ -350,13 +350,6 @@
   display_options:
     - date
     - time
-
-# Set up on Proxmox https://community.home-assistant.io/t/intel-nuc-proxmox-cpu-temperature-monitor-with-python-mqtt/194236/8
-- platform: mqtt
-  name: CPU Temperature
-  state_topic: "pve/cpu_temp"
-  unit_of_measurement: "°C"
-  value_template: "{{ value | multiply(0.001) | round(1) }}"
 
 - platform: systemmonitor
   resources:
@@ -540,7 +533,7 @@
   state: Work
   type: time
   start: >
-    {{ states("sensor.timestamp_start_of_today")|float - now().weekday() * 86400 }}
+    {{ states("sensor.timestamp_start_of_today")|float(0) - now().weekday() * 86400 }}
   end: "{{ now() }}"
 
 - platform: history_stats
@@ -549,7 +542,7 @@
   state: Work
   type: time
   start: >
-    {{ states("sensor.timestamp_start_of_today")|float - 0 * 86400 }}
+    {{ states("sensor.timestamp_start_of_today")|float(0) - 0 * 86400 }}
   duration:
     hours: 24
 
@@ -563,7 +556,7 @@
   start: >
     {% set day = now().weekday() - 0 %}
     {% if day < 0 %}{% set day = day + 7 %}{% endif %}
-    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+    {{ states("sensor.timestamp_start_of_today")|float(0) - day * 86400}}
 
 - platform: history_stats
   name: Time at work on Tuesday
@@ -575,7 +568,7 @@
   start: >
     {% set day = now().weekday() - 1 %}
     {% if day < 0 %}{% set day = day + 7 %}{% endif %}
-    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+    {{ states("sensor.timestamp_start_of_today")|float(0) - day * 86400}}
 
 - platform: history_stats
   name: Time at work on Wednessday
@@ -587,7 +580,7 @@
   start: >
     {% set day = now().weekday() - 2 %}
     {% if day < 0 %}{% set day = day + 7 %}{% endif %}
-    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+    {{ states("sensor.timestamp_start_of_today")|float(0) - day * 86400}}
 
 - platform: history_stats
   name: Time at work on Thursday
@@ -599,7 +592,7 @@
   start: >
     {% set day = now().weekday() - 3 %}
     {% if day < 0 %}{% set day = day + 7 %}{% endif %}
-    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+    {{ states("sensor.timestamp_start_of_today")|float(0) - day * 86400}}
 
 - platform: history_stats
   name: Time at work on Friday
@@ -611,7 +604,7 @@
   start: >
     {% set day = now().weekday() - 4 %}
     {% if day < 0 %}{% set day = day + 7 %}{% endif %}
-    {{ states("sensor.timestamp_start_of_today")|float - day * 86400}}
+    {{ states("sensor.timestamp_start_of_today")|float(0) - day * 86400}}
 
 #  ____                                          _    ____
 # |  _ \ _____      _____ _ __    __ _ _ __   __| |  / ___| __ _ ___
