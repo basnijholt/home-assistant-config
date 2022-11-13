@@ -22,7 +22,7 @@ vacation_mode:
 guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
-office_door_open_warning:
+bathroom_door_open_warning:
   name: Office door is open warning
   icon: mdi:door-open
 bedroom_lights_automatically_turned_on:

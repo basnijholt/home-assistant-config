@@ -95,7 +95,7 @@
 - alias: "Climate: warning when heating on and living room door open"
   trigger:
     platform: state
-    entity_id: binary_sensor.openclose_living_room
+    entity_id: binary_sensor.openclose_bedroom
     to: "on"
     for: "00:05:00"
   condition: "{{ state_attr('climate.thermostat', 'temperature') >= 18 }}"
@@ -103,7 +103,7 @@
     - repeat:
         while:
           - condition: state
-            entity_id: binary_sensor.openclose_living_room
+            entity_id: binary_sensor.openclose_bedroom
             state: "on"
           - condition: template
             value_template: "{{ repeat.index <= 6 }}"
@@ -114,7 +114,7 @@
               message: "The living room door is open and the heating is on! ⚠️ Warning #{{ repeat.index }}!"
           - delay: "00:05:00"
     - condition: state
-      entity_id: binary_sensor.openclose_living_room
+      entity_id: binary_sensor.openclose_bedroom
       state: "on"
     - service: notify.all
       data:
