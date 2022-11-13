@@ -36,7 +36,7 @@ start_spotify:
   fields:
     source:
       description: The name of the speaker as it appears in Spotify
-      example: Sonos One
+      example: KEF LS50
     playlist:
       description: The playlist URI from Spotify
       example: 6rPTm9dYftKcFAfwyRqmDZ
@@ -68,7 +68,7 @@ start_spotify_playlist_of_nearest_person:
   fields:
     source:
       description: The name of the speaker as it appears in Spotify
-      example: Sonos One
+      example: KEF LS50
     entity_id:
       description: entity_id of the speaker
       example: media_player.kef_ls50

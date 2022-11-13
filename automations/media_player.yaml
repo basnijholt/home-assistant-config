@@ -134,6 +134,6 @@
     for: "02:00:00"
   action:
     - service: media_player.turn_off
-      entity_id: media_player.living_room_xbox
+      entity_id: media_player.xbox
     - service: media_player.turn_off
       entity_id: media_player.tv

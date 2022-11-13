@@ -263,6 +263,10 @@
               flash: "short"
           - service: script.turn_off_everything_non_automatic
           - service: script.set_low_temperature
+          - if: "{{ is_state_attr('media_player.spotify', 'source', 'KEF LS50') and is_state('media_player.spotify', 'playing') }}"
+            then:
+              - service: media_player.media_pause
+                entity_id: media_player.spotify
 
       # Arriving: turn on music and cozy lights
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
