@@ -46,7 +46,7 @@
       # Shuffle Spotify song by shaking cube
       - conditions:
           - "{{ event == 7007 }}"
-          - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
+          - "{{ is_state_attr('media_player.spotify', 'source', 'KEF LS50') }}"
         sequence:
           - service: media_player.shuffle_set
             entity_id: media_player.spotify
@@ -58,7 +58,7 @@
       # Pause and play Spotify song by tapping cube on side 1
       - conditions:
           - "{{ event in (1001, 2002, 3003, 4004, 5005, 6006) }}"
-          - "{{ is_state_attr('media_player.spotify', 'source', 'LS50 Wireless') }}"
+          - "{{ is_state_attr('media_player.spotify', 'source', 'KEF LS50') }}"
         sequence:
           service: media_player.media_play_pause
           entity_id: media_player.spotify
@@ -68,7 +68,7 @@
         sequence:
           service: script.start_spotify_playlist_of_nearest_person
           data:
-            source: LS50 Wireless
+            source: KEF LS50
             entity_id: media_player.kef_ls50
 
 - alias: "Cube: rotate the cube"

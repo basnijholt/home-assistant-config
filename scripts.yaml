@@ -16,21 +16,15 @@ start_speakers:
       example: "0.3"
     source:
       description: Which source to use on the speakers
-      example: Wifi
+      example: Spotify
     entity_id:
       description: entity_id of the speaker
       example: media_player.kef_ls50
   sequence:
-    - service: media_player.turn_on
-      data:
-        entity_id: "{{ entity_id }}"
     - service: media_player.select_source
       data:
         entity_id: "{{ entity_id }}"
         source: "{{ source }}"
-    - wait_template: '{{ is_state("media_player.kef_ls50", "on") }}'
-      timeout: 00:01:00
-      continue_on_timeout: false
     - service: media_player.volume_set
       data:
         entity_id: "{{ entity_id }}"

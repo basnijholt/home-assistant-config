@@ -86,7 +86,7 @@
     platform: event
     event_type: deconz_event
     event_data:
-      id: smart_switch_downstairs
+      id: smart_switch_door
       event: 1002  # single click
   action:
     - wait_for_trigger:  # when the door closes, turn off everything

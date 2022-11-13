@@ -231,41 +231,27 @@
       id: smart_switch_bathroom
   action:
     choose:
-      # Increase brightness
+      # Toggle lights
       - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
-          service: script.increase_brightness
-          data:
-            group: light.bathroom_ceiling
+          service: light.toggle
+          entity_id: light.bathroom_lights
 
-      # Next color
+      # Flash all lights
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
-          - service: input_select.select_next
-            entity_id: input_select.bathroom_color
           - service: light.turn_on
-            entity_id: light.bathroom_ceiling
             data:
-              color_name: >
-                {{ states("input_select.bathroom_color") }}
+              entity_id: light.living_room_lights
+              flash: "short"
 
-      # Turn off everything in the bathroom
-      - conditions:
-          - "{{ trigger.event.data.event == 1007 }}" # Shake button
-          - condition: state
-            entity_id: light.bathroom_ceiling
-            state: "on"
-        sequence:
-          service: light.turn_off
-          entity_id: light.bathroom_ceiling
-
-- alias: "Control switches: downstairs Aqara Wireless Mini Switch"
+- alias: "Control switches: door Aqara Wireless Mini Switch"
   mode: parallel
   trigger:
     platform: event
     event_type: deconz_event
     event_data:
-      id: smart_switch_downstairs
+      id: smart_switch_door
   action:
     choose:
       # Leaving: turn off everything
@@ -273,8 +259,8 @@
         sequence:
           - service: light.turn_on
             data:
+              entity_id: light.living_room_lights
               flash: "short"
-              entity_id: light.stairs_down
           - service: script.turn_off_everything_non_automatic
           - service: script.set_low_temperature
 
@@ -284,13 +270,13 @@
           - service: light.turn_on
             data:
               flash: "short"
-              entity_id: light.stairs_up
+              entity_id: light.ceiling_kitchen
           - service: script.turn_on
             data:
               entity_id: light.living_room_lights
           - service: script.arriving
           - service: script.start_spotify
             data:
-              source: LS50 Wireless
+              source: KEF LS50
               playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
               volume: 0.25

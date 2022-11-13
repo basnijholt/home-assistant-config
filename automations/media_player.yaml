@@ -31,7 +31,7 @@
       {{ not (is_state_attr('media_player.kef_ls50', 'source', 'Usb')
               and is_state_attr('media_player.tv', 'source', 'HDMI 3')) }}
     - >
-      {{ not (is_state_attr('media_player.spotify', 'source', 'LS50 Wireless')
+      {{ not (is_state_attr('media_player.spotify', 'source', 'KEF LS50')
               and is_state('media_player.spotify', 'playing')) }}
   action:
     service: media_player.select_source

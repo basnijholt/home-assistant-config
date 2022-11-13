@@ -20,7 +20,7 @@
       entity_id: input_boolean.start_the_music
     - service: script.start_spotify_playlist_of_nearest_person
       data:
-        source: LS50 Wireless
+        source: KEF LS50
         entity_id: media_player.kef_ls50
 
 - alias: "Music: switch music from iPhone to speakers if coming home"
@@ -52,4 +52,4 @@
     - service: media_player.select_source
       entity_id: media_player.spotify
       data:
-        source: LS50 Wireless
+        source: KEF LS50

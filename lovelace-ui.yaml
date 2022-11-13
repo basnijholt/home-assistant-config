@@ -1387,7 +1387,7 @@ views:
     - entity: sensor.smart_switch_bedroom_bas_battery_level
     - entity: sensor.smart_switch_bedroom_marcella_battery_level
     - entity: sensor.smart_switch_doorbell_battery_level
-    - entity: sensor.smart_switch_downstairs_battery_level
+    - entity: sensor.smart_switch_door_battery_level
     - entity: sensor.smart_switch_living_room_battery_level
     show_icon: true
     show_name: false

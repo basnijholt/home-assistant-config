@@ -1,7 +1,7 @@
 # Home automation guide for my love <3
 
 ## Manual control
-* Button downstairs next to the door
+* Button on the door
     * Single click: turn off everything in the house because you are leaving and sets a low temperature
     * Double click: turn on cozy lights in the living room and your favourite playlist will start playing
 * Button outside on the door (doorbell)
