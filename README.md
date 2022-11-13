@@ -673,11 +673,8 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 ### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/1fe9f7e63b9dd8338451a9eab21c45a4e8a3d922/automations/control_switches.yaml#L225)
 
-  *which uses:*
-  - [input_select.bathroom_color](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L37)
-  - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/56c4d1f76291428671ba3eac168072124f481d07/scripts.yaml#L212)
 
-### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/1fe9f7e63b9dd8338451a9eab21c45a4e8a3d922/automations/control_switches.yaml#L262)
+### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/1fe9f7e63b9dd8338451a9eab21c45a4e8a3d922/automations/control_switches.yaml#L248)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/56c4d1f76291428671ba3eac168072124f481d07/scripts.yaml#L315)
