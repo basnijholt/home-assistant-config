@@ -457,22 +457,22 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 <!-- start-addons -->
 - [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.10.0 by @hassio-addons
-- [Glances](https://github.com/hassio-addons/addon-glances) version 0.16.0 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 8.0.2 by @hassio-addons
+- [Glances](https://github.com/hassio-addons/addon-glances) version 0.17.0 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 8.1.0 by @hassio-addons
 - [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.5.0 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.14.0 by @hassio-addons
 - [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 12.1.2 by @hassio-addons
-- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.4.0 by @hassio-addons
+- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.4.1 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.18.0 by @hassio-addons
-- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.8.1 by @hassio-addons
-- [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.4.1 by @home-assistant
+- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.8.2 by @hassio-addons
+- [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.4.2 by @home-assistant
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.12.7 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.5.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 6.1.3 by @home-assistant
 - [Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba) version 10.0.0 by @home-assistant
 - [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.17.0 by @home-assistant
 - [Rhasspy Assistant](https://github.com/rhasspy/hassio-addons) version 2.5.11 by @rhasspy
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.108.4 by @sabeechen
+- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.109.1 by @sabeechen
 <!-- end-addons -->
 
 
