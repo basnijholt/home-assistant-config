@@ -972,10 +972,10 @@ to "Opt".
   *which uses:*
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/61caf59f20f3cc4715729d86b822f9c97edfa946/includes/binary_sensors.yaml#L144)
 
-### [Office door has opened](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/security.yaml#L87)
+### [Bathroom door has opened](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/security.yaml#L87)
 
   *which uses:*
-  - [input_boolean.office_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L25)
+  - [input_boolean.bathroom_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/052f3d9f773716db137482cc28aab5300cb02095/includes/input_booleans.yaml#L25)
 
 [^ toc](#automations---table-of-content)
 
