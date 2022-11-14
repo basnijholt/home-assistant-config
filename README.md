@@ -465,7 +465,6 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.4.1 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.18.0 by @hassio-addons
 - [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.8.2 by @hassio-addons
-- [File editor](https://github.com/home-assistant/hassio-addons/tree/master/configurator) version 5.4.2 by @home-assistant
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.12.7 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.5.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 6.1.3 by @home-assistant
