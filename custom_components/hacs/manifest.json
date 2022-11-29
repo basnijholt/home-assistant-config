@@ -19,5 +19,5 @@
     "requirements": [
         "aiogithubapi>=22.2.4"
     ],
-    "version": "1.28.3"
+    "version": "1.28.4"
 }
