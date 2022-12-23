@@ -6,7 +6,9 @@ from aiogithubapi.common.const import ACCEPT_HEADERS
 NAME_SHORT = "HACS"
 DOMAIN = "hacs"
 CLIENT_ID = "395a8e669c5de9f7c6e8"
-MINIMUM_HA_VERSION = "2022.10.0"
+MINIMUM_HA_VERSION = "2022.11.0"
+
+URL_BASE = "/hacsfiles"
 
 TV = TypeVar("TV")
 
