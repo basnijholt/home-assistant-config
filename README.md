@@ -456,22 +456,24 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 I run a [Supervised install](https://www.home-assistant.io/getting-started/) with the following add-ons:
 
 <!-- start-addons -->
-- [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.10.0 by @hassio-addons
-- [Glances](https://github.com/hassio-addons/addon-glances) version 0.17.0 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 8.1.0 by @hassio-addons
+- [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.11.0 by @hassio-addons
+- [Glances](https://github.com/hassio-addons/addon-glances) version 0.17.2 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 8.2.0 by @hassio-addons
 - [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.5.0 by @hassio-addons
 - [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.14.0 by @hassio-addons
-- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 12.1.2 by @hassio-addons
-- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.4.1 by @hassio-addons
+- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 13.0.3 by @hassio-addons
+- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.5.3 by @hassio-addons
 - [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.18.0 by @hassio-addons
-- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.8.2 by @hassio-addons
-- [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.12.7 by @home-assistant
-- [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.5.1 by @home-assistant
+- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.8.3 by @hassio-addons
+- [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.12.8 by @home-assistant
+- [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.5.2 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 6.1.3 by @home-assistant
 - [Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba) version 10.0.0 by @home-assistant
-- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.17.0 by @home-assistant
+- [VLC](https://github.com/home-assistant/hassio-addons/tree/master/vlc) version 0.1.3 by @home-assistant
+- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.18.0 by @home-assistant
 - [Rhasspy Assistant](https://github.com/rhasspy/hassio-addons) version 2.5.11 by @rhasspy
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.109.1 by @sabeechen
+- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.110.1 by @sabeechen
+- [Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt) version 1.30.2-1 by @zigbee2mqtt
 <!-- end-addons -->
 
 
