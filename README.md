@@ -652,7 +652,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/scripts.yaml#L272)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/scripts.yaml#L202)
 
-### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L84)
+### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L95)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L25)
@@ -660,7 +660,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/scripts.yaml#L216)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/scripts.yaml#L272)
 
-### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L134)
+### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L145)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L31)
@@ -670,10 +670,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/scripts.yaml#L254)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/1fe9f7e63b9dd8338451a9eab21c45a4e8a3d922/includes/sensors.yaml#L241)
 
-### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L220)
+### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L231)
 
 
-### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L243)
+### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/control_switches.yaml#L254)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/scripts.yaml#L319)
