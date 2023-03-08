@@ -821,7 +821,7 @@ class HacsBase:
             return
 
         self.log.debug("Checking if ratelimit has lifted")
-        can_update = await self.async_can_update()
+        can_update = True # await self.async_can_update()
         self.log.debug("Ratelimit indicate we can update %s", can_update)
         if can_update > 0:
             self.enable_hacs()
@@ -843,7 +843,7 @@ class HacsBase:
             if not self.queue.has_pending_tasks:
                 await self.data.async_write()
                 return
-            can_update = await self.async_can_update()
+            can_update = True # await self.async_can_update()
             self.log.debug(
                 "Can update %s repositories, " "items in queue %s",
                 can_update,
