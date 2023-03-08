@@ -7,6 +7,7 @@ from .base import HacsBase
 from .const import DOMAIN
 
 GITHUB_STATUS = "https://www.githubstatus.com/"
+CLOUDFLARE_STATUS = "https://www.cloudflarestatus.com/"
 
 
 @callback
@@ -38,5 +39,10 @@ async def system_health_info(hass):
 
     if hacs.system.disabled:
         data["Disabled"] = hacs.system.disabled_reason
+
+    if hacs.configuration.experimental:
+        data["HACS Data"] = system_health.async_check_can_reach_url(
+            hass, "https://data-v2.hacs.xyz/data.json", CLOUDFLARE_STATUS
+        )
 
     return data

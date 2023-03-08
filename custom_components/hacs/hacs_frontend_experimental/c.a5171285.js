@@ -1,0 +1,1 @@
+import{a5 as a}from"./main-aeda8d41.js";import{T as t}from"./c.2610e8cd.js";const e=a((a=>{if(a.time_format===t.language||a.time_format===t.system){const e=a.time_format===t.language?a.language:void 0,m=(new Date).toLocaleString(e);return m.includes("AM")||m.includes("PM")}return a.time_format===t.am_pm}));export{e as u};
