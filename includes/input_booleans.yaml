@@ -23,7 +23,10 @@ guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
 bathroom_door_open_warning:
-  name: Office door is open warning
+  name: Bathroom door is open warning
+  icon: mdi:door-open
+front_door_open_warning:
+  name: Front door opened
   icon: mdi:door-open
 bedroom_lights_automatically_turned_on:
   name: Will automatically turn off
