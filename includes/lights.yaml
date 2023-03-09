@@ -11,66 +11,46 @@
 - platform: group
   name: Living room lights
   entities:
-    - light.sphere
-    - light.corner_living_room
+    - light.sphere_tv
+    - light.sphere_2
+    - light.living_room_corner
     - light.tv_led
     - light.cabinet_led
+    - light.mid_room
+    - light.shelve
 
 - platform: group
   name: Bedroom lights
   entities:
     - light.philips_go
-    - light.ceiling_bedroom
     - light.bed_led
     - light.bamboo
-    # - light.lampan
-    # - light.bed_reading_up
-    # - light.bed_reading_down
-
-- platform: group
-  name: Bedroom lights Hue
-  entities:
-    - light.philips_go
-    - light.bed_led
-    - light.bamboo
-    # - light.lampan
-    # - light.bed_reading_up
-    # - light.bed_reading_down
 
 - platform: group
   name: Automatic lights
   entities:
-    - light.ceiling_kitchen
-    - light.bathroom_ceiling
-    - light.bathroom_mirror
-    # - light.kitchen_counter
-    # - light.hall_lights
-
-- platform: group
-  name: Kitchen lights
-  entities:
-    - light.ceiling_kitchen
-    # - light.kitchen_counter
-
-- platform: switch
-  name: Kitchen counter
-  entity_id: switch.kitchen_counter
-
-- platform: group
-  name: Bathroom lights
-  entities:
-    - light.bathroom_ceiling
-    - light.bathroom_mirror
+    - light.utility_room
+    - light.garage_outside
+    - light.guest_room
+    - light.baby_sphere
 
 # - platform: group
-#   name: Hall lights
+#   name: Kitchen lights
 #   entities:
-#     - light.hall_1
-#     - light.hall_2
-#     - light.hall_3
+#     - light.ceiling_kitchen
 
-- platform: group
-  name: Bed reading
-  entities:
-    - light.bed_reading_up
-    - light.bed_reading_down
+- platform: switch
+  name: Baby sphere
+  entity_id: switch.baby_sphere
+
+# - platform: group
+#   name: Bathroom lights
+#   entities:
+#     - light.bathroom_ceiling
+#     - light.bathroom_mirror
+
+# - platform: group
+#   name: Bed reading
+#   entities:
+#     - light.bed_reading_up
+#     - light.bed_reading_down
