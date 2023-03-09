@@ -12,10 +12,10 @@
   switches:
     vacuum_mode:
       value_template: >
-        {{ is_state("vacuum.robot_vacuum", "cleaning")}}
+        {{ is_state("vacuum.valetudo_vacuum", "cleaning")}}
       turn_on:
         service: vacuum.start
-        entity_id: vacuum.robot_vacuum
+        entity_id: vacuum.valetudo_vacuum
       turn_off:
         service: vacuum.return_to_base
-        entity_id: vacuum.robot_vacuum
+        entity_id: vacuum.valetudo_vacuum

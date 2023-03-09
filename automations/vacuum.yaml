@@ -11,7 +11,7 @@
 - alias: "Vacuum: started cleaning"
   trigger:
     platform: state
-    entity_id: vacuum.robot_vacuum
+    entity_id: vacuum.valetudo_vacuum
     from: docked
     to: cleaning
   action:
@@ -23,7 +23,7 @@
 - alias: "Vacuum: stopped cleaning"
   trigger:
     platform: state
-    entity_id: vacuum.robot_vacuum
+    entity_id: vacuum.valetudo_vacuum
     from: returning
     to: docked
   action:
@@ -77,7 +77,7 @@
       state: "off"
   action:
     service: vacuum.start
-    entity_id: vacuum.robot_vacuum
+    entity_id: vacuum.valetudo_vacuum
 
 - alias: "Vacuum: reset cleaned today"
   initial_state: "on"
@@ -95,6 +95,6 @@
     to: docked
   action:
     service: vacuum.set_fan_speed
-    entity_id: vacuum.robot_vacuum
+    entity_id: vacuum.valetudo_vacuum
     data:
       fan_speed: Standard

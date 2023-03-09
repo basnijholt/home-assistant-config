@@ -308,7 +308,7 @@ views:
     type: entities
   - cards:
     - entities:
-      - entity: vacuum.robot_vacuum
+      - entity: vacuum.valetudo_vacuum
         name: Vacuum cleaner
         primary:
           entity: binary_sensor.vacuum_day
@@ -343,7 +343,7 @@ views:
           vacuum:
             x: 22813
             y: 31276
-      entity: vacuum.robot_vacuum
+      entity: vacuum.valetudo_vacuum
       map_modes:
       - template: vacuum_clean_zone
       - predefined_selections:
