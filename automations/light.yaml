@@ -96,6 +96,13 @@
     service: light.turn_off
     entity_id: light.kitchen_counter
 
+- alias: "Light: reboot kitchen ceiling Shelly"
+  trigger:
+    platform: time
+    at: "05:00:00"
+  action:
+    service: shell_command.reboot_kitchen_ceiling
+
 #  ____        _   _
 # | __ )  __ _| |_| |__  _ __ ___   ___  _ __ ___
 # |  _ \ / _` | __| '_ \| '__/ _ \ / _ \| '_ ` _ \
@@ -185,7 +192,7 @@
 - alias: "Light: automatically turn on the bedroom"
   trigger:
     platform: state
-    entity_id: binary_sensor.activity_in_bedroom
+    entity_id: binary_sensor.activity_in_master_bedroom
     to: "on"
   variables:
     off_lights: >
@@ -216,7 +223,7 @@
   initial_state: "on"
   trigger:
     platform: state
-    entity_id: binary_sensor.activity_in_bedroom
+    entity_id: binary_sensor.activity_in_master_bedroom
     to: "off"
     for: "00:08:00"
   condition:
@@ -272,7 +279,7 @@
 - alias: "Light: turn off bedroom after 2 hours of inactivity"
   trigger:
     platform: state
-    entity_id: binary_sensor.activity_in_bedroom
+    entity_id: binary_sensor.activity_in_master_bedroom
     from: "on"
     to: "off"
     for: "02:00:00"
@@ -282,43 +289,119 @@
     data:
       entity_id: light.bedroom_lights
 
+- alias: "Light: reboot bedroom ceiling Shelly"
+  trigger:
+    platform: time
+    at: "13:00:00"
+  action:
+    service: shell_command.reboot_bedroom_ceiling
+
+# Utility room / garage outside
+# TODO: ascii art
+
+- alias: "Light: turn on utility room / garage outside"
+  trigger:
+    - platform: state
+      to: "on"
+      entity_id: binary_sensor.activity_in_utility_room
+    - platform: state
+      to: "on"
+      entity_id: binary_sensor.activity_outside_garage
+  action:
+    service: light.turn_on
+    data:
+      entity_id:
+        - light.utility_room
+        - light.garage_outside
+      transition: 1
+
+- alias: "Light: turn off utility room / garage outside"
+  trigger:
+    - platform: state
+      to: "off"
+      entity_id: binary_sensor.activity_in_utility_room
+    - platform: state
+      to: "off"
+      entity_id: binary_sensor.activity_outside_garage
+  action:
+    - if: "{{ is_state('binary_sensor.activity_in_utility_room', 'off') }}"
+      then:
+        - service: light.turn_off
+          entity_id: light.utility_room
+    - if: "{{ is_state('binary_sensor.activity_outside_garage', 'off') }}"
+      then:
+        - service: light.turn_off
+          entity_id: light.garage_outside
+
+# Guest room
+# TODO: ascii art
+
+- alias: "Light: toggle guest room"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_guest_room
+  condition:
+    - condition: state
+      entity_id: input_select.sleep_mode
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+  action:
+    service: light.turn_{{ trigger.to_state.state }}
+    data:
+      entity_id: light.guest_room
+      transition: 1
+
+# Baby room
+# TODO: ascii art
+
+- alias: "Light: toggle baby room"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_baby_room
+  action:
+    service: light.turn_{{ trigger.to_state.state }}
+    data:
+      entity_id: light.baby_sphere
+
 #  _____      _                    _               _
 # | ____|_  _| |_ _ __ __ _    ___| |__   ___  ___| | _____
 # |  _| \ \/ / __| '__/ _` |  / __| '_ \ / _ \/ __| |/ / __|
 # | |___ >  <| |_| | | (_| | | (__| | | |  __/ (__|   <\__ \
 # |_____/_/\_\\__|_|  \__,_|  \___|_| |_|\___|\___|_|\_\___/
 
-- alias: "Light: turn off bathroom (extra check)"
+- alias: "Light: turn off guest room (extra check)"
   description: In case the other automation failed
   trigger:
     platform: time_pattern
     minutes: "/10"
   condition:
     - condition: state
-      entity_id: binary_sensor.activity_in_bathroom
+      entity_id: binary_sensor.activity_in_guest_room
       state: "off"
     - condition: state
-      entity_id: light.bathroom_lights
+      entity_id: light.guest_room
       state: "on"
   action:
     service: light.turn_off
-    entity_id: light.bathroom_lights
+    entity_id: light.guest_room
 
-- alias: "Light: turn off kitchen (extra check)"
+- alias: "Light: turn off baby room (extra check)"
   description: In case the other automation failed
   trigger:
     platform: time_pattern
     minutes: "/10"
   condition:
     - condition: state
-      entity_id: binary_sensor.activity_in_kitchen
+      entity_id: binary_sensor.activity_in_baby_room
       state: "off"
     - condition: state
-      entity_id: light.kitchen_lights
+      entity_id: light.baby_sphere
       state: "on"
   action:
     service: light.turn_off
-    entity_id: light.kitchen_lights
+    entity_id: light.baby_sphere
 
 - alias: "Light: turn off hall (extra check)"
   description: In case the other automation failed
@@ -346,7 +429,7 @@
     minutes: "/30"
   condition:
     - condition: state
-      entity_id: binary_sensor.activity_in_bedroom
+      entity_id: binary_sensor.activity_in_master_bedroom
       state: "off"
     - condition: state
       entity_id: input_boolean.automatic_bedroom_lights
@@ -359,3 +442,35 @@
       entity_id: light.bedroom_lights
     - service: light.turn_off
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
+
+- alias: "Light: turn off utility room (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/10"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.activity_in_utility_room
+      state: "off"
+    - condition: state
+      entity_id: light.utility_room
+      state: "on"
+  action:
+    service: light.turn_off
+    entity_id: light.utility_room
+
+- alias: "Light: turn off outside garage (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/10"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.activity_outside_garage
+      state: "off"
+    - condition: state
+      entity_id: light.garage_outside
+      state: "on"
+  action:
+    service: light.turn_off
+    entity_id: light.garage_outside
