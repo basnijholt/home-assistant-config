@@ -11,3 +11,6 @@
 convert_lovelace: "python /config/utils/json2yaml.py /config/.storage/lovelace /config/lovelace-ui.yaml"
 update_dns: '/bin/bash /config/utils/update_dns.sh "{{ api }}" "{{ domain }}" "{{ subdomain }}"'
 chores: "/bin/bash /config/chores"
+reboot_kitchen_ceiling: "curl http://192.168.1.7/reboot"
+reboot_bedroom_ceiling: "curl http://192.168.1.123/reboot"
+
