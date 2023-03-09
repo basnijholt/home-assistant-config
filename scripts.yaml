@@ -92,25 +92,19 @@ cozy_lights_living_room:
     - data:
         entity_id: light.cabinet_led
         hs_color:
-          - 336.293
-          - 80.392
+          - 268.267
+          - 88.235
       service: light.turn_on
     - data:
-        entity_id: light.sphere
+        entity_id: light.sphere_tv
         hs_color:
           - 299.147
           - 82.745
       service: light.turn_on
     - data:
-        entity_id: light.corner_living_room
+        entity_id: light.sphere_2
         hs_color:
           - 26.667
-          - 88.235
-      service: light.turn_on
-    - data:
-        entity_id: light.cabinet_led
-        hs_color:
-          - 268.267
           - 88.235
       service: light.turn_on
     - data:
@@ -118,6 +112,22 @@ cozy_lights_living_room:
         hs_color:
           - 26.725
           - 89.804
+      service: light.turn_on
+    - data:
+        entity_id: light.mid_room
+        hs_color:
+          - 336.293
+          - 80.392
+      service: light.turn_on
+    - data:
+        entity_id: light.living_room_corner
+        hs_color:
+          - 224.64
+          - 98.039
+      service: light.turn_on
+    - data:
+        entity_id: light.shelve
+        kelvin: 2202
       service: light.turn_on
     - service: input_select.select_option
       entity_id: input_select.last_script_living_room
@@ -140,30 +150,30 @@ cozy_lights_bedroom:
           - 0
           - 100
       service: light.turn_on
-    - data:
-        entity_id: light.bed_reading_up
-        hs_color:
-          - 26.725
-          - 89.804
-      service: light.turn_on
-    - data:
-        entity_id: light.bed_reading_down
-        hs_color:
-          - 26.725
-          - 89.804
-      service: light.turn_on
-    - data:
-        entity_id: light.lampan
-        hs_color:
-          - 269.86
-          - 84.314
-      service: light.turn_on
-    - data:
-        entity_id: light.ceiling_bedroom
-        hs_color:
-          - 22
-          - 100
-      service: light.turn_on
+    # - data:
+    #     entity_id: light.bed_reading_up
+    #     hs_color:
+    #       - 26.725
+    #       - 89.804
+    #   service: light.turn_on
+    # - data:
+    #     entity_id: light.bed_reading_down
+    #     hs_color:
+    #       - 26.725
+    #       - 89.804
+    #   service: light.turn_on
+    # - data:
+    #     entity_id: light.lampan
+    #     hs_color:
+    #       - 269.86
+    #       - 84.314
+    #   service: light.turn_on
+    # - data:
+    #     entity_id: light.ceiling_bedroom
+    #     hs_color:
+    #       - 22
+    #       - 100
+    #   service: light.turn_on
     - data:
         entity_id: light.bed_led
         hs_color:
