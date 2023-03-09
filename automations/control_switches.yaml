@@ -12,14 +12,14 @@
 - alias: "Control switches: living room Philips Hue dimmer switch"
   mode: parallel
   trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: dimmer_switch_living_room
+    platform: mqtt
+    topic: "zigbee2mqtt/Dimmer Switch (Living room)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
   action:
     choose:
       # Next color
-      - conditions: "{{ trigger.event.data.event == 4002 }}" # Lowest button
+      - conditions: "{{ action == 'off_press' }}" # Lowest button
         sequence:
           service: script.next_colors
           data:
@@ -27,7 +27,7 @@
 
       # Bright lights
       - conditions:
-          - "{{ trigger.event.data.event == 2000 }}" # Second from highest button
+          - "{{ action == 'up_press' }}" # Second from highest button
           - condition: state
             entity_id: light.living_room_lights
             state: "on"
@@ -39,23 +39,50 @@
               brightness: "255"
 
       # Increase brightness
-      - conditions: "{{ trigger.event.data.event == 1002 }}" # Top button
+      - conditions: "{{ action == 'on_press' }}" # Top button
         sequence:
           service: script.increase_brightness
           data:
             group: light.living_room_lights
 
+      # Turn on
+      - conditions:
+          - "{{ action == 'up_press' }}" # Second from highest button
+          - condition: state
+            entity_id: light.living_room_lights
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            entity_id: light.living_room_lights
+
+      # Turn off
+      - conditions:
+          - "{{ action == 'down_press' }}" # Second from lowest button
+          - condition: state
+            entity_id: light.living_room_lights
+            state: "on"
+        sequence:
+          - service: light.turn_off
+            entity_id: light.living_room_lights
+
+      # Reset adaptive_lighting
+      - conditions:
+          - "{{ action == 'up_hold' }}" # Second from highest button
+          - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
+        sequence:
+          - service: script.reset_adaptive_lighting
+
 - alias: "Control switches: bedroom Philips Hue dimmer switch"
   mode: parallel
   trigger:
-    platform: event
-    event_type: deconz_event
-    event_data:
-      id: dimmer_switch_bedroom
+    platform: mqtt
+    topic: "zigbee2mqtt/Dimmer Switch (Bedroom)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
   action:
     choose:
       # Next color
-      - conditions: "{{ trigger.event.data.event == 4002 }}" # Lowest button
+      - conditions: "{{ action == 'off_press' }}" # Lowest button
         sequence:
           service: script.next_colors
           data:
@@ -63,7 +90,7 @@
 
       # Bright lights
       - conditions:
-          - "{{ trigger.event.data.event == 2000 }}" # Second from highest button
+          - "{{ action == 'up_press' }}" # Second from highest button
           - condition: state
             entity_id: light.bedroom_lights
             state: "on"
@@ -75,11 +102,38 @@
               brightness: "255"
 
       # Increase brightness
-      - conditions: "{{ trigger.event.data.event == 1002 }}" # Top button
+      - conditions: "{{ action == 'on_press' }}" # Top button
         sequence:
           service: script.increase_brightness
           data:
             group: light.bedroom_lights
+
+      # Turn on
+      - conditions:
+          - "{{ action == 'up_press' }}" # Second from highest button
+          - condition: state
+            entity_id: light.bedroom_lights
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            entity_id: light.bedroom_lights
+
+      # Turn off
+      - conditions:
+          - "{{ action == 'down_press' }}" # Second from lowest button
+          - condition: state
+            entity_id: light.bedroom_lights
+            state: "on"
+        sequence:
+          - service: light.turn_off
+            entity_id: light.bedroom_lights
+
+      # Reset adaptive_lighting
+      - conditions:
+          - "{{ action == 'up_hold' }}" # Second from highest button
+          - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
+        sequence:
+          - service: script.reset_adaptive_lighting
 
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
@@ -156,12 +210,7 @@
         sequence:
           service: script.increase_brightness
           data:
-            group: >
-              {% if states('input_select.sleep_mode') == "off" %}
-              light.bedroom_lights
-              {% else %}
-              light.bedroom_lights_hue
-              {% endif %}
+            group: light.bedroom_lights
 
       # Turn off lights in and next to bedroom
       - conditions: "{{ trigger.event.data.event == 1001 }}" # Long click
