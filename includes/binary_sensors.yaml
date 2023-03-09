@@ -24,9 +24,10 @@
       value_template: >
         {{ is_state("binary_sensor.activity_in_kitchen", "on")
             or is_state("binary_sensor.activity_in_living_room", "on")
-            or is_state("binary_sensor.activity_in_hall", "on")
             or is_state("binary_sensor.activity_in_bathroom", "on")
-            or is_state("binary_sensor.activity_in_bedroom", "on") }}
+            or is_state("binary_sensor.activity_in_master_bedroom", "on")
+            or is_state("binary_sensor.activity_in_guest_room", "on")
+            or is_state("binary_sensor.activity_in_baby_room", "on") }}
 
     motion_detected_in_last_hour:
       friendly_name: Any motion detected in last hour
@@ -51,15 +52,22 @@
     activity_in_living_room:
       friendly_name: Activity in the living room
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_living_room_klok", "on")
+        {{ is_state("binary_sensor.motion_sensor_fireplace_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_dinner_area_occupancy", "on")
             or is_state("media_player.tv", "on")
-            or is_state("media_player.kef_ls50", "on") }}
+            or is_state("media_player.xbox", "on") }}
       delay_off: "00:20:00"
 
     activity_in_kitchen:
       friendly_name: Activity in the kitchen
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_kitchen", "on") }}
+        {{ is_state("binary_sensor.motion_sensor_kitchen_occupancy", "on") }}
+      delay_off: "00:01:00"
+
+    activity_in_utility_room:
+      friendly_name: Activity in the utility room
+      value_template: >
+        {{ is_state("binary_sensor.motion_sensor_utility_room_occupancy", "on") }}
       delay_off: "00:01:00"
 
     activity_in_hall:
@@ -69,23 +77,40 @@
             or is_state("binary_sensor.openclose_front_door", "on") }}
       delay_off: "00:01:00"
 
-    activity_in_bedroom:
+    activity_in_master_bedroom:
       friendly_name: Activity in the bedroom
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_bedroom_door", "on")
-            or is_state("binary_sensor.motion_sensor_bedroom_kabinet", "on")
-            or is_state("binary_sensor.motion_sensor_bedroom_desk", "on")
+        {{ is_state("binary_sensor.motion_sensor_master_bedroom_occupancy", "on")
             or is_state("binary_sensor.vibration", "on") }}
+      delay_off: "00:01:00"
+
+    activity_in_baby_room:
+      friendly_name: Activity in the baby room
+      value_template: >
+        {{ is_state("binary_sensor.motion_sensor_baby_room_occupancy", "on") }}
+      delay_off: "00:01:00"
+
+    activity_in_guest_room:
+      friendly_name: Activity in the guest room
+      value_template: >
+        {{ is_state("binary_sensor.motion_sensor_guest_room_occupancy", "on")
+            or is_state("binary_sensor.vibration", "on") }}
+      delay_off: "00:01:00"
+
+    activity_outside_garage:
+      friendly_name: Activity outside garage
+      value_template: >
+        {{ is_state("binary_sensor.motion_sensor_outside_garage_occupancy", "on") }}
       delay_off: "00:01:00"
 
     activity_outside_bedroom:
       friendly_name: Activity outside the bedroom
       value_template: >
-        {{ is_state("binary_sensor.activity_in_hall", "on")
-            or is_state("binary_sensor.activity_in_living_room", "on")
-            or is_state("binary_sensor.activity_in_bathroom", "on")
-            or is_state("binary_sensor.activity_in_kitchen", "on")
-            or is_state("media_player.kef_ls50", "on") }}
+        {{ is_state("binary_sensor.activity_in_living_room", "on")
+            or is_state("binary_sensor.activity_in_utility_room", "on")
+            or is_state("binary_sensor.activity_in_master_bedroom", "on")
+            or is_state("binary_sensor.activity_in_baby_room", "on")
+            or is_state("binary_sensor.activity_in_guest_room", "on") }}
       delay_off: "00:01:00"
 
     washing_machine:
