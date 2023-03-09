@@ -19,3 +19,25 @@
     data:
       title: "Arriving"
       message: "Marcella arrived at Rotterdam Centraal"
+
+
+- alias: "Notifications: front door has opened"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.openclose_front_door
+    to: "on"
+  condition:
+    condition: state
+    entity_id: input_boolean.front_door_open_warning
+    state: "on"
+  action:
+    - service: notify.mobile_app_basnijholt_iphone_13
+      data:
+        title: Security
+        message: Front door opened!
+    - service: notify.iphone_bas
+      data:
+        title: Security
+        message: Front door opened!
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.front_door_open_warning
