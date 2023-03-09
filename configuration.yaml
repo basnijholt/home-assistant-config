@@ -51,7 +51,7 @@ media_player: !include includes/media_players.yaml
 homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml
 plant: !include includes/plant.yaml
-climate: !include  includes/climate.yaml
+mqtt: !include includes/mqtt.yaml
 influxdb: !include includes/influxdb.yaml
 intent:
 intent_script: !include includes/intent_script.yaml
