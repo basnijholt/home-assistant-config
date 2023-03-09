@@ -57,7 +57,6 @@ intent:
 intent_script: !include includes/intent_script.yaml
 # image_processing: !include includes/image_processing.yaml
 panel_iframe: !include includes/panel_iframe.yaml
-sonoff: !include includes/sonoff.yaml
 
 # Custom components
 pyscript: !include includes/pyscript.yaml
