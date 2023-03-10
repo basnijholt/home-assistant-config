@@ -8,7 +8,7 @@
 #                   |_|                  |_____|   |___/                   |___/
 #
 #- from github.com/basnijholt/home-assistant-config
-- name: living room
+- name: Living room
   lights:
     - light.living_room_lights
   min_brightness: 70
@@ -16,65 +16,29 @@
   detect_non_ha_changes: true
   interval: 30
 
-- name: default
-  lights:
-    - light.philips_go
-    - light.bamboo
-    - light.sphere_tv
-    - light.sphere_2
-    - light.ceiling_bedroom
-    - light.bed_reading
-    - light.bathroom_ceiling
-    - light.toilet
-    - light.ceiling_kitchen
-    - light.hall_lights
-  min_brightness: 70
-  prefer_rgb_color: true
-  detect_non_ha_changes: false
-  sleep_rgb_or_color_temp: "rgb_color"
-  sleep_rgb_color: [255, 128, 0]
-  interval: 30
-
-- name: default bed
-  lights:
-    - light.bed_led
-  sleep_brightness: 20
-  min_brightness: 70
-  prefer_rgb_color: true
-  detect_non_ha_changes: true
-  sleep_rgb_or_color_temp: "rgb_color"
-  sleep_rgb_color: [255, 128, 0]
-  interval: 30
-
-- name: half and dim
+- name: Bedroom
   lights:
     - light.philips_go
     - light.bamboo
   min_brightness: 70
   prefer_rgb_color: true
-  detect_non_ha_changes: false
   sleep_rgb_or_color_temp: "rgb_color"
   sleep_rgb_color: [255, 128, 0]
   interval: 30
 
-- name: half and dim bed
+- name: Bedroom LED
   lights:
     - light.bed_led
   sleep_brightness: 20
   min_brightness: 70
   prefer_rgb_color: true
-  detect_non_ha_changes: false
   sleep_rgb_or_color_temp: "rgb_color"
   sleep_rgb_color: [255, 128, 0]
   interval: 30
 
-- name: half and full
+# Will never put this instance to sleep mode
+- name: Never sleep
   lights:
-    - light.ceiling_kitchen
-    - light.hall_1
-  min_brightness: 70
-  prefer_rgb_color: true
-  detect_non_ha_changes: false
-  sleep_rgb_or_color_temp: "rgb_color"
-  sleep_rgb_color: [255, 128, 0]
-  interval: 30
+    - light.utility_room
+    - light.garage_outside
+  min_brightness: 80

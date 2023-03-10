@@ -523,25 +523,17 @@ reset_adaptive_lighting:
   sequence:
     - service: adaptive_lighting.set_manual_control
       data:
-        entity_id: switch.adaptive_lighting_default
+        entity_id: switch.adaptive_lighting_bedroom
         manual_control: false
     - service: adaptive_lighting.set_manual_control
       data:
-        entity_id: switch.adaptive_lighting_default_bed
-        manual_control: false
-    - service: adaptive_lighting.set_manual_control
-      data:
-        entity_id: switch.adaptive_lighting_half_and_dim
-        manual_control: false
-    - service: adaptive_lighting.set_manual_control
-      data:
-        entity_id: switch.adaptive_lighting_half_and_dim_bed
-        manual_control: false
-    - service: adaptive_lighting.set_manual_control
-      data:
-        entity_id: switch.adaptive_lighting_half_and_full
+        entity_id: switch.adaptive_lighting_bedroom_led
         manual_control: false
     - service: adaptive_lighting.set_manual_control
       data:
         entity_id: switch.adaptive_lighting_living_room
+        manual_control: false
+    - service: adaptive_lighting.set_manual_control
+      data:
+        entity_id: switch.adaptive_lighting_never_sleep
         manual_control: false

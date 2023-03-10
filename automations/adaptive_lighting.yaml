@@ -22,49 +22,29 @@
         sequence:
           - service: switch.turn_off
             entity_id:
-              - switch.adaptive_lighting_half_and_dim
-              - switch.adaptive_lighting_half_and_dim_bed
-              - switch.adaptive_lighting_half_and_full
-              # sleep_modes
-              - switch.adaptive_lighting_sleep_mode_default
-              - switch.adaptive_lighting_sleep_mode_default_bed
+              - switch.adaptive_lighting_sleep_mode_bedroom
+              - switch.adaptive_lighting_sleep_mode_bedroom_led
               - switch.adaptive_lighting_sleep_mode_living_room
-          - service: switch.turn_on
-            entity_id:
-              - switch.adaptive_lighting_default
-              - switch.adaptive_lighting_default_bed
 
       - conditions: "{{ sleep_mode == 'half' }}"
         sequence:
           - service: switch.turn_off
             entity_id:
-              - switch.adaptive_lighting_default
-              - switch.adaptive_lighting_default_bed
-              # sleep_modes
-              - switch.adaptive_lighting_sleep_mode_half_and_full
+              - switch.adaptive_lighting_sleep_mode_living_room
           - service: switch.turn_on
             entity_id:
-              - switch.adaptive_lighting_half_and_dim
-              - switch.adaptive_lighting_half_and_dim_bed
-              - switch.adaptive_lighting_half_and_full
-              # sleep_modes
-              - switch.adaptive_lighting_sleep_mode_half_and_dim
-              - switch.adaptive_lighting_sleep_mode_half_and_dim_bed
+              - switch.adaptive_lighting_sleep_mode_bedroom
+              - switch.adaptive_lighting_sleep_mode_bedroom_led
 
       - conditions: "{{ sleep_mode == 'total' }}"
         sequence:
-          - service: switch.turn_off
-            entity_id:
-              - switch.adaptive_lighting_half_and_dim
-              - switch.adaptive_lighting_half_and_dim_bed
-              - switch.adaptive_lighting_half_and_full
           - service: switch.turn_on
             entity_id:
-              - switch.adaptive_lighting_default
-              - switch.adaptive_lighting_default_bed
-              # sleep_modes
-              - switch.adaptive_lighting_sleep_mode_default
-              - switch.adaptive_lighting_sleep_mode_default_bed
+              - switch.adaptive_lighting_sleep_mode_bedroom
+              - switch.adaptive_lighting_sleep_mode_bedroom_led
+              # The living room is set by another automation which
+              # only executes when no-one is in the living room.
+              # See the automations in `sleep_mode.yaml`!
 
 - alias: "Adaptive lighting: reset manual_control after 1 hour"
   mode: parallel

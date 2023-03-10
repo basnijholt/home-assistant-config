@@ -111,18 +111,18 @@ views:
         type: custom:fold-entity-row
       - entities:
         - icon: mdi:human-edit
-          name: "{% set manual_control = (\n    (state_attr('switch.adaptive_lighting_default',\
+          name: "{% set manual_control = (\n    (state_attr('switch.adaptive_lighting_bedroom',\
             \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_living_room',\
-            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_default_bed',\
+            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_bedroom_led',\
             \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_half_and_full',\
-            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_half_and_dim',\
+            \ 'manual_control') or []) +\n    (state_attr('switch.adaptive_lighting_bedroom_half',\
             \ 'manual_control') or [])\n) %} {% if manual_control %}\n  {{ manual_control\
             \ | join(\", \") }}.\n{% else %}\n  Nothing is manually controlled.\n\
             {% endif %}\n"
           type: custom:template-entity-row
         - entity: script.reset_adaptive_lighting
         - type: divider
-        - entity: switch.adaptive_lighting_default
+        - entity: switch.adaptive_lighting_bedroom
           name: default
         - entity: switch.adaptive_lighting_sleep_mode_default
           name: Sleep mode
@@ -140,7 +140,7 @@ views:
         - entity: switch.adaptive_lighting_adapt_color_living_room
           name: Adapt color
         - type: divider
-        - entity: switch.adaptive_lighting_default_bed
+        - entity: switch.adaptive_lighting_bedroom_led
           name: default_bed
         - entity: switch.adaptive_lighting_sleep_mode_default_bed
           name: Sleep mode
@@ -158,16 +158,16 @@ views:
         - entity: switch.adaptive_lighting_adapt_color_half_and_full
           name: Adapt color
         - type: divider
-        - entity: switch.adaptive_lighting_half_and_dim
-          name: half_and_dim
-        - entity: switch.adaptive_lighting_sleep_mode_half_and_dim
+        - entity: switch.adaptive_lighting_bedroom_half
+          name: bedroom_half
+        - entity: switch.adaptive_lighting_sleep_mode_bedroom_half
           name: Sleep mode
-        - entity: switch.adaptive_lighting_adapt_brightness_half_and_dim
+        - entity: switch.adaptive_lighting_adapt_brightness_bedroom_half
           name: Adapt brightness
-        - entity: switch.adaptive_lighting_adapt_color_half_and_dim
+        - entity: switch.adaptive_lighting_adapt_color_bedroom_half
           name: Adapt color
         head:
-          entity: switch.adaptive_lighting_default
+          entity: switch.adaptive_lighting_bedroom
         type: custom:fold-entity-row
       head:
         entity: light.automatic_lights
