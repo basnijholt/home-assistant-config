@@ -577,7 +577,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Reset adaptive lighting](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/apple_watch.yaml#L380)
 
   *which uses:*
-  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L521)
+  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L533)
 
 ### [Set temperature](https://github.com/basnijholt/home-assistant-config/blob/bc6aa51540d41d5f94d8d0844bf94acdcf03bd09/automations/apple_watch.yaml#L389)
 
@@ -644,7 +644,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L25)
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L216)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L272)
-  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L521)
+  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L533)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L188)
 
 ### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/d8ad7beffa94acf6a87b8be486dcee0a3d9b71ad/automations/control_switches.yaml#L75)
@@ -653,7 +653,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L31)
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L216)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L272)
-  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L521)
+  - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L533)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/scripts.yaml#L202)
 
 ### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/d8ad7beffa94acf6a87b8be486dcee0a3d9b71ad/automations/control_switches.yaml#L138)
