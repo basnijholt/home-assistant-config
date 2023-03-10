@@ -873,36 +873,35 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/327a71c2b3f9771cee4a4c62dc3b580faf4c27b4/includes/input_booleans.yaml#L22)
-  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L11)
   - [binary_sensor.activity_in_guest_room](https://github.com/basnijholt/home-assistant-config/blob/95af5a936906aa8df2aa45c7e10737cf20758dca/includes/binary_sensors.yaml#L93)
 
-### [Toggle baby room](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L359)
+### [Toggle baby room](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L360)
 
   *which uses:*
   - [binary_sensor.activity_in_baby_room](https://github.com/basnijholt/home-assistant-config/blob/95af5a936906aa8df2aa45c7e10737cf20758dca/includes/binary_sensors.yaml#L87)
 
-### [Turn off guest room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L374)
+### [Turn off guest room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L375)
 
   In case the other automation failed
 
   *which uses:*
   - [binary_sensor.activity_in_guest_room](https://github.com/basnijholt/home-assistant-config/blob/95af5a936906aa8df2aa45c7e10737cf20758dca/includes/binary_sensors.yaml#L93)
 
-### [Turn off baby room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L390)
+### [Turn off baby room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L391)
 
   In case the other automation failed
 
   *which uses:*
   - [binary_sensor.activity_in_baby_room](https://github.com/basnijholt/home-assistant-config/blob/95af5a936906aa8df2aa45c7e10737cf20758dca/includes/binary_sensors.yaml#L87)
 
-### [Turn off hall (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L406)
+### [Turn off hall (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L407)
 
   In case the other automation failed
 
   *which uses:*
   - [binary_sensor.activity_in_hall](https://github.com/basnijholt/home-assistant-config/blob/95af5a936906aa8df2aa45c7e10737cf20758dca/includes/binary_sensors.yaml#L73)
 
-### [Turn off bedroom (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L425)
+### [Turn off bedroom (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L426)
 
   In case the other automation failed
 
@@ -911,14 +910,14 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.bedroom_lights_automatically_turned_on](https://github.com/basnijholt/home-assistant-config/blob/327a71c2b3f9771cee4a4c62dc3b580faf4c27b4/includes/input_booleans.yaml#L31)
   - [binary_sensor.activity_in_master_bedroom](https://github.com/basnijholt/home-assistant-config/blob/95af5a936906aa8df2aa45c7e10737cf20758dca/includes/binary_sensors.yaml#L80)
 
-### [Turn off utility room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L446)
+### [Turn off utility room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L447)
 
   In case the other automation failed
 
   *which uses:*
   - [binary_sensor.activity_in_utility_room](https://github.com/basnijholt/home-assistant-config/blob/95af5a936906aa8df2aa45c7e10737cf20758dca/includes/binary_sensors.yaml#L67)
 
-### [Turn off outside garage (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L462)
+### [Turn off outside garage (extra check)](https://github.com/basnijholt/home-assistant-config/blob/b1f43b3ce5e17522da8aac1535b380ca8088e98d/automations/light.yaml#L463)
 
   In case the other automation failed
 
