@@ -11,29 +11,30 @@
 - platform: group
   name: all_iphones
   services:
-    - service: mobile_app_basnijholt_iphone
-    - service: mobile_app_basnijholt_iphone2
-    - service: mobile_app_marcella_iphone
+    - service: mobile_app_basnijholt_iphone_10
+    - service: mobile_app_basnijholt_iphone_13
+    - service: mobile_app_marcella_iphone_se2
 
 - platform: group
   name: bas
   services:
-    - service: mobile_app_basnijholt_iphone
-    - service: mobile_app_basnijholt_iphone2
+    - service: mobile_app_basnijholt_iphone_10
+    - service: mobile_app_basnijholt_iphone_13
     - service: chrome
 
 - platform: group
   name: iphone_bas
   services:
-    - service: mobile_app_basnijholt_iphone
-    - service: mobile_app_basnijholt_iphone2
+    - service: mobile_app_basnijholt_iphone_10
+    - service: mobile_app_basnijholt_iphone_13
 
 - platform: group
   name: all
   services:
-    - service: mobile_app_basnijholt_iphone
-    - service: mobile_app_basnijholt_iphone2
-    - service: mobile_app_marcella_iphone
+    - service: mobile_app_basnijholt_iphone_10
+    - service: mobile_app_basnijholt_iphone_13
+    - service: mobile_app_basnijholt_macbook
+    - service: mobile_app_marcella_iphone_se2
     - service: tv
     - service: chrome
 
