@@ -127,7 +127,9 @@ cozy_lights_living_room:
       service: light.turn_on
     - data:
         entity_id: light.shelve
-        kelvin: 2202
+        hs_color:
+          - 224.64
+          - 98.039
       service: light.turn_on
     - service: input_select.select_option
       entity_id: input_select.last_script_living_room
