@@ -294,6 +294,22 @@ start_netflix:
       entity_id: media_player.tv
       service: media_player.select_source
 
+start_fireplace:
+  alias: Start fireplace on TV
+  sequence:
+    - service: media_player.turn_on
+    data:
+      entity_id: media_player.tv
+    # TODO
+
+start_xbox:
+  alias: Start fireplace on TV
+  sequence:
+    - service: media_player.turn_on
+    data:
+      entity_id: media_player.tv
+    # TODO
+
 set_low_temperature:
   alias: Set low temperature
   sequence:
@@ -544,3 +560,4 @@ reset_adaptive_lighting:
       data:
         entity_id: switch.adaptive_lighting_never_sleep
         manual_control: false
+
