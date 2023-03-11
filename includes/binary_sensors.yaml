@@ -98,10 +98,23 @@
             or is_state("binary_sensor.vibration", "on") }}
       delay_off: "00:01:00"
 
+    activity_outside_front_door:
+      friendly_name: Activity outside front door
+      value_template: >
+        {{ is_state("binary_sensor.motion_sensor_outside_front_door_occupancy", "on") }}
+      delay_off: "00:01:00"
+
     activity_outside_garage:
       friendly_name: Activity outside garage
       value_template: >
         {{ is_state("binary_sensor.motion_sensor_outside_garage_occupancy", "on") }}
+      delay_off: "00:01:00"
+
+    activity_outside_house:
+      friendly_name: Activity outside house
+      value_template: >
+        {{ is_state("binary_sensor.activity_outside_garage", "on")
+          or is_state("binary_sensor.activity_outside_front_door", "on") }}
       delay_off: "00:01:00"
 
     activity_outside_bedroom:
