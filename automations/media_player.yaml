@@ -137,3 +137,12 @@
       entity_id: media_player.xbox
     - service: media_player.turn_off
       entity_id: media_player.tv
+
+- alias: "Turn On Living Room TV with WakeOnLan"
+  trigger:
+    platform: webostv.turn_on
+    entity_id: media_player.tv
+  action:
+    - service: wake_on_lan.send_magic_packet
+      data:
+        mac: !secret tv_mac_address

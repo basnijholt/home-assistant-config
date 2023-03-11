@@ -284,31 +284,97 @@ next_colors:
         entity_id: "{{ input_select }}"
     - service: "{{ states(input_select) }}"
 
+start_tv:
+  alias: Start TV
+  sequence:
+    if: "{{ is_state('media_player.tv', 'off') }}"
+    then:
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.tv
+      - delay:
+          milliseconds: 5000
+
 start_netflix:
   alias: Start Netflix
   sequence:
-    - entity_id: media_player.tv
-      service: media_player.turn_on
+    - service: script.start_tv
     - data:
         source: Netflix
       entity_id: media_player.tv
       service: media_player.select_source
 
 start_fireplace:
-  alias: Start fireplace on TV
+  alias: Start fireplace on YouTube
   sequence:
-    - service: media_player.turn_on
-    data:
+    - service: script.start_tv
+    - service: webostv.command
+      data:
+        command: system.launcher/launch
+        payload:
+          id: youtube.leanback.v4
+          contentId: v=cdKop6aixVE
+        entity_id: media_player.tv
+    - delay:
+        milliseconds: 3000
+    - service: webostv.button
       entity_id: media_player.tv
-    # TODO
+      data:
+        button: ENTER  # enter into "All settings"
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.tv
+        volume_level: 0.2
+
+start_fireplace_netflix:
+  alias: Start fireplace on YouTube
+  sequence:
+    - service: script.start_tv
+    - service: webostv.command
+      data:
+        command: system.launcher/launch
+        payload:
+          id: netflix
+          contentId: m=http://api.netflix.com/catalog/titles/movies/80092835&source_type=4
+        entity_id: media_player.tv
+    - delay:
+        milliseconds: 3000
+    - service: webostv.button
+      entity_id: media_player.tv
+      data:
+        button: ENTER  # enter into "All settings"
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.tv
+        volume_level: 0.08
 
 start_xbox:
-  alias: Start fireplace on TV
+  alias: Start Xbox on TV
   sequence:
-    - service: media_player.turn_on
-    data:
-      entity_id: media_player.tv
-    # TODO
+    - if: "{{ is_state('media_player.xbox', 'off') }}"
+      then:
+        - service: media_player.turn_on
+          entity_id: media_player.xbox
+        - delay:
+            milliseconds: 5000
+        # This seems to be useful for when the Xbox is in a weird state
+        - service: media_player.media_play_pause
+          entity_id: media_player.living_room_xbox
+    - service: script.start_tv
+    - service: media_player.select_source
+      data:
+        source: Xbox One
+        entity_id: media_player.tv
+
+start_hogwarts_legacy:
+  alias: Start Hogwarts Legacy on the Xbox
+  sequence:
+    - service: script.start_xbox
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.living_room_xbox
+        media_content_id: 9MT5NJ5W7B8Z
+        media_content_type: game
 
 set_low_temperature:
   alias: Set low temperature
@@ -560,4 +626,3 @@ reset_adaptive_lighting:
       data:
         entity_id: switch.adaptive_lighting_never_sleep
         manual_control: false
-
