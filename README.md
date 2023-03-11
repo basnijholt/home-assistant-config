@@ -936,8 +936,8 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Mailbox 📫📣](https://github.com/basnijholt/home-assistant-config/blob/e5ee4d4ce97f064974123a909746909593f1dd06/automations/mailbox.yaml)
-### [The mailbox was opened](https://github.com/basnijholt/home-assistant-config/blob/e5ee4d4ce97f064974123a909746909593f1dd06/automations/mailbox.yaml#L11)
+## [Mailbox 📫📣](https://github.com/basnijholt/home-assistant-config/blob/32fe61d2cdd4bb0b8a20ad9c4d9b7992c3acc5bb/automations/mailbox.yaml)
+### [The mailbox was opened](https://github.com/basnijholt/home-assistant-config/blob/32fe61d2cdd4bb0b8a20ad9c4d9b7992c3acc5bb/automations/mailbox.yaml#L11)
 
   In the UI show the `input_boolean.mailbox_full`. It needs to
 be manually switched off after getting the mail."
