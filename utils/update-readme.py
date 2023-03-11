@@ -185,6 +185,7 @@ def get_emoji(title):
         "Light": "💡",
         "Lovelace": "👨‍💻",
         "LSX": "🔈",
+        "Mailbox": "📫📣",
         "Media player": "🔈📺",
         "Music": "🎵",
         "Night mode": "🌕🌑",
