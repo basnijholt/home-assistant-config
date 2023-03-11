@@ -32,7 +32,7 @@ filter:
     - light.toilet
     - light.bathroom_lights
     - media_player.tv
-    - media_player.xbox
+    - media_player.living_room_xbox
     - media_player.kef_ls50
     - input_select.sleep_mode
     - input_boolean.start_the_music

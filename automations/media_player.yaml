@@ -134,7 +134,7 @@
     for: "02:00:00"
   action:
     - service: media_player.turn_off
-      entity_id: media_player.xbox
+      entity_id: media_player.living_room_xbox
     - service: media_player.turn_off
       entity_id: media_player.tv
 
@@ -145,4 +145,4 @@
   action:
     - service: wake_on_lan.send_magic_packet
       data:
-        mac: "!secret tv_mac_address"
+        mac: !secret tv_mac_address

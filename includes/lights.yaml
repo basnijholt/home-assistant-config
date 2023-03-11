@@ -18,6 +18,7 @@
     - light.cabinet_led
     - light.mid_room
     - light.shelve
+    - light.marble
 
 - platform: group
   name: Bedroom lights

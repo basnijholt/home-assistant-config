@@ -2091,7 +2091,7 @@ views:
     - entity: person.marcella
     hours_to_show: 240
     type: map
-  - entity: media_player.xboxone
+  - entity: media_player.living_room_xboxone
     type: media-control
   - entities:
     - entity: sensor.temperature_living_room

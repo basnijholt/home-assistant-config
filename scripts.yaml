@@ -251,7 +251,7 @@ turn_off_everything_non_automatic:
     - service: media_player.turn_off
       entity_id: media_player.tv
     - service: media_player.turn_off
-      entity_id: media_player.xbox
+      entity_id: media_player.living_room_xbox
 
 turn_off_everything:
   alias: Turn off everything
@@ -327,7 +327,7 @@ start_fireplace:
         volume_level: 0.2
 
 start_fireplace_netflix:
-  alias: Start fireplace on YouTube
+  alias: Start fireplace on Netflix
   sequence:
     - service: script.start_tv
     - service: webostv.command
@@ -351,10 +351,10 @@ start_fireplace_netflix:
 start_xbox:
   alias: Start Xbox on TV
   sequence:
-    - if: "{{ is_state('media_player.xbox', 'off') }}"
+    - if: "{{ is_state('media_player.living_room_xbox', 'off') }}"
       then:
         - service: media_player.turn_on
-          entity_id: media_player.xbox
+          entity_id: media_player.living_room_xbox
         - delay:
             milliseconds: 5000
         # This seems to be useful for when the Xbox is in a weird state
@@ -363,7 +363,7 @@ start_xbox:
     - service: script.start_tv
     - service: media_player.select_source
       data:
-        source: Xbox One
+        source: XBOX
         entity_id: media_player.tv
 
 start_hogwarts_legacy:
