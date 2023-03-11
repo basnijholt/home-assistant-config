@@ -153,12 +153,12 @@
   variables:
     off_lights: >
       {% set hall_lights = ["light.hall_2"]
-                           if is_state('input_select.sleep_mode', 'total')
-                           else ["light.hall_1", "light.hall_2", "light.hall_3"] %}
+        if is_state('input_select.sleep_mode', 'total')
+        else ["light.hall_1", "light.hall_2", "light.hall_3"] %}
       {{ expand(state_attr("light.stairs_lights", "entity_id") + hall_lights)
-          | selectattr("state", "eq", "off")
-          | map(attribute="entity_id")
-          | list }}
+        | selectattr("state", "eq", "off")
+        | map(attribute="entity_id")
+        | list }}
   condition: "{{ (off_lights | length) > 0 }}"
   action:
     alias: Turn on lights that are off
