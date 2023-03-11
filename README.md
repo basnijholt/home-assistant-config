@@ -939,14 +939,18 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ## [Mailbox 📫📣](https://github.com/basnijholt/home-assistant-config/blob/e5ee4d4ce97f064974123a909746909593f1dd06/automations/mailbox.yaml)
 ### [The mailbox was opened](https://github.com/basnijholt/home-assistant-config/blob/e5ee4d4ce97f064974123a909746909593f1dd06/automations/mailbox.yaml#L11)
 
+  In the UI show the `input_boolean.mailbox_full`. It needs to
+be manually switched off after getting the mail."
+
+
   *which uses:*
   - [input_boolean.mailbox_full](https://github.com/basnijholt/home-assistant-config/blob/e5ee4d4ce97f064974123a909746909593f1dd06/includes/input_booleans.yaml#L64)
 
 [^ toc](#automations---table-of-content)
 
 
-## [Media player 🔈📺](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml)
-### [Turn on Opt when TV is on and Spotify is not playing and not Usb](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml#L12)
+## [Media player 🔈📺](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml)
+### [Turn on Opt when TV is on and Spotify is not playing and not Usb](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml#L12)
 
   The speaker is connected via an optical cable to the TV. Whenever the speakers
 aren't playing Spotify (via WiFi) directly, switch the source of the speakers
@@ -954,22 +958,22 @@ to "Opt".
 
 
 
-### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml#L42)
+### [Turn off speakers when turning off TV](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml#L42)
 
 
-### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml#L61)
+### [If speakers off and TV on, turn on the speaker on TV state change](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml#L61)
 
 
-### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml#L85)
+### [Update Spotify entity when TV is on every 5 seconds](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml#L85)
 
 
-### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml#L100)
+### [Sync KEF LS50 and TV volume](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml#L100)
 
 
-### [Automatically turn off TV and Xbox after two hours of inactivity](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml#L129)
+### [Automatically turn off TV and Xbox after two hours of inactivity](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml#L129)
 
 
-### [Turn On Living Room TV with WakeOnLan](https://github.com/basnijholt/home-assistant-config/blob/21e3a781742637ad8fcce3d11da7d6e27c0e3f1f/automations/media_player.yaml#L141)
+### [Turn On Living Room TV with WakeOnLan](https://github.com/basnijholt/home-assistant-config/blob/b6913dde09c0c12bd77d6db068bdfef05ec677e4/automations/media_player.yaml#L141)
 
 
 [^ toc](#automations---table-of-content)
