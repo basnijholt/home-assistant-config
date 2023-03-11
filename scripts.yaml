@@ -518,7 +518,7 @@ turn_on_lights:
       lights: "{{ entity_id }}"
       turn_on_lights: true
 
-reset_adaptive_lighting:
+reset_adaptive_lighting_bedroom:
   alias: Reset 'manual control'
   sequence:
     - service: adaptive_lighting.set_manual_control
@@ -529,6 +529,11 @@ reset_adaptive_lighting:
       data:
         entity_id: switch.adaptive_lighting_bedroom_led
         manual_control: false
+
+reset_adaptive_lighting:
+  alias: Reset 'manual control'
+  sequence:
+    - service: script.reset_adaptive_lighting_bedroom
     - service: adaptive_lighting.set_manual_control
       data:
         entity_id: switch.adaptive_lighting_living_room

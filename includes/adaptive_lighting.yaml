@@ -41,4 +41,5 @@
   lights:
     - light.utility_room
     - light.garage_outside
+    - light.outside_front_door
   min_brightness: 80
