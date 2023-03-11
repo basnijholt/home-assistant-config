@@ -461,7 +461,7 @@
     - service: light.turn_off
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
-- alias: "Light: turn off utility room (extra check)"
+- alias: "Light: turn off utility room / garage (extra check)"
   description: In case the other automation failed
   trigger:
     platform: time_pattern
@@ -471,24 +471,15 @@
       entity_id: binary_sensor.activity_in_utility_room
       state: "off"
     - condition: state
-      entity_id: light.utility_room
-      state: "on"
-  action:
-    service: light.turn_off
-    entity_id: light.utility_room
-
-- alias: "Light: turn off outside garage (extra check)"
-  description: In case the other automation failed
-  trigger:
-    platform: time_pattern
-    minutes: "/10"
-  condition:
-    - condition: state
       entity_id: binary_sensor.activity_outside_garage
       state: "off"
-    - condition: state
-      entity_id: light.garage_outside
-      state: "on"
+    - >
+        {{ states('light.utility_room')
+          or states('light.garage_outside')
+          or states('light.outside_front_door') }}
   action:
     service: light.turn_off
-    entity_id: light.garage_outside
+    entity_id:
+      - light.utility_room
+      - light.garage_outside
+      - light.outside_front_door
