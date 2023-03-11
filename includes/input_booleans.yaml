@@ -61,6 +61,9 @@ kef_ls50_phase_correction:
 kef_ls50_high_pass:
   name: High pass
   icon: mdi:equalizer
+mailbox_full:
+  name: Mailbox full
+  icon: mdi:mailbox-open
 
 # Apps
 wake_up_light:
