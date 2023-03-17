@@ -371,6 +371,10 @@
           - light.living_room_lights
         brightness: 5
         color_name: red
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.marble
     - service: light.turn_on
       data:
         entity_id:
