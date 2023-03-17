@@ -35,6 +35,7 @@
     - light.guest_room
     - light.baby_sphere
     - light.outside_front_door
+    - light.bedroom_outside
 
 # - platform: group
 #   name: Kitchen lights
