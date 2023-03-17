@@ -489,10 +489,11 @@
     - condition: state
       entity_id: binary_sensor.activity_outside_garage
       state: "off"
-    - >
-        {{ states('light.utility_room')
-          or states('light.garage_outside')
-          or states('light.outside_front_door') }}
+    # TODO: figure out if this works or not?
+    # - >
+    #     {{ states('light.utility_room')
+    #       or states('light.garage_outside')
+    #       or states('light.outside_front_door') }}
   action:
     service: light.turn_off
     entity_id:
