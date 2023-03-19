@@ -37,10 +37,10 @@
     - light.outside_front_door
     - light.bedroom_outside
 
-# - platform: group
-#   name: Kitchen lights
-#   entities:
-#     - light.ceiling_kitchen
+- platform: group
+  name: Kitchen lights
+  entities:
+    - light.dinner_area
 
 - platform: switch
   name: Baby sphere
