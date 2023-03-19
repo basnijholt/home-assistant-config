@@ -55,6 +55,22 @@
 # | . \| | || (__| | | |  __/ | | |
 # |_|\_\_|\__\___|_| |_|\___|_| |_|
 
+- alias: "Light: toggle dinner area lights"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_dinner_area
+  condition:
+    - condition: state
+      entity_id: input_select.sleep_mode
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+  action:
+    service: light.turn_{{ trigger.to_state.state }}
+    data:
+      entity_id: light.dinner_area
+
 - alias: "Light: toggle kitchen ceiling"
   trigger:
     platform: state
