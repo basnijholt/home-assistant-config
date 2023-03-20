@@ -21,6 +21,10 @@ start_speakers:
     entity_id:
       description: entity_id of the speaker
       example: media_player.kef_ls50
+  variables:
+    volume: "{% if volume %}volume{% else %}0.3{% endif %}"
+    source: "{% if source %}source{% else %}Spotify{% endif %}"
+    entity_id: "{% if entity_id %}entity_id{% else %}media_player.kef_ls50{% endif %}"
   sequence:
     - service: media_player.select_source
       data:
