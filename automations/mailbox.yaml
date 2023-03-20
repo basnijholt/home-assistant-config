@@ -1,3 +1,4 @@
+---
 #-
 #                  _ _ _
 #  _ __ ___   __ _(_) | |__   _____  __
@@ -7,7 +8,6 @@
 #
 #
 #- from github.com/basnijholt/home-assistant-config
-
 - alias: "Mailbox: the mailbox was opened"
   description: |
     In the UI show the `input_boolean.mailbox_full`. It needs to

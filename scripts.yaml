@@ -1,3 +1,4 @@
+---
 #-
 #                _       _
 #  ___  ___ _ __(_)_ __ | |_ ___
@@ -7,7 +8,6 @@
 #                 |_|
 #
 #- from github.com/basnijholt/home-assistant-config
----
 start_speakers:
   alias: Start speakers
   description: Start a Spotify playlist on KEF speakers
