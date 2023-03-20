@@ -7,6 +7,7 @@
 #                 |_|
 #
 #- from github.com/basnijholt/home-assistant-config
+---
 start_speakers:
   alias: Start speakers
   description: Start a Spotify playlist on KEF speakers
@@ -37,28 +38,36 @@ start_spotify:
     source:
       description: The name of the speaker as it appears in Spotify
       example: KEF LS50
-    playlist:
-      description: The playlist URI from Spotify
-      example: 6rPTm9dYftKcFAfwyRqmDZ
+    id:
+      description: The playlist/album/podcast URI from Spotify
+      example: playlist:6rPTm9dYftKcFAfwyRqmDZ
+  variables:
+    media_content_type: "{{ id.split(':')[0] }}"
+    media_content_id: "spotify:{{ id }}"
   sequence:
     - service: homeassistant.update_entity
       entity_id: media_player.spotify
-    - wait_template: '{{ source in state_attr("media_player.spotify", "source_list")  }}'
-      timeout: 00:01:00
-      continue_on_timeout: false
-    - service: media_player.select_source
-      entity_id: media_player.spotify
-      data:
-        source: "{{ source }}"
+    - if: >
+        {{ not (is_state('media_player.spotify', 'playing')
+                and is_state_attr('media_player.spotify', 'source', 'KEF LS50')) }}"
+      then:
+        - wait_template: '{{ source in state_attr("media_player.spotify", "source_list")  }}'
+          timeout: 00:01:00
+          continue_on_timeout: false
+        - service: media_player.select_source
+          entity_id: media_player.spotify
+          data:
+            source: "{{ source }}"
     - service: media_player.shuffle_set
       entity_id: media_player.spotify
       data:
         shuffle: true
-    - service: media_player.play_media
+    - entity_id: media_player.spotify
+      service: media_player.play_media
       data:
         entity_id: media_player.spotify
-        media_content_type: "playlist"
-        media_content_id: spotify:playlist:{{ playlist }}
+        media_content_type: "{{ media_content_type }}"
+        media_content_id: "{{ media_content_id }}"
     - service: media_player.media_play
       entity_id: media_player.spotify
 
@@ -81,8 +90,8 @@ start_spotify_playlist_of_nearest_person:
     - service: script.start_spotify
       data:
         source: "{{ source }}"
-        playlist: >
-          {{ states("sensor.favorite_playlist_of_nearest_person") }}
+        id: >
+          playlist:{{ states("sensor.favorite_playlist_of_nearest_person") }}
         volume: 0.25
 
 cozy_lights_living_room:

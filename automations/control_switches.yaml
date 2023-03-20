@@ -331,5 +331,5 @@
           - service: script.start_spotify
             data:
               source: KEF LS50
-              playlist: '{{ states("sensor.favorite_playlist_of_nearest_person") }}'
+              id: 'playlist:{{ states("sensor.favorite_playlist_of_nearest_person") }}'
               volume: 0.25
