@@ -11,6 +11,7 @@
 - name: Living room
   lights:
     - light.living_room_lights
+    - light.guest_room
   min_brightness: 70
   prefer_rgb_color: true
   detect_non_ha_changes: true
