@@ -1,0 +1,37 @@
+---
+#-
+#  _     _ _
+# | |__ (_) | _____
+# | '_ \| | |/ / _ \
+# | |_) | |   <  __/
+# |_.__/|_|_|\_\___|
+#
+#
+#- from github.com/basnijholt/home-assistant-config
+
+# Only charge for 6 hours to maximize battery lifespan
+
+- alias: "Bike: started charging"
+  trigger:
+    platform: state
+    entity_id: switch.bike_charger
+    to: "on"
+    from: "off"
+  action:
+    - service: input_datetime.set_datetime
+      data:
+        entity_id: input_datetime.bike_charger_on
+        timestamp: "{{ now().timestamp() }}"
+    - service: input_datetime.set_datetime
+      data:
+        entity_id: input_datetime.bike_charger_off
+        timestamp: "{{ now().timestamp() + 3600 * 6 }}"
+
+- alias: "Bike: stop charging"
+  trigger:
+    platform: time
+    at: input_datetime.bike_charger_off
+  action:
+    service: switch.turn_off
+    data:
+      enitity_id: switch.bike_charger

@@ -32,3 +32,13 @@ dishwasher_off:
   name: Dishwasher last done
   has_date: true
   has_time: true
+
+bike_charger_on:
+  name: Bike charged started on
+  has_date: true
+  has_time: true
+
+bike_charger_off:
+  name: Bike charged finished
+  has_date: true
+  has_time: true

@@ -135,3 +135,18 @@
     data:
       topic: actions/otmonitor/maxdhwsetpt
       payload: "50"
+
+- alias: "Climate: automatically turn off spaceheater when no-one is in the guest room"
+  trigger:
+    - platform: time_pattern
+      minutes: "/10"
+    - platform: state
+      entity_id: binary_sensor.activity_in_guest_room
+      to: "off"
+  condition:
+    condition: state
+    entity_id: binary_sensor.activity_in_guest_room
+    state: "off"
+  action:
+    service: switch.turn_off
+    entity_id: switch.space_heater
