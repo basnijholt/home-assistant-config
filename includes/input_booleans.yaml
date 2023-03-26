@@ -40,6 +40,9 @@ theme_alternative:
 automatic_bedroom_lights:
   name: Automatic bedroom lights
   icon: mdi:lamp
+automatic_dinner_area_light:
+  name: Automatic dinner area light
+  icon: mdi:lamp
 automatic_temperature:
   name: Automatic temperature
   icon: mdi:thermometer

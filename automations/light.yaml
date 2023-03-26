@@ -61,6 +61,9 @@
     entity_id: binary_sensor.activity_in_dinner_area
   condition:
     - condition: state
+      entity_id: input_boolean.automatic_dinner_area_light
+      state: "on"
+    - condition: state
       entity_id: input_select.sleep_mode
       state: "off"
     - condition: state
@@ -71,22 +74,28 @@
     data:
       entity_id: light.dinner_area
 
-- alias: "Light: toggle kitchen ceiling"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.activity_in_kitchen
+- alias: "Light: turn off automatic dinner area lights when turning off lights after 18:00"
   condition:
     - condition: state
-      entity_id: input_select.sleep_mode
-      state: "off"
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: "off"
+      entity_id: input_boolean.automatic_dinner_area_light
+      state: "on"
+    - condition: time
+      after: "18:00:00"
+  trigger:
+    platform: state
+    entity_id: light.dinner_area
+    to: "off"
   action:
-    service: light.turn_{{ trigger.to_state.state }}
-    data:
-      entity_id: light.ceiling_kitchen
-      transition: 1
+    service: input_boolean.turn_off
+    entity_id: input_boolean.automatic_dinner_area_light
+
+- alias: "Light: reset automatic dinner area lights at 06:00"
+  trigger:
+    platform: time
+    at: "06:00:00"
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.automatic_dinner_area_light
 
 - alias: "Light: turn on kitchen counter if sleep mode is off"
   trigger:
