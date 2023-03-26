@@ -175,6 +175,7 @@ def get_emoji(title):
         "Alarm clock": "⏰",
         "Apple Watch": "⌚",
         "Arriving": "👞",
+        "Bike": "🚲",
         "Climate": "🔥🥶",
         "Control switches": "🎛",
         "Cube": "∛",
