@@ -145,4 +145,4 @@
   action:
     - service: wake_on_lan.send_magic_packet
       data:
-        mac: !secret tv_mac_address
+        mac: "!secret tv_mac_address"
