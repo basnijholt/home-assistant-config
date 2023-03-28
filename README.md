@@ -490,7 +490,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Doorbell 🚪🔔](#doorbell-) (1 automations)
 1. [Frontend 👨‍💻](#frontend-) (3 automations)
 1. [Leaving 👞](#leaving-) (4 automations)
-1. [Light 💡](#light-) (27 automations)
+1. [Light 💡](#light-) (28 automations)
 1. [Lovelace 👨‍💻](#lovelace-) (1 automations)
 1. [Mailbox 📫📣](#mailbox-) (1 automations)
 1. [Media player 🔈📺](#media-player-) (7 automations)
@@ -507,7 +507,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **119** ⚠️
+⚠️ Total number of automations: **120** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -954,6 +954,11 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [binary_sensor.activity_in_utility_room](https://github.com/basnijholt/home-assistant-config/blob/5381dd8577848e8c74067fb623d6de62ee557552/includes/binary_sensors.yaml#L73)
   - [binary_sensor.activity_outside_front_door](https://github.com/basnijholt/home-assistant-config/blob/5381dd8577848e8c74067fb623d6de62ee557552/includes/binary_sensors.yaml#L107)
   - [binary_sensor.activity_outside_garage](https://github.com/basnijholt/home-assistant-config/blob/5381dd8577848e8c74067fb623d6de62ee557552/includes/binary_sensors.yaml#L113)
+
+### [Update Zigbee2MQTT lights input_text list](https://github.com/basnijholt/home-assistant-config/blob/f3f34e191bad2841f9619cacb78170dce3ccfa5f/automations/light.yaml#L535)
+
+  *which uses:*
+  - [input_select.z2m_lights](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L57)
 
 [^ toc](#automations---table-of-content)
 
