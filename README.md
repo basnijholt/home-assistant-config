@@ -490,7 +490,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Doorbell 🚪🔔](#doorbell-) (1 automations)
 1. [Frontend 👨‍💻](#frontend-) (3 automations)
 1. [Leaving 👞](#leaving-) (4 automations)
-1. [Light 💡](#light-) (28 automations)
+1. [Light 💡](#light-) (29 automations)
 1. [Lovelace 👨‍💻](#lovelace-) (1 automations)
 1. [Mailbox 📫📣](#mailbox-) (1 automations)
 1. [Media player 🔈📺](#media-player-) (7 automations)
@@ -507,7 +507,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **120** ⚠️
+⚠️ Total number of automations: **121** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -959,6 +959,13 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
   *which uses:*
   - [input_select.z2m_lights](https://github.com/basnijholt/home-assistant-config/blob/7853849db19d373b8c7e01009e2c9a94354ca422/includes/input_selects.yaml#L57)
+
+### [Update Zigbee2MQTT Lights State](https://github.com/basnijholt/home-assistant-config/blob/f3f34e191bad2841f9619cacb78170dce3ccfa5f/automations/light.yaml#L562)
+
+  Refresh the state of all Zigbee2MQTT lights
+
+  *which uses:*
+  - [script.update_z2m_lights](https://github.com/basnijholt/home-assistant-config/blob/bd9f197b1828954db11af021784b355b98224652/scripts.yaml#L649)
 
 [^ toc](#automations---table-of-content)
 
