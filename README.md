@@ -965,7 +965,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   Refresh the state of all Zigbee2MQTT lights
 
   *which uses:*
-  - [script.update_z2m_lights](https://github.com/basnijholt/home-assistant-config/blob/bd9f197b1828954db11af021784b355b98224652/scripts.yaml#L649)
+  - [script.sync_z2m_to_ha_lights](https://github.com/basnijholt/home-assistant-config/blob/bd9f197b1828954db11af021784b355b98224652/scripts.yaml#L649)
 
 [^ toc](#automations---table-of-content)
 
