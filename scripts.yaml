@@ -645,3 +645,41 @@ reset_adaptive_lighting:
       data:
         entity_id: switch.adaptive_lighting_never_sleep
         manual_control: false
+
+sync_z2m_to_ha_lights:
+  alias: Update Zigbee2MQTT to HA Lights States
+  sequence:
+    - choose:
+      - conditions:
+          - "{{ 'None' not in state_attr('input_select.z2m_lights', 'options') }}"
+        sequence:
+          repeat:
+            count: "{{ state_attr('input_select.z2m_lights', 'options') | length }}"
+            sequence:
+              - variables:
+                  friendly_name: "{{ state_attr('input_select.z2m_lights', 'options')[repeat.index - 1] }}"
+              - service: mqtt.publish
+                data:
+                  topic: "zigbee2mqtt/{{ friendly_name }}/get"
+                  payload: '{"state": ""}'
+      default: []
+
+sync_ha_to_z2m_lights:
+  alias: Sync HA to Zigbee2MQTT Lights States
+  sequence:
+    - choose:
+      - conditions:
+          - "{{ 'None' not in state_attr('input_select.z2m_lights', 'options') }}"
+        sequence:
+          repeat:
+            count: "{{ state_attr('input_select.z2m_lights', 'options') | length }}"
+            sequence:
+              - variables:
+                  friendly_name: "{{ state_attr('input_select.z2m_lights', 'options')[repeat.index - 1] }}"
+                  entity_id: "{{ states.light | selectattr('attributes.friendly_name', 'eq', friendly_name) | map(attribute='entity_id') | first }}"
+                  current_state: "{{ states(entity_id) }}"
+              - service: mqtt.publish
+                data:
+                  topic: "zigbee2mqtt/{{ friendly_name }}/set"
+                  payload: '{"state": "{{ current_state }}" }'
+      default: []

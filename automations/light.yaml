@@ -531,3 +531,39 @@
       - light.utility_room
       - light.garage_outside
       - light.outside_front_door
+
+- alias: "Light: Update Zigbee2MQTT lights input_select options"
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/bridge/devices
+  action:
+    - variables:
+        devices: "{{ trigger.payload_json }}"
+    - variables:
+        z2m_lights: >-
+          {% set ns = namespace(lights=[]) %}
+          {% for device in devices %}
+            {% if device.definition is not none %}
+              {% for expose in device.definition.exposes %}
+                {% if expose.type == 'light' %}
+                  {% set light_name = device.friendly_name %}
+                  {% set ns.lights = ns.lights + [light_name] %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.lights }}
+    - service: input_select.set_options
+      target:
+        entity_id: input_select.z2m_lights
+      data:
+        options: "{{ z2m_lights }}"
+
+- alias: "Light: Update Zigbee2MQTT Lights State"
+  description: 'Refresh the state of all Zigbee2MQTT lights'
+  trigger:
+    platform: time_pattern
+    minutes: "/5"
+  action:
+    service: script.sync_z2m_to_ha_lights
+  mode: single

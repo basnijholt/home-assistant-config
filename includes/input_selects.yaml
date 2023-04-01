@@ -53,3 +53,8 @@ theme:
     - orange
     - red
   icon: mdi:format-color-fill
+
+z2m_lights:
+  name: Zigbee2MQTT Lights Friendly Names
+  options:
+    - None
