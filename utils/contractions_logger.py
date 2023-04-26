@@ -3,11 +3,9 @@ import csv
 import datetime
 import re
 from pathlib import Path
-from typing import Dict, List, Literal, Optional, Tuple, Union
+from typing import Literal
 
 FOLDER = Path(__file__).parent
-log_file_path = FOLDER / "contractions_log.txt"
-csv_file_path = FOLDER / "contractions_log.csv"
 
 
 def parse_log_to_csv(log_file_path: str, csv_file_path: str) -> None:
@@ -19,12 +17,10 @@ def parse_log_to_csv(log_file_path: str, csv_file_path: str) -> None:
 
     for line in lines:
         start_match = re.match(
-            r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - Contraction started with intensity: (\d+)",
+            r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}),start,(\d+)",
             line,
         )
-        end_match = re.match(
-            r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - Contraction ended", line
-        )
+        end_match = re.match(r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}),end", line)
 
         if start_match:
             if current_contraction:
@@ -52,10 +48,12 @@ def parse_log_to_csv(log_file_path: str, csv_file_path: str) -> None:
         for contraction in contractions:
             if contraction["end_time"]:
                 start_time = datetime.datetime.strptime(
-                    contraction["start_time"], "%Y-%m-%d %H:%M:%S"
+                    contraction["start_time"],
+                    "%Y-%m-%d %H:%M:%S",
                 )
                 end_time = datetime.datetime.strptime(
-                    contraction["end_time"], "%Y-%m-%d %H:%M:%S"
+                    contraction["end_time"],
+                    "%Y-%m-%d %H:%M:%S",
                 )
                 duration = end_time - start_time
                 contraction["duration"] = duration
@@ -64,13 +62,15 @@ def parse_log_to_csv(log_file_path: str, csv_file_path: str) -> None:
             writer.writerow(contraction)
 
 
-def log_contraction(intensity: int, event_type: Literal["start", "end"]) -> None:
+def log_contraction(
+    log_file_path: Path, intensity: int, event_type: Literal["start", "end"]
+) -> None:
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     if event_type == "start":
-        log_entry = f"{timestamp} - Contraction started with intensity: {intensity}\n"
+        log_entry = f"{timestamp},start,{intensity}\n"
     elif event_type == "end":
-        log_entry = f"{timestamp} - Contraction ended\n"
+        log_entry = f"{timestamp},end\n"
     else:
         raise ValueError("Invalid event type. Must be 'start' or 'end'.")
 
@@ -80,10 +80,12 @@ def log_contraction(intensity: int, event_type: Literal["start", "end"]) -> None
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Log contractions and their intensities."
+        description="Log contractions and their intensities.",
     )
     parser.add_argument(
-        "event_type", choices=["start", "end"], help="Event type: 'start' or 'end'"
+        "event_type",
+        choices=["start", "end"],
+        help="Event type: 'start' or 'end'",
     )
     parser.add_argument(
         "-i",
@@ -100,8 +102,14 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == "__main__":
+    log_file_path = FOLDER / "contractions_log.txt"
+    csv_file_path = FOLDER / "contractions_log.csv"
     args = parse_args()
-    log_contraction(args.intensity, args.event_type)
+    log_contraction(log_file_path, args.intensity, args.event_type)
     parse_log_to_csv(log_file_path, csv_file_path)
+
+    # Upload the CSV
     from fileup import fileup
-    fileup(csv_file_path)
+
+    url = fileup(csv_file_path)
+    print("Uploaded CSV to", url)
