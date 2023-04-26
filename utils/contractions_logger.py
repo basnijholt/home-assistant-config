@@ -8,7 +8,7 @@ from typing import Literal
 FOLDER = Path(__file__).parent
 
 
-def parse_log_to_csv(log_file_path: str, csv_file_path: str) -> None:
+def parse_log_to_csv(log_file_path: Path, csv_file_path: Path) -> None:
     with log_file_path.open("r") as log_file:
         lines = log_file.readlines()
 
