@@ -108,8 +108,8 @@ if __name__ == "__main__":
     log_contraction(log_file_path, args.intensity, args.event_type)
     parse_log_to_csv(log_file_path, csv_file_path)
 
-    # Upload the CSV
-    from fileup import fileup
+    # # Upload the CSV
+    # from fileup import fileup
 
-    url = fileup(csv_file_path)
-    print("Uploaded CSV to", url)
+    # url = fileup(csv_file_path)
+    # print("Uploaded CSV to", url)

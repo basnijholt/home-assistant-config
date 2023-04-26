@@ -66,3 +66,10 @@ kef_ls50_sub_db:
   max: 10
   step: 1
   icon: mdi:equalizer
+
+contraction_intensity:
+  name: Contraction Intensity
+  min: 1
+  max: 10
+  step: 1
+  mode: slider
