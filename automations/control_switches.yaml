@@ -135,6 +135,70 @@
         sequence:
           - service: script.reset_adaptive_lighting
 
+- alias: "Control switches: bedroom IKEA dimmer switch"
+  mode: parallel
+  trigger:
+    platform: mqtt
+    topic: "zigbee2mqtt/IKEA Remote (Bedroom)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
+  action:
+    choose:
+      # Next color
+      - conditions: "{{ action == 'off' }}" # Lowest button
+        sequence:
+          service: script.next_colors
+          data:
+            input_select: input_select.last_script_bedroom
+
+      # Bright lights
+      - conditions:
+          - "{{ action == 'arrow_right_click' }}" # Right button
+          - condition: state
+            entity_id: light.bedroom_lights
+            state: "on"
+        sequence:
+          - service: script.white_lights_bedroom
+          - service: light.turn_on
+            entity_id: light.bedroom_lights
+            data:
+              brightness: "255"
+
+      # Increase brightness
+      - conditions: "{{ action == 'on' }}" # Top button
+        sequence:
+          service: script.increase_brightness
+          data:
+            group: light.bedroom_lights
+
+      # Turn on
+      - conditions:
+          - "{{ action == 'arrow_right_click' }}" # Right button
+          - condition: state
+            entity_id: light.bedroom_lights
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            entity_id: light.bedroom_lights
+
+      # Turn off
+      - conditions:
+          - "{{ action == 'arrow_left_click' }}" # Left button
+          - condition: state
+            entity_id: light.bedroom_lights
+            state: "on"
+        sequence:
+          - service: light.turn_off
+            entity_id: light.bedroom_lights
+
+      # Reset adaptive_lighting
+      - conditions:
+          - "{{ action == 'brightness_move_up' }}" # Hold top button
+          - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
+        sequence:
+          - service: script.reset_adaptive_lighting
+
+
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
   trigger:
