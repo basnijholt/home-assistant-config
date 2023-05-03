@@ -659,8 +659,8 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml)
-### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml#L12)
+## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml)
+### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L12)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
@@ -669,7 +669,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L636)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L209)
 
-### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml#L75)
+### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L75)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -678,7 +678,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L636)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L223)
 
-### [Bedroom IKEA dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml#L138)
+### [Bedroom IKEA dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L138)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -688,7 +688,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L275)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L223)
 
-### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml#L216)
+### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L215)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
@@ -696,7 +696,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L237)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L293)
 
-### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml#L266)
+### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L265)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -706,10 +706,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L275)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/e61ac126e20f19bde46866518f7ffd87039a7159/includes/sensors.yaml#L241)
 
-### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml#L352)
+### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L351)
 
 
-### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/1c83819872c58b623c88aaac9e6d62007844e5bc/automations/control_switches.yaml#L375)
+### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L374)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L422)
