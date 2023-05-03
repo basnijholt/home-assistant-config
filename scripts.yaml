@@ -683,3 +683,16 @@ sync_ha_to_z2m_lights:
                   topic: "zigbee2mqtt/{{ friendly_name }}/set"
                   payload: '{"state": "{{ current_state }}" }'
       default: []
+
+log_start_contraction:
+  alias: "Log start of contraction"
+  fields:
+    intensity:
+      description: intensity
+      example: "5"
+  sequence:
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.contraction_intensity
+        value: "{{ intensity | int }}"
+    - service: shell_command.log_start_contraction
