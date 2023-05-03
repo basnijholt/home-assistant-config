@@ -102,6 +102,6 @@ demo_wake_up_with_spotify:
   initial: "off"
   icon: mdi:music
 streamdeck:
-    name: StreamDeck
+  name: StreamDeck
 test:
   name: "Test"

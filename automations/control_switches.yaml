@@ -146,7 +146,7 @@
     choose:
       # Bright lights
       - conditions:
-          - "{{ action == 'brightness_move_up' }}"  # Hold top button
+          - "{{ action == 'brightness_move_up' }}" # Hold top button
           - condition: state
             entity_id: light.bedroom_lights
             state: "on"
@@ -159,10 +159,10 @@
 
       # Increase brightness
       - conditions:
-        - "{{ action == 'on' }}" # Top button
-        - condition: state
-          entity_id: light.bedroom_lights
-          state: "on"
+          - "{{ action == 'on' }}" # Top button
+          - condition: state
+            entity_id: light.bedroom_lights
+            state: "on"
         sequence:
           service: script.increase_brightness
           data:
