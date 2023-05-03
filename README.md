@@ -456,24 +456,23 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 I run a [Supervised install](https://www.home-assistant.io/getting-started/) with the following add-ons:
 
 <!-- start-addons -->
-- [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.11.0 by @hassio-addons
-- [Glances](https://github.com/hassio-addons/addon-glances) version 0.18.0 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 8.2.0 by @hassio-addons
-- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.5.0 by @hassio-addons
-- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.14.0 by @hassio-addons
-- [SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 13.0.3 by @hassio-addons
-- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.5.4 by @hassio-addons
-- [motionEye](https://github.com/hassio-addons/addon-motioneye) version 0.18.0 by @hassio-addons
-- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.8.4 by @hassio-addons
+- [Home Assistant Stream Deck](https://github.com/basnijholt/home-assistant-streamdeck-yaml-addon) version 2023.4.21 by @basnijholt
+- [Advanced SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 14.1.0 by @hassio-addons
+- [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.12.2 by @hassio-addons
+- [Glances](https://github.com/hassio-addons/addon-glances) version 0.18.1 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 8.2.2 by @hassio-addons
+- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.6.0 by @hassio-addons
+- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.15.0 by @hassio-addons
+- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.5.7 by @hassio-addons
+- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.8.5 by @hassio-addons
 - [Let's Encrypt](https://github.com/home-assistant/hassio-addons/tree/master/letsencrypt) version 4.12.8 by @home-assistant
-- [MariaDB](https://github.com/home-assistant/hassio-addons/tree/master/mariadb) version 2.5.2 by @home-assistant
-- [Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto) version 6.1.3 by @home-assistant
-- [Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba) version 10.0.0 by @home-assistant
-- [VLC](https://github.com/home-assistant/hassio-addons/tree/master/vlc) version 0.1.3 by @home-assistant
-- [deCONZ](https://github.com/home-assistant/hassio-addons/tree/master/deconz) version 6.18.0 by @home-assistant
-- [Rhasspy Assistant](https://github.com/rhasspy/hassio-addons) version 2.5.11 by @rhasspy
-- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.110.3 by @sabeechen
-- [Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt) version 1.30.2-1 by @zigbee2mqtt
+- [MariaDB](https://github.com/home-assistant/addons/tree/master/mariadb) version 2.6.0 by @home-assistant
+- [Mosquitto broker](https://github.com/home-assistant/addons/tree/master/mosquitto) version 6.2.1 by @home-assistant
+- [Samba share](https://github.com/home-assistant/addons/tree/master/samba) version 10.0.1 by @home-assistant
+- [VLC](https://github.com/home-assistant/addons/tree/master/vlc) version 0.2.0 by @home-assistant
+- [deCONZ](https://github.com/home-assistant/addons/tree/master/deconz) version 6.19.0 by @home-assistant
+- [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.110.4 by @sabeechen
+- [Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt) version 1.30.4-1 by @zigbee2mqtt
 <!-- end-addons -->
 
 
@@ -659,8 +658,8 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml)
-### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L12)
+## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml)
+### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml#L12)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
@@ -669,7 +668,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L636)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L209)
 
-### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L75)
+### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml#L75)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -678,7 +677,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L636)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L223)
 
-### [Bedroom IKEA dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L138)
+### [Bedroom IKEA dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml#L138)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -688,7 +687,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L275)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L223)
 
-### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L215)
+### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml#L215)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
@@ -696,7 +695,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L237)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L293)
 
-### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L265)
+### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml#L265)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -706,10 +705,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L275)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/e61ac126e20f19bde46866518f7ffd87039a7159/includes/sensors.yaml#L241)
 
-### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L351)
+### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml#L351)
 
 
-### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/aa34c53f53aaceaff3fa2c589b50b3f9c9908292/automations/control_switches.yaml#L374)
+### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/98a6413d4b34ccd926ad61dcf39aa63c26811fb8/automations/control_switches.yaml#L374)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/d7b127c77e15384d42ae5ef32345ad234a05b538/scripts.yaml#L422)
