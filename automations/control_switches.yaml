@@ -144,16 +144,9 @@
     action: "{{ trigger.payload_json.action }}"
   action:
     choose:
-      # Next color
-      - conditions: "{{ action == 'off' }}" # Lowest button
-        sequence:
-          service: script.next_colors
-          data:
-            input_select: input_select.last_script_bedroom
-
       # Bright lights
       - conditions:
-          - "{{ action == 'arrow_right_click' }}" # Right button
+          - "{{ action == 'brightness_move_up' }}"  # Hold top button
           - condition: state
             entity_id: light.bedroom_lights
             state: "on"
@@ -165,7 +158,11 @@
               brightness: "255"
 
       # Increase brightness
-      - conditions: "{{ action == 'on' }}" # Top button
+      - conditions:
+        - "{{ action == 'on' }}" # Top button
+        - condition: state
+          entity_id: light.bedroom_lights
+          state: "on"
         sequence:
           service: script.increase_brightness
           data:
@@ -173,7 +170,7 @@
 
       # Turn on
       - conditions:
-          - "{{ action == 'arrow_right_click' }}" # Right button
+          - "{{ action == 'on' }}"
           - condition: state
             entity_id: light.bedroom_lights
             state: "off"
@@ -183,7 +180,7 @@
 
       # Turn off
       - conditions:
-          - "{{ action == 'arrow_left_click' }}" # Left button
+          - "{{ action == 'off' }}"
           - condition: state
             entity_id: light.bedroom_lights
             state: "on"
@@ -191,13 +188,29 @@
           - service: light.turn_off
             entity_id: light.bedroom_lights
 
-      # Reset adaptive_lighting
-      - conditions:
-          - "{{ action == 'brightness_move_up' }}" # Hold top button
-          - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
+      # Next color
+      - conditions: "{{ action == 'arrow_left_click' }}"
         sequence:
-          - service: script.reset_adaptive_lighting
+          service: script.next_colors
+          data:
+            input_select: input_select.last_script_bedroom
 
+      # Change sleep mode
+      - conditions:
+          - "{{ action == 'arrow_right_click' }}"
+        sequence:
+          - service: input_select.select_next
+            entity_id: input_select.sleep_mode
+
+      # Turn off everything
+      - conditions:
+          - "{{ action == 'brightness_move_down' }}" # Hold lowest button
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.sleep_mode
+              option: total
+          - service: script.turn_off_everything
 
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
