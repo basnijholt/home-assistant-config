@@ -199,8 +199,8 @@
       - conditions:
           - "{{ action == 'arrow_right_click' }}"
         sequence:
-          - service: input_select.select_next
-            entity_id: input_select.sleep_mode
+          - service: light.toggle
+            entity_id: light.bamboo
 
       # Turn off everything
       - conditions:
