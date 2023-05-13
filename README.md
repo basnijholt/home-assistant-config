@@ -482,7 +482,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Alarm clock ⏰](#alarm-clock-) (1 automations)
 1. [Apple Watch ⌚](#apple-watch-) (12 automations)
 1. [Arriving 👞](#arriving-) (1 automations)
-1. [Bike 🚲](#bike-) (2 automations)
+1. [Bike 🚲](#bike-) (3 automations)
 1. [Climate 🔥🥶](#climate-) (7 automations)
 1. [Control switches 🎛](#control-switches-) (7 automations)
 1. [Cube ∛](#cube-) (2 automations)
@@ -506,7 +506,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **122** ⚠️
+⚠️ Total number of automations: **123** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -609,6 +609,9 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
   *which uses:*
   - [input_datetime.bike_charger_off](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_datetimes.yaml#L41)
+
+### [Start, wait, stop](https://github.com/basnijholt/home-assistant-config/blob/e861aa204e7987faac9043264c2d61173816e115/automations/bike.yaml#L40)
+
 
 [^ toc](#automations---table-of-content)
 
