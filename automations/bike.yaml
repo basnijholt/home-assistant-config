@@ -29,9 +29,12 @@
 
 - alias: "Bike: stop charging"
   trigger:
-    platform: time
-    at: input_datetime.bike_charger_off
+    platform: time_pattern
+    minutes: '/1'
+  condition:
+    condition: template
+    value_template: "{{ states('sensor.time') == states('input_datetime.bike_charger_off')[0:5] }}"
   action:
     service: switch.turn_off
     data:
-      enitity_id: switch.bike_charger
+      entity_id: switch.bike_charger

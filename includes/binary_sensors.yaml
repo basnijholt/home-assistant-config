@@ -199,9 +199,6 @@
             and is_state("binary_sensor.basnijholt_macbook_active", "on") }}
       delay_off: "00:01:00"
 
-- platform: workday
-  country: NL
-
 - platform: trend
   sensors:
     humidity_bathroom_trend:
