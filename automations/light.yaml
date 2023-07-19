@@ -392,10 +392,6 @@
     platform: state
     entity_id: binary_sensor.activity_in_guest_room
   condition:
-    # TODO: what to do with sleep mode?
-    # - condition: state
-    #   entity_id: input_select.sleep_mode
-    #   state: "off"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
