@@ -484,7 +484,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Arriving 👞](#arriving-) (1 automations)
 1. [Bike 🚲](#bike-) (2 automations)
 1. [Climate 🔥🥶](#climate-) (7 automations)
-1. [Control switches 🎛](#control-switches-) (7 automations)
+1. [Control switches 🎛](#control-switches-) (8 automations)
 1. [Cube ∛](#cube-) (2 automations)
 1. [Doorbell 🚪🔔](#doorbell-) (1 automations)
 1. [Frontend 👨‍💻](#frontend-) (3 automations)
@@ -506,7 +506,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **122** ⚠️
+⚠️ Total number of automations: **123** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -716,6 +716,9 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L38)
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L260)
   - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/5a063438ce79dfed29383e2ccb0857ccc9c3a2f3/includes/sensors.yaml#L75)
+
+### [Guest room IKEA Switch](https://github.com/basnijholt/home-assistant-config/blob/36c8e5fa90d804bfc2bf206c762d557dd29410b4/automations/control_switches.yaml#L422)
+
 
 [^ toc](#automations---table-of-content)
 
