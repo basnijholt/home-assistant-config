@@ -195,7 +195,7 @@
           data:
             input_select: input_select.last_script_bedroom
 
-      # Change sleep mode
+      # Turn on bedside light
       - conditions:
           - "{{ action == 'arrow_right_click' }}"
           - "{{ is_state('light.bamboo', 'off') }}"
