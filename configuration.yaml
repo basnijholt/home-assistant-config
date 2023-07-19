@@ -39,6 +39,7 @@ group: !include includes/groups.yaml
 automation old: !include_dir_merge_list automations
 switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
+command_line: !include includes/command_line.yaml
 binary_sensor: !include includes/binary_sensors.yaml
 shell_command: !include includes/shell_commands.yaml
 notify: !include includes/notify.yaml

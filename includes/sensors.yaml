@@ -363,12 +363,6 @@
     - type: processor_use
     - type: last_boot
 
-- platform: command_line
-  command: !secret portfolio_value
-  name: portfolio_value
-  unit_of_measurement: "€"
-  scan_interval: 20
-
 - platform: file
   name: contractions_csv
   file_path: "/config/utils/contractions_log.csv"
