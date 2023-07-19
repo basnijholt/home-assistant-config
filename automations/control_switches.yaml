@@ -198,9 +198,17 @@
       # Change sleep mode
       - conditions:
           - "{{ action == 'arrow_right_click' }}"
+          - "{{ is_state('light.bamboo', 'off') }}"
         sequence:
-          - service: light.toggle
-            entity_id: light.bamboo
+          service: light.toggle
+          entity_id: light.bamboo
+      - conditions:
+          - "{{ action == 'arrow_right_click' }}"
+          - "{{ is_state('light.bamboo', 'on') }}"
+        sequence:
+          service: script.increase_brightness
+          data:
+            group: light.bamboo
 
       # Turn off everything
       - conditions:
