@@ -20,7 +20,7 @@
   lights:
     - light.philips_go
     - light.bamboo
-    - light.guest_room
+    - light.baby_room
   min_brightness: 70
   prefer_rgb_color: true
   sleep_rgb_or_color_temp: "rgb_color"
