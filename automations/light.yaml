@@ -413,10 +413,13 @@
     platform: state
     entity_id: binary_sensor.activity_in_baby_room
   action:
-    service: light.turn_{{ trigger.to_state.state }}
-    data:
-      entity_id: light.baby_sphere
-
+    - service: light.turn_{{ trigger.to_state.state }}
+      data:
+        entity_id: light.baby_sphere
+    - service: light.turn_{{ trigger.to_state.state }}
+      data:
+        entity_id: light.baby_room
+        transition: 1
 #  _____      _                    _               _
 # | ____|_  _| |_ _ __ __ _    ___| |__   ___  ___| | _____
 # |  _| \ \/ / __| '__/ _` |  / __| '_ \ / _ \/ __| |/ / __|
