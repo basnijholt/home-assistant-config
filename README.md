@@ -470,7 +470,6 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 - [Mosquitto broker](https://github.com/home-assistant/addons/tree/master/mosquitto) version 6.2.1 by @home-assistant
 - [Samba share](https://github.com/home-assistant/addons/tree/master/samba) version 10.0.2 by @home-assistant
 - [VLC](https://github.com/home-assistant/addons/tree/master/vlc) version 0.2.0 by @home-assistant
-- [deCONZ](https://github.com/home-assistant/addons/tree/master/deconz) version 6.20.0 by @home-assistant
 - [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.111.1 by @sabeechen
 - [Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt) version 1.32.1-1 by @zigbee2mqtt
 <!-- end-addons -->
