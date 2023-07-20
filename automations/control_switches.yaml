@@ -418,3 +418,24 @@
               source: KEF LS50
               id: 'playlist:{{ states("sensor.favorite_playlist_of_nearest_person") }}'
               volume: 0.25
+
+- alias: "Control switches: guest room IKEA Switch"
+  mode: parallel
+  trigger:
+    platform: mqtt
+    topic: "zigbee2mqtt/IKEA Switch (Guest room)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
+  action:
+    choose:
+      # Turn on
+      - conditions: "{{ action == 'on' }}" # Lowest button
+        sequence:
+          service: light.turn_on
+          entity_id: light.guest_room
+
+      # Turn off
+      - conditions: "{{ action == 'off' }}" # Lowest button
+        sequence:
+          service: light.turn_off
+          entity_id: light.guest_room
