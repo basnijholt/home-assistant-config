@@ -601,13 +601,13 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Started charging](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/automations/bike.yaml#L14)
 
   *which uses:*
-  - [input_datetime.bike_charger_off](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_datetimes.yaml#L41)
-  - [input_datetime.bike_charger_on](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_datetimes.yaml#L36)
+  - [input_datetime.bike_charger_off](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/includes/input_datetimes.yaml#L51)
+  - [input_datetime.bike_charger_on](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/includes/input_datetimes.yaml#L46)
 
 ### [Stop charging](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/automations/bike.yaml#L30)
 
   *which uses:*
-  - [input_datetime.bike_charger_off](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_datetimes.yaml#L41)
+  - [input_datetime.bike_charger_off](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/includes/input_datetimes.yaml#L51)
 
 [^ toc](#automations---table-of-content)
 
@@ -657,8 +657,8 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml)
-### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L12)
+## [Control switches 🎛](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml)
+### [Living room Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L12)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
@@ -667,7 +667,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L636)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L209)
 
-### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L75)
+### [Bedroom Philips Hue dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L75)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -676,7 +676,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L636)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L223)
 
-### [Bedroom IKEA dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L138)
+### [Bedroom IKEA dimmer switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L138)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L22)
@@ -687,7 +687,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L275)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L223)
 
-### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L240)
+### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L240)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
@@ -695,7 +695,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L237)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L293)
 
-### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L290)
+### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L290)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -705,10 +705,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L275)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5a063438ce79dfed29383e2ccb0857ccc9c3a2f3/includes/sensors.yaml#L241)
 
-### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L376)
+### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L376)
 
 
-### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L399)
+### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L399)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L422)
@@ -717,7 +717,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L260)
   - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/5a063438ce79dfed29383e2ccb0857ccc9c3a2f3/includes/sensors.yaml#L75)
 
-### [Guest room IKEA Switch](https://github.com/basnijholt/home-assistant-config/blob/e6c1001baa1a6c13f684d250d3efdfdc0d6ed858/automations/control_switches.yaml#L439)
+### [Guest room IKEA Switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L439)
 
 
 [^ toc](#automations---table-of-content)
@@ -1237,21 +1237,24 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Vacuum 🧹](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/vacuum.yaml)
-### [Started cleaning](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/vacuum.yaml#L11)
+## [Vacuum 🧹](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml)
+### [Started cleaning](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L11)
 
+  *which uses:*
+  - [input_datetime.vacuum_on](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/includes/input_datetimes.yaml#L36)
 
-### [Stopped cleaning](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/vacuum.yaml#L23)
+### [Stopped cleaning](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L27)
 
   *which uses:*
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L16)
+  - [input_datetime.vacuum_off](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/includes/input_datetimes.yaml#L41)
 
-### [Reminder notification](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/vacuum.yaml#L37)
+### [Reminder notification](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L45)
 
   *which uses:*
   - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L183)
 
-### [Cleanup if nobody is home](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/vacuum.yaml#L51)
+### [Cleanup if nobody is home](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L59)
 
   *which uses:*
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L16)
@@ -1260,12 +1263,12 @@ to "Opt".
   - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L183)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/6bab64cd641699f47bb147f03af01022699eeecb/includes/groups.yaml#L11)
 
-### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/vacuum.yaml#L82)
+### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L90)
 
   *which uses:*
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L16)
 
-### [Reset to standard mode](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/vacuum.yaml#L91)
+### [Reset to standard mode](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L99)
 
 
 [^ toc](#automations---table-of-content)
