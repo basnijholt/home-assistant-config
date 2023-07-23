@@ -32,7 +32,7 @@
   entities:
     - light.utility_room
     - light.garage_outside
-    - light.guest_room
+    # - light.guest_room
     - light.baby_room
     - light.baby_sphere
     - light.outside_front_door
