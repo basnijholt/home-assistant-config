@@ -530,7 +530,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.wake_up_light](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L72)
   - [input_boolean.wake_up_with_spotify](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L96)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5a063438ce79dfed29383e2ccb0857ccc9c3a2f3/includes/sensors.yaml#L241)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/250a288e97fda8c18b73b59516aa94c07ef841e8/includes/sensors.yaml#L241)
 
 [^ toc](#automations---table-of-content)
 
@@ -619,7 +619,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L52)
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L46)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L407)
-  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5a063438ce79dfed29383e2ccb0857ccc9c3a2f3/includes/sensors.yaml#L233)
+  - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/250a288e97fda8c18b73b59516aa94c07ef841e8/includes/sensors.yaml#L233)
 
 ### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/e861aa204e7987faac9043264c2d61173816e115/automations/climate.yaml#L26)
 
@@ -703,7 +703,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L237)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L293)
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L275)
-  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5a063438ce79dfed29383e2ccb0857ccc9c3a2f3/includes/sensors.yaml#L241)
+  - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/250a288e97fda8c18b73b59516aa94c07ef841e8/includes/sensors.yaml#L241)
 
 ### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L376)
 
@@ -715,7 +715,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L398)
   - [script.start_spotify](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L38)
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L260)
-  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/5a063438ce79dfed29383e2ccb0857ccc9c3a2f3/includes/sensors.yaml#L75)
+  - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/250a288e97fda8c18b73b59516aa94c07ef841e8/includes/sensors.yaml#L75)
 
 ### [Guest room IKEA Switch](https://github.com/basnijholt/home-assistant-config/blob/2ced0fff9ac22025763941e2f847a5e8735097f6/automations/control_switches.yaml#L439)
 
@@ -1237,24 +1237,25 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Vacuum 🧹](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml)
-### [Started cleaning](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L11)
+## [Vacuum 🧹](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml)
+### [Started cleaning](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L11)
 
   *which uses:*
   - [input_datetime.vacuum_on](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/includes/input_datetimes.yaml#L36)
 
-### [Stopped cleaning](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L27)
+### [Stopped cleaning](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L27)
 
   *which uses:*
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L16)
   - [input_datetime.vacuum_off](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/includes/input_datetimes.yaml#L41)
+  - [sensor.robot_vacuum_last_clean_duration](https://github.com/basnijholt/home-assistant-config/blob/250a288e97fda8c18b73b59516aa94c07ef841e8/includes/sensors.yaml#L319)
 
-### [Reminder notification](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L45)
+### [Reminder notification](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L45)
 
   *which uses:*
   - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L183)
 
-### [Cleanup if nobody is home](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L59)
+### [Cleanup if nobody is home](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L59)
 
   *which uses:*
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L16)
@@ -1263,12 +1264,12 @@ to "Opt".
   - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L183)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/6bab64cd641699f47bb147f03af01022699eeecb/includes/groups.yaml#L11)
 
-### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L90)
+### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L90)
 
   *which uses:*
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L16)
 
-### [Reset to standard mode](https://github.com/basnijholt/home-assistant-config/blob/07e1a85beb7396dd12290030ba48064f386899a8/automations/vacuum.yaml#L99)
+### [Reset to standard mode](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L99)
 
 
 [^ toc](#automations---table-of-content)
