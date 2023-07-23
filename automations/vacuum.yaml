@@ -31,6 +31,8 @@
     from: returning
     to: docked
   action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.cleaned_today
     - service: input_datetime.set_datetime
       data:
         entity_id: input_datetime.vacuum_off
@@ -39,8 +41,6 @@
       data:
         title: "Robot"
         message: "Cleanup successful after {{ (states('sensor.robot_vacuum_last_clean_duration') | int / 60) | round }} minutes"
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.cleaned_today
 
 - alias: "Vacuum: reminder notification"
   trigger:
