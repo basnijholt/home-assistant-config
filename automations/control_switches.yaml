@@ -210,15 +210,32 @@
           data:
             group: light.bamboo
 
-      # Turn off everything
+      # Turn off everything (no guests)
       - conditions:
           - "{{ action == 'brightness_move_down' }}" # Hold lowest button
+          - "{{ is_state('input_boolean.guest_mode', 'off') }}"
         sequence:
           - service: input_select.select_option
             data:
               entity_id: input_select.sleep_mode
               option: total
           - service: script.turn_off_everything
+
+      # Turn off baby room and bedroom (with guests)
+      - conditions:
+          - "{{ action == 'brightness_move_down' }}" # Hold lowest button
+          - "{{ is_state('input_boolean.guest_mode', 'on') }}"
+        sequence:
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.sleep_mode
+              option: total
+          - service: light.turn_off
+            data:
+              entity_id:
+                - light.bedroom_lights
+                - light.baby_room
+                - light.baby_sphere
 
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
