@@ -15,10 +15,14 @@
     from: docked
     to: cleaning
   action:
-    service: notify.all_iphones
-    data:
-      title: "Robot"
-      message: "Robot started to clean!"
+    - service: notify.all_iphones
+      data:
+        title: "Robot"
+        message: "Robot started to clean!"
+    - service: input_datetime.set_datetime
+      data:
+        entity_id: input_datetime.vacuum_on
+        datetime: "{{ now().isoformat() }}"
 
 - alias: "Vacuum: stopped cleaning"
   trigger:
@@ -27,6 +31,10 @@
     from: returning
     to: docked
   action:
+    - service: input_datetime.set_datetime
+      data:
+        entity_id: input_datetime.vacuum_off
+        datetime: "{{ now().isoformat() }}"
     - service: notify.all_iphones
       data:
         title: "Robot"

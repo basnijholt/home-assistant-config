@@ -33,6 +33,16 @@ dishwasher_off:
   has_date: true
   has_time: true
 
+vacuum_on:
+  name: Vacuum last started
+  has_date: true
+  has_time: true
+
+vacuum_off:
+  name: Vacuum last done
+  has_date: true
+  has_time: true
+
 bike_charger_on:
   name: Bike charged started on
   has_date: false
