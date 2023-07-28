@@ -498,14 +498,14 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Security 👮🚨](#security-) (4 automations)
 1. [Night mode 🌕🌑](#night-mode-) (5 automations)
 1. [System 🖥](#system-) (7 automations)
-1. [Test 🧪](#test-) (4 automations)
+1. [Test 🧪](#test-) (5 automations)
 1. [Utilities 🧺👚🍽](#utilities-) (3 automations)
 1. [Vacation mode 🏝](#vacation-mode-) (2 automations)
 1. [Vacuum 🧹](#vacuum-) (6 automations)
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **122** ⚠️
+⚠️ Total number of automations: **123** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -1185,6 +1185,9 @@ to "Opt".
 
 
 ### [Call update_entity after light.turn_on/turn_off](https://github.com/basnijholt/home-assistant-config/blob/6ca664391f26c93d8bd5b16c7da63fb67d80557e/automations/test.yaml#L64)
+
+
+### [Light Baby Room Loop](https://github.com/basnijholt/home-assistant-config/blob/6ca664391f26c93d8bd5b16c7da63fb67d80557e/automations/test.yaml#L85)
 
 
 [^ toc](#automations---table-of-content)
