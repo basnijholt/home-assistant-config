@@ -1187,7 +1187,7 @@ to "Opt".
 ### [Call update_entity after light.turn_on/turn_off](https://github.com/basnijholt/home-assistant-config/blob/6ca664391f26c93d8bd5b16c7da63fb67d80557e/automations/test.yaml#L64)
 
 
-### [Light Baby Room Loop](https://github.com/basnijholt/home-assistant-config/blob/6ca664391f26c93d8bd5b16c7da63fb67d80557e/automations/test.yaml#L85)
+### [Light Baby Room Loop](https://github.com/basnijholt/home-assistant-config/blob/6ca664391f26c93d8bd5b16c7da63fb67d80557e/automations/test.yaml#L84)
 
 
 [^ toc](#automations---table-of-content)
