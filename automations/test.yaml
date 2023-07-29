@@ -80,3 +80,22 @@
     - service: homeassistant.update_entity
       data:
         entity_id: "{{ trigger.event.entity_id }}"
+
+- alias: 'Test: Light Baby Room Loop'
+  mode: parallel
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - condition: "{{ is_state('automation.test_light_baby_room_loop', 'on') }}"
+    - service: light.turn_on
+      target:
+        entity_id: light.baby_room
+    - delay: '00:00:10'
+    - service: light.turn_off
+      target:
+        entity_id: light.baby_room
+    - delay: '00:00:10'
+    - service: automation.trigger
+      target:
+        entity_id: automation.test_light_baby_room_loop
