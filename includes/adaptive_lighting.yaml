@@ -14,6 +14,8 @@
   min_brightness: 70
   prefer_rgb_color: true
   detect_non_ha_changes: true
+  separate_turn_on_commands: true
+  skip_redundant_commands: true
   interval: 30
 
 - name: Bedroom
