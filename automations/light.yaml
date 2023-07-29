@@ -451,31 +451,19 @@
     - condition: state
       entity_id: binary_sensor.activity_in_baby_room
       state: "off"
-    - condition: state
-      entity_id: light.baby_sphere
-      state: "on"
-  action:
-    service: light.turn_off
-    entity_id: light.baby_sphere
-
-- alias: "Light: turn off hall (extra check)"
-  description: In case the other automation failed
-  trigger:
-    platform: time_pattern
-    minutes: "/10"
-  condition:
-    - condition: state
-      entity_id: binary_sensor.activity_in_hall
-      state: "off"
     - condition: or
       conditions:
         - condition: state
-          entity_id: light.hall_lights
+          entity_id: light.baby_sphere
+          state: "on"
+        - condition: state
+          entity_id: light.baby_room
           state: "on"
   action:
     service: light.turn_off
     entity_id:
-      - light.hall_lights
+      - light.baby_sphere
+      - light.baby_room
 
 - alias: "Light: turn off bedroom (extra check)"
   description: In case the other automation failed
