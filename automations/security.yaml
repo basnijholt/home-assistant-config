@@ -45,22 +45,31 @@
         flash: long
         color_name: red
 
-- alias: "Security: door has been open for more than 5 minutes"
+- alias: "Security: front door has been open for more than 5 minutes"
   trigger:
     platform: state
     entity_id: binary_sensor.openclose_front_door
     from: "off"
     to: "on"
     for: "00:05:00"
-  condition:
-    condition: state
-    entity_id: input_boolean.guest_mode
-    state: "off"
   action:
     service: notify.all_iphones
     data:
       title: "Security"
-      message: "The door has been open for more than 5 minutes."
+      message: "The front door has been open for more than 5 minutes."
+
+- alias: "Security: utility room door has been open for more than 5 minutes"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.openclose_front_door
+    from: "off"
+    to: "on"
+    for: "00:05:00"
+  action:
+    service: notify.all_iphones
+    data:
+      title: "Security"
+      message: "The utility room door has been open for more than 5 minutes."
 
 - alias: "Security: no one is home but high power usage"
   trigger:
