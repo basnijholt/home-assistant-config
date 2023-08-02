@@ -495,7 +495,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Music 🎵](#music-) (2 automations)
 1. [Notifications 🔔](#notifications-) (2 automations)
 1. [Plant 🌱](#plant-) (3 automations)
-1. [Security 👮🚨](#security-) (4 automations)
+1. [Security 👮🚨](#security-) (5 automations)
 1. [Night mode 🌕🌑](#night-mode-) (5 automations)
 1. [System 🖥](#system-) (7 automations)
 1. [Test 🧪](#test-) (5 automations)
@@ -505,7 +505,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **123** ⚠️
+⚠️ Total number of automations: **124** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -909,7 +909,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [binary_sensor.activity_outside_front_door](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L107)
   - [binary_sensor.activity_outside_garage](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L113)
 
-### [Turn off utility room / garage outside](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L365)
+### [Turn off utility room / garage outside](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L371)
 
   *which uses:*
   - [binary_sensor.activity_in_utility_room](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L73)
@@ -917,32 +917,32 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [binary_sensor.activity_outside_garage](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L113)
   - [binary_sensor.activity_outside_house](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L119)
 
-### [Toggle guest room](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L397)
+### [Toggle guest room](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L403)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L22)
   - [binary_sensor.activity_in_guest_room](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L99)
 
-### [Toggle baby room](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L418)
+### [Toggle baby room](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L424)
 
   *which uses:*
   - [binary_sensor.activity_in_baby_room](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L93)
 
-### [Turn off guest room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L436)
+### [Turn off guest room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L442)
 
   In case the other automation failed
 
   *which uses:*
   - [binary_sensor.activity_in_guest_room](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L99)
 
-### [Turn off baby room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L452)
+### [Turn off baby room (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L458)
 
   In case the other automation failed
 
   *which uses:*
   - [binary_sensor.activity_in_baby_room](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L93)
 
-### [Turn off bedroom (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L475)
+### [Turn off bedroom (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L481)
 
   In case the other automation failed
 
@@ -951,7 +951,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.bedroom_lights_automatically_turned_on](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L31)
   - [binary_sensor.activity_in_master_bedroom](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L86)
 
-### [Turn off utility room / garage (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L496)
+### [Turn off utility room / garage (extra check)](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L502)
 
   In case the other automation failed
 
@@ -960,12 +960,12 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [binary_sensor.activity_outside_front_door](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L107)
   - [binary_sensor.activity_outside_garage](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L113)
 
-### [Update Zigbee2MQTT lights input_select options](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L529)
+### [Update Zigbee2MQTT lights input_select options](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L535)
 
   *which uses:*
   - [input_select.z2m_lights](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L57)
 
-### [Update Zigbee2MQTT Lights State](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L556)
+### [Update Zigbee2MQTT Lights State](https://github.com/basnijholt/home-assistant-config/blob/f72d8a30197f915d8c3f687749ed38bb2c45456a/automations/light.yaml#L562)
 
   Refresh the state of all Zigbee2MQTT lights
 
@@ -1081,17 +1081,18 @@ to "Opt".
   - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L22)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/6bab64cd641699f47bb147f03af01022699eeecb/includes/groups.yaml#L11)
 
-### [Door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/security.yaml#L48)
+### [Front door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/security.yaml#L48)
 
-  *which uses:*
-  - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L22)
 
-### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/security.yaml#L65)
+### [Utility room door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/security.yaml#L61)
+
+
+### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/security.yaml#L74)
 
   *which uses:*
   - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/a82328fe808cbb256226ca7fc993eb728e71d67a/includes/binary_sensors.yaml#L189)
 
-### [Bathroom door has opened](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/security.yaml#L87)
+### [Bathroom door has opened](https://github.com/basnijholt/home-assistant-config/blob/da5ee3de9701c846c4e274fced15d92c033826d9/automations/security.yaml#L96)
 
   *which uses:*
   - [input_boolean.bathroom_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L25)
