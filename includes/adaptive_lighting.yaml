@@ -16,7 +16,8 @@
   detect_non_ha_changes: true
   separate_turn_on_commands: true
   skip_redundant_commands: true
-  interval: 30
+  interval: 20
+  transition: 0
 
 - name: Bedroom
   lights:
@@ -26,7 +27,7 @@
   min_brightness: 70
   prefer_rgb_color: true
   sleep_rgb_or_color_temp: "rgb_color"
-  sleep_rgb_color: [255, 128, 0]
+  sleep_rgb_color: [255, 40, 0]
   interval: 30
 
 - name: Bedroom LED
@@ -36,7 +37,7 @@
   min_brightness: 70
   prefer_rgb_color: true
   sleep_rgb_or_color_temp: "rgb_color"
-  sleep_rgb_color: [255, 128, 0]
+  sleep_rgb_color: [255, 40, 0]
   interval: 30
 
 # Will never put this instance to sleep mode
