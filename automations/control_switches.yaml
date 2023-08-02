@@ -138,10 +138,18 @@
 - alias: "Control switches: bedroom IKEA dimmer switch"
   mode: parallel
   trigger:
-    platform: mqtt
-    topic: "zigbee2mqtt/IKEA Remote (Bedroom)"
+    - platform: mqtt
+      topic: "zigbee2mqtt/IKEA Remote (Bedroom)"
+    - platform: mqtt
+      topic: "zigbee2mqtt/IKEA Remote (Bedroom Marcella)"
   variables:
     action: "{{ trigger.payload_json.action }}"
+    personal_light: >-
+      {% if trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom)' %}
+        light.bamboo
+      {% elif trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom Marcella)' %}
+        light.philips_go
+      {% endif %}
   action:
     choose:
       # Bright lights
@@ -198,17 +206,18 @@
       # Turn on bedside light
       - conditions:
           - "{{ action == 'arrow_right_click' }}"
-          - "{{ is_state('light.bamboo', 'off') }}"
+          - "{{ is_state(personal_light, 'off') }}"
         sequence:
           service: light.toggle
-          entity_id: light.bamboo
+          data:
+            entity_id: "{{ personal_light }}"
       - conditions:
           - "{{ action == 'arrow_right_click' }}"
-          - "{{ is_state('light.bamboo', 'on') }}"
+          - "{{ is_state(personal_light, 'on') }}"
         sequence:
           service: script.increase_brightness
           data:
-            group: light.bamboo
+            group: "{{ personal_light }}"
 
       # Turn off everything (no guests)
       - conditions:
