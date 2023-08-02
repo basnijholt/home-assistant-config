@@ -22,12 +22,14 @@
     motion_detected:
       friendly_name: Any motion detected
       value_template: >
-        {{ is_state("binary_sensor.activity_in_kitchen", "on")
+        {{ is_state("binary_sensor.activity_in_bathroom", "on")
+            or is_state("binary_sensor.activity_in_dinner_area", "on")
             or is_state("binary_sensor.activity_in_living_room", "on")
-            or is_state("binary_sensor.activity_in_bathroom", "on")
+            or is_state("binary_sensor.activity_in_kitchen", "on")
+            or is_state("binary_sensor.activity_in_utility_room", "on")
             or is_state("binary_sensor.activity_in_master_bedroom", "on")
-            or is_state("binary_sensor.activity_in_guest_room", "on")
-            or is_state("binary_sensor.activity_in_baby_room", "on") }}
+            or is_state("binary_sensor.activity_in_baby_room", "on")
+            or is_state("binary_sensor.activity_in_guest_room", "on") }}
 
     motion_detected_in_last_hour:
       friendly_name: Any motion detected in last hour
@@ -73,7 +75,8 @@
     activity_in_utility_room:
       friendly_name: Activity in the utility room
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_utility_room_occupancy", "on") }}
+        {{ is_state("binary_sensor.motion_sensor_utility_room_occupancy", "on")
+            or is_state("binary_sensor.openclose_utility_room_door", "on") }}
       delay_off: "00:01:00"
 
     activity_in_hall:
@@ -107,13 +110,15 @@
     activity_outside_front_door:
       friendly_name: Activity outside front door
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_outside_front_door_occupancy", "on") }}
+        {{ is_state("binary_sensor.motion_sensor_outside_front_door_occupancy", "on")
+            or is_state("binary_sensor.openclose_front_door", "on") }}
       delay_off: "00:01:00"
 
     activity_outside_garage:
       friendly_name: Activity outside garage
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_outside_garage_occupancy", "on") }}
+        {{ is_state("binary_sensor.motion_sensor_outside_garage_occupancy", "on")
+            or is_state("binary_sensor.openclose_utility_room_door", "on") }}
       delay_off: "00:01:00"
 
     activity_outside_house:
