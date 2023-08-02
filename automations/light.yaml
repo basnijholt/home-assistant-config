@@ -347,13 +347,22 @@
       to: "on"
       entity_id: binary_sensor.activity_outside_garage
   action:
-    service: light.turn_on
-    data:
-      entity_id:
-        - light.utility_room
-        - light.garage_outside
-        - light.outside_front_door
-      transition: 1
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.utility_room
+        transition: 1
+    # Only turn on these lights when it is (almost) dark
+    - if: "{{ state_attr('sun.sun', 'elevation') < 6 }}"
+      then:
+        - service: light.turn_on
+          data:
+            entity_id:
+              - light.outside_front_door
+              - light.garage_outside
+        - service: switch.turn_on
+          data:
+            entity_id: switch.bike_charger
 
 - alias: "Light: turn off utility room / garage outside"
   trigger:
@@ -374,10 +383,13 @@
     - if: "{{ is_state('binary_sensor.activity_outside_house', 'off') }}"
       then:
         - service: light.turn_off
-          entity_id:
-            - light.garage_outside
-            - light.outside_front_door
-
+          data:
+            entity_id:
+              - light.outside_front_door
+              - light.garage_outside
+        - service: switch.turn_off
+          data:
+            entity_id: switch.bike_charger
 
 #                        _
 #   __ _ _   _  ___  ___| |_     _ __ ___   ___  _ __ ___
