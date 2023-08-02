@@ -135,6 +135,16 @@
         sequence:
           - service: script.reset_adaptive_lighting
 
+# This automation is set up to control the lighting in your bedroom using two different IKEA remotes.
+# Here's a simplified explanation of the different actions that the automation performs:
+# 1. **Bright Lights:** If you hold the top button on the remote and the bedroom lights are already on, the lights will become brighter, mimicking a bright daylight environment.
+# 2. **Increase Brightness:** If you press the top button on the remote and the bedroom lights are already on, the brightness of the lights will increase.
+# 3. **Turn On:** If you press the top button on the remote and the bedroom lights are off, the bedroom lights will turn on.
+# 4. **Turn Off:** If you press the 'off' button on the remote and the bedroom lights are on, the bedroom lights will turn off.
+# 5. **Next Color:** If you press the 'arrow left' button on the remote, the color of the bedroom lights will cycle to the next color in a predefined sequence.
+# 6. **Turn on bedside light:** If you press the 'arrow right' button on the remote, a personal light (either the 'bamboo' light if using the first remote, or the 'philips go' light if using the second remote) will toggle on or off. If the personal light is already on, pressing the 'arrow right' button will increase the brightness of the personal light.
+# 7. **Turn off everything (no guests):** If you hold the bottom button on the remote and there are no guests in the house (as determined by the status of 'guest mode'), all lights in the house will turn off.
+# 8. **Turn off baby room and bedroom (with guests):** If you hold the bottom button on the remote and there are guests in the house, the lights in the bedroom, baby room, and the baby sphere light will turn off.
 - alias: "Control switches: bedroom IKEA dimmer switch"
   mode: parallel
   trigger:
@@ -164,6 +174,7 @@
             entity_id: light.bedroom_lights
             data:
               brightness: "255"
+              kelvin: 5500
 
       # Increase brightness
       - conditions:
