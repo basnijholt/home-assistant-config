@@ -495,7 +495,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Music 🎵](#music-) (2 automations)
 1. [Notifications 🔔](#notifications-) (2 automations)
 1. [Plant 🌱](#plant-) (3 automations)
-1. [Security 👮🚨](#security-) (5 automations)
+1. [Security 👮🚨](#security-) (6 automations)
 1. [Night mode 🌕🌑](#night-mode-) (5 automations)
 1. [System 🖥](#system-) (7 automations)
 1. [Test 🧪](#test-) (5 automations)
@@ -505,7 +505,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **124** ⚠️
+⚠️ Total number of automations: **125** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -627,7 +627,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L46)
   - [input_number.temperature_high](https://github.com/basnijholt/home-assistant-config/blob/0a49b1ab897f8dbc068b042f4e6c2ba0e4cb3d8f/includes/input_numbers.yaml#L20)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L407)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L194)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L196)
 
 ### [Turn off the heating at 22:00](https://github.com/basnijholt/home-assistant-config/blob/e861aa204e7987faac9043264c2d61173816e115/automations/climate.yaml#L51)
 
@@ -636,7 +636,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [input_number.temperature_low](https://github.com/basnijholt/home-assistant-config/blob/0a49b1ab897f8dbc068b042f4e6c2ba0e4cb3d8f/includes/input_numbers.yaml#L12)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L407)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L398)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L194)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L196)
 
 ### [Set outside temperature every hour](https://github.com/basnijholt/home-assistant-config/blob/e861aa204e7987faac9043264c2d61173816e115/automations/climate.yaml#L84)
 
@@ -772,16 +772,16 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L22)
   - [script.leaving](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L416)
-  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L179)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L194)
+  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L181)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L196)
   - [binary_sensor.someone_in_the_house_in_last_hour](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L40)
 
 ### [Ask to turn off everything](https://github.com/basnijholt/home-assistant-config/blob/55c982f96c77b5e15b9334abee8785ecdf4edcc9/automations/leaving.yaml#L40)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L22)
-  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L179)
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L194)
+  - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L181)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L196)
 
 ### [Turn off everything after notification](https://github.com/basnijholt/home-assistant-config/blob/55c982f96c77b5e15b9334abee8785ecdf4edcc9/automations/leaving.yaml#L74)
 
@@ -1090,12 +1090,19 @@ to "Opt".
 ### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/2be0f562738365b953b6e370d3107aa7ebf6fbdb/automations/security.yaml#L74)
 
   *which uses:*
-  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L194)
+  - [binary_sensor.no_one_home](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L196)
 
 ### [Bathroom door has opened](https://github.com/basnijholt/home-assistant-config/blob/2be0f562738365b953b6e370d3107aa7ebf6fbdb/automations/security.yaml#L96)
 
   *which uses:*
   - [input_boolean.bathroom_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L25)
+
+### [Door to outside open](https://github.com/basnijholt/home-assistant-config/blob/2be0f562738365b953b6e370d3107aa7ebf6fbdb/automations/security.yaml#L121)
+
+  
+
+  *which uses:*
+  - [binary_sensor.door_to_outside_open](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L137)
 
 [^ toc](#automations---table-of-content)
 
@@ -1198,20 +1205,20 @@ to "Opt".
 ### [Washing machine or dishwasher started or finished](https://github.com/basnijholt/home-assistant-config/blob/66d951dc84a6d10ecb21cd9fb02ba20852afedeb/automations/utilities.yaml#L12)
 
   *which uses:*
-  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L153)
-  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L141)
+  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L155)
+  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L143)
 
 ### [Washing machine notification](https://github.com/basnijholt/home-assistant-config/blob/66d951dc84a6d10ecb21cd9fb02ba20852afedeb/automations/utilities.yaml#L29)
 
   *which uses:*
   - [script.utility_notification](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L511)
-  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L141)
+  - [binary_sensor.washing_machine](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L143)
 
 ### [Dishwasher notification](https://github.com/basnijholt/home-assistant-config/blob/66d951dc84a6d10ecb21cd9fb02ba20852afedeb/automations/utilities.yaml#L41)
 
   *which uses:*
   - [script.utility_notification](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L511)
-  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L153)
+  - [binary_sensor.dishwasher](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L155)
 
 [^ toc](#automations---table-of-content)
 
@@ -1250,7 +1257,7 @@ to "Opt".
 ### [Reminder notification](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L45)
 
   *which uses:*
-  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L188)
+  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L190)
 
 ### [Cleanup if nobody is home](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L59)
 
@@ -1258,7 +1265,7 @@ to "Opt".
   - [input_boolean.cleaned_today](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L16)
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L22)
   - [input_boolean.vacation_mode](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L19)
-  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L188)
+  - [binary_sensor.vacuum_day](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L190)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/6bab64cd641699f47bb147f03af01022699eeecb/includes/groups.yaml#L11)
 
 ### [Reset cleaned today](https://github.com/basnijholt/home-assistant-config/blob/ded5a22a48e501098b35f9b8711fb49f79e16399/automations/vacuum.yaml#L90)
@@ -1277,7 +1284,7 @@ to "Opt".
 
   *which uses:*
   - [input_boolean.work_hour_notification_sent](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L49)
-  - [binary_sensor.worked_enough_today](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L165)
+  - [binary_sensor.worked_enough_today](https://github.com/basnijholt/home-assistant-config/blob/4abb04c9c8422e4a0a84ed60c708c9523dca9768/includes/binary_sensors.yaml#L167)
 
 ### [Reset input_boolean at midnight](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/work.yaml#L32)
 
