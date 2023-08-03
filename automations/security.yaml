@@ -117,3 +117,40 @@
         flash: short
     - service: input_boolean.turn_off
       entity_id: input_boolean.bathroom_door_open_warning
+
+- alias: "Security: Door to outside open"
+  description: ''
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_to_outside_open
+      to: 'on'
+      for:
+        seconds: 15
+  action:
+    - repeat:
+        while:
+          - condition: state
+            entity_id: binary_sensor.door_to_outside_open
+            state: 'on'
+        sequence:
+          # First turning off such that the lights stay on
+          - service: light.turn_off
+            data:
+              entity_id:
+                - light.garage_outside
+                - light.outside_front_door
+                - light.bedroom_outside
+                - light.utility_room
+          - delay:
+              seconds: 1
+          - service: light.turn_on
+            data:
+              entity_id:
+                - light.garage_outside
+                - light.outside_front_door
+                - light.bedroom_outside
+                - light.utility_room
+              brightness_pct: 100
+          - delay:
+              seconds: 1
+  mode: single

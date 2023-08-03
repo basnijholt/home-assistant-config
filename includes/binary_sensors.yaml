@@ -138,6 +138,12 @@
             or is_state("binary_sensor.activity_in_guest_room", "on") }}
       delay_off: "00:01:00"
 
+    door_to_outside_open:
+      friendly_name: Door to outside open
+      value_template: >
+        {{ is_state("binary_sensor.openclose_utility_room_door", "on")
+          or is_state("binary_sensor.openclose_front_door", "on") }}
+
     washing_machine:
       friendly_name: Washing machine
       value_template: >
