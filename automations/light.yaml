@@ -321,6 +321,18 @@
   action:
     service: shell_command.reboot_bedroom_ceiling
 
+- alias: 'Light: Update input_select when bedroom lights turned off'
+  description: "Set the input_select.last_script_bedroom such that colored lights will be chosen"
+  trigger:
+    platform: state
+    entity_id: light.bedroom_lights
+    to: 'off'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.last_script_bedroom
+      option: 'script.white_lights_bedroom'
+
 #        _   _ _ _ _                                                          _                _       _     _
 #  _   _| |_(_) (_) |_ _   _     _ __ ___   ___  _ __ ___      __ _ _ __   __| |    ___  _   _| |_ ___(_) __| | ___
 # | | | | __| | | | __| | | |   | '__/ _ \ / _ \| '_ ` _ \    / _` | '_ \ / _` |   / _ \| | | | __/ __| |/ _` |/ _ \
