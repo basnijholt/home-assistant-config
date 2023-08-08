@@ -29,6 +29,7 @@
   sleep_rgb_or_color_temp: "rgb_color"
   sleep_rgb_color: [255, 40, 0]
   interval: 30
+  adapt_only_on_bare_turn_on: true
 
 - name: Bedroom LED
   lights:
