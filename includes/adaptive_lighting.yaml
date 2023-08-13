@@ -18,6 +18,7 @@
   skip_redundant_commands: true
   interval: 20
   transition: 0
+  autoreset_control_seconds: 300
 
 - name: Bedroom
   lights:
