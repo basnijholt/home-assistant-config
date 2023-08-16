@@ -483,7 +483,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Arriving 👞](#arriving-) (1 automations)
 1. [Bike 🚲](#bike-) (2 automations)
 1. [Climate 🔥🥶](#climate-) (7 automations)
-1. [Control switches 🎛](#control-switches-) (8 automations)
+1. [Control switches 🎛](#control-switches-) (9 automations)
 1. [Cube ∛](#cube-) (2 automations)
 1. [Doorbell 🚪🔔](#doorbell-) (1 automations)
 1. [Frontend 👨‍💻](#frontend-) (3 automations)
@@ -505,7 +505,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **126** ⚠️
+⚠️ Total number of automations: **127** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -718,6 +718,9 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/250a288e97fda8c18b73b59516aa94c07ef841e8/includes/sensors.yaml#L75)
 
 ### [Guest room IKEA Switch](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L459)
+
+
+### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L480)
 
 
 [^ toc](#automations---table-of-content)
