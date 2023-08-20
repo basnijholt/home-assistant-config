@@ -483,7 +483,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Arriving 👞](#arriving-) (1 automations)
 1. [Bike 🚲](#bike-) (2 automations)
 1. [Climate 🔥🥶](#climate-) (7 automations)
-1. [Control switches 🎛](#control-switches-) (10 automations)
+1. [Control switches 🎛](#control-switches-) (11 automations)
 1. [Cube ∛](#cube-) (2 automations)
 1. [Doorbell 🚪🔔](#doorbell-) (1 automations)
 1. [Frontend 👨‍💻](#frontend-) (3 automations)
@@ -505,7 +505,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **128** ⚠️
+⚠️ Total number of automations: **129** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
@@ -723,7 +723,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Guest Room Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L480)
 
 
-### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L496)
+### [Baby Room Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L496)
+
+
+### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L514)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
