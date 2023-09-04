@@ -726,7 +726,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Baby Room Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L496)
 
 
-### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L514)
+### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/370c04a6c188a745b1e71645245c369ac5925112/automations/control_switches.yaml#L520)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
