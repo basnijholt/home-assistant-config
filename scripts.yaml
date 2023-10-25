@@ -442,7 +442,7 @@ update_dns:
       data:
         api: !secret gandi_api_key
         domain: !secret domain
-        subdomain: !secret files
+        subdomain: files
 
 fix_sound:
   alias: Fix Opt LG Sound Sync bug
