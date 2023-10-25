@@ -475,3 +475,74 @@
         sequence:
           service: light.turn_off
           entity_id: light.guest_room
+
+- alias: "Control switches: Guest Room Light"
+  mode: parallel
+  trigger:
+    platform: mqtt
+    topic: "zigbee2mqtt/Smart Switch (Guest Room)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
+  action:
+    choose:
+      # Toggle
+      - conditions: "{{ action == 'single' }}"
+        sequence:
+          service: light.toggle
+          data:
+            entity_id: light.guest_room
+
+- alias: "Control switches: Baby Room Light"
+  mode: parallel
+  trigger:
+    platform: mqtt
+    topic: "zigbee2mqtt/Smart Switch (Baby Room)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
+  action:
+    choose:
+      # Toggle light
+      - conditions: "{{ action == 'single' }}"
+        sequence:
+          service: light.toggle
+          data:
+            entity_id:
+              - light.baby_room_lights
+
+      # Toggle sleep mode
+      - conditions: "{{ action == 'double' }}"
+        sequence:
+          service: switch.toggle
+          entity_id: switch.adaptive_lighting_sleep_mode_baby_room
+
+- alias: "Control switches: Mid Room Changing Table Light"
+  mode: parallel
+  trigger:
+    platform: mqtt
+    topic: "zigbee2mqtt/Smart Switch (Mid Room)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
+  action:
+    choose:
+      # Toggle
+      - conditions: "{{ action == 'single' }}"
+        sequence:
+          service: light.toggle
+          data:
+            entity_id: light.mid_room
+            brightness_pct: 100
+            rgb_color: [255, 15, 38]
+
+      # Change brightness
+      - conditions: "{{ action == 'double' }}"
+        sequence:
+          service: script.increase_brightness
+          data:
+            group: light.mid_room
+
+      # Next colors
+      - conditions: "{{ action == 'hold' }}"
+        sequence:
+          service: script.next_colors
+          data:
+            input_select: input_select.last_script_living_room
