@@ -25,7 +25,7 @@
     entity_id: input_select.sleep_mode
     service: input_select.select_option
     data:
-      option: "off"
+      option: "half"
 
 - alias: "Night mode: turn off automatic bedroom lights"
   trigger:
