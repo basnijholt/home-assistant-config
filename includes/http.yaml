@@ -8,5 +8,10 @@
 #               |_|
 #
 #- from github.com/basnijholt/home-assistant-config
-ssl_certificate: /ssl/fullchain.pem
-ssl_key: /ssl/privkey.pem
+#ssl_certificate: /ssl/fullchain.pem
+#ssl_key: /ssl/privkey.pem
+use_x_forwarded_for: true
+trusted_proxies:
+  - 172.16.0.0/12
+  - 127.0.0.1
+  - 192.168.0.0/16
