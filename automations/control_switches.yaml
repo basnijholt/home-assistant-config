@@ -156,7 +156,7 @@
     action: "{{ trigger.payload_json.action }}"
     personal_light: >-
       {% if trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom)' %}
-        light.bamboo
+        light.bed_led
       {% elif trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom Marcella)' %}
         light.philips_go
       {% endif %}
@@ -254,8 +254,7 @@
             data:
               entity_id:
                 - light.bedroom_lights
-                - light.baby_room
-                - light.baby_sphere
+                - light.baby_room_lights
 
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
