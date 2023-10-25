@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2023.10.3%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2023.10.3)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2023.10.5%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2023.10.5)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -507,16 +507,16 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 
 ⚠️ Total number of automations: **129** ⚠️
 
-## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml)
-### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L11)
+## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/bf26b7723b223b0fee71a07073ebd2af28df56c2/automations/adaptive_lighting.yaml)
+### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/bf26b7723b223b0fee71a07073ebd2af28df56c2/automations/adaptive_lighting.yaml#L11)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
 
-### [Reset manual_control after 1 hour](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L52)
+### [Reset manual_control after 1 hour](https://github.com/basnijholt/home-assistant-config/blob/bf26b7723b223b0fee71a07073ebd2af28df56c2/automations/adaptive_lighting.yaml#L52)
 
 
-### [Notify manual_control](https://github.com/basnijholt/home-assistant-config/blob/e1349158a171d10d28689dc258c60a73a15679f7/automations/adaptive_lighting.yaml#L76)
+### [Notify manual_control](https://github.com/basnijholt/home-assistant-config/blob/bf26b7723b223b0fee71a07073ebd2af28df56c2/automations/adaptive_lighting.yaml#L76)
 
 
 [^ toc](#automations---table-of-content)
@@ -1128,26 +1128,26 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/sleep_mode.yaml)
-### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/sleep_mode.yaml#L12)
+## [Night mode 🌕🌑](https://github.com/basnijholt/home-assistant-config/blob/cd994191ec5f54fa625c66730e9d8e60bbc51ab8/automations/sleep_mode.yaml)
+### [Automatically turn off when alarm turns off or at 7AM](https://github.com/basnijholt/home-assistant-config/blob/cd994191ec5f54fa625c66730e9d8e60bbc51ab8/automations/sleep_mode.yaml#L12)
 
   *which uses:*
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L52)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
 
-### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/sleep_mode.yaml#L30)
+### [Turn off automatic bedroom lights](https://github.com/basnijholt/home-assistant-config/blob/cd994191ec5f54fa625c66730e9d8e60bbc51ab8/automations/sleep_mode.yaml#L30)
 
   *which uses:*
   - [input_boolean.automatic_bedroom_lights](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L40)
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
 
-### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/sleep_mode.yaml#L39)
+### [Set low temperature when sleep mode turns on](https://github.com/basnijholt/home-assistant-config/blob/cd994191ec5f54fa625c66730e9d8e60bbc51ab8/automations/sleep_mode.yaml#L39)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/1aeb2e2e73d692a67b2e061d75f86b34afd500f5/scripts.yaml#L398)
 
-### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/sleep_mode.yaml#L47)
+### [Go from half to total sleeping mode](https://github.com/basnijholt/home-assistant-config/blob/cd994191ec5f54fa625c66730e9d8e60bbc51ab8/automations/sleep_mode.yaml#L47)
 
   When it is half sleeping mode and there is no activity in the house for more than an hour go to total sleeping mode.
 
@@ -1156,7 +1156,7 @@ to "Opt".
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
   - [binary_sensor.activity_outside_bedroom](https://github.com/basnijholt/home-assistant-config/blob/18c1a5c949dd1dc954d872d4b56e3e6b0309ee50/includes/binary_sensors.yaml#L131)
 
-### [Set sleeping mode in the living room](https://github.com/basnijholt/home-assistant-config/blob/fb91cf80f7559983ee6c873cae3c3cbce304b3ac/automations/sleep_mode.yaml#L70)
+### [Set sleeping mode in the living room](https://github.com/basnijholt/home-assistant-config/blob/cd994191ec5f54fa625c66730e9d8e60bbc51ab8/automations/sleep_mode.yaml#L70)
 
   Set the living room lights to sleep mode only when no-one is there anymore.
 
