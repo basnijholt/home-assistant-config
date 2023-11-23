@@ -41,3 +41,22 @@
         message: Front door opened!
     - service: input_boolean.turn_off
       entity_id: input_boolean.front_door_open_warning
+
+- alias: "Notifications: Hourly Mantra Notification"
+  trigger:
+    - platform: time_pattern
+      hours: "/1"
+  condition:
+    - "{{ not is_state('input_select.sleep_mode', 'total') }}"
+  action:
+    - service: notify.mobile_app_marcella_iphone_se2
+      data:
+        title: "Hourly Mantra"
+        message: >
+          {% set mantras = [
+            "I am enough",
+            "I don't need to prove myself",
+            "I am loved"
+          ] %}
+          {% set mantra = mantras | random %}
+          {{ mantra }}
