@@ -38,9 +38,12 @@
 
 - alias: "Light: turn off living room"
   trigger:
-    platform: state
-    entity_id: binary_sensor.activity_in_living_room
-    to: "off"
+    - platform: state
+      entity_id: binary_sensor.activity_in_living_room
+      to: "off"
+    - platform: state
+      entity_id: input_select.sleep_mode
+      from: total
   condition:
     condition: state
     entity_id: input_boolean.guest_mode
@@ -48,6 +51,35 @@
   action:
     service: light.turn_off
     entity_id: light.living_room_lights
+
+- alias: "Light: turn on Chrismas tree"
+  trigger:
+    - platform: state
+      entity_id: input_select.sleep_mode
+      to: "off"
+    - platform: state
+      entity_id: binary_sensor.someone_in_the_house_in_last_hour
+      to: "on"
+  condition:
+    condition: state
+    entity_id: binary_sensor.someone_in_the_house_in_last_hour
+    state: "on"
+  action:
+    service: switch.turn_on
+    entity_id: switch.christmas_tree
+
+- alias: "Light: turn off Chrismas tree"
+  trigger:
+    - platform: state
+      entity_id: input_select.sleep_mode
+      to: "off"
+    - platform: state
+      entity_id: binary_sensor.someone_in_the_house_in_last_hour
+      to: "off"
+  action:
+    service: switch.turn_off
+    entity_id: switch.christmas_tree
+
 
 #  _  ___ _       _
 # | |/ (_) |_ ___| |__   ___ _ __
