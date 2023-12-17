@@ -50,7 +50,6 @@ ios: !include includes/ios.yaml
 media_player: !include includes/media_players.yaml
 homekit: !include includes/homekit.yaml
 plant: !include includes/plant.yaml
-mqtt: !include includes/mqtt.yaml
 influxdb: !include includes/influxdb.yaml
 intent:
 intent_script: !include includes/intent_script.yaml
