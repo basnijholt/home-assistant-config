@@ -56,7 +56,9 @@
   trigger:
     - platform: state
       entity_id: input_select.sleep_mode
-      to: "off"
+      to:
+        - "off"
+        - "half"
     - platform: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       to: "on"
@@ -72,7 +74,7 @@
   trigger:
     - platform: state
       entity_id: input_select.sleep_mode
-      to: "off"
+      to: "total"
     - platform: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       to: "off"
