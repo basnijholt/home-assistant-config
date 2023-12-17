@@ -60,3 +60,22 @@
           ] %}
           {% set mantra = mantras | random %}
           {{ mantra }}
+        data:
+          actions:
+            - action: "AGREE_MANTRA"
+              title: "I agree"
+              activationMode: background
+              authenticationRequired: true
+              destructive: true
+    - wait_for_trigger:
+        platform: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: "AGREE_MANTRA"
+      timeout: "01:00:00"
+      continue_on_timeout: false
+
+    - service: notify.mobile_app_marcella_iphone_se2
+      data:
+        message: "Yes you are! ❤️😘🥰💖💕🌷🌼🌈✨🎉🍀"
+
