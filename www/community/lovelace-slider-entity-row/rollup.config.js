@@ -2,7 +2,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import json from "@rollup/plugin-json";
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
-import babel from "@rollup/plugin-babel";
+import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 
 const dev = process.env.ROLLUP_WATCH;
 
@@ -16,9 +16,7 @@ export default {
     nodeResolve(),
     json(),
     typescript(),
-    babel({
-      exclude: "node_modules/**",
-    }),
+    getBabelOutputPlugin({ presets: ["@babel/preset-env"] }),
     !dev && terser({ format: { comments: false } }),
   ],
 };
