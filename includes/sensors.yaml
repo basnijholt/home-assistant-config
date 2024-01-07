@@ -359,18 +359,6 @@
     - date
     - time
 
-- platform: systemmonitor
-  resources:
-    - type: disk_use_percent
-      arg: "/"
-    - type: memory_use_percent
-    - type: network_in
-      arg: eth0
-    - type: network_out
-      arg: eth0
-    - type: processor_use
-    - type: last_boot
-
 - platform: file
   name: contractions_csv
   file_path: "/config/utils/contractions_log.csv"
