@@ -49,7 +49,7 @@
   condition:
     - "{{ not is_state('input_select.sleep_mode', 'total') }}"
   action:
-    - service: notify.mobile_app_marcella_iphone_se2
+    - service: notify.mobile_app_marcella_iphone_14_pro
       data:
         title: "Hourly Mantra"
         message: >
@@ -75,7 +75,7 @@
       timeout: "01:00:00"
       continue_on_timeout: false
 
-    - service: notify.mobile_app_marcella_iphone_se2
+    - service: notify.mobile_app_marcella_iphone_14_pro
       data:
         message: "Yes you are! ❤️😘🥰💖💕🌷🌼🌈✨🎉🍀"
 
