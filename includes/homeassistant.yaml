@@ -14,7 +14,6 @@ longitude: !secret longitude_home
 # external_url:  # XXX: take from .storage config
 elevation: 0
 unit_system: metric
-legacy_templates: false
 country: NL
 time_zone: America/Los_Angeles
 name: Home
