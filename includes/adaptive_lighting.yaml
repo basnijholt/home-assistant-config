@@ -57,10 +57,27 @@
   sleep_rgb_or_color_temp: "rgb_color"
   sleep_rgb_color: [255, 125, 0]
 
+- name: Guest room
+  lights:
+    - light.guest_room
+  sleep_brightness: 50
+  min_brightness: 70
+  separate_turn_on_commands: true
+  skip_redundant_commands: true
+  interval: 20
+  transition: 0
+  adapt_only_on_bare_turn_on: true
+
 # Will never put this instance to sleep mode
 - name: Never sleep
   lights:
-    - light.utility_room
+    - light.utility_room_1
+    - light.utility_room_2
     - light.garage_outside
     - light.outside_front_door
   min_brightness: 80
+  separate_turn_on_commands: true
+  skip_redundant_commands: true
+  interval: 20
+  transition: 0
+  adapt_only_on_bare_turn_on: true
