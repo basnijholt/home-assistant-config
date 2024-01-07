@@ -484,6 +484,22 @@
 # | |___ >  <| |_| | | (_| | | (__| | | |  __/ (__|   <\__ \
 # |_____/_/\_\\__|_|  \__,_|  \___|_| |_|\___|\___|_|\_\___/
 
+- alias: "Light: turn off living room (extra check)"
+  description: In case the other automation failed
+  trigger:
+    platform: time_pattern
+    minutes: "/60"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.activity_in_living_room
+      state: "off"
+    - condition: state
+      entity_id: light.living_room_lights
+      state: "on"
+  action:
+    service: light.turn_off
+    entity_id: light.living_room_lights
+
 - alias: "Light: turn off guest room (extra check)"
   description: In case the other automation failed
   trigger:
