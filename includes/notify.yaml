@@ -14,6 +14,7 @@
     - service: mobile_app_basnijholt_iphone_10
     - service: mobile_app_basnijholt_iphone_13
     - service: mobile_app_marcella_iphone_se2
+    - service: mobile_app_marcella_iphone_14_pro
 
 - platform: group
   name: bas
@@ -35,6 +36,7 @@
     - service: mobile_app_basnijholt_iphone_13
     - service: mobile_app_basnijholt_macbook
     - service: mobile_app_marcella_iphone_se2
+    - service: mobile_app_marcella_iphone_14_pro
     - service: tv
     - service: chrome
 
