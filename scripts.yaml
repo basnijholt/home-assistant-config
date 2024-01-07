@@ -413,6 +413,15 @@ set_high_temperature:
         temperature: >
           {{ states("input_number.temperature_high") }}
 
+toggle_thermostat_off_heat:
+  alias: Toggle climate between 'off' and 'heat'
+  sequence:
+    - service: climate.set_hvac_mode
+      entity_id: climate.thermostat
+      data:
+        hvac_mode: |-
+          {{ "off" if is_state('climate.thermostat', "heat") else "heat" }}
+
 leaving:
   alias: Leaving the house
   sequence:
