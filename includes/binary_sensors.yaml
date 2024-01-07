@@ -64,7 +64,7 @@
             or is_state("binary_sensor.motion_sensor_dinner_area_occupancy", "on")
             or is_state("media_player.tv", "on")
             or is_state("media_player.living_room_xbox", "on") }}
-      delay_off: "00:20:00"
+      delay_off: "00:30:00"
 
     activity_in_kitchen:
       friendly_name: Activity in the kitchen
@@ -96,7 +96,8 @@
     activity_in_baby_room:
       friendly_name: Activity in the baby room
       value_template: >
-        {{ is_state("binary_sensor.motion_sensor_baby_room_occupancy", "on") }}
+        {{ is_state("binary_sensor.motion_sensor_baby_room_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_baby_room_2_occupancy", "on") }}
       delay_off: "00:01:00"
 
     activity_in_guest_room:
@@ -105,7 +106,7 @@
         {{ is_state("binary_sensor.motion_sensor_guest_room_occupancy", "on")
             or is_state("binary_sensor.using_macbook_in_guest_room", "on")
             or is_state("binary_sensor.vibration", "on") }}
-      delay_off: "00:01:00"
+      delay_off: "00:10:00"
 
     activity_outside_front_door:
       friendly_name: Activity outside front door
