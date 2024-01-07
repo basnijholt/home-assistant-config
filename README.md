@@ -456,24 +456,24 @@ See *all* my automations and its dependencies [down the page](#automations---tab
 I run a [Supervised install](https://www.home-assistant.io/getting-started/) with the following add-ons:
 
 <!-- start-addons -->
-- [Home Assistant Stream Deck](https://github.com/basnijholt/home-assistant-streamdeck-yaml-addon) version 2023.11.0 by @basnijholt
-- [Advanced SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 17.0.0 by @hassio-addons
-- [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.16.0 by @hassio-addons
-- [Glances](https://github.com/hassio-addons/addon-glances) version 0.20.0 by @hassio-addons
-- [Grafana](https://github.com/hassio-addons/addon-grafana) version 9.1.1 by @hassio-addons
-- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 4.8.0 by @hassio-addons
-- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.16.0 by @hassio-addons
-- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.14.2 by @hassio-addons
-- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.9.0 by @hassio-addons
+- [Home Assistant Stream Deck](https://github.com/basnijholt/home-assistant-streamdeck-yaml-addon) version 2023.12.0 by @basnijholt
+- [Advanced SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh) version 17.0.2 by @hassio-addons
+- [AppDaemon](https://github.com/hassio-addons/addon-appdaemon) version 0.16.1 by @hassio-addons
+- [Glances](https://github.com/hassio-addons/addon-glances) version 0.21.0 by @hassio-addons
+- [Grafana](https://github.com/hassio-addons/addon-grafana) version 9.1.2 by @hassio-addons
+- [InfluxDB](https://github.com/hassio-addons/addon-influxdb) version 5.0.0 by @hassio-addons
+- [Log Viewer](https://github.com/hassio-addons/addon-log-viewer) version 0.17.0 by @hassio-addons
+- [Studio Code Server](https://github.com/hassio-addons/addon-vscode) version 5.15.0 by @hassio-addons
+- [phpMyAdmin](https://github.com/hassio-addons/addon-phpmyadmin) version 0.9.1 by @hassio-addons
 - [Duck DNS](https://github.com/home-assistant/addons/tree/master/duckdns) version 1.15.0 by @home-assistant
-- [Let's Encrypt](https://github.com/home-assistant/addons/tree/master/letsencrypt) version 5.0.6 by @home-assistant
+- [Let's Encrypt](https://github.com/home-assistant/addons/tree/master/letsencrypt) version 5.0.9 by @home-assistant
 - [MariaDB](https://github.com/home-assistant/addons/tree/master/mariadb) version 2.6.1 by @home-assistant
 - [Mosquitto broker](https://github.com/home-assistant/addons/tree/master/mosquitto) version 6.4.0 by @home-assistant
 - [Samba share](https://github.com/home-assistant/addons/tree/master/samba) version 12.2.0 by @home-assistant
-- [VLC](https://github.com/home-assistant/addons/tree/master/vlc) version 0.2.0 by @home-assistant
+- [VLC](https://github.com/home-assistant/addons/tree/master/vlc) version 0.3.0 by @home-assistant
 - [Traefik](https://alxx.nl/home-assistant-addons/tree/master/traefik) version 4.2.2 by @home-assistant.io
 - [Home Assistant Google Drive Backup](https://github.com/sabeechen/hassio-google-drive-backup) version 0.112.1 by @sabeechen
-- [Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt) version 1.34.0-1 by @zigbee2mqtt
+- [Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt) version 1.35.1-1 by @zigbee2mqtt
 <!-- end-addons -->
 
 
