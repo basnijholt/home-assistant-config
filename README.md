@@ -1086,16 +1086,16 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Notifications 🔔](https://github.com/basnijholt/home-assistant-config/blob/7f7d30a33284b45f60dc0a0c30ca1ac378834729/automations/notifications.yaml)
-### [Marcella arrived at Rotterdam Centraal](https://github.com/basnijholt/home-assistant-config/blob/7f7d30a33284b45f60dc0a0c30ca1ac378834729/automations/notifications.yaml#L12)
+## [Notifications 🔔](https://github.com/basnijholt/home-assistant-config/blob/e026f16cb5414531f9e3c90cfcd8ddbdb9280006/automations/notifications.yaml)
+### [Marcella arrived at Rotterdam Centraal](https://github.com/basnijholt/home-assistant-config/blob/e026f16cb5414531f9e3c90cfcd8ddbdb9280006/automations/notifications.yaml#L12)
 
 
-### [Front door has opened](https://github.com/basnijholt/home-assistant-config/blob/7f7d30a33284b45f60dc0a0c30ca1ac378834729/automations/notifications.yaml#L23)
+### [Front door has opened](https://github.com/basnijholt/home-assistant-config/blob/e026f16cb5414531f9e3c90cfcd8ddbdb9280006/automations/notifications.yaml#L23)
 
   *which uses:*
   - [input_boolean.front_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L28)
 
-### [Hourly Mantra Notification](https://github.com/basnijholt/home-assistant-config/blob/7f7d30a33284b45f60dc0a0c30ca1ac378834729/automations/notifications.yaml#L44)
+### [Hourly Mantra Notification](https://github.com/basnijholt/home-assistant-config/blob/e026f16cb5414531f9e3c90cfcd8ddbdb9280006/automations/notifications.yaml#L44)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
