@@ -20,7 +20,6 @@
       title: "Arriving"
       message: "Marcella arrived at Rotterdam Centraal"
 
-
 - alias: "Notifications: front door has opened"
   trigger:
     platform: state
