@@ -77,4 +77,3 @@
     - service: notify.mobile_app_marcella_iphone_14_pro
       data:
         message: "Yes you are! ❤️😘🥰💖💕🌷🌼🌈✨🎉🍀"
-
