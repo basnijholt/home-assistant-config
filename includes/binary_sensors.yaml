@@ -62,6 +62,8 @@
       value_template: >
         {{ is_state("binary_sensor.motion_sensor_fireplace_occupancy", "on")
             or is_state("binary_sensor.motion_sensor_dinner_area_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_living_room_kallax_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_mid_room_occupancy", "on")
             or is_state("media_player.tv", "on")
             or is_state("media_player.living_room_xbox", "on") }}
       delay_off: "00:30:00"
