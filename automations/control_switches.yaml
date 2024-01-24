@@ -468,13 +468,13 @@
       - conditions: "{{ action == 'on' }}" # Lowest button
         sequence:
           service: light.turn_on
-          entity_id: light.guest_room
+          entity_id: light.guest_room_lights
 
       # Turn off
       - conditions: "{{ action == 'off' }}" # Lowest button
         sequence:
           service: light.turn_off
-          entity_id: light.guest_room
+          entity_id: light.guest_room_lights
 
 - alias: "Control switches: Guest Room Light"
   mode: parallel
@@ -490,7 +490,7 @@
         sequence:
           service: light.toggle
           data:
-            entity_id: light.guest_room
+            entity_id: light.guest_room_lights
 
 - alias: "Control switches: Baby Room Light"
   mode: parallel
