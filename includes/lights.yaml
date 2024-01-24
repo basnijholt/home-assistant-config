@@ -37,11 +37,16 @@
   entities:
     - light.utility_room
     - light.garage_outside
-    # - light.guest_room
-    # - light.baby_room
-    - light.baby_sphere
     - light.outside_front_door
+    - light.front_house
     - light.bedroom_outside
+    - light.string_lights_outside
+
+- platform: group
+  name: Guest room lights
+  entities:
+    - light.guest_room
+    - light.desk_led
 
 - platform: group
   name: Kitchen lights

@@ -60,7 +60,7 @@
 - name: Guest room
   lights:
     - light.guest_room
-  sleep_brightness: 50
+  sleep_brightness: 20
   min_brightness: 70
   separate_turn_on_commands: true
   skip_redundant_commands: true
