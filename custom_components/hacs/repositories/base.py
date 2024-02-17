@@ -15,7 +15,6 @@ from aiogithubapi import (
     AIOGitHubAPINotModifiedException,
     GitHubReleaseModel,
 )
-from aiogithubapi.const import BASE_API_URL
 from aiogithubapi.objects.repository import AIOGitHubAPIRepository
 import attr
 from homeassistant.helpers import device_registry as dr, issue_registry as ir
@@ -28,6 +27,7 @@ from ..exceptions import (
     HacsRepositoryArchivedException,
     HacsRepositoryExistException,
 )
+from ..types import DownloadableContent
 from ..utils.backup import Backup, BackupNetDaemon
 from ..utils.decode import decode_content
 from ..utils.decorator import concurrent
@@ -38,6 +38,7 @@ from ..utils.path import is_safe
 from ..utils.queue_manager import QueueManager
 from ..utils.store import async_remove_store
 from ..utils.template import render_template
+from ..utils.url import github_archive, github_release_asset
 from ..utils.validate import Validate
 from ..utils.version import (
     version_left_higher_or_equal_then_right,
@@ -558,40 +559,37 @@ class HacsRepository:
 
         return True
 
-    async def download_zip_files(self, validate) -> None:
+    async def download_zip_files(self, validate: Validate) -> None:
         """Download ZIP archive from repository release."""
+
         try:
-            contents = None
-            target_ref = self.ref.split("/")[1]
-
-            for release in self.releases.objects:
-                self.logger.debug(
-                    "%s ref: %s --- tag: %s", self.string, target_ref, release.tag_name
-                )
-                if release.tag_name == target_ref:
-                    contents = release.assets
-                    break
-
-            if not contents:
-                validate.errors.append(f"No assets found for release '{self.ref}'")
-                return
-
-            download_queue = QueueManager(hass=self.hacs.hass)
-
-            for content in contents or []:
-                download_queue.add(self.async_download_zip_file(content, validate))
-
-            await download_queue.execute()
+            await self.async_download_zip_file(
+                DownloadableContent(
+                    name=self.repository_manifest.filename,
+                    url=github_release_asset(
+                        repository=self.data.full_name,
+                        version=self.ref,
+                        filename=self.repository_manifest.filename,
+                    ),
+                ),
+                validate,
+            )
         except BaseException:  # lgtm [py/catch-base-exception] pylint: disable=broad-except
-            validate.errors.append("Download was not completed")
+            validate.errors.append(
+                f"Download of {self.repository_manifest.filename} was not completed"
+            )
 
-    async def async_download_zip_file(self, content, validate) -> None:
+    async def async_download_zip_file(
+        self,
+        content: DownloadableContent,
+        validate: Validate,
+    ) -> None:
         """Download ZIP archive from repository release."""
         try:
-            filecontent = await self.hacs.async_download_file(content.browser_download_url)
+            filecontent = await self.hacs.async_download_file(content["url"])
 
             if filecontent is None:
-                validate.errors.append(f"[{content.name}] was not downloaded")
+                validate.errors.append(f"Failed to download {content['url']}")
                 return
 
             temp_dir = await self.hacs.hass.async_add_executor_job(tempfile.mkdtemp)
@@ -608,16 +606,17 @@ class HacsRepository:
                     shutil.rmtree(temp_dir)
 
             if result:
-                self.logger.info("%s Download of %s completed", self.string, content.name)
+                self.logger.info("%s Download of %s completed", self.string, content["name"])
                 await self.hacs.hass.async_add_executor_job(cleanup_temp_dir)
                 return
 
-            validate.errors.append(f"[{content.name}] was not downloaded")
+            validate.errors.append(f"[{content['name']}] was not downloaded")
         except BaseException:  # lgtm [py/catch-base-exception] pylint: disable=broad-except
             validate.errors.append("Download was not completed")
 
-    async def download_content(self) -> None:
+    async def download_content(self, version: string | None = None) -> None:
         """Download the content of a directory."""
+        contents: list[FileInformation] | None = None
         if self.hacs.configuration.experimental:
             if (
                 not self.repository_manifest.zip_release
@@ -631,9 +630,15 @@ class HacsRepository:
                 except HacsException as exception:
                     self.logger.exception(exception)
 
-        contents = self.gather_files_to_download()
         if self.repository_manifest.filename:
             self.logger.debug("%s %s", self.string, self.repository_manifest.filename)
+
+        if self.content.path.remote == "release" and version is not None:
+            contents = await self.release_contents(version)
+
+        if not contents:
+            contents = self.gather_files_to_download()
+
         if not contents:
             raise HacsException("No content to download")
 
@@ -654,15 +659,17 @@ class HacsRepository:
         if not ref:
             raise HacsException("Missing required elements.")
 
-        url = f"{BASE_API_URL}/repos/{self.data.full_name}/zipball/{ref}"
-
         filecontent = await self.hacs.async_download_file(
-            url,
-            headers={
-                "Authorization": f"token {self.hacs.configuration.token}",
-                "User-Agent": f"HACS/{self.hacs.version}",
-            },
+            github_archive(repository=self.data.full_name, version=ref, variant="tags"),
+            keep_url=True,
+            nolog=True,
         )
+
+        if filecontent is None:
+            filecontent = await self.hacs.async_download_file(
+                github_archive(repository=self.data.full_name, version=ref, variant="heads"),
+                keep_url=True,
+            )
         if filecontent is None:
             raise HacsException(f"[{self}] Failed to download zipball")
 
@@ -681,8 +688,13 @@ class HacsRepository:
                     and filename != self.content.path.remote
                 ):
                     path.filename = filename.replace(self.content.path.remote, "")
+                    if path.filename == "/":
+                        # Blank files is not valid, and will start to throw in Python 3.12
+                        continue
                     extractable.append(path)
 
+            if len(extractable) == 0:
+                raise HacsException("No content to extract")
             zip_file.extractall(self.content.path.local, extractable)
 
         def cleanup_temp_dir():
@@ -732,25 +744,7 @@ class HacsRepository:
         if not info_files:
             return ""
 
-        try:
-            response = await self.hacs.async_github_api_method(
-                method=self.hacs.githubapi.repos.contents.get,
-                raise_exception=False,
-                repository=self.data.full_name,
-                path=info_files[0],
-            )
-            if response:
-                return render_template(
-                    self.hacs,
-                    decode_content(response.data.content)
-                    .replace("<svg", "<disabled")
-                    .replace("</svg", "</disabled"),
-                    self,
-                )
-        except BaseException as exc:  # lgtm [py/catch-base-exception] pylint: disable=broad-except
-            self.logger.error("%s %s", self.string, exc)
-
-        return ""
+        return await self.get_documentation(filename=info_files[0]) or ""
 
     def remove(self) -> None:
         """Run remove tasks."""
@@ -799,7 +793,7 @@ class HacsRepository:
 
         try:
             if self.data.category == "python_script":
-                local_path = f"{self.content.path.local}/{self.data.name}.py"
+                local_path = f"{self.content.path.local}/{self.data.file_name}"
             elif self.data.category == "template":
                 local_path = f"{self.content.path.local}/{self.data.file_name}"
             elif self.data.category == "theme":
@@ -888,7 +882,7 @@ class HacsRepository:
         await self.async_pre_install()
         self.logger.info("%s Pre installation steps completed", self.string)
 
-    async def async_install(self) -> None:
+    async def async_install(self, *, version: str | None = None, **_) -> None:
         """Run install steps."""
         await self._async_pre_install()
         self.hacs.async_dispatch(
@@ -896,7 +890,7 @@ class HacsRepository:
             {"repository": self.data.full_name, "progress": 30},
         )
         self.logger.info("%s Running installation steps", self.string)
-        await self.async_install_repository()
+        await self.async_install_repository(version=version)
         self.hacs.async_dispatch(
             HacsDispatchEvent.REPOSITORY_DOWNLOAD_PROGRESS,
             {"repository": self.data.full_name, "progress": 90},
@@ -927,10 +921,10 @@ class HacsRepository:
         )
         self.logger.info("%s Post installation steps completed", self.string)
 
-    async def async_install_repository(self) -> None:
+    async def async_install_repository(self, *, version: str | None = None, **_) -> None:
         """Common installation steps of the repository."""
         persistent_directory = None
-        await self.update_repository(force=True)
+        await self.update_repository(force=version is None)
         if self.content.path.local is None:
             raise HacsException("repository.content.path.local is None")
         self.validate.errors.clear()
@@ -938,11 +932,11 @@ class HacsRepository:
         if not self.can_download:
             raise HacsException("The version of Home Assistant is not compatible with this version")
 
-        version = self.version_to_download()
-        if version == self.data.default_branch:
-            self.ref = version
+        version_to_install = version or self.version_to_download()
+        if version_to_install == self.data.default_branch:
+            self.ref = version_to_install
         else:
-            self.ref = f"tags/{version}"
+            self.ref = f"tags/{version_to_install}"
 
         self.hacs.async_dispatch(
             HacsDispatchEvent.REPOSITORY_DOWNLOAD_PROGRESS,
@@ -970,16 +964,17 @@ class HacsRepository:
 
         self.hacs.log.debug("%s Local path is set to %s", self.string, self.content.path.local)
         self.hacs.log.debug("%s Remote path is set to %s", self.string, self.content.path.remote)
+        self.hacs.log.debug("%s Version to install: %s", self.string, version_to_install)
 
         self.hacs.async_dispatch(
             HacsDispatchEvent.REPOSITORY_DOWNLOAD_PROGRESS,
             {"repository": self.data.full_name, "progress": 50},
         )
 
-        if self.repository_manifest.zip_release and version != self.data.default_branch:
+        if self.repository_manifest.zip_release and self.repository_manifest.filename:
             await self.download_zip_files(self.validate)
         else:
-            await self.download_content()
+            await self.download_content(version_to_install)
 
         self.hacs.async_dispatch(
             HacsDispatchEvent.REPOSITORY_DOWNLOAD_PROGRESS,
@@ -1010,10 +1005,10 @@ class HacsRepository:
             self.data.installed = True
             self.data.installed_commit = self.data.last_commit
 
-            if version == self.data.default_branch:
+            if version_to_install == self.data.default_branch:
                 self.data.installed_version = None
             else:
-                self.data.installed_version = version
+                self.data.installed_version = version_to_install
 
     async def async_get_legacy_repository_object(
         self,
@@ -1228,6 +1223,25 @@ class HacsRepository:
                 files.append(FileInformation(path.download_url, path.full_path, path.filename))
         return files
 
+    async def release_contents(self, version: str | None = None) -> list[FileInformation] | None:
+        """Gather the contents of a release."""
+        release = await self.hacs.async_github_api_method(
+            method=self.hacs.githubapi.generic,
+            endpoint=f"/repos/{self.data.full_name}/releases/tags/{version}",
+            raise_exception=False,
+        )
+        if release is None:
+            return None
+
+        return [
+            FileInformation(
+                url=asset.get("browser_download_url"),
+                path=asset.get("name"),
+                name=asset.get("name"),
+            )
+            for asset in release.data.get("assets", [])
+        ]
+
     @concurrent(concurrenttasks=10)
     async def dowload_repository_content(self, content: FileInformation) -> None:
         """Download content."""
@@ -1303,3 +1317,58 @@ class HacsRepository:
                 return self.data.selected_tag
 
         return self.data.default_branch or "main"
+
+    async def get_documentation(
+        self,
+        *,
+        filename: str | None = None,
+        **kwargs,
+    ) -> str | None:
+        """Get the documentation of the repository."""
+        if filename is None:
+            return None
+
+        version = (
+            (self.data.installed_version or self.data.installed_commit)
+            if self.data.installed
+            else (self.data.last_version or self.data.last_commit or self.ref)
+        )
+        self.logger.debug(
+            "%s Getting documentation for version=%s,filename=%s",
+            self.string,
+            version,
+            filename,
+        )
+        if version is None:
+            return None
+
+        result = await self.hacs.async_download_file(
+            f"https://raw.githubusercontent.com/{self.data.full_name}/{version}/{filename}",
+            nolog=True,
+        )
+
+        return (
+            render_template(
+                self.hacs,
+                result.decode(encoding="utf-8")
+                .replace("<svg", "<disabled")
+                .replace("</svg", "</disabled"),
+                self,
+            )
+            if result
+            else None
+        )
+
+    async def get_hacs_json(self, *, version: str, **kwargs) -> HacsManifest | None:
+        """Get the hacs.json file of the repository."""
+        self.logger.debug("%s Getting hacs.json for version=%s", self.string, version)
+        try:
+            result = await self.hacs.async_download_file(
+                f"https://raw.githubusercontent.com/{self.data.full_name}/{version}/hacs.json",
+                nolog=True,
+            )
+            if result is None:
+                return None
+            return HacsManifest.from_dict(json_loads(result))
+        except Exception:  # pylint: disable=broad-except
+            return None
