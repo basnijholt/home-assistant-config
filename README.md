@@ -726,13 +726,13 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 ### [Guest Room Light](https://github.com/basnijholt/home-assistant-config/blob/219960a35cce7375765f1f147a6e56c487e120f5/automations/control_switches.yaml#L479)
 
 
-### [Guest Room Space heater](https://github.com/basnijholt/home-assistant-config/blob/219960a35cce7375765f1f147a6e56c487e120f5/automations/control_switches.yaml#L495)
+### [Guest Room Space heater](https://github.com/basnijholt/home-assistant-config/blob/219960a35cce7375765f1f147a6e56c487e120f5/automations/control_switches.yaml#L501)
 
 
-### [Baby Room Light](https://github.com/basnijholt/home-assistant-config/blob/219960a35cce7375765f1f147a6e56c487e120f5/automations/control_switches.yaml#L511)
+### [Baby Room Light](https://github.com/basnijholt/home-assistant-config/blob/219960a35cce7375765f1f147a6e56c487e120f5/automations/control_switches.yaml#L517)
 
 
-### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/219960a35cce7375765f1f147a6e56c487e120f5/automations/control_switches.yaml#L534)
+### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/219960a35cce7375765f1f147a6e56c487e120f5/automations/control_switches.yaml#L540)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
