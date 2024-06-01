@@ -1105,10 +1105,8 @@ to "Opt".
   *which uses:*
   - [input_boolean.front_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/1fa32d827ffcaf7a6ac37df611a025fd93446aec/includes/input_booleans.yaml#L28)
 
-### [Hourly Mantra Notification](https://github.com/basnijholt/home-assistant-config/blob/1d7f14e8becf8138f1410813d1060455dfeab473/automations/notifications.yaml#L44)
+### [Daily New Word Notification](https://github.com/basnijholt/home-assistant-config/blob/1d7f14e8becf8138f1410813d1060455dfeab473/automations/notifications.yaml#L44)
 
-  *which uses:*
-  - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L11)
 
 [^ toc](#automations---table-of-content)
 
