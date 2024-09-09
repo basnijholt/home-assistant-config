@@ -1,4 +1,5 @@
 """HACS Base entities."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
@@ -7,8 +8,10 @@ from homeassistant.core import callback
 from homeassistant.helpers.device_registry import DeviceEntryType
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity
 
 from .const import DOMAIN, HACS_SYSTEM_ID, NAME_SHORT
+from .coordinator import HacsUpdateCoordinator
 from .enums import HacsDispatchEvent, HacsGitHubRepo
 
 if TYPE_CHECKING:
@@ -39,6 +42,10 @@ class HacsBaseEntity(Entity):
         """Initialize."""
         self.hacs = hacs
 
+
+class HacsDispatcherEntity(HacsBaseEntity):
+    """Base HACS entity listening to dispatcher signals."""
+
     async def async_added_to_hass(self) -> None:
         """Register for status events."""
         self.async_on_remove(
@@ -64,7 +71,7 @@ class HacsBaseEntity(Entity):
         self.async_write_ha_state()
 
 
-class HacsSystemEntity(HacsBaseEntity):
+class HacsSystemEntity(HacsDispatcherEntity):
     """Base system entity."""
 
     _attr_icon = "hacs:hacs"
@@ -76,7 +83,7 @@ class HacsSystemEntity(HacsBaseEntity):
         return system_info(self.hacs)
 
 
-class HacsRepositoryEntity(HacsBaseEntity):
+class HacsRepositoryEntity(BaseCoordinatorEntity[HacsUpdateCoordinator], HacsBaseEntity):
     """Base repository entity."""
 
     def __init__(
@@ -85,9 +92,11 @@ class HacsRepositoryEntity(HacsBaseEntity):
         repository: HacsRepository,
     ) -> None:
         """Initialize."""
-        super().__init__(hacs=hacs)
+        BaseCoordinatorEntity.__init__(self, hacs.coordinators[repository.data.category])
+        HacsBaseEntity.__init__(self, hacs=hacs)
         self.repository = repository
         self._attr_unique_id = str(repository.data.id)
+        self._repo_last_fetched = repository.data.last_fetched
 
     @property
     def available(self) -> bool:
@@ -100,20 +109,35 @@ class HacsRepositoryEntity(HacsBaseEntity):
         if self.repository.data.full_name == HacsGitHubRepo.INTEGRATION:
             return system_info(self.hacs)
 
+        def _manufacturer():
+            if authors := self.repository.data.authors:
+                return ", ".join(author.replace("@", "") for author in authors)
+            return self.repository.data.full_name.split("/")[0]
+
         return {
             "identifiers": {(DOMAIN, str(self.repository.data.id))},
             "name": self.repository.display_name,
             "model": self.repository.data.category,
-            "manufacturer": ", ".join(
-                author.replace("@", "") for author in self.repository.data.authors
-            ),
-            "configuration_url": "homeassistant://hacs",
+            "manufacturer": _manufacturer(),
+            "configuration_url": f"homeassistant://hacs/repository/{self.repository.data.id}",
             "entry_type": DeviceEntryType.SERVICE,
         }
 
     @callback
-    def _update_and_write_state(self, data: dict) -> None:
-        """Update the entity and write state."""
-        if data.get("repository_id") == self.repository.data.id:
-            self._update()
-            self.async_write_ha_state()
+    def _handle_coordinator_update(self) -> None:
+        """Handle updated data from the coordinator."""
+        if (
+            self._repo_last_fetched is not None
+            and self.repository.data.last_fetched is not None
+            and self._repo_last_fetched >= self.repository.data.last_fetched
+        ):
+            return
+
+        self._repo_last_fetched = self.repository.data.last_fetched
+        self.async_write_ha_state()
+
+    async def async_update(self) -> None:
+        """Update the entity.
+
+        Only used by the generic entity update service.
+        """

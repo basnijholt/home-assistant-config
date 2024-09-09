@@ -17,8 +17,7 @@
                     "acc_logs": "I know how to access Home Assistant logs",
                     "acc_addons": "I know that there are no add-ons in HACS",
                     "acc_untested": "I know that everything inside HACS including HACS itself is custom and untested by Home Assistant",
-                    "acc_disable": "I know that if I get issues with Home Assistant I should disable all my custom_components",
-                    "experimental": "Enable experimental features, this is what eventually will become HACS 2.0.0, if you enable it now you do not need to do anything when 2.0.0 is released"
+                    "acc_disable": "I know that if I get issues with Home Assistant I should disable all my custom_components"
                 },
                 "description": "Before you can setup HACS you need to acknowledge the following"
             },
@@ -45,11 +44,9 @@
                 "data": {
                     "not_in_use": "Not in use with YAML",
                     "country": "Filter with country code",
-                    "experimental": "Enable experimental features",
                     "release_limit": "Number of releases to show",
                     "debug": "Enable debug",
                     "appdaemon": "Enable AppDaemon apps discovery & tracking",
-                    "netdaemon": "[DEPRECATED] Enable NetDaemon apps discovery & tracking",
                     "sidepanel_icon": "Side panel icon",
                     "sidepanel_title": "Side panel title"
                 }
@@ -71,10 +68,17 @@
         "removed": {
             "title": "Repository removed from HACS",
             "description": "Because {reason}, `{name}` has been removed from HACS. Please visit the [HACS Panel](/hacs/repository/{repositry_id}) to remove it."
-        },
-        "deprecated_yaml_configuration": {
-            "title": "YAML configuration is deprecated",
-            "description": "YAML configuration of HACS is deprecated and will be removed in version 2.0.0, there will be no automatic import of this.\nPlease remove it from your configuration, restart Home Assistant and use the UI to configure it instead."
+        }
+    },
+    "entity": {
+        "switch": {
+        "pre-release": {
+            "name": "Pre-release",
+            "state": {
+            "off": "No pre-releases",
+            "on": "Pre-releases preferred"
+            }
+        }
         }
     }
 }

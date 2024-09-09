@@ -1,4 +1,5 @@
 """Register_commands."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
@@ -24,6 +25,7 @@ from .repository import (
     hacs_repository_info,
     hacs_repository_refresh,
     hacs_repository_release_notes,
+    hacs_repository_releases,
     hacs_repository_remove,
     hacs_repository_state,
     hacs_repository_version,
@@ -57,6 +59,7 @@ def async_register_websocket_commands(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, hacs_repositories_clear_new)
     websocket_api.async_register_command(hass, hacs_repositories_removed)
     websocket_api.async_register_command(hass, hacs_repositories_remove)
+    websocket_api.async_register_command(hass, hacs_repository_releases)
 
 
 @websocket_api.websocket_command(
@@ -75,7 +78,7 @@ async def hacs_subscribe(
     """Handle websocket subscriptions."""
 
     @callback
-    def forward_messages(data: dict | None = None):
+    def forward_messages(data: dict | None = None) -> None:
         """Forward events to websocket."""
         connection.send_message(websocket_api.event_message(msg["id"], data))
 
@@ -110,7 +113,6 @@ async def hacs_info(
                 "debug": hacs.configuration.debug,
                 "dev": hacs.configuration.dev,
                 "disabled_reason": hacs.system.disabled_reason,
-                "experimental": hacs.configuration.experimental,
                 "has_pending_tasks": hacs.queue.has_pending_tasks,
                 "lovelace_mode": hacs.core.lovelace_mode,
                 "stage": hacs.stage,

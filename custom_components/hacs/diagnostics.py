@@ -1,4 +1,5 @@
 """Diagnostics support for HACS."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -10,7 +11,6 @@ from homeassistant.core import HomeAssistant
 
 from .base import HacsBase
 from .const import DOMAIN
-from .utils.configuration_schema import TOKEN
 
 
 async def async_get_config_entry_diagnostics(
@@ -48,8 +48,6 @@ async def async_get_config_entry_diagnostics(
         "country",
         "debug",
         "dev",
-        "experimental",
-        "netdaemon",
         "python_script",
         "release_limit",
         "theme",
@@ -79,4 +77,4 @@ async def async_get_config_entry_diagnostics(
     except GitHubException as exception:
         data["rate_limit"] = str(exception)
 
-    return async_redact_data(data, (TOKEN,))
+    return async_redact_data(data, ("token",))

@@ -1,24 +1,28 @@
 """Update entities for HACS."""
+
 from __future__ import annotations
 
 from typing import Any
 
 from homeassistant.components.update import UpdateEntity, UpdateEntityFeature
-from homeassistant.core import HomeAssistantError, callback
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant, HomeAssistantError, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .base import HacsBase
 from .const import DOMAIN
 from .entity import HacsRepositoryEntity
 from .enums import HacsCategory, HacsDispatchEvent
 from .exceptions import HacsException
-from .repositories.base import HacsManifest
 
 
-async def async_setup_entry(hass, _config_entry, async_add_devices):
+async def async_setup_entry(
+    hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
+) -> None:
     """Setup update platform."""
-    hacs: HacsBase = hass.data.get(DOMAIN)
-    async_add_devices(
+    hacs: HacsBase = hass.data[DOMAIN]
+    async_add_entities(
         HacsRepositoryUpdateEntity(hacs=hacs, repository=repository)
         for repository in hacs.repositories.list_downloaded
     )
@@ -59,8 +63,6 @@ class HacsRepositoryUpdateEntity(HacsRepositoryEntity, UpdateEntity):
     @property
     def release_summary(self) -> str | None:
         """Return the release summary."""
-        if not self.repository.can_download:
-            return f"<ha-alert alert-type='warning'>Requires Home Assistant {self.repository.repository_manifest.homeassistant}</ha-alert>"
         if self.repository.pending_restart:
             return "<ha-alert alert-type='error'>Restart of Home Assistant required</ha-alert>"
         return None
@@ -76,64 +78,20 @@ class HacsRepositoryUpdateEntity(HacsRepositoryEntity, UpdateEntity):
 
         return f"https://brands.home-assistant.io/_/{self.repository.data.domain}/icon.png"
 
-    async def _ensure_capabilities(self, version: str | None, **kwargs: Any) -> None:
-        """Ensure that the entity has capabilities."""
-        target_manifest: HacsManifest | None = None
-        if version is None:
-            if not self.repository.can_download:
-                raise HomeAssistantError(
-                    f"This {self.repository.data.category.value} is not available for download."
-                )
-            return
-
-        if version == self.repository.data.last_version:
-            target_manifest = self.repository.repository_manifest
-        else:
-            target_manifest = await self.repository.get_hacs_json(version=version)
-
-        if target_manifest is None:
-            raise HomeAssistantError(
-                f"The version {version} for this {self.repository.data.category.value} can not be used with HACS."
-            )
-
-        if (
-            target_manifest.homeassistant is not None
-            and self.hacs.core.ha_version < target_manifest.homeassistant
-        ):
-            raise HomeAssistantError(
-                f"This version requires Home Assistant {target_manifest.homeassistant} or newer."
-            )
-        if target_manifest.hacs is not None and self.hacs.version < target_manifest.hacs:
-            raise HomeAssistantError(f"This version requires HACS {target_manifest.hacs} or newer.")
-
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None:
         """Install an update."""
-        await self._ensure_capabilities(version)
-        self.repository.logger.info("Starting update, %s", version)
-        if self.repository.display_version_or_commit == "version":
-            self._update_in_progress(progress=10)
-            if not version:
-                await self.repository.update_repository(force=True)
-            else:
-                self.repository.ref = version
-            self.repository.data.selected_tag = version
-            self.repository.force_branch = version is not None
-            self._update_in_progress(progress=20)
-
+        to_download = version or self.latest_version
+        if to_download == self.installed_version:
+            raise HomeAssistantError(f"Version {self.installed_version} of {
+                                     self.repository.data.full_name} is already downloaded")
         try:
-            await self.repository.async_install(version=version)
+            await self.repository.async_download_repository(ref=version or self.latest_version)
         except HacsException as exception:
-            raise HomeAssistantError(
-                f"Downloading {self.repository.data.full_name} with version {version or self.repository.data.last_version or self.repository.data.last_commit} failed with ({exception})"
-            ) from exception
-        finally:
-            self.repository.data.selected_tag = None
-            self.repository.force_branch = False
-            self._update_in_progress(progress=False)
+            raise HomeAssistantError(exception) from exception
 
     async def async_release_notes(self) -> str | None:
         """Return the release notes."""
-        if self.repository.pending_restart or not self.repository.can_download:
+        if self.repository.pending_restart:
             return None
 
         if self.latest_version not in self.repository.data.published_tags:
@@ -148,9 +106,18 @@ class HacsRepositoryUpdateEntity(HacsRepositoryEntity, UpdateEntity):
                 self.repository.data.last_version = next(iter(self.repository.data.published_tags))
 
         release_notes = ""
-        if len(self.repository.releases.objects) > 0:
-            release = self.repository.releases.objects[0]
-            release_notes += release.body
+        # Compile release notes from installed version up to the latest
+        if self.installed_version in self.repository.data.published_tags:
+            for release in self.repository.releases.objects:
+                if release.tag_name == self.installed_version:
+                    break
+                release_notes += f"# {release.tag_name}"
+                if release.tag_name != release.name:
+                    release_notes += f"  - {release.name}"
+                release_notes += f"\n\n{release.body}"
+                release_notes += "\n\n---\n\n"
+        elif any(self.repository.releases.objects):
+            release_notes += self.repository.releases.objects[0].body
 
         if self.repository.pending_update:
             if self.repository.data.category == HacsCategory.INTEGRATION:

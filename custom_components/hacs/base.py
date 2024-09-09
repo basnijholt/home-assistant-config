@@ -1,16 +1,17 @@
 """Base HACS class."""
+
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Awaitable, Callable
 from dataclasses import asdict, dataclass, field
 from datetime import timedelta
 import gzip
-import logging
 import math
 import os
 import pathlib
 import shutil
-from typing import TYPE_CHECKING, Any, Awaitable, Callable
+from typing import TYPE_CHECKING, Any
 
 from aiogithubapi import (
     AIOGitHubAPIException,
@@ -24,23 +25,22 @@ from aiogithubapi import (
 from aiogithubapi.objects.repository import AIOGitHubAPIRepository
 from aiohttp.client import ClientSession, ClientTimeout
 from awesomeversion import AwesomeVersion
-from homeassistant.config_entries import ConfigEntry, ConfigEntryState
+from homeassistant.components.persistent_notification import (
+    async_create as async_create_persistent_notification,
+)
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE, Platform
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send
+from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.helpers.issue_registry import IssueSeverity, async_create_issue
 from homeassistant.loader import Integration
 from homeassistant.util import dt
 
-from custom_components.hacs.repositories.base import (
-    HACS_MANIFEST_KEYS_TO_EXPORT,
-    REPOSITORY_KEYS_TO_EXPORT,
-)
-
 from .const import DOMAIN, TV, URL_BASE
+from .coordinator import HacsUpdateCoordinator
 from .data_client import HacsDataClient
 from .enums import (
-    ConfigurationType,
     HacsCategory,
     HacsDisabledReason,
     HacsDispatchEvent,
@@ -58,12 +58,14 @@ from .exceptions import (
     HacsRepositoryExistException,
     HomeAssistantCoreRepositoryException,
 )
-from .repositories import RERPOSITORY_CLASSES
-from .utils.decode import decode_content
+from .repositories import REPOSITORY_CLASSES
+from .repositories.base import HACS_MANIFEST_KEYS_TO_EXPORT, REPOSITORY_KEYS_TO_EXPORT
+from .utils.file_system import async_exists
 from .utils.json import json_loads
 from .utils.logger import LOGGER
 from .utils.queue_manager import QueueManager
 from .utils.store import async_load_from_store, async_save_to_store
+from .utils.workarounds import async_register_static_path
 
 if TYPE_CHECKING:
     from .repositories.base import HacsRepository
@@ -113,15 +115,11 @@ class HacsConfiguration:
     appdaemon: bool = False
     config: dict[str, Any] = field(default_factory=dict)
     config_entry: ConfigEntry | None = None
-    config_type: ConfigurationType | None = None
     country: str = "ALL"
     debug: bool = False
     dev: bool = False
-    experimental: bool = False
     frontend_repo_url: str = ""
     frontend_repo: str = ""
-    netdaemon_path: str = "netdaemon/apps/"
-    netdaemon: bool = False
     plugin_path: str = "www/community/"
     python_script_path: str = "python_scripts/"
     python_script: bool = False
@@ -142,6 +140,8 @@ class HacsConfiguration:
             raise HacsException("Configuration is not valid.")
 
         for key in data:
+            if key in {"experimental", "netdaemon", "release_limit", "debug"}:
+                continue
             self.__setattr__(key, data[key])
 
 
@@ -355,9 +355,6 @@ class HacsRepositories:
 class HacsBase:
     """Base HACS class."""
 
-    common = HacsCommon()
-    configuration = HacsConfiguration()
-    core = HacsCore()
     data: HacsData | None = None
     data_client: HacsDataClient | None = None
     frontend_version: str | None = None
@@ -365,17 +362,24 @@ class HacsBase:
     githubapi: GitHubAPI | None = None
     hass: HomeAssistant | None = None
     integration: Integration | None = None
-    log: logging.Logger = LOGGER
     queue: QueueManager | None = None
-    recuring_tasks = []
-    repositories: HacsRepositories = HacsRepositories()
     repository: AIOGitHubAPIRepository | None = None
     session: ClientSession | None = None
     stage: HacsStage | None = None
-    status = HacsStatus()
-    system = HacsSystem()
     validation: ValidationManager | None = None
     version: AwesomeVersion | None = None
+
+    def __init__(self) -> None:
+        """Initialize."""
+        self.common = HacsCommon()
+        self.configuration = HacsConfiguration()
+        self.coordinators: dict[HacsCategory, HacsUpdateCoordinator] = {}
+        self.core = HacsCore()
+        self.log = LOGGER
+        self.recurring_tasks: list[Callable[[], None]] = []
+        self.repositories = HacsRepositories()
+        self.status = HacsStatus()
+        self.system = HacsSystem()
 
     @property
     def integration_dir(self) -> pathlib.Path:
@@ -401,12 +405,7 @@ class HacsBase:
         if reason != HacsDisabledReason.REMOVED:
             self.log.error("HACS is disabled - %s", reason)
 
-        if (
-            reason == HacsDisabledReason.INVALID_TOKEN
-            and self.configuration.config_type == ConfigurationType.CONFIG_ENTRY
-        ):
-            self.configuration.config_entry.state = ConfigEntryState.SETUP_ERROR
-            self.configuration.config_entry.reason = "Authentication failed"
+        if reason == HacsDisabledReason.INVALID_TOKEN:
             self.hass.add_job(self.configuration.config_entry.async_start_reauth, self.hass)
 
     def enable_hacs(self) -> None:
@@ -420,12 +419,14 @@ class HacsBase:
         if category not in self.common.categories:
             self.log.info("Enable category: %s", category)
             self.common.categories.add(category)
+            self.coordinators[category] = HacsUpdateCoordinator()
 
     def disable_hacs_category(self, category: HacsCategory) -> None:
         """Disable HACS category."""
         if category in self.common.categories:
             self.log.info("Disabling category: %s", category)
             self.common.categories.pop(category)
+            self.coordinators.pop(category)
 
     async def async_save_file(self, file_path: str, content: Any) -> bool:
         """Save a file."""
@@ -458,12 +459,13 @@ class HacsBase:
         try:
             await self.hass.async_add_executor_job(_write_file)
         except (
-            BaseException  # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            BaseException
         ) as error:
             self.log.error("Could not write data to %s - %s", file_path, error)
             return False
 
-        return os.path.exists(file_path)
+        return await async_exists(self.hass, file_path)
 
     async def async_can_update(self) -> int:
         """Helper to calculate the number of repositories we can fetch data for."""
@@ -479,23 +481,12 @@ class HacsBase:
             )
             self.disable_hacs(HacsDisabledReason.RATE_LIMIT)
         except (
-            BaseException  # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            BaseException
         ) as exception:
             self.log.exception(exception)
 
         return 0
-
-    async def async_github_get_hacs_default_file(self, filename: str) -> list:
-        """Get the content of a default file."""
-        response = await self.async_github_api_method(
-            method=self.githubapi.repos.contents.get,
-            repository=HacsGitHubRepo.DEFAULT,
-            path=filename,
-        )
-        if response is None:
-            return []
-
-        return json_loads(decode_content(response.data.content))
 
     async def async_github_api_method(
         self,
@@ -520,7 +511,8 @@ class HacsBase:
         except GitHubException as exception:
             _exception = exception
         except (
-            BaseException  # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            BaseException
         ) as exception:
             self.log.exception(exception)
             _exception = exception
@@ -552,7 +544,7 @@ class HacsBase:
         ):
             raise AddonRepositoryException()
 
-        if category not in RERPOSITORY_CLASSES:
+        if category not in REPOSITORY_CLASSES:
             self.log.warning(
                 "%s is not a valid repository category, %s will not be registered.",
                 category,
@@ -563,7 +555,7 @@ class HacsBase:
         if (renamed := self.common.renamed_repositories.get(repository_full_name)) is not None:
             repository_full_name = renamed
 
-        repository: HacsRepository = RERPOSITORY_CLASSES[category](self, repository_full_name)
+        repository: HacsRepository = REPOSITORY_CLASSES[category](self, repository_full_name)
         if check:
             try:
                 await repository.async_registration(ref)
@@ -573,7 +565,8 @@ class HacsBase:
                         self.log.error("Validation for %s failed.", repository_full_name)
                     if self.system.action:
                         raise HacsException(
-                            f"::error:: Validation for {repository_full_name} failed."
+                            f"::error:: Validation for {
+                                repository_full_name} failed."
                         )
                     return repository.validate.errors
                 if self.system.action:
@@ -589,7 +582,8 @@ class HacsBase:
             except AIOGitHubAPIException as exception:
                 self.common.skip.add(repository.data.full_name)
                 raise HacsException(
-                    f"Validation for {repository_full_name} failed with {exception}."
+                    f"Validation for {
+                        repository_full_name} failed with {exception}."
                 ) from exception
 
         if self.status.new:
@@ -620,79 +614,64 @@ class HacsBase:
             for repo in critical:
                 if not repo["acknowledged"]:
                     self.log.critical("URGENT!: Check the HACS panel!")
-                    self.hass.components.persistent_notification.create(
-                        title="URGENT!", message="**Check the HACS panel!**"
+                    async_create_persistent_notification(
+                        self.hass, title="URGENT!", message="**Check the HACS panel!**"
                     )
                     break
 
-        if not self.configuration.experimental:
-            self.recuring_tasks.append(
-                self.hass.helpers.event.async_track_time_interval(
-                    self.async_update_downloaded_repositories, timedelta(hours=48)
-                )
-            )
-            self.recuring_tasks.append(
-                self.hass.helpers.event.async_track_time_interval(
-                    self.async_update_all_repositories,
-                    timedelta(hours=96),
-                )
-            )
-        else:
-            self.recuring_tasks.append(
-                self.hass.helpers.event.async_track_time_interval(
-                    self.async_load_hacs_from_github,
-                    timedelta(hours=48),
-                )
-            )
-
-        self.recuring_tasks.append(
-            self.hass.helpers.event.async_track_time_interval(
-                self.async_update_downloaded_custom_repositories, timedelta(hours=48)
+        self.recurring_tasks.append(
+            async_track_time_interval(
+                self.hass,
+                self.async_load_hacs_from_github,
+                timedelta(hours=48),
             )
         )
 
-        self.recuring_tasks.append(
-            self.hass.helpers.event.async_track_time_interval(
-                self.async_get_all_category_repositories, timedelta(hours=6)
+        self.recurring_tasks.append(
+            async_track_time_interval(
+                self.hass, self.async_update_downloaded_custom_repositories, timedelta(hours=48)
             )
         )
 
-        self.recuring_tasks.append(
-            self.hass.helpers.event.async_track_time_interval(
-                self.async_check_rate_limit, timedelta(minutes=5)
-            )
-        )
-        self.recuring_tasks.append(
-            self.hass.helpers.event.async_track_time_interval(
-                self.async_prosess_queue, timedelta(minutes=10)
+        self.recurring_tasks.append(
+            async_track_time_interval(
+                self.hass, self.async_get_all_category_repositories, timedelta(hours=6)
             )
         )
 
-        self.recuring_tasks.append(
-            self.hass.helpers.event.async_track_time_interval(
-                self.async_handle_critical_repositories, timedelta(hours=6)
+        self.recurring_tasks.append(
+            async_track_time_interval(self.hass, self.async_check_rate_limit, timedelta(minutes=5))
+        )
+        self.recurring_tasks.append(
+            async_track_time_interval(self.hass, self.async_process_queue, timedelta(minutes=10))
+        )
+
+        self.recurring_tasks.append(
+            async_track_time_interval(
+                self.hass, self.async_handle_critical_repositories, timedelta(hours=6)
             )
         )
 
-        self.hass.bus.async_listen_once(
+        unsub = self.hass.bus.async_listen_once(
             EVENT_HOMEASSISTANT_FINAL_WRITE, self.data.async_force_write
         )
+        if config_entry := self.configuration.config_entry:
+            config_entry.async_on_unload(unsub)
 
-        self.log.debug("There are %s scheduled recurring tasks", len(self.recuring_tasks))
+        self.log.debug("There are %s scheduled recurring tasks", len(self.recurring_tasks))
 
         self.status.startup = False
         self.async_dispatch(HacsDispatchEvent.STATUS, {})
 
         await self.async_handle_removed_repositories()
         await self.async_get_all_category_repositories()
-        await self.async_update_downloaded_repositories()
 
         self.set_stage(HacsStage.RUNNING)
 
         self.async_dispatch(HacsDispatchEvent.RELOAD, {"force": True})
 
         await self.async_handle_critical_repositories()
-        await self.async_prosess_queue()
+        await self.async_process_queue()
 
         self.async_dispatch(HacsDispatchEvent.STATUS, {})
 
@@ -728,9 +707,10 @@ class HacsBase:
                     return await request.read()
 
                 raise HacsException(
-                    f"Got status code {request.status} when trying to download {url}"
+                    f"Got status code {
+                        request.status} when trying to download {url}"
                 )
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 self.log.warning(
                     "A timeout of 60! seconds was encountered while downloading %s, "
                     "using over 60 seconds to download a single file is not normal. "
@@ -746,7 +726,8 @@ class HacsBase:
                 continue
 
             except (
-                BaseException  # lgtm [py/catch-base-exception] pylint: disable=broad-except
+                # lgtm [py/catch-base-exception] pylint: disable=broad-except
+                BaseException
             ) as exception:
                 if not nolog:
                     self.log.exception("Download failed - %s", exception)
@@ -755,15 +736,24 @@ class HacsBase:
 
     async def async_recreate_entities(self) -> None:
         """Recreate entities."""
-        if self.configuration == ConfigurationType.YAML or not self.configuration.experimental:
-            return
+        platforms = [Platform.UPDATE]
 
-        platforms = [Platform.SENSOR, Platform.UPDATE]
-
-        await self.hass.config_entries.async_unload_platforms(
-            entry=self.configuration.config_entry,
-            platforms=platforms,
-        )
+        # Workaround for core versions without https://github.com/home-assistant/core/pull/117084
+        if self.core.ha_version < AwesomeVersion("2024.6.0"):
+            unload_platforms_lock = asyncio.Lock()
+            async with unload_platforms_lock:
+                on_unload = self.configuration.config_entry._on_unload
+                self.configuration.config_entry._on_unload = []
+                await self.hass.config_entries.async_unload_platforms(
+                    entry=self.configuration.config_entry,
+                    platforms=platforms,
+                )
+                self.configuration.config_entry._on_unload = on_unload
+        else:
+            await self.hass.config_entries.async_unload_platforms(
+                entry=self.configuration.config_entry,
+                platforms=platforms,
+            )
         await self.hass.config_entries.async_forward_entry_setups(
             self.configuration.config_entry, platforms
         )
@@ -776,11 +766,8 @@ class HacsBase:
     def set_active_categories(self) -> None:
         """Set the active categories."""
         self.common.categories = set()
-        for category in (HacsCategory.INTEGRATION, HacsCategory.PLUGIN):
+        for category in (HacsCategory.INTEGRATION, HacsCategory.PLUGIN, HacsCategory.TEMPLATE):
             self.enable_hacs_category(HacsCategory(category))
-
-        if self.configuration.experimental:
-            self.enable_hacs_category(HacsCategory.TEMPLATE)
 
         if (
             HacsCategory.PYTHON_SCRIPT in self.hass.config.components
@@ -795,30 +782,24 @@ class HacsBase:
 
         if self.configuration.appdaemon:
             self.enable_hacs_category(HacsCategory.APPDAEMON)
-        if self.configuration.netdaemon:
-            if self.repositories.category_downloaded(HacsCategory.NETDAEMON):
-                self.log.warning(
-                    "NetDaemon in HACS is deprectaded. It will stop working in the future. "
-                    "Please remove all your current NetDaemon repositories from HACS "
-                    "and download them manually if you want to continue using them."
-                )
-                self.enable_hacs_category(HacsCategory.NETDAEMON)
 
     async def async_load_hacs_from_github(self, _=None) -> None:
         """Load HACS from GitHub."""
-        if self.configuration.experimental and self.status.inital_fetch_done:
+        if self.status.inital_fetch_done:
             return
 
         try:
             repository = self.repositories.get_by_full_name(HacsGitHubRepo.INTEGRATION)
+            should_recreate_entities = False
             if repository is None:
+                should_recreate_entities = True
                 await self.async_register_repository(
                     repository_full_name=HacsGitHubRepo.INTEGRATION,
                     category=HacsCategory.INTEGRATION,
                     default=True,
                 )
                 repository = self.repositories.get_by_full_name(HacsGitHubRepo.INTEGRATION)
-            elif self.configuration.experimental and not self.status.startup:
+            elif not self.status.startup:
                 self.log.error("Scheduling update of hacs/integration")
                 self.queue.add(repository.common_update())
             if repository is None:
@@ -828,6 +809,9 @@ class HacsBase:
             repository.data.installed_version = self.integration.version.string
             repository.data.new = False
             repository.data.releases = True
+
+            if should_recreate_entities:
+                await self.async_recreate_entities()
 
             self.repository = repository.repository_object
             self.repositories.mark_default(repository)
@@ -848,8 +832,6 @@ class HacsBase:
         await asyncio.gather(
             *[
                 self.async_get_category_repositories_experimental(category)
-                if self.configuration.experimental
-                else self.async_get_category_repositories(HacsCategory(category))
                 for category in self.common.categories or []
             ]
         )
@@ -858,7 +840,7 @@ class HacsBase:
         """Update all category repositories."""
         self.log.debug("Fetching updated content for %s", category)
         try:
-            category_data = await self.data_client.get_data(category)
+            category_data = await self.data_client.get_data(category, validate=True)
         except HacsNotModifiedException:
             self.log.debug("No updates for %s", category)
             return
@@ -869,14 +851,14 @@ class HacsBase:
         await self.data.register_unknown_repositories(category_data, category)
 
         for repo_id, repo_data in category_data.items():
-            repo = repo_data["full_name"]
-            if self.common.renamed_repositories.get(repo):
-                repo = self.common.renamed_repositories[repo]
-            if self.repositories.is_removed(repo):
+            repo_name = repo_data["full_name"]
+            if self.common.renamed_repositories.get(repo_name):
+                repo_name = self.common.renamed_repositories[repo_name]
+            if self.repositories.is_removed(repo_name):
                 continue
-            if repo in self.common.archived_repositories:
+            if repo_name in self.common.archived_repositories:
                 continue
-            if repository := self.repositories.get_by_full_name(repo):
+            if repository := self.repositories.get_by_full_name(repo_name):
                 self.repositories.set_repository_id(repository, repo_id)
                 self.repositories.mark_default(repository)
                 if repository.data.last_fetched is None or (
@@ -904,51 +886,7 @@ class HacsBase:
                     self.repositories.unregister(repository)
 
         self.async_dispatch(HacsDispatchEvent.REPOSITORY, {})
-
-    async def async_get_category_repositories(self, category: HacsCategory) -> None:
-        """Get repositories from category."""
-        if self.system.disabled:
-            return
-        try:
-            repositories = await self.async_github_get_hacs_default_file(category)
-        except HacsException:
-            return
-
-        for repo in repositories:
-            if self.common.renamed_repositories.get(repo):
-                repo = self.common.renamed_repositories[repo]
-            if self.repositories.is_removed(repo):
-                continue
-            if repo in self.common.archived_repositories:
-                continue
-            repository = self.repositories.get_by_full_name(repo)
-            if repository is not None:
-                self.repositories.mark_default(repository)
-                if self.status.new and self.configuration.dev:
-                    # Force update for new installations
-                    self.queue.add(repository.common_update())
-                continue
-
-            self.queue.add(
-                self.async_register_repository(
-                    repository_full_name=repo,
-                    category=category,
-                    default=True,
-                )
-            )
-
-    async def async_update_all_repositories(self, _=None) -> None:
-        """Update all repositories."""
-        if self.system.disabled:
-            return
-        self.log.debug("Starting recurring background task for all repositories")
-
-        for repository in self.repositories.list_all:
-            if repository.data.category in self.common.categories:
-                self.queue.add(repository.common_update())
-
-        self.async_dispatch(HacsDispatchEvent.REPOSITORY, {"action": "reload"})
-        self.log.debug("Recurring background task for all repositories done")
+        self.coordinators[category].async_update_listeners()
 
     async def async_check_rate_limit(self, _=None) -> None:
         """Check rate limit."""
@@ -960,9 +898,9 @@ class HacsBase:
         self.log.debug("Ratelimit indicate we can update %s", can_update)
         if can_update > 0:
             self.enable_hacs()
-            await self.async_prosess_queue()
+            await self.async_process_queue()
 
-    async def async_prosess_queue(self, _=None) -> None:
+    async def async_process_queue(self, _=None) -> None:
         """Process the queue."""
         if self.system.disabled:
             self.log.debug("HACS is disabled")
@@ -1002,12 +940,7 @@ class HacsBase:
         self.log.info("Loading removed repositories")
 
         try:
-            if self.configuration.experimental:
-                removed_repositories = await self.data_client.get_data("removed")
-            else:
-                removed_repositories = await self.async_github_get_hacs_default_file(
-                    HacsCategory.REMOVED
-                )
+            removed_repositories = await self.data_client.get_data("removed", validate=True)
         except HacsException:
             return
 
@@ -1022,21 +955,20 @@ class HacsBase:
                 continue
             if repository.data.installed:
                 if removed.removal_type != "critical":
-                    if self.configuration.experimental:
-                        async_create_issue(
-                            hass=self.hass,
-                            domain=DOMAIN,
-                            issue_id=f"removed_{repository.data.id}",
-                            is_fixable=False,
-                            issue_domain=DOMAIN,
-                            severity=IssueSeverity.WARNING,
-                            translation_key="removed",
-                            translation_placeholders={
-                                "name": repository.data.full_name,
-                                "reason": removed.reason,
-                                "repositry_id": repository.data.id,
-                            },
-                        )
+                    async_create_issue(
+                        hass=self.hass,
+                        domain=DOMAIN,
+                        issue_id=f"removed_{repository.data.id}",
+                        is_fixable=False,
+                        issue_domain=DOMAIN,
+                        severity=IssueSeverity.WARNING,
+                        translation_key="removed",
+                        translation_placeholders={
+                            "name": repository.data.full_name,
+                            "reason": removed.reason,
+                            "repositry_id": repository.data.id,
+                        },
+                    )
                     self.log.warning(
                         "You have '%s' installed with HACS "
                         "this repository has been removed from HACS, please consider removing it. "
@@ -1051,30 +983,43 @@ class HacsBase:
         if need_to_save:
             await self.data.async_write()
 
-    async def async_update_downloaded_repositories(self, _=None) -> None:
-        """Execute the task."""
-        if self.system.disabled or self.configuration.experimental:
-            return
-        self.log.info("Starting recurring background task for downloaded repositories")
-
-        for repository in self.repositories.list_downloaded:
-            if repository.data.category in self.common.categories:
-                self.queue.add(repository.update_repository(ignore_issues=True))
-
-        self.log.debug("Recurring background task for downloaded repositories done")
-
     async def async_update_downloaded_custom_repositories(self, _=None) -> None:
         """Execute the task."""
-        if self.system.disabled or not self.configuration.experimental:
+        if self.system.disabled:
             return
         self.log.info("Starting recurring background task for downloaded custom repositories")
+
+        repositories_to_update = 0
+        repositories_updated = asyncio.Event()
+
+        async def update_repository(repository: HacsRepository) -> None:
+            """Update a repository"""
+            nonlocal repositories_to_update
+            await repository.update_repository(ignore_issues=True)
+            repositories_to_update -= 1
+            if not repositories_to_update:
+                repositories_updated.set()
 
         for repository in self.repositories.list_downloaded:
             if (
                 repository.data.category in self.common.categories
                 and not self.repositories.is_default(repository.data.id)
             ):
-                self.queue.add(repository.update_repository(ignore_issues=True))
+                repositories_to_update += 1
+                self.queue.add(update_repository(repository))
+
+        async def update_coordinators() -> None:
+            """Update all coordinators."""
+            await repositories_updated.wait()
+            for coordinator in self.coordinators.values():
+                coordinator.async_update_listeners()
+
+        if config_entry := self.configuration.config_entry:
+            config_entry.async_create_background_task(
+                self.hass, update_coordinators(), "update_coordinators"
+            )
+        else:
+            self.hass.async_create_background_task(update_coordinators(), "update_coordinators")
 
         self.log.debug("Recurring background task for downloaded custom repositories done")
 
@@ -1086,10 +1031,7 @@ class HacsBase:
         was_installed = False
 
         try:
-            if self.configuration.experimental:
-                critical = await self.data_client.get_data("critical")
-            else:
-                critical = await self.async_github_get_hacs_default_file("critical")
+            critical = await self.data_client.get_data("critical", validate=True)
         except (GitHubNotModifiedException, HacsNotModifiedException):
             return
         except HacsException:
@@ -1143,11 +1085,10 @@ class HacsBase:
             self.log.critical("Restarting Home Assistant")
             self.hass.async_create_task(self.hass.async_stop(100))
 
-    @callback
-    def async_setup_frontend_endpoint_plugin(self) -> None:
+    async def async_setup_frontend_endpoint_plugin(self) -> None:
         """Setup the http endpoints for plugins if its not already handled."""
-        if self.status.active_frontend_endpoint_plugin or not os.path.exists(
-            self.hass.config.path("www/community")
+        if self.status.active_frontend_endpoint_plugin or not await async_exists(
+            self.hass, self.hass.config.path("www/community")
         ):
             return
 
@@ -1159,26 +1100,11 @@ class HacsBase:
             use_cache,
         )
 
-        self.hass.http.register_static_path(
+        await async_register_static_path(
+            self.hass,
             URL_BASE,
             self.hass.config.path("www/community"),
             cache_headers=use_cache,
         )
 
         self.status.active_frontend_endpoint_plugin = True
-
-    @callback
-    def async_setup_frontend_endpoint_themes(self) -> None:
-        """Setup the http endpoints for themes if its not already handled."""
-        if (
-            self.configuration.experimental
-            or self.status.active_frontend_endpoint_theme
-            or not os.path.exists(self.hass.config.path("themes"))
-        ):
-            return
-
-        self.log.info("Setting up themes endpoint")
-        # Register themes
-        self.hass.http.register_static_path(f"{URL_BASE}/themes", self.hass.config.path("themes"))
-
-        self.status.active_frontend_endpoint_theme = True

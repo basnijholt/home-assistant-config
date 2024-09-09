@@ -1,6 +1,9 @@
 {
     "domain": "hacs",
     "name": "HACS",
+    "after_dependencies": [
+        "python_script"
+    ],
     "codeowners": [
         "@ludeeus"
     ],
@@ -19,5 +22,5 @@
     "requirements": [
         "aiogithubapi>=22.10.1"
     ],
-    "version": "1.34.0"
+    "version": "2.0.1"
 }

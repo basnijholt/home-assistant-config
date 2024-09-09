@@ -1,4 +1,5 @@
 """Class for python_scripts in HACS."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -89,7 +90,7 @@ class HacsPythonScriptRepository(HacsRepository):
         # Update name
         self.update_filenames()
 
-        # Signal entities to refresh
+        # Signal frontend to refresh
         if self.data.installed:
             self.hacs.async_dispatch(
                 HacsDispatchEvent.REPOSITORY,

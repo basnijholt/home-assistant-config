@@ -1,13 +1,13 @@
 """Data handler for HACS."""
+
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 from homeassistant.core import callback
 from homeassistant.exceptions import HomeAssistantError
-from homeassistant.util import json as json_util
 
 from ..base import HacsBase
 from ..const import HACS_REPOSITORY_ID
@@ -47,6 +47,7 @@ EXPORTED_DOWNLOADED_REPOSITORY_DATA = EXPORTED_REPOSITORY_DATA + (
     ("last_version", None),
     ("manifest_name", None),
     ("open_issues", 0),
+    ("prerelease", None),
     ("published_tags", []),
     ("releases", False),
     ("selected_tag", None),
@@ -84,8 +85,7 @@ class HacsData:
                 "ignored_repositories": self.hacs.common.ignored_repositories,
             },
         )
-        if self.hacs.configuration.experimental:
-            await self._async_store_experimental_content_and_repos()
+        await self._async_store_experimental_content_and_repos()
         await self._async_store_content_and_repos()
 
     async def _async_store_content_and_repos(self, _=None):  # bb: ignore
@@ -100,7 +100,7 @@ class HacsData:
         for event in (HacsDispatchEvent.REPOSITORY, HacsDispatchEvent.CONFIG):
             self.hacs.async_dispatch(event, {})
 
-    async def _async_store_experimental_content_and_repos(self, _=None):  # bb: ignore
+    async def _async_store_experimental_content_and_repos(self, _=None):
         """Store the main repos file and each repo that is out of date."""
         # Repositories
         self.content = {}
@@ -165,29 +165,16 @@ class HacsData:
             pass
 
         try:
-            data = (
-                await async_load_from_store(
-                    self.hacs.hass,
-                    "data" if self.hacs.configuration.experimental else "repositories",
-                )
-                or {}
-            )
-            if data and self.hacs.configuration.experimental:
+            repositories = await async_load_from_store(self.hacs.hass, "repositories")
+            if not repositories and (data := await async_load_from_store(self.hacs.hass, "data")):
                 for category, entries in data.get("repositories", {}).items():
                     for repository in entries:
                         repositories[repository["id"]] = {"category": category, **repository}
-            else:
-                repositories = (
-                    data or await async_load_from_store(self.hacs.hass, "repositories") or {}
-                )
+
         except HomeAssistantError as exception:
             self.hacs.log.error(
                 "Could not read %s, restore the file from a backup - %s",
-                self.hacs.hass.config.path(
-                    ".storage/hacs.data"
-                    if self.hacs.configuration.experimental
-                    else ".storage/hacs.repositories"
-                ),
+                self.hacs.hass.config.path(".storage/hacs.data"),
                 exception,
             )
             self.hacs.disable_hacs(HacsDisabledReason.RESTORE)
@@ -196,13 +183,7 @@ class HacsData:
         if not hacs and not repositories:
             # Assume new install
             self.hacs.status.new = True
-            if self.hacs.configuration.experimental:
-                return True
-            self.logger.info("<HacsData restore> Loading base repository information")
-            repositories = await self.hacs.hass.async_add_executor_job(
-                json_util.load_json,
-                f"{self.hacs.core.config_path}/custom_components/hacs/utils/default.repositories",
-            )
+            return True
 
         self.logger.info("<HacsData restore> Restore started")
 
@@ -242,7 +223,8 @@ class HacsData:
 
             self.logger.info("<HacsData restore> Restore done")
         except (
-            BaseException  # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            # lgtm [py/catch-base-exception] pylint: disable=broad-except
+            BaseException
         ) as exception:
             self.logger.critical(
                 "<HacsData restore> [%s] Restore Failed!", exception, exc_info=exception
@@ -250,22 +232,28 @@ class HacsData:
             return False
         return True
 
-    async def register_unknown_repositories(self, repositories, category: str | None = None):
+    async def register_unknown_repositories(
+        self, repositories: dict[str, dict[str, Any]], category: str | None = None
+    ):
         """Registry any unknown repositories."""
-        register_tasks = [
-            self.hacs.async_register_repository(
+        for repo_idx, (entry, repo_data) in enumerate(repositories.items()):
+            # async_register_repository is awaited in a loop
+            # since its unlikely to ever suspend at startup
+            if (
+                entry == "0"
+                or repo_data.get("category", category) is None
+                or self.hacs.repositories.is_registered(repository_id=entry)
+            ):
+                continue
+            await self.hacs.async_register_repository(
                 repository_full_name=repo_data["full_name"],
                 category=repo_data.get("category", category),
                 check=False,
                 repository_id=entry,
             )
-            for entry, repo_data in repositories.items()
-            if entry != "0"
-            and not self.hacs.repositories.is_registered(repository_id=entry)
-            and repo_data.get("category", category) is not None
-        ]
-        if register_tasks:
-            await asyncio.gather(*register_tasks)
+            if repo_idx % 100 == 0:
+                # yield to avoid blocking the event loop
+                await asyncio.sleep(0)
 
     @callback
     def async_restore_repository(self, entry: str, repository_data: dict[str, Any]):
@@ -302,17 +290,21 @@ class HacsData:
         repository.data.selected_tag = repository_data.get("selected_tag")
         repository.data.show_beta = repository_data.get("show_beta", False)
         repository.data.last_version = repository_data.get("last_version")
+        repository.data.prerelease = repository_data.get("prerelease")
         repository.data.last_commit = repository_data.get("last_commit")
         repository.data.installed_version = repository_data.get("version_installed")
         repository.data.installed_commit = repository_data.get("installed_commit")
         repository.data.manifest_name = repository_data.get("manifest_name")
 
         if last_fetched := repository_data.get("last_fetched"):
-            repository.data.last_fetched = datetime.fromtimestamp(last_fetched)
+            repository.data.last_fetched = datetime.fromtimestamp(last_fetched, UTC)
 
         repository.repository_manifest = HacsManifest.from_dict(
             repository_data.get("manifest") or repository_data.get("repository_manifest") or {}
         )
+
+        if repository.data.prerelease == repository.data.last_version:
+            repository.data.prerelease = None
 
         if repository.localpath is not None and is_safe(self.hacs, repository.localpath):
             # Set local path

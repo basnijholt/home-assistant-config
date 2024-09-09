@@ -1,4 +1,7 @@
 """Provide info to system health."""
+
+from typing import Any
+
 from aiogithubapi.common.const import BASE_API_URL
 from homeassistant.components import system_health
 from homeassistant.core import HomeAssistant, callback
@@ -17,8 +20,11 @@ def async_register(hass: HomeAssistant, register: system_health.SystemHealthRegi
     register.async_register_info(system_health_info, "/hacs")
 
 
-async def system_health_info(hass):
+async def system_health_info(hass: HomeAssistant) -> dict[str, Any]:
     """Get info for the info page."""
+    if DOMAIN not in hass.data:
+        return {"Disabled": "HACS is not loaded, but HA still requests this information..."}
+
     hacs: HacsBase = hass.data[DOMAIN]
     response = await hacs.githubapi.rate_limit()
 
@@ -30,6 +36,9 @@ async def system_health_info(hass):
         "GitHub Web": system_health.async_check_can_reach_url(
             hass, "https://github.com/", GITHUB_STATUS
         ),
+        "HACS Data": system_health.async_check_can_reach_url(
+            hass, "https://data-v2.hacs.xyz/data.json", CLOUDFLARE_STATUS
+        ),
         "GitHub API Calls Remaining": response.data.resources.core.remaining,
         "Installed Version": hacs.version,
         "Stage": hacs.stage,
@@ -39,10 +48,5 @@ async def system_health_info(hass):
 
     if hacs.system.disabled:
         data["Disabled"] = hacs.system.disabled_reason
-
-    if hacs.configuration.experimental:
-        data["HACS Data"] = system_health.async_check_can_reach_url(
-            hass, "https://data-v2.hacs.xyz/data.json", CLOUDFLARE_STATUS
-        )
 
     return data
