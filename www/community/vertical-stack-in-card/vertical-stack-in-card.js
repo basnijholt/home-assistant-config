@@ -180,10 +180,23 @@ class VerticalStackInCard extends HTMLElement {
     const sizes = await Promise.all(this._refCards.map(this._computeCardSize));
     return sizes.reduce((a, b) => a + b, 0);
   }
+
+  static getConfigElement() {
+    return customElements.get('hui-vertical-stack-card').getConfigElement();
+  }
+
+  static getStubConfig() {
+    return {
+      cards: [],
+    };
+  }
 }
 
 customElements.define('vertical-stack-in-card', VerticalStackInCard);
-
-window.customElements.get('vertical-stack-in-card').getConfigElement = function() {
-  return document.createElement('hui-stack-card-editor');
-}
+window.customCards = window.customCards || [];
+window.customCards.push({
+  type: 'vertical-stack-in-card',
+  name: 'Vertical Stack In Card',
+  description: 'Group multiple cards into a single sleek card.',
+  preview: false,
+});
