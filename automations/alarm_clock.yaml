@@ -14,7 +14,7 @@
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.ten_minutes_before_alarm") }}
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_boolean.alarm_clock
     state: "on"
   actions:

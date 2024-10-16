@@ -34,7 +34,7 @@
     trigger: time
     at: "00:00"
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_boolean.work_hour_notification_sent
     state: "on"
   actions:
@@ -47,7 +47,7 @@
     entity_id: person.bas
     from: "Work"
   conditions:
-    conditions: time
+    condition: time
     after: "15:00:00"
     before: "22:00:00"
   actions:

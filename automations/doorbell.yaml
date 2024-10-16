@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Doorbell: click the button"
-  initial_state: "on"
+  initial_state: true
   triggers:
     trigger: event
     event_type: deconz_event

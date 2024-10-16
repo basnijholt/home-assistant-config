@@ -83,7 +83,7 @@
   actions:
     choose:
       - conditions: # Change hue of living room lights
-          conditions: state
+          condition: state
           entity_id: input_select.cube_mode
           state: "Hue"
         sequence:
@@ -100,7 +100,7 @@
                 - "{{ hue_sat[1] }}"
 
       - conditions: # Change brightness of living room lights
-          conditions: state
+          condition: state
           entity_id: input_select.cube_mode
           state: "Brightness"
         sequence:
@@ -114,7 +114,7 @@
               {{ new_brightness|int(0) }}
 
       - conditions: # Change speaker volume
-          conditions: state
+          condition: state
           entity_id: input_select.cube_mode
           state: "Volume"
         sequence:

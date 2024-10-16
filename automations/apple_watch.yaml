@@ -15,7 +15,7 @@
     event_data:
       actionName: Play TV
   conditions:
-    conditions: state
+    condition: state
     entity_id: media_player.tv
     state: "on"
   actions:

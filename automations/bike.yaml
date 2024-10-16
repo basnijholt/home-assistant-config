@@ -32,7 +32,7 @@
     trigger: time_pattern
     minutes: '/1'
   conditions:
-    conditions: template
+    condition: template
     value_template: "{{ states('sensor.time') == states('input_datetime.bike_charger_off')[0:5] }}"
   actions:
     action: switch.turn_off

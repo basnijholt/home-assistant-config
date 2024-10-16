@@ -47,7 +47,7 @@
     trigger: time
     at: "08:00"
   conditions:
-    conditions: state
+    condition: state
     entity_id: binary_sensor.vacuum_day
     state: "on"
   actions:

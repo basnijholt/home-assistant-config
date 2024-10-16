@@ -99,7 +99,7 @@
     entity_id: binary_sensor.openclose_bathroom
     to: "on"
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_boolean.bathroom_door_open_warning
     state: "on"
   actions:
@@ -126,7 +126,7 @@
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "on"
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_boolean.bedroom_activity_warning
     state: "on"
   actions:

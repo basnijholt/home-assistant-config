@@ -29,7 +29,7 @@
     entity_id: binary_sensor.activity_in_living_room
     to: "on"
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_boolean.guest_mode
     state: "off"
   actions:
@@ -45,7 +45,7 @@
       entity_id: input_select.sleep_mode
       from: total
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_boolean.guest_mode
     state: "off"
   actions:
@@ -63,7 +63,7 @@
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       to: "on"
   conditions:
-    conditions: state
+    condition: state
     entity_id: binary_sensor.someone_in_the_house_in_last_hour
     state: "on"
   actions:
@@ -137,7 +137,7 @@
     entity_id: binary_sensor.activity_in_kitchen
     to: "on"
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_select.sleep_mode
     state:
       - "off"
@@ -320,7 +320,7 @@
       event_data:
         id: smart_switch_bedroom_marcella
   conditions:
-    conditions: state
+    condition: state
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
     state: "on"
   actions:

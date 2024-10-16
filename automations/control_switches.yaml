@@ -148,9 +148,9 @@
 - alias: "Control switches: bedroom IKEA dimmer switch"
   mode: parallel
   triggers:
-    - trigger: event
+    - trigger: mqtt
       topic: "zigbee2mqtt/IKEA Remote (Bedroom)"
-    - trigger: event
+    - trigger: mqtt
       topic: "zigbee2mqtt/IKEA Remote (Bedroom Marcella)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -358,7 +358,7 @@
                 entity_id: all
 
             - conditions: # off -> half
-                conditions: state
+                condition: state
                 entity_id: input_select.sleep_mode
                 state: "off"
               sequence:
@@ -374,7 +374,7 @@
                     option: half
 
             - conditions: # half -> total
-                conditions: state
+                condition: state
                 entity_id: input_select.sleep_mode
                 state: half
               sequence:
@@ -385,7 +385,7 @@
                     option: total
 
             - conditions: # on total, just turn lights off
-                conditions: state
+                condition: state
                 entity_id: input_select.sleep_mode
                 state: total
               sequence:
