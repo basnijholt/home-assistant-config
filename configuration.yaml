@@ -47,7 +47,6 @@ wake_on_lan:
 proximity: !include includes/proximity.yaml
 timer: !include includes/timers.yaml
 ios: !include includes/ios.yaml
-media_player: !include includes/media_players.yaml
 homekit: !include includes/homekit.yaml
 plant: !include includes/plant.yaml
 influxdb: !include includes/influxdb.yaml
