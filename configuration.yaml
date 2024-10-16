@@ -52,7 +52,6 @@ plant: !include includes/plant.yaml
 influxdb: !include includes/influxdb.yaml
 intent:
 intent_script: !include includes/intent_script.yaml
-panel_iframe: !include includes/panel_iframe.yaml
 
 # Custom components
 pyscript: !include includes/pyscript.yaml
