@@ -74,7 +74,7 @@
   triggers:
     platform: time_pattern
     minutes: "/5"
-  condition: "{{ (as_timestamp(now()) - as_timestamp(states.sensor.power_consumption.last_changed)) > 20 * 60 }}"
+  conditions: "{{ (as_timestamp(now()) - as_timestamp(states.sensor.power_consumption.last_changed)) > 20 * 60 }}"
   action:
     - service: notify.iphone_bas
       data:

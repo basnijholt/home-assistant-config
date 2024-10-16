@@ -58,7 +58,7 @@
   variables:
     light: "{{ trigger.event.data.entity_id }}"
     switch: "{{ trigger.event.data.switch }}"
-  condition: "{{ 'hall' not in light and 'stairs' not in light }}"
+  conditions: "{{ 'hall' not in light and 'stairs' not in light }}"
   action:
     - delay: "01:00:00"
     - condition: template
@@ -81,7 +81,7 @@
       event_type: adaptive_lighting.manual_control
   variables:
     light: "{{ trigger.event.data.entity_id }}"
-  condition: "{{ 'hall' not in light and 'stairs' not in light }}"
+  conditions: "{{ 'hall' not in light and 'stairs' not in light }}"
   action:
     - service: system_log.write
       data:

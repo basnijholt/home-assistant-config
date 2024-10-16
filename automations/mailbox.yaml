@@ -16,7 +16,7 @@
     - platform: state
       entity_id: binary_sensor.mailbox_vibration
       to: "on"
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.mailbox_full
       state: "off"

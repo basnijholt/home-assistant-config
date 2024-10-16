@@ -14,7 +14,7 @@
       at: "20:00"
     - platform: sun
       event: sunset
-  condition: "{{ is_state('input_boolean.dark_mode', 'off') }}"
+  conditions: "{{ is_state('input_boolean.dark_mode', 'off') }}"
   action:
     entity_id: input_boolean.dark_mode
     service: input_boolean.turn_on
@@ -25,7 +25,7 @@
       at: "06:00"
     - platform: sun
       event: sunrise
-  condition: "{{ is_state('input_boolean.dark_mode', 'on') }}"
+  conditions: "{{ is_state('input_boolean.dark_mode', 'on') }}"
   action:
     entity_id: input_boolean.dark_mode
     service: input_boolean.turn_off

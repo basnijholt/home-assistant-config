@@ -19,7 +19,7 @@
         domain: light
     - platform: event
       event_type: state_changed
-  condition: "{{ trigger.event.context.id.startswith('adapt_lgt') }}"
+  conditions: "{{ trigger.event.context.id.startswith('adapt_lgt') }}"
   action:
     service: system_log.write
     data:

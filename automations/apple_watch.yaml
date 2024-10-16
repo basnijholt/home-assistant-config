@@ -14,8 +14,8 @@
     event_type: ios.action_fired
     event_data:
       actionName: Play TV
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: media_player.tv
     state: "on"
   action:

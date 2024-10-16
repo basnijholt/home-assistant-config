@@ -15,8 +15,8 @@
       to: "problem"
     - platform: time
       at: "20:00"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: plant.calathea
     state: "problem"
   action:
@@ -33,8 +33,8 @@
       to: "problem"
     - platform: time
       at: "20:00"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: plant.monstera
     state: "problem"
   action:
@@ -51,8 +51,8 @@
       to: "problem"
     - platform: time
       at: "20:00"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: plant.peace_lily
     state: "problem"
   action:

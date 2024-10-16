@@ -14,7 +14,7 @@
     entity_id: binary_sensor.motion_detected
     from: "off"
     to: "on"
-  condition:
+  conditions:
     - condition: state
       entity_id: group.persons
       state: not_home
@@ -78,7 +78,7 @@
       to: "on"
     - platform: time_pattern
       minutes: "/10"
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.no_one_home
       state: "on"
@@ -98,8 +98,8 @@
     platform: state
     entity_id: binary_sensor.openclose_bathroom
     to: "on"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_boolean.bathroom_door_open_warning
     state: "on"
   action:
@@ -125,8 +125,8 @@
     platform: state
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "on"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_boolean.bedroom_activity_warning
     state: "on"
   action:

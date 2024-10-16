@@ -28,8 +28,8 @@
     platform: state
     entity_id: binary_sensor.activity_in_living_room
     to: "on"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_boolean.guest_mode
     state: "off"
   action:
@@ -44,8 +44,8 @@
     - platform: state
       entity_id: input_select.sleep_mode
       from: total
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_boolean.guest_mode
     state: "off"
   action:
@@ -62,8 +62,8 @@
     - platform: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       to: "on"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: binary_sensor.someone_in_the_house_in_last_hour
     state: "on"
   action:
@@ -93,7 +93,7 @@
   triggers:
     platform: state
     entity_id: binary_sensor.activity_in_dinner_area
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.automatic_dinner_area_light
       state: "on"
@@ -109,7 +109,7 @@
       entity_id: light.dinner_area
 
 - alias: "Light: turn off automatic dinner area lights when turning off lights after 18:00"
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.automatic_dinner_area_light
       state: "on"
@@ -136,8 +136,8 @@
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
     to: "on"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_select.sleep_mode
     state:
       - "off"
@@ -174,7 +174,7 @@
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
     to: "on"
-  condition: "{{ states('input_select.sleep_mode') != 'total' }}"
+  conditions: "{{ states('input_select.sleep_mode') != 'total' }}"
   action:
     service: light.turn_on
     data:
@@ -218,7 +218,7 @@
         | selectattr("state", "eq", "off")
         | map(attribute="entity_id")
         | list }}
-  condition: "{{ (off_lights | length) > 0 }}"
+  conditions: "{{ (off_lights | length) > 0 }}"
   action:
     alias: Turn on lights that are off
     repeat:
@@ -259,7 +259,7 @@
           | selectattr("state", "eq", "off")
           | map(attribute="entity_id")
           | list }}
-  condition:
+  conditions:
     - "{{ (off_lights | length) > 0 }}"
     - condition: state
       entity_id: input_select.sleep_mode
@@ -285,7 +285,7 @@
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "off"
     for: "00:08:00"
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
       state: "on"
@@ -319,8 +319,8 @@
       event_type: deconz_event
       event_data:
         id: smart_switch_bedroom_marcella
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
     state: "on"
   action:
@@ -342,7 +342,7 @@
     from: "on"
     to: "off"
     for: "02:00:00"
-  condition: "{{ is_state('light.bedroom_lights', 'on') }}"
+  conditions: "{{ is_state('light.bedroom_lights', 'on') }}"
   action:
     service: light.turn_off
     data:
@@ -471,7 +471,7 @@
   triggers:
     platform: state
     entity_id: binary_sensor.activity_in_guest_room
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
@@ -511,7 +511,7 @@
   triggers:
     platform: time_pattern
     minutes: 60
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.activity_in_living_room
       state: "off"
@@ -527,7 +527,7 @@
   triggers:
     platform: time_pattern
     minutes: "/10"
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.activity_in_guest_room
       state: "off"
@@ -543,7 +543,7 @@
   triggers:
     platform: time_pattern
     minutes: "/10"
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.activity_in_baby_room
       state: "off"
@@ -565,7 +565,7 @@
   triggers:
     platform: time_pattern
     minutes: "/30"
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.activity_in_master_bedroom
       state: "off"
@@ -586,7 +586,7 @@
   triggers:
     platform: time_pattern
     minutes: "/10"
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.activity_in_utility_room
       state: "off"

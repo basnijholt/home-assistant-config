@@ -25,8 +25,8 @@
     platform: state
     entity_id: binary_sensor.openclose_front_door
     to: "on"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_boolean.front_door_open_warning
     state: "on"
   action:

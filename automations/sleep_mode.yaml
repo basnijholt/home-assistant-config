@@ -17,8 +17,8 @@
       entity_id: input_boolean.alarm_clock
       from: "on"
       to: "off"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_boolean.alarm_clock
     state: "off"
   action:
@@ -53,8 +53,8 @@
     entity_id: binary_sensor.activity_outside_bedroom
     to: "off"
     for: "01:00:00"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: input_select.sleep_mode
     state: half
   action:

@@ -46,8 +46,8 @@
   triggers:
     platform: time
     at: "08:00"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: binary_sensor.vacuum_day
     state: "on"
   action:
@@ -64,7 +64,7 @@
       entity_id: group.persons
       from: home
       to: not_home
-  condition:
+  conditions:
     - condition: time
       after: "13:00:00"
       before: "22:00:00"

@@ -19,7 +19,7 @@
       for: "00:01:00"
     - platform: time_pattern
       hours: "/1"
-  condition:
+  conditions:
     - condition: state
       entity_id:
         - binary_sensor.no_one_home
@@ -46,7 +46,7 @@
     - platform: state
       entity_id: person.marcella
       from: "home"
-  condition:
+  conditions:
     - condition: state
       entity_id:
         - binary_sensor.no_one_home

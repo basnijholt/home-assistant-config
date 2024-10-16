@@ -20,7 +20,7 @@
     - platform: state
       entity_id: media_player.spotify
       to: paused
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.tv
       state: "on"
@@ -44,8 +44,8 @@
     platform: state
     entity_id: media_player.tv
     to: "off"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: media_player.kef_ls50
     state: "on"
   action:
@@ -62,7 +62,7 @@
   triggers:
     platform: state
     entity_id: media_player.tv
-  condition: # Happens e.g., when speakers auto-shutdown and the TV is on but idle
+  conditions: # Happens e.g., when speakers auto-shutdown and the TV is on but idle
     - condition: state
       entity_id: media_player.kef_ls50
       state: "off"
@@ -86,7 +86,7 @@
   triggers:
     platform: time_pattern
     seconds: "/5"
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.spotify
       state: playing
@@ -107,7 +107,7 @@
     - platform: state
       entity_id: media_player.tv
       attribute: volume_level
-  condition:
+  conditions:
     - "{{ trigger.to_state.state != 'off' }}"
     - "{{ state_attr('media_player.kef_ls50', 'source') in ('Optical Input 1', 'HDMI ARC', 'Usb') }}"
   action:

@@ -358,7 +358,7 @@
                 entity_id: all
 
             - conditions: # off -> half
-                condition: state
+                conditions: state
                 entity_id: input_select.sleep_mode
                 state: "off"
               sequence:
@@ -374,7 +374,7 @@
                     option: half
 
             - conditions: # half -> total
-                condition: state
+                conditions: state
                 entity_id: input_select.sleep_mode
                 state: half
               sequence:
@@ -385,7 +385,7 @@
                     option: total
 
             - conditions: # on total, just turn lights off
-                condition: state
+                conditions: state
                 entity_id: input_select.sleep_mode
                 state: total
               sequence:

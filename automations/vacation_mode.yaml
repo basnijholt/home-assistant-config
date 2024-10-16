@@ -16,7 +16,7 @@
     from: home
     to: not_home
     for: "24:00:00"
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
@@ -35,7 +35,7 @@
     entity_id: group.persons
     from: not_home
     to: home
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.vacation_mode
       state: "on"

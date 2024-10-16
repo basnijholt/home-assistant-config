@@ -29,7 +29,7 @@
     entity_id: binary_sensor.openclose_front_door
     from: "off"
     to: "on"
-  condition:
+  conditions:
     - condition: state
       entity_id: person.marcella
       state: not_home

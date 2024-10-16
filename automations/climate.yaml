@@ -14,8 +14,8 @@
     platform: template
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id:
       - input_boolean.alarm_clock
       - input_boolean.automatic_temperature
@@ -29,7 +29,7 @@
     entity_id: proximity.home
     below: 6
     above: 1
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.automatic_temperature
       state: "on"
@@ -52,7 +52,7 @@
   triggers:
     platform: time
     at: "22:00"
-  condition:
+  conditions:
     - condition: state
       entity_id: input_boolean.automatic_temperature
       state: "on"
@@ -98,7 +98,7 @@
     entity_id: binary_sensor.openclose_bedroom
     to: "on"
     for: "00:05:00"
-  condition: "{{ state_attr('climate.thermostat', 'temperature') >= 18 }}"
+  conditions: "{{ state_attr('climate.thermostat', 'temperature') >= 18 }}"
   action:
     - repeat:
         while:
@@ -143,8 +143,8 @@
     - platform: state
       entity_id: binary_sensor.activity_in_guest_room
       to: "off"
-  condition:
-    condition: state
+  conditions:
+    conditions: state
     entity_id: binary_sensor.activity_in_guest_room
     state: "off"
   action:
