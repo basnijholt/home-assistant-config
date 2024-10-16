@@ -12,6 +12,7 @@ filter:
   exclude_domains:
     - automation
     - binary_sensor
+    - camera
     - device_tracker
     - input_boolean
     - light

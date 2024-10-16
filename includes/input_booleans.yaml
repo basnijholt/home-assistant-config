@@ -28,6 +28,9 @@ bathroom_door_open_warning:
 front_door_open_warning:
   name: Front door opened
   icon: mdi:door-open
+bedroom_activity_warning:
+  name: Bedroom activity warning
+  icon: mdi:bed
 bedroom_lights_automatically_turned_on:
   name: Will automatically turn off
   icon: mdi:ceiling-light

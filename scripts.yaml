@@ -166,10 +166,13 @@ cozy_lights_bedroom:
           - 100
       service: light.turn_on
     # - data:
-    #     entity_id: light.bamboo
+    #     entity_id: light.desk_led
     #     hs_color:
     #       - 299.72
     #       - 83.922
+    #   service: light.turn_on
+    # - data:
+    #     entity_id: light.bamboo
     #   service: light.turn_on
     # - data:
     #     entity_id: light.bed_reading_up
@@ -442,16 +445,6 @@ update_dns:
         api: !secret gandi_api_key
         domain: !secret domain
         subdomain: !secret subdomain
-    - service: shell_command.update_dns
-      data:
-        api: !secret gandi_api_key
-        domain: !secret domain
-        subdomain: marcella-blog
-    - service: shell_command.update_dns
-      data:
-        api: !secret gandi_api_key
-        domain: !secret domain
-        subdomain: files
 
 fix_sound:
   alias: Fix Opt LG Sound Sync bug
