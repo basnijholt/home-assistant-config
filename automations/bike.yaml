@@ -12,7 +12,7 @@
 # Only charge for 6 hours to maximize battery lifespan
 
 - alias: "Bike: started charging"
-  trigger:
+  triggers:
     platform: state
     entity_id: switch.bike_charger
     to: "on"
@@ -28,7 +28,7 @@
         timestamp: "{{ now().timestamp() + 3600 * 6 }}"
 
 - alias: "Bike: stop charging"
-  trigger:
+  triggers:
     platform: time_pattern
     minutes: '/1'
   condition:

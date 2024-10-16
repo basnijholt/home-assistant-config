@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - alias: "Utilities: washing machine or dishwasher started or finished"
-  trigger:
+  triggers:
     - platform: state
       entity_id: binary_sensor.dishwasher
     - platform: state
@@ -27,7 +27,7 @@
       timestamp: "{{ now().timestamp() }}"
 
 - alias: "Utilities: washing machine notification"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.washing_machine
     from: "off"
@@ -39,7 +39,7 @@
       emojis: "👚👕"
 
 - alias: "Utilities: dishwasher notification"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.dishwasher
     from: "off"

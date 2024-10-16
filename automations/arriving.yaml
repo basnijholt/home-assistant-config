@@ -11,7 +11,7 @@
 
 # XXX: sometimes triggers when leaving!
 - alias: "Arriving: switch music from iPhone to speakers if no one is home"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.openclose_front_door
     from: "off"

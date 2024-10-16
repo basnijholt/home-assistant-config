@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - alias: "Night mode: automatically turn off when alarm turns off or at 7AM"
-  trigger:
+  triggers:
     - platform: time
       at: "07:00"
     - platform: state
@@ -28,7 +28,7 @@
       option: "half"
 
 - alias: "Night mode: turn off automatic bedroom lights"
-  trigger:
+  triggers:
     platform: state
     entity_id: input_select.sleep_mode
     from: "off"
@@ -37,7 +37,7 @@
     entity_id: input_boolean.automatic_bedroom_lights
 
 - alias: "Night mode: set low temperature when sleep mode turns on"
-  trigger:
+  triggers:
     platform: state
     entity_id: input_select.sleep_mode
     from: "off"
@@ -48,7 +48,7 @@
   description: >
     When it is half sleeping mode and there is no activity in
     the house for more than an hour go to total sleeping mode.
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_outside_bedroom
     to: "off"
@@ -70,7 +70,7 @@
 - alias: "Night mode: set sleeping mode in the living room"
   description: >
     Set the living room lights to sleep mode only when no-one is there anymore.
-  trigger:
+  triggers:
     platform: state
     entity_id: input_select.sleep_mode
     to: "total"

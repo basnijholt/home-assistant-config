@@ -11,7 +11,7 @@
 
 - alias: "Leaving: automatically turn off everything"
   initial_state: "on"
-  trigger:
+  triggers:
     - platform: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       from: "on"
@@ -39,7 +39,7 @@
 
 - alias: "Leaving: ask to turn off everything"
   initial_state: "on"
-  trigger:
+  triggers:
     - platform: state
       entity_id: person.bas
       from: "home"
@@ -72,7 +72,7 @@
               destructive: true
 
 - alias: "Leaving: turn off everything after notification"
-  trigger:
+  triggers:
     platform: event
     event_type: mobile_app_notification_action
     event_data:
@@ -82,7 +82,7 @@
 
 
 - alias: "Leaving: downstairs Aqara Wireless Mini Switch"
-  trigger:
+  triggers:
     platform: event
     event_type: deconz_event
     event_data:

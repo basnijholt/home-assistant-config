@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Plant: problem with Calathea"
-  trigger:
+  triggers:
     - platform: state
       entity_id: plant.calathea
       to: "problem"
@@ -27,7 +27,7 @@
         You need to give the Calathea 🌳 attention and love: {{ state_attr("plant.calathea", "problem") }}!
 
 - alias: "Plant: problem with Monstera"
-  trigger:
+  triggers:
     - platform: state
       entity_id: plant.monstera
       to: "problem"
@@ -45,7 +45,7 @@
         You need to give the Monstera 🌴 attention and love: {{ state_attr("plant.monstera", "problem") }}!
 
 - alias: "Plant: problem with Peace lily"
-  trigger:
+  triggers:
     - platform: state
       entity_id: plant.peace_lily
       to: "problem"

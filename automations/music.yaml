@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Music: start playlist"
   initial_state: "on"
-  trigger:
+  triggers:
     platform: state
     entity_id: input_boolean.start_the_music
     from: "off"
@@ -24,7 +24,7 @@
         entity_id: media_player.kef_ls50
 
 - alias: "Music: switch music from iPhone to speakers if coming home"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.openclose_front_door
     from: "off"

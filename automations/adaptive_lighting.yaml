@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Adaptive lighting: turn on and off switches"
-  trigger:
+  triggers:
     - platform: state
       entity_id: input_select.sleep_mode
     - platform: homeassistant
@@ -52,7 +52,7 @@
 - alias: "Adaptive lighting: reset manual_control after 1 hour"
   mode: parallel
   max: 200
-  trigger:
+  triggers:
     - platform: event
       event_type: adaptive_lighting.manual_control
   variables:
@@ -76,7 +76,7 @@
 - alias: "Adaptive lighting: notify manual_control"
   mode: parallel
   max: 20
-  trigger:
+  triggers:
     - platform: event
       event_type: adaptive_lighting.manual_control
   variables:

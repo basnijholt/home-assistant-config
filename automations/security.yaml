@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Security: motion detected but we are not home"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.motion_detected
     from: "off"
@@ -46,7 +46,7 @@
         color_name: red
 
 - alias: "Security: front door has been open for more than 5 minutes"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.openclose_front_door
     from: "off"
@@ -59,7 +59,7 @@
       message: "The front door has been open for more than 5 minutes."
 
 - alias: "Security: utility room door has been open for more than 5 minutes"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.openclose_front_door
     from: "off"
@@ -72,7 +72,7 @@
       message: "The utility room door has been open for more than 5 minutes."
 
 - alias: "Security: no one is home but high power usage"
-  trigger:
+  triggers:
     - platform: state
       entity_id: binary_sensor.no_one_home
       to: "on"
@@ -94,7 +94,7 @@
         ({{ states('sensor.power_consumption') }} kW now)! ⚡️
 
 - alias: "Security: bathroom door has opened"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.openclose_bathroom
     to: "on"
@@ -121,7 +121,7 @@
       entity_id: input_boolean.bathroom_door_open_warning
 
 - alias: "Security: activity in master bedroom"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "on"
@@ -147,7 +147,7 @@
 
 - alias: "Security: Door to outside open"
   description: ''
-  trigger:
+  triggers:
     - platform: state
       entity_id: binary_sensor.door_to_outside_open
       to: 'on'

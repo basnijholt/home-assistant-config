@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Lovelace: convert lovelace.json to lovelace-ui.yaml"
   initial_state: "on"
-  trigger:
+  triggers:
     platform: state
     entity_id: sensor.lovelace
   action:

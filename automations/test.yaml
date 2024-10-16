@@ -11,7 +11,7 @@
 - alias: "Test: listen to Adaptive Lighting events"
   mode: parallel
   max: 100
-  trigger:
+  triggers:
     - platform: event
       event_type: call_service
       event_data:
@@ -28,7 +28,7 @@
       logger: yolo.yolo
 
 - alias: "Test: time"
-  trigger:
+  triggers:
     platform: state
     entity_id: sensor.time
   action:
@@ -41,7 +41,7 @@
         logger: yolo.yolo
 
 - alias: "Test: flash lights"
-  trigger:
+  triggers:
     platform: state
     entity_id: sensor.time
   variables:  # 'light.bathroom_ceiling',
@@ -64,7 +64,7 @@
 - alias: "Test: call update_entity after light.turn_on/turn_off"
   mode: parallel
   max: 100
-  trigger:
+  triggers:
     - platform: event
       event_type: call_service
       event_data:
@@ -83,7 +83,7 @@
 
 - alias: 'Test: Light Baby Room Loop'
   mode: parallel
-  trigger:
+  triggers:
     platform: homeassistant
     event: start
   action:

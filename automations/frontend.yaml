@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Frontend: turn on dark mode"
-  trigger:
+  triggers:
     - platform: time
       at: "20:00"
     - platform: sun
@@ -20,7 +20,7 @@
     service: input_boolean.turn_on
 
 - alias: "Frontend: turn on light mode"
-  trigger:
+  triggers:
     - platform: time
       at: "06:00"
     - platform: sun
@@ -31,7 +31,7 @@
     service: input_boolean.turn_off
 
 - alias: "Frontend: change theme"
-  trigger:
+  triggers:
     - platform: state
       entity_id: input_select.theme
     - platform: state

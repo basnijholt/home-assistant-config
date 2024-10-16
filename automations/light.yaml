@@ -24,7 +24,7 @@
 #                        |___/
 
 - alias: "Light: turn on living room"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_living_room
     to: "on"
@@ -37,7 +37,7 @@
     entity_id: light.living_room_lights
 
 - alias: "Light: turn off living room"
-  trigger:
+  triggers:
     - platform: state
       entity_id: binary_sensor.activity_in_living_room
       to: "off"
@@ -53,7 +53,7 @@
     entity_id: light.living_room_lights
 
 - alias: "Light: turn on Chrismas tree"
-  trigger:
+  triggers:
     - platform: state
       entity_id: input_select.sleep_mode
       to:
@@ -71,7 +71,7 @@
     entity_id: switch.christmas_tree
 
 - alias: "Light: turn off Chrismas tree"
-  trigger:
+  triggers:
     - platform: state
       entity_id: input_select.sleep_mode
       to: "total"
@@ -90,7 +90,7 @@
 # |_|\_\_|\__\___|_| |_|\___|_| |_|
 
 - alias: "Light: toggle dinner area lights"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_dinner_area
   condition:
@@ -115,7 +115,7 @@
       state: "on"
     - condition: time
       after: "18:00:00"
-  trigger:
+  triggers:
     platform: state
     entity_id: light.dinner_area
     to: "off"
@@ -124,7 +124,7 @@
     entity_id: input_boolean.automatic_dinner_area_light
 
 - alias: "Light: reset automatic dinner area lights at 06:00"
-  trigger:
+  triggers:
     platform: time
     at: "06:00:00"
   action:
@@ -132,7 +132,7 @@
     entity_id: input_boolean.automatic_dinner_area_light
 
 - alias: "Light: turn on kitchen counter if sleep mode is off"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
     to: "on"
@@ -147,7 +147,7 @@
     entity_id: light.kitchen_counter
 
 - alias: "Light: turn off kitchen counter"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
     to: "off"
@@ -156,7 +156,7 @@
     entity_id: light.kitchen_counter
 
 - alias: "Light: reboot kitchen ceiling Shelly"
-  trigger:
+  triggers:
     platform: time
     at: "05:00:00"
   action:
@@ -170,7 +170,7 @@
 #
 
 - alias: "Light: turn on bathroom"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
     to: "on"
@@ -182,7 +182,7 @@
       transition: 1
 
 - alias: "Light: turn off bathroom"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
     to: "off"
@@ -200,7 +200,7 @@
 
 - alias: "Light: turn on hall"
   mode: parallel
-  trigger:
+  triggers:
     - platform: state
       entity_id: binary_sensor.activity_in_hall
       from: "off"
@@ -229,7 +229,7 @@
           entity_id: "{{ off_lights[repeat.index - 1] }}"
 
 - alias: "Light: turn off hall"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_hall
     from: "on"
@@ -249,7 +249,7 @@
   # |____/ \___|\__,_|_|  \___/ \___/|_| |_| |_|
 
 - alias: "Light: automatically turn on the bedroom"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "on"
@@ -280,7 +280,7 @@
 
 - alias: "Light: automatically turn off the bedroom"
   initial_state: "on"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "off"
@@ -303,7 +303,7 @@
 
 - alias: "Light: turn off bedroom lights auto switch"
   mode: parallel
-  trigger:
+  triggers:
     - platform: state
       entity_id: light.bedroom_lights
       to: "off"
@@ -328,7 +328,7 @@
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
 - alias: "Light: turn on automatic_bedroom_lights switch"
-  trigger:
+  triggers:
     platform: time
     at: "12:00"
   action:
@@ -336,7 +336,7 @@
     service: input_boolean.turn_on
 
 - alias: "Light: turn off bedroom after 2 hours of inactivity"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_master_bedroom
     from: "on"
@@ -349,7 +349,7 @@
       entity_id: light.bedroom_lights
 
 - alias: "Light: reboot bedroom ceiling Shelly"
-  trigger:
+  triggers:
     platform: time
     at: "13:00:00"
   action:
@@ -357,7 +357,7 @@
 
 - alias: 'Light: Update input_select when bedroom lights turned off'
   description: "Set the input_select.last_script_bedroom such that colored lights will be chosen"
-  trigger:
+  triggers:
     platform: state
     entity_id: light.bedroom_lights
     to: 'off'
@@ -382,7 +382,7 @@
 #                        |_____|
 
 - alias: "Light: turn on utility room / garage outside"
-  trigger:
+  triggers:
     - platform: state
       to: "on"
       entity_id: binary_sensor.activity_in_utility_room
@@ -411,7 +411,7 @@
             entity_id: switch.string_lights_outside
 
 - alias: "Light: turn off utility room / garage outside"
-  trigger:
+  triggers:
     - platform: state
       to: "off"
       entity_id: binary_sensor.activity_in_utility_room
@@ -438,7 +438,7 @@
             entity_id: switch.string_lights_outside
 
 - alias: "Light: turn on the outside front light"
-  trigger:
+  triggers:
     - platform: sun
       event: sunset
       offset: "-01:00:00"
@@ -450,7 +450,7 @@
     entity_id: light.front_house
 
 - alias: "Light: turn off the outside front light"
-  trigger:
+  triggers:
     - platform: time
       at: "01:00:00"
     - platform: sun
@@ -468,7 +468,7 @@
 #
 
 - alias: "Light: toggle guest room"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_guest_room
   condition:
@@ -489,7 +489,7 @@
 #                    |___/_____|
 
 - alias: "Light: toggle baby room"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.activity_in_baby_room
   action:
@@ -508,7 +508,7 @@
 
 - alias: "Light: turn off living room (extra check)"
   description: In case the other automation failed
-  trigger:
+  triggers:
     platform: time_pattern
     minutes: 60
   condition:
@@ -524,7 +524,7 @@
 
 - alias: "Light: turn off guest room (extra check)"
   description: In case the other automation failed
-  trigger:
+  triggers:
     platform: time_pattern
     minutes: "/10"
   condition:
@@ -540,7 +540,7 @@
 
 - alias: "Light: turn off baby room (extra check)"
   description: In case the other automation failed
-  trigger:
+  triggers:
     platform: time_pattern
     minutes: "/10"
   condition:
@@ -562,7 +562,7 @@
 
 - alias: "Light: turn off bedroom (extra check)"
   description: In case the other automation failed
-  trigger:
+  triggers:
     platform: time_pattern
     minutes: "/30"
   condition:
@@ -583,7 +583,7 @@
 
 - alias: "Light: turn off utility room / garage (extra check)"
   description: In case the other automation failed
-  trigger:
+  triggers:
     platform: time_pattern
     minutes: "/10"
   condition:
@@ -615,7 +615,7 @@
       - light.outside_front_door
 
 - alias: "Light: Update Zigbee2MQTT lights input_select options"
-  trigger:
+  triggers:
     platform: mqtt
     topic: zigbee2mqtt/bridge/devices
   action:
@@ -643,7 +643,7 @@
 
 - alias: "Light: Update Zigbee2MQTT Lights State"
   description: 'Refresh the state of all Zigbee2MQTT lights'
-  trigger:
+  triggers:
     platform: time_pattern
     minutes: "/5"
   action:

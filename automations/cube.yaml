@@ -11,7 +11,7 @@
 
 - alias: "Cube: perform operation"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: deconz_event
     event_data:
@@ -72,7 +72,7 @@
             entity_id: media_player.kef_ls50
 
 - alias: "Cube: rotate the cube"
-  trigger:
+  triggers:
     platform: event
     event_type: deconz_event
     event_data:

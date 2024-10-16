@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Vacuum: started cleaning"
-  trigger:
+  triggers:
     platform: state
     entity_id: vacuum.valetudo_vacuum
     from: docked
@@ -25,7 +25,7 @@
         datetime: "{{ now().isoformat() }}"
 
 - alias: "Vacuum: stopped cleaning"
-  trigger:
+  triggers:
     platform: state
     entity_id: vacuum.valetudo_vacuum
     from: returning
@@ -43,7 +43,7 @@
         message: "Cleanup successful after {{ (states('sensor.robot_vacuum_last_clean_duration') | int / 60) | round }} minutes"
 
 - alias: "Vacuum: reminder notification"
-  trigger:
+  triggers:
     platform: time
     at: "08:00"
   condition:
@@ -57,7 +57,7 @@
       message: "Vacuum will go today, make sure to leave the doors open and leave nothing on the floor!"
 
 - alias: "Vacuum: cleanup if nobody is home"
-  trigger:
+  triggers:
     - platform: time
       at: "13:00"
     - platform: state
@@ -89,7 +89,7 @@
 
 - alias: "Vacuum: reset cleaned today"
   initial_state: "on"
-  trigger:
+  triggers:
     platform: time
     at: "00:00:00"
   action:
@@ -97,7 +97,7 @@
     entity_id: input_boolean.cleaned_today
 
 - alias: "Vacuum: reset to standard mode"
-  trigger:
+  triggers:
     platform: state
     entity_id: vacuum.living_room
     to: docked

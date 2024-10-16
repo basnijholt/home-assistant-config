@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - alias: "Climate: turn on the heating 30 min before waking up"
-  trigger:
+  triggers:
     platform: template
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
@@ -24,7 +24,7 @@
     service: script.set_high_temperature
 
 - alias: "Climate: turn on the heating when going home"
-  trigger:
+  triggers:
     platform: numeric_state
     entity_id: proximity.home
     below: 6
@@ -49,7 +49,7 @@
         message: "Automatically turned on the heating 🥵℃"
 
 - alias: "Climate: turn off the heating at 22:00"
-  trigger:
+  triggers:
     platform: time
     at: "22:00"
   condition:
@@ -82,7 +82,7 @@
     - service: script.set_high_temperature
 
 - alias: "Climate: set outside temperature every hour"
-  trigger:
+  triggers:
     platform: time_pattern
     hours: "/1"
   action:
@@ -93,7 +93,7 @@
         {{ state_attr("weather.huis", "temperature") }}
 
 - alias: "Climate: warning when heating on and living room door open"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.openclose_bedroom
     to: "on"
@@ -127,7 +127,7 @@
           {{ states("input_number.temperature_low") }}
 
 - alias: "Climate: set temperature setpoint to 50 °C"
-  trigger:
+  triggers:
     platform: time_pattern
     hours: "/2"
   action:
@@ -137,7 +137,7 @@
       payload: "50"
 
 - alias: "Climate: automatically turn off spaceheater when no-one is in the guest room"
-  trigger:
+  triggers:
     - platform: time_pattern
       minutes: "/10"
     - platform: state

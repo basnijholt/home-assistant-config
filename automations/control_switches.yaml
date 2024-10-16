@@ -11,7 +11,7 @@
 
 - alias: "Control switches: living room Philips Hue dimmer switch"
   mode: parallel
-  trigger:
+  triggers:
     platform: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Living room)"
   variables:
@@ -74,7 +74,7 @@
 
 - alias: "Control switches: bedroom Philips Hue dimmer switch"
   mode: parallel
-  trigger:
+  triggers:
     platform: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Bedroom)"
   variables:
@@ -147,7 +147,7 @@
 # 8. **Turn off baby room and bedroom (with guests):** If you hold the bottom button on the remote and there are guests in the house, the lights in the bedroom, baby room, and the baby sphere light will turn off.
 - alias: "Control switches: bedroom IKEA dimmer switch"
   mode: parallel
-  trigger:
+  triggers:
     - platform: mqtt
       topic: "zigbee2mqtt/IKEA Remote (Bedroom)"
     - platform: mqtt
@@ -258,7 +258,7 @@
 
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: deconz_event
     event_data:
@@ -308,7 +308,7 @@
 
 - alias: "Control switches: bedroom Aqara Wireless Mini Switch"
   mode: parallel
-  trigger:
+  triggers:
     - platform: event
       event_type: deconz_event
       event_data:
@@ -394,7 +394,7 @@
 
 - alias: "Control switches: bathroom Aqara Wireless Mini Switch"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: deconz_event
     event_data:
@@ -417,7 +417,7 @@
 
 - alias: "Control switches: door Aqara Wireless Mini Switch"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: deconz_event
     event_data:
@@ -457,7 +457,7 @@
 
 - alias: "Control switches: guest room IKEA Switch"
   mode: parallel
-  trigger:
+  triggers:
     platform: mqtt
     topic: "zigbee2mqtt/IKEA Switch (Guest room)"
   variables:
@@ -478,7 +478,7 @@
 
 - alias: "Control switches: Guest Room Light"
   mode: parallel
-  trigger:
+  triggers:
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Guest Room)"
   variables:
@@ -500,7 +500,7 @@
 
 - alias: "Control switches: Guest Room Space heater"
   mode: parallel
-  trigger:
+  triggers:
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
@@ -516,7 +516,7 @@
 
 - alias: "Control switches: Baby Room Light"
   mode: parallel
-  trigger:
+  triggers:
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Baby Room)"
   variables:
@@ -539,7 +539,7 @@
 
 - alias: "Control switches: Mid Room Changing Table Light"
   mode: parallel
-  trigger:
+  triggers:
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Mid Room)"
   variables:

@@ -9,7 +9,7 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Apple Watch: Play or Pause the TV"
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -25,7 +25,7 @@
         media_player.{{ 'xbox' if is_state_attr('media_player.tv', 'source', 'XBOX') else 'tv'}}
 
 - alias: "Apple Watch: minimal lights bedroom"
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -40,7 +40,7 @@
       color_name: red
 
 - alias: "Apple Watch: fix TV sound"
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -50,7 +50,7 @@
 
 - alias: "Apple Watch: set sleep mode"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -93,7 +93,7 @@
 
 - alias: "Apple Watch: set lights"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -258,7 +258,7 @@
 
 - alias: "Apple Watch: temperature report"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -278,7 +278,7 @@
 
 - alias: "Apple Watch: portfolio value"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -294,7 +294,7 @@
 
 - alias: "Apple Watch: send vacuum cleaner"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -359,7 +359,7 @@
         option: "{{ location }}"
 
 - alias: "Apple Watch: movie time"
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -382,7 +382,7 @@
         brightness: 20
 
 - alias: "Apple Watch: reset adaptive lighting"
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -392,7 +392,7 @@
 
 - alias: "Apple Watch: set temperature"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:
@@ -459,7 +459,7 @@
 
 - alias: "Apple Watch: where is other person?"
   mode: parallel
-  trigger:
+  triggers:
     platform: event
     event_type: ios.action_fired
     event_data:

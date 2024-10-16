@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 
 - alias: "Notifications: Marcella arrived at Rotterdam Centraal"
-  trigger:
+  triggers:
     platform: state
     entity_id: device_tracker.marcella_iphone
     to: rotterdam_centraal
@@ -21,7 +21,7 @@
       message: "Marcella arrived at Rotterdam Centraal"
 
 - alias: "Notifications: front door has opened"
-  trigger:
+  triggers:
     platform: state
     entity_id: binary_sensor.openclose_front_door
     to: "on"
@@ -42,7 +42,7 @@
       entity_id: input_boolean.front_door_open_warning
 
 - alias: "Notifications: Daily New Word Notification"
-  trigger:
+  triggers:
     - platform: time
       at: "07:30:00"
   action:
