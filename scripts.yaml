@@ -26,11 +26,11 @@ start_speakers:
     source: "{% if source %}source{% else %}Spotify{% endif %}"
     entity_id: "{% if entity_id %}entity_id{% else %}media_player.kef_ls50{% endif %}"
   sequence:
-    - service: media_player.select_source
+    - action: media_player.select_source
       data:
         entity_id: "{{ entity_id }}"
         source: "{{ source }}"
-    - service: media_player.volume_set
+    - action: media_player.volume_set
       data:
         entity_id: "{{ entity_id }}"
         volume_level: "{{ volume }}"
@@ -49,7 +49,7 @@ start_spotify:
     media_content_type: "{{ id.split(':')[0] }}"
     media_content_id: "spotify:{{ id }}"
   sequence:
-    - service: homeassistant.update_entity
+    - action: homeassistant.update_entity
       entity_id: media_player.spotify
     - if: >
         {{ not (is_state('media_player.spotify', 'playing')
@@ -58,21 +58,21 @@ start_spotify:
         - wait_template: '{{ source in state_attr("media_player.spotify", "source_list")  }}'
           timeout: 00:01:00
           continue_on_timeout: false
-        - service: media_player.select_source
+        - action: media_player.select_source
           entity_id: media_player.spotify
           data:
             source: "{{ source }}"
-    - service: media_player.shuffle_set
+    - action: media_player.shuffle_set
       entity_id: media_player.spotify
       data:
         shuffle: true
     - entity_id: media_player.spotify
-      service: media_player.play_media
+      action: media_player.play_media
       data:
         entity_id: media_player.spotify
         media_content_type: "{{ media_content_type }}"
         media_content_id: "{{ media_content_id }}"
-    - service: media_player.media_play
+    - action: media_player.media_play
       entity_id: media_player.spotify
 
 start_spotify_playlist_of_nearest_person:
@@ -86,12 +86,12 @@ start_spotify_playlist_of_nearest_person:
       description: entity_id of the speaker
       example: media_player.kef_ls50
   sequence:
-    - service: script.start_speakers
+    - action: script.start_speakers
       data:
         source: Spotify
         volume: 0.25
         entity_id: "{{ entity_id }}"
-    - service: script.start_spotify
+    - action: script.start_spotify
       data:
         source: "{{ source }}"
         id: >
@@ -107,50 +107,50 @@ cozy_lights_living_room:
         hs_color:
           - 268.267
           - 88.235
-      service: light.turn_on
+      action: light.turn_on
     - data:
         entity_id: light.sphere_tv
         hs_color:
           - 299.147
           - 82.745
-      service: light.turn_on
+      action: light.turn_on
     - data:
         entity_id: light.sphere_2
         hs_color:
           - 26.667
           - 88.235
-      service: light.turn_on
+      action: light.turn_on
     - data:
         entity_id: light.tv_led
         hs_color:
           - 26.725
           - 89.804
-      service: light.turn_on
+      action: light.turn_on
     - data:
         entity_id: light.mid_room
         hs_color:
           - 336.293
           - 80.392
-      service: light.turn_on
+      action: light.turn_on
     - data:
         entity_id: light.living_room_corner
         hs_color:
           - 224.64
           - 98.039
-      service: light.turn_on
+      action: light.turn_on
     - data:
         entity_id: light.shelve
         hs_color:
           - 224.64
           - 98.039
-      service: light.turn_on
+      action: light.turn_on
     - data:
         entity_id: light.marble
         hs_color:
           - 25
           - 80
-      service: light.turn_on
-    - service: input_select.select_option
+      action: light.turn_on
+    - action: input_select.select_option
       entity_id: input_select.last_script_living_room
       data:
         option: script.cozy_lights_living_room
@@ -164,47 +164,47 @@ cozy_lights_bedroom:
         hs_color:
           - 0
           - 100
-      service: light.turn_on
+      action: light.turn_on
     # - data:
     #     entity_id: light.desk_led
     #     hs_color:
     #       - 299.72
     #       - 83.922
-    #   service: light.turn_on
+    #   action: light.turn_on
     # - data:
     #     entity_id: light.bamboo
-    #   service: light.turn_on
+    #   action: light.turn_on
     # - data:
     #     entity_id: light.bed_reading_up
     #     hs_color:
     #       - 26.725
     #       - 89.804
-    #   service: light.turn_on
+    #   action: light.turn_on
     # - data:
     #     entity_id: light.bed_reading_down
     #     hs_color:
     #       - 26.725
     #       - 89.804
-    #   service: light.turn_on
+    #   action: light.turn_on
     # - data:
     #     entity_id: light.lampan
     #     hs_color:
     #       - 269.86
     #       - 84.314
-    #   service: light.turn_on
+    #   action: light.turn_on
     # - data:
     #     entity_id: light.ceiling_bedroom
     #     hs_color:
     #       - 22
     #       - 100
-    #   service: light.turn_on
+    #   action: light.turn_on
     - data:
         entity_id: light.bed_led
         hs_color:
           - 10
           - 100
-      service: light.turn_on
-    - service: input_select.select_option
+      action: light.turn_on
+    - action: input_select.select_option
       entity_id: input_select.last_script_bedroom
       data:
         option: script.cozy_lights_bedroom
@@ -213,12 +213,12 @@ white_lights_living_room:
   alias: Set white lights in the living room
   mode: parallel
   sequence:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         entity_id:
           - light.living_room_lights
         color_temp: 366
-    - service: input_select.select_option
+    - action: input_select.select_option
       entity_id: input_select.last_script_living_room
       data:
         option: script.white_lights_living_room
@@ -231,8 +231,8 @@ white_lights_bedroom:
         color_temp: 366
         entity_id:
           - light.bedroom_lights
-      service: light.turn_on
-    - service: input_select.select_option
+      action: light.turn_on
+    - action: input_select.select_option
       entity_id: input_select.last_script_bedroom
       data:
         option: script.white_lights_bedroom
@@ -245,7 +245,7 @@ increase_brightness:
       description: The group to apply the light increase to.
       example: light.living_room_lights
   sequence:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         entity_id: "{{ group }}"
         brightness: >
@@ -264,34 +264,34 @@ turn_off_everything_non_automatic:
   alias: Turn off everything
   mode: parallel
   sequence:
-    - service: light.turn_off
+    - action: light.turn_off
       data:
         transition: 4
         entity_id:
           - light.living_room_lights
           - light.bedroom_lights
-    - service: media_player.turn_off
+    - action: media_player.turn_off
       entity_id: media_player.tv
-    - service: media_player.turn_off
+    - action: media_player.turn_off
       entity_id: media_player.living_room_xbox
 
 turn_off_everything:
   alias: Turn off everything
   mode: parallel
   sequence:
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id: all
-    - service: script.turn_off_everything_non_automatic
+    - action: script.turn_off_everything_non_automatic
 
 going_to_sleep:
   alias: Going to sleep
   mode: parallel
   sequence:
     - entity_id: input_select.sleep_mode
-      service: input_select.select_option
+      action: input_select.select_option
       data:
         option: "total"
-    - service: script.turn_off_everything_non_automatic
+    - action: script.turn_off_everything_non_automatic
 
 next_colors:
   alias: Change the colors of lights
@@ -301,17 +301,17 @@ next_colors:
       description: The input select that lists script names.
       example: input_select.last_script_living_room
   sequence:
-    - service: input_select.select_next
+    - action: input_select.select_next
       data:
         entity_id: "{{ input_select }}"
-    - service: "{{ states(input_select) }}"
+    - action: "{{ states(input_select) }}"
 
 start_tv:
   alias: Start TV
   sequence:
     if: "{{ is_state('media_player.tv', 'off') }}"
     then:
-      - service: media_player.turn_on
+      - action: media_player.turn_on
         data:
           entity_id: media_player.tv
       - delay:
@@ -320,17 +320,17 @@ start_tv:
 start_netflix:
   alias: Start Netflix
   sequence:
-    - service: script.start_tv
+    - action: script.start_tv
     - data:
         source: Netflix
       entity_id: media_player.tv
-      service: media_player.select_source
+      action: media_player.select_source
 
 start_fireplace:
   alias: Start fireplace on YouTube
   sequence:
-    - service: script.start_tv
-    - service: webostv.command
+    - action: script.start_tv
+    - action: webostv.command
       data:
         command: system.launcher/launch
         payload:
@@ -339,11 +339,11 @@ start_fireplace:
         entity_id: media_player.tv
     - delay:
         milliseconds: 3000
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: ENTER # enter into "All settings"
-    - service: media_player.volume_set
+    - action: media_player.volume_set
       data:
         entity_id: media_player.tv
         volume_level: 0.2
@@ -351,8 +351,8 @@ start_fireplace:
 start_fireplace_netflix:
   alias: Start fireplace on Netflix
   sequence:
-    - service: script.start_tv
-    - service: webostv.command
+    - action: script.start_tv
+    - action: webostv.command
       data:
         command: system.launcher/launch
         payload:
@@ -361,11 +361,11 @@ start_fireplace_netflix:
         entity_id: media_player.tv
     - delay:
         milliseconds: 3000
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: ENTER # enter into "All settings"
-    - service: media_player.volume_set
+    - action: media_player.volume_set
       data:
         entity_id: media_player.tv
         volume_level: 0.08
@@ -375,15 +375,15 @@ start_xbox:
   sequence:
     - if: "{{ is_state('media_player.living_room_xbox', 'off') }}"
       then:
-        - service: media_player.turn_on
+        - action: media_player.turn_on
           entity_id: media_player.living_room_xbox
         - delay:
             milliseconds: 5000
         # This seems to be useful for when the Xbox is in a weird state
-        - service: media_player.media_play_pause
+        - action: media_player.media_play_pause
           entity_id: media_player.living_room_xbox
-    - service: script.start_tv
-    - service: media_player.select_source
+    - action: script.start_tv
+    - action: media_player.select_source
       data:
         source: XBOX
         entity_id: media_player.tv
@@ -391,8 +391,8 @@ start_xbox:
 start_hogwarts_legacy:
   alias: Start Hogwarts Legacy on the Xbox
   sequence:
-    - service: script.start_xbox
-    - service: media_player.play_media
+    - action: script.start_xbox
+    - action: media_player.play_media
       data:
         entity_id: media_player.living_room_xbox
         media_content_id: 9MT5NJ5W7B8Z
@@ -401,7 +401,7 @@ start_hogwarts_legacy:
 set_low_temperature:
   alias: Set low temperature
   sequence:
-    - service: climate.set_temperature
+    - action: climate.set_temperature
       entity_id: climate.thermostat
       data:
         temperature: >
@@ -410,7 +410,7 @@ set_low_temperature:
 set_high_temperature:
   alias: Set high temperature
   sequence:
-    - service: climate.set_temperature
+    - action: climate.set_temperature
       entity_id: climate.thermostat
       data:
         temperature: >
@@ -419,7 +419,7 @@ set_high_temperature:
 toggle_thermostat_off_heat:
   alias: Toggle climate between 'off' and 'heat'
   sequence:
-    - service: climate.set_hvac_mode
+    - action: climate.set_hvac_mode
       entity_id: climate.thermostat
       data:
         hvac_mode: |-
@@ -428,19 +428,19 @@ toggle_thermostat_off_heat:
 leaving:
   alias: Leaving the house
   sequence:
-    - service: script.set_low_temperature
-    - service: script.turn_off_everything
+    - action: script.set_low_temperature
+    - action: script.turn_off_everything
 
 arriving:
   alias: Arriving home
   sequence:
-    - service: script.set_high_temperature
-    - service: script.cozy_lights_living_room
+    - action: script.set_high_temperature
+    - action: script.cozy_lights_living_room
 
 update_dns:
   alias: Update DNS record
   sequence:
-    - service: shell_command.update_dns
+    - action: shell_command.update_dns
       data:
         api: !secret gandi_api_key
         domain: !secret domain
@@ -449,73 +449,73 @@ update_dns:
 fix_sound:
   alias: Fix Opt LG Sound Sync bug
   sequence:
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: MENU # Open "Menu"
     - delay:
         milliseconds: 1000
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: UP # Navigate to "All settings"
     - delay:
         milliseconds: 500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: ENTER # enter into "All settings"
     - delay:
         milliseconds: 1500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: DOWN # Navigate to "Sound"
     - delay:
         milliseconds: 1500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: RIGHT # Move into "Sound" menu
     - delay:
         milliseconds: 500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: ENTER # Enter "Sound Out" menu
     - delay:
         milliseconds: 1500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: DOWN # Move to "Optical"
     - delay:
         milliseconds: 500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: DOWN # Move to "Optical - LG Sound Sync"
     - delay:
         milliseconds: 500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: ENTER # Disable "LG Sound Sync"
     - delay:
         milliseconds: 500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: ENTER # Enable "LG Sound Sync"
     - delay:
         milliseconds: 500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: BACK # Go up one menu in "All settings"
     - delay:
         milliseconds: 500
-    - service: webostv.button
+    - action: webostv.button
       entity_id: media_player.tv
       data:
         button: BACK # Close the "All settings" window
@@ -540,7 +540,7 @@ utility_notification:
         start_time: "{{ as_timestamp(now()) }}"
         start_kwh: "{{ states(energy_sensor) }}"
     - wait_for_trigger:
-        platform: template
+        trigger: template
         value_template: "{{ is_state(binary_sensor, 'off') }}"
       timeout: "03:00:00"
       continue_on_timeout: false
@@ -554,7 +554,7 @@ utility_notification:
         minutes: "{{ (total_time / 60) | round(0) }}"
         total_kwh_rounded: "{{ (total_kwh) | round(2) }}"
         price: "{{ (states('sensor.electricity_price_peak')|float(0) * total_kwh) | round(2) }}"
-    - service: "{{ states('sensor.nearest_iphone_notify') }}"
+    - action: "{{ states('sensor.nearest_iphone_notify') }}"
       data:
         title: "Utilities"
         message: "{{ friendly_name }} is done after {{ minutes }} minutes and it used {{ total_kwh_rounded }} kWh (€{{ price }}) {{ emojis }}"
@@ -571,7 +571,7 @@ vacuum_command:
       # living_room
       - conditions: "{{ option == 'living_room' }}"
         sequence:
-          service: vacuum.send_command
+          action: vacuum.send_command
           data:
             entity_id: vacuum.valetudo_vacuum
             command: app_zoned_clean
@@ -579,7 +579,7 @@ vacuum_command:
       # bedroom
       - conditions: "{{ option == 'bedroom' }}"
         sequence:
-          service: vacuum.send_command
+          action: vacuum.send_command
           data:
             entity_id: vacuum.valetudo_vacuum
             command: app_zoned_clean
@@ -587,7 +587,7 @@ vacuum_command:
       # office
       - conditions: "{{ option == 'office' }}"
         sequence:
-          service: vacuum.send_command
+          action: vacuum.send_command
           data:
             entity_id: vacuum.valetudo_vacuum
             command: app_zoned_clean
@@ -595,7 +595,7 @@ vacuum_command:
       # hall
       - conditions: "{{ option == 'hall' }}"
         sequence:
-          service: vacuum.send_command
+          action: vacuum.send_command
           data:
             entity_id: vacuum.valetudo_vacuum
             command: app_zoned_clean
@@ -603,7 +603,7 @@ vacuum_command:
       # kitchen
       - conditions: "{{ option == 'kitchen' }}"
         sequence:
-          service: vacuum.send_command
+          action: vacuum.send_command
           data:
             entity_id: vacuum.valetudo_vacuum
             command: app_zoned_clean
@@ -611,12 +611,12 @@ vacuum_command:
       # all
       - conditions: "{{ option == 'all' }}"
         sequence:
-          service: vacuum.start
+          action: vacuum.start
           entity_id: vacuum.valetudo_vacuum
       # stop
       - conditions: "{{ option == 'stop' }}"
         sequence:
-          service: vacuum.return_to_base
+          action: vacuum.return_to_base
           entity_id: vacuum.valetudo_vacuum
 
 turn_on_lights:
@@ -627,7 +627,7 @@ turn_on_lights:
       description: entity_id of light
       example: light.bedroom_lights
   sequence:
-    service: adaptive_lighting.apply
+    action: adaptive_lighting.apply
     data:
       entity_id: switch.adaptive_lighting_living_room
       lights: "{{ entity_id }}"
@@ -636,11 +636,11 @@ turn_on_lights:
 reset_adaptive_lighting_bedroom:
   alias: Reset 'manual control'
   sequence:
-    - service: adaptive_lighting.set_manual_control
+    - action: adaptive_lighting.set_manual_control
       data:
         entity_id: switch.adaptive_lighting_bedroom
         manual_control: false
-    - service: adaptive_lighting.set_manual_control
+    - action: adaptive_lighting.set_manual_control
       data:
         entity_id: switch.adaptive_lighting_bedroom_led
         manual_control: false
@@ -648,12 +648,12 @@ reset_adaptive_lighting_bedroom:
 reset_adaptive_lighting:
   alias: Reset 'manual control'
   sequence:
-    - service: script.reset_adaptive_lighting_bedroom
-    - service: adaptive_lighting.set_manual_control
+    - action: script.reset_adaptive_lighting_bedroom
+    - action: adaptive_lighting.set_manual_control
       data:
         entity_id: switch.adaptive_lighting_living_room
         manual_control: false
-    - service: adaptive_lighting.set_manual_control
+    - action: adaptive_lighting.set_manual_control
       data:
         entity_id: switch.adaptive_lighting_never_sleep
         manual_control: false
@@ -670,7 +670,7 @@ sync_z2m_to_ha_lights:
               sequence:
                 - variables:
                     friendly_name: "{{ state_attr('input_select.z2m_lights', 'options')[repeat.index - 1] }}"
-                - service: mqtt.publish
+                - action: mqtt.publish
                   data:
                     topic: "zigbee2mqtt/{{ friendly_name }}/get"
                     payload: '{"state": ""}'
@@ -690,7 +690,7 @@ sync_ha_to_z2m_lights:
                     friendly_name: "{{ state_attr('input_select.z2m_lights', 'options')[repeat.index - 1] }}"
                     entity_id: "{{ states.light | selectattr('attributes.friendly_name', 'eq', friendly_name) | map(attribute='entity_id') | first }}"
                     current_state: "{{ states(entity_id) }}"
-                - service: mqtt.publish
+                - action: mqtt.publish
                   data:
                     topic: "zigbee2mqtt/{{ friendly_name }}/set"
                     payload: '{"state": "{{ current_state }}" }'
@@ -703,8 +703,8 @@ log_start_contraction:
       description: intensity
       example: "5"
   sequence:
-    - service: input_number.set_value
+    - action: input_number.set_value
       data:
         entity_id: input_number.contraction_intensity
         value: "{{ intensity | int }}"
-    - service: shell_command.log_start_contraction
+    - action: shell_command.log_start_contraction
