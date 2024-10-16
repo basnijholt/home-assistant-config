@@ -70,15 +70,15 @@
             - action: SLEEP_TOTAL
               title: Total
     - wait_for_trigger:
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SLEEP_OFF
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SLEEP_HALF
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SLEEP_TOTAL
@@ -121,31 +121,31 @@
             - action: SET_LIGHTS_KITCHEN
               title: Kitchen
     - wait_for_trigger:
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SET_LIGHTS_ALL
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SET_LIGHTS_BEDROOM
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SET_LIGHTS_LIVING_ROOM
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SET_LIGHTS_BATHROOM
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SET_LIGHTS_HALL
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SET_LIGHTS_TOILET
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: SET_LIGHTS_KITCHEN
@@ -182,31 +182,31 @@
             - action: LIGHTS_COZY
               title: Cozy lights
     - wait_for_trigger:
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: LIGHTS_OFF
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: LIGHTS_ON
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: LIGHTS_FIFTY
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: LIGHTS_HUNDRED
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: LIGHTS_ONE
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: LIGHTS_WHITE
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: LIGHTS_COZY
@@ -322,31 +322,31 @@
             - action: VACUUM_STOP
               title: Stop and return
     - wait_for_trigger:
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: VACUUM_LIVING_ROOM
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: VACUUM_BEDROOM
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: VACUUM_OFFICE
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: VACUUM_HALL
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: VACUUM_KITCHEN
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: VACUUM_ALL
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: VACUUM_STOP
@@ -420,31 +420,31 @@
             - action: T21
               title: "21"
     - wait_for_trigger:
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: T15
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: T16
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: T17
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: T18
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: T19
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: T20
-        - platform: event
+        - trigger: event
           event_type: mobile_app_notification_action
           event_data:
             actions: T21

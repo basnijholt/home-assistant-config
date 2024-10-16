@@ -53,7 +53,7 @@
   mode: parallel
   max: 200
   triggers:
-    - platform: event
+    - trigger: event
       event_type: adaptive_lighting.manual_control
   variables:
     light: "{{ trigger.event.data.entity_id }}"
@@ -77,7 +77,7 @@
   mode: parallel
   max: 20
   triggers:
-    - platform: event
+    - trigger: event
       event_type: adaptive_lighting.manual_control
   variables:
     light: "{{ trigger.event.data.entity_id }}"

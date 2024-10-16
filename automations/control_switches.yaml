@@ -309,11 +309,11 @@
 - alias: "Control switches: bedroom Aqara Wireless Mini Switch"
   mode: parallel
   triggers:
-    - platform: event
+    - trigger: event
       event_type: deconz_event
       event_data:
         id: smart_switch_bedroom_bas
-    - platform: event
+    - trigger: event
       event_type: deconz_event
       event_data:
         id: smart_switch_bedroom_marcella

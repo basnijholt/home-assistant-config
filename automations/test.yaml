@@ -12,12 +12,12 @@
   mode: parallel
   max: 100
   triggers:
-    - platform: event
+    - trigger: event
       event_type: call_service
       event_data:
         service: turn_on
         domain: light
-    - platform: event
+    - trigger: event
       event_type: state_changed
   conditions: "{{ trigger.event.context.id.startswith('adapt_lgt') }}"
   actions:
@@ -65,12 +65,12 @@
   mode: parallel
   max: 100
   triggers:
-    - platform: event
+    - trigger: event
       event_type: call_service
       event_data:
         service: turn_on
         domain: light
-    - platform: event
+    - trigger: event
       event_type: call_service
       event_data:
         service: turn_off

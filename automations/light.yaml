@@ -307,15 +307,15 @@
     - trigger: state
       entity_id: light.bedroom_lights
       to: "off"
-    - platform: event
+    - trigger: event
       event_type: deconz_event
       event_data:
         id: dimmer_switch_bedroom
-    - platform: event
+    - trigger: event
       event_type: deconz_event
       event_data:
         id: smart_switch_bedroom_bas
-    - platform: event
+    - trigger: event
       event_type: deconz_event
       event_data:
         id: smart_switch_bedroom_marcella
