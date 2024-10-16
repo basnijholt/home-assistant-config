@@ -76,7 +76,7 @@
     - trigger: state
       entity_id: binary_sensor.no_one_home
       to: "on"
-    - platform: time_pattern
+    - trigger: time_pattern
       minutes: "/10"
   conditions:
     - condition: state

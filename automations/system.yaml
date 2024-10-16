@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "System: warning about high CPU usage"
   triggers:
-    platform: numeric_state
+    trigger: numeric_state
     entity_id: sensor.processor_use
     above: 70
     for:
@@ -23,7 +23,7 @@
 
 - alias: "System: warning about high CPU temperature"
   triggers:
-    platform: numeric_state
+    trigger: numeric_state
     entity_id: sensor.cpu_temperature
     above: 70
     for:
@@ -36,7 +36,7 @@
 
 - alias: "System: warning about high Xbox temperature"
   triggers:
-    platform: numeric_state
+    trigger: numeric_state
     entity_id: sensor.temperature_xbox
     above: 50
   actions:
@@ -56,7 +56,7 @@
 - alias: "System: update DNS"
   description: Update the DNS at Gandi to point my domain to my Home Assistant instance.
   triggers:
-    platform: time_pattern # XXX: trigger on IP change
+    trigger: time_pattern # XXX: trigger on IP change
     minutes: "/15"
   actions:
     service: script.update_dns
@@ -64,7 +64,7 @@
 - alias: "System: run chores"
   description: Run shell and Python scripts in utils folder.
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: "/15"
   actions:
     service: shell_command.chores
@@ -72,7 +72,7 @@
 - alias: "System: MQTT sensors are not updating"
   description: Check whether we are receiving messages over MQTT from my other HA instance.
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: "/5"
   conditions: "{{ (as_timestamp(now()) - as_timestamp(states.sensor.power_consumption.last_changed)) > 20 * 60 }}"
   actions:
@@ -84,7 +84,7 @@
 
 - alias: "System: battery level low"
   triggers:
-    platform: time
+    trigger: time
     at: "14:30:00"
   variables:
     min_battery_level: 50

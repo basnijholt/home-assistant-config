@@ -11,7 +11,7 @@
 
 - alias: "Climate: turn on the heating 30 min before waking up"
   triggers:
-    platform: template
+    trigger: template
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
   conditions:
@@ -25,7 +25,7 @@
 
 - alias: "Climate: turn on the heating when going home"
   triggers:
-    platform: numeric_state
+    trigger: numeric_state
     entity_id: proximity.home
     below: 6
     above: 1
@@ -50,7 +50,7 @@
 
 - alias: "Climate: turn off the heating at 22:00"
   triggers:
-    platform: time
+    trigger: time
     at: "22:00"
   conditions:
     - condition: state
@@ -83,7 +83,7 @@
 
 - alias: "Climate: set outside temperature every hour"
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     hours: "/1"
   actions:
     service: mqtt.publish
@@ -128,7 +128,7 @@
 
 - alias: "Climate: set temperature setpoint to 50 °C"
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     hours: "/2"
   actions:
     service: mqtt.publish
@@ -138,7 +138,7 @@
 
 - alias: "Climate: automatically turn off spaceheater when no-one is in the guest room"
   triggers:
-    - platform: time_pattern
+    - trigger: time_pattern
       minutes: "/10"
     - trigger: state
       entity_id: binary_sensor.activity_in_guest_room

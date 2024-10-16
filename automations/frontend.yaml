@@ -10,9 +10,9 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Frontend: turn on dark mode"
   triggers:
-    - platform: time
+    - trigger: time
       at: "20:00"
-    - platform: sun
+    - trigger: sun
       event: sunset
   conditions: "{{ is_state('input_boolean.dark_mode', 'off') }}"
   actions:
@@ -21,9 +21,9 @@
 
 - alias: "Frontend: turn on light mode"
   triggers:
-    - platform: time
+    - trigger: time
       at: "06:00"
-    - platform: sun
+    - trigger: sun
       event: sunrise
   conditions: "{{ is_state('input_boolean.dark_mode', 'on') }}"
   actions:
@@ -38,7 +38,7 @@
       entity_id: input_boolean.dark_mode
     - trigger: state
       entity_id: input_boolean.theme_alternative
-    - platform: homeassistant
+    - trigger: homeassistant
       event: start
   actions:
     service: frontend.set_theme

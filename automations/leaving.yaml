@@ -17,7 +17,7 @@
       from: "on"
       to: "off"
       for: "00:01:00"
-    - platform: time_pattern
+    - trigger: time_pattern
       hours: "/1"
   conditions:
     - condition: state

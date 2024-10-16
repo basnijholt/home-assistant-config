@@ -84,7 +84,7 @@
 - alias: 'Test: Light Baby Room Loop'
   mode: parallel
   triggers:
-    platform: homeassistant
+    trigger: homeassistant
     event: start
   actions:
     - condition: "{{ is_state('automation.test_light_baby_room_loop', 'on') }}"

@@ -13,7 +13,7 @@
     - trigger: state
       entity_id: plant.calathea
       to: "problem"
-    - platform: time
+    - trigger: time
       at: "20:00"
   conditions:
     conditions: state
@@ -31,7 +31,7 @@
     - trigger: state
       entity_id: plant.monstera
       to: "problem"
-    - platform: time
+    - trigger: time
       at: "20:00"
   conditions:
     conditions: state
@@ -49,7 +49,7 @@
     - trigger: state
       entity_id: plant.peace_lily
       to: "problem"
-    - platform: time
+    - trigger: time
       at: "20:00"
   conditions:
     conditions: state

@@ -31,7 +31,7 @@
 
 - alias: "Work: reset input_boolean at midnight"
   triggers:
-    platform: time
+    trigger: time
     at: "00:00"
   conditions:
     conditions: state

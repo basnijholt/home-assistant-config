@@ -12,7 +12,7 @@
   triggers:
     - trigger: state
       entity_id: input_select.sleep_mode
-    - platform: homeassistant
+    - trigger: homeassistant
       event: start  # in case the states aren't properly restored
   variables:
     sleep_mode: "{{ states('input_select.sleep_mode') }}"

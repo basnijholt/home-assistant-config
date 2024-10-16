@@ -44,7 +44,7 @@
 
 - alias: "Vacuum: reminder notification"
   triggers:
-    platform: time
+    trigger: time
     at: "08:00"
   conditions:
     conditions: state
@@ -58,7 +58,7 @@
 
 - alias: "Vacuum: cleanup if nobody is home"
   triggers:
-    - platform: time
+    - trigger: time
       at: "13:00"
     - trigger: state
       entity_id: group.persons
@@ -90,7 +90,7 @@
 - alias: "Vacuum: reset cleaned today"
   initial_state: "on"
   triggers:
-    platform: time
+    trigger: time
     at: "00:00:00"
   actions:
     service: input_boolean.turn_off

@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Alarm clock: wake up with Spotify and light"
   triggers:
-    platform: template
+    trigger: template
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.ten_minutes_before_alarm") }}
   conditions:

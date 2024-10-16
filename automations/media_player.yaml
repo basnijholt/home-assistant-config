@@ -84,7 +84,7 @@
 
 - alias: "Media player: update Spotify entity when TV is on every 5 seconds"
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     seconds: "/5"
   conditions:
     - condition: state
@@ -140,7 +140,7 @@
 
 - alias: "Media player: Turn On Living Room TV with WakeOnLan"
   triggers:
-    platform: webostv.turn_on
+    trigger: webostv.turn_on
     entity_id: media_player.tv
   actions:
     - service: wake_on_lan.send_magic_packet

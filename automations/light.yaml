@@ -125,7 +125,7 @@
 
 - alias: "Light: reset automatic dinner area lights at 06:00"
   triggers:
-    platform: time
+    trigger: time
     at: "06:00:00"
   actions:
     service: input_boolean.turn_on
@@ -157,7 +157,7 @@
 
 - alias: "Light: reboot kitchen ceiling Shelly"
   triggers:
-    platform: time
+    trigger: time
     at: "05:00:00"
   actions:
     service: shell_command.reboot_kitchen_ceiling
@@ -329,7 +329,7 @@
 
 - alias: "Light: turn on automatic_bedroom_lights switch"
   triggers:
-    platform: time
+    trigger: time
     at: "12:00"
   actions:
     entity_id: input_boolean.automatic_bedroom_lights
@@ -350,7 +350,7 @@
 
 - alias: "Light: reboot bedroom ceiling Shelly"
   triggers:
-    platform: time
+    trigger: time
     at: "13:00:00"
   actions:
     service: shell_command.reboot_bedroom_ceiling
@@ -439,10 +439,10 @@
 
 - alias: "Light: turn on the outside front light"
   triggers:
-    - platform: sun
+    - trigger: sun
       event: sunset
       offset: "-01:00:00"
-    - platform: sun
+    - trigger: sun
       event: sunrise
       offset: "-02:00:00"
   actions:
@@ -451,9 +451,9 @@
 
 - alias: "Light: turn off the outside front light"
   triggers:
-    - platform: time
+    - trigger: time
       at: "01:00:00"
-    - platform: sun
+    - trigger: sun
       event: sunrise
       offset: "+01:00:00"
   actions:
@@ -509,7 +509,7 @@
 - alias: "Light: turn off living room (extra check)"
   description: In case the other automation failed
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: 60
   conditions:
     - condition: state
@@ -525,7 +525,7 @@
 - alias: "Light: turn off guest room (extra check)"
   description: In case the other automation failed
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: "/10"
   conditions:
     - condition: state
@@ -541,7 +541,7 @@
 - alias: "Light: turn off baby room (extra check)"
   description: In case the other automation failed
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: "/10"
   conditions:
     - condition: state
@@ -563,7 +563,7 @@
 - alias: "Light: turn off bedroom (extra check)"
   description: In case the other automation failed
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: "/30"
   conditions:
     - condition: state
@@ -584,7 +584,7 @@
 - alias: "Light: turn off utility room / garage (extra check)"
   description: In case the other automation failed
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: "/10"
   conditions:
     - condition: state
@@ -644,7 +644,7 @@
 - alias: "Light: Update Zigbee2MQTT Lights State"
   description: 'Refresh the state of all Zigbee2MQTT lights'
   triggers:
-    platform: time_pattern
+    trigger: time_pattern
     minutes: "/5"
   actions:
     service: script.sync_z2m_to_ha_lights

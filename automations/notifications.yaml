@@ -43,7 +43,7 @@
 
 - alias: "Notifications: Daily New Word Notification"
   triggers:
-    - platform: time
+    - trigger: time
       at: "07:30:00"
   actions:
     - service: notify.mobile_app_marcella_iphone_14_pro
