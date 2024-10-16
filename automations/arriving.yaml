@@ -26,17 +26,17 @@
     - "{{ is_state_attr('media_player.spotify', 'source', 'basnijholt-iphone') }}"
     - "{{ is_state('media_player.spotify', 'playing') }}"
   actions:
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: "Arriving"
         message: "Switched music from phone to speakers"
-    - service: media_player.turn_on
+    - action: media_player.turn_on
       entity_id: media_player.kef_ls50
-    - service: media_player.select_source
+    - action: media_player.select_source
       entity_id: media_player.kef_ls50
       data:
         source: Spotify
-    - service: media_player.select_source
+    - action: media_player.select_source
       entity_id: media_player.spotify
       data:
         source: KEF LS50

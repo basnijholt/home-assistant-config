@@ -21,10 +21,10 @@
       entity_id: input_boolean.mailbox_full
       state: "off"
   actions:
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         title: "Mailbox"
         message: "Received mail in the mailbox!"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       data:
         entity_id: input_boolean.mailbox_full

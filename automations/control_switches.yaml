@@ -21,7 +21,7 @@
       # Next color
       - conditions: "{{ action == 'off_press' }}" # Lowest button
         sequence:
-          service: script.next_colors
+          action: script.next_colors
           data:
             input_select: input_select.last_script_living_room
 
@@ -32,8 +32,8 @@
             entity_id: light.living_room_lights
             state: "on"
         sequence:
-          - service: script.white_lights_living_room
-          - service: light.turn_on
+          - action: script.white_lights_living_room
+          - action: light.turn_on
             entity_id: light.living_room_lights
             data:
               brightness: "255"
@@ -41,7 +41,7 @@
       # Increase brightness
       - conditions: "{{ action == 'on_press' }}" # Top button
         sequence:
-          service: script.increase_brightness
+          action: script.increase_brightness
           data:
             group: light.living_room_lights
 
@@ -52,7 +52,7 @@
             entity_id: light.living_room_lights
             state: "off"
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             entity_id: light.living_room_lights
 
       # Turn off
@@ -62,7 +62,7 @@
             entity_id: light.living_room_lights
             state: "on"
         sequence:
-          - service: light.turn_off
+          - action: light.turn_off
             entity_id: light.living_room_lights
 
       # Reset adaptive_lighting
@@ -70,7 +70,7 @@
           - "{{ action == 'up_hold' }}" # Second from highest button
           - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
         sequence:
-          - service: script.reset_adaptive_lighting
+          - action: script.reset_adaptive_lighting
 
 - alias: "Control switches: bedroom Philips Hue dimmer switch"
   mode: parallel
@@ -84,7 +84,7 @@
       # Next color
       - conditions: "{{ action == 'off_press' }}" # Lowest button
         sequence:
-          service: script.next_colors
+          action: script.next_colors
           data:
             input_select: input_select.last_script_bedroom
 
@@ -95,8 +95,8 @@
             entity_id: light.bedroom_lights
             state: "on"
         sequence:
-          - service: script.white_lights_bedroom
-          - service: light.turn_on
+          - action: script.white_lights_bedroom
+          - action: light.turn_on
             entity_id: light.bedroom_lights
             data:
               brightness: "255"
@@ -104,7 +104,7 @@
       # Increase brightness
       - conditions: "{{ action == 'on_press' }}" # Top button
         sequence:
-          service: script.increase_brightness
+          action: script.increase_brightness
           data:
             group: light.bedroom_lights
 
@@ -115,7 +115,7 @@
             entity_id: light.bedroom_lights
             state: "off"
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             entity_id: light.bedroom_lights
 
       # Turn off
@@ -125,7 +125,7 @@
             entity_id: light.bedroom_lights
             state: "on"
         sequence:
-          - service: light.turn_off
+          - action: light.turn_off
             entity_id: light.bedroom_lights
 
       # Reset adaptive_lighting
@@ -133,7 +133,7 @@
           - "{{ action == 'up_hold' }}" # Second from highest button
           - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
         sequence:
-          - service: script.reset_adaptive_lighting
+          - action: script.reset_adaptive_lighting
 
 # This automation is set up to control the lighting in your bedroom using two different IKEA remotes.
 # Here's a simplified explanation of the different actions that the automation performs:
@@ -169,8 +169,8 @@
             entity_id: light.bedroom_lights
             state: "on"
         sequence:
-          - service: script.white_lights_bedroom
-          - service: light.turn_on
+          - action: script.white_lights_bedroom
+          - action: light.turn_on
             entity_id: light.bedroom_lights
             data:
               brightness: "255"
@@ -183,7 +183,7 @@
             entity_id: light.bedroom_lights
             state: "on"
         sequence:
-          service: script.increase_brightness
+          action: script.increase_brightness
           data:
             group: light.bedroom_lights
 
@@ -194,7 +194,7 @@
             entity_id: light.bedroom_lights
             state: "off"
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             entity_id: light.bedroom_lights
 
       # Turn off
@@ -204,13 +204,13 @@
             entity_id: light.bedroom_lights
             state: "on"
         sequence:
-          - service: light.turn_off
+          - action: light.turn_off
             entity_id: light.bedroom_lights
 
       # Next color
       - conditions: "{{ action == 'arrow_left_click' }}"
         sequence:
-          service: script.next_colors
+          action: script.next_colors
           data:
             input_select: input_select.last_script_bedroom
 
@@ -219,14 +219,14 @@
           - "{{ action == 'arrow_right_click' }}"
           - "{{ is_state(personal_light, 'off') }}"
         sequence:
-          service: light.toggle
+          action: light.toggle
           data:
             entity_id: "{{ personal_light }}"
       - conditions:
           - "{{ action == 'arrow_right_click' }}"
           - "{{ is_state(personal_light, 'on') }}"
         sequence:
-          service: script.increase_brightness
+          action: script.increase_brightness
           data:
             group: "{{ personal_light }}"
 
@@ -235,22 +235,22 @@
           - "{{ action == 'brightness_move_down' }}" # Hold lowest button
           - "{{ is_state('input_boolean.guest_mode', 'off') }}"
         sequence:
-          - service: input_select.select_option
+          - action: input_select.select_option
             data:
               entity_id: input_select.sleep_mode
               option: total
-          - service: script.turn_off_everything
+          - action: script.turn_off_everything
 
       # Turn off baby room and bedroom (with guests)
       - conditions:
           - "{{ action == 'brightness_move_down' }}" # Hold lowest button
           - "{{ is_state('input_boolean.guest_mode', 'on') }}"
         sequence:
-          - service: input_select.select_option
+          - action: input_select.select_option
             data:
               entity_id: input_select.sleep_mode
               option: total
-          - service: light.turn_off
+          - action: light.turn_off
             data:
               entity_id:
                 - light.bedroom_lights
@@ -268,14 +268,14 @@
       # Next color
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
-          service: script.next_colors
+          action: script.next_colors
           data:
             input_select: input_select.last_script_living_room
 
       # Increase brightness
       - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
-          service: script.increase_brightness
+          action: script.increase_brightness
           data:
             group: light.living_room_lights
 
@@ -286,17 +286,17 @@
             entity_id: light.living_room_lights
             state: "on"
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               flash: "short"
               entity_id: light.cabinet_led
-          - service: media_player.turn_off
+          - action: media_player.turn_off
             entity_id: media_player.tv
           - wait_template: "{{ is_state('media_player.tv', 'off') }}"
             timeout: "00:00:30"
-          - service: media_player.turn_off
+          - action: media_player.turn_off
             entity_id: media_player.kef_ls50
-          - service: light.turn_off
+          - action: light.turn_off
             entity_id: light.living_room_lights
             data:
               transition: 30
@@ -304,7 +304,7 @@
       # Fix the sounds on the TV (LG TV sound sync bug 🐛)
       - conditions: "{{ trigger.event.data.event == 1001 }}" # Long click
         sequence:
-          service: script.fix_sound
+          action: script.fix_sound
 
 - alias: "Control switches: bedroom Aqara Wireless Mini Switch"
   mode: parallel
@@ -322,21 +322,21 @@
       # Next color
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
-          service: script.next_colors
+          action: script.next_colors
           data:
             input_select: input_select.last_script_bedroom
 
       # Increase brightness
       - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
-          service: script.increase_brightness
+          action: script.increase_brightness
           data:
             group: light.bedroom_lights
 
       # Turn off lights in and next to bedroom
       - conditions: "{{ trigger.event.data.event == 1001 }}" # Long click
         sequence:
-          service: light.turn_off
+          action: light.turn_off
           entity_id:
             - light.hall_lights
             - light.bedroom_lights
@@ -354,7 +354,7 @@
                 {% set is_morning = now().replace(hour=6, minute=0) < now() < now().replace(hour=12, minute=0) %}
                 {{ is_near_alarm or is_morning }}
               sequence:
-                service: light.turn_off
+                action: light.turn_off
                 entity_id: all
 
             - conditions: # off -> half
@@ -362,13 +362,13 @@
                 entity_id: input_select.sleep_mode
                 state: "off"
               sequence:
-                - service: light.turn_off
+                - action: light.turn_off
                   entity_id:
                     - light.hall_lights
                     - light.bedroom_lights
                     - light.bathroom_ceiling
                     - light.stairs_lights
-                - service: input_select.select_option
+                - action: input_select.select_option
                   entity_id: input_select.sleep_mode
                   data:
                     option: half
@@ -378,8 +378,8 @@
                 entity_id: input_select.sleep_mode
                 state: half
               sequence:
-                - service: script.turn_off_everything
-                - service: input_select.select_option
+                - action: script.turn_off_everything
+                - action: input_select.select_option
                   entity_id: input_select.sleep_mode
                   data:
                     option: total
@@ -389,7 +389,7 @@
                 entity_id: input_select.sleep_mode
                 state: total
               sequence:
-                service: light.turn_off
+                action: light.turn_off
                 entity_id: all
 
 - alias: "Control switches: bathroom Aqara Wireless Mini Switch"
@@ -404,13 +404,13 @@
       # Toggle lights
       - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
-          service: light.toggle
+          action: light.toggle
           entity_id: light.bathroom_lights
 
       # Flash all lights
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.living_room_lights
               flash: "short"
@@ -427,29 +427,29 @@
       # Leaving: turn off everything
       - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.living_room_lights
               flash: "short"
-          - service: script.turn_off_everything_non_automatic
-          - service: script.set_low_temperature
+          - action: script.turn_off_everything_non_automatic
+          - action: script.set_low_temperature
           - if: "{{ is_state_attr('media_player.spotify', 'source', 'KEF LS50') and is_state('media_player.spotify', 'playing') }}"
             then:
-              - service: media_player.media_pause
+              - action: media_player.media_pause
                 entity_id: media_player.spotify
 
       # Arriving: turn on music and cozy lights
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               flash: "short"
               entity_id: light.ceiling_kitchen
-          - service: script.turn_on
+          - action: script.turn_on
             data:
               entity_id: light.living_room_lights
-          - service: script.arriving
-          - service: script.start_spotify
+          - action: script.arriving
+          - action: script.start_spotify
             data:
               source: KEF LS50
               id: 'playlist:{{ states("sensor.favorite_playlist_of_nearest_person") }}'
@@ -467,13 +467,13 @@
       # Turn on
       - conditions: "{{ action == 'on' }}" # Lowest button
         sequence:
-          service: light.turn_on
+          action: light.turn_on
           entity_id: light.guest_room_lights
 
       # Turn off
       - conditions: "{{ action == 'off' }}" # Lowest button
         sequence:
-          service: light.turn_off
+          action: light.turn_off
           entity_id: light.guest_room_lights
 
 - alias: "Control switches: Guest Room Light"
@@ -488,14 +488,14 @@
       # Toggle
       - conditions: "{{ action == 'single' }}"
         sequence:
-          service: light.toggle
+          action: light.toggle
           data:
             entity_id: light.guest_room_lights
 
       # Toggle sleep mode
       - conditions: "{{ action == 'double' }}"
         sequence:
-          service: switch.toggle
+          action: switch.toggle
           entity_id: switch.adaptive_lighting_sleep_mode_guest_room
 
 - alias: "Control switches: Guest Room Space heater"
@@ -510,7 +510,7 @@
       # Toggle
       - conditions: "{{ action == 'single' }}"
         sequence:
-          service: switch.toggle
+          action: switch.toggle
           data:
             entity_id: switch.space_heater
 
@@ -526,7 +526,7 @@
       # Toggle light
       - conditions: "{{ action == 'single' }}"
         sequence:
-          service: light.toggle
+          action: light.toggle
           data:
             entity_id:
               - light.baby_room_lights
@@ -534,7 +534,7 @@
       # Toggle sleep mode
       - conditions: "{{ action == 'double' }}"
         sequence:
-          service: switch.toggle
+          action: switch.toggle
           entity_id: switch.adaptive_lighting_sleep_mode_baby_room
 
 - alias: "Control switches: Mid Room Changing Table Light"
@@ -549,7 +549,7 @@
       # Toggle
       - conditions: "{{ action == 'single' }}"
         sequence:
-          service: light.toggle
+          action: light.toggle
           data:
             entity_id: light.mid_room
             brightness_pct: 100
@@ -558,13 +558,13 @@
       # Change brightness
       - conditions: "{{ action == 'double' }}"
         sequence:
-          service: script.increase_brightness
+          action: script.increase_brightness
           data:
             group: light.mid_room
 
       # Next colors
       - conditions: "{{ action == 'hold' }}"
         sequence:
-          service: script.next_colors
+          action: script.next_colors
           data:
             input_select: input_select.last_script_living_room

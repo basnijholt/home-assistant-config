@@ -19,7 +19,7 @@
     entity_id: media_player.tv
     state: "on"
   actions:
-    service: media_player.media_play_pause
+    action: media_player.media_play_pause
     target:
       entity_id: |
         media_player.{{ 'xbox' if is_state_attr('media_player.tv', 'source', 'XBOX') else 'tv'}}
@@ -31,7 +31,7 @@
     event_data:
       actionName: Minimal lights bedroom
   actions:
-    service: light.turn_on
+    action: light.turn_on
     data:
       entity_id:
         - light.philips_go
@@ -46,7 +46,7 @@
     event_data:
       actionName: Fix TV sound
   actions:
-    service: script.fix_sound
+    action: script.fix_sound
 
 - alias: "Apple Watch: set sleep mode"
   mode: parallel
@@ -58,7 +58,7 @@
   actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
-    - service: "{{ iphone }}"
+    - action: "{{ iphone }}"
       data:
         message: "Apple Watch: set sleep mode."
         data:
@@ -86,7 +86,7 @@
       continue_on_timeout: false
     - variables:
         event: "{{ wait.trigger.event.data.action.lower().split('_')[1] }}"
-    - service: input_select.select_option
+    - action: input_select.select_option
       data:
         entity_id: input_select.sleep_mode
         option: "{{ event }}"
@@ -101,7 +101,7 @@
   actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
-    - service: "{{ iphone }}"
+    - action: "{{ iphone }}"
       data:
         message: "Apple Watch: set lights"
         data:
@@ -162,7 +162,7 @@
              'SET_LIGHTS_TOILET': 'light.toilet',
              'SET_LIGHTS_KITCHEN': 'light.kitchen_lights',
             }[wait.trigger.event.data.action] }}
-    - service: "{{ iphone }}"
+    - action: "{{ iphone }}"
       data:
         message: "Apple Watch: choose option"
         data:
@@ -217,44 +217,44 @@
     - choose:
         - conditions: "{{ option == 'LIGHTS_OFF' }}"
           sequence:
-            service: light.turn_off
+            action: light.turn_off
             data:
               entity_id: "{{ light }}"
         - conditions: "{{ option == 'LIGHTS_ON' }}"
           sequence:
-            service: script.turn_on_lights
+            action: script.turn_on_lights
             data:
               entity_id: "{{ light }}"
         - conditions: "{{ option == 'LIGHTS_FIFTY' }}"
           sequence:
-            service: light.turn_on
+            action: light.turn_on
             data:
               entity_id: "{{ light }}"
               brightness_pct: 50
         - conditions: "{{ option == 'LIGHTS_HUNDRED' }}"
           sequence:
-            service: light.turn_on
+            action: light.turn_on
             data:
               entity_id: "{{ light }}"
               brightness_pct: 100
         - conditions: "{{ option == 'LIGHTS_ONE' }}"
           sequence:
-            service: light.turn_on
+            action: light.turn_on
             data:
               entity_id: "{{ light }}"
               brightness_pct: 1
         - conditions: "{{ option == 'LIGHTS_WHITE' and light == 'light.living_room_lights'}}"
           sequence:
-            service: script.white_lights_living_room
+            action: script.white_lights_living_room
         - conditions: "{{ option == 'LIGHTS_WHITE' and light == 'light.bedroom_lights'}}"
           sequence:
-            service: script.white_lights_living_room
+            action: script.white_lights_living_room
         - conditions: "{{ option == 'LIGHTS_COZY' and light == 'light.living_room_lights'}}"
           sequence:
-            service: script.cozy_lights_living_room
+            action: script.cozy_lights_living_room
         - conditions: "{{ option == 'LIGHTS_COZY' and light == 'light.bedroom_lights'}}"
           sequence:
-            service: script.cozy_lights_bedroom
+            action: script.cozy_lights_bedroom
 
 - alias: "Apple Watch: temperature report"
   mode: parallel
@@ -266,7 +266,7 @@
   actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
-    - service: "{{ iphone }}"
+    - action: "{{ iphone }}"
       data:
         title: "Temperature"
         message: >
@@ -286,7 +286,7 @@
   actions:
     - variables:
         iphone: "notify.iphone_bas"
-    - service: "{{ iphone }}"
+    - action: "{{ iphone }}"
       data:
         title: Portfolio value
         message: >
@@ -302,7 +302,7 @@
   actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
-    - service: "{{ iphone }}"
+    - action: "{{ iphone }}"
       data:
         message: "Apple Watch: vacuum"
         data:
@@ -354,7 +354,7 @@
       continue_on_timeout: false
     - variables:
         location: "{{ wait.trigger.event.data.action.lower().split('vacuum_')[1] }}"
-    - service: script.vacuum_command
+    - action: script.vacuum_command
       data:
         option: "{{ location }}"
 
@@ -365,17 +365,17 @@
     event_data:
       actionName: Movie time
   actions:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         entity_id:
           - light.living_room_lights
         brightness: 5
         color_name: red
-    - service: light.turn_off
+    - action: light.turn_off
       data:
         entity_id:
           - light.marble
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         entity_id:
           - light.tv_led
@@ -388,7 +388,7 @@
     event_data:
       actionName: Reset adaptive lighting
   actions:
-    service: script.reset_adaptive_lighting
+    action: script.reset_adaptive_lighting
 
 - alias: "Apple Watch: set temperature"
   mode: parallel
@@ -400,7 +400,7 @@
   actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
-    - service: "{{ iphone }}"
+    - action: "{{ iphone }}"
       data:
         message: "Apple Watch: set temperature"
         data:
@@ -452,7 +452,7 @@
       continue_on_timeout: false
     - variables:
         temperature: "{{ wait.trigger.event.data.action.split('T')[1] | int }}"
-    - service: climate.set_temperature
+    - action: climate.set_temperature
       data:
         entity_id: climate.thermostat
         temperature: "{{ temperature }}"
@@ -474,7 +474,7 @@
     other_person: "{% if phone == 'basnijholt' %}Marcella{% else %}Bas{% endif %}"
     device_tracker: "device_tracker.{{ other_person }}_iphone"
   actions:
-    service: "notify.mobile_app_{{ phone }}_iphone"
+    action: "notify.mobile_app_{{ phone }}_iphone"
     data:
       message: "{{ other_person }} is {{ distance('device_tracker.basnijholt_iphone', 'device_tracker.marcella_iphone') | round(2) }} km away"
       data:

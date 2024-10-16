@@ -31,8 +31,8 @@
         - input_boolean.guest_mode
       state: "off"
   actions:
-    - service: script.leaving
-    - service: notify.all_iphones
+    - action: script.leaving
+    - action: notify.all_iphones
       data:
         title: "Leaving"
         message: "Everything automatically turned off!"
@@ -60,7 +60,7 @@
     - condition: state
       entity_id: binary_sensor.no_one_home
       state: "on"
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         message: "No one is home, turn off everything?"
         data:
@@ -78,7 +78,7 @@
     event_data:
       actions: TURN_OFF_EVERYTHING
   actions:
-    service: script.leaving
+    action: script.leaving
 
 
 - alias: "Leaving: downstairs Aqara Wireless Mini Switch"
@@ -96,8 +96,8 @@
         to: "off"
       timeout: "00:01:00"
       continue_on_timeout: false
-    - service: script.turn_off_everything
-    - service: notify.all_iphones
+    - action: script.turn_off_everything
+    - action: notify.all_iphones
       data:
         title: "Bye 👋"
         message: "See you soon!"

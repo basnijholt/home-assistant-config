@@ -22,7 +22,7 @@
       entity_id: vacuum.valetudo_vacuum
       state: "docked"
   actions:
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         message: "Security: motion is detected, but we are not home."
         data:
@@ -39,7 +39,7 @@
           actions: SOUND_ALARM
       timeout: "01:00:00"
       continue_on_timeout: false
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: all
       data:
         flash: long
@@ -53,7 +53,7 @@
     to: "on"
     for: "00:05:00"
   actions:
-    service: notify.all_iphones
+    action: notify.all_iphones
     data:
       title: "Security"
       message: "The front door has been open for more than 5 minutes."
@@ -66,7 +66,7 @@
     to: "on"
     for: "00:05:00"
   actions:
-    service: notify.all_iphones
+    action: notify.all_iphones
     data:
       title: "Security"
       message: "The utility room door has been open for more than 5 minutes."
@@ -86,7 +86,7 @@
       entity_id: sensor.power_consumption
       above: 0.7
   actions:
-    service: notify.all_iphones
+    action: notify.all_iphones
     data:
       title: "Security"
       message: >
@@ -103,21 +103,21 @@
     entity_id: input_boolean.bathroom_door_open_warning
     state: "on"
   actions:
-    - service: notify.bas
+    - action: notify.bas
       data:
         title: Security
         message: Office door opened!
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: Security
         message: Office door opened!
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         entity_id:
           - light.philips_go
           - light.desk_led
         flash: short
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       entity_id: input_boolean.bathroom_door_open_warning
 
 - alias: "Security: activity in master bedroom"
@@ -130,19 +130,19 @@
     entity_id: input_boolean.bedroom_activity_warning
     state: "on"
   actions:
-    - service: notify.bas
+    - action: notify.bas
       data:
         title: Security
         message: Activity bedroom!
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: Security
         message: Activity bedroom!
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         entity_id: light.desk_led
         flash: short
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       entity_id: input_boolean.bedroom_activity_warning
 
 - alias: "Security: Door to outside open"
@@ -161,7 +161,7 @@
             state: 'on'
         sequence:
           # First turning off such that the lights stay on
-          - service: light.turn_off
+          - action: light.turn_off
             data:
               entity_id:
                 - light.garage_outside
@@ -170,7 +170,7 @@
                 - light.utility_room
           - delay:
               seconds: 1
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id:
                 - light.garage_outside

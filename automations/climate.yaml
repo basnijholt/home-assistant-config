@@ -21,7 +21,7 @@
       - input_boolean.automatic_temperature
     state: "on"
   actions:
-    service: script.set_high_temperature
+    action: script.set_high_temperature
 
 - alias: "Climate: turn on the heating when going home"
   triggers:
@@ -42,8 +42,8 @@
       entity_id: binary_sensor.no_one_home
       state: "on"
   actions:
-    - service: script.set_high_temperature
-    - service: notify.all_iphones
+    - action: script.set_high_temperature
+    - action: notify.all_iphones
       data:
         title: "Climate"
         message: "Automatically turned on the heating 🥵℃"
@@ -61,8 +61,8 @@
       state: "off"
     - "{{ not is_state_attr('climate.thermostat', 'temperature', states('input_number.temperature_low')|float(0)) }}"
   actions:
-    - service: script.set_low_temperature
-    - service: notify.all_iphones
+    - action: script.set_low_temperature
+    - action: notify.all_iphones
       data:
         message: "Turned off the heating 🥶, click to turn it on again?"
         data:
@@ -79,14 +79,14 @@
           actions: TURN_ON_HEATING
       timeout: "00:00:20"
       continue_on_timeout: false
-    - service: script.set_high_temperature
+    - action: script.set_high_temperature
 
 - alias: "Climate: set outside temperature every hour"
   triggers:
     trigger: time_pattern
     hours: "/1"
   actions:
-    service: mqtt.publish
+    action: mqtt.publish
     data:
       topic: actions/otmonitor/outside
       payload_template: >
@@ -108,7 +108,7 @@
           - condition: template
             value_template: "{{ repeat.index <= 6 }}"
         sequence:
-          - service: notify.all
+          - action: notify.all
             data:
               title: "Climate"
               message: "The living room door is open and the heating is on! ⚠️ Warning #{{ repeat.index }}!"
@@ -116,11 +116,11 @@
     - condition: state
       entity_id: binary_sensor.openclose_bedroom
       state: "on"
-    - service: notify.all
+    - action: notify.all
       data:
         title: "Climate"
         message: "Turning off the heating!"
-    - service: climate.set_temperature
+    - action: climate.set_temperature
       entity_id: climate.thermostat
       data:
         temperature: >
@@ -131,7 +131,7 @@
     trigger: time_pattern
     hours: "/2"
   actions:
-    service: mqtt.publish
+    action: mqtt.publish
     data:
       topic: actions/otmonitor/maxdhwsetpt
       payload: "50"
@@ -148,5 +148,5 @@
     entity_id: binary_sensor.activity_in_guest_room
     state: "off"
   actions:
-    service: switch.turn_off
+    action: switch.turn_off
     entity_id: switch.space_heater

@@ -18,11 +18,11 @@
     to: "on"
     from: "off"
   actions:
-    - service: input_datetime.set_datetime
+    - action: input_datetime.set_datetime
       data:
         entity_id: input_datetime.bike_charger_on
         timestamp: "{{ now().timestamp() }}"
-    - service: input_datetime.set_datetime
+    - action: input_datetime.set_datetime
       data:
         entity_id: input_datetime.bike_charger_off
         timestamp: "{{ now().timestamp() + 3600 * 6 }}"
@@ -35,6 +35,6 @@
     conditions: template
     value_template: "{{ states('sensor.time') == states('input_datetime.bike_charger_off')[0:5] }}"
   actions:
-    service: switch.turn_off
+    action: switch.turn_off
     data:
       entity_id: switch.bike_charger

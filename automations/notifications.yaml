@@ -15,7 +15,7 @@
     entity_id: device_tracker.marcella_iphone
     to: rotterdam_centraal
   actions:
-    service: notify.iphone_bas
+    action: notify.iphone_bas
     data:
       title: "Arriving"
       message: "Marcella arrived at Rotterdam Centraal"
@@ -30,15 +30,15 @@
     entity_id: input_boolean.front_door_open_warning
     state: "on"
   actions:
-    - service: notify.mobile_app_basnijholt_iphone_13
+    - action: notify.mobile_app_basnijholt_iphone_13
       data:
         title: Security
         message: Front door opened!
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: Security
         message: Front door opened!
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       entity_id: input_boolean.front_door_open_warning
 
 - alias: "Notifications: Daily New Word Notification"
@@ -46,7 +46,7 @@
     - trigger: time
       at: "07:30:00"
   actions:
-    - service: notify.mobile_app_marcella_iphone_14_pro
+    - action: notify.mobile_app_marcella_iphone_14_pro
       data:
         title: "Daily new word"
         message: >
@@ -98,6 +98,6 @@
       timeout: "01:00:00"
       continue_on_timeout: false
 
-    - service: notify.mobile_app_marcella_iphone_14_pro
+    - action: notify.mobile_app_marcella_iphone_14_pro
       data:
         message: "We all love you! ❤️😘🥰💖💕🌷🌼🌈✨🎉🍀"

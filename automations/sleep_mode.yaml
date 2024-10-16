@@ -23,7 +23,7 @@
     state: "off"
   actions:
     entity_id: input_select.sleep_mode
-    service: input_select.select_option
+    action: input_select.select_option
     data:
       option: "half"
 
@@ -33,7 +33,7 @@
     entity_id: input_select.sleep_mode
     from: "off"
   actions:
-    service: input_boolean.turn_off
+    action: input_boolean.turn_off
     entity_id: input_boolean.automatic_bedroom_lights
 
 - alias: "Night mode: set low temperature when sleep mode turns on"
@@ -42,7 +42,7 @@
     entity_id: input_select.sleep_mode
     from: "off"
   actions:
-    service: script.set_low_temperature
+    action: script.set_low_temperature
 
 - alias: "Night mode: go from half to total sleeping mode"
   description: >
@@ -58,11 +58,11 @@
     entity_id: input_select.sleep_mode
     state: half
   actions:
-    - service: input_select.select_option
+    - action: input_select.select_option
       entity_id: input_select.sleep_mode
       data:
         option: "total"
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: "Night mode"
         message: "Automatically switched from 'half' to 'total' sleeping mode! 💤🛌"
@@ -88,9 +88,9 @@
           - condition: state # make sure sleep mode is still on
             entity_id: input_select.sleep_mode
             state: "total"
-          - service: switch.turn_on
+          - action: switch.turn_on
             entity_id: switch.adaptive_lighting_sleep_mode_living_room
       - conditions: "{{ is_state('binary_sensor.activity_in_living_room', 'off') }}"
         sequence:
-          service: switch.turn_on
+          action: switch.turn_on
           entity_id: switch.adaptive_lighting_sleep_mode_living_room

@@ -29,7 +29,7 @@
           {% set last_is_zero = event[-1] == 0 %}
           {{ correct_start and (first_last_different or last_is_zero) }}
         sequence:
-          - service: input_select.select_option
+          - action: input_select.select_option
             entity_id: input_select.cube_mode
             data:
               option: >
@@ -38,7 +38,7 @@
           - condition: state
             entity_id: media_player.tv
             state: "on"
-          - service: notify.tv
+          - action: notify.tv
             data:
               message: >
                 Cube set to {{ states("input_select.cube_mode") }}
@@ -48,11 +48,11 @@
           - "{{ event == 7007 }}"
           - "{{ is_state_attr('media_player.spotify', 'source', 'KEF LS50') }}"
         sequence:
-          - service: media_player.shuffle_set
+          - action: media_player.shuffle_set
             entity_id: media_player.spotify
             data:
               shuffle: true
-          - service: media_player.media_next_track
+          - action: media_player.media_next_track
             entity_id: media_player.spotify
 
       # Pause and play Spotify song by tapping cube on side 1
@@ -60,13 +60,13 @@
           - "{{ event in (1001, 2002, 3003, 4004, 5005, 6006) }}"
           - "{{ is_state_attr('media_player.spotify', 'source', 'KEF LS50') }}"
         sequence:
-          service: media_player.media_play_pause
+          action: media_player.media_play_pause
           entity_id: media_player.spotify
 
       # Start music by throwing the cube
       - conditions: "{{ event == 7008 }}"
         sequence:
-          service: script.start_spotify_playlist_of_nearest_person
+          action: script.start_spotify_playlist_of_nearest_person
           data:
             source: KEF LS50
             entity_id: media_player.kef_ls50
@@ -89,7 +89,7 @@
         sequence:
           - variables:
               hue_sat: "{{ state_attr('light.sphere', 'hs_color') or [30, 56] }}"
-          - service: light.turn_on
+          - action: light.turn_on
             entity_id: light.living_room_lights
             data:
               hs_color:
@@ -104,7 +104,7 @@
           entity_id: input_select.cube_mode
           state: "Brightness"
         sequence:
-          service: light.turn_on
+          action: light.turn_on
           entity_id: light.living_room_lights
           data:
             brightness: >
@@ -118,7 +118,7 @@
           entity_id: input_select.cube_mode
           state: "Volume"
         sequence:
-          - service: media_player.volume_set
+          - action: media_player.volume_set
             entity_id: media_player.kef_ls50
             data: # 90 deg is 10%
               volume_level: >
@@ -128,7 +128,7 @@
           - condition: state
             entity_id: media_player.tv
             state: "on"
-          - service: notify.tv
+          - action: notify.tv
             data:
               message: >
                 Volume set to {{ state_attr("media_player.kef_ls50", "volume_level") }}

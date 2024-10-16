@@ -15,13 +15,13 @@
     - trigger: event
       event_type: call_service
       event_data:
-        service: turn_on
+        action: turn_on
         domain: light
     - trigger: event
       event_type: state_changed
   conditions: "{{ trigger.event.context.id.startswith('adapt_lgt') }}"
   actions:
-    service: system_log.write
+    action: system_log.write
     data:
       message: "{{ trigger.event.data.entity_id }} is changed by AL: {{ trigger.event.data }}"
       level: debug
@@ -34,7 +34,7 @@
   actions:
     - variables:
         t_start: "{{ as_timestamp(now()) }}"
-    - service: system_log.write
+    - action: system_log.write
       data:
         message: "took {{ as_timestamp(now()) - t_start | int }}"
         level: debug
@@ -53,11 +53,11 @@
         sequence:
           - variables:
               light: "{{ lights.split(',')[repeat.index - 1] }}"
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: "{{ light }}"
           - delay: "00:00:01"
-          - service: light.turn_off
+          - action: light.turn_off
             data:
               entity_id: "{{ light }}"
 
@@ -68,16 +68,16 @@
     - trigger: event
       event_type: call_service
       event_data:
-        service: turn_on
+        action: turn_on
         domain: light
     - trigger: event
       event_type: call_service
       event_data:
-        service: turn_off
+        action: turn_off
         domain: light
   actions:
     - delay: "00:00:01"
-    - service: homeassistant.update_entity
+    - action: homeassistant.update_entity
       data:
         entity_id: "{{ trigger.event.entity_id }}"
 
@@ -88,14 +88,14 @@
     event: start
   actions:
     - condition: "{{ is_state('automation.test_light_baby_room_loop', 'on') }}"
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: light.baby_room
     - delay: '00:00:10'
-    - service: light.turn_off
+    - action: light.turn_off
       target:
         entity_id: light.baby_room
     - delay: '00:00:10'
-    - service: automation.trigger
+    - action: automation.trigger
       target:
         entity_id: automation.test_light_baby_room_loop

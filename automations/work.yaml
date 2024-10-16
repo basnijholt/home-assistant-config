@@ -22,11 +22,11 @@
       entity_id: input_boolean.work_hour_notification_sent
       state: "off"
   actions:
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: "Work"
         message: "You have worked 8 hours today, very good! Go home 🎉"
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       entity_id: input_boolean.work_hour_notification_sent
 
 - alias: "Work: reset input_boolean at midnight"
@@ -38,7 +38,7 @@
     entity_id: input_boolean.work_hour_notification_sent
     state: "on"
   actions:
-    service: input_boolean.turn_off
+    action: input_boolean.turn_off
     entity_id: input_boolean.work_hour_notification_sent
 
 - alias: "Work: Bas left work notification for Marcella"
@@ -51,8 +51,8 @@
     after: "15:00:00"
     before: "22:00:00"
   actions:
-    # service: notify.mobile_app_marcella_iphone
-    service: notify.all_iphones
+    # action: notify.mobile_app_marcella_iphone
+    action: notify.all_iphones
     data:
       title: "Work"
       message: "Bas has left work! ♥️🎉"

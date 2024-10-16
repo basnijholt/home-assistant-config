@@ -21,7 +21,7 @@
     name: "{{ trigger.entity_id.split('.', 1)[1] }}"
   conditions: "{{ (to_state == 'on' and from_state == 'off') or (to_state == 'off' and from_state == 'on') }}"
   actions:
-    service: input_datetime.set_datetime
+    action: input_datetime.set_datetime
     data:
       entity_id: "input_datetime.{{ name }}_{{ to_state }}"
       timestamp: "{{ now().timestamp() }}"
@@ -33,7 +33,7 @@
     from: "off"
     to: "on"
   actions:
-    service: script.utility_notification
+    action: script.utility_notification
     data:
       name: "washing_machine"
       emojis: "👚👕"
@@ -45,7 +45,7 @@
     from: "off"
     to: "on"
   actions:
-    service: script.utility_notification
+    action: script.utility_notification
     data:
       name: "dishwasher"
       emojis: "🍽🍳"

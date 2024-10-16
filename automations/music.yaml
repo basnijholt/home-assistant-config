@@ -16,9 +16,9 @@
     from: "off"
     to: "on"
   actions:
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       entity_id: input_boolean.start_the_music
-    - service: script.start_spotify_playlist_of_nearest_person
+    - action: script.start_spotify_playlist_of_nearest_person
       data:
         source: KEF LS50
         entity_id: media_player.kef_ls50
@@ -43,13 +43,13 @@
       entity_id: proximity.home
       below: 2
   actions:
-    - service: media_player.turn_on
+    - action: media_player.turn_on
       entity_id: media_player.kef_ls50
-    - service: media_player.select_source
+    - action: media_player.select_source
       entity_id: media_player.kef_ls50
       data:
         source: Wifi
-    - service: media_player.select_source
+    - action: media_player.select_source
       entity_id: media_player.spotify
       data:
         source: KEF LS50

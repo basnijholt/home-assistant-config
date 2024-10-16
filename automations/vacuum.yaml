@@ -15,11 +15,11 @@
     from: docked
     to: cleaning
   actions:
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         title: "Robot"
         message: "Robot started to clean!"
-    - service: input_datetime.set_datetime
+    - action: input_datetime.set_datetime
       data:
         entity_id: input_datetime.vacuum_on
         datetime: "{{ now().isoformat() }}"
@@ -31,13 +31,13 @@
     from: returning
     to: docked
   actions:
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       entity_id: input_boolean.cleaned_today
-    - service: input_datetime.set_datetime
+    - action: input_datetime.set_datetime
       data:
         entity_id: input_datetime.vacuum_off
         datetime: "{{ now().isoformat() }}"
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         title: "Robot"
         message: "Cleanup successful after {{ (states('sensor.robot_vacuum_last_clean_duration') | int / 60) | round }} minutes"
@@ -51,7 +51,7 @@
     entity_id: binary_sensor.vacuum_day
     state: "on"
   actions:
-    service: notify.all_iphones
+    action: notify.all_iphones
     data:
       title: "Robot"
       message: "Vacuum will go today, make sure to leave the doors open and leave nothing on the floor!"
@@ -84,7 +84,7 @@
       entity_id: input_boolean.vacation_mode
       state: "off"
   actions:
-    service: vacuum.start
+    action: vacuum.start
     entity_id: vacuum.valetudo_vacuum
 
 - alias: "Vacuum: reset cleaned today"
@@ -93,7 +93,7 @@
     trigger: time
     at: "00:00:00"
   actions:
-    service: input_boolean.turn_off
+    action: input_boolean.turn_off
     entity_id: input_boolean.cleaned_today
 
 - alias: "Vacuum: reset to standard mode"
@@ -102,7 +102,7 @@
     entity_id: vacuum.living_room
     to: docked
   actions:
-    service: vacuum.set_fan_speed
+    action: vacuum.set_fan_speed
     entity_id: vacuum.valetudo_vacuum
     data:
       fan_speed: Standard

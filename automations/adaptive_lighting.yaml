@@ -20,7 +20,7 @@
     choose:
       - conditions: "{{ sleep_mode == 'off' }}"
         sequence:
-          - service: switch.turn_off
+          - action: switch.turn_off
             entity_id:
               - switch.adaptive_lighting_sleep_mode_bedroom
               - switch.adaptive_lighting_sleep_mode_bedroom_led
@@ -29,10 +29,10 @@
 
       - conditions: "{{ sleep_mode == 'half' }}"
         sequence:
-          - service: switch.turn_off
+          - action: switch.turn_off
             entity_id:
               - switch.adaptive_lighting_sleep_mode_living_room
-          - service: switch.turn_on
+          - action: switch.turn_on
             entity_id:
               - switch.adaptive_lighting_sleep_mode_bedroom
               - switch.adaptive_lighting_sleep_mode_bedroom_led
@@ -40,7 +40,7 @@
 
       - conditions: "{{ sleep_mode == 'total' }}"
         sequence:
-          - service: switch.turn_on
+          - action: switch.turn_on
             entity_id:
               - switch.adaptive_lighting_sleep_mode_bedroom
               - switch.adaptive_lighting_sleep_mode_bedroom_led
@@ -63,12 +63,12 @@
     - delay: "01:00:00"
     - condition: template
       value_template: "{{ light in state_attr('switch', 'manual_control') }}"
-    - service: adaptive_lighting.set_manual_control
+    - action: adaptive_lighting.set_manual_control
       data:
         entity_id: "{{ switch }}"
         lights: "{{ light }}"
         manual_control: false
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: "Adaptive Ligthing: manual_control reset"
         message: "{{ light }} is reset to not 'manually controlled'"
@@ -83,12 +83,12 @@
     light: "{{ trigger.event.data.entity_id }}"
   conditions: "{{ 'hall' not in light and 'stairs' not in light }}"
   actions:
-    - service: system_log.write
+    - action: system_log.write
       data:
         message: "{{ light }} is manually controlled"
         level: error
         logger: yolo.yolo
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: "Adaptive Ligthing: manual_control"
         message: "{{ light }} is now 'manually controlled', context={{ trigger.event.context }}"

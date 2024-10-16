@@ -34,7 +34,7 @@
       {{ not (is_state_attr('media_player.spotify', 'source', 'KEF LS50')
               and is_state('media_player.spotify', 'playing')) }}
   actions:
-    service: media_player.select_source
+    action: media_player.select_source
     entity_id: media_player.kef_ls50
     data:
       source: Optical Input 1
@@ -49,13 +49,13 @@
     entity_id: media_player.kef_ls50
     state: "on"
   actions:
-    - service: homeassistant.update_entity
+    - action: homeassistant.update_entity
       entity_id: media_player.kef_ls50
     - condition: template
       value_template: >
         {{ is_state_attr("media_player.kef_ls50", "source", "HDMI ARC")
            or is_state_attr("media_player.kef_ls50", "source", "Optical Input 1") }}
-    - service: media_player.turn_off
+    - action: media_player.turn_off
       entity_id: media_player.kef_ls50
 
 - alias: "Media player: if speakers off and TV on, turn on the speaker on TV state change"
@@ -75,9 +75,9 @@
           or trigger.from_state.attributes["volume_level"] != trigger.to_state.attributes["volume_level"]
           or trigger.from_state.attributes["source"] != trigger.to_state.attributes["source"] }}
   actions:
-    - service: media_player.turn_on
+    - action: media_player.turn_on
       entity_id: media_player.kef_ls50
-    - service: media_player.select_source
+    - action: media_player.select_source
       entity_id: media_player.kef_ls50
       data:
         source: Optical Input 1
@@ -94,7 +94,7 @@
       entity_id: media_player.tv
       state: "on"
   actions:
-    service: homeassistant.update_entity
+    action: homeassistant.update_entity
     entity_id: media_player.spotify
 
 - alias: "Media player: sync KEF LS50 and TV volume"
@@ -113,7 +113,7 @@
   actions:
     repeat:
       sequence:
-        - service: media_player.volume_set
+        - action: media_player.volume_set
           data:
             entity_id: >
               media_player.{{ "tv" if (trigger.entity_id == "media_player.kef_ls50") else "kef_ls50" }}
@@ -133,9 +133,9 @@
     to: "off"
     for: "02:00:00"
   actions:
-    - service: media_player.turn_off
+    - action: media_player.turn_off
       entity_id: media_player.living_room_xbox
-    - service: media_player.turn_off
+    - action: media_player.turn_off
       entity_id: media_player.tv
 
 - alias: "Media player: Turn On Living Room TV with WakeOnLan"
@@ -143,6 +143,6 @@
     trigger: webostv.turn_on
     entity_id: media_player.tv
   actions:
-    - service: wake_on_lan.send_magic_packet
+    - action: wake_on_lan.send_magic_packet
       data:
         mac: "!secret tv_mac_address"

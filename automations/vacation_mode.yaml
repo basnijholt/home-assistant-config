@@ -21,9 +21,9 @@
       entity_id: input_boolean.guest_mode
       state: "off"
   actions:
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       entity_id: input_boolean.vacation_mode
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         title: "Vacation mode"
         message: "No one at home for 24 hours, switching on vacation mode."
@@ -43,9 +43,9 @@
       entity_id: input_boolean.guest_mode
       state: "off"
   actions:
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       entity_id: input_boolean.vacation_mode
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         title: "Vacation mode"
         message: "Welcome back! Switching off the vacation mode."

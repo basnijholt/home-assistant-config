@@ -17,7 +17,7 @@
   conditions: "{{ is_state('input_boolean.dark_mode', 'off') }}"
   actions:
     entity_id: input_boolean.dark_mode
-    service: input_boolean.turn_on
+    action: input_boolean.turn_on
 
 - alias: "Frontend: turn on light mode"
   triggers:
@@ -28,7 +28,7 @@
   conditions: "{{ is_state('input_boolean.dark_mode', 'on') }}"
   actions:
     entity_id: input_boolean.dark_mode
-    service: input_boolean.turn_off
+    action: input_boolean.turn_off
 
 - alias: "Frontend: change theme"
   triggers:
@@ -41,7 +41,7 @@
     - trigger: homeassistant
       event: start
   actions:
-    service: frontend.set_theme
+    action: frontend.set_theme
     data:
       name: >
         {% set which = "dark" if is_state("input_boolean.dark_mode", "on") else "light" -%}

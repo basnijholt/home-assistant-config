@@ -20,7 +20,7 @@
     entity_id: plant.calathea
     state: "problem"
   actions:
-    service: notify.all_iphones
+    action: notify.all_iphones
     data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
@@ -38,7 +38,7 @@
     entity_id: plant.monstera
     state: "problem"
   actions:
-    service: notify.all_iphones
+    action: notify.all_iphones
     data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >
@@ -56,7 +56,7 @@
     entity_id: plant.peace_lily
     state: "problem"
   actions:
-    service: notify.all_iphones
+    action: notify.all_iphones
     data:
       title: "Plant in trouble! ⚠️☢️☠️"
       message: >

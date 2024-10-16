@@ -17,17 +17,17 @@
       id: smart_switch_doorbell
       event: 1002 # Single click
   actions:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
         flash: "short"
         entity_id: all
-    - service: notify.all_iphones
+    - action: notify.all_iphones
       data:
         title: "Doorbell"
         message: "Someone in front of the door!"
     - condition: state
       entity_id: media_player.tv
       state: "on"
-    - service: notify.tv
+    - action: notify.tv
       data:
         message: "Someone in front of the door!"

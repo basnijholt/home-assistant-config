@@ -16,7 +16,7 @@
     for:
       hours: 4
   actions:
-    service: notify.iphone_bas
+    action: notify.iphone_bas
     data:
       title: "System"
       message: "CPU usage has been above 70% for 4 hours! ⚠️🖥"
@@ -29,7 +29,7 @@
     for:
       hours: 4
   actions:
-    service: notify.iphone_bas
+    action: notify.iphone_bas
     data:
       title: "System"
       message: "CPU temperature has been above 70 °C for 4 hours! ⚠️"
@@ -40,7 +40,7 @@
     entity_id: sensor.temperature_xbox
     above: 50
   actions:
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: "System"
         message: >
@@ -48,7 +48,7 @@
     - condition: state
       entity_id: media_player.tv
       state: "on"
-    - service: notify.tv
+    - action: notify.tv
       data:
         message: >
           Temperature in the Xbox cabinet is {{ states("sensor.temperature_xbox") }} °C! ⚠️
@@ -59,7 +59,7 @@
     trigger: time_pattern # XXX: trigger on IP change
     minutes: "/15"
   actions:
-    service: script.update_dns
+    action: script.update_dns
 
 - alias: "System: run chores"
   description: Run shell and Python scripts in utils folder.
@@ -67,7 +67,7 @@
     trigger: time_pattern
     minutes: "/15"
   actions:
-    service: shell_command.chores
+    action: shell_command.chores
 
 - alias: "System: MQTT sensors are not updating"
   description: Check whether we are receiving messages over MQTT from my other HA instance.
@@ -76,7 +76,7 @@
     minutes: "/5"
   conditions: "{{ (as_timestamp(now()) - as_timestamp(states.sensor.power_consumption.last_changed)) > 20 * 60 }}"
   actions:
-    - service: notify.iphone_bas
+    - action: notify.iphone_bas
       data:
         title: "System"
         message: "Not receiving MQTT updates, maybe reboot the other HA instance! ⚠️"
@@ -109,7 +109,7 @@
             value_template: "{{ 'iphone' not in current and 'ipad' not in current }}"
           - condition: template
             value_template: "{{ 0 < (states(current) | float) < (min_battery_level | float ) }}"
-          - service: "{{ notify_service }}"
+          - action: "{{ notify_service }}"
             data:
               title: "System"
               message: "Battery level low of {{ current }}: {{ states(current) }}%! ⚠️"
