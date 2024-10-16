@@ -113,10 +113,37 @@
         message: Office door opened!
     - service: light.turn_on
       data:
-        entity_id: light.philips_go
+        entity_id:
+          - light.philips_go
+          - light.desk_led
         flash: short
     - service: input_boolean.turn_off
       entity_id: input_boolean.bathroom_door_open_warning
+
+- alias: "Security: activity in master bedroom"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_in_master_bedroom
+    to: "on"
+  condition:
+    condition: state
+    entity_id: input_boolean.bedroom_activity_warning
+    state: "on"
+  action:
+    - service: notify.bas
+      data:
+        title: Security
+        message: Activity bedroom!
+    - service: notify.iphone_bas
+      data:
+        title: Security
+        message: Activity bedroom!
+    - service: light.turn_on
+      data:
+        entity_id: light.desk_led
+        flash: short
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bedroom_activity_warning
 
 - alias: "Security: Door to outside open"
   description: ''
