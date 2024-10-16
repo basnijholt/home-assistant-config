@@ -30,7 +30,7 @@
         - binary_sensor.someone_in_the_house_in_last_hour
         - input_boolean.guest_mode
       state: "off"
-  action:
+  actions:
     - service: script.leaving
     - service: notify.all_iphones
       data:
@@ -55,7 +55,7 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
-  action:
+  actions:
     - delay: "00:05:00" # something still needs to be on in 5 min
     - condition: state
       entity_id: binary_sensor.no_one_home
@@ -76,8 +76,8 @@
     platform: event
     event_type: mobile_app_notification_action
     event_data:
-      action: TURN_OFF_EVERYTHING
-  action:
+      actions: TURN_OFF_EVERYTHING
+  actions:
     service: script.leaving
 
 
@@ -88,7 +88,7 @@
     event_data:
       id: smart_switch_door
       event: 1002  # single click
-  action:
+  actions:
     - wait_for_trigger:  # when the door closes, turn off everything
         platform: state
         entity_id: binary_sensor.openclose_front_door

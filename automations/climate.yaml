@@ -20,7 +20,7 @@
       - input_boolean.alarm_clock
       - input_boolean.automatic_temperature
     state: "on"
-  action:
+  actions:
     service: script.set_high_temperature
 
 - alias: "Climate: turn on the heating when going home"
@@ -41,7 +41,7 @@
     - condition: state
       entity_id: binary_sensor.no_one_home
       state: "on"
-  action:
+  actions:
     - service: script.set_high_temperature
     - service: notify.all_iphones
       data:
@@ -60,7 +60,7 @@
       entity_id: binary_sensor.no_one_home
       state: "off"
     - "{{ not is_state_attr('climate.thermostat', 'temperature', states('input_number.temperature_low')|float(0)) }}"
-  action:
+  actions:
     - service: script.set_low_temperature
     - service: notify.all_iphones
       data:
@@ -76,7 +76,7 @@
         platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: TURN_ON_HEATING
+          actions: TURN_ON_HEATING
       timeout: "00:00:20"
       continue_on_timeout: false
     - service: script.set_high_temperature
@@ -85,7 +85,7 @@
   triggers:
     platform: time_pattern
     hours: "/1"
-  action:
+  actions:
     service: mqtt.publish
     data:
       topic: actions/otmonitor/outside
@@ -99,7 +99,7 @@
     to: "on"
     for: "00:05:00"
   conditions: "{{ state_attr('climate.thermostat', 'temperature') >= 18 }}"
-  action:
+  actions:
     - repeat:
         while:
           - condition: state
@@ -130,7 +130,7 @@
   triggers:
     platform: time_pattern
     hours: "/2"
-  action:
+  actions:
     service: mqtt.publish
     data:
       topic: actions/otmonitor/maxdhwsetpt
@@ -147,6 +147,6 @@
     conditions: state
     entity_id: binary_sensor.activity_in_guest_room
     state: "off"
-  action:
+  actions:
     service: switch.turn_off
     entity_id: switch.space_heater

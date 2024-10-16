@@ -18,7 +18,7 @@
     conditions: state
     entity_id: media_player.tv
     state: "on"
-  action:
+  actions:
     service: media_player.media_play_pause
     target:
       entity_id: |
@@ -30,7 +30,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Minimal lights bedroom
-  action:
+  actions:
     service: light.turn_on
     data:
       entity_id:
@@ -45,7 +45,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Fix TV sound
-  action:
+  actions:
     service: script.fix_sound
 
 - alias: "Apple Watch: set sleep mode"
@@ -55,7 +55,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Set sleep mode
-  action:
+  actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
     - service: "{{ iphone }}"
@@ -73,15 +73,15 @@
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SLEEP_OFF
+            actions: SLEEP_OFF
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SLEEP_HALF
+            actions: SLEEP_HALF
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SLEEP_TOTAL
+            actions: SLEEP_TOTAL
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -98,7 +98,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Set lights
-  action:
+  actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
     - service: "{{ iphone }}"
@@ -124,31 +124,31 @@
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_ALL
+            actions: SET_LIGHTS_ALL
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_BEDROOM
+            actions: SET_LIGHTS_BEDROOM
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_LIVING_ROOM
+            actions: SET_LIGHTS_LIVING_ROOM
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_BATHROOM
+            actions: SET_LIGHTS_BATHROOM
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_HALL
+            actions: SET_LIGHTS_HALL
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_TOILET
+            actions: SET_LIGHTS_TOILET
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_KITCHEN
+            actions: SET_LIGHTS_KITCHEN
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -185,31 +185,31 @@
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: LIGHTS_OFF
+            actions: LIGHTS_OFF
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: LIGHTS_ON
+            actions: LIGHTS_ON
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: LIGHTS_FIFTY
+            actions: LIGHTS_FIFTY
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: LIGHTS_HUNDRED
+            actions: LIGHTS_HUNDRED
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: LIGHTS_ONE
+            actions: LIGHTS_ONE
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: LIGHTS_WHITE
+            actions: LIGHTS_WHITE
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: LIGHTS_COZY
+            actions: LIGHTS_COZY
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -263,7 +263,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Temperature report
-  action:
+  actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
     - service: "{{ iphone }}"
@@ -283,7 +283,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Portfolio value
-  action:
+  actions:
     - variables:
         iphone: "notify.iphone_bas"
     - service: "{{ iphone }}"
@@ -299,7 +299,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Vacuum
-  action:
+  actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
     - service: "{{ iphone }}"
@@ -325,31 +325,31 @@
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: VACUUM_LIVING_ROOM
+            actions: VACUUM_LIVING_ROOM
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: VACUUM_BEDROOM
+            actions: VACUUM_BEDROOM
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: VACUUM_OFFICE
+            actions: VACUUM_OFFICE
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: VACUUM_HALL
+            actions: VACUUM_HALL
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: VACUUM_KITCHEN
+            actions: VACUUM_KITCHEN
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: VACUUM_ALL
+            actions: VACUUM_ALL
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: VACUUM_STOP
+            actions: VACUUM_STOP
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -364,7 +364,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Movie time
-  action:
+  actions:
     - service: light.turn_on
       data:
         entity_id:
@@ -387,7 +387,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Reset adaptive lighting
-  action:
+  actions:
     service: script.reset_adaptive_lighting
 
 - alias: "Apple Watch: set temperature"
@@ -397,7 +397,7 @@
     event_type: ios.action_fired
     event_data:
       actionName: Set temperature
-  action:
+  actions:
     - variables:
         iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
     - service: "{{ iphone }}"
@@ -423,31 +423,31 @@
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: T15
+            actions: T15
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: T16
+            actions: T16
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: T17
+            actions: T17
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: T18
+            actions: T18
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: T19
+            actions: T19
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: T20
+            actions: T20
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: T21
+            actions: T21
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -473,7 +473,7 @@
       {% endif %}
     other_person: "{% if phone == 'basnijholt' %}Marcella{% else %}Bas{% endif %}"
     device_tracker: "device_tracker.{{ other_person }}_iphone"
-  action:
+  actions:
     service: "notify.mobile_app_{{ phone }}_iphone"
     data:
       message: "{{ other_person }} is {{ distance('device_tracker.basnijholt_iphone', 'device_tracker.marcella_iphone') | round(2) }} km away"

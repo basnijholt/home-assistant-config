@@ -21,7 +21,7 @@
     - condition: state
       entity_id: vacuum.valetudo_vacuum
       state: "docked"
-  action:
+  actions:
     - service: notify.all_iphones
       data:
         message: "Security: motion is detected, but we are not home."
@@ -36,7 +36,7 @@
         platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: SOUND_ALARM
+          actions: SOUND_ALARM
       timeout: "01:00:00"
       continue_on_timeout: false
     - service: light.turn_on
@@ -52,7 +52,7 @@
     from: "off"
     to: "on"
     for: "00:05:00"
-  action:
+  actions:
     service: notify.all_iphones
     data:
       title: "Security"
@@ -65,7 +65,7 @@
     from: "off"
     to: "on"
     for: "00:05:00"
-  action:
+  actions:
     service: notify.all_iphones
     data:
       title: "Security"
@@ -85,7 +85,7 @@
     - condition: numeric_state
       entity_id: sensor.power_consumption
       above: 0.7
-  action:
+  actions:
     service: notify.all_iphones
     data:
       title: "Security"
@@ -102,7 +102,7 @@
     conditions: state
     entity_id: input_boolean.bathroom_door_open_warning
     state: "on"
-  action:
+  actions:
     - service: notify.bas
       data:
         title: Security
@@ -129,7 +129,7 @@
     conditions: state
     entity_id: input_boolean.bedroom_activity_warning
     state: "on"
-  action:
+  actions:
     - service: notify.bas
       data:
         title: Security
@@ -153,7 +153,7 @@
       to: 'on'
       for:
         seconds: 15
-  action:
+  actions:
     - repeat:
         while:
           - condition: state

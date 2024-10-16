@@ -32,7 +32,7 @@
     conditions: state
     entity_id: input_boolean.guest_mode
     state: "off"
-  action:
+  actions:
     service: light.turn_on
     entity_id: light.living_room_lights
 
@@ -48,7 +48,7 @@
     conditions: state
     entity_id: input_boolean.guest_mode
     state: "off"
-  action:
+  actions:
     service: light.turn_off
     entity_id: light.living_room_lights
 
@@ -66,7 +66,7 @@
     conditions: state
     entity_id: binary_sensor.someone_in_the_house_in_last_hour
     state: "on"
-  action:
+  actions:
     service: switch.turn_on
     entity_id: switch.christmas_tree
 
@@ -78,7 +78,7 @@
     - platform: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       to: "off"
-  action:
+  actions:
     service: switch.turn_off
     entity_id: switch.christmas_tree
 
@@ -103,7 +103,7 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
-  action:
+  actions:
     service: light.turn_{{ trigger.to_state.state }}
     data:
       entity_id: light.dinner_area
@@ -119,7 +119,7 @@
     platform: state
     entity_id: light.dinner_area
     to: "off"
-  action:
+  actions:
     service: input_boolean.turn_off
     entity_id: input_boolean.automatic_dinner_area_light
 
@@ -127,7 +127,7 @@
   triggers:
     platform: time
     at: "06:00:00"
-  action:
+  actions:
     service: input_boolean.turn_on
     entity_id: input_boolean.automatic_dinner_area_light
 
@@ -142,7 +142,7 @@
     state:
       - "off"
       - "half"
-  action:
+  actions:
     service: light.turn_on
     entity_id: light.kitchen_counter
 
@@ -151,7 +151,7 @@
     platform: state
     entity_id: binary_sensor.activity_in_kitchen
     to: "off"
-  action:
+  actions:
     service: light.turn_off
     entity_id: light.kitchen_counter
 
@@ -159,7 +159,7 @@
   triggers:
     platform: time
     at: "05:00:00"
-  action:
+  actions:
     service: shell_command.reboot_kitchen_ceiling
 
 #  ____        _   _
@@ -175,7 +175,7 @@
     entity_id: binary_sensor.activity_in_bathroom
     to: "on"
   conditions: "{{ states('input_select.sleep_mode') != 'total' }}"
-  action:
+  actions:
     service: light.turn_on
     data:
       entity_id: light.bathroom_lights
@@ -186,7 +186,7 @@
     platform: state
     entity_id: binary_sensor.activity_in_bathroom
     to: "off"
-  action:
+  actions:
     service: light.turn_off
     data:
       entity_id: light.bathroom_lights
@@ -219,7 +219,7 @@
         | map(attribute="entity_id")
         | list }}
   conditions: "{{ (off_lights | length) > 0 }}"
-  action:
+  actions:
     alias: Turn on lights that are off
     repeat:
       count: "{{ off_lights | length }}"
@@ -234,7 +234,7 @@
     entity_id: binary_sensor.activity_in_hall
     from: "on"
     to: "off"
-  action:
+  actions:
     service: light.turn_off
     data:
       entity_id:
@@ -267,7 +267,7 @@
     - condition: state
       entity_id: input_boolean.automatic_bedroom_lights
       state: "on"
-  action:
+  actions:
     - alias: Turn on lights that are off
       repeat:
         count: "{{ off_lights | length }}"
@@ -295,7 +295,7 @@
     - condition: state
       entity_id: input_boolean.automatic_bedroom_lights
       state: "on"
-  action:
+  actions:
     service: light.turn_off
     entity_id: light.bedroom_lights
     data:
@@ -323,7 +323,7 @@
     conditions: state
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
     state: "on"
-  action:
+  actions:
     service: input_boolean.turn_off
     entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
@@ -331,7 +331,7 @@
   triggers:
     platform: time
     at: "12:00"
-  action:
+  actions:
     entity_id: input_boolean.automatic_bedroom_lights
     service: input_boolean.turn_on
 
@@ -343,7 +343,7 @@
     to: "off"
     for: "02:00:00"
   conditions: "{{ is_state('light.bedroom_lights', 'on') }}"
-  action:
+  actions:
     service: light.turn_off
     data:
       entity_id: light.bedroom_lights
@@ -352,7 +352,7 @@
   triggers:
     platform: time
     at: "13:00:00"
-  action:
+  actions:
     service: shell_command.reboot_bedroom_ceiling
 
 - alias: 'Light: Update input_select when bedroom lights turned off'
@@ -361,7 +361,7 @@
     platform: state
     entity_id: light.bedroom_lights
     to: 'off'
-  action:
+  actions:
     service: input_select.select_option
     data:
       entity_id: input_select.last_script_bedroom
@@ -392,7 +392,7 @@
     - platform: state
       to: "on"
       entity_id: binary_sensor.activity_outside_garage
-  action:
+  actions:
     - service: light.turn_on
       data:
         entity_id:
@@ -421,7 +421,7 @@
     - platform: state
       to: "off"
       entity_id: binary_sensor.activity_outside_garage
-  action:
+  actions:
     - if: "{{ is_state('binary_sensor.activity_in_utility_room', 'off') }}"
       then:
         - service: light.turn_off
@@ -445,7 +445,7 @@
     - platform: sun
       event: sunrise
       offset: "-02:00:00"
-  action:
+  actions:
     service: light.turn_on
     entity_id: light.front_house
 
@@ -456,7 +456,7 @@
     - platform: sun
       event: sunrise
       offset: "+01:00:00"
-  action:
+  actions:
     service: light.turn_off
     entity_id: light.front_house
 #                        _
@@ -475,7 +475,7 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
-  action:
+  actions:
     service: light.turn_{{ trigger.to_state.state }}
     data:
       entity_id: light.guest_room_lights
@@ -492,7 +492,7 @@
   triggers:
     platform: state
     entity_id: binary_sensor.activity_in_baby_room
-  action:
+  actions:
     - service: light.turn_{{ trigger.to_state.state }}
       data:
         entity_id: light.baby_sphere
@@ -518,7 +518,7 @@
     - condition: state
       entity_id: light.living_room_lights
       state: "on"
-  action:
+  actions:
     service: light.turn_off
     entity_id: light.living_room_lights
 
@@ -534,7 +534,7 @@
     - condition: state
       entity_id: light.guest_room_lights
       state: "on"
-  action:
+  actions:
     service: light.turn_off
     entity_id: light.guest_room_lights
 
@@ -555,7 +555,7 @@
         - condition: state
           entity_id: light.baby_room_lights
           state: "on"
-  action:
+  actions:
     service: light.turn_off
     entity_id:
       - light.baby_room_lights
@@ -575,7 +575,7 @@
     - condition: state
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
       state: "on"
-  action:
+  actions:
     - service: light.turn_off
       entity_id: light.bedroom_lights
     - service: light.turn_off
@@ -607,7 +607,7 @@
         - condition: state
           entity_id: light.outside_front_door
           state: "on"
-  action:
+  actions:
     service: light.turn_off
     entity_id:
       - light.utility_room
@@ -618,7 +618,7 @@
   triggers:
     platform: mqtt
     topic: zigbee2mqtt/bridge/devices
-  action:
+  actions:
     - variables:
         devices: "{{ trigger.payload_json }}"
     - variables:
@@ -646,6 +646,6 @@
   triggers:
     platform: time_pattern
     minutes: "/5"
-  action:
+  actions:
     service: script.sync_z2m_to_ha_lights
   mode: single

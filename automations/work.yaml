@@ -21,7 +21,7 @@
     - condition: state
       entity_id: input_boolean.work_hour_notification_sent
       state: "off"
-  action:
+  actions:
     - service: notify.iphone_bas
       data:
         title: "Work"
@@ -37,7 +37,7 @@
     conditions: state
     entity_id: input_boolean.work_hour_notification_sent
     state: "on"
-  action:
+  actions:
     service: input_boolean.turn_off
     entity_id: input_boolean.work_hour_notification_sent
 
@@ -50,7 +50,7 @@
     conditions: time
     after: "15:00:00"
     before: "22:00:00"
-  action:
+  actions:
     # service: notify.mobile_app_marcella_iphone
     service: notify.all_iphones
     data:

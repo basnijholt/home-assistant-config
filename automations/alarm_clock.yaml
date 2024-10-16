@@ -17,7 +17,7 @@
     conditions: state
     entity_id: input_boolean.alarm_clock
     state: "on"
-  action:
+  actions:
     - service: input_boolean.turn_off
       entity_id: input_boolean.alarm_clock
     - service: input_boolean.turn_on

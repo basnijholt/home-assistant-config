@@ -14,7 +14,7 @@
     platform: state
     entity_id: device_tracker.marcella_iphone
     to: rotterdam_centraal
-  action:
+  actions:
     service: notify.iphone_bas
     data:
       title: "Arriving"
@@ -29,7 +29,7 @@
     conditions: state
     entity_id: input_boolean.front_door_open_warning
     state: "on"
-  action:
+  actions:
     - service: notify.mobile_app_basnijholt_iphone_13
       data:
         title: Security
@@ -45,7 +45,7 @@
   triggers:
     - platform: time
       at: "07:30:00"
-  action:
+  actions:
     - service: notify.mobile_app_marcella_iphone_14_pro
       data:
         title: "Daily new word"
@@ -94,7 +94,7 @@
         platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: "AGREE_WORD"
+          actions: "AGREE_WORD"
       timeout: "01:00:00"
       continue_on_timeout: false
 

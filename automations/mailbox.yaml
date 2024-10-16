@@ -20,7 +20,7 @@
     - condition: state
       entity_id: input_boolean.mailbox_full
       state: "off"
-  action:
+  actions:
     - service: notify.all_iphones
       data:
         title: "Mailbox"

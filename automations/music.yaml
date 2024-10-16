@@ -15,7 +15,7 @@
     entity_id: input_boolean.start_the_music
     from: "off"
     to: "on"
-  action:
+  actions:
     - service: input_boolean.turn_off
       entity_id: input_boolean.start_the_music
     - service: script.start_spotify_playlist_of_nearest_person
@@ -42,7 +42,7 @@
     - condition: numeric_state
       entity_id: proximity.home
       below: 2
-  action:
+  actions:
     - service: media_player.turn_on
       entity_id: media_player.kef_ls50
     - service: media_player.select_source

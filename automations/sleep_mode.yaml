@@ -21,7 +21,7 @@
     conditions: state
     entity_id: input_boolean.alarm_clock
     state: "off"
-  action:
+  actions:
     entity_id: input_select.sleep_mode
     service: input_select.select_option
     data:
@@ -32,7 +32,7 @@
     platform: state
     entity_id: input_select.sleep_mode
     from: "off"
-  action:
+  actions:
     service: input_boolean.turn_off
     entity_id: input_boolean.automatic_bedroom_lights
 
@@ -41,7 +41,7 @@
     platform: state
     entity_id: input_select.sleep_mode
     from: "off"
-  action:
+  actions:
     service: script.set_low_temperature
 
 - alias: "Night mode: go from half to total sleeping mode"
@@ -57,7 +57,7 @@
     conditions: state
     entity_id: input_select.sleep_mode
     state: half
-  action:
+  actions:
     - service: input_select.select_option
       entity_id: input_select.sleep_mode
       data:
@@ -74,7 +74,7 @@
     platform: state
     entity_id: input_select.sleep_mode
     to: "total"
-  action:
+  actions:
     choose:
       - conditions: "{{ is_state('binary_sensor.activity_in_living_room', 'on') }}"
         sequence:

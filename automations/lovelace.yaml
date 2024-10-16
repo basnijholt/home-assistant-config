@@ -13,6 +13,6 @@
   triggers:
     platform: state
     entity_id: sensor.lovelace
-  action:
+  actions:
     - service: shell_command.convert_lovelace
     - service: shell_command.chores  # to update the ASCII art

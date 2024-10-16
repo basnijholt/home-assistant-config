@@ -14,7 +14,7 @@
     entity_id: vacuum.valetudo_vacuum
     from: docked
     to: cleaning
-  action:
+  actions:
     - service: notify.all_iphones
       data:
         title: "Robot"
@@ -30,7 +30,7 @@
     entity_id: vacuum.valetudo_vacuum
     from: returning
     to: docked
-  action:
+  actions:
     - service: input_boolean.turn_on
       entity_id: input_boolean.cleaned_today
     - service: input_datetime.set_datetime
@@ -50,7 +50,7 @@
     conditions: state
     entity_id: binary_sensor.vacuum_day
     state: "on"
-  action:
+  actions:
     service: notify.all_iphones
     data:
       title: "Robot"
@@ -83,7 +83,7 @@
     - condition: state
       entity_id: input_boolean.vacation_mode
       state: "off"
-  action:
+  actions:
     service: vacuum.start
     entity_id: vacuum.valetudo_vacuum
 
@@ -92,7 +92,7 @@
   triggers:
     platform: time
     at: "00:00:00"
-  action:
+  actions:
     service: input_boolean.turn_off
     entity_id: input_boolean.cleaned_today
 
@@ -101,7 +101,7 @@
     platform: state
     entity_id: vacuum.living_room
     to: docked
-  action:
+  actions:
     service: vacuum.set_fan_speed
     entity_id: vacuum.valetudo_vacuum
     data:

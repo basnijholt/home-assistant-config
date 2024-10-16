@@ -15,7 +15,7 @@
     above: 70
     for:
       hours: 4
-  action:
+  actions:
     service: notify.iphone_bas
     data:
       title: "System"
@@ -28,7 +28,7 @@
     above: 70
     for:
       hours: 4
-  action:
+  actions:
     service: notify.iphone_bas
     data:
       title: "System"
@@ -39,7 +39,7 @@
     platform: numeric_state
     entity_id: sensor.temperature_xbox
     above: 50
-  action:
+  actions:
     - service: notify.iphone_bas
       data:
         title: "System"
@@ -58,7 +58,7 @@
   triggers:
     platform: time_pattern # XXX: trigger on IP change
     minutes: "/15"
-  action:
+  actions:
     service: script.update_dns
 
 - alias: "System: run chores"
@@ -66,7 +66,7 @@
   triggers:
     platform: time_pattern
     minutes: "/15"
-  action:
+  actions:
     service: shell_command.chores
 
 - alias: "System: MQTT sensors are not updating"
@@ -75,7 +75,7 @@
     platform: time_pattern
     minutes: "/5"
   conditions: "{{ (as_timestamp(now()) - as_timestamp(states.sensor.power_consumption.last_changed)) > 20 * 60 }}"
-  action:
+  actions:
     - service: notify.iphone_bas
       data:
         title: "System"
@@ -91,7 +91,7 @@
     notify_service: notify.iphone_bas
     battery_ids: ""
     current: ""
-  action:
+  actions:
     - variables:
         battery_ids: >
           {% set ns = namespace(battery=[]) %}

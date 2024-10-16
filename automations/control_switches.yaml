@@ -15,8 +15,8 @@
     platform: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Living room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
-  action:
+    actions: "{{ trigger.payload_json.action }}"
+  actions:
     choose:
       # Next color
       - conditions: "{{ action == 'off_press' }}" # Lowest button
@@ -78,8 +78,8 @@
     platform: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Bedroom)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
-  action:
+    actions: "{{ trigger.payload_json.action }}"
+  actions:
     choose:
       # Next color
       - conditions: "{{ action == 'off_press' }}" # Lowest button
@@ -153,14 +153,14 @@
     - platform: mqtt
       topic: "zigbee2mqtt/IKEA Remote (Bedroom Marcella)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    actions: "{{ trigger.payload_json.action }}"
     personal_light: >-
       {% if trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom)' %}
         light.bed_led
       {% elif trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom Marcella)' %}
         light.philips_go
       {% endif %}
-  action:
+  actions:
     choose:
       # Bright lights
       - conditions:
@@ -263,7 +263,7 @@
     event_type: deconz_event
     event_data:
       id: smart_switch_living_room
-  action:
+  actions:
     choose:
       # Next color
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
@@ -317,7 +317,7 @@
       event_type: deconz_event
       event_data:
         id: smart_switch_bedroom_marcella
-  action:
+  actions:
     choose:
       # Next color
       - conditions: "{{ trigger.event.data.event == 1004 }}" # Double click
@@ -399,7 +399,7 @@
     event_type: deconz_event
     event_data:
       id: smart_switch_bathroom
-  action:
+  actions:
     choose:
       # Toggle lights
       - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
@@ -422,7 +422,7 @@
     event_type: deconz_event
     event_data:
       id: smart_switch_door
-  action:
+  actions:
     choose:
       # Leaving: turn off everything
       - conditions: "{{ trigger.event.data.event == 1002 }}" # Single click
@@ -461,8 +461,8 @@
     platform: mqtt
     topic: "zigbee2mqtt/IKEA Switch (Guest room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
-  action:
+    actions: "{{ trigger.payload_json.action }}"
+  actions:
     choose:
       # Turn on
       - conditions: "{{ action == 'on' }}" # Lowest button
@@ -482,8 +482,8 @@
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Guest Room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
-  action:
+    actions: "{{ trigger.payload_json.action }}"
+  actions:
     choose:
       # Toggle
       - conditions: "{{ action == 'single' }}"
@@ -504,8 +504,8 @@
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
-  action:
+    actions: "{{ trigger.payload_json.action }}"
+  actions:
     choose:
       # Toggle
       - conditions: "{{ action == 'single' }}"
@@ -520,8 +520,8 @@
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Baby Room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
-  action:
+    actions: "{{ trigger.payload_json.action }}"
+  actions:
     choose:
       # Toggle light
       - conditions: "{{ action == 'single' }}"
@@ -543,8 +543,8 @@
     platform: mqtt
     topic: "zigbee2mqtt/Smart Switch (Mid Room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
-  action:
+    actions: "{{ trigger.payload_json.action }}"
+  actions:
     choose:
       # Toggle
       - conditions: "{{ action == 'single' }}"

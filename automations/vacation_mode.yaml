@@ -20,7 +20,7 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
-  action:
+  actions:
     - service: input_boolean.turn_on
       entity_id: input_boolean.vacation_mode
     - service: notify.all_iphones
@@ -42,7 +42,7 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: "off"
-  action:
+  actions:
     - service: input_boolean.turn_off
       entity_id: input_boolean.vacation_mode
     - service: notify.all_iphones

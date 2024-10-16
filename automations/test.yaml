@@ -20,7 +20,7 @@
     - platform: event
       event_type: state_changed
   conditions: "{{ trigger.event.context.id.startswith('adapt_lgt') }}"
-  action:
+  actions:
     service: system_log.write
     data:
       message: "{{ trigger.event.data.entity_id }} is changed by AL: {{ trigger.event.data }}"
@@ -31,7 +31,7 @@
   triggers:
     platform: state
     entity_id: sensor.time
-  action:
+  actions:
     - variables:
         t_start: "{{ as_timestamp(now()) }}"
     - service: system_log.write
@@ -46,7 +46,7 @@
     entity_id: sensor.time
   variables:  # 'light.bathroom_ceiling',
     lights: 'light.bed_led,light.philips_go,light.bed_reading_up,light.hall_3,light.toilet,light.ceiling_kitchen,light.bamboo,light.lampan,light.sphere_2,light.sphere_1,light.hall_2,light.bed_reading_down,light.corner_living_room,light.tv_led,light.stairs_up,light.stairs_down,light.ceiling_bedroom,light.ceiling_living_room,light.hall_1,light.bed_reading'
-  action:
+  actions:
     - alias: Turn on lights that are off
       repeat:
         count: "{{ lights | length }}"
@@ -75,7 +75,7 @@
       event_data:
         service: turn_off
         domain: light
-  action:
+  actions:
     - delay: "00:00:01"
     - service: homeassistant.update_entity
       data:
@@ -86,7 +86,7 @@
   triggers:
     platform: homeassistant
     event: start
-  action:
+  actions:
     - condition: "{{ is_state('automation.test_light_baby_room_loop', 'on') }}"
     - service: light.turn_on
       target:

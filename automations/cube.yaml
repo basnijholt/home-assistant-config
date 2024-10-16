@@ -19,7 +19,7 @@
   variables:
     event: "{{ trigger.event.data.event }}"
   conditions: "{{ (event | string)[1:-1] == '00' }}"
-  action:
+  actions:
     choose:
       # Change cube mode by shifting on one side, or rotating from one side to another side
       - conditions: >
@@ -80,7 +80,7 @@
   variables:
     event: "{{ trigger.event.data.event }}"
   conditions: "{{ (event | string)[1:-1] != '00' or event < 0 }}"
-  action:
+  actions:
     choose:
       - conditions: # Change hue of living room lights
           conditions: state

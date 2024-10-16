@@ -16,7 +16,7 @@
     event_data:
       id: smart_switch_doorbell
       event: 1002 # Single click
-  action:
+  actions:
     - service: light.turn_on
       data:
         flash: "short"

@@ -33,7 +33,7 @@
     - >
       {{ not (is_state_attr('media_player.spotify', 'source', 'KEF LS50')
               and is_state('media_player.spotify', 'playing')) }}
-  action:
+  actions:
     service: media_player.select_source
     entity_id: media_player.kef_ls50
     data:
@@ -48,7 +48,7 @@
     conditions: state
     entity_id: media_player.kef_ls50
     state: "on"
-  action:
+  actions:
     - service: homeassistant.update_entity
       entity_id: media_player.kef_ls50
     - condition: template
@@ -74,7 +74,7 @@
       {{ trigger.from_state.state != trigger.to_state.state
           or trigger.from_state.attributes["volume_level"] != trigger.to_state.attributes["volume_level"]
           or trigger.from_state.attributes["source"] != trigger.to_state.attributes["source"] }}
-  action:
+  actions:
     - service: media_player.turn_on
       entity_id: media_player.kef_ls50
     - service: media_player.select_source
@@ -93,7 +93,7 @@
     - condition: state
       entity_id: media_player.tv
       state: "on"
-  action:
+  actions:
     service: homeassistant.update_entity
     entity_id: media_player.spotify
 
@@ -110,7 +110,7 @@
   conditions:
     - "{{ trigger.to_state.state != 'off' }}"
     - "{{ state_attr('media_player.kef_ls50', 'source') in ('Optical Input 1', 'HDMI ARC', 'Usb') }}"
-  action:
+  actions:
     repeat:
       sequence:
         - service: media_player.volume_set
@@ -132,7 +132,7 @@
     entity_id: binary_sensor.motion_sensor_living_room_klok
     to: "off"
     for: "02:00:00"
-  action:
+  actions:
     - service: media_player.turn_off
       entity_id: media_player.living_room_xbox
     - service: media_player.turn_off
@@ -142,7 +142,7 @@
   triggers:
     platform: webostv.turn_on
     entity_id: media_player.tv
-  action:
+  actions:
     - service: wake_on_lan.send_magic_packet
       data:
         mac: "!secret tv_mac_address"

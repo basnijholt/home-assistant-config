@@ -25,7 +25,7 @@
       state: "off"
     - "{{ is_state_attr('media_player.spotify', 'source', 'basnijholt-iphone') }}"
     - "{{ is_state('media_player.spotify', 'playing') }}"
-  action:
+  actions:
     - service: notify.iphone_bas
       data:
         title: "Arriving"

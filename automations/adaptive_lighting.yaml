@@ -16,7 +16,7 @@
       event: start  # in case the states aren't properly restored
   variables:
     sleep_mode: "{{ states('input_select.sleep_mode') }}"
-  action:
+  actions:
     choose:
       - conditions: "{{ sleep_mode == 'off' }}"
         sequence:
@@ -59,7 +59,7 @@
     light: "{{ trigger.event.data.entity_id }}"
     switch: "{{ trigger.event.data.switch }}"
   conditions: "{{ 'hall' not in light and 'stairs' not in light }}"
-  action:
+  actions:
     - delay: "01:00:00"
     - condition: template
       value_template: "{{ light in state_attr('switch', 'manual_control') }}"
@@ -82,7 +82,7 @@
   variables:
     light: "{{ trigger.event.data.entity_id }}"
   conditions: "{{ 'hall' not in light and 'stairs' not in light }}"
-  action:
+  actions:
     - service: system_log.write
       data:
         message: "{{ light }} is manually controlled"
