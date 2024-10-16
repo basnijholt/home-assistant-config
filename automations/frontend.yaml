@@ -32,11 +32,11 @@
 
 - alias: "Frontend: change theme"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: input_select.theme
-    - platform: state
+    - trigger: state
       entity_id: input_boolean.dark_mode
-    - platform: state
+    - trigger: state
       entity_id: input_boolean.theme_alternative
     - platform: homeassistant
       event: start

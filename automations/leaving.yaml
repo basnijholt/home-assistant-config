@@ -12,7 +12,7 @@
 - alias: "Leaving: automatically turn off everything"
   initial_state: "on"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       from: "on"
       to: "off"
@@ -40,10 +40,10 @@
 - alias: "Leaving: ask to turn off everything"
   initial_state: "on"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: person.bas
       from: "home"
-    - platform: state
+    - trigger: state
       entity_id: person.marcella
       from: "home"
   conditions:

@@ -13,7 +13,7 @@
   triggers:
     - platform: time
       at: "07:00"
-    - platform: state
+    - trigger: state
       entity_id: input_boolean.alarm_clock
       from: "on"
       to: "off"

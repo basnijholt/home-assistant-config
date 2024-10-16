@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Adaptive lighting: turn on and off switches"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: input_select.sleep_mode
     - platform: homeassistant
       event: start  # in case the states aren't properly restored

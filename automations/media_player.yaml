@@ -15,9 +15,9 @@
     aren't playing Spotify (via WiFi) directly, switch the source of the speakers
     to "Opt".
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: media_player.tv
-    - platform: state
+    - trigger: state
       entity_id: media_player.spotify
       to: paused
   conditions:
@@ -101,10 +101,10 @@
   mode: single
   max_exceeded: silent
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: media_player.kef_ls50
       attribute: volume_level
-    - platform: state
+    - trigger: state
       entity_id: media_player.tv
       attribute: volume_level
   conditions:

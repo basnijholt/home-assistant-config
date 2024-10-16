@@ -38,10 +38,10 @@
 
 - alias: "Light: turn off living room"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.activity_in_living_room
       to: "off"
-    - platform: state
+    - trigger: state
       entity_id: input_select.sleep_mode
       from: total
   conditions:
@@ -54,12 +54,12 @@
 
 - alias: "Light: turn on Chrismas tree"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: input_select.sleep_mode
       to:
         - "off"
         - "half"
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       to: "on"
   conditions:
@@ -72,10 +72,10 @@
 
 - alias: "Light: turn off Chrismas tree"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: input_select.sleep_mode
       to: "total"
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.someone_in_the_house_in_last_hour
       to: "off"
   actions:
@@ -201,11 +201,11 @@
 - alias: "Light: turn on hall"
   mode: parallel
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.activity_in_hall
       from: "off"
       to: "on"
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.openclose_front_door
       from: "off"
       to: "on"
@@ -304,7 +304,7 @@
 - alias: "Light: turn off bedroom lights auto switch"
   mode: parallel
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: light.bedroom_lights
       to: "off"
     - platform: event
@@ -383,13 +383,13 @@
 
 - alias: "Light: turn on utility room / garage outside"
   triggers:
-    - platform: state
+    - trigger: state
       to: "on"
       entity_id: binary_sensor.activity_in_utility_room
-    - platform: state
+    - trigger: state
       to: "on"
       entity_id: binary_sensor.activity_outside_front_door
-    - platform: state
+    - trigger: state
       to: "on"
       entity_id: binary_sensor.activity_outside_garage
   actions:
@@ -412,13 +412,13 @@
 
 - alias: "Light: turn off utility room / garage outside"
   triggers:
-    - platform: state
+    - trigger: state
       to: "off"
       entity_id: binary_sensor.activity_in_utility_room
-    - platform: state
+    - trigger: state
       to: "off"
       entity_id: binary_sensor.activity_outside_front_door
-    - platform: state
+    - trigger: state
       to: "off"
       entity_id: binary_sensor.activity_outside_garage
   actions:

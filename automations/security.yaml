@@ -73,7 +73,7 @@
 
 - alias: "Security: no one is home but high power usage"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.no_one_home
       to: "on"
     - platform: time_pattern
@@ -148,7 +148,7 @@
 - alias: "Security: Door to outside open"
   description: ''
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.door_to_outside_open
       to: 'on'
       for:

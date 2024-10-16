@@ -140,7 +140,7 @@
   triggers:
     - platform: time_pattern
       minutes: "/10"
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.activity_in_guest_room
       to: "off"
   conditions:

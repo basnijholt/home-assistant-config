@@ -11,9 +11,9 @@
 
 - alias: "Utilities: washing machine or dishwasher started or finished"
   triggers:
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.dishwasher
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.washing_machine
   variables:
     from_state: "{{ trigger.from_state.state }}"
