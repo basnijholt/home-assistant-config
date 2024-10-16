@@ -30,7 +30,7 @@
 - alias: "Bike: stop charging"
   triggers:
     trigger: time_pattern
-    minutes: '/1'
+    minutes: "/1"
   conditions:
     condition: template
     value_template: "{{ states('sensor.time') == states('input_datetime.bike_charger_off')[0:5] }}"
