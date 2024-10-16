@@ -492,6 +492,28 @@
           data:
             entity_id: light.guest_room_lights
 
+      # Toggle sleep mode
+      - conditions: "{{ action == 'double' }}"
+        sequence:
+          service: switch.toggle
+          entity_id: switch.adaptive_lighting_sleep_mode_guest_room
+
+- alias: "Control switches: Guest Room Space heater"
+  mode: parallel
+  trigger:
+    platform: mqtt
+    topic: "zigbee2mqtt/Smart Switch (Desk)"
+  variables:
+    action: "{{ trigger.payload_json.action }}"
+  action:
+    choose:
+      # Toggle
+      - conditions: "{{ action == 'single' }}"
+        sequence:
+          service: switch.toggle
+          data:
+            entity_id: switch.space_heater
+
 - alias: "Control switches: Baby Room Light"
   mode: parallel
   trigger:
@@ -531,7 +553,7 @@
           data:
             entity_id: light.mid_room
             brightness_pct: 100
-            rgb_color: [255, 15, 38]
+            color_temp_kelvin: 2200
 
       # Change brightness
       - conditions: "{{ action == 'double' }}"
