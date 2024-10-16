@@ -11,7 +11,7 @@
 - alias: "Doorbell: click the button"
   initial_state: "on"
   triggers:
-    platform: event
+    trigger: event
     event_type: deconz_event
     event_data:
       id: smart_switch_doorbell

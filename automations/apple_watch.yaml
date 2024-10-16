@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Apple Watch: Play or Pause the TV"
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Play TV
@@ -26,7 +26,7 @@
 
 - alias: "Apple Watch: minimal lights bedroom"
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Minimal lights bedroom
@@ -41,7 +41,7 @@
 
 - alias: "Apple Watch: fix TV sound"
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Fix TV sound
@@ -51,7 +51,7 @@
 - alias: "Apple Watch: set sleep mode"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Set sleep mode
@@ -94,7 +94,7 @@
 - alias: "Apple Watch: set lights"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Set lights
@@ -259,7 +259,7 @@
 - alias: "Apple Watch: temperature report"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Temperature report
@@ -279,7 +279,7 @@
 - alias: "Apple Watch: portfolio value"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Portfolio value
@@ -295,7 +295,7 @@
 - alias: "Apple Watch: send vacuum cleaner"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Vacuum
@@ -360,7 +360,7 @@
 
 - alias: "Apple Watch: movie time"
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Movie time
@@ -383,7 +383,7 @@
 
 - alias: "Apple Watch: reset adaptive lighting"
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Reset adaptive lighting
@@ -393,7 +393,7 @@
 - alias: "Apple Watch: set temperature"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Set temperature
@@ -460,7 +460,7 @@
 - alias: "Apple Watch: where is other person?"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: ios.action_fired
     event_data:
       actionName: Where is

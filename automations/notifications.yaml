@@ -91,7 +91,7 @@
               authenticationRequired: true
               destructive: true
     - wait_for_trigger:
-        platform: event
+        trigger: event
         event_type: mobile_app_notification_action
         event_data:
           actions: "AGREE_WORD"

@@ -12,7 +12,7 @@
 - alias: "Cube: perform operation"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: deconz_event
     event_data:
       id: mi_magic_cube
@@ -73,7 +73,7 @@
 
 - alias: "Cube: rotate the cube"
   triggers:
-    platform: event
+    trigger: event
     event_type: deconz_event
     event_data:
       id: mi_magic_cube

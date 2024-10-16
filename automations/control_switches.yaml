@@ -259,7 +259,7 @@
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: deconz_event
     event_data:
       id: smart_switch_living_room
@@ -395,7 +395,7 @@
 - alias: "Control switches: bathroom Aqara Wireless Mini Switch"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: deconz_event
     event_data:
       id: smart_switch_bathroom
@@ -418,7 +418,7 @@
 - alias: "Control switches: door Aqara Wireless Mini Switch"
   mode: parallel
   triggers:
-    platform: event
+    trigger: event
     event_type: deconz_event
     event_data:
       id: smart_switch_door
