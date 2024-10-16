@@ -90,7 +90,7 @@
       event: 1002  # single click
   actions:
     - wait_for_trigger:  # when the door closes, turn off everything
-        platform: state
+        trigger: state
         entity_id: binary_sensor.openclose_front_door
         from: "on"
         to: "off"

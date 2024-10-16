@@ -13,7 +13,7 @@
 
 - alias: "Bike: started charging"
   triggers:
-    platform: state
+    trigger: state
     entity_id: switch.bike_charger
     to: "on"
     from: "off"

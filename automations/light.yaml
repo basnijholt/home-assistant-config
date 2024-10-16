@@ -25,7 +25,7 @@
 
 - alias: "Light: turn on living room"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_living_room
     to: "on"
   conditions:
@@ -91,7 +91,7 @@
 
 - alias: "Light: toggle dinner area lights"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_dinner_area
   conditions:
     - condition: state
@@ -116,7 +116,7 @@
     - condition: time
       after: "18:00:00"
   triggers:
-    platform: state
+    trigger: state
     entity_id: light.dinner_area
     to: "off"
   actions:
@@ -133,7 +133,7 @@
 
 - alias: "Light: turn on kitchen counter if sleep mode is off"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_kitchen
     to: "on"
   conditions:
@@ -148,7 +148,7 @@
 
 - alias: "Light: turn off kitchen counter"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_kitchen
     to: "off"
   actions:
@@ -171,7 +171,7 @@
 
 - alias: "Light: turn on bathroom"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_bathroom
     to: "on"
   conditions: "{{ states('input_select.sleep_mode') != 'total' }}"
@@ -183,7 +183,7 @@
 
 - alias: "Light: turn off bathroom"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_bathroom
     to: "off"
   actions:
@@ -230,7 +230,7 @@
 
 - alias: "Light: turn off hall"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_hall
     from: "on"
     to: "off"
@@ -250,7 +250,7 @@
 
 - alias: "Light: automatically turn on the bedroom"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "on"
   variables:
@@ -281,7 +281,7 @@
 - alias: "Light: automatically turn off the bedroom"
   initial_state: "on"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_master_bedroom
     to: "off"
     for: "00:08:00"
@@ -337,7 +337,7 @@
 
 - alias: "Light: turn off bedroom after 2 hours of inactivity"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_master_bedroom
     from: "on"
     to: "off"
@@ -358,7 +358,7 @@
 - alias: 'Light: Update input_select when bedroom lights turned off'
   description: "Set the input_select.last_script_bedroom such that colored lights will be chosen"
   triggers:
-    platform: state
+    trigger: state
     entity_id: light.bedroom_lights
     to: 'off'
   actions:
@@ -469,7 +469,7 @@
 
 - alias: "Light: toggle guest room"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_guest_room
   conditions:
     - condition: state
@@ -490,7 +490,7 @@
 
 - alias: "Light: toggle baby room"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_in_baby_room
   actions:
     - service: light.turn_{{ trigger.to_state.state }}

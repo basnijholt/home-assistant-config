@@ -28,7 +28,7 @@
 
 - alias: "Utilities: washing machine notification"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.washing_machine
     from: "off"
     to: "on"
@@ -40,7 +40,7 @@
 
 - alias: "Utilities: dishwasher notification"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.dishwasher
     from: "off"
     to: "on"

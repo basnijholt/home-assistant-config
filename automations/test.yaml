@@ -29,7 +29,7 @@
 
 - alias: "Test: time"
   triggers:
-    platform: state
+    trigger: state
     entity_id: sensor.time
   actions:
     - variables:
@@ -42,7 +42,7 @@
 
 - alias: "Test: flash lights"
   triggers:
-    platform: state
+    trigger: state
     entity_id: sensor.time
   variables:  # 'light.bathroom_ceiling',
     lights: 'light.bed_led,light.philips_go,light.bed_reading_up,light.hall_3,light.toilet,light.ceiling_kitchen,light.bamboo,light.lampan,light.sphere_2,light.sphere_1,light.hall_2,light.bed_reading_down,light.corner_living_room,light.tv_led,light.stairs_up,light.stairs_down,light.ceiling_bedroom,light.ceiling_living_room,light.hall_1,light.bed_reading'

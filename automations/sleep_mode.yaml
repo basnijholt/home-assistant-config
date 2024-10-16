@@ -29,7 +29,7 @@
 
 - alias: "Night mode: turn off automatic bedroom lights"
   triggers:
-    platform: state
+    trigger: state
     entity_id: input_select.sleep_mode
     from: "off"
   actions:
@@ -38,7 +38,7 @@
 
 - alias: "Night mode: set low temperature when sleep mode turns on"
   triggers:
-    platform: state
+    trigger: state
     entity_id: input_select.sleep_mode
     from: "off"
   actions:
@@ -49,7 +49,7 @@
     When it is half sleeping mode and there is no activity in
     the house for more than an hour go to total sleeping mode.
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.activity_outside_bedroom
     to: "off"
     for: "01:00:00"
@@ -71,7 +71,7 @@
   description: >
     Set the living room lights to sleep mode only when no-one is there anymore.
   triggers:
-    platform: state
+    trigger: state
     entity_id: input_select.sleep_mode
     to: "total"
   actions:
@@ -79,7 +79,7 @@
       - conditions: "{{ is_state('binary_sensor.activity_in_living_room', 'on') }}"
         sequence:
           - wait_for_trigger:
-              platform: state
+              trigger: state
               entity_id: binary_sensor.activity_in_living_room
               from: "on"
               to: "off"

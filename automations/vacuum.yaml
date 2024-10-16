@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Vacuum: started cleaning"
   triggers:
-    platform: state
+    trigger: state
     entity_id: vacuum.valetudo_vacuum
     from: docked
     to: cleaning
@@ -26,7 +26,7 @@
 
 - alias: "Vacuum: stopped cleaning"
   triggers:
-    platform: state
+    trigger: state
     entity_id: vacuum.valetudo_vacuum
     from: returning
     to: docked
@@ -98,7 +98,7 @@
 
 - alias: "Vacuum: reset to standard mode"
   triggers:
-    platform: state
+    trigger: state
     entity_id: vacuum.living_room
     to: docked
   actions:

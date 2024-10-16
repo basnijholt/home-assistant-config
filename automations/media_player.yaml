@@ -41,7 +41,7 @@
 
 - alias: "Media player: turn off speakers when turning off TV"
   triggers:
-    platform: state
+    trigger: state
     entity_id: media_player.tv
     to: "off"
   conditions:
@@ -60,7 +60,7 @@
 
 - alias: "Media player: if speakers off and TV on, turn on the speaker on TV state change"
   triggers:
-    platform: state
+    trigger: state
     entity_id: media_player.tv
   conditions: # Happens e.g., when speakers auto-shutdown and the TV is on but idle
     - condition: state
@@ -128,7 +128,7 @@
 
 - alias: "Media player: automatically turn off TV and Xbox after two hours of inactivity"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.motion_sensor_living_room_klok
     to: "off"
     for: "02:00:00"

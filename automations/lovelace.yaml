@@ -11,7 +11,7 @@
 - alias: "Lovelace: convert lovelace.json to lovelace-ui.yaml"
   initial_state: "on"
   triggers:
-    platform: state
+    trigger: state
     entity_id: sensor.lovelace
   actions:
     - service: shell_command.convert_lovelace

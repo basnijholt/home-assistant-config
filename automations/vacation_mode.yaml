@@ -11,7 +11,7 @@
 - alias: "Vacation mode: auto turn on"
   initial_state: "on"
   triggers:
-    platform: state
+    trigger: state
     entity_id: group.persons
     from: home
     to: not_home
@@ -31,7 +31,7 @@
 - alias: "Vacation mode: auto turn off"
   initial_state: "on"
   triggers:
-    platform: state
+    trigger: state
     entity_id: group.persons
     from: not_home
     to: home

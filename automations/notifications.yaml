@@ -11,7 +11,7 @@
 
 - alias: "Notifications: Marcella arrived at Rotterdam Centraal"
   triggers:
-    platform: state
+    trigger: state
     entity_id: device_tracker.marcella_iphone
     to: rotterdam_centraal
   actions:
@@ -22,7 +22,7 @@
 
 - alias: "Notifications: front door has opened"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.openclose_front_door
     to: "on"
   conditions:

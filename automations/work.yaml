@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 - alias: "Work: go home notification"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.worked_enough_today
     from: "off"
     to: "on"
@@ -43,7 +43,7 @@
 
 - alias: "Work: Bas left work notification for Marcella"
   triggers:
-    platform: state
+    trigger: state
     entity_id: person.bas
     from: "Work"
   conditions:

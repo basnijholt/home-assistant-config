@@ -11,7 +11,7 @@
 - alias: "Music: start playlist"
   initial_state: "on"
   triggers:
-    platform: state
+    trigger: state
     entity_id: input_boolean.start_the_music
     from: "off"
     to: "on"
@@ -25,7 +25,7 @@
 
 - alias: "Music: switch music from iPhone to speakers if coming home"
   triggers:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.openclose_front_door
     from: "off"
     to: "on"
