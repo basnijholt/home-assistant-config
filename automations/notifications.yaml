@@ -41,28 +41,52 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.front_door_open_warning
 
-- alias: "Notifications: Hourly Mantra Notification"
+- alias: "Notifications: Daily New Word Notification"
   trigger:
-    - platform: time_pattern
-      hours: "/1"
-  condition:
-    - "{{ not is_state('input_select.sleep_mode', 'total') }}"
+    - platform: time
+      at: "07:30:00"
   action:
     - service: notify.mobile_app_marcella_iphone_14_pro
       data:
-        title: "Hourly Mantra"
+        title: "Daily new word"
         message: >
-          {% set mantras = [
-            "I am enough",
-            "I don't need to prove myself",
-            "I am loved"
+          {% set words = [
+            "Mama",
+            "Baby",
+            "Dog",
+            "Cat",
+            "Ball",
+            "Car",
+            "Book",
+            "Milk",
+            "Juice",
+            "Water",
+            "Apple",
+            "Banana",
+            "Eat",
+            "More",
+            "No",
+            "Yes",
+            "Please",
+            "Thank you",
+            "Hi",
+            "Bye",
+            "Night-night",
+            "Bath",
+            "Diaper",
+            "Shoe",
+            "Hat",
+            "Ear",
+            "Nose",
+            "Eye",
+            "Hand",
           ] %}
-          {% set mantra = mantras | random %}
-          {{ mantra }}
+          {% set word = words | random %}
+          {{ word }}
         data:
           actions:
-            - action: "AGREE_MANTRA"
-              title: "I agree"
+            - action: "AGREE_WORD"
+              title: "Great word!"
               activationMode: background
               authenticationRequired: true
               destructive: true
@@ -70,10 +94,10 @@
         platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: "AGREE_MANTRA"
+          action: "AGREE_WORD"
       timeout: "01:00:00"
       continue_on_timeout: false
 
     - service: notify.mobile_app_marcella_iphone_14_pro
       data:
-        message: "Yes you are! ❤️😘🥰💖💕🌷🌼🌈✨🎉🍀"
+        message: "We all love you! ❤️😘🥰💖💕🌷🌼🌈✨🎉🍀"
