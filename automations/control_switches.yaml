@@ -12,7 +12,7 @@
 - alias: "Control switches: living room Philips Hue dimmer switch"
   mode: parallel
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Living room)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -75,7 +75,7 @@
 - alias: "Control switches: bedroom Philips Hue dimmer switch"
   mode: parallel
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Bedroom)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -148,9 +148,9 @@
 - alias: "Control switches: bedroom IKEA dimmer switch"
   mode: parallel
   triggers:
-    - platform: mqtt
+    - trigger: event
       topic: "zigbee2mqtt/IKEA Remote (Bedroom)"
-    - platform: mqtt
+    - trigger: event
       topic: "zigbee2mqtt/IKEA Remote (Bedroom Marcella)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -458,7 +458,7 @@
 - alias: "Control switches: guest room IKEA Switch"
   mode: parallel
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: "zigbee2mqtt/IKEA Switch (Guest room)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -479,7 +479,7 @@
 - alias: "Control switches: Guest Room Light"
   mode: parallel
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Guest Room)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -501,7 +501,7 @@
 - alias: "Control switches: Guest Room Space heater"
   mode: parallel
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -517,7 +517,7 @@
 - alias: "Control switches: Baby Room Light"
   mode: parallel
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Baby Room)"
   variables:
     actions: "{{ trigger.payload_json.action }}"
@@ -540,7 +540,7 @@
 - alias: "Control switches: Mid Room Changing Table Light"
   mode: parallel
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Mid Room)"
   variables:
     actions: "{{ trigger.payload_json.action }}"

@@ -616,7 +616,7 @@
 
 - alias: "Light: Update Zigbee2MQTT lights input_select options"
   triggers:
-    platform: mqtt
+    trigger: mqtt
     topic: zigbee2mqtt/bridge/devices
   actions:
     - variables:
