@@ -89,7 +89,7 @@
     action: mqtt.publish
     data:
       topic: actions/otmonitor/outside
-      payload_template: >
+      payload: >
         {{ state_attr("weather.huis", "temperature") }}
 
 - alias: "Climate: warning when heating on and living room door open"
