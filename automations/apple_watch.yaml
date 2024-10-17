@@ -73,15 +73,15 @@
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SLEEP_OFF
+            action: SLEEP_OFF
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SLEEP_HALF
+            action: SLEEP_HALF
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SLEEP_TOTAL
+            action: SLEEP_TOTAL
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -124,31 +124,31 @@
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SET_LIGHTS_ALL
+            action: SET_LIGHTS_ALL
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SET_LIGHTS_BEDROOM
+            action: SET_LIGHTS_BEDROOM
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SET_LIGHTS_LIVING_ROOM
+            action: SET_LIGHTS_LIVING_ROOM
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SET_LIGHTS_BATHROOM
+            action: SET_LIGHTS_BATHROOM
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SET_LIGHTS_HALL
+            action: SET_LIGHTS_HALL
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SET_LIGHTS_TOILET
+            action: SET_LIGHTS_TOILET
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: SET_LIGHTS_KITCHEN
+            action: SET_LIGHTS_KITCHEN
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -185,31 +185,31 @@
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: LIGHTS_OFF
+            action: LIGHTS_OFF
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: LIGHTS_ON
+            action: LIGHTS_ON
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: LIGHTS_FIFTY
+            action: LIGHTS_FIFTY
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: LIGHTS_HUNDRED
+            action: LIGHTS_HUNDRED
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: LIGHTS_ONE
+            action: LIGHTS_ONE
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: LIGHTS_WHITE
+            action: LIGHTS_WHITE
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: LIGHTS_COZY
+            action: LIGHTS_COZY
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -325,31 +325,31 @@
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: VACUUM_LIVING_ROOM
+            action: VACUUM_LIVING_ROOM
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: VACUUM_BEDROOM
+            action: VACUUM_BEDROOM
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: VACUUM_OFFICE
+            action: VACUUM_OFFICE
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: VACUUM_HALL
+            action: VACUUM_HALL
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: VACUUM_KITCHEN
+            action: VACUUM_KITCHEN
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: VACUUM_ALL
+            action: VACUUM_ALL
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: VACUUM_STOP
+            action: VACUUM_STOP
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
@@ -423,31 +423,31 @@
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: T15
+            action: T15
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: T16
+            action: T16
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: T17
+            action: T17
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: T18
+            action: T18
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: T19
+            action: T19
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: T20
+            action: T20
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            actions: T21
+            action: T21
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:

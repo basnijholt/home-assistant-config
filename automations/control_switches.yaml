@@ -15,7 +15,7 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Living room)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
   actions:
     choose:
       # Next color
@@ -78,7 +78,7 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Bedroom)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
   actions:
     choose:
       # Next color
@@ -153,7 +153,7 @@
     - trigger: mqtt
       topic: "zigbee2mqtt/IKEA Remote (Bedroom Marcella)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
     personal_light: >-
       {% if trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom)' %}
         light.bed_led
@@ -461,7 +461,7 @@
     trigger: mqtt
     topic: "zigbee2mqtt/IKEA Switch (Guest room)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
   actions:
     choose:
       # Turn on
@@ -482,7 +482,7 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Guest Room)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
   actions:
     choose:
       # Toggle
@@ -504,7 +504,7 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
   actions:
     choose:
       # Toggle
@@ -520,7 +520,7 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Baby Room)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
   actions:
     choose:
       # Toggle light
@@ -543,7 +543,7 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Mid Room)"
   variables:
-    actions: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.action }}"
   actions:
     choose:
       # Toggle

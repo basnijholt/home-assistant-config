@@ -76,7 +76,7 @@
         trigger: event
         event_type: mobile_app_notification_action
         event_data:
-          actions: TURN_ON_HEATING
+          action: TURN_ON_HEATING
       timeout: "00:00:20"
       continue_on_timeout: false
     - action: script.set_high_temperature

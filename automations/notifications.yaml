@@ -94,7 +94,7 @@
         trigger: event
         event_type: mobile_app_notification_action
         event_data:
-          actions: "AGREE_WORD"
+          action: "AGREE_WORD"
       timeout: "01:00:00"
       continue_on_timeout: false
 

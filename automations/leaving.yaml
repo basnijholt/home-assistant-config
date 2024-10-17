@@ -76,7 +76,7 @@
     trigger: event
     event_type: mobile_app_notification_action
     event_data:
-      actions: TURN_OFF_EVERYTHING
+      action: TURN_OFF_EVERYTHING
   actions:
     action: script.leaving
 

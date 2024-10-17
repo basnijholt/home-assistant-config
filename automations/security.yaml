@@ -36,7 +36,7 @@
         trigger: event
         event_type: mobile_app_notification_action
         event_data:
-          actions: SOUND_ALARM
+          action: SOUND_ALARM
       timeout: "01:00:00"
       continue_on_timeout: false
     - action: light.turn_on
