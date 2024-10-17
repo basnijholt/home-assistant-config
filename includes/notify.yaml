@@ -39,9 +39,3 @@
     - service: mobile_app_marcella_iphone_14_pro
     - service: tv
     - service: chrome
-
-- platform: html5
-  name: chrome
-  vapid_pub_key: !secret firebase_public_key
-  vapid_prv_key: !secret firebase_private_key
-  vapid_email: !secret firebase_service_account

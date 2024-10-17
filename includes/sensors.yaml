@@ -74,7 +74,7 @@
 
     favorite_playlist_of_nearest_person:
       value_template: >
-        {% if is_state_attr("proximity.home", "nearest", "basnijholt-iphone") %}
+        {% if is_state_attr("sensor.home_nearest_device", "Bas") %}
         6rPTm9dYftKcFAfwyRqmDZ
         {% else %}
         6rPTm9dYftKcFAfwyRqmDZ
@@ -224,7 +224,7 @@
       value_template: >
         {% if is_state("person.bas", "home") and is_state("person.marcella", "home") %}
           notify.all_iphones
-        {% elif is_state_attr("proximity.home", "nearest", "basnijholt-iphone") %}
+        {% elif is_state_attr("sensor.home_nearest_device", "Bas") %}
           notify.iphone_bas
         {% else %}
           notify.mobile_app_marcella_iphone

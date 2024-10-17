@@ -40,7 +40,7 @@
     - "{{ is_state('media_player.spotify', 'playing') }}"
     - "{{ as_timestamp(now()) - as_timestamp(states.person.bas.last_changed) < 5 * 60 }}" # recently got home
     - condition: numeric_state
-      entity_id: proximity.home
+      entity_id: sensor.home_nearest_distance
       below: 2
   actions:
     - action: media_player.turn_on
