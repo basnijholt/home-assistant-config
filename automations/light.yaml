@@ -510,7 +510,7 @@
   description: In case the other automation failed
   triggers:
     trigger: time_pattern
-    minutes: "/60"
+    minutes: "/59"
   conditions:
     - condition: state
       entity_id: binary_sensor.activity_in_living_room
