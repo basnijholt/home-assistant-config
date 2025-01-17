@@ -1,0 +1,1 @@
+import{dr as t,d8 as r}from"./card-f11ffdcb.js";const n=async(n,a,e)=>{if(!a.sign)return a.endpoint;let s;try{s=await t(n,a.endpoint,e)}catch(t){r(t)}return s?s.replace(/^http/i,"ws"):null};export{n as c};
