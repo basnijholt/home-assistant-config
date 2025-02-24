@@ -53,7 +53,7 @@ visionos:
   label-badge-text-color: "#F1F1F1"
   label-badge-red: rgba(255, 159, 9, 0.7) # from Apple systemOrange dark mode
   # Cards
-  card-background-color: var(--secondary-background-color) # Unused entities table background
+  card-background-color: var(--secondary-background-color) # Data table background
   paper-listbox-background-color: var(--primary-background-color)
   ha-card-border-radius: 20px
   paper-card-background-color: var(--ha-card-background)
@@ -120,3 +120,4 @@ visionos:
   input-idle-line-color: var(--secondary-text-color)
   input-hover-line-color: var(--secondary-text-color)
   codemirror-property: var(--accent-color)
+  md-list-container-color: none # ha-md-list already has a card background
