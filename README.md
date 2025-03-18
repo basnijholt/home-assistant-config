@@ -1099,7 +1099,7 @@ to "Opt".
 
 
 ## [Notifications 🔔](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/notifications.yaml)
-### [Marcella arrived at Rotterdam Centraal](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/notifications.yaml#L12)
+### [Marcella leaving work](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/notifications.yaml#L12)
 
 
 ### [Front door has opened](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/notifications.yaml#L23)
