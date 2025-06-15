@@ -10,7 +10,7 @@
 #- from github.com/basnijholt/home-assistant-config
 latitude: !secret latitude_home
 longitude: !secret longitude_home
-# internal_url:
+internal_url: "http://192.168.1.178:8123"
 # external_url:  # XXX: take from .storage config
 elevation: 0
 unit_system: metric
