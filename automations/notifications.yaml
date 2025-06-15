@@ -9,16 +9,16 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Notifications: Marcella arrived at Rotterdam Centraal"
+- alias: "Notifications: Marcella leaving work"
   triggers:
     trigger: state
-    entity_id: device_tracker.marcella_iphone
-    to: rotterdam_centraal
+    entity_id: device_tracker.marcella_iphone_se2
+    to: Work Marcella Kirkland
   actions:
     action: notify.iphone_bas
     data:
-      title: "Arriving"
-      message: "Marcella arrived at Rotterdam Centraal"
+      title: "Leaving"
+      message: "Marcella left work"
 
 - alias: "Notifications: front door has opened"
   triggers:
