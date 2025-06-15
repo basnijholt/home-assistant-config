@@ -48,6 +48,15 @@
   actions:
     action: script.fix_sound
 
+- alias: "Apple Watch: Go to sleep"
+  triggers:
+    trigger: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Go to sleep
+  actions:
+    action: script.going_to_sleep
+
 - alias: "Apple Watch: set sleep mode"
   mode: parallel
   triggers:

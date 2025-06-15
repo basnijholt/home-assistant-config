@@ -37,6 +37,15 @@ actions:
       icon: bitcoin
       color: "#ffffff"
 
+  - name: Go to sleep
+    background_color: "#000000"
+    label:
+      text: Go to sleep
+      color: "#ff0000"
+    icon:
+      icon: sleep
+      color: "#ffffff"
+
   - name: Set sleep mode
     background_color: "#000000"
     label:
