@@ -51,7 +51,8 @@ plant: !include includes/plant.yaml
 influxdb: !include includes/influxdb.yaml
 intent:
 intent_script: !include includes/intent_script.yaml
-
+go2rtc:
+  
 # Custom components
 pyscript: !include includes/pyscript.yaml
 adaptive_lighting: !include includes/adaptive_lighting.yaml
