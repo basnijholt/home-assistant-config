@@ -13,7 +13,6 @@
   entities:
     - light.sphere_tv
     - light.sphere_2
-    - light.living_room_corner
     - light.tv_led
     - light.cabinet_led
     - light.mid_room
@@ -25,6 +24,7 @@
   entities:
     - light.philips_go
     - light.bed_led
+    - light.bedroom_corner
 
 - platform: group
   name: Baby room lights
