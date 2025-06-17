@@ -27,6 +27,16 @@
     data:
       option: "half"
 
+- alias: "Night mode: automatically turn off sleeping mode at 11AM"
+  triggers:
+    trigger: time
+    at: "11:00"
+  actions:
+    entity_id: input_select.sleep_mode
+    action: input_select.select_option
+    data:
+      option: "off"
+
 - alias: "Night mode: turn off automatic bedroom lights"
   triggers:
     trigger: state
