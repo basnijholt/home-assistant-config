@@ -1,0 +1,321 @@
+Liquid Glass:
+  modes:
+    light:
+      background-image: "center / cover no-repeat fixed url('https://raw.githubusercontent.com/Nezz/homeassistant-visionos-theme/refs/heads/static/macOS_26_Light.webp')"
+      primary-background-color: rgb(76, 80, 84)
+      secondary-background-color: rgb(76, 80, 84)
+      app-header-background-color: rgba(76, 80, 84, 0.3)
+      ha-card-background: rgba(150, 150, 150, 0.3)
+      app-theme-color: rgb(91, 138, 168) # Average header color, used on the top of the browser
+    dark:
+      background-image: "center / cover no-repeat fixed url('https://raw.githubusercontent.com/Nezz/homeassistant-visionos-theme/refs/heads/static/macOS_26_Dark.webp')"
+      primary-background-color: rgb(18, 11, 25)
+      secondary-background-color: rgb(18, 11, 25)
+      app-header-background-color: rgba(18, 11, 25, 0.3)
+      ha-card-background: rgba(0, 0, 0, 0.3)
+      app-theme-color: rgb(0, 0, 0)
+  # Global
+  lovelace-background: var(--background-image)
+  light-primary-color: "#B6B6C1" # (icons on left menu) (light: systemGray5 from iOS dark mode, dark: XXX)
+  divider-color: rgba(152, 152, 157, 0.3) # from Apple systemGray dark mode
+  accent-color: var(--primary-color)
+  # Text
+  primary-text-color: rgba(255, 255, 255, 0.96)
+  secondary-text-color: rgba(222, 222, 222, 0.96)
+  text-primary-color: var(--primary-text-color)
+  disabled-text-color: rgba(208, 208, 208, 0.5) # XXX: https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/2
+  text-dark-color: var(--primary-text-color)
+  # Sidebar Menu
+  sidebar-background-color: var(--secondary-background-color)
+  sidebar-icon-color: var(--light-primary-color)
+  sidebar-text-color: "#F1F1F1"
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: var(--primary-text-color)
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+  # States and Badges
+  state-icon-color: var(--primary-text-color)
+  state-icon-active-color: var(--yellow-color)
+  state-icon-unavailable-color: var(--disabled-text-color)
+  state-inactive-color: var(--disabled-text-color)
+  paper-item-icon-active-color: var(--state-icon-active-color) # see https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/30
+  # Sliders
+  paper-slider-knob-color: "#FFFFFF"
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: "#0984ff" # from Apple systemBlue dark mode
+  paper-slider-secondary-color: var(--paper-slider-knob-color)
+  paper-slider-container-color: rgba(255, 255, 255, 0.5)
+  paper-slider-font-color: "#000"
+  ha-slider-background: none !important
+  # Labels
+  label-badge-background-color: "#23232E"
+  label-badge-text-color: "#F1F1F1"
+  label-badge-red: rgba(255, 159, 9, 0.7) # from Apple systemOrange dark mode
+  # Cards
+  card-background-color: var(--secondary-background-color) # Data table background
+  paper-listbox-background-color: var(--primary-background-color)
+  ha-card-border-radius: 34px
+  paper-card-background-color: var(--ha-card-background)
+  rgb-card-background-color: rgb(10, 10, 10) # see https://github.com/basnijholt/lovelace-ios-themes/issues/60
+  ha-card-border-width: 0 # https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/82#event-7732695357
+  ha-card-backdrop-filter: blur(8px)
+  ha-card-box-shadow: >
+    3px 3px 0.5px -3.5px rgba(255, 255, 255, 0.30) inset, -2px -2px 0.5px -2px rgba(255, 255, 255, 0.30) inset, 0 0 8px 1px rgba(255, 255, 255, 0.10) inset, 0 0 2px 0 rgba(0, 0, 0, 0.10)
+  # Toggles
+  paper-toggle-button-checked-button-color: "#484848"
+  paper-toggle-button-checked-bar-color: "#484848"
+  paper-toggle-button-unchecked-button-color: var(--paper-toggle-button-checked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--disabled-text-color)
+  # Table row
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  # Switches
+  switch-checked-track-color: var(--green-color)
+  switch-checked-button-color: "#FFF"
+  switch-unchecked-track-color: var(--disabled-text-color)
+  switch-unchecked-button-color: "#FFF"
+  # Dialog
+  ha-dialog-surface-backdrop-filter: var(--ha-card-backdrop-filter)
+  dialog-box-shadow: var(--ha-card-box-shadow)
+  ha-dialog-surface-background: var(--ha-card-background)
+  # Header
+  app-header-backdrop-filter: var(--ha-card-backdrop-filter)
+  app-header-edit-background-color: rgba(0, 0, 0, 0.2)
+  # Colors
+  red-color: "#FF453A"
+  pink-color: "#FF375F"
+  purple-color: "#BF5AF2"
+  indigo-color: "#5E5CE6"
+  blue-color: "#0A84FF"
+  light-blue-color: "#66D4CF"
+  cyan-color: "#5AC8F5"
+  teal-color: "#6AC4DC"
+  green-color: "#32D74B"
+  yellow-color: "#FFD60A"
+  orange-color: "#FF9F0A"
+  brown-color: "#AC8E68"
+  primary-color: var(--orange-color)
+  ha-color-primary-05: "#331f00"
+  ha-color-primary-10: "#663d00"
+  ha-color-primary-20: "#995c00"
+  ha-color-primary-30: "#cc7a00"
+  ha-color-primary-40: var(--primary-color)
+  ha-color-primary-50: "#ffa31a"
+  ha-color-primary-60: "#ffad33"
+  ha-color-primary-70: "#ffc266"
+  ha-color-primary-80: "#ffd699"
+  ha-color-primary-90: "#ffebcc"
+  ha-color-primary-95: "#fff5e6"
+  # Other
+  paper-dialog-background-color: rgba(55, 55, 55, 0.8) # e.g., background of more-info
+  paper-item-icon-color: white # also should mini-media-player icon white (but doesn't work by itself)
+  more-info-header-background: rgba(25, 25, 25, 0.5)
+  lumo-body-text-color: var(--primary-text-color) # see https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/42
+  markdown-code-background-color: "#464646"
+  code-editor-background-color: "#161616"
+  clear-background-color: var(--ha-card-background) # see https://github.com/basnijholt/lovelace-ios-themes/issues/64
+  mdc-theme-surface: var(--secondary-background-color) # this should be opaque as it's used by default for many overlays
+  material-background-color: var(--secondary-background-color)
+  mdc-checkbox-unchecked-color: "#FFF"
+  mdc-radio-unchecked-color: "#FFF"
+  # Custom
+  mcg-title-letter-spacing: .15em
+  mini-media-player-base-color: white
+  mini-media-player-icon-color: white
+  # Added for https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/72
+  input-ink-color: var(--primary-text-color)
+  input-fill-color: transparent
+  input-disabled-fill-color: transparent
+  input-label-ink-color: var(--primary-text-color)
+  input-disabled-ink-color: var(--disabled-text-color)
+  input-dropdown-icon-color: var(--primary-text-color)
+  input-idle-line-color: var(--secondary-text-color)
+  input-hover-line-color: var(--secondary-text-color)
+  codemirror-property: var(--accent-color)
+  md-list-container-color: none # ha-md-list already has a card background
+
+  card-mod-theme: "Liquid Glass"
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        backdrop-filter: unset !important;
+      }
+      ha-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        z-index: -1;
+        pointer-events: none;
+        border-radius: inherit;
+        box-shadow: var(--ha-card-box-shadow);
+      }
+      :host(hui-heading-card) ha-card,
+      :host(hui-glance-card) ha-card {
+        background: none !important;
+        backdrop-filter: none !important;
+      }
+      :host(hui-heading-card) ha-card::before,
+      :host(hui-glance-card) ha-card::before {
+        content: none !important;
+      }
+
+      # Energy dashboard sources
+      .mdc-data-table {
+        background-color: none !important;
+      }
+      .mdc-data-table__row,
+      .mdc-data-table__header-cell {
+        background: var(--ha-card-background) !important;
+      }
+
+      # Markdown card with text_only
+      ha-card.text-only {
+        background: none !important;
+        backdrop-filter: none !important;
+      }
+      ha-card.text-only::before {
+        content: none !important;
+      }
+
+      # Mushroom title card
+      :host(mushroom-title-card) ha-card {
+        background: none !important;
+        backdrop-filter: none !important;
+      }
+      :host(mushroom-title-card) ha-card::before {
+        content: none !important;
+      }
+
+      # Bubble card
+      ha-card.type-custom-bubble-card {
+        background: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        border-radius: 0px !important;
+      }
+      ha-card.type-custom-bubble-card::before {
+        content: none !important;
+        background: none !important;
+        backdrop-filter: none !important;
+      }
+
+      # Mushroom chips card
+      :host(mushroom-chips-card) ha-card {
+        background: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+      :host(mushroom-chips-card) ha-card::before {
+        content: none !important;
+        background: none !important;
+        backdrop-filter: none !important;
+      }
+    hui-card-features $:
+      hui-card-feature $:
+        hui-target-temperature-card-feature $:
+          ha-control-number-buttons $: |
+            .container {
+              --control-number-buttons-border-radius: var(--ha-card-border-radius);
+            }
+        hui-humidifier-toggle-card-feature $:
+          ha-control-select$: |
+            .container {
+              --control-select-border-radius: var(--ha-card-border-radius);
+              --control-select-button-border-radius: var(--ha-card-border-radius);
+            }
+        hui-climate-hvac-modes-card-feature $:
+          ha-control-select$: |
+            .container {
+              --control-select-border-radius: var(--ha-card-border-radius);
+              --control-select-button-border-radius: var(--ha-card-border-radius);
+            }
+        hui-target-humidity-card-feature $:
+          ha-control-slider$: |
+            .container {
+              --control-slider-border-radius: var(--ha-card-border-radius);
+            }
+            .slider .slider-track-bar {
+              border-radius: 0px !important;
+            }
+        service-call $:
+          custom-feature-selector $: |
+            :host {
+              --feature-border-radius: var(--ha-card-border-radius) !important;
+            }
+          custom-feature-slider $: |
+            :host {
+              --feature-border-radius: var(--ha-card-border-radius) !important;
+            }
+            .default .thumb {
+              border-radius: 0px !important;
+            }
+        hui-toggle-card-feature $:
+          ha-control-switch $: |
+            .switch {
+              border-radius: var(--ha-card-border-radius) !important;
+            }
+            .button {
+              --control-switch-border-radius: var(--ha-card-border-radius);
+              opacity: 0.8;
+            }
+        hui-select-options-card-feature $:
+          ha-control-select-menu $: |
+            .select .select-anchor {
+              border-radius: var(--ha-card-border-radius);
+            }
+            mwc-menu {
+              --mdc-shape-medium: var(--ha-card-border-radius) !important;
+            }
+        hui-cover-open-close-card-feature $:
+          ha-control-button$: |
+            .button {
+              --control-button-border-radius: var(--ha-card-border-radius);
+            }
+        hui-cover-tilt-card-feature $:
+          ha-control-button$: |
+            .button {
+              --control-button-border-radius: var(--ha-card-border-radius);
+            }
+        hui-vacuum-commands-card-feature $:
+          ha-control-button$: |
+            .button {
+              --control-button-border-radius: var(--ha-card-border-radius);
+            }
+        hui-cover-position-card-feature $:
+          ha-control-slider$: |
+            .container {
+              --control-slider-border-radius: var(--ha-card-border-radius);
+            }
+            .slider .slider-track-bar {
+              border-radius: 0px !important;
+            }
+        hui-cover-tilt-position-card-feature $:
+          ha-control-slider$: |
+            .container {
+              --control-slider-border-radius: var(--ha-card-border-radius);
+            }
+            .slider .slider-track-bar {
+              border-radius: 0px !important;
+            }
+        hui-update-actions-card-feature $:
+          ha-control-button$: |
+            .button {
+              --control-button-border-radius: var(--ha-card-border-radius);
+            }
+        hui-light-color-temp-card-feature $:
+          ha-control-slider$: |
+            .container {
+              --control-slider-border-radius: var(--ha-card-border-radius);
+            }
+            .slider .slider-track-cursor {
+              border-radius: var(--ha-card-border-radius) !important;
+            }
+        hui-light-brightness-card-feature $:
+          ha-control-slider$: |
+            .container {
+              --control-slider-border-radius: var(--ha-card-border-radius);
+            }
+            .slider .slider-track-bar {
+              border-radius: 0px !important;
+            }

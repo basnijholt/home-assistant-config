@@ -16,7 +16,6 @@ visionos:
       app-theme-color: rgb(0, 0, 0)
   # Global
   lovelace-background: var(--background-image)
-  primary-color: var(--orange-color)
   light-primary-color: "#B6B6C1" # (icons on left menu) (light: systemGray5 from iOS dark mode, dark: XXX)
   divider-color: rgba(152, 152, 157, 0.3) # from Apple systemGray dark mode
   accent-color: var(--primary-color)
@@ -94,6 +93,18 @@ visionos:
   yellow-color: "#FFD60A"
   orange-color: "#FF9F0A"
   brown-color: "#AC8E68"
+  primary-color: var(--orange-color)
+  ha-color-primary-05: "#331f00"
+  ha-color-primary-10: "#663d00"
+  ha-color-primary-20: "#995c00"
+  ha-color-primary-30: "#cc7a00"
+  ha-color-primary-40: var(--primary-color)
+  ha-color-primary-50: "#ffa31a"
+  ha-color-primary-60: "#ffad33"
+  ha-color-primary-70: "#ffc266"
+  ha-color-primary-80: "#ffd699"
+  ha-color-primary-90: "#ffebcc"
+  ha-color-primary-95: "#fff5e6"
   # Other
   paper-dialog-background-color: rgba(55, 55, 55, 0.8) # e.g., background of more-info
   paper-item-icon-color: white # also should mini-media-player icon white (but doesn't work by itself)
@@ -121,3 +132,81 @@ visionos:
   input-hover-line-color: var(--secondary-text-color)
   codemirror-property: var(--accent-color)
   md-list-container-color: none # ha-md-list already has a card background
+
+  card-mod-theme: "visionos"
+  card-mod-card: |
+    ha-card {
+      backdrop-filter: unset !important;
+    }
+    ha-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      z-index: -1;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: var(--ha-card-box-shadow);
+    }
+    :host(hui-heading-card) ha-card,
+    :host(hui-glance-card) ha-card {
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+    :host(hui-heading-card) ha-card::before,
+    :host(hui-glance-card) ha-card::before {
+      content: none !important;
+    }
+
+    # Energy dashboard sources
+    .mdc-data-table {
+      background-color: none !important;
+    }
+    .mdc-data-table__row,
+    .mdc-data-table__header-cell {
+      background: var(--ha-card-background) !important;
+    }
+
+    # Markdown card with text_only
+    ha-card.text-only {
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+    ha-card.text-only::before {
+      content: none !important;
+    }
+
+    # Mushroom title card
+    :host(mushroom-title-card) ha-card {
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+    :host(mushroom-title-card) ha-card::before {
+      content: none !important;
+    }
+
+    # Bubble card
+    ha-card.type-custom-bubble-card {
+      background: none !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+      border-radius: 0px !important;
+    }
+    ha-card.type-custom-bubble-card::before {
+      content: none !important;
+      background: none !important;
+      backdrop-filter: none !important;
+    }
+
+    # Mushroom chips card
+    :host(mushroom-chips-card) ha-card {
+      background: none !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+    }
+    :host(mushroom-chips-card) ha-card::before {
+      content: none !important;
+      background: none !important;
+      backdrop-filter: none !important;
+    }
