@@ -149,13 +149,11 @@ visionos:
       border-radius: inherit;
       box-shadow: var(--ha-card-box-shadow);
     }
-    :host(hui-heading-card) ha-card,
-    :host(hui-glance-card) ha-card {
+    :host(hui-heading-card) ha-card {
       background: none !important;
       backdrop-filter: none !important;
     }
-    :host(hui-heading-card) ha-card::before,
-    :host(hui-glance-card) ha-card::before {
+    :host(hui-heading-card) ha-card::before {
       content: none !important;
     }
 
