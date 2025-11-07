@@ -133,6 +133,10 @@
           - "{{ action == 'up_hold' }}" # Second from highest button
           - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
         sequence:
+          - action: input_select.select_option
+            entity_id: input_select.sleep_mode
+            data:
+              option: "off"
           - action: script.reset_adaptive_lighting
 
 # This automation is set up to control the lighting in your bedroom using two different IKEA remotes.
@@ -175,6 +179,10 @@
             data:
               brightness: "255"
               kelvin: 5500
+          - action: input_select.select_option
+            entity_id: input_select.sleep_mode
+            data:
+              option: "off"
 
       # Increase brightness
       - conditions:
@@ -479,8 +487,10 @@
 - alias: "Control switches: Guest Room Light"
   mode: parallel
   triggers:
-    trigger: mqtt
-    topic: "zigbee2mqtt/Smart Switch (Guest Room)"
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Smart Switch (Guest Room)"
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
     action: "{{ trigger.payload_json.action }}"
   actions:
