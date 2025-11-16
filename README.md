@@ -698,7 +698,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/84e08bdddccf8642e6caaa29621ccc60f778f6d1/scripts.yaml#L279)
   - [script.white_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/84e08bdddccf8642e6caaa29621ccc60f778f6d1/scripts.yaml#L226)
 
-### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L267)
+### [Living room Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L268)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
@@ -706,7 +706,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.increase_brightness](https://github.com/basnijholt/home-assistant-config/blob/84e08bdddccf8642e6caaa29621ccc60f778f6d1/scripts.yaml#L240)
   - [script.next_colors](https://github.com/basnijholt/home-assistant-config/blob/84e08bdddccf8642e6caaa29621ccc60f778f6d1/scripts.yaml#L297)
 
-### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L317)
+### [Bedroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L318)
 
   *which uses:*
   - [input_select.last_script_bedroom](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L31)
@@ -716,10 +716,10 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/84e08bdddccf8642e6caaa29621ccc60f778f6d1/scripts.yaml#L279)
   - [sensor.ten_minutes_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/37c499c77b7ac14482c004585a274a38f3cbd3a5/includes/sensors.yaml#L241)
 
-### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L403)
+### [Bathroom Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L404)
 
 
-### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L426)
+### [Door Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L427)
 
   *which uses:*
   - [script.arriving](https://github.com/basnijholt/home-assistant-config/blob/84e08bdddccf8642e6caaa29621ccc60f778f6d1/scripts.yaml#L435)
@@ -728,19 +728,19 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_off_everything_non_automatic](https://github.com/basnijholt/home-assistant-config/blob/84e08bdddccf8642e6caaa29621ccc60f778f6d1/scripts.yaml#L263)
   - [sensor.favorite_playlist_of_nearest_person](https://github.com/basnijholt/home-assistant-config/blob/37c499c77b7ac14482c004585a274a38f3cbd3a5/includes/sensors.yaml#L75)
 
-### [Guest room IKEA Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L466)
+### [Guest room IKEA Switch](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L467)
 
 
-### [Guest Room Light](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L487)
+### [Guest Room Light](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L488)
 
 
-### [Guest Room Space heater](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L511)
+### [Guest Room Space heater](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L512)
 
 
-### [Baby Room Light](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L527)
+### [Baby Room Light](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L528)
 
 
-### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L550)
+### [Mid Room Changing Table Light](https://github.com/basnijholt/home-assistant-config/blob/bb07b7b20abe68ee73af56cc24cd9a345a6a5ba6/automations/control_switches.yaml#L552)
 
   *which uses:*
   - [input_select.last_script_living_room](https://github.com/basnijholt/home-assistant-config/blob/07c0fdd72fdd676ab1b95db36f7baef313f7cff6/includes/input_selects.yaml#L25)
