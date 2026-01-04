@@ -1,0 +1,537 @@
+---
+#-
+#  _                       _       _
+# | |_ ___ _ __ ___  _ __ | | __ _| |_ ___  ___
+# | __/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \/ __|
+# | ||  __/ | | | | | |_) | | (_| | ||  __/\__ \
+#  \__\___|_| |_| |_| .__/|_|\__,_|\__\___||___/
+#                   |_|
+#
+#- from github.com/basnijholt/home-assistant-config
+
+#  ____  _                          ____
+# | __ )(_)_ __   __ _ _ __ _   _  / ___|  ___ _ __  ___  ___  _ __ ___
+# |  _ \| | '_ \ / _` | '__| | | | \___ \ / _ \ '_ \/ __|/ _ \| '__/ __|
+# | |_) | | | | | (_| | |  | |_| |  ___) |  __/ | | \__ \ (_) | |  \__ \
+# |____/|_|_| |_|\__,_|_|   \__, | |____/ \___|_| |_|___/\___/|_|  |___/
+#                           |___/
+
+- binary_sensor:
+    - name: Someone is showering
+      state: >
+        {% set humidity = states("sensor.humidity_bathroom") | float(0) %}
+        {% set treshold = 1.05 * state_attr("sensor.humidity_bathroom_stats", "median") | float(0) %}
+        {% set derivative = states("sensor.humidity_bathroom_derivative") | float(0) %}
+        {{ humidity > treshold and derivative > 0.25 }}
+
+    - name: Any motion detected
+      unique_id: motion_detected
+      state: >
+        {{ is_state("binary_sensor.activity_in_bathroom", "on")
+            or is_state("binary_sensor.activity_in_dinner_area", "on")
+            or is_state("binary_sensor.activity_in_living_room", "on")
+            or is_state("binary_sensor.activity_in_kitchen", "on")
+            or is_state("binary_sensor.activity_in_utility_room", "on")
+            or is_state("binary_sensor.activity_in_master_bedroom", "on")
+            or is_state("binary_sensor.activity_in_baby_room", "on")
+            or is_state("binary_sensor.activity_in_guest_room", "on") }}
+
+    - name: Any motion detected in last hour
+      unique_id: motion_detected_in_last_hour
+      state: >
+        {{ is_state("binary_sensor.motion_detected", "on") }}
+      delay_off: "01:00:00"
+
+    - name: Someone in the house in the last hour
+      state: >
+        {{ is_state("binary_sensor.motion_detected_in_last_hour", "on")
+            or is_state("group.persons", "home") }}
+
+    - name: Activity in the bathroom
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_bathroom", "on")
+            or is_state("binary_sensor.motion_sensor_toilet", "on")
+            or is_state("binary_sensor.someone_showering", "on") }}
+      delay_off: "00:03:00"
+
+    - name: Activity in dinner area
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_dinner_area_occupancy", "on") }}
+      delay_off: "00:05:00"
+
+    - name: Activity in the living room
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_fireplace_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_dinner_area_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_living_room_kallax_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_mid_room_occupancy", "on")
+            or is_state("media_player.tv", "on")
+            or is_state("media_player.living_room_xbox", "on") }}
+      delay_off: "00:30:00"
+
+    - name: Activity in the kitchen
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_kitchen_occupancy", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Activity in the utility room
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_utility_room_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_utility_room_2_occupancy", "on")
+            or is_state("binary_sensor.openclose_utility_room_door", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Activity in the hall
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_hall", "on")
+            or is_state("binary_sensor.openclose_front_door", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Activity in the bedroom
+      unique_id: activity_in_master_bedroom
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_master_bedroom_occupancy", "on")
+            or is_state("binary_sensor.vibration", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Activity in the baby room
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_baby_room_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_baby_room_2_occupancy", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Activity in the guest room
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_guest_room_occupancy", "on")
+            or is_state("binary_sensor.using_macbook_in_guest_room", "on")
+            or is_state("binary_sensor.vibration", "on") }}
+      delay_off: "00:10:00"
+
+    - name: Activity outside front door
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_outside_front_door_occupancy", "on")
+            or is_state("binary_sensor.openclose_front_door", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Activity outside garage
+      state: >
+        {{ is_state("binary_sensor.motion_sensor_outside_garage_occupancy", "on")
+            or is_state("binary_sensor.openclose_utility_room_door", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Activity outside house
+      unique_id: activity_outside_front_of_house
+      state: >
+        {{ is_state("binary_sensor.activity_outside_garage", "on")
+          or is_state("binary_sensor.activity_outside_front_door", "on") }}
+      delay_off: "01:00:00"
+
+    - name: Activity outside the bedroom
+      state: >
+        {{ is_state("binary_sensor.activity_in_living_room", "on")
+            or is_state("binary_sensor.activity_in_utility_room", "on")
+            or is_state("binary_sensor.activity_in_master_bedroom", "on")
+            or is_state("binary_sensor.activity_in_baby_room", "on")
+            or is_state("binary_sensor.activity_in_guest_room", "on") }}
+      delay_off: "00:01:00"
+
+    - name: Door to outside open
+      state: >
+        {{ is_state("binary_sensor.openclose_utility_room_door", "on")
+          or is_state("binary_sensor.openclose_front_door", "on") }}
+
+    - name: Washing machine
+      state: >
+        {{ states("sensor.washing_machine_power") | float(0) > 3 }}
+      delay_off: "00:05:00"
+      icon: >
+        {% if is_state("binary_sensor.washing_machine", "on") %}
+          mdi:washing-machine
+        {% else %}
+          mdi:washing-machine-off
+        {% endif %}
+
+    - name: Dishwasher
+      state: >
+        {{ states("sensor.dishwasher_watts") | float(0) > 3 }}
+      delay_off: "00:03:00"
+      icon: >
+        {% if is_state("binary_sensor.dishwasher", "on") %}
+          mdi:dishwasher
+        {% else %}
+          mdi:dishwasher-off
+        {% endif %}
+
+    - name: Worked enough today
+      state: >
+        {{ states("sensor.time_at_work_today") | float(0) > 8 }}
+      icon: mdi:briefcase
+
+    - name: Any light is on
+      unique_id: any_light_on
+      state: >
+        {% set automatic_lights_on = is_state("light.automatic_lights", "on") %}
+        {% set bedroom_lights_on = is_state("light.bedroom_lights", "on") %}
+        {% set living_room_lights_on = is_state("light.living_room_lights", "on") %}
+        {{ automatic_lights_on or bedroom_lights_on or living_room_lights_on }}
+
+    - name: Anything is on
+      state: >
+        {% set light_on = is_state("binary_sensor.any_light_on", "on") %}
+        {% set tv_on = is_state("media_player.tv", "on") %}
+        {% set kef_on = is_state("media_player.kef_ls50", "on") %}
+        {% set kef_lsx_on = is_state("media_player.kef_lsx", "on") %}
+        {{ light_on or tv_on or kef_on or kef_lsx_on }}
+
+    # XXX: was '("Mon", "Wed", "Sun")'  pre-corona because now we're mostly at home
+    - name: Vacuum day today
+      unique_id: vacuum_day
+      state: >
+        {{ as_timestamp(now()) | timestamp_custom("%a") in ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun") }}
+
+    - name: No one is home
+      unique_id: no_one_home
+      state: >
+        {{ not is_state("person.bas", "home")
+            and not is_state("person.marcella", "home") }}
+
+    - name: Using MacBook in guest room
+      state: >
+        {{ is_state("sensor.basnijholt_macbook_primary_display_name", "DELL U4021QW")
+            and is_state("binary_sensor.basnijholt_macbook_active", "on") }}
+      delay_off: "00:01:00"
+
+#  _____                    _       _
+# |_   _|__ _ __ ___  _ __ | | __ _| |_ ___    ___  ___ _ __  ___  ___  _ __ ___
+#   | |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \  / __|/ _ \ '_ \/ __|/ _ \| '__/ __|
+#   | |  __/ | | | | | |_) | | (_| | ||  __/  \__ \  __/ | | \__ \ (_) | |  \__ \
+#   |_|\___|_| |_| |_| .__/|_|\__,_|\__\___|  |___/\___|_| |_|___/\___/|_|  |___/
+#                    |_|
+
+- sensor:
+    - name: Dishwasher usage
+      unique_id: dishwasher_watts
+      state: >
+        {{ state_attr("switch.dishwasher", "power") | float("Unavailable") }}
+      unit_of_measurement: Watt
+
+    - name: Count automations
+      unique_id: count_automations
+      icon: mdi:autorenew
+      state: "{{ states.automation | count }}"
+
+    - name: Count scripts
+      unique_id: count_scripts
+      icon: mdi:script-text-outline
+      state: "{{ states.script | count }}"
+
+    - name: Count device trackers
+      unique_id: count_device_trackers
+      icon: mdi:map-marker
+      state: "{{ states.device_tracker | count }}"
+
+    - name: Count binary sensors
+      unique_id: count_binary_sensors
+      icon: mdi:unfold-more-horizontal
+      state: "{{ states.binary_sensor | count }}"
+
+    - name: Count sensors
+      unique_id: count_sensors
+      icon: mdi:resistor
+      state: "{{ states.sensor | count }}"
+
+    - name: Count switches
+      unique_id: count_switches
+      icon: mdi:light-switch
+      state: "{{ states.switch | count }}"
+
+    - name: Count zones
+      unique_id: count_zones
+      icon: mdi:map-marker-radius
+      state: "{{ states.zone | count }}"
+
+    - name: Count input booleans
+      unique_id: count_input_booleans
+      icon: mdi:toggle-switch
+      state: "{{ states.input_boolean | count }}"
+
+    - name: Count input numbers
+      unique_id: count_input_numbers
+      icon: mdi:numeric
+      state: "{{ states.input_number | count }}"
+
+    - name: Count input texts
+      unique_id: count_input_texts
+      icon: mdi:alphabetical
+      state: "{{ states.input_text | count }}"
+
+    - name: Count input selects
+      unique_id: count_input_selects
+      icon: mdi:view-list
+      state: "{{ states.input_select | count }}"
+
+    - name: Count input datetimes
+      unique_id: count_input_datetimes
+      icon: mdi:calendar-clock
+      state: "{{ states.input_datetime | count }}"
+
+    - name: Favorite playlist of nearest person
+      state: >
+        {% if is_state_attr("sensor.home_nearest_device", "Bas") %}
+        6rPTm9dYftKcFAfwyRqmDZ
+        {% else %}
+        6rPTm9dYftKcFAfwyRqmDZ
+        {% endif %}
+
+    - name: TV volume
+      unique_id: tv_volume
+      state: >
+        {{ state_attr("media_player.tv", "volume_level") }}
+      unit_of_measurement: "%"
+
+    - name: KEF LS50 volume
+      unique_id: kef_ls50_volume
+      state: >
+        {{ state_attr("media_player.kef_ls50", "volume_level") }}
+      unit_of_measurement: "%"
+
+    - name: Timestamp start of today
+      unique_id: timestamp_start_of_today
+      state: >
+        {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}
+      unit_of_measurement: "s"
+
+    - name: Time at work prognosis
+      unique_id: time_at_work_prognosis
+      state: >
+        {% set day = [now().weekday(), 4] | min %}
+        {% set t_total = states("sensor.time_at_work_this_week")|float(0) %}
+        {% set t_today = states("sensor.time_at_work_today")|float(0) %}
+        {% set hours_per_day_including_today = t_total / (day + 1) %}
+        {% set hours_per_day_excluding_today = (t_total - t_today ) / (day + 10**-16) %}
+        {% set seven_oclock = as_timestamp(now().replace(hour=19).replace(minute=0).replace(second=0)) %}
+
+        {% if t_today > hours_per_day_excluding_today
+              or (not is_state("person.bas", "Work") and t_today > 0)
+              or (as_timestamp(now()) > seven_oclock)
+              or day == 0
+              or now().weekday() > 4
+              or 5 * hours_per_day_including_today > 40 %}
+          {% set hours_per_day = hours_per_day_including_today %}
+        {% else %}
+          {% set hours_per_day = hours_per_day_excluding_today %}
+        {% endif %}
+
+        {{ (5 * hours_per_day)|round(2) }}
+      unit_of_measurement: h
+
+    - name: Number of days last month
+      unique_id: n_days_last_month
+      state: >
+        {% set start_of_month = now().replace(day=1) %}
+        {% set start_of_last_month = start_of_month.replace(month=now().month-1) %}
+        {{ ((start_of_month - start_of_last_month).total_seconds() / 86400) | round }}
+
+    - name: Daily Power
+      unique_id: daily_power
+      unit_of_measurement: kWh
+      state: >
+        {{ states("sensor.daily_power_offpeak")|float(0) + states("sensor.daily_power_peak")|float(0) }}
+
+    - name: Monthly Power
+      unique_id: monthly_power
+      unit_of_measurement: kWh
+      state: >
+        {{ states("sensor.monthly_power_offpeak")|float(0) + states("sensor.monthly_power_peak")|float(0) }}
+
+    - name: Monthly Power last period
+      unique_id: monthly_power_last_period
+      unit_of_measurement: kWh
+      state: >
+        {{ state_attr("sensor.monthly_power_offpeak", "last_period")|float(0) + state_attr("sensor.monthly_power_peak", "last_period")|float(0) }}
+
+    - name: Monthly Power cost last period
+      unique_id: monthly_power_cost_last_period
+      unit_of_measurement: €
+      state: >
+        {{ (state_attr("sensor.monthly_power_offpeak", "last_period")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
+            + state_attr("sensor.monthly_power_peak", "last_period")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
+
+    - name: Gas price
+      unique_id: gas_price
+      unit_of_measurement: €/m³
+      state: "{{ 0.7884 }}"
+
+    - name: Daily gas cost
+      unique_id: daily_gas_cost
+      unit_of_measurement: €
+      state: >
+        {{ (states("sensor.daily_gas")|float(0) * 0.7884) | round(2) }}
+
+    - name: Monthly gas cost
+      unique_id: monthly_gas_cost
+      unit_of_measurement: €
+      state: >
+        {{ (states("sensor.monthly_gas")|float(0) * 0.7884) | round(2) }}
+
+    - name: Monthly gas cost last period
+      unique_id: monthly_gas_cost_last_period
+      unit_of_measurement: €
+      state: >
+        {{ (state_attr("sensor.monthly_gas", "last_period")|float(0) * 0.7884) | round(2) }}
+
+    - name: Electricity price offpeak
+      unique_id: electricity_price_offpeak
+      unit_of_measurement: €/kWh
+      state: "{{ 0.2307 }}"
+
+    - name: Electricity price peak
+      unique_id: electricity_price_peak
+      unit_of_measurement: €/kWh
+      state: "{{ 0.2479 }}"
+
+    - name: Daily power cost
+      unique_id: daily_power_cost
+      unit_of_measurement: €
+      state: >
+        {{ (states("sensor.daily_power_offpeak")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
+            + states("sensor.daily_power_peak")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
+
+    - name: Monthly power cost
+      unique_id: monthly_power_cost
+      unit_of_measurement: €
+      state: >
+        {{ (states("sensor.monthly_power_offpeak")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
+            + states("sensor.monthly_power_peak")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
+
+    # XXX: remove _ when 0.117
+    - name: Fixed daily energy cost
+      unique_id: daily_energy_fixed_cost
+      unit_of_measurement: €
+      state: >
+        {% set _ = states("sensor.date") %}
+        {{ (0.1480 + 0.3554) + (0.1480 + 0.6293) }}
+
+    - name: Monthly energy fixed cost
+      unique_id: monthly_energy_fixed_cost
+      unit_of_measurement: €
+      state: >
+        {{ states("sensor.daily_energy_fixed_cost")|float(0) * now().day }}
+
+    - name: Monthly energy fixed cost last period
+      unique_id: monthly_energy_fixed_cost_last_period
+      unit_of_measurement: €
+      state: >
+        {{ states("sensor.daily_energy_fixed_cost")|float(0) * states("sensor.n_days_last_month")|int(0) }}
+
+    - name: Nearest iPhone notify service
+      unique_id: nearest_iphone_notify
+      state: >
+        {% if is_state("person.bas", "home") and is_state("person.marcella", "home") %}
+          notify.all_iphones
+        {% elif is_state_attr("sensor.home_nearest_device", "Bas") %}
+          notify.iphone_bas
+        {% else %}
+          notify.mobile_app_marcella_iphone
+        {% endif %}
+
+    - name: Half an hour before alarm
+      unique_id: half_hour_before_alarm
+      state: >
+        {% set t_alarm = state_attr("input_datetime.alarm_clock", "timestamp") | int %}
+        {% set t_start = states("sensor.timestamp_start_of_today") | int %}
+        {% set half_hour_before_alarm = t_alarm + t_start - 60 * 30 %}
+        {{ half_hour_before_alarm | timestamp_custom("%H:%M", True) }}
+
+    - name: Ten minutes before alarm
+      unique_id: ten_minutes_before_alarm
+      state: >
+        {% set t_alarm = state_attr("input_datetime.alarm_clock", "timestamp") | int %}
+        {% set t_start = states("sensor.timestamp_start_of_today") | int %}
+        {% set before_alarm = t_alarm + t_start - 60 * 10 %}
+        {{ before_alarm | timestamp_custom("%H:%M", True) }}
+
+    # Includes fix from https://github.com/basnijholt/home-assistant-config/issues/32
+    - name: Hours outside per day Marcella
+      unique_id: hours_outside_per_day_marcella
+      state: >
+        {% set value = state_attr("sensor.quarantine_meter_marcella", "value") %}
+        {% if value != None %}
+
+        {% set nargs = 1 + (value | length) - (value.replace(' ', '') | length) %}
+        {% if nargs < 2 %}{% set value = "0h " ~ value %}{% endif %}
+        {% if nargs < 3 %}{% set value = "0d " ~ value %}{% endif %}
+
+        {% set d, h, m = value.split() %}
+        {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
+        {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
+        {{ (hours_outside / 14) | round(1) }}
+        {% endif %}
+
+    # Includes fix from https://github.com/basnijholt/home-assistant-config/issues/32
+    - name: Hours outside per day Bas
+      unique_id: hours_outside_per_day_bas
+      state: >
+        {% set value = state_attr("sensor.quarantine_meter_bas", "value") %}
+        {% if value != None %}
+
+        {% set nargs = 1 + (value | length) - (value.replace(' ', '') | length) %}
+        {% if nargs < 2 %}{% set value = "0h " ~ value %}{% endif %}
+        {% if nargs < 3 %}{% set value = "0d " ~ value %}{% endif %}
+
+        {% set d, h, m = value.split() %}
+        {% set d, h, m = d[:-1] | int, h[:-1] | int, m[:-1] | int %}
+        {% set hours_outside = ((14 - d) * 86400 - h * 3600 - m * 60) / 3600 %}
+        {{ (hours_outside / 14) | round(1) }}
+        {% endif %}
+
+    - name: Adaptive lighting color temp mired
+      unique_id: adaptive_lighting_color_temp_mired
+      unit_of_measurement: "mired"
+      state: >
+        {{ state_attr("switch.adaptive_lighting_living_room", "color_temp_mired") }}
+
+    - name: Adaptive lighting color temp kelvin
+      unique_id: adaptive_lighting_color_temp_kelvin
+      unit_of_measurement: "K"
+      state: >
+        {{ state_attr("switch.adaptive_lighting_living_room", "color_temp_kelvin") }}
+
+    - name: Adaptive lighting brightness
+      unique_id: adaptive_lighting_brightness
+      unit_of_measurement: "%"
+      state: >
+        {{ state_attr("switch.adaptive_lighting_living_room", "brightness_pct") }}
+
+    - name: Adaptive lighting sun position
+      unique_id: adaptive_lighting_sun_position
+      unit_of_measurement: "%"
+      state: >
+        {{ 100 * state_attr("switch.adaptive_lighting_living_room", "sun_position") }}
+
+    - name: Lights on total hours
+      unique_id: lights_on_total_hours
+      unit_of_measurement: h
+      state: >
+        {{ states('sensor.hours_bedroom_lights_have_been_on_last_7_days')|float(0) * 7
+            + states('sensor.hours_living_room_lights_have_been_on_last_7_days')|float(0) * 5
+            + states('sensor.hours_toilet_light_has_been_on_last_7_days')|float(0) * 1
+            + states('sensor.hours_bathroom_light_has_been_on_last_7_days')|float(0) * 1
+            + states('sensor.hours_kitchen_lights_have_been_on_last_7_days')|float(0) * 2
+            + states('sensor.hours_hall_lights_have_been_on_last_7_days')|float(0) * 5
+            + states('sensor.hours_bathroom_light_has_been_on_last_7_days')|float(0) * 1 }}
+
+    - name: Lights on total kWh
+      unique_id: lights_on_total_kwh
+      unit_of_measurement: kWh
+      state: >
+        {{ states('sensor.lights_on_total_hours')|float(0) * 5.4 / 1000 }}
+
+    - name: Robot vacuum last clean duration
+      unique_id: robot_vacuum_last_clean_duration
+      unit_of_measurement: s
+      state: >
+        {% set t_start = state_attr("input_datetime.vacuum_on", "timestamp") | int %}
+        {% set t_off = state_attr("input_datetime.vacuum_off", "timestamp") | int %}
+        {% set duration = t_off - t_start %}
+        {{ duration }}
