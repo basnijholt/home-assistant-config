@@ -111,7 +111,7 @@ def get_dependencies(automation):
         ("script", "scripts.yaml"),
         ("sensor", "includes/sensors.yaml"),
         ("binary_sensor", "includes/binary_sensors.yaml"),
-        ("switch", "includes/switches.yaml"),
+        ("switch", "includes/templates.yaml"),
         ("shell_command", "includes/shell_commands.yaml"),
         ("group", "includes/groups.yaml"),
         ("plant", "includes/plant.yaml"),
