@@ -47,6 +47,13 @@
   entities:
     - light.guest_room
     - light.desk_led
+    - light.double_guest_room
+
+- platform: group
+  name: Double (Guest room)
+  entities:
+    - light.double_bottom_guest_room
+    - light.double_top_guest_room
 
 - platform: group
   name: Kitchen lights

@@ -62,6 +62,7 @@
   lights:
     - light.guest_room
     - light.desk_led
+    - light.double_guest_room
   sleep_brightness: 5
   min_brightness: 70
   separate_turn_on_commands: true
