@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: yaml-lint
-        uses: ibiqlik/action-yamllint@master
+        uses: ibiqlik/action-yamllint@v3
         with:
           config_file: .github/yamllint-config.yml
