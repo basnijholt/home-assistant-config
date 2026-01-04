@@ -28,6 +28,13 @@ ssh ha "ha supervisor info"        # Supervisor info
 ssh ha "ha addons info"            # List add-ons
 ```
 
+**Check Repairs/Issues (requires Spook integration):**
+```bash
+ssh ha "python3 /config/utils/check-repairs.py"
+```
+
+This shows the same repairs visible in Settings → System → Repairs (uses WebSocket API via `repairs/list_issues`).
+
 ⚠️ **IMPORTANT**: Only use commands that **inspect** state. Before running any command that **changes** state (restart, reload, service calls, etc.), explicitly ask for permission first.
 
 ## Git Commits
