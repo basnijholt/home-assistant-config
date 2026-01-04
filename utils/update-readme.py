@@ -54,6 +54,17 @@ def line_number(fname, text, regex_check):
     raise ValueError(f"Text ({text}) doesn't exist in file {fname}.")
 
 
+def line_number_icase(fname, text):
+    """Case-insensitive line number search."""
+    assert isinstance(text, str)
+    text_lower = text.lower()
+    with fname.open() as f:
+        for i, line in enumerate(f):
+            if text_lower in line.lower():
+                return i + 1
+    raise ValueError(f"Text ({text}) doesn't exist in file {fname}.")
+
+
 def permalink(fname):
     return URL.format(commit_hash=git_latest_edit_hash(fname), fname=fname)
 
@@ -66,16 +77,21 @@ def permalink_automation(fname, automation):
 SKIP_LIST = {"switch.turn_on", "switch.turn_off"}
 
 
+def entity_name_to_friendly(name):
+    """Convert entity_id name to friendly name pattern (e.g., 'activity_in_living_room' -> 'activity in living room')."""
+    return name.replace("_", " ")
+
+
 def permalink_entity(x, yaml_fname):
     if x in SKIP_LIST:
         raise ValueError("Incorrectly identified entity which is actually a service.")
     domain, name = x.split(".")
     fname = Path(yaml_fname or f"includes/{domain}s.yaml")
-    # Try key format (e.g., "script_name:" in scripts.yaml), then unique_id format
-    # (e.g., "unique_id: entity_name" in templates.yaml)
-    for pattern in [f"{name}:", f"unique_id: {name}"]:
+    friendly_name = entity_name_to_friendly(name)
+    # Try: key format, unique_id format, then name format (case-insensitive via file search)
+    for pattern in [f"{name}:", f"unique_id: {name}", f"name: {friendly_name}"]:
         with suppress(ValueError):
-            from_line = line_number(fname, pattern, True)
+            from_line = line_number_icase(fname, pattern)
             return permalink(fname) + f"#L{from_line}"
     raise ValueError(f"Entity {x} not found in {fname}")
 
