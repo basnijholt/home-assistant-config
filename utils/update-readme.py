@@ -38,7 +38,7 @@ def git_revision_hash():
 def git_latest_edit_hash(fname):
     """Get the git hash to save with data to ensure reproducibility."""
     git_output = subprocess.check_output(
-        ["git", "rev-list", "-1", "master", str(fname)]
+        ["git", "rev-list", "-1", "main", str(fname)]
     )
     return git_output.decode("utf-8").replace("\n", "")
 
