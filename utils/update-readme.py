@@ -38,7 +38,7 @@ def git_revision_hash():
 def git_latest_edit_hash(fname):
     """Get the git hash to save with data to ensure reproducibility."""
     git_output = subprocess.check_output(
-        ["git", "rev-list", "-1", "master", str(fname)]
+        ["git", "rev-list", "-1", "main", str(fname)]
     )
     return git_output.decode("utf-8").replace("\n", "")
 
@@ -50,6 +50,17 @@ def line_number(fname, text, regex_check):
             if text in line:
                 if regex_check and re.search(fr"\b{text}", line) is None:
                     break
+                return i + 1
+    raise ValueError(f"Text ({text}) doesn't exist in file {fname}.")
+
+
+def line_number_icase(fname, text):
+    """Case-insensitive line number search."""
+    assert isinstance(text, str)
+    text_lower = text.lower()
+    with fname.open() as f:
+        for i, line in enumerate(f):
+            if text_lower in line.lower():
                 return i + 1
     raise ValueError(f"Text ({text}) doesn't exist in file {fname}.")
 
@@ -66,13 +77,23 @@ def permalink_automation(fname, automation):
 SKIP_LIST = {"switch.turn_on", "switch.turn_off"}
 
 
+def entity_name_to_friendly(name):
+    """Convert entity_id name to friendly name pattern (e.g., 'activity_in_living_room' -> 'activity in living room')."""
+    return name.replace("_", " ")
+
+
 def permalink_entity(x, yaml_fname):
     if x in SKIP_LIST:
         raise ValueError("Incorrectly identified entity which is actually a service.")
     domain, name = x.split(".")
     fname = Path(yaml_fname or f"includes/{domain}s.yaml")
-    from_line = line_number(fname, f"{name}:", True)
-    return permalink(fname) + f"#L{from_line}"
+    friendly_name = entity_name_to_friendly(name)
+    # Try: key format, unique_id format, then name format (case-insensitive via file search)
+    for pattern in [f"{name}:", f"unique_id: {name}", f"name: {friendly_name}"]:
+        with suppress(ValueError):
+            from_line = line_number_icase(fname, pattern)
+            return permalink(fname) + f"#L{from_line}"
+    raise ValueError(f"Entity {x} not found in {fname}")
 
 
 def title_and_summary(automation):
@@ -110,12 +131,14 @@ def get_dependencies(automation):
     for domain, yaml_file in [
         ("script", "scripts.yaml"),
         ("sensor", "includes/sensors.yaml"),
+        ("sensor", "includes/templates.yaml"),
+        ("sensor", "includes/utility_meter.yaml"),
         ("binary_sensor", "includes/binary_sensors.yaml"),
-        ("switch", "includes/switches.yaml"),
+        ("binary_sensor", "includes/templates.yaml"),
+        ("switch", "includes/templates.yaml"),
         ("shell_command", "includes/shell_commands.yaml"),
         ("group", "includes/groups.yaml"),
         ("plant", "includes/plant.yaml"),
-        ("sensor", "includes/utility_meter.yaml"),
     ]:
         entities = find_entities(str(automation), domain)
         for entity in sorted(entities):

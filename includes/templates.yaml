@@ -535,3 +535,23 @@
         {% set t_off = state_attr("input_datetime.vacuum_off", "timestamp") | int %}
         {% set duration = t_off - t_start %}
         {{ duration }}
+
+#  ____          _ _       _
+# / ___|_      _(_) |_ ___| |__   ___  ___
+# \___ \ \ /\ / / | __/ __| '_ \ / _ \/ __|
+#  ___) \ V  V /| | || (__| | | |  __/\__ \
+# |____/ \_/\_/ |_|\__\___|_| |_|\___||___/
+
+- switch:
+    - name: Vacuum mode
+      unique_id: vacuum_mode
+      state: >
+        {{ is_state("vacuum.valetudo_vacuum", "cleaning") }}
+      turn_on:
+        action: vacuum.start
+        target:
+          entity_id: vacuum.valetudo_vacuum
+      turn_off:
+        action: vacuum.return_to_base
+        target:
+          entity_id: vacuum.valetudo_vacuum

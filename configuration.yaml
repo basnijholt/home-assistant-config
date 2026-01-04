@@ -36,7 +36,6 @@ person: !include includes/persons.yaml
 zone: !include includes/zones.yaml
 group: !include includes/groups.yaml
 automation old: !include_dir_merge_list automations
-switch: !include includes/switches.yaml
 sensor: !include includes/sensors.yaml
 command_line: !include includes/command_line.yaml
 binary_sensor: !include includes/binary_sensors.yaml
