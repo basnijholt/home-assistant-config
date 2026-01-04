@@ -9,17 +9,25 @@
 #
 #- from github.com/basnijholt/home-assistant-config
 
-- alias: "Climate: turn on the heating 30 min before waking up"
+- alias: "Climate: turn on the heating in the morning"
   triggers:
-    trigger: template
-    value_template: >
-      {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
+    - trigger: template
+      value_template: >
+        {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
+      id: alarm
+    - trigger: time
+      at: "07:00"
+      id: scheduled
   conditions:
-    condition: state
-    entity_id:
-      - input_boolean.alarm_clock
-      - input_boolean.automatic_temperature
-    state: "on"
+    - condition: state
+      entity_id: input_boolean.automatic_temperature
+      state: "on"
+    - "{{ state_attr('climate.thermostat', 'temperature') | float(0) < states('input_number.temperature_high') | float(0) }}"
+    - or:
+        - "{{ trigger.id == 'scheduled' }}"
+        - condition: state
+          entity_id: input_boolean.alarm_clock
+          state: "on"
   actions:
     action: script.set_high_temperature
 
@@ -56,12 +64,12 @@
     - condition: state
       entity_id: input_boolean.automatic_temperature
       state: "on"
+    - "{{ state_attr('climate.thermostat', 'temperature') | float(0) > states('input_number.temperature_low') | float(0) }}"
+  actions:
+    - action: script.set_low_temperature
     - condition: state
       entity_id: binary_sensor.no_one_home
       state: "off"
-    - "{{ not is_state_attr('climate.thermostat', 'temperature', states('input_number.temperature_low')|float(0)) }}"
-  actions:
-    - action: script.set_low_temperature
     - action: notify.all_iphones
       data:
         message: "Turned off the heating 🥶, click to turn it on again?"
