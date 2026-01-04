@@ -78,6 +78,7 @@
       friendly_name: Activity in the utility room
       value_template: >
         {{ is_state("binary_sensor.motion_sensor_utility_room_occupancy", "on")
+            or is_state("binary_sensor.motion_sensor_utility_room_2_occupancy", "on")
             or is_state("binary_sensor.openclose_utility_room_door", "on") }}
       delay_off: "00:01:00"
 
@@ -129,7 +130,7 @@
       value_template: >
         {{ is_state("binary_sensor.activity_outside_garage", "on")
           or is_state("binary_sensor.activity_outside_front_door", "on") }}
-      delay_off: "00:01:00"
+      delay_off: "01:00:00"
 
     activity_outside_bedroom:
       friendly_name: Activity outside the bedroom
