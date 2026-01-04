@@ -56,10 +56,10 @@
     entity_id: input_boolean.vacation_mode
     to: "on"
   actions:
-    - action: input_number.set_value
-      entity_id: input_number.temperature_high
-      data:
-        value: 15
+    action: input_number.set_value
+    entity_id: input_number.temperature_high
+    data:
+      value: 15
 
 - alias: "Vacation mode: restore high temperature"
   triggers:
@@ -67,7 +67,7 @@
     entity_id: input_boolean.vacation_mode
     to: "off"
   actions:
-    - action: input_number.set_value
-      entity_id: input_number.temperature_high
-      data:
-        value: 20.5
+    action: input_number.set_value
+    entity_id: input_number.temperature_high
+    data:
+      value: 20.5
