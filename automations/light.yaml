@@ -439,9 +439,6 @@
     - trigger: sun
       event: sunset
       offset: "-01:00:00"
-    - trigger: sun
-      event: sunrise
-      offset: "-02:00:00"
   actions:
     action: light.turn_on
     entity_id:
@@ -453,7 +450,7 @@
 - alias: "Light: turn off the outside front side of house"
   triggers:
     - trigger: time
-      at: "01:00:00"
+      at: "00:00:00"
     - trigger: sun
       event: sunrise
       offset: "+01:00:00"
