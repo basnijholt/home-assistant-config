@@ -262,7 +262,8 @@
             data:
               entity_id:
                 - light.bedroom_lights
-                - light.baby_room_lights
+                - light.bamboo
+                - light.baby_room
 
 - alias: "Control switches: living room Aqara Wireless Mini Switch"
   mode: parallel
@@ -539,7 +540,8 @@
           action: light.toggle
           data:
             entity_id:
-              - light.baby_room_lights
+              - light.bamboo
+              - light.baby_room
 
       # Toggle sleep mode
       - conditions: "{{ action == 'double' }}"
