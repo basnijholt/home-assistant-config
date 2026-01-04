@@ -132,12 +132,12 @@ cozy_lights_living_room:
           - 336.293
           - 80.392
       action: light.turn_on
-    - data:
-        entity_id: light.living_room_corner
-        hs_color:
-          - 224.64
-          - 98.039
-      action: light.turn_on
+    # - data:
+    #     entity_id: light.bedroom_corner
+    #     hs_color:
+    #       - 224.64
+    #       - 98.039
+    #   action: light.turn_on
     - data:
         entity_id: light.shelve
         hs_color:
@@ -270,6 +270,7 @@ turn_off_everything_non_automatic:
         entity_id:
           - light.living_room_lights
           - light.bedroom_lights
+          - light.guest_room_lights
     - action: media_player.turn_off
       entity_id: media_player.tv
     - action: media_player.turn_off
