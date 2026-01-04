@@ -71,8 +71,8 @@ def permalink_entity(x, yaml_fname):
         raise ValueError("Incorrectly identified entity which is actually a service.")
     domain, name = x.split(".")
     fname = Path(yaml_fname or f"includes/{domain}s.yaml")
-    # Try legacy format first (e.g., "entity_name:"), then modern template format
-    # (e.g., "unique_id: entity_name")
+    # Try key format (e.g., "script_name:" in scripts.yaml), then unique_id format
+    # (e.g., "unique_id: entity_name" in templates.yaml)
     for pattern in [f"{name}:", f"unique_id: {name}"]:
         with suppress(ValueError):
             from_line = line_number(fname, pattern, True)
