@@ -12,6 +12,8 @@
 import subprocess
 from pathlib import Path
 
+AUTHOR = "Bas Nijholt <bas@nijho.lt>"
+
 cmd = "git status --porcelain".split()
 p = subprocess.run(cmd, capture_output=True).stdout.decode()
 
@@ -43,10 +45,10 @@ for line in p.split("\n"):
 for folder in folders_to_add:
     print(folder)
     subprocess.run(f"git add {folder}".split())
-    subprocess.run(["git", "commit", "-m", f"update {folder} via HACS"])
+    subprocess.run(["git", "commit", "--author", AUTHOR, "-m", f"update {folder} via HACS"])
 
 if ha_update:
     with open(ha_version) as f:
         version = f.read()
     subprocess.run(f"git add {ha_version}".split())
-    subprocess.run(["git", "commit", "-m", f"update Home Assistant to {version}"])
+    subprocess.run(["git", "commit", "--author", AUTHOR, "-m", f"update Home Assistant to {version}"])
