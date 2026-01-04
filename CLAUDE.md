@@ -30,6 +30,22 @@ ssh ha "ha addons info"            # List add-ons
 
 ⚠️ **IMPORTANT**: Only use commands that **inspect** state. Before running any command that **changes** state (restart, reload, service calls, etc.), explicitly ask for permission first.
 
+## Git Commits
+
+Write descriptive commit messages that explain **what** changed and **why**:
+
+**Good:**
+- `Turn off front house lights at midnight instead of 1am`
+- `Add second motion sensor to utility room for better coverage`
+- `Split baby_room_lights into individual light entities`
+
+**Bad:**
+- `Update light.yaml`
+- `Fix lights`
+- `Update binary sensors`
+
+Group related changes into logical commits. Each commit should be a single coherent change.
+
 ## Architecture
 
 ### Configuration Structure
