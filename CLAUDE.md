@@ -20,6 +20,16 @@ CI runs yamllint automatically on push via GitHub Actions.
 python utils/update-readme.py
 ```
 
+**SSH Access to Home Assistant:**
+```bash
+ssh ha "ha core info"              # HA version and status
+ssh ha "ha core stats"             # CPU, memory usage
+ssh ha "ha supervisor info"        # Supervisor info
+ssh ha "ha addons info"            # List add-ons
+```
+
+⚠️ **IMPORTANT**: Only use commands that **inspect** state. Before running any command that **changes** state (restart, reload, service calls, etc.), explicitly ask for permission first.
+
 ## Architecture
 
 ### Configuration Structure
