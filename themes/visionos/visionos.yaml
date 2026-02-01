@@ -77,6 +77,7 @@ visionos:
   ha-dialog-surface-backdrop-filter: var(--ha-card-backdrop-filter)
   dialog-box-shadow: var(--ha-card-box-shadow)
   ha-dialog-surface-background: var(--ha-card-background)
+  ha-dialog-scrim-backdrop-filter: none
   # Header
   app-header-backdrop-filter: var(--ha-card-backdrop-filter)
   app-header-edit-background-color: rgba(0, 0, 0, 0.2)
@@ -185,13 +186,13 @@ visionos:
     }
 
     # Bubble card
-    ha-card.type-custom-bubble-card {
+    :host(.type-custom-bubble-card) ha-card {
       background: none !important;
       backdrop-filter: none !important;
       box-shadow: none !important;
       border-radius: 0px !important;
     }
-    ha-card.type-custom-bubble-card::before {
+    :host(.type-custom-bubble-card) ha-card::before {
       content: none !important;
       background: none !important;
       backdrop-filter: none !important;
