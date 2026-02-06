@@ -159,25 +159,25 @@ Liquid Glass:
         content: none !important;
       }
 
-      # Energy dashboard sources
-      .mdc-data-table {
-        background-color: none !important;
-      }
+      /* Energy dashboard */
+      .mdc-data-table,
       .mdc-data-table__row,
-      .mdc-data-table__header-cell {
-        background: var(--ha-card-background) !important;
+      .mdc-data-table__header-cell,
+      ha-sankey-chart {
+        background: none !important;
       }
 
-      # Markdown card with text_only
+      /* Markdown card with text_only */
       ha-card.text-only {
         background: none !important;
         backdrop-filter: none !important;
+        overflow: visible;
       }
       ha-card.text-only::before {
         content: none !important;
       }
 
-      # Mushroom title card
+      /* Mushroom title card */
       :host(mushroom-title-card) ha-card {
         background: none !important;
         backdrop-filter: none !important;
@@ -186,7 +186,7 @@ Liquid Glass:
         content: none !important;
       }
 
-      # Bubble card
+      /* Bubble card */
       :host(.type-custom-bubble-card) ha-card {
         background: none !important;
         backdrop-filter: none !important;
@@ -199,7 +199,7 @@ Liquid Glass:
         backdrop-filter: none !important;
       }
 
-      # Mushroom chips card
+      /* Mushroom chips card */
       :host(mushroom-chips-card) ha-card {
         background: none !important;
         backdrop-filter: none !important;
