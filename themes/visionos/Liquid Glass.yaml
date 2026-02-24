@@ -16,7 +16,7 @@ Liquid Glass:
       app-theme-color: rgb(0, 0, 0)
   # Global
   lovelace-background: var(--background-image)
-  light-primary-color: "#B6B6C1" # (icons on left menu) (light: systemGray5 from iOS dark mode, dark: XXX)
+  light-primary-color: rgb(241, 241, 241) # Icons on sidebar
   divider-color: rgba(152, 152, 157, 0.3) # from Apple systemGray dark mode
   accent-color: var(--primary-color)
   # Text
@@ -28,7 +28,7 @@ Liquid Glass:
   # Sidebar Menu
   sidebar-background-color: var(--secondary-background-color)
   sidebar-icon-color: var(--light-primary-color)
-  sidebar-text-color: "#F1F1F1"
+  sidebar-text-color: var(--light-primary-color)
   sidebar-selected-background-color: var(--primary-background-color)
   sidebar-selected-icon-color: var(--primary-text-color)
   sidebar-selected-text-color: var(--sidebar-selected-icon-color)
@@ -136,6 +136,20 @@ Liquid Glass:
   md-list-container-color: none # ha-md-list already has a card background
 
   card-mod-theme: "Liquid Glass"
+  card-mod-drawer: |
+    .mdc-drawer {
+      background-color: var(--app-header-background-color) !important;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+    }
+  card-mod-sidebar: |
+    :host {
+      background: none !important;
+    }
+
+    ha-md-list-item,
+    ha-md-list-item.selected::before {
+      border-radius: var(--ha-card-border-radius) !important;
+    }
   card-mod-card-yaml: |
     .: |
       ha-card {
@@ -186,19 +200,6 @@ Liquid Glass:
         content: none !important;
       }
 
-      /* Bubble card */
-      :host(.type-custom-bubble-card) ha-card {
-        background: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-        border-radius: 0px !important;
-      }
-      :host(.type-custom-bubble-card) ha-card::before {
-        content: none !important;
-        background: none !important;
-        backdrop-filter: none !important;
-      }
-
       /* Mushroom chips card */
       :host(mushroom-chips-card) ha-card {
         background: none !important;
@@ -210,6 +211,7 @@ Liquid Glass:
         background: none !important;
         backdrop-filter: none !important;
       }
+
     hui-card-features $:
       hui-card-feature $:
         hui-target-temperature-card-feature $:
