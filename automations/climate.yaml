@@ -16,7 +16,7 @@
         {{ states("sensor.time")[0:5] == states("sensor.half_hour_before_alarm") }}
       id: alarm
     - trigger: time
-      at: "07:00"
+      at: "06:00"
       id: scheduled
   conditions:
     - condition: state

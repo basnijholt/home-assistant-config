@@ -454,7 +454,7 @@
           notify.mobile_app_marcella_iphone
         {% endif %}
 
-    - name: Half an hour before alarm
+    - name: Half hour before alarm
       unique_id: half_hour_before_alarm
       state: >
         {% set t_alarm = state_attr("input_datetime.alarm_clock", "timestamp") | int %}
