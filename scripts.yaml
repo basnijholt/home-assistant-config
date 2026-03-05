@@ -438,15 +438,6 @@ arriving:
     - action: script.set_high_temperature
     - action: script.cozy_lights_living_room
 
-update_dns:
-  alias: Update DNS record
-  sequence:
-    - action: shell_command.update_dns
-      data:
-        api: !secret gandi_api_key
-        domain: !secret domain
-        subdomain: !secret subdomain
-
 fix_sound:
   alias: Fix Opt LG Sound Sync bug
   sequence:
