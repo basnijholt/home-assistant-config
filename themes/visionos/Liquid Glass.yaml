@@ -55,6 +55,7 @@ Liquid Glass:
   card-background-color: var(--secondary-background-color) # Data table background
   paper-listbox-background-color: var(--primary-background-color)
   ha-card-border-radius: 34px
+  ha-card-features-border-radius: var(--ha-card-border-radius)
   paper-card-background-color: var(--ha-card-background)
   rgb-card-background-color: rgb(10, 10, 10) # see https://github.com/basnijholt/lovelace-ios-themes/issues/60
   ha-card-border-width: 0 # https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/82#event-7732695357
@@ -134,6 +135,13 @@ Liquid Glass:
   input-hover-line-color: var(--secondary-text-color)
   codemirror-property: var(--accent-color)
   md-list-container-color: none # ha-md-list already has a card background
+  # Dropdown
+  wa-border-style: none
+  wa-shadow-m: var(--ha-card-box-shadow)
+  wa-border-radius-s: var(--ha-card-border-radius)
+  wa-border-radius-m: 24px
+  ha-color-on-neutral-normal: var(--primary-text-color) # icon color
+  wa-color-neutral-fill-normal: "#FFFFFF14" # hover color
 
   card-mod-theme: "Liquid Glass"
   card-mod-drawer: |
@@ -214,109 +222,28 @@ Liquid Glass:
 
     hui-card-features $:
       hui-card-feature $:
-        hui-target-temperature-card-feature $:
-          ha-control-number-buttons $: |
-            .container {
-              --control-number-buttons-border-radius: var(--ha-card-border-radius);
-            }
-        hui-humidifier-toggle-card-feature $:
-          ha-control-select$: |
-            .container {
-              --control-select-border-radius: var(--ha-card-border-radius);
-              --control-select-button-border-radius: var(--ha-card-border-radius);
-            }
-        hui-climate-hvac-modes-card-feature $:
-          ha-control-select$: |
-            .container {
-              --control-select-border-radius: var(--ha-card-border-radius);
-              --control-select-button-border-radius: var(--ha-card-border-radius);
-            }
         hui-target-humidity-card-feature $:
           ha-control-slider$: |
-            .container {
-              --control-slider-border-radius: var(--ha-card-border-radius);
-            }
             .slider .slider-track-bar {
               border-radius: 0px !important;
             }
         service-call $:
-          custom-feature-selector $: |
-            :host {
-              --feature-border-radius: var(--ha-card-border-radius) !important;
-            }
           custom-feature-slider $: |
-            :host {
-              --feature-border-radius: var(--ha-card-border-radius) !important;
-            }
             .default .thumb {
               border-radius: 0px !important;
             }
-        hui-toggle-card-feature $:
-          ha-control-switch $: |
-            .switch {
-              border-radius: var(--ha-card-border-radius) !important;
-            }
-            .button {
-              --control-switch-border-radius: var(--ha-card-border-radius);
-              opacity: 0.8;
-            }
-        hui-select-options-card-feature $:
-          ha-control-select-menu $: |
-            .select .select-anchor {
-              border-radius: var(--ha-card-border-radius);
-            }
-            mwc-menu {
-              --mdc-shape-medium: var(--ha-card-border-radius) !important;
-            }
-        hui-cover-open-close-card-feature $:
-          ha-control-button$: |
-            .button {
-              --control-button-border-radius: var(--ha-card-border-radius);
-            }
-        hui-cover-tilt-card-feature $:
-          ha-control-button$: |
-            .button {
-              --control-button-border-radius: var(--ha-card-border-radius);
-            }
-        hui-vacuum-commands-card-feature $:
-          ha-control-button$: |
-            .button {
-              --control-button-border-radius: var(--ha-card-border-radius);
-            }
         hui-cover-position-card-feature $:
           ha-control-slider$: |
-            .container {
-              --control-slider-border-radius: var(--ha-card-border-radius);
-            }
             .slider .slider-track-bar {
               border-radius: 0px !important;
             }
         hui-cover-tilt-position-card-feature $:
           ha-control-slider$: |
-            .container {
-              --control-slider-border-radius: var(--ha-card-border-radius);
-            }
             .slider .slider-track-bar {
               border-radius: 0px !important;
             }
-        hui-update-actions-card-feature $:
-          ha-control-button$: |
-            .button {
-              --control-button-border-radius: var(--ha-card-border-radius);
-            }
-        hui-light-color-temp-card-feature $:
-          ha-control-slider$: |
-            .container {
-              --control-slider-border-radius: var(--ha-card-border-radius);
-            }
-            .slider .slider-track-cursor {
-              border-radius: var(--ha-card-border-radius) !important;
-            }
         hui-light-brightness-card-feature $:
           ha-control-slider$: |
-            .container {
-              --control-slider-border-radius: var(--ha-card-border-radius);
-            }
             .slider .slider-track-bar {
               border-radius: 0px !important;
             }

@@ -133,6 +133,13 @@ visionos:
   input-hover-line-color: var(--secondary-text-color)
   codemirror-property: var(--accent-color)
   md-list-container-color: none # ha-md-list already has a card background
+  # Dropdown
+  wa-border-style: none
+  wa-shadow-m: var(--ha-card-box-shadow)
+  wa-border-radius-s: 16px
+  wa-border-radius-m: var(--ha-card-border-radius)
+  ha-color-on-neutral-normal: var(--primary-text-color) # icon color
+  wa-color-neutral-fill-normal: "#FFFFFF14" # hover color
 
   card-mod-theme: "visionos"
   card-mod-drawer: |
