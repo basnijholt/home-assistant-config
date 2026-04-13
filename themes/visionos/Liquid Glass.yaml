@@ -22,6 +22,7 @@ Liquid Glass:
   # Text
   primary-text-color: rgba(255, 255, 255, 0.96)
   secondary-text-color: rgba(222, 222, 222, 0.96)
+  ha-color-text-secondary: var(--secondary-text-color)
   text-primary-color: var(--primary-text-color)
   disabled-text-color: rgba(208, 208, 208, 0.5) # XXX: https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/2
   text-dark-color: var(--primary-text-color)
@@ -142,6 +143,11 @@ Liquid Glass:
   wa-border-radius-m: 24px
   ha-color-on-neutral-normal: var(--primary-text-color) # icon color
   wa-color-neutral-fill-normal: "#FFFFFF14" # hover color
+  ha-color-form-background: var(--ha-card-background)
+  ha-color-form-background-hover: var(--ha-card-background)
+  ha-color-form-background-disabled: var(--ha-card-background)
+  ha-color-fill-primary-quiet-resting: rgba(255, 255, 255, 0.12) # selection color
+  ha-color-fill-primary-quiet-hover: rgba(255, 255, 255, 0.2) # selection hover color
 
   card-mod-theme: "Liquid Glass"
   card-mod-drawer: |
