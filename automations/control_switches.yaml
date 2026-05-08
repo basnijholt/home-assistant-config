@@ -532,6 +532,10 @@
     topic: "zigbee2mqtt/Smart Switch (Baby Room)"
   variables:
     action: "{{ trigger.payload_json.action }}"
+  conditions:
+    condition: state
+    entity_id: input_boolean.baby_room_light_button_kill_switch
+    state: "off"
   actions:
     choose:
       # Toggle light
@@ -548,6 +552,14 @@
         sequence:
           action: switch.toggle
           entity_id: switch.adaptive_lighting_sleep_mode_baby_room
+
+- alias: "Control switches: reset baby room light button kill switch"
+  triggers:
+    trigger: time
+    at: "06:00:00"
+  actions:
+    action: input_boolean.turn_off
+    entity_id: input_boolean.baby_room_light_button_kill_switch
 
 - alias: "Control switches: Mid Room Changing Table Light"
   mode: parallel

@@ -46,6 +46,9 @@ automatic_bedroom_lights:
 automatic_dinner_area_light:
   name: Automatic dinner area light
   icon: mdi:lamp
+baby_room_light_button_kill_switch:
+  name: Baby room light button kill switch
+  icon: mdi:gesture-tap-button
 automatic_temperature:
   name: Automatic temperature
   icon: mdi:thermometer

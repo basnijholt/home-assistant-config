@@ -61,6 +61,7 @@ views:
       - light.ceiling_bedroom
       - light.lampan
       - light.bamboo
+      - input_boolean.baby_room_light_button_kill_switch
       - light.bed_reading_up
       - light.bed_reading_down
       - light.philips_go
