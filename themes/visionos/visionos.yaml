@@ -149,7 +149,7 @@ visionos:
 
   card-mod-theme: "visionos"
   card-mod-drawer: |
-    .mdc-drawer {
+    .mdc-drawer, .sidebar-shell {
       background-color: var(--app-header-background-color) !important;
       backdrop-filter: var(--ha-card-backdrop-filter);
     }
