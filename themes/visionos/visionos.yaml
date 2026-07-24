@@ -148,14 +148,25 @@ visionos:
   ha-color-fill-primary-quiet-hover: rgba(255, 255, 255, 0.2) # selection hover color
 
   card-mod-theme: "visionos"
-  card-mod-drawer: |
-    .mdc-drawer, .sidebar-shell {
-      background-color: var(--app-header-background-color) !important;
-      backdrop-filter: var(--ha-card-backdrop-filter);
-    }
+  card-mod-drawer-yaml: |
+    .: |
+      .mdc-drawer {
+        background-color: var(--app-header-background-color) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+
+      .sidebar-shell {
+        background-color: var(--app-header-background-color) !important;
+      }
+      
+    wa-drawer$: |
+      dialog {
+        backdrop-filter: var(--ha-card-backdrop-filter);
+      }
   card-mod-sidebar: |
     :host {
       background: none !important;
+      backdrop-filter: var(--ha-card-backdrop-filter);
     }
   card-mod-card: |
     ha-card {
