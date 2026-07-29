@@ -626,8 +626,8 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Climate 🔥🥶](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml)
-### [Turn on the heating in the morning](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml#L12)
+## [Climate 🔥🥶](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml)
+### [Turn on the heating in the morning](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml#L12)
 
   *which uses:*
   - [input_boolean.alarm_clock](https://github.com/basnijholt/home-assistant-config/blob/9553c506d8b91c31cfdabc59d4a46d969b83fc47/includes/input_booleans.yaml#L58)
@@ -638,14 +638,14 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [sensor.half_hour_before_alarm](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L458)
   - [sensor.time](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L318)
 
-### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml#L34)
+### [Turn on the heating when going home](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml#L34)
 
   *which uses:*
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/9553c506d8b91c31cfdabc59d4a46d969b83fc47/includes/input_booleans.yaml#L52)
   - [input_number.temperature_high](https://github.com/basnijholt/home-assistant-config/blob/7e6643e48793d765fbeabeb228a03ba3db1c0889/includes/input_numbers.yaml#L19)
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/c08150a61c71b39da999aacdf4e43251974623ae/scripts.yaml#L411)
 
-### [Turn off the heating at 22:00](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml#L59)
+### [Turn off the heating at 22:00](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml#L59)
 
   *which uses:*
   - [input_boolean.automatic_temperature](https://github.com/basnijholt/home-assistant-config/blob/9553c506d8b91c31cfdabc59d4a46d969b83fc47/includes/input_booleans.yaml#L52)
@@ -653,18 +653,18 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.set_high_temperature](https://github.com/basnijholt/home-assistant-config/blob/c08150a61c71b39da999aacdf4e43251974623ae/scripts.yaml#L411)
   - [script.set_low_temperature](https://github.com/basnijholt/home-assistant-config/blob/c08150a61c71b39da999aacdf4e43251974623ae/scripts.yaml#L402)
 
-### [Set outside temperature every hour](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml#L92)
+### [Set outside temperature every hour](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml#L92)
 
 
-### [Warning when heating on and living room door open](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml#L103)
+### [Warning when heating on and living room door open](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml#L103)
 
   *which uses:*
   - [input_number.temperature_low](https://github.com/basnijholt/home-assistant-config/blob/7e6643e48793d765fbeabeb228a03ba3db1c0889/includes/input_numbers.yaml#L12)
 
-### [Set temperature setpoint to 50 °C](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml#L137)
+### [Set temperature setpoint to 50 °C](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml#L137)
 
 
-### [Automatically turn off spaceheater when no-one is in the guest room](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/automations/climate.yaml#L147)
+### [Automatically turn off spaceheater when no-one is in the guest room](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/climate.yaml#L147)
 
   *which uses:*
   - [sensor.activity_in_guest_room](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L113)
@@ -806,8 +806,8 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Leaving 👞](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/leaving.yaml)
-### [Automatically turn off everything](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/leaving.yaml#L12)
+## [Leaving 👞](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/leaving.yaml)
+### [Automatically turn off everything](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/leaving.yaml#L12)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/9553c506d8b91c31cfdabc59d4a46d969b83fc47/includes/input_booleans.yaml#L22)
@@ -817,19 +817,19 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L196)
   - [binary_sensor.someone_in_the_house_in_last_hour](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L47)
 
-### [Ask to turn off everything](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/leaving.yaml#L40)
+### [Ask to turn off everything](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/leaving.yaml#L40)
 
   *which uses:*
   - [input_boolean.guest_mode](https://github.com/basnijholt/home-assistant-config/blob/9553c506d8b91c31cfdabc59d4a46d969b83fc47/includes/input_booleans.yaml#L22)
   - [sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L196)
   - [binary_sensor.anything_on](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L196)
 
-### [Turn off everything after notification](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/leaving.yaml#L74)
+### [Turn off everything after notification](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/leaving.yaml#L74)
 
   *which uses:*
   - [script.leaving](https://github.com/basnijholt/home-assistant-config/blob/c08150a61c71b39da999aacdf4e43251974623ae/scripts.yaml#L429)
 
-### [Downstairs Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/leaving.yaml#L84)
+### [Downstairs Aqara Wireless Mini Switch](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/leaving.yaml#L84)
 
   *which uses:*
   - [script.turn_off_everything](https://github.com/basnijholt/home-assistant-config/blob/c08150a61c71b39da999aacdf4e43251974623ae/scripts.yaml#L279)
@@ -1180,38 +1180,38 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [Security 👮🚨](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml)
-### [Motion detected but we are not home](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml#L11)
+## [Security 👮🚨](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml)
+### [Motion detected but we are not home](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml#L11)
 
   *which uses:*
   - [sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L29)
   - [binary_sensor.motion_detected](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L29)
   - [group.persons](https://github.com/basnijholt/home-assistant-config/blob/6bab64cd641699f47bb147f03af01022699eeecb/includes/groups.yaml#L11)
 
-### [Front door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml#L48)
+### [Front door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml#L48)
 
 
-### [Utility room door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml#L61)
+### [Utility room door has been open for more than 5 minutes](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml#L61)
 
 
-### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml#L74)
+### [No one is home but high power usage](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml#L74)
 
   *which uses:*
   - [sensor.power_consumption](https://github.com/basnijholt/home-assistant-config/blob/1bbf15def312391e65a0645100791d7d294d1265/includes/sensors.yaml#L311)
 
-### [Bathroom door has opened](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml#L96)
+### [Bathroom door has opened](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml#L96)
 
   *which uses:*
   - [input_boolean.bathroom_door_open_warning](https://github.com/basnijholt/home-assistant-config/blob/9553c506d8b91c31cfdabc59d4a46d969b83fc47/includes/input_booleans.yaml#L25)
 
-### [Activity in master bedroom](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml#L123)
+### [Activity in master bedroom](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml#L123)
 
   *which uses:*
   - [input_boolean.bedroom_activity_warning](https://github.com/basnijholt/home-assistant-config/blob/9553c506d8b91c31cfdabc59d4a46d969b83fc47/includes/input_booleans.yaml#L31)
   - [sensor.activity_in_master_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L99)
   - [binary_sensor.activity_in_master_bedroom](https://github.com/basnijholt/home-assistant-config/blob/5015c953e97f093823954bf7e22e3889191a53b9/includes/templates.yaml#L99)
 
-### [Door to outside open](https://github.com/basnijholt/home-assistant-config/blob/e1ac0ba31e87fbe4e7fc9ddafc20681919bfe70e/automations/security.yaml#L148)
+### [Door to outside open](https://github.com/basnijholt/home-assistant-config/blob/489eff416fd474ec5859b954b1a16756e0c7ea09/automations/security.yaml#L148)
 
   
 
