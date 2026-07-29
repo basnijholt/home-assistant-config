@@ -217,7 +217,7 @@ white_lights_living_room:
       data:
         entity_id:
           - light.living_room_lights
-        color_temp: 366
+        color_temp_kelvin: 2732
     - action: input_select.select_option
       entity_id: input_select.last_script_living_room
       data:
@@ -228,7 +228,7 @@ white_lights_bedroom:
   mode: parallel
   sequence:
     - data:
-        color_temp: 366
+        color_temp_kelvin: 2732
         entity_id:
           - light.bedroom_lights
       action: light.turn_on
