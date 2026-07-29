@@ -22,7 +22,7 @@
   conditions:
     - condition: state
       entity_id:
-        - binary_sensor.no_one_home
+        - binary_sensor.no_one_is_home
         - binary_sensor.anything_on
       state: "on"
     - condition: state
@@ -49,7 +49,7 @@
   conditions:
     - condition: state
       entity_id:
-        - binary_sensor.no_one_home
+        - binary_sensor.no_one_is_home
         - binary_sensor.anything_on
       state: "on"
     - condition: state
@@ -58,7 +58,7 @@
   actions:
     - delay: "00:05:00" # something still needs to be on in 5 min
     - condition: state
-      entity_id: binary_sensor.no_one_home
+      entity_id: binary_sensor.no_one_is_home
       state: "on"
     - action: notify.all_iphones
       data:

@@ -47,7 +47,7 @@
     - "{{ is_state('sensor.home_nearest_direction_of_travel', 'towards') }}"
     - "{{ not is_state_attr('climate.thermostat', 'temperature', states('input_number.temperature_high')) }}"
     - condition: state
-      entity_id: binary_sensor.no_one_home
+      entity_id: binary_sensor.no_one_is_home
       state: "on"
   actions:
     - action: script.set_high_temperature
@@ -68,7 +68,7 @@
   actions:
     - action: script.set_low_temperature
     - condition: state
-      entity_id: binary_sensor.no_one_home
+      entity_id: binary_sensor.no_one_is_home
       state: "off"
     - action: notify.all_iphones
       data:

@@ -74,13 +74,13 @@
 - alias: "Security: no one is home but high power usage"
   triggers:
     - trigger: state
-      entity_id: binary_sensor.no_one_home
+      entity_id: binary_sensor.no_one_is_home
       to: "on"
     - trigger: time_pattern
       minutes: "/10"
   conditions:
     - condition: state
-      entity_id: binary_sensor.no_one_home
+      entity_id: binary_sensor.no_one_is_home
       state: "on"
     - condition: numeric_state
       entity_id: sensor.power_consumption
