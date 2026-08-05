@@ -502,7 +502,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Plant 🌱](#plant-) (3 automations)
 1. [Security 👮🚨](#security-) (7 automations)
 1. [Night mode 🌕🌑](#night-mode-) (6 automations)
-1. [System 🖥](#system-) (6 automations)
+1. [System 🖥](#system-) (9 automations)
 1. [Test 🧪](#test-) (5 automations)
 1. [Utilities 🧺👚🍽](#utilities-) (3 automations)
 1. [Vacation mode 🏝](#vacation-mode-) (4 automations)
@@ -510,7 +510,7 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 1. [Work 💼](#work-) (3 automations)
 
 
-⚠️ Total number of automations: **141** ⚠️
+⚠️ Total number of automations: **144** ⚠️
 
 ## [Adaptive lighting 🌄🌇](https://github.com/basnijholt/home-assistant-config/blob/896d09e1d72d5a2de280d9b091e72f717846000d/automations/adaptive_lighting.yaml)
 ### [Turn on and off switches](https://github.com/basnijholt/home-assistant-config/blob/896d09e1d72d5a2de280d9b091e72f717846000d/automations/adaptive_lighting.yaml#L11)
@@ -1294,6 +1294,15 @@ to "Opt".
   - [sensor.power_consumption](https://github.com/basnijholt/home-assistant-config/blob/1bbf15def312391e65a0645100791d7d294d1265/includes/sensors.yaml#L311)
 
 ### [Battery level low](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L77)
+
+
+### [Warning about low disk space](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L108)
+
+
+### [Critical disk space](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L127)
+
+
+### [Backups are stale](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L146)
 
 
 [^ toc](#automations---table-of-content)
