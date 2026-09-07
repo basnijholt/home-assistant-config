@@ -1,0 +1,5 @@
+import{Ao as e,Do as t,L as n,lt as r,wo as i}from"./shared-Dia7VIOe.js";var a={path:`M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z`,viewBox:`0 0 24 24`},o=`:host{pointer-events:none;justify-content:center;align-items:center;transition:opacity 1.5s ease-in;display:flex;position:absolute;top:0;bottom:0;left:0;right:0}.check{width:80px;height:80px;color:var(--success-color,#4caf50);filter:drop-shadow(0 4px 6px #0000004d);animation:.4s cubic-bezier(.175,.885,.32,1.275) forwards check-popup}@keyframes check-popup{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.2)}to{opacity:0;transform:scale(1)}}`,s=class extends n{render(){return t`<span class="check">
+      <svg viewBox=${a.viewBox} fill="currentColor">
+        <path d=${a.path}></path>
+      </svg>
+    </span>`}static get styles(){return e(o)}};s=r([i(`advanced-camera-card-effect-check`)],s);export{s as AdvancedCameraCardEffectCheck};
