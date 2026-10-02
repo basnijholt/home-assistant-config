@@ -1,0 +1,406 @@
+System 7:
+  # Desktop
+  lovelace-background: "repeating-conic-gradient(#8f8f8f 0% 25%, #bdbdbd 0% 50%) 0 0 / 2px 2px"
+  primary-background-color: "#bdbdbd"
+  secondary-background-color: "#ffffff"
+  card-background-color: "#ffffff"
+  ha-card-background: "#ffffff"
+  ha-dialog-surface-background: "#ffffff"
+  mdc-theme-surface: "#ffffff"
+  app-theme-color: "#ffffff"
+  # Fonts
+  ha-font-family-body: '"ChicagoFLF", "Chicago", "Charcoal", system-ui, sans-serif'
+  ha-font-family-heading: var(--ha-font-family-body)
+  mdc-typography-font-family: var(--ha-font-family-body)
+  md-ref-typeface-plain: var(--ha-font-family-body)
+  ha-font-weight-medium: "400"
+  ha-font-weight-bold: "400"
+  ha-card-header-font-size: 16px
+  # Text
+  primary-text-color: "#000000"
+  secondary-text-color: "#000000"
+  text-primary-color: "#ffffff"
+  disabled-text-color: "#808080"
+  divider-color: "#000000"
+  primary-color: "#000000"
+  accent-color: "#000000"
+  state-icon-color: "#000000"
+  # Shapes
+  ha-border-radius-sm: 2px
+  ha-border-radius-md: 4px
+  ha-border-radius-lg: 6px
+  ha-border-radius-xl: 6px
+  ha-border-radius-2xl: 6px
+  ha-border-radius-3xl: 6px
+  ha-border-radius-4xl: 6px
+  ha-border-radius-5xl: 6px
+  ha-border-radius-6xl: 6px
+  ha-border-radius-pill: 6px
+  # Windows
+  ha-card-border-radius: 0px
+  ha-card-border-width: 1px
+  ha-card-border-color: "#000000"
+  ha-card-box-shadow: 1px 1px 0 #000000
+  ha-card-backdrop-filter: none
+  dialog-box-shadow: 0 0 0 1px #000000, 2px 2px 0 1px #000000
+  ha-dialog-border-radius: 0px
+  # Menu bar
+  app-header-background-color: "#ffffff"
+  app-header-text-color: "#000000"
+  app-header-border-bottom: 1px solid #000000
+  # Sidebar
+  sidebar-background-color: "#ffffff"
+  sidebar-text-color: "#000000"
+  sidebar-icon-color: "#000000"
+  sidebar-selected-text-color: "#ffffff"
+  sidebar-selected-icon-color: "#ffffff"
+  # Controls
+  disabled-color: "#808080"
+
+
+  card-mod-theme: "System 7"
+  card-mod-root: |
+    :host {
+      font-family: var(--ha-font-family-body);
+    }
+
+    /* Trash */
+    hui-view-container::before {
+      content: "Trash";
+      position: fixed;
+      right: 24px;
+      bottom: 16px;
+      z-index: 5;
+      width: 64px;
+      height: 58px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-size: 12px;
+      line-height: 16px;
+      color: #000;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E %3Crect x='12.5' y='2.5' width='7' height='3' fill='none' stroke='%23000'/%3E %3Crect x='5.5' y='5.5' width='21' height='4' fill='%23fff' stroke='%23000'/%3E %3Cpath d='M7.5 9.5 L9.5 30.5 H22.5 L24.5 9.5 Z' fill='%23fff' stroke='%23000'/%3E %3Cpath d='M12.5 12.5 V27.5 M16.5 12.5 V27.5 M20.5 12.5 V27.5' stroke='%23000'/%3E %3C/svg%3E") 50% 0 / 32px 32px no-repeat,
+        linear-gradient(#fff, #fff) 50% 100% / 44px 16px no-repeat;
+      cursor: default;
+    }
+
+    hui-view-container:active:not(:has(:active))::before {
+      filter: invert(1);
+    }
+
+    /* Startup: press the trash for the happy computer, release for the welcome box, then back to the desktop */
+    hui-view-container::after {
+      content: "Welcome to Macintosh.";
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #000;
+      pointer-events: none;
+      opacity: 0;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 52' shape-rendering='crispEdges'%3E %3Crect x='3.5' y='0.5' width='33' height='42' fill='%23fff' stroke='%23000'/%3E %3Crect x='8.5' y='5.5' width='23' height='19' fill='%23fff' stroke='%23000'/%3E %3Crect x='14' y='10' width='2' height='3'/%3E%3Crect x='24' y='10' width='2' height='3'/%3E %3Cpath d='M20.5 10.5 V16.5 H18.5' fill='none' stroke='%23000'/%3E %3Cpath d='M15.5 19.5 H16.5 V20.5 H23.5 V19.5 H24.5' fill='none' stroke='%23000'/%3E %3Crect x='20.5' y='32.5' width='11' height='2' fill='%23fff' stroke='%23000'/%3E %3Crect x='5.5' y='42.5' width='29' height='8' fill='%23fff' stroke='%23000'/%3E %3C/svg%3E") 50% 50% / 0 0 no-repeat,
+        linear-gradient(#fff, #fff) 50% 50% / 318px 78px no-repeat,
+        linear-gradient(#000, #000) 50% 50% / 322px 82px no-repeat,
+        repeating-conic-gradient(#8f8f8f 0% 25%, #bdbdbd 0% 50%) 0 0 / 2px 2px;
+      transition: background-size 0s 2s, color 0s 2s, opacity 0.4s 4.5s;
+    }
+
+    hui-view-container:active:not(:has(:active))::after {
+      opacity: 1;
+      color: transparent;
+      background-size: 80px 104px, 0 0, 0 0, 2px 2px;
+      transition: none;
+    }
+  card-mod-config: |
+    :host {
+      font-family: var(--ha-font-family-body);
+    }
+  card-mod-dialog: |
+    :host {
+      font-family: var(--ha-font-family-body) !important;
+    }
+
+    [slot="headerTitle"] {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 8px !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    [slot="headerTitle"] > * {
+      flex: 0 1 auto !important;
+      width: auto !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    [slot="headerTitle"]::before,
+    [slot="headerTitle"]::after {
+      content: "" !important;
+      flex: 1 0 8px !important;
+      height: 13px !important;
+      background: repeating-linear-gradient(#000 0 1px, transparent 1px 2px) !important;
+    }
+
+    ha-icon-button[slot="headerNavigationIcon"] {
+      --ha-icon-button-size: 18px !important;
+      --mdc-icon-button-size: 18px !important;
+      --mdc-icon-size: 0px !important;
+      width: 18px !important;
+      height: 18px !important;
+      margin: 0 8px !important;
+      border: 1px solid #000 !important;
+      background: #fff !important;
+    }
+  card-mod-more-info: |
+    :host {
+      font-family: var(--ha-font-family-body) !important;
+    }
+
+    [slot="headerTitle"] {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 8px !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    [slot="headerTitle"] > * {
+      flex: 0 1 auto !important;
+      width: auto !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    [slot="headerTitle"]::before,
+    [slot="headerTitle"]::after {
+      content: "" !important;
+      flex: 1 0 8px !important;
+      height: 13px !important;
+      background: repeating-linear-gradient(#000 0 1px, transparent 1px 2px) !important;
+    }
+
+    ha-icon-button[slot="headerNavigationIcon"] {
+      --ha-icon-button-size: 18px !important;
+      --mdc-icon-button-size: 18px !important;
+      --mdc-icon-size: 0px !important;
+      width: 18px !important;
+      height: 18px !important;
+      margin: 0 8px !important;
+      border: 1px solid #000 !important;
+      background: #fff !important;
+    }
+  card-mod-sidebar: |
+    @font-face {
+      font-family: "ChicagoFLF";
+      src: url("https://cdn.jsdelivr.net/npm/@sakun/system.css@0.1.11/fonts/ChicagoFLF.woff2") format("woff2");
+    }
+
+    :host {
+      border-right: 1px solid #000;
+      font-family: var(--ha-font-family-body);
+    }
+
+    ha-list-item-button,
+    ha-list-item-button.selected::before {
+      border-radius: 0 !important;
+    }
+
+    ha-list-item-button.selected::before {
+      background-color: #000 !important;
+      opacity: 1 !important;
+    }
+  card-mod-card: |
+    .card-header,
+    :host(hui-thermostat-card) .title,
+    :host(hui-humidifier-card) .title {
+      display: flex !important;
+      align-items: center;
+      gap: 8px;
+      height: 26px;
+      margin: 0 0 12px !important;
+      padding: 0 4px !important;
+      border-bottom: 1px solid #000;
+      font-size: 16px !important;
+      line-height: 26px !important;
+      white-space: nowrap;
+    }
+
+    :host(hui-thermostat-card) .title,
+    :host(hui-humidifier-card) .title {
+      padding-right: 30px !important;
+      font-size: 14px !important;
+    }
+
+    .card-header::before,
+    .card-header::after,
+    :host(hui-thermostat-card) .title::before,
+    :host(hui-thermostat-card) .title::after,
+    :host(hui-humidifier-card) .title::before,
+    :host(hui-humidifier-card) .title::after {
+      content: "";
+      flex: 1 0 8px;
+      height: 13px;
+      background: repeating-linear-gradient(#000 0 1px, transparent 1px 2px);
+    }
+
+    .card-header::before,
+    :host(hui-thermostat-card) .title::before,
+    :host(hui-humidifier-card) .title::before {
+      flex: 1 0 22px;
+      background:
+        linear-gradient(#fff, #fff) 5px 50% / 11px 11px no-repeat,
+            linear-gradient(#000, #000) 4px 50% / 13px 13px no-repeat,
+            linear-gradient(#fff, #fff) 2px 50% / 17px 13px no-repeat,
+            repeating-linear-gradient(#000 0 1px, transparent 1px 2px);
+    }
+
+    :host(hui-thermostat-card) .more-info,
+    :host(hui-humidifier-card) .more-info {
+      --ha-icon-button-size: 26px;
+      --mdc-icon-button-size: 26px;
+      --mdc-icon-size: 18px;
+      width: 26px;
+      height: 26px;
+      right: 2px;
+    }
+  uix-card-yaml: |
+    .: |
+      .card-header,
+      :host(hui-thermostat-card) .title,
+      :host(hui-humidifier-card) .title {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        height: 26px;
+        margin: 0 0 12px !important;
+        padding: 0 4px !important;
+        border-bottom: 1px solid #000;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        white-space: nowrap;
+      }
+
+      :host(hui-thermostat-card) .title,
+      :host(hui-humidifier-card) .title {
+        padding-right: 30px !important;
+        font-size: 14px !important;
+      }
+
+      .card-header::before,
+      .card-header::after,
+      :host(hui-thermostat-card) .title::before,
+      :host(hui-thermostat-card) .title::after,
+      :host(hui-humidifier-card) .title::before,
+      :host(hui-humidifier-card) .title::after {
+        content: "";
+        flex: 1 0 8px;
+        height: 13px;
+        background: repeating-linear-gradient(#000 0 1px, transparent 1px 2px);
+      }
+
+      .card-header::before,
+      :host(hui-thermostat-card) .title::before,
+      :host(hui-humidifier-card) .title::before {
+        flex: 1 0 22px;
+        background:
+          linear-gradient(#fff, #fff) 5px 50% / 11px 11px no-repeat,
+              linear-gradient(#000, #000) 4px 50% / 13px 13px no-repeat,
+              linear-gradient(#fff, #fff) 2px 50% / 17px 13px no-repeat,
+              repeating-linear-gradient(#000 0 1px, transparent 1px 2px);
+      }
+
+      :host(hui-thermostat-card) .more-info,
+      :host(hui-humidifier-card) .more-info {
+        --ha-icon-button-size: 26px;
+        --mdc-icon-button-size: 26px;
+        --mdc-icon-size: 18px;
+        width: 26px;
+        height: 26px;
+        right: 2px;
+      }
+    "hui-card-features $$ ha-control-button $": |
+      .button {
+        background: #fff !important;
+        border: 1px solid #000 !important;
+        border-radius: 6px !important;
+      }
+
+      .button::before {
+        opacity: 0 !important;
+      }
+
+      .button:active {
+        background: #000 !important;
+        --control-button-icon-color: #fff !important;
+      }
+    "hui-card-features $$ ha-control-select $": |
+      .container {
+        background: #fff !important;
+        border: 1px solid #000 !important;
+        border-radius: 6px !important;
+      }
+
+      .container::before {
+        opacity: 0 !important;
+      }
+    "hui-card-features $$ ha-control-number-buttons $": |
+      .value {
+        background: #fff !important;
+        border: 1px solid #000 !important;
+      }
+
+      .value::before {
+        opacity: 0 !important;
+      }
+    "hui-card-features $$ ha-control-slider $": |
+      .slider {
+        border: 1px solid #000 !important;
+        box-sizing: border-box !important;
+      }
+  uix-badge-yaml: |
+    .: |
+      ha-badge {
+        --ha-card-background: transparent;
+        --ha-card-border-width: 0px;
+        --ha-card-box-shadow: none;
+        --ha-badge-size: auto;
+        --ha-badge-icon-size: 32px;
+        --ha-badge-border-radius: 0px;
+        --mdc-icon-size: 32px;
+      }
+
+      :host {
+        --state-inactive-color: #000;
+        --state-icon-color: #000;
+      }
+
+      ha-state-icon {
+        filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
+      }
+    "ha-badge $": |
+      .badge {
+        flex-direction: column !important;
+        gap: 2px !important;
+        height: auto !important;
+        padding: 0 4px !important;
+      }
+
+      .info {
+        align-items: center !important;
+      }
+
+      .label,
+      .content {
+        background: #fff !important;
+        color: #000 !important;
+        padding: 1px 3px !important;
+      }

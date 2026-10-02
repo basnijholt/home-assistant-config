@@ -7,6 +7,17 @@ visionos:
       app-header-background-color: rgba(84, 80, 76, 0.3)
       ha-card-background: rgba(128, 128, 128, 0.3)
       app-theme-color: rgb(122, 114, 106) # Average header color, used on the top of the browser
+      ha-color-fill-neutral-quiet-resting: rgba(255, 255, 255, 0.1)
+      ha-color-fill-neutral-quiet-hover: rgba(255, 255, 255, 0.16)
+      ha-color-fill-neutral-quiet-active: rgba(255, 255, 255, 0.1)
+      ha-color-fill-neutral-normal-resting: rgba(255, 255, 255, 0.16)
+      ha-color-fill-neutral-normal-hover: rgba(255, 255, 255, 0.22)
+      ha-color-fill-neutral-normal-active: rgba(255, 255, 255, 0.16)
+      ha-color-surface-default: var(--secondary-background-color)
+      ha-color-surface-low: rgba(255, 255, 255, 0.1)
+      ha-color-surface-lower: rgba(0, 0, 0, 0.15)
+      ha-color-on-surface-default: var(--primary-text-color)
+      energy-gas-color: "#FF6961"
     dark:
       background-image: "center / cover no-repeat fixed url('https://raw.githubusercontent.com/Nezz/homeassistant-visionos-theme/1.1/themes/night.jpg')"
       primary-background-color: rgb(25, 24, 22)
@@ -25,12 +36,10 @@ visionos:
   ha-color-text-secondary: var(--secondary-text-color)
   text-primary-color: var(--primary-text-color)
   disabled-text-color: rgba(208, 208, 208, 0.5) # XXX: https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/2
-  text-dark-color: var(--primary-text-color)
   # Sidebar Menu
   sidebar-background-color: var(--secondary-background-color)
   sidebar-icon-color: var(--light-primary-color)
   sidebar-text-color: var(--light-primary-color)
-  sidebar-selected-background-color: var(--primary-background-color)
   sidebar-selected-icon-color: var(--primary-text-color)
   sidebar-selected-text-color: var(--sidebar-selected-icon-color)
   # States and Badges
@@ -40,13 +49,6 @@ visionos:
   state-inactive-color: var(--disabled-text-color)
   paper-item-icon-active-color: var(--state-icon-active-color) # see https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/30
   # Sliders
-  paper-slider-knob-color: "#FFFFFF"
-  paper-slider-knob-start-color: var(--paper-slider-knob-color)
-  paper-slider-pin-color: var(--paper-slider-knob-color)
-  paper-slider-active-color: "#0984ff" # from Apple systemBlue dark mode
-  paper-slider-secondary-color: var(--paper-slider-knob-color)
-  paper-slider-container-color: rgba(255, 255, 255, 0.5)
-  paper-slider-font-color: "#000"
   ha-slider-background: none !important
   # Labels
   label-badge-background-color: "#23232E"
@@ -54,30 +56,20 @@ visionos:
   label-badge-red: rgba(255, 159, 9, 0.7) # from Apple systemOrange dark mode
   # Cards
   card-background-color: var(--secondary-background-color) # Data table background
-  paper-listbox-background-color: var(--primary-background-color)
   ha-card-border-radius: 20px
-  paper-card-background-color: var(--ha-card-background)
   rgb-card-background-color: rgb(10, 10, 10) # see https://github.com/basnijholt/lovelace-ios-themes/issues/60
   ha-card-border-width: 0 # https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/82#event-7732695357
   ha-card-backdrop-filter: blur(20px)
   ha-card-box-shadow: 0.5px 0.5px 1px 0px rgba(255, 255, 255, 0.40) inset, -0.5px -0.5px 1px 0px rgba(255, 255, 255, 0.10) inset, 0px 1px 2px 0px rgba(0, 0, 0, 0.10)
-  # Toggles
-  paper-toggle-button-checked-button-color: "#484848"
-  paper-toggle-button-checked-bar-color: "#484848"
-  paper-toggle-button-unchecked-button-color: var(--paper-toggle-button-checked-button-color)
-  paper-toggle-button-unchecked-bar-color: var(--disabled-text-color)
   # Table row
   table-row-background-color: var(--primary-background-color)
   table-row-alternative-background-color: var(--secondary-background-color)
-  # Switches
-  switch-checked-track-color: var(--green-color)
-  switch-checked-button-color: "#FFF"
-  switch-unchecked-track-color: var(--disabled-text-color)
-  switch-unchecked-button-color: "#FFF"
   # Dialog
-  ha-dialog-surface-backdrop-filter: var(--ha-card-backdrop-filter)
+  # --ha-space-1 and --ha-color-neutral-50 only exist in the current frontend. HACS runs a 2025 frontend in an iframe, where these values turn invalid and
+  # its old dialogs fall back to no blur and an opaque surface. A blurred surface there breaks fixed-position dropdowns like the version picker.
+  ha-dialog-surface-backdrop-filter: var(--ha-card-backdrop-filter) blur(calc(0 * var(--ha-space-1)))
   dialog-box-shadow: var(--ha-card-box-shadow)
-  ha-dialog-surface-background: var(--ha-card-background)
+  ha-dialog-surface-background: color-mix(in srgb, var(--ha-card-background), var(--ha-color-neutral-50) 0%)
   ha-dialog-scrim-backdrop-filter: none
   # Header
   app-header-backdrop-filter: var(--ha-card-backdrop-filter)
@@ -95,6 +87,15 @@ visionos:
   yellow-color: "#FFD60A"
   orange-color: "#FF9F0A"
   brown-color: "#AC8E68"
+  graph-color-1: var(--cyan-color)
+  energy-grid-consumption-color: var(--cyan-color)
+  energy-grid-return-color: var(--purple-color)
+  energy-solar-color: var(--orange-color)
+  energy-battery-out-color: var(--green-color)
+  energy-battery-in-color: var(--pink-color)
+  energy-gas-color: var(--red-color)
+  energy-water-color: var(--light-blue-color)
+  history-unknown-color: "#AEAEB2"
   primary-color: var(--orange-color)
   ha-color-primary-05: "#331f00"
   ha-color-primary-10: "#663d00"
@@ -108,15 +109,11 @@ visionos:
   ha-color-primary-90: "#ffebcc"
   ha-color-primary-95: "#fff5e6"
   # Other
-  paper-dialog-background-color: rgba(55, 55, 55, 0.8) # e.g., background of more-info
   paper-item-icon-color: white # also should mini-media-player icon white (but doesn't work by itself)
-  more-info-header-background: rgba(25, 25, 25, 0.5)
-  lumo-body-text-color: var(--primary-text-color) # see https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/42
   markdown-code-background-color: "#464646"
   code-editor-background-color: "#161616"
   clear-background-color: var(--ha-card-background) # see https://github.com/basnijholt/lovelace-ios-themes/issues/64
   mdc-theme-surface: var(--secondary-background-color) # this should be opaque as it's used by default for many overlays
-  material-background-color: var(--secondary-background-color)
   mdc-checkbox-unchecked-color: "#FFF"
   mdc-radio-unchecked-color: "#FFF"
   # Custom
@@ -147,26 +144,51 @@ visionos:
   ha-color-fill-primary-quiet-resting: rgba(255, 255, 255, 0.12) # selection color
   ha-color-fill-primary-quiet-hover: rgba(255, 255, 255, 0.2) # selection hover color
 
+  bubble-main-background-color: var(--ha-card-background)
+  bubble-secondary-background-color: rgba(255, 255, 255, 0.1)
+  bubble-icon-background-color: rgba(0, 0, 0, 0.2)
+  bubble-horizontal-buttons-stack-background-color: transparent
+  bubble-media-player-play-pause-icon-color: var(--primary-text-color)
+  bubble-pop-up-main-background-color: var(--ha-card-background)
+  bubble-select-list-background-color: var(--card-background-color) # its menu can't be blurred, match HA's own dropdowns
+  wa-form-control-padding-inline: var(--ha-space-3)
   card-mod-theme: "visionos"
-  card-mod-drawer-yaml: |
-    .: |
-      .mdc-drawer {
-        background-color: var(--app-header-background-color) !important;
-        backdrop-filter: var(--ha-card-backdrop-filter);
-      }
+  card-mod-drawer: |
+    .mdc-drawer {
+      background-color: var(--app-header-background-color) !important;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+    }
 
-      .sidebar-shell {
-        background-color: var(--app-header-background-color) !important;
-      }
-      
-    wa-drawer$: |
-      dialog {
-        backdrop-filter: var(--ha-card-backdrop-filter);
-      }
+    .sidebar-shell {
+      background-color: var(--app-header-background-color) !important;
+    }
+
+    wa-drawer::part(dialog) {
+      backdrop-filter: var(--ha-card-backdrop-filter);
+    }
   card-mod-sidebar: |
     :host {
       background: none !important;
       backdrop-filter: var(--ha-card-backdrop-filter);
+    }
+  card-mod-root: |
+    ha-tab-group::part(scroll-button) {
+      background: none !important;
+    }
+
+    ha-tab-group::part(nav) {
+      mask:
+        linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent),
+        linear-gradient(#000, #000) bottom / 100% 4px no-repeat;
+    }
+  card-mod-state-history-charts: |
+    .entry-container:first-of-type {
+      border-top: none !important;
+      margin-top: 0 !important;
+    }
+
+    .entry-container.timeline:first-of-type {
+      margin-top: var(--timeline-top-margin) !important;
     }
   card-mod-card: |
     ha-card {
@@ -228,4 +250,146 @@ visionos:
       content: none !important;
       background: none !important;
       backdrop-filter: none !important;
+    }
+
+    /* Cards nested in stack-in-card / vertical-stack-in-card */
+    :host(:not(bubble-card)) ha-card[style*="box-shadow: none"] {
+      background: transparent !important;
+    }
+    :host(:not(bubble-card)) ha-card[style*="box-shadow: none"]::before {
+      content: none !important;
+    }
+
+    /* Expander Card with clear: true */
+    :host(expander-card) ha-card.clear::before {
+      content: none !important;
+    }
+
+    /* mod-card wrapper */
+    :host(mod-card) ha-card::before {
+      content: none !important;
+    }
+
+    /* mini-media-player sizes its artwork with ha-card::before */
+    :host(mini-media-player) ha-card::before {
+      position: static;
+      backdrop-filter: none;
+      box-shadow: none;
+      z-index: auto;
+    }
+    :host(mini-media-player) ha-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      z-index: -1;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    /* Navbar card */
+    :host(navbar-card) {
+      --navbar-background-color: var(--ha-card-background);
+      --navbar-box-shadow-desktop: var(--ha-card-box-shadow);
+      --navbar-box-shadow-mobile-floating: var(--ha-card-box-shadow);
+      --navbar-border-radius: 999px;
+    }
+    :host(navbar-card) .navbar-card.desktop.top:not(.docked),
+    :host(navbar-card) .navbar-card.desktop.bottom:not(.docked),
+    :host(navbar-card) .navbar-card.mobile.floating {
+      padding: 6px !important;
+      gap: 0 !important;
+    }
+    :host(navbar-card) .navbar-card.desktop.top:not(.docked) .route,
+    :host(navbar-card) .navbar-card.desktop.bottom:not(.docked) .route {
+      flex: 1;
+    }
+    :host(navbar-card) .route {
+      border-radius: 999px;
+    }
+    /* Vertical desktop bars keep navbar-card's fixed route size */
+    :host(navbar-card) .navbar-card:not(.left):not(.right) .route {
+      height: auto !important;
+      padding: 5px 0;
+    }
+    :host(navbar-card) .button ha-ripple {
+      inset: -100px !important;
+    }
+    :host(navbar-card) .navbar-card:not(.left):not(.right) .route:has(.label) .button {
+      height: calc(var(--navbar-route-icon-size) + 4px) !important;
+    }
+    :host(navbar-card) .route .label {
+      line-height: 14px;
+      position: relative;
+    }
+    :host(navbar-card) .route .button.active {
+      background: color-mix(in srgb, var(--primary-text-color) 12%, transparent);
+      box-shadow: 0 0 0 100px color-mix(in srgb, var(--primary-text-color) 12%, transparent);
+      border-radius: 0;
+    }
+    :host(navbar-card) .label.active {
+      color: var(--navbar-primary-color);
+    }
+    :host(navbar-card) .popup-item .button {
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      border-radius: 999px;
+    }
+    :host(navbar-card) .media-player-bg {
+      opacity: 0.15 !important;
+    }
+
+    :host(bubble-card) ha-card:has(.bubble-separator)::before,
+    :host(bubble-card) ha-card.horizontal-buttons-stack-card::before {
+      content: none !important;
+    }
+
+    :host(bubble-card) ha-card::before {
+      border-radius: var(--bubble-border-radius, calc(var(--row-height, 56px) / 2));
+      box-shadow: none;
+    }
+
+    :host(bubble-card) ha-card:not(.horizontal-buttons-stack-card):not(:has(.bubble-separator))::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--bubble-border-radius, calc(var(--row-height, 56px) / 2));
+      box-shadow: var(--ha-card-box-shadow);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    :host(bubble-card) .bubble-background.bubble-action:not(.bubble-cover-background),
+    :host(bubble-card) .bubble-range-fill {
+      opacity: 0.5 !important;
+    }
+
+    :host(bubble-card) .bubble-play-pause-button {
+      background-color: color-mix(in srgb, var(--bubble-accent-color, var(--bubble-default-color)) 50%, transparent) !important;
+    }
+
+    :host(bubble-card) .bubble-sub-button.background-on:not(.is-select) {
+      background-color: color-mix(in srgb, var(--bubble-sub-button-light-background-color, var(--bubble-accent-color, var(--bubble-default-color))) 50%, transparent) !important;
+    }
+
+    :host(bubble-card) .horizontal-buttons-stack-card .bubble-button {
+      background-color: var(--ha-card-background);
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      box-shadow: var(--ha-card-box-shadow);
+    }
+
+    :host(bubble-card) .horizontal-buttons-stack-card .card-content {
+      mask-image: none !important;
+    }
+
+    :host(bubble-card) .horizontal-buttons-stack-card .bubble-background-color {
+      border-color: transparent !important;
+    }
+
+    :host(bubble-card) .bubble-header .bubble-button-card-container,
+    :host(bubble-card) .bubble-header-action-button {
+      box-shadow: var(--ha-card-box-shadow);
+    }
+
+    :host(bubble-card) .bubble-pop-up {
+      --bubble-pop-up-background-color: var(--ha-dialog-surface-background) !important;
     }
