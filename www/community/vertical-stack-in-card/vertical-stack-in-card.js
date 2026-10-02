@@ -1,5 +1,5 @@
 console.log(
-  `%cvertical-stack-in-card\n%cVersion: ${'1.1.2'}`,
+  `%cvertical-stack-in-card\n%cVersion: ${'1.1.4'}`,
   'color: #1976d2; font-weight: bold;',
   '',
 );
@@ -280,6 +280,9 @@ class VerticalStackInCard extends HTMLElement {
   _computeCardSize(card) {
     if (typeof card.getCardSize === 'function') {
       return card.getCardSize();
+    } else if (customElements.get(card.localName)) {
+      // If the card is already defined, fallback to 1
+      return 1;
     }
     return customElements
       .whenDefined(card.localName)
@@ -289,7 +292,9 @@ class VerticalStackInCard extends HTMLElement {
 
   async getCardSize() {
     await this._cardSize.promise;
-    const sizes = await Promise.all(this._refCards.map(this._computeCardSize));
+    const sizes = await Promise.all(
+      this._refCards.map((card) => this._computeCardSize(card)),
+    );
     return sizes.reduce((a, b) => a + b, 0);
   }
 
