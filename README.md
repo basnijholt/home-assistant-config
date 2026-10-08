@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/basnijholt/home-assistant-config/commits/master)
-[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2026.9.4%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2026.9.4)
+[![HA Version](https://img.shields.io/badge/Running%20Home%20Asssistant-2026.10.0%20-darkblue)](https://github.com/home-assistant/core/releases/tag/2026.10.0)
 [![HA Community](https://img.shields.io/badge/HA%20community-forum-orange)](https://community.home-assistant.io/u/basnijholt/summary)
 [![Yaml Lint](https://github.com/basnijholt/home-assistant-config/workflows/Yaml%20Lint/badge.svg)](https://github.com/basnijholt/home-assistant-config/actions?query=workflow%3A%22Yaml+Lint%22)
 
@@ -538,29 +538,29 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
 [^ toc](#automations---table-of-content)
 
 
-## [Apple Watch ⌚](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml)
-### [Play or pause the TV](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L11)
+## [Apple Watch ⌚](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml)
+### [Play or pause the TV](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L11)
 
 
-### [Minimal lights bedroom](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L27)
+### [Minimal lights bedroom](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L27)
 
 
-### [Fix TV sound](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L42)
+### [Fix TV sound](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L42)
 
   *which uses:*
   - [script.fix_sound](https://github.com/basnijholt/home-assistant-config/blob/9a1be0883465f8f6bd9d6a0bfcf66a2a5bfe7f1a/scripts.yaml#L441)
 
-### [Go to sleep](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L51)
+### [Go to sleep](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L51)
 
   *which uses:*
   - [script.going_to_sleep](https://github.com/basnijholt/home-assistant-config/blob/9a1be0883465f8f6bd9d6a0bfcf66a2a5bfe7f1a/scripts.yaml#L287)
 
-### [Set sleep mode](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L60)
+### [Set sleep mode](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L60)
 
   *which uses:*
   - [input_select.sleep_mode](https://github.com/basnijholt/home-assistant-config/blob/cf563e65d712de2cdd9548dc2b1eebf6da9789a4/includes/input_selects.yaml#L11)
 
-### [Set lights](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L103)
+### [Set lights](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L103)
 
   *which uses:*
   - [script.cozy_lights_bedroom](https://github.com/basnijholt/home-assistant-config/blob/9a1be0883465f8f6bd9d6a0bfcf66a2a5bfe7f1a/scripts.yaml#L158)
@@ -568,29 +568,29 @@ I run a [Supervised install](https://www.home-assistant.io/getting-started/) wit
   - [script.turn_on_lights](https://github.com/basnijholt/home-assistant-config/blob/9a1be0883465f8f6bd9d6a0bfcf66a2a5bfe7f1a/scripts.yaml#L575)
   - [script.white_lights_living_room](https://github.com/basnijholt/home-assistant-config/blob/9a1be0883465f8f6bd9d6a0bfcf66a2a5bfe7f1a/scripts.yaml#L212)
 
-### [Temperature report](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L247)
+### [Temperature report](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L247)
 
 
-### [Portfolio value](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L265)
+### [Portfolio value](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L265)
 
 
-### [Send vacuum cleaner](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L281)
+### [Send vacuum cleaner](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L281)
 
   *which uses:*
   - [script.vacuum_command](https://github.com/basnijholt/home-assistant-config/blob/9a1be0883465f8f6bd9d6a0bfcf66a2a5bfe7f1a/scripts.yaml#L515)
 
-### [Movie time](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L347)
+### [Movie time](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L347)
 
 
-### [Reset adaptive lighting](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L370)
+### [Reset adaptive lighting](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L370)
 
   *which uses:*
   - [script.reset_adaptive_lighting](https://github.com/basnijholt/home-assistant-config/blob/9a1be0883465f8f6bd9d6a0bfcf66a2a5bfe7f1a/scripts.yaml#L601)
 
-### [Set temperature](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L379)
+### [Set temperature](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L379)
 
 
-### [Where is other person?](https://github.com/basnijholt/home-assistant-config/blob/bf3c96c91132d54b2815c4b29627bc3f475b3722/automations/apple_watch.yaml#L446)
+### [Where is other person?](https://github.com/basnijholt/home-assistant-config/blob/2c98372dbbf97b265c69e5eb5bd3fc1bbec2f360/automations/apple_watch.yaml#L446)
 
 
 [^ toc](#automations---table-of-content)
