@@ -1269,40 +1269,40 @@ to "Opt".
 [^ toc](#automations---table-of-content)
 
 
-## [System 🖥](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml)
-### [Warning about high CPU usage](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L11)
+## [System 🖥](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml)
+### [Warning about high CPU usage](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L11)
 
 
-### [Warning about high CPU temperature](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L24)
+### [Warning about high CPU temperature](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L24)
 
 
-### [Warning about high Xbox temperature](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L37)
+### [Warning about high Xbox temperature](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L37)
 
 
-### [Run chores](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L56)
+### [Run chores](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L56)
 
   Run shell and Python scripts in utils folder.
 
   *which uses:*
   - [shell_command.chores](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/includes/shell_commands.yaml#L12)
 
-### [MQTT sensors are not updating](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L64)
+### [MQTT sensors are not updating](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L64)
 
   Check whether we are receiving messages over MQTT from my other HA instance.
 
   *which uses:*
   - [sensor.power_consumption](https://github.com/basnijholt/home-assistant-config/blob/1bbf15def312391e65a0645100791d7d294d1265/includes/sensors.yaml#L311)
 
-### [Battery level low](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L77)
+### [Battery level low](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L77)
 
 
-### [Warning about low disk space](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L108)
+### [Warning about low disk space](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L108)
 
 
-### [Critical disk space](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L127)
+### [Critical disk space](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L127)
 
 
-### [Backups are stale](https://github.com/basnijholt/home-assistant-config/blob/3b7b439761c4be7b854278b6e6d094a668712595/automations/system.yaml#L146)
+### [Backups are stale](https://github.com/basnijholt/home-assistant-config/blob/3f1285ecee307abde4b5af8301dca8db03b1332d/automations/system.yaml#L146)
 
 
 [^ toc](#automations---table-of-content)
