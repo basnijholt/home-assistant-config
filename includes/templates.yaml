@@ -451,7 +451,7 @@
         {% elif is_state_attr("sensor.home_nearest_device", "Bas") %}
           notify.iphone_bas
         {% else %}
-          notify.mobile_app_marcella_iphone
+          notify.mobile_app_marcella_iphone_14_pro
         {% endif %}
 
     - name: Half hour before alarm

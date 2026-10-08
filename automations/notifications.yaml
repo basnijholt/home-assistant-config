@@ -30,10 +30,6 @@
     entity_id: input_boolean.front_door_open_warning
     state: "on"
   actions:
-    - action: notify.mobile_app_basnijholt_iphone_13
-      data:
-        title: Security
-        message: Front door opened!
     - action: notify.iphone_bas
       data:
         title: Security

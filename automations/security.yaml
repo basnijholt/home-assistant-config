@@ -130,10 +130,6 @@
     entity_id: input_boolean.bedroom_activity_warning
     state: "on"
   actions:
-    - action: notify.bas
-      data:
-        title: Security
-        message: Activity bedroom!
     - action: notify.iphone_bas
       data:
         title: Security

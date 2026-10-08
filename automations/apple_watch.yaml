@@ -475,17 +475,22 @@
       actionName: Where is
   variables:
     phone: >
-      {% if trigger.event.data.sourceDeviceName == 'basnijholt-iphone' %}
+      {% if trigger.event.data.sourceDeviceName.startswith('basnijholt') %}
         basnijholt
       {% else %}
         marcella
       {% endif %}
     other_person: "{% if phone == 'basnijholt' %}Marcella{% else %}Bas{% endif %}"
-    device_tracker: "device_tracker.{{ other_person }}_iphone"
+    device_tracker: >
+      {% if phone == 'basnijholt' %}
+        device_tracker.marcella_iphone_se2
+      {% else %}
+        device_tracker.basnijholt_iphone_15_pro
+      {% endif %}
   actions:
-    action: "notify.mobile_app_{{ phone }}_iphone"
+    action: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
     data:
-      message: "{{ other_person }} is {{ distance('device_tracker.basnijholt_iphone', 'device_tracker.marcella_iphone') | round(2) }} km away"
+      message: "{{ other_person }} is {{ distance('device_tracker.basnijholt_iphone_15_pro', 'device_tracker.marcella_iphone_se2') | round(2) }} km away"
       data:
         push:
           category: MAP
