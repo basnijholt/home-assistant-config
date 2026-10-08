@@ -293,7 +293,7 @@
   mode: parallel
   triggers:
     - trigger: mqtt
-      topic: "zigbee2mqtt/Smart Switch (Guest Room)"
+      topic: "zigbee2mqtt/Smart Switch (Guest room)"
     - trigger: mqtt
       topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
@@ -335,7 +335,7 @@
   mode: parallel
   triggers:
     trigger: mqtt
-    topic: "zigbee2mqtt/Smart Switch (Baby Room)"
+    topic: "zigbee2mqtt/Smart Switch (Baby room)"
   variables:
     action: "{{ trigger.payload_json.get('action', '') }}"
   conditions:
@@ -370,7 +370,7 @@
   mode: parallel
   triggers:
     trigger: mqtt
-    topic: "zigbee2mqtt/Smart Switch (Mid Room)"
+    topic: "zigbee2mqtt/Smart Switch (Mid room)"
   variables:
     action: "{{ trigger.payload_json.get('action', '') }}"
   conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
