@@ -92,7 +92,7 @@
     - action: input_boolean.turn_off
       entity_id: input_boolean.bedroom_activity_warning
 
-- alias: "Security: Door to outside open"
+- alias: "Security: door to outside open"
   description: ''
   triggers:
     - trigger: state

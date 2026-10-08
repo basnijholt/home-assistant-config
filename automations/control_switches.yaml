@@ -289,7 +289,7 @@
           action: light.turn_off
           entity_id: light.guest_room_lights
 
-- alias: "Control switches: Guest Room Light"
+- alias: "Control switches: guest room light"
   mode: parallel
   triggers:
     - trigger: mqtt
@@ -314,7 +314,7 @@
           action: switch.toggle
           entity_id: switch.adaptive_lighting_sleep_mode_guest_room
 
-- alias: "Control switches: Guest Room Space heater"
+- alias: "Control switches: guest room space heater"
   mode: parallel
   triggers:
     trigger: mqtt
@@ -331,7 +331,7 @@
           data:
             entity_id: switch.space_heater
 
-- alias: "Control switches: Baby Room Light"
+- alias: "Control switches: baby room light"
   mode: parallel
   triggers:
     trigger: mqtt
@@ -366,7 +366,7 @@
     action: input_boolean.turn_off
     entity_id: input_boolean.baby_room_light_button_kill_switch
 
-- alias: "Control switches: Mid Room Changing Table Light"
+- alias: "Control switches: mid room changing table light"
   mode: parallel
   triggers:
     trigger: mqtt

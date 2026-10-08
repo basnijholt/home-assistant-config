@@ -8,7 +8,7 @@
 #       |_|   |_|         |_____|
 #
 #- from github.com/basnijholt/home-assistant-config
-- alias: "Apple Watch: Play or Pause the TV"
+- alias: "Apple Watch: play or pause the TV"
   triggers:
     trigger: event
     event_type: ios.action_fired
@@ -48,7 +48,7 @@
   actions:
     action: script.fix_sound
 
-- alias: "Apple Watch: Go to sleep"
+- alias: "Apple Watch: go to sleep"
   triggers:
     trigger: event
     event_type: ios.action_fired

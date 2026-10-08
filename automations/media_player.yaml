@@ -138,7 +138,7 @@
     - action: media_player.turn_off
       entity_id: media_player.tv
 
-- alias: "Media player: Turn On Living Room TV with WakeOnLan"
+- alias: "Media player: turn on living room TV with WakeOnLan"
   triggers:
     trigger: webostv.turn_on
     entity_id: media_player.tv

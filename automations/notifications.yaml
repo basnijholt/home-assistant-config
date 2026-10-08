@@ -37,7 +37,7 @@
     - action: input_boolean.turn_off
       entity_id: input_boolean.front_door_open_warning
 
-- alias: "Notifications: Daily New Word Notification"
+- alias: "Notifications: daily new word notification"
   triggers:
     - trigger: time
       at: "07:30:00"

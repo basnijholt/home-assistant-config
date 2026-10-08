@@ -198,7 +198,7 @@
     data:
       entity_id: light.bedroom_lights
 
-- alias: "Light: Update input_select when bedroom lights turned off"
+- alias: "Light: update input_select when bedroom lights turned off"
   description: "Set the input_select.last_script_bedroom such that colored lights will be chosen"
   triggers:
     trigger: state
@@ -420,7 +420,7 @@
       # - light.garage_outside
       # - light.outside_front_door
 
-- alias: "Light: Update Zigbee2MQTT lights input_select options"
+- alias: "Light: update Zigbee2MQTT lights input_select options"
   triggers:
     trigger: mqtt
     topic: zigbee2mqtt/bridge/devices
@@ -449,7 +449,7 @@
       data:
         options: "{{ z2m_lights }}"
 
-- alias: "Light: Update Zigbee2MQTT Lights State"
+- alias: "Light: update Zigbee2MQTT lights state"
   description: 'Refresh the state of all Zigbee2MQTT lights'
   triggers:
     trigger: time_pattern
