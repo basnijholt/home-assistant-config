@@ -79,25 +79,3 @@
       action: TURN_OFF_EVERYTHING
   actions:
     action: script.leaving
-
-
-- alias: "Leaving: downstairs Aqara Wireless Mini Switch"
-  triggers:
-    trigger: event
-    event_type: deconz_event
-    event_data:
-      id: smart_switch_door
-      event: 1002  # single click
-  actions:
-    - wait_for_trigger:  # when the door closes, turn off everything
-        trigger: state
-        entity_id: binary_sensor.openclose_front_door
-        from: "on"
-        to: "off"
-      timeout: "00:01:00"
-      continue_on_timeout: false
-    - action: script.turn_off_everything
-    - action: notify.all_iphones
-      data:
-        title: "Bye 👋"
-        message: "See you soon!"
