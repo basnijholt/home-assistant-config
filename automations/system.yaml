@@ -105,3 +105,56 @@
             data:
               title: "System"
               message: "Battery level low of {{ current }}: {{ states(current) }}%! ⚠️"
+- alias: "System: warning about low disk space"
+  id: system_low_disk_space
+  triggers:
+    trigger: numeric_state
+    entity_id: sensor.disk_use_percent
+    above: 80
+    for:
+      minutes: 30
+  actions:
+    action: notify.iphone_bas
+    data:
+      title: "System"
+      message: >-
+        Disk usage is at {{ states('sensor.disk_use_percent') }}%! Free space is
+        running low on Home Assistant. WARNING
+      data:
+        push:
+          interruption-level: time-sensitive
+
+- alias: "System: critical disk space"
+  id: system_critical_disk_space
+  triggers:
+    trigger: numeric_state
+    entity_id: sensor.disk_use_percent
+    above: 90
+    for:
+      minutes: 10
+  actions:
+    action: notify.iphone_bas
+    data:
+      title: "System"
+      message: >-
+        CRITICAL: disk usage at {{ states('sensor.disk_use_percent') }}%.
+        Backups and addons will start failing.
+      data:
+        push:
+          interruption-level: critical
+
+- alias: "System: backups are stale"
+  id: system_backups_stale
+  triggers:
+    trigger: state
+    entity_id: binary_sensor.backups_stale
+    to: "on"
+    for:
+      hours: 6
+  actions:
+    action: notify.iphone_bas
+    data:
+      title: "System"
+      message: >-
+        Home Assistant backups are stale - last successful backup was
+        {{ states('sensor.backup_last_successful_automatic_backup') }}
