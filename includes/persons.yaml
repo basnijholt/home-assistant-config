@@ -14,7 +14,7 @@
   picture: !secret profile_photo_bas
   device_trackers:
     - device_tracker.basnijholt_iphone_15_pro # from iOS app
-    - device_tracker.basnijholt_iphone_15_pro_2 # from iOS app
+    - device_tracker.basnijholt_iphone_18_pro_max # from iOS app
 - name: Marcella
   id: marcella
   user_id: 0d8b36da29974dec9a30f767931bde2c

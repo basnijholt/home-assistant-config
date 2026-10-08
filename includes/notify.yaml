@@ -12,21 +12,25 @@
   name: all_iphones
   services:
     - service: mobile_app_basnijholt_iphone_15_pro
+    - service: mobile_app_basnijholt_iphone_18_pro_max
     - service: mobile_app_marcella_iphone_14_pro
 
 - platform: group
   name: bas
   services:
     - service: mobile_app_basnijholt_iphone_15_pro
+    - service: mobile_app_basnijholt_iphone_18_pro_max
 
 - platform: group
   name: iphone_bas
   services:
     - service: mobile_app_basnijholt_iphone_15_pro
+    - service: mobile_app_basnijholt_iphone_18_pro_max
 
 - platform: group
   name: all
   services:
     - service: mobile_app_basnijholt_iphone_15_pro
+    - service: mobile_app_basnijholt_iphone_18_pro_max
     - service: mobile_app_marcella_iphone_14_pro
     - service: tv
