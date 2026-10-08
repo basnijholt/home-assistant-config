@@ -81,8 +81,8 @@ configuration.yaml          # Main entry point - includes all other configs
 **Includes** contain entity definitions in `includes/`:
 - `input_booleans.yaml` - toggle states (vacation_mode, guest_mode, etc.)
 - `input_numbers.yaml` - numeric settings (temperature_high/low, etc.)
-- `sensors.yaml` - template and platform sensors
-- `binary_sensors.yaml` - presence detection and state sensors
+- `sensors.yaml` - platform sensors (statistics, history_stats, etc.)
+- `templates.yaml` - template sensors and binary sensors (presence, activity per room)
 
 **Scripts** in `scripts.yaml` are reusable actions called by automations:
 - `set_high_temperature` / `set_low_temperature`
@@ -228,7 +228,7 @@ Use `#` comments to explain logic:
 - `input_boolean.vacation_mode` - vacation/away mode
 - `input_boolean.guest_mode` - disables some automations when guests present
 - `input_number.temperature_high` / `temperature_low` - thermostat setpoints
-- `binary_sensor.no_one_home` - presence detection
+- `binary_sensor.no_one_is_home` - presence detection
 - `climate.thermostat` - main thermostat (Ecobee via OpenTherm)
 
 ### Custom Components
