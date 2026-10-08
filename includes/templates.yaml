@@ -235,7 +235,7 @@
 
     - name: Favorite playlist of nearest person
       state: >
-        {% if is_state_attr("sensor.home_nearest_device", "Bas") %}
+        {% if is_state("sensor.home_nearest_device", "Bas") %}
         6rPTm9dYftKcFAfwyRqmDZ
         {% else %}
         6rPTm9dYftKcFAfwyRqmDZ
@@ -288,7 +288,7 @@
       state: >
         {% if is_state("person.bas", "home") and is_state("person.marcella", "home") %}
           notify.all_iphones
-        {% elif is_state_attr("sensor.home_nearest_device", "Bas") %}
+        {% elif is_state("sensor.home_nearest_device", "Bas") %}
           notify.iphone_bas
         {% else %}
           notify.mobile_app_marcella_iphone_14_pro
