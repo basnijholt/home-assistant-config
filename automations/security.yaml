@@ -71,55 +71,6 @@
       title: "Security"
       message: "The utility room door has been open for more than 5 minutes."
 
-- alias: "Security: no one is home but high power usage"
-  triggers:
-    - trigger: state
-      entity_id: binary_sensor.no_one_is_home
-      to: "on"
-    - trigger: time_pattern
-      minutes: "/10"
-  conditions:
-    - condition: state
-      entity_id: binary_sensor.no_one_is_home
-      state: "on"
-    - condition: numeric_state
-      entity_id: sensor.power_consumption
-      above: 0.7
-  actions:
-    action: notify.all_iphones
-    data:
-      title: "Security"
-      message: >
-        No one is home and we are using a lot of energy
-        ({{ states('sensor.power_consumption') }} kW now)! ⚡️
-
-- alias: "Security: bathroom door has opened"
-  triggers:
-    trigger: state
-    entity_id: binary_sensor.openclose_bathroom
-    to: "on"
-  conditions:
-    condition: state
-    entity_id: input_boolean.bathroom_door_open_warning
-    state: "on"
-  actions:
-    - action: notify.bas
-      data:
-        title: Security
-        message: Office door opened!
-    - action: notify.iphone_bas
-      data:
-        title: Security
-        message: Office door opened!
-    - action: light.turn_on
-      data:
-        entity_id:
-          - light.philips_go
-          - light.desk_led
-        flash: short
-    - action: input_boolean.turn_off
-      entity_id: input_boolean.bathroom_door_open_warning
-
 - alias: "Security: activity in master bedroom"
   triggers:
     trigger: state

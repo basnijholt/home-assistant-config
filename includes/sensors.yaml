@@ -16,29 +16,6 @@
 #  \___/ \__|_| |_|\___|_|  |___/
 #
 
-- platform: statistics
-  name: Humidity bathroom stats
-  entity_id: sensor.humidity_bathroom
-  sampling_size: 86400 # make sure all data points of the last 24hrs are included
-  max_age: "24:00:00"
-  state_characteristic: mean
-
-- platform: derivative
-  source: sensor.humidity_bathroom
-  name: Humidity bathroom derivative
-  unit_time: min
-  time_window: "00:10:00"
-
-# XXX: not used
-- platform: min_max
-  name: Temperature mean
-  type: mean
-  entity_ids:
-    - sensor.temperature_living_room
-    - sensor.temperature_bedroom
-    - sensor.temperature_bathroom
-    - sensor.temperature_hall
-
 - platform: time_date
   display_options:
     - date
@@ -124,35 +101,8 @@
   end: "{{ now() }}"
 
 - platform: history_stats
-  name: Hours toilet light has been on last 7 days
-  entity_id: light.toilet
-  state: "on"
-  type: time
-  duration:
-    days: 7
-  end: "{{ now() }}"
-
-- platform: history_stats
   name: Hours kitchen lights have been on last 7 days
   entity_id: light.kitchen_lights
-  state: "on"
-  type: time
-  duration:
-    days: 7
-  end: "{{ now() }}"
-
-- platform: history_stats
-  name: Hours hall lights have been on last 7 days
-  entity_id: light.hall_lights
-  state: "on"
-  type: time
-  duration:
-    days: 7
-  end: "{{ now() }}"
-
-- platform: history_stats
-  name: Hours bathroom light has been on last 7 days
-  entity_id: light.bathroom_ceiling
   state: "on"
   type: time
   duration:

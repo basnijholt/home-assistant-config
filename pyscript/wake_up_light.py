@@ -13,11 +13,9 @@ sys.path.append("/config/pyscript")
 
 from python_modules.wake_up_light import rgb_and_brightness
 
-DEFAULT_LAMP = "light.corner_living_room"
 DEFAULT_TOTAL_TIME = 900
 
 DEFAULTS = {
-    "lamp": DEFAULT_LAMP,
     "total_time": DEFAULT_TOTAL_TIME,
 }
 
@@ -34,7 +32,7 @@ MIN_TIME_STEP = 2  # time between settings
 
 @service
 def wake_up_light(
-    lamp=DEFAULT_LAMP,
+    lamp,
     total_time=DEFAULT_TOTAL_TIME,
 ):
 

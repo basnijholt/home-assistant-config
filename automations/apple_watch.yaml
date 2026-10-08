@@ -121,12 +121,6 @@
               title: Bedroom
             - action: SET_LIGHTS_LIVING_ROOM
               title: Living room
-            - action: SET_LIGHTS_BATHROOM
-              title: Bathroom
-            - action: SET_LIGHTS_HALL
-              title: Hall
-            - action: SET_LIGHTS_TOILET
-              title: Toilet
             - action: SET_LIGHTS_KITCHEN
               title: Kitchen
     - wait_for_trigger:
@@ -145,18 +139,6 @@
         - trigger: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SET_LIGHTS_BATHROOM
-        - trigger: event
-          event_type: mobile_app_notification_action
-          event_data:
-            action: SET_LIGHTS_HALL
-        - trigger: event
-          event_type: mobile_app_notification_action
-          event_data:
-            action: SET_LIGHTS_TOILET
-        - trigger: event
-          event_type: mobile_app_notification_action
-          event_data:
             action: SET_LIGHTS_KITCHEN
       timeout: "00:00:20"
       continue_on_timeout: false
@@ -166,9 +148,6 @@
             {'SET_LIGHTS_ALL': 'all',
              'SET_LIGHTS_BEDROOM': 'light.bedroom_lights',
              'SET_LIGHTS_LIVING_ROOM': 'light.living_room_lights',
-             'SET_LIGHTS_BATHROOM': 'light.bathroom_ceiling',
-             'SET_LIGHTS_HALL': 'light.hall_lights,light.stairs_lights',
-             'SET_LIGHTS_TOILET': 'light.toilet',
              'SET_LIGHTS_KITCHEN': 'light.kitchen_lights',
             }[wait.trigger.event.data.action] }}
     - action: "{{ iphone }}"
@@ -279,9 +258,7 @@
       data:
         title: "Temperature"
         message: >
-          Bedroom: {{ states('sensor.temperature_bedroom') }}°C
-          Living room: {{ states('sensor.temperature_living_room') }}°C
-          Hall: {{ states('sensor.temperature_hall') }}°C
+          Inside: {{ state_attr('climate.thermostat', 'current_temperature') }}°C
           Thermostat: {{ state_attr('climate.thermostat', 'temperature') }}°C
           Outside: {{ state_attr('weather.huis', 'temperature') }}°C and it's {{ states('weather.huis') }}
 

@@ -129,7 +129,7 @@
 - alias: "Media player: automatically turn off TV and Xbox after two hours of inactivity"
   triggers:
     trigger: state
-    entity_id: binary_sensor.motion_sensor_living_room_klok
+    entity_id: binary_sensor.motion_sensor_living_room_kallax_occupancy
     to: "off"
     for: "02:00:00"
   actions:

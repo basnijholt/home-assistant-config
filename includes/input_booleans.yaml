@@ -22,9 +22,6 @@ vacation_mode:
 guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
-bathroom_door_open_warning:
-  name: Bathroom door is open warning
-  icon: mdi:door-open
 front_door_open_warning:
   name: Front door opened
   icon: mdi:door-open
@@ -58,18 +55,6 @@ work_hour_notification_sent:
 alarm_clock:
   name: Alarm clock is on
   icon: mdi:alarm
-kef_ls50_desk_mode:
-  name: Desk mode
-  icon: mdi:equalizer
-kef_ls50_wall_mode:
-  name: Wall mode
-  icon: mdi:equalizer
-kef_ls50_phase_correction:
-  name: Phase correction
-  icon: mdi:equalizer
-kef_ls50_high_pass:
-  name: High pass
-  icon: mdi:equalizer
 mailbox_full:
   name: Mailbox full
   icon: mdi:mailbox-open
@@ -109,5 +94,3 @@ demo_wake_up_with_spotify:
   icon: mdi:music
 streamdeck:
   name: StreamDeck
-test:
-  name: "Test"

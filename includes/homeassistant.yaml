@@ -22,16 +22,12 @@ allowlist_external_dirs:
 customize:
   switch.vacuum_mode:
     friendly_name: Vacuum
-  sensor.temperature_mean:
-    icon: mdi:temperature-celsius
   light.automatic_lights:
     icon: mdi:robot
   light.living_room_lights:
     icon: mdi:sofa
   light.bedroom_lights:
     icon: mdi:bed-king
-  light.toilet:
-    icon: mdi:emoticon-poop
   plant.monstera:
     friendly_name: Monstera
   plant.peace_lily:

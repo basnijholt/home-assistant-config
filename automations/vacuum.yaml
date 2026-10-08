@@ -95,14 +95,3 @@
   actions:
     action: input_boolean.turn_off
     entity_id: input_boolean.cleaned_today
-
-- alias: "Vacuum: reset to standard mode"
-  triggers:
-    trigger: state
-    entity_id: vacuum.living_room
-    to: docked
-  actions:
-    action: vacuum.set_fan_speed
-    entity_id: vacuum.valetudo_vacuum
-    data:
-      fan_speed: Standard

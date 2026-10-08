@@ -15,13 +15,6 @@ sleep_mode:
     - "off" # everyone is awake
   icon: mdi:bed-king
 
-cube_mode:
-  options:
-    - Volume
-    - Brightness
-    - Hue
-  icon: mdi:cube-outline
-
 last_script_living_room:
   options:
     - script.cozy_lights_living_room
@@ -32,15 +25,6 @@ last_script_bedroom:
   options:
     - script.cozy_lights_bedroom
     - script.white_lights_bedroom
-  icon: mdi:lightbulb-on
-
-bathroom_color:
-  options:
-    - red
-    - blue
-    - purple
-    - pink
-    - white
   icon: mdi:lightbulb-on
 
 theme:

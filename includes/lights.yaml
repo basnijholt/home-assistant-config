@@ -29,7 +29,6 @@
 - platform: group
   name: Baby room lights
   entities:
-    - light.baby_room
     - light.bamboo
 
 - platform: group
@@ -38,7 +37,6 @@
     - light.utility_room
     - light.garage_outside
     - light.outside_front_door
-    - light.front_house
     - light.bedroom_outside
     - light.string_lights_outside
 
@@ -63,10 +61,6 @@
 - platform: switch
   name: Baby sphere
   entity_id: switch.baby_sphere
-
-- platform: switch
-  name: Guest room
-  entity_id: switch.guest_room
 
 # - platform: group
 #   name: Bathroom lights
