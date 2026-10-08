@@ -154,30 +154,6 @@
         {{ is_state("binary_sensor.openclose_utility_room_door", "on")
           or is_state("binary_sensor.openclose_front_door", "on") }}
 
-    - name: Washing machine
-      unique_id: washing_machine
-      state: >
-        {{ states("sensor.washing_machine_power") | float(0) > 3 }}
-      delay_off: "00:05:00"
-      icon: >
-        {% if is_state("binary_sensor.washing_machine", "on") %}
-          mdi:washing-machine
-        {% else %}
-          mdi:washing-machine-off
-        {% endif %}
-
-    - name: Dishwasher
-      unique_id: dishwasher
-      state: >
-        {{ states("sensor.dishwasher_watts") | float(0) > 3 }}
-      delay_off: "00:03:00"
-      icon: >
-        {% if is_state("binary_sensor.dishwasher", "on") %}
-          mdi:dishwasher
-        {% else %}
-          mdi:dishwasher-off
-        {% endif %}
-
     - name: Worked enough today
       unique_id: worked_enough_today
       state: >
@@ -227,12 +203,6 @@
 #                    |_|
 
 - sensor:
-    - name: Dishwasher usage
-      unique_id: dishwasher_watts
-      state: >
-        {{ state_attr("switch.dishwasher", "power") | float("Unavailable") }}
-      unit_of_measurement: Watt
-
     - name: Count automations
       unique_id: count_automations
       icon: mdi:autorenew
@@ -342,105 +312,6 @@
 
         {{ (5 * hours_per_day)|round(2) }}
       unit_of_measurement: h
-
-    - name: Number of days last month
-      unique_id: n_days_last_month
-      state: >
-        {% set start_of_month = now().replace(day=1) %}
-        {% set start_of_last_month = start_of_month.replace(month=now().month-1) %}
-        {{ ((start_of_month - start_of_last_month).total_seconds() / 86400) | round }}
-
-    - name: Daily Power
-      unique_id: daily_power
-      unit_of_measurement: kWh
-      state: >
-        {{ states("sensor.daily_power_offpeak")|float(0) + states("sensor.daily_power_peak")|float(0) }}
-
-    - name: Monthly Power
-      unique_id: monthly_power
-      unit_of_measurement: kWh
-      state: >
-        {{ states("sensor.monthly_power_offpeak")|float(0) + states("sensor.monthly_power_peak")|float(0) }}
-
-    - name: Monthly Power last period
-      unique_id: monthly_power_last_period
-      unit_of_measurement: kWh
-      state: >
-        {{ state_attr("sensor.monthly_power_offpeak", "last_period")|float(0) + state_attr("sensor.monthly_power_peak", "last_period")|float(0) }}
-
-    - name: Monthly Power cost last period
-      unique_id: monthly_power_cost_last_period
-      unit_of_measurement: €
-      state: >
-        {{ (state_attr("sensor.monthly_power_offpeak", "last_period")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
-            + state_attr("sensor.monthly_power_peak", "last_period")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
-
-    - name: Gas price
-      unique_id: gas_price
-      unit_of_measurement: €/m³
-      state: "{{ 0.7884 }}"
-
-    - name: Daily gas cost
-      unique_id: daily_gas_cost
-      unit_of_measurement: €
-      state: >
-        {{ (states("sensor.daily_gas")|float(0) * 0.7884) | round(2) }}
-
-    - name: Monthly gas cost
-      unique_id: monthly_gas_cost
-      unit_of_measurement: €
-      state: >
-        {{ (states("sensor.monthly_gas")|float(0) * 0.7884) | round(2) }}
-
-    - name: Monthly gas cost last period
-      unique_id: monthly_gas_cost_last_period
-      unit_of_measurement: €
-      state: >
-        {{ (state_attr("sensor.monthly_gas", "last_period")|float(0) * 0.7884) | round(2) }}
-
-    - name: Electricity price offpeak
-      unique_id: electricity_price_offpeak
-      unit_of_measurement: €/kWh
-      state: "{{ 0.2307 }}"
-
-    - name: Electricity price peak
-      unique_id: electricity_price_peak
-      unit_of_measurement: €/kWh
-      state: "{{ 0.2479 }}"
-
-    - name: Daily power cost
-      unique_id: daily_power_cost
-      unit_of_measurement: €
-      state: >
-        {{ (states("sensor.daily_power_offpeak")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
-            + states("sensor.daily_power_peak")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
-
-    - name: Monthly power cost
-      unique_id: monthly_power_cost
-      unit_of_measurement: €
-      state: >
-        {{ (states("sensor.monthly_power_offpeak")|float(0) * states("sensor.electricity_price_offpeak")|float(0)
-            + states("sensor.monthly_power_peak")|float(0) * states("sensor.electricity_price_peak")|float(0)) | round(2) }}
-
-    # XXX: remove _ when 0.117
-    - name: Fixed daily energy cost
-      unique_id: daily_energy_fixed_cost
-      unit_of_measurement: €
-      state: >
-        {% set _ = states("sensor.date") %}
-        {{ (0.1480 + 0.3554) + (0.1480 + 0.6293) }}
-
-    - name: Monthly energy fixed cost
-      unique_id: monthly_energy_fixed_cost
-      unit_of_measurement: €
-      state: >
-        {{ states("sensor.daily_energy_fixed_cost")|float(0) * now().day }}
-
-    - name: Monthly energy fixed cost last period
-      unique_id: monthly_energy_fixed_cost_last_period
-      unit_of_measurement: €
-      state: >
-        {{ states("sensor.daily_energy_fixed_cost")|float(0) * states("sensor.n_days_last_month")|int(0) }}
 
     - name: Nearest iPhone notify service
       unique_id: nearest_iphone_notify
