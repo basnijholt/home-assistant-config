@@ -12,4 +12,6 @@
     command: !secret portfolio_value
     name: portfolio_value
     unit_of_measurement: "€"
+    availability: "{{ is_number(value | trim) }}"
+    value_template: "{{ value | trim }}"
     scan_interval: 20
