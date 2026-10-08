@@ -11,8 +11,8 @@
 - alias: "Lovelace: convert lovelace.json to lovelace-ui.yaml"
   initial_state: "on"
   triggers:
-    trigger: state
-    entity_id: sensor.lovelace
+    trigger: time_pattern
+    minutes: 0
   actions:
     - action: shell_command.convert_lovelace
     - action: shell_command.chores  # to update the ASCII art
