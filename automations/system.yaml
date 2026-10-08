@@ -105,6 +105,7 @@
             data:
               title: "System"
               message: "Battery level low of {{ current }}: {{ states(current) }}%! ⚠️"
+
 - alias: "System: warning about low disk space"
   id: system_low_disk_space
   triggers:
@@ -157,4 +158,5 @@
       title: "System"
       message: >-
         Home Assistant backups are stale - last successful backup was
-        {{ states('sensor.backup_last_successful_automatic_backup') }}
+        {% set last_backup = state_attr('sensor.backup_state', 'last_backup') | as_datetime(none) -%}
+        {{ (last_backup | as_local).strftime('%Y-%m-%d %H:%M') if last_backup else 'unknown' }}

@@ -15,7 +15,8 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Living room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
+  conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
   actions:
     choose:
       # Next color
@@ -68,7 +69,7 @@
       # Reset adaptive_lighting
       - conditions:
           - "{{ action == 'up_hold' }}" # Second from highest button
-          - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
+          - "{{ trigger.payload_json.get('action_duration', 0) > 2 }}" # Hold for more than two seconds
         sequence:
           - action: script.reset_adaptive_lighting
 
@@ -78,7 +79,8 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Dimmer Switch (Bedroom)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
+  conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
   actions:
     choose:
       # Next color
@@ -131,7 +133,7 @@
       # Reset adaptive_lighting
       - conditions:
           - "{{ action == 'up_hold' }}" # Second from highest button
-          - "{{ trigger.payload_json.action_duration > 2 }}" # Hold for more than two seconds
+          - "{{ trigger.payload_json.get('action_duration', 0) > 2 }}" # Hold for more than two seconds
         sequence:
           - action: input_select.select_option
             entity_id: input_select.sleep_mode
@@ -157,13 +159,14 @@
     - trigger: mqtt
       topic: "zigbee2mqtt/IKEA Remote (Bedroom Marcella)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
     personal_light: >-
       {% if trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom)' %}
         light.bed_led
       {% elif trigger.topic == 'zigbee2mqtt/IKEA Remote (Bedroom Marcella)' %}
         light.philips_go
       {% endif %}
+  conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
   actions:
     choose:
       # Bright lights
@@ -470,7 +473,8 @@
     trigger: mqtt
     topic: "zigbee2mqtt/IKEA Switch (Guest room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
+  conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
   actions:
     choose:
       # Turn on
@@ -493,7 +497,8 @@
     - trigger: mqtt
       topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
+  conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
   actions:
     choose:
       # Toggle
@@ -515,7 +520,8 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Desk)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
+  conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
   actions:
     choose:
       # Toggle
@@ -531,11 +537,12 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Baby Room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
   conditions:
-    condition: state
-    entity_id: input_boolean.baby_room_light_button_kill_switch
-    state: "off"
+    - "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
+    - condition: state
+      entity_id: input_boolean.baby_room_light_button_kill_switch
+      state: "off"
   actions:
     choose:
       # Toggle light
@@ -567,7 +574,8 @@
     trigger: mqtt
     topic: "zigbee2mqtt/Smart Switch (Mid Room)"
   variables:
-    action: "{{ trigger.payload_json.action }}"
+    action: "{{ trigger.payload_json.get('action', '') }}"
+  conditions: "{{ action != '' }}" # Ignore state updates (battery, linkquality) without an action
   actions:
     choose:
       # Toggle

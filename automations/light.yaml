@@ -93,6 +93,9 @@
   triggers:
     trigger: state
     entity_id: binary_sensor.activity_in_dinner_area
+    to:
+      - "on"
+      - "off"
   conditions:
     - condition: state
       entity_id: input_boolean.automatic_dinner_area_light
@@ -473,6 +476,9 @@
   triggers:
     trigger: state
     entity_id: binary_sensor.activity_in_guest_room
+    to:
+      - "on"
+      - "off"
   conditions:
     - condition: state
       entity_id: input_boolean.guest_mode
@@ -580,7 +586,7 @@
   actions:
     - action: light.turn_off
       entity_id: light.bedroom_lights
-    - action: light.turn_off
+    - action: input_boolean.turn_off
       entity_id: input_boolean.bedroom_lights_automatically_turned_on
 
 - alias: "Light: turn off utility room / garage (extra check)"
@@ -628,8 +634,10 @@
         z2m_lights: >-
           {% set ns = namespace(lights=[]) %}
           {% for device in devices %}
-            {% if device.definition is not none %}
-              {% for expose in device.definition.exposes %}
+            {# The coordinator and unsupported devices have no definition #}
+            {% set definition = device.get('definition') %}
+            {% if definition %}
+              {% for expose in definition.get('exposes', []) %}
                 {% if expose.type == 'light' %}
                   {% set light_name = device.friendly_name %}
                   {% set ns.lights = ns.lights + [light_name] %}

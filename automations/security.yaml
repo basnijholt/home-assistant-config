@@ -61,7 +61,7 @@
 - alias: "Security: utility room door has been open for more than 5 minutes"
   triggers:
     trigger: state
-    entity_id: binary_sensor.openclose_front_door
+    entity_id: binary_sensor.openclose_utility_room_door
     from: "off"
     to: "on"
     for: "00:05:00"

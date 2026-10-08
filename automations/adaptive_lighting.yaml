@@ -58,11 +58,10 @@
   variables:
     light: "{{ trigger.event.data.entity_id }}"
     switch: "{{ trigger.event.data.switch }}"
-  conditions: "{{ 'hall' not in light and 'stairs' not in light }}"
   actions:
     - delay: "01:00:00"
     - condition: template
-      value_template: "{{ light in state_attr('switch', 'manual_control') }}"
+      value_template: "{{ light in (state_attr(switch, 'manual_control') or []) }}"
     - action: adaptive_lighting.set_manual_control
       data:
         entity_id: "{{ switch }}"
@@ -70,7 +69,7 @@
         manual_control: false
     - action: notify.iphone_bas
       data:
-        title: "Adaptive Ligthing: manual_control reset"
+        title: "Adaptive Lighting: manual_control reset"
         message: "{{ light }} is reset to not 'manually controlled'"
 
 - alias: "Adaptive lighting: notify manual_control"
@@ -81,7 +80,6 @@
       event_type: adaptive_lighting.manual_control
   variables:
     light: "{{ trigger.event.data.entity_id }}"
-  conditions: "{{ 'hall' not in light and 'stairs' not in light }}"
   actions:
     - action: system_log.write
       data:
