@@ -8,43 +8,27 @@
 #
 #
 #- from github.com/basnijholt/home-assistant-config
-filter:
-  exclude_domains:
-    - automation
-    - binary_sensor
-    - camera
-    - device_tracker
-    - input_boolean
-    - light
-    - media_player
-    - persistent_notification
-    - person
-    - script
-    - sensor
-    - sun
-    - switch
-    - zone
-  include_entities:
-    - light.living_room_lights
-    - light.bedroom_lights
-    - light.automatic_lights
-    - light.kitchen_lights
-    - media_player.tv
-    - media_player.living_room_xbox
-    - media_player.kef_ls50
-    - input_select.sleep_mode
-    - input_boolean.start_the_music
-entity_config:
-  media_player.kef_ls50:
-    name: Living room speakers
-    feature_list:
-      - feature: toggle_mute
-  media_player.tv:
-    name: TV
-    feature_list:
-      - feature: on_off
-      - feature: play_pause
-      - feature: play_stop
-      - feature: toggle_mute
-  input_boolean.start_the_music:
-    name: Start Spotify
+# Only what is useful by voice: one light group per room, the space heater and the TV.
+# Assign each accessory to its room in the Home app (bridges cannot set rooms).
+# The names double as aliases, e.g. "guest room lights" in the Office room.
+- filter:
+    include_entities:
+      - light.living_room_lights
+      - light.bedroom_lights
+      - light.guest_room_lights
+      - light.baby_room_lights
+      - switch.space_heater
+      - media_player.tv
+  entity_config:
+    light.living_room_lights:
+      name: Living room lights
+    light.bedroom_lights:
+      name: Bedroom lights
+    light.guest_room_lights:
+      name: Guest room lights
+    light.baby_room_lights:
+      name: Baby room lights
+    switch.space_heater:
+      name: Space heater
+    media_player.tv:
+      name: TV
