@@ -7,7 +7,7 @@
 #   ssh router off            block again and cut open connections
 #   ssh router status         "online until HH:MM" or "offline"
 #
-# Runtime iptables only: nothing is written to nvram and the Wi-Fi is never
+# Runtime iptables/ebtables only: nothing is written to nvram and the Wi-Fi is never
 # restarted (saved settings are what caused the 2026-11-25 AiMesh loop).
 # A router reboot or firewall restart drops the rules, and the saved
 # parental-control block (PControls / WGNPControls) keeps the robot offline.
@@ -27,6 +27,16 @@ set -- ${SSH_ORIGINAL_COMMAND:-${*:-status}}
 
 allow() { iptables "$1" FORWARD -o "$WAN" -m mac --mac-source "$MAC" -j ACCEPT; }
 deny() { iptables "$1" FORWARD -o "$WAN" -m mac --mac-source "$MAC" -j DROP; }
+# CoreDNS on hp/nuc answers the robot's Ecovacs lookups with Bumper's address.
+# While online, drop the robot's DNS to them (bridged, so ebtables) and it
+# falls back to 8.8.8.8 from the DHCP list, which gives the real cloud.
+lan_dns() {
+	for ip in 192.168.1.2 192.168.1.3; do
+		for proto in udp tcp; do
+			ebtables "$1" FORWARD -s "$MAC" -p IPv4 --ip-dst "$ip" --ip-proto "$proto" --ip-dport 53 -j DROP
+		done
+	done
+}
 
 stop_timer() {
 	# The timer itself runs "off": never kill our own process (or parent).
@@ -38,6 +48,7 @@ stop_timer() {
 go_offline() {
 	stop_timer
 	while allow -D 2>/dev/null; do :; done
+	lan_dns -D 2>/dev/null
 	# A DROP at the top also stops connections opened while online
 	# (they would otherwise pass the ESTABLISHED accept), and the
 	# Broadcom flow cache is flushed so offloaded flows hit it too.
@@ -57,6 +68,8 @@ on)
 	[ "$minutes" -lt 1 ] && minutes=1
 	stop_timer
 	while deny -D 2>/dev/null; do :; done
+	lan_dns -D 2>/dev/null
+	lan_dns -I
 	allow -C 2>/dev/null || allow -I || {
 		go_offline >/dev/null
 		echo "error: could not add the allow rule" >&2
