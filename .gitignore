@@ -133,3 +133,6 @@ webostv.conf
 notebooks/
 airsonos.xml
 themes/ios-*
+
+# SSH keys used by command_line switches
+.ssh/
