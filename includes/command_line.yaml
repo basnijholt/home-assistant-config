@@ -16,18 +16,23 @@
     value_template: "{{ value | trim }}"
     scan_interval: 20
 # Ecovacs T80: internet only while switched on, auto-off on the router after
-# 60 min. The key in /config/.ssh/t80_router can only run utils/t80-net.sh
-# (installed on the router as /jffs/t80-net.sh, forced command).
+# 60 min. The key in /config/.ssh/t80_router can only run utils/t80-net.sh on
+# the router (/jffs/t80-net.sh) and t80-dns on hp (real-cloud DNS instead of
+# Bumper's answers), both as forced commands with their own auto-off.
 - switch:
     name: T80 internet
     unique_id: t80_internet
     icon: mdi:robot-vacuum
     command_on: >-
       ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
-      -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 on 60
+      -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 on 60 &&
+      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
+      -o UserKnownHostsFile=/config/.ssh/known_hosts t80@192.168.1.3 on 60
     command_off: >-
       ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
-      -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 off
+      -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 off;
+      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
+      -o UserKnownHostsFile=/config/.ssh/known_hosts t80@192.168.1.3 off
     command_state: >-
       ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
       -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 status
