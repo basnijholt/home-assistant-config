@@ -23,13 +23,13 @@
     unique_id: t80_internet
     icon: mdi:robot-vacuum
     command_on: >-
-      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5
+      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
       -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 on 60
     command_off: >-
-      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5
+      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
       -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 off
     command_state: >-
-      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5
+      ssh -i /config/.ssh/t80_router -o BatchMode=yes -o ConnectTimeout=5 -o LogLevel=ERROR
       -o UserKnownHostsFile=/config/.ssh/known_hosts basnijholt@192.168.1.1 status
     value_template: "{{ value.startswith('online') }}"
     scan_interval: 60
