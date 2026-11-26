@@ -64,7 +64,9 @@ on)
 	}
 	# nohup: survive the SSH session closing. The child must not inherit
 	# SSH_ORIGINAL_COMMAND=on, so it gets an explicit "off".
-	SSH_ORIGINAL_COMMAND=off nohup sh -c "sleep $((minutes * 60)) && sh '$0'" </dev/null >/dev/null 2>&1 &
+	# Always /bin/sh: on this router a bare "sh" is /usr/sbin/sh, a
+	# Broadcom memory-poke tool.
+	SSH_ORIGINAL_COMMAND=off nohup /bin/sh -c "sleep $((minutes * 60)) && /bin/sh '$0'" </dev/null >/dev/null 2>&1 &
 	echo $! >"$PIDFILE"
 	date -d "@$(($(date +%s) + minutes * 60))" +%H:%M >"$UNTIL" 2>/dev/null || echo "+${minutes}m" >"$UNTIL"
 	echo "online until $(cat "$UNTIL")"
